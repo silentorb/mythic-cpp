@@ -3,14 +3,24 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include/lookinglass/Glass.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include/lookinglass/Glass.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/frame-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Desktop_Frame.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Desktop_Frame.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Frame.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/lookinglass-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Glass.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Glass.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/typography-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmake-utility/project.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmake-utility/print-info.cmake" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bin" />
     </content>
@@ -19,7 +29,9 @@
       <library name="Header Search Paths">
         <CLASSES>
           <root url="file://$MODULE_DIR$/external/mingw/SDL2-2.0.3/include" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
           <root url="file://$MODULE_DIR$/projects/lab/workshop/source" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
@@ -27,15 +39,22 @@
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/external/mingw/SDL2-2.0.3/include" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
           <root url="file://$MODULE_DIR$/projects/lab/workshop/source" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include/lookinglass/Glass.h" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/include/lookinglass/Glass.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Desktop_Frame.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Desktop_Frame.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source/lookinglass/Frame.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Glass.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Glass.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.cpp" />
           <root url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.h" />
           <root url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.cpp" />
         </excluded>

@@ -1,6 +1,6 @@
 #
 set(lookinglass_includes
-  ${CMAKE_CURRENT_LIST_DIR}/include
+  ${CMAKE_CURRENT_LIST_DIR}/source
 #  ${CMAKE_SOURCE_DIR}/external/freetype-2.6/include
 )
 ##message("testing ${CMAKE_SOURCE_DIR}/external/freetype-2.6/include")

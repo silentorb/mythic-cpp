@@ -1,9 +1,9 @@
 #include "Workshop.h"
-#include "lookinglass/Glass.h"
+#include "lookinglass/Desktop_Frame.h"
 
 int main(int argc, char *const argv[]) {
 
-  auto glass = new lookinglass:: Glass("Mythic Workshop");
+  auto frame = new lookinglass:: Desktop_Frame("Mythic Workshop");
   while(true){}
   return 0;
 }

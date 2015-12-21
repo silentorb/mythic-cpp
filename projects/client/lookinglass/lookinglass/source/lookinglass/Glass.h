@@ -15,13 +15,7 @@ namespace lookinglass {
       virtual ~Glass() { }
 
   private:
-      void create_window(const char* title);
-      SDL_Window *sdl_window;
-      void* gl_context;
 
-      int width;
-      int height;
-      bool fullscreen;
   };
 
 }
