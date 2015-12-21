@@ -1,5 +1,6 @@
 
 macro(add_project project_name)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
   project(${project_name})
 

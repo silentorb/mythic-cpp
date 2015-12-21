@@ -3,7 +3,7 @@
 #include "SDL2/SDL.h"
 
 namespace lookinglass {
-  Desktop_Frame:: Desktop_Frame(const char *title) {
+  Desktop_Frame::Desktop_Frame(const char *title) {
     fullscreen = false;
     width = 800;
     height = 600;
@@ -27,6 +27,17 @@ namespace lookinglass {
       // In the event that the window could not be made...
       std::cout << "Could not create window: " << SDL_GetError() << '\n';
       throw "Could not create window.";
+    }
+  }
+
+  void  Desktop_Frame::update() {
+    SDL_Event event;
+    if (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+        std::cout << "Exiting program." << std::endl;
+        closing = true;
+        return;
+      }
     }
   }
 }

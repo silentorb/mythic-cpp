@@ -3,7 +3,9 @@
 
 int main(int argc, char *const argv[]) {
 
-  auto frame = new lookinglass:: Desktop_Frame("Mythic Workshop");
-  while(true){}
+  auto frame = lookinglass:: Desktop_Frame("Mythic Workshop");
+  while(!frame.closing){
+    frame.update();
+  }
   return 0;
 }
