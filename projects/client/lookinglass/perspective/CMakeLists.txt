@@ -2,10 +2,6 @@
 add_project(perspective)
 
 include_directories(
-  ${perspective_includes}
-  ${through_includes}
-  ${glow_includes}
-  ${shading_includes}
   ${MYTHIC_EXTERNAL}/glm
 )
 
@@ -16,6 +12,8 @@ add_library(perspective
   source/lookinglass/perspective/Camera.cpp
   source/lookinglass/perspective/Camera.h)
 
+require_package(perspective shading)
+require_package(perspective glow)
+
 target_link_libraries(perspective
-  $<TARGET_LINKER_FILE:glow>
   )

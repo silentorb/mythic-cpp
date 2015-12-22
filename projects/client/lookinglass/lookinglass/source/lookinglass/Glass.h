@@ -10,9 +10,9 @@ namespace lookinglass {
   class Glass {
   public:
 
-      Glass(const char *title);
-
-      virtual ~Glass() { }
+//      Glass();
+//
+//      virtual ~Glass() { }
 
   private:
 

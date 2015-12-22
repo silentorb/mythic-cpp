@@ -9,3 +9,12 @@ macro(add_project project_name)
   include(${project_name}-config.cmake)
 
 endmacro(add_project)
+
+macro(require_package project_name library_name)
+  find_package(${library_name} REQUIRED)
+
+  target_link_libraries(${project_name}
+    $<TARGET_LINKER_FILE:${library_name}>
+    )
+
+endmacro(require_package)

@@ -2,15 +2,13 @@
 #include <iostream>
 #include "SDL2/SDL.h"
 
-namespace lookinglass {
+namespace desktop {
   Desktop_Frame::Desktop_Frame(const char *title) {
     fullscreen = false;
-    width = 800;
-    height = 600;
-    create_window(title);
+        create_window(title, 800, 600);
   }
 
-  void Desktop_Frame::create_window(const char *title) {
+  void Desktop_Frame::create_window(const char *title, int width, int height) {
     SDL_Init(SDL_INIT_VIDEO);   // Initialize SDL2
     int fullscreen_flag = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
     sdl_window = SDL_CreateWindow(
@@ -39,5 +37,13 @@ namespace lookinglass {
         return;
       }
     }
+  }
+
+  int Desktop_Frame:: get_width(){
+return 0;
+  }
+
+  int Desktop_Frame:: get_height(){
+return 0;
   }
 }
