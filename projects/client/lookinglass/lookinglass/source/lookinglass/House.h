@@ -7,10 +7,13 @@ namespace lookinglass {
 
   class House {
   public:
-      Glass* glass;
-      Frame*frame;
+      Glass *glass;
+      Frame *frame;
 
-      House(Frame*frame);
+      House(Frame *frame);
       ~House();
+      void start_update();
+      void finish_update();
+      bool is_closing();
   };
 }

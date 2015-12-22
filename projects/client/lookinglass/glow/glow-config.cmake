@@ -4,5 +4,5 @@ set(glow_includes
 )
 
 include_directories(
-  ${glow_includes}
+  ${CMAKE_CURRENT_LIST_DIR}/source
 )

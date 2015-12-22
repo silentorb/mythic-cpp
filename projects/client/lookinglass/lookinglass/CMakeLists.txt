@@ -14,6 +14,7 @@ include_directories(
 )
 
 find_package(frame)
+require_package(lookinglass glow)
 
 add_custom_command(TARGET lookinglass POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy ${MYTHIC_EXTERNAL}/SDL2-2.0.3/bin/SDL2.dll $<TARGET_FILE_DIR:lookinglass

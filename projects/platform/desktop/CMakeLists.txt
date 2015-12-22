@@ -7,6 +7,7 @@ add_library(desktop
   source/desktop/Desktop_Shader_Loader.cpp source/desktop/Desktop_Shader_Loader.h)
 
 require_package(desktop shading)
+require_package(desktop glow)
 
 include_directories(
   ${desktop_includes}
