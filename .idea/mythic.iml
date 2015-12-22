@@ -51,15 +51,15 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/desktop-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Shader_Loader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Frame.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Frame.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/platform/workshop/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/platform/workshop/source/Workshop.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/platform/workshop/source/Workshop.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmake-utility/project.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmake-utility/print-info.cmake" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bin" />
@@ -77,10 +77,10 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
-          <root url="file://$MODULE_DIR$/projects/lab/workshop/source" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
+          <root url="file://$MODULE_DIR$/projects/platform/workshop/source" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
+          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </CLASSES>
         <SOURCES>
@@ -93,10 +93,10 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
-          <root url="file://$MODULE_DIR$/projects/lab/workshop/source" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
+          <root url="file://$MODULE_DIR$/projects/platform/workshop/source" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
+          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </SOURCES>
         <excluded>
@@ -133,12 +133,12 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.c" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.h" />
-          <root url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.h" />
-          <root url="file://$MODULE_DIR$/projects/lab/workshop/source/Workshop.cpp" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Shader_Loader.h" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Frame.cpp" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Frame.h" />
           <root url="file://$MODULE_DIR$/projects/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" />
+          <root url="file://$MODULE_DIR$/projects/platform/workshop/source/Workshop.h" />
+          <root url="file://$MODULE_DIR$/projects/platform/workshop/source/Workshop.cpp" />
         </excluded>
       </library>
     </orderEntry>

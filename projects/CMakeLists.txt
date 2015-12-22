@@ -12,7 +12,7 @@ add_subdirectory(client/lookinglass/lookinglass)
 add_subdirectory(platform/desktop)
 #end sub-projects
 
-add_subdirectory(lab/workshop)
+add_subdirectory(platform/workshop)
 
 add_dependencies(workshop
   lookinglass
