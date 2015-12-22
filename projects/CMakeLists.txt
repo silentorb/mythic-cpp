@@ -2,6 +2,7 @@ set(BUILD_SHARED_LIBS true)
 
 #start sub-projects
 
+add_subdirectory(client/lookinglass/glow)
 add_subdirectory(client/lookinglass/lookinglass)
 add_subdirectory(client/lookinglass/typography)
 add_subdirectory(client/lookinglass/shading)
@@ -17,6 +18,7 @@ add_dependencies(workshop
   )
 
 add_dependencies(lookinglass
+  glow
   shading
   through
   perspective
