@@ -10,6 +10,7 @@ set(BUILD_SHARED_LIBS true)
 #start sub-projects
 
 add_subdirectory(projects/misc/math)
+add_subdirectory(projects/misc/vectoring)
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/generation/sculptor)
 #end sub-projects

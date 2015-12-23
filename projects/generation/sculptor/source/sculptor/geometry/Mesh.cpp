@@ -1,5 +1,5 @@
 #include "sculptor/geometry.h"
-#include <algorithm>
+#include "vectoring/utility.h"
 
 using namespace std;
 
