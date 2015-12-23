@@ -10,10 +10,10 @@ add_library(lookinglass
 include_directories(
 	${lookinglass_includes}
   ${MYTHIC_EXTERNAL}/SDL2-2.0.3/include
-	${MYTHIC_EXTERNAL}/glm
 )
 
 find_package(frame)
+find_package(math)
 require_package(lookinglass glow)
 
 add_custom_command(TARGET lookinglass POST_BUILD

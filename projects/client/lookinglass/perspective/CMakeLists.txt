@@ -1,8 +1,8 @@
 
 add_project(perspective)
+find_package(math)
 
 include_directories(
-  ${MYTHIC_EXTERNAL}/glm
 )
 
 add_library(perspective

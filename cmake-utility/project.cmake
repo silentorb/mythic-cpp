@@ -17,4 +17,8 @@ macro(require_package project_name library_name)
     $<TARGET_LINKER_FILE:${library_name}>
     )
 
+  add_dependencies(${project_name}
+    ${library_name}
+    )
+
 endmacro(require_package)
