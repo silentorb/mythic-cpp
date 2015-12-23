@@ -1,3 +1,4 @@
+find_package(frame)
 
 set(lookinglass_includes
   ${CMAKE_CURRENT_LIST_DIR}/source

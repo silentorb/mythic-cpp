@@ -2,8 +2,6 @@
 add_project(lookinglass)
 
 add_library(lookinglass
-	source/lookinglass/Glass.cpp
-	source/lookinglass/Glass.h
   source/lookinglass/House.cpp
 	source/lookinglass/House.h)
 
@@ -12,8 +10,8 @@ include_directories(
   ${MYTHIC_EXTERNAL}/SDL2-2.0.3/include
 )
 
-find_package(frame)
 find_package(math)
+require_package(lookinglass glass)
 require_package(lookinglass glow)
 
 add_custom_command(TARGET lookinglass POST_BUILD

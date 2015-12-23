@@ -16,7 +16,7 @@ add_library(shading
   source/lookinglass/shading/Shader_Manager.h
   source/lookinglass/shading/Ancient_Shader_Manager.cpp
   source/lookinglass/shading/Ancient_Shader_Manager.h
-    source/lookinglass/shading/Shader_Loader.h)
+    source/lookinglass/shading/Shader_Loader.h source/lookinglass/shading/effects/Effect.cpp)
 
 include_directories(
   ${shading_includes}
