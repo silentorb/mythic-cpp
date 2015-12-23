@@ -82,21 +82,23 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/glow-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/Capabilities.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/Capabilities.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/sculptor-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/declarations.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/declarations.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.h" isTestSource="false" />
@@ -113,9 +115,9 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/desktop-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/workshop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/workshop/source/Workshop.h" isTestSource="false" />
@@ -230,19 +232,21 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Mesh_Data.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Renderable.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.cpp" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/Capabilities.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.h" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/Capabilities.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.c" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.h" />
-          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/declarations.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.h" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/declarations.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.h" />
@@ -253,9 +257,9 @@
           <root url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/Lab.h" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.h" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" />
+          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.cpp" />
-          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" />
           <root url="file://$MODULE_DIR$/platform/workshop/source/Workshop.h" />
           <root url="file://$MODULE_DIR$/platform/workshop/source/Workshop.cpp" />

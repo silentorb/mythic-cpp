@@ -1,13 +1,15 @@
 #include "House.h"
 #include "lookinglass/glow.h"
 #include "lookinglass/Glass.h"
-#include "lookinglass/Capabilities.h"
+#include "lookinglass/glow/Capabilities.h"
+#include "lookinglass/glow/Version.h"
 
 namespace lookinglass {
   House::House(Frame &frame) :
     frame(frame) {
 
-    capabilities = new glow::Capabilities();
+    auto version = glow::Version();
+    capabilities = new glow::Capabilities(version);
     glass = new Glass(*capabilities);
     frame.set_clear_color(0, 0.1f, 0.3f, 1);
   }
