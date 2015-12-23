@@ -7,9 +7,25 @@ namespace sculptor {
     template<typename Iterator>
     Polygon::Polygon(Iterator source) {
       for (Vertex *vertex : source) {
-        vertex->polygons.push_back(this);
+        add_vertex(vertex);
       }
 
+      initialize();
+    }
+
+    Polygon:: Polygon(Vertex*first, Vertex*second, Vertex*third, Vertex*fourth){
+      add_vertex(first);
+      add_vertex(second);
+      add_vertex(third);
+      add_vertex(fourth);
+    }
+
+    void Polygon:: add_vertex(Vertex*vertex){
+      vertex->polygons.push_back(this);
+      vertices.push_back(vertex);
+    }
+
+    void Polygon::initialize() {
       for (int i = 0; i < vertices.size(); ++i) {
         auto next = (i + 1) & vertices.size();
         auto existing = vertices[i]->get_edge(vertices[next]);
@@ -44,7 +60,7 @@ namespace sculptor {
         auto vertex = vertices[i];
         vector_remove(vertex->polygons, this);
       }
-      
+
       vertices.empty();
 
       for (int i = edges.size() - 1; i >= 0; --i) {

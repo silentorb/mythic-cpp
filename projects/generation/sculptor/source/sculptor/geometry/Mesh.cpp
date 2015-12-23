@@ -47,5 +47,10 @@ namespace sculptor {
       auto polygon = new Polygon(vertices);
       add_polygon(polygon);
     }
+
+    Polygon *Mesh::add_polygon(Vertex*first, Vertex*second, Vertex*third, Vertex*fourth) {
+      auto polygon = new Polygon(first, second, third, fourth);
+      add_polygon(polygon);
+    }
   }
 }

@@ -6,6 +6,7 @@ using namespace sculptor::geometry;
 
 namespace sculptor {
   namespace operations {
-    void extrude(Edge &edge, mat4 &offset);
+    template<typename Iterator>
+    void extrude(Iterator &edges, mat4 &offset, bool fill = false);
   }
 }

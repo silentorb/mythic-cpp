@@ -10,6 +10,12 @@ namespace sculptor {
         vector<Polygon *> polygons;
         bool contains(Vertex *vertex);
         void get_ordered_points(Vertex* points[2]);
+
+        template<typename Iterator>
+        static void get_vertices(Iterator &edges, vector<Vertex *> vertices);
+
+        template<typename Iterator>
+        static void get_polygons(Iterator &edges, vector<Polygon *> polygons);
     };
   }
 }

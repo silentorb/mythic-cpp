@@ -17,8 +17,8 @@ namespace sculptor {
 
         template<typename Iterator>
         Polygon *add_polygon(Iterator vertices);
-
         Polygon *add_polygon(Polygon *polygon);
+        Polygon *add_polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
     };
 
   }

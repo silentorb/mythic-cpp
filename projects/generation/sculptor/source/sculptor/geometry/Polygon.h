@@ -1,9 +1,14 @@
 #pragma once
+
 #include "declarations.h"
 
 namespace sculptor {
   namespace geometry {
     class Polygon {
+    private:
+        void initialize();
+        void add_vertex(Vertex *vertex);
+
     public:
         vector<Mesh *> meshes;
         vector<Vertex *> vertices;
@@ -12,9 +17,10 @@ namespace sculptor {
 
         template<typename Iterator>
         Polygon(Iterator vertices);
+        Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         ~Polygon();
 
-        void remove(Mesh* mesh);
+        void remove(Mesh *mesh);
     };
   }
 }
