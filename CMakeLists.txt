@@ -16,6 +16,8 @@ add_subdirectory(projects/misc/vectoring)
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/generation/sculptor)
 add_subdirectory(projects/client/main/client)
+add_subdirectory(projects/generation/architect)
+add_subdirectory(projects/core/metahub)
 #end sub-projects
 
 add_subdirectory(projects/core/mythic)
