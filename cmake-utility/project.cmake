@@ -22,3 +22,7 @@ macro(require_package project_name library_name)
     )
 
 endmacro(require_package)
+
+macro(add name)
+  add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/${name})
+endmacro(add)

@@ -1,7 +1,8 @@
 #include "Scene.h"
 
-namespace lookinglass {
   namespace scenery {
 
+    void Scene::render(Glass &glass) {
+
+    }
   }
-}

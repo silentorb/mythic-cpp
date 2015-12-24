@@ -10,17 +10,19 @@ namespace laboratory {
   }
 
   Lab::~Lab() {
-    delete camera;
+//    delete camera;
   }
 
   void Lab::initialize_display() {
 
-    camera = new Freeform_Camera();
     renderer = new Lab_Renderer();
     engine.add_renderable(renderer);
+
   }
 
   void Lab::update(float delta) {
 
   }
+
+
 }

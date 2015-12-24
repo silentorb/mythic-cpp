@@ -1,10 +1,9 @@
 #include "Model.h"
 
-namespace lookinglass {
   namespace scenery {
     namespace elements {
-      Model::Model(unsigned int mesh_id, shared_ptr<Spatial_Effect *> effect)
-        : mesh_id(mesh_id), effect(effect) {
+      Model::Model(Mesh_Data& mesh, shared_ptr<Spatial_Effect *> effect)
+        : mesh(mesh), effect(effect) {
 
       }
 
@@ -15,9 +14,8 @@ namespace lookinglass {
       void Model::render(Glass &glass) {
         (*effect)->activate(*get_transform());
 
-        glass.draw_mesh(mesh_id,(*effect)->get_draw_method());
+        glass.draw_mesh(mesh,(*effect)->get_draw_method());
       }
 
     }
   }
-}

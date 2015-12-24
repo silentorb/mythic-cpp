@@ -14,7 +14,9 @@ add_library(sculptor
   source/sculptor/geometry/Polygon.h
   source/sculptor/geometry/declarations.h
   source/sculptor/operations/extrude.cpp
-  source/sculptor/operations/extrude.h source/sculptor/create.cpp source/sculptor/create.h)
+  source/sculptor/operations/extrude.h
+  source/sculptor/create.cpp
+  source/sculptor/create.h)
 
 include_directories(
   ${sculptor_includes}

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <string>
-//#include "lookinglass/Renderable.h"
+
+using namespace std;
 
 namespace mythic {
   class Mythic_Engine;
@@ -12,8 +13,11 @@ namespace mythic {
       Myth(Mythic_Engine &engine);
 
   public:
-      virtual std::string get_name() = 0;
+      string get_name();
       virtual void update(float delta);
-//      virtual void render(lookinglass::Glass & glass);
+
+      Mythic_Engine &getEngine() const {
+        return engine;
+      }
   };
 }

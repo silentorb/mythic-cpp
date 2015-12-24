@@ -3,8 +3,11 @@
 #include "clienting/Client.h"
 #include "lookinglass/House.h"
 #include "Mythic_Renderer.h"
+#include "Myth_Info.h"
 
 namespace mythic {
+//  std::map<string, std::unique_ptr<Myth_Info>> myth_registrations;
+
   Mythic_Engine::Mythic_Engine(Client *client)
     : client(client) {
     timer = new timing::Quartz();
@@ -17,12 +20,16 @@ namespace mythic {
     delete timer;
   }
 
-  void Mythic_Engine::add_myth(Myth *myth) {
-    myths[myth->get_name()] = unique_ptr<Myth>(myth);
-  }
+//  void Mythic_Engine::add_myth(Myth *myth) {
+//    myths[myth->get_name()] = unique_ptr<Myth>(myth);
+//  }
 
   void Mythic_Engine::add_renderable(lookinglass::Renderable *renderable) {
     renderer->add_renderable(renderable);
+  }
+
+  void Mythic_Engine::remove_renderable(lookinglass::Renderable *renderable) {
+    renderer->remove_renderable(renderable);
   }
 
   Client *Mythic_Engine::get_client() {
@@ -43,4 +50,10 @@ namespace mythic {
       update();
     }
   }
+
+
+
+//  void Mythic_Engine::register_myth(Myth_Info *info) {
+//    myth_registrations[info->get_name()] = std::unique_ptr<Myth_Info>(info);;
+//  }
 }

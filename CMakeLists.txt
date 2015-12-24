@@ -15,15 +15,16 @@ set(BUILD_SHARED_LIBS true)
 add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
 add_subdirectory(projects/misc/vectoring)
+add_subdirectory(projects/generation/sculptor)
 
 include(projects/client/lookinglass/lookinglass.cmake)
-add_subdirectory(projects/generation/sculptor)
+add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/main/client)
 add_subdirectory(projects/generation/architect)
 #end sub-projects
 
 add_subdirectory(projects/core/mythic)
-add_subdirectory(projects/lab/lab)
+include(projects/lab/lab.cmake)
 
 add_subdirectory(platform/desktop)
 add_subdirectory(platform/workshop)

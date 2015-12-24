@@ -13,5 +13,6 @@ namespace mythic {
   public:
       void render(Glass &glass);
       void add_renderable(Renderable *renderable);
+      void remove_renderable(Renderable *renderable);
   };
 }

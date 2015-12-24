@@ -1,9 +1,8 @@
-find_package(math)
 
-set(scenery_includes
+set(architecture_lab_includes
   ${CMAKE_CURRENT_LIST_DIR}/source
 )
 
 include_directories(
-  ${scenery_includes}
+  ${architecture_lab_includes}
 )
