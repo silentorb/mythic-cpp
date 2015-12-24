@@ -11,6 +11,7 @@ include_directories(
 )
 
 find_package(math)
+find_package(vectoring)
 require_package(lookinglass glass)
 require_package(lookinglass glow)
 

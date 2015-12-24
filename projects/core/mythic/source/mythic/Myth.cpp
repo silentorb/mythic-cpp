@@ -2,10 +2,6 @@
 #include "Mythic_Engine.h"
 
 namespace mythic {
-
-  void Myth::start(Mythic_Engine &engine) { }
-
-  void Myth::stop(Mythic_Engine &engine) { }
-
-  void Myth::update(Mythic_Engine &engine, float delta) { }
+  Myth::Myth(Mythic_Engine &engine) : engine(engine) { }
+  void Myth::update(float delta) { }
 }

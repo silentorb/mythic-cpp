@@ -1,11 +1,12 @@
 #pragma once
 
-#include <lookinglass/glow/Capabilities.h>
-#include "lookinglass/glow.h"
 #include "Draw_Method.h"
 #include "Mesh_Data.h"
 
 namespace lookinglass {
+  namespace glow {
+    class Capabilities;
+  }
   class Glass {
   private:
       glow::Capabilities &capabilities;

@@ -1,4 +1,6 @@
 #include "lookinglass/Glass.h"
+#include <lookinglass/glow/Capabilities.h>
+#include "lookinglass/glow.h"
 
 namespace lookinglass {
   Glass::Glass(glow::Capabilities &capabilities) :

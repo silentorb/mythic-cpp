@@ -21,7 +21,7 @@ void list_push(List *list, void *item) {
     list->capacity *= 2;
     list->data = realloc(list->data, list->stride * list->capacity);
   }
-  memcpy(list->data + list->stride * list->length++, item, list->stride);
+//  memcpy(list->data + list->stride * list->length++, item, list->stride);
 }
 
 void list_remove(List *list, void *item) {

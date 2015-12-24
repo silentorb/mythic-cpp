@@ -1,6 +1,9 @@
 #pragma once
 
 #include "lookinglass/Frame.h"
+#include <vector>
+
+using namespace std;
 
 namespace lookinglass {
   namespace glow {
@@ -8,10 +11,12 @@ namespace lookinglass {
   }
 
   class Glass;
+  class Renderable;
 
   class House {
   private:
       glow::Capabilities *capabilities;
+      vector<Renderable *> renderables;
 
   public:
       Glass *glass;
@@ -19,8 +24,9 @@ namespace lookinglass {
 
       House(Frame &frame);
       ~House();
-      void start_update();
-      void finish_update();
+      void update();
       bool is_closing();
+      void add_renderable(Renderable *renderable);
+      void remove_renderable(Renderable*renderable);
   };
 }

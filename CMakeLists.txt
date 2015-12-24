@@ -7,6 +7,9 @@ set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/mingw)
 set(GLM_INCLUDES ${CMAKE_SOURCE_DIR}/external/glm)
 
 set(BUILD_SHARED_LIBS true)
+
+#add_subdirectory(projects/core/metahub)
+
 #start sub-projects
 
 add_subdirectory(projects/misc/quartz)
@@ -17,7 +20,6 @@ include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/generation/sculptor)
 add_subdirectory(projects/client/main/client)
 add_subdirectory(projects/generation/architect)
-add_subdirectory(projects/core/metahub)
 #end sub-projects
 
 add_subdirectory(projects/core/mythic)

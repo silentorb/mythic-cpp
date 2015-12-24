@@ -1,3 +1,5 @@
+#include <lookinglass/Renderable.h>
+#include <vectoring/utility.h>
 #include "House.h"
 #include "lookinglass/glow.h"
 #include "lookinglass/Glass.h"
@@ -19,12 +21,14 @@ namespace lookinglass {
     delete capabilities;
   }
 
-  void House::start_update() {
+  void House::update() {
+    frame.update_events();
     frame.clear();
-    frame.update();
-  }
 
-  void House::finish_update() {
+    for (auto renderable: renderables) {
+      renderable->render(*glass);
+    }
+
     frame.flip_buffer();
   }
 
@@ -32,5 +36,11 @@ namespace lookinglass {
     return frame.closing;
   }
 
+  void House::add_renderable(Renderable *renderable) {
+    renderables.push_back(renderable);
+  }
 
+  void House::remove_renderable(Renderable *renderable) {
+    vector_remove(renderables, renderable);
+  }
 }
