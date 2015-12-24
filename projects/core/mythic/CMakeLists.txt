@@ -3,7 +3,7 @@ add_project(mythic)
 
 add_library(mythic
 
-	source/mythic/Mythic_Engine.cpp source/mythic/Mythic_Engine.h)
+	source/mythic/Mythic_Engine.cpp source/mythic/Mythic_Engine.h source/mythic/Myth.cpp source/mythic/Myth.h)
 
 require_package(mythic quartz)
 require_package(mythic client)

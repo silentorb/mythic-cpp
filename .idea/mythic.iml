@@ -112,6 +112,8 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/mythic-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/desktop-config.cmake" isTestSource="false" />
@@ -256,6 +258,8 @@
           <root url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/Lab.cpp" />
           <root url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/Lab.h" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.h" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.h" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.cpp" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" />

@@ -11,6 +11,5 @@ namespace lookinglass {
         throw message;
 
     }
-
   }
 }
