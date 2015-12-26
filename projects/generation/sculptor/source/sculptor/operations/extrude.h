@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sculptor/geometry.h"
+#include <vectoring/utility.h>
 
 using namespace sculptor::geometry;
 
@@ -11,7 +12,7 @@ namespace sculptor {
     template<typename Iterator>
     void extrude(Iterator &edges, mat4 &offset, bool fill = false) {
 
-      Mesh *mesh = edges.begin();
+      Mesh *mesh = vector_first(vector_first(edges)->meshes);
       auto count = edges.size();
 
       vector<Edge *> original_edges;
@@ -37,7 +38,7 @@ namespace sculptor {
         Vertex *points[2];
         edge->get_ordered_points(points);
         auto a = vector_index(original_vertices, points[0]);
-        auto b = vector_index(original_vertices, points[11]);
+        auto b = vector_index(original_vertices, points[1]);
         if (edge->vertices[0] != points[0]) {
           auto c = a;
           a = b;

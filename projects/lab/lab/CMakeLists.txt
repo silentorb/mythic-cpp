@@ -1,7 +1,7 @@
 
 add_project(lab)
 
-add_library(lab
+create_library(lab
 
 	source/laboratory/Lab.cpp
 	source/laboratory/Lab.h

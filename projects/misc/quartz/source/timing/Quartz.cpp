@@ -1,5 +1,12 @@
 #include "timing/Quartz.h"
-#include <windows.h>
+#include <stdint.h>
+#define IOS 1
+
+#if IOS
+    #include <mach/mach_time.h>
+#else
+    #include <windows.h>
+#endif
 
 namespace timing {
   Quartz::Quartz(void) {
@@ -12,7 +19,7 @@ namespace timing {
   }
 
   Quartz::~Quartz(void) {
-  }
+  }/*
 
   State interpolate(const State &previous, const State &current, float alpha) {
     State state;
@@ -56,41 +63,46 @@ namespace timing {
     state.x = state.x + dxdt * dt;
     state.v = state.v + dvdt * dt;
   }
-
+*/
   float Quartz::update(void) {
     const float newTime = time();
     float deltaTime = newTime - currentTime;
     currentTime = newTime;
     return deltaTime;
 
-    //if (deltaTime>0.25f)
-    //	deltaTime = 0.25f;
-
-    //accumulator += deltaTime;
-
-    //while (accumulator>=dt)
-    //{
-    //	accumulator -= dt;
-    //	previous = current;
-    //	integrate(current, t, dt);
-    //	t += dt;
-    //}
-
     //State state = interpolate(previous, current, accumulator/dt);
   }
 
   float Quartz::time() {
-    static __int64 start = 0;
-    static __int64 frequency = 0;
+      #if IOS
+      static bool started = false;
+      static double conversion;
+      if (!started) {
+          mach_timebase_info_data_t info;
+          mach_timebase_info(&info);
+          conversion = info.numer / (1e9 * info.denom);
+          started = true;
+      }
+      return mach_absolute_time() * conversion;
+      
+      #else
+    static uint64_t start = 0;
+    static uint64_t frequency = 0;
 
     if (start == 0) {
+
+        mach_absolute_time(
+
       QueryPerformanceCounter((LARGE_INTEGER *) &start);
       QueryPerformanceFrequency((LARGE_INTEGER *) &frequency);
+
       return 0.0f;
     }
 
-    __int64 counter = 0;
+    int64_t counter = 0;
     QueryPerformanceCounter((LARGE_INTEGER *) &counter);
     return (float) ((counter - start) / double(frequency));
+#endif
+        
   }
 }

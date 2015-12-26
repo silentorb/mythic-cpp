@@ -1,7 +1,7 @@
 
 add_project(architect)
 
-add_library(architect
+create_library(architect
 
 	source/architecture/Architect.cpp source/architecture/Architect.h)
 

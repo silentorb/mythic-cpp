@@ -1,0 +1,726 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		96DAC649114D434699181AA4 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4765CC75808044E2B6B130B4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				136478194303427387C94FD0 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		A89DF0C762294C53A80FEB18 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BD9AA95E1EB7453AB931D82B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				71014DC788B0452381978932 /* CMake Rules */,
+			);
+			dependencies = (
+				511F1BE11AF346B4BBA369E4 /* PBXTargetDependency */,
+				4C4C3A4FA0CC4FD2BD3F7829 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		046A689A4BA64F90B19B2206 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth_Info.h */ = {isa = PBXBuildFile; fileRef = 77D165B32354409C92B922B5 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth_Info.h */; settings = {COMPILER_FLAGS = ""; }; };
+		27000D3712DF4E7F9547DA87 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.h */ = {isa = PBXBuildFile; fileRef = AB0F98BA9E6C43529E8D0305 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.h */; settings = {COMPILER_FLAGS = ""; }; };
+		3F075EAA40FC44679785F095 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.cpp */ = {isa = PBXBuildFile; fileRef = 7A048CD388F64739915287EB /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		4084BF23624641D39009DD88 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = E6492CB032184AA5A40834B2 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */; settings = {COMPILER_FLAGS = ""; }; };
+		64B2EBB69F7D4E46989792E1 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.cpp */ = {isa = PBXBuildFile; fileRef = A50F679A3AE848E9882C421C /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		7934BB14C5024BEA9A7223DF /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp */ = {isa = PBXBuildFile; fileRef = 23DFDCDD8D5F4D7490806AD3 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		838EDF1A4266437E969ABB57 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.h */ = {isa = PBXBuildFile; fileRef = 030BD0022415428FA58BAAFF /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.h */; settings = {COMPILER_FLAGS = ""; }; };
+		8AEB197DC6934C63B33B2BBA /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.h */ = {isa = PBXBuildFile; fileRef = 6D52D5DB30B04785890C2B97 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.h */; settings = {COMPILER_FLAGS = ""; }; };
+		9A6D6E979027430C91547262 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.h */ = {isa = PBXBuildFile; fileRef = 7FCA8AFE6CD9422DB172CAA4 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.h */; settings = {COMPILER_FLAGS = ""; }; };
+		E6D591A3A1234DD58B123E4E /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.cpp */ = {isa = PBXBuildFile; fileRef = 1C1562B81AED49A38531196E /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		44BE489A41DE418ABB62464F /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		784A67ECA28040D8A1BD7962 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		AD66D31A2C29420F8566C9C0 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		D208A755B56F46F5B27E93E2 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		E4428818D5AE4FAA8B964F66 = {
+			isa = PBXBuildStyle;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		3449ED67A6BB4F9786DD82F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C260E8E5B844D158E4F858A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+		7A4665BE530F4F9AB59D4343 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C260E8E5B844D158E4F858A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+		7E66FD3F99854312A589F28B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C260E8E5B844D158E4F858A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3021CA26F89B41A493FDFA11;
+			remoteInfo = mythic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		030BD0022415428FA58BAAFF /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Mythic_Renderer.h; path = source/mythic/Mythic_Renderer.h; sourceTree = SOURCE_ROOT; };
+		1C1562B81AED49A38531196E /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Myth.cpp; path = source/mythic/Myth.cpp; sourceTree = SOURCE_ROOT; };
+		23DFDCDD8D5F4D7490806AD3 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Simple_Myth_Info.cpp; path = source/mythic/Simple_Myth_Info.cpp; sourceTree = SOURCE_ROOT; };
+		28AFE76BA550479F8EB22044 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		6D52D5DB30B04785890C2B97 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Myth.h; path = source/mythic/Myth.h; sourceTree = SOURCE_ROOT; };
+		77D165B32354409C92B922B5 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth_Info.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Myth_Info.h; path = source/mythic/Myth_Info.h; sourceTree = SOURCE_ROOT; };
+		7A048CD388F64739915287EB /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Mythic_Renderer.cpp; path = source/mythic/Mythic_Renderer.cpp; sourceTree = SOURCE_ROOT; };
+		7FCA8AFE6CD9422DB172CAA4 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Mythic_Engine.h; path = source/mythic/Mythic_Engine.h; sourceTree = SOURCE_ROOT; };
+		A50F679A3AE848E9882C421C /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Mythic_Engine.cpp; path = source/mythic/Mythic_Engine.cpp; sourceTree = SOURCE_ROOT; };
+		AB0F98BA9E6C43529E8D0305 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Simple_Myth_Info.h; path = source/mythic/Simple_Myth_Info.h; sourceTree = SOURCE_ROOT; };
+		E19BAC5A8F2D4ABBA1BE5EA0 /* mythic */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libmythic.a; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6492CB032184AA5A40834B2 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F8B2C512C96C4A789C7E5657 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06DC6C73C34A4F4A8382BEF6 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				BA01522EFCF94EF9AB0B5AAF /* CMake Rules */,
+				F8B2C512C96C4A789C7E5657 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		0DC9F24DFD9C4D89A87C8FBF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E19BAC5A8F2D4ABBA1BE5EA0 /* mythic */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2653307FFE914F30953A92EA /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D52D5DB30B04785890C2B97 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.h */,
+				77D165B32354409C92B922B5 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth_Info.h */,
+				7FCA8AFE6CD9422DB172CAA4 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.h */,
+				030BD0022415428FA58BAAFF /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.h */,
+				AB0F98BA9E6C43529E8D0305 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		2C34EA110C3C438E84BE2D2A = {
+			isa = PBXGroup;
+			children = (
+				3B25D4ED0E4A407CBA6B0B1F /* Sources */,
+				8D8440A4E0BB42F284481AD1 /* Resources */,
+				0DC9F24DFD9C4D89A87C8FBF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B25D4ED0E4A407CBA6B0B1F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9BBEB4A6BD41446CBA718B4D /* ALL_BUILD */,
+				8779CD4D3B654DF987ED85CB /* mythic */,
+				06DC6C73C34A4F4A8382BEF6 /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		8779CD4D3B654DF987ED85CB /* mythic */ = {
+			isa = PBXGroup;
+			children = (
+				F59E48DBC91D40159C3EB647 /* Source Files */,
+				2653307FFE914F30953A92EA /* Header Files */,
+				E6492CB032184AA5A40834B2 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */,
+			);
+			name = mythic;
+			sourceTree = "<group>";
+		};
+		8D8440A4E0BB42F284481AD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		95E2E519B5BC44D8B5F42421 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		9BBEB4A6BD41446CBA718B4D /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				95E2E519B5BC44D8B5F42421 /* CMake Rules */,
+				28AFE76BA550479F8EB22044 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		BA01522EFCF94EF9AB0B5AAF /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		F59E48DBC91D40159C3EB647 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C1562B81AED49A38531196E /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.cpp */,
+				A50F679A3AE848E9882C421C /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.cpp */,
+				7A048CD388F64739915287EB /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.cpp */,
+				23DFDCDD8D5F4D7490806AD3 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3021CA26F89B41A493FDFA11 /* mythic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F5B4FF0C8FF49099DAB0A4E /* Build configuration list for PBXNativeTarget "mythic" */;
+			buildPhases = (
+				9E8F270AC6FA487D80401494 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFCC5A961EE54F0088BB6636 /* PBXTargetDependency */,
+			);
+			name = mythic;
+			productName = mythic;
+			productReference = E19BAC5A8F2D4ABBA1BE5EA0 /* mythic */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C260E8E5B844D158E4F858A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = 3335AE7B54C64B6DBF7EFB90 /* Build configuration list for PBXProject "mythic" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				784A67ECA28040D8A1BD7962 /* Debug */,
+				AD66D31A2C29420F8566C9C0 /* Release */,
+				D208A755B56F46F5B27E93E2 /* MinSizeRel */,
+				44BE489A41DE418ABB62464F /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 2C34EA110C3C438E84BE2D2A;
+			projectDirPath = ../../../../projects/core/mythic;
+			projectRoot = "";
+			targets = (
+				A89DF0C762294C53A80FEB18 /* ALL_BUILD */,
+				96DAC649114D434699181AA4 /* ZERO_CHECK */,
+				3021CA26F89B41A493FDFA11 /* mythic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		136478194303427387C94FD0 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/core/mythic -f /Users/cj/dev/cpp/mythic/build/projects/core/mythic/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		440C8590D87640278445067E = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		50AF93DD117348619C9D6AD2 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		71014DC788B0452381978932 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/core/mythic -f /Users/cj/dev/cpp/mythic/build/projects/core/mythic/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E8F270AC6FA487D80401494 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6D591A3A1234DD58B123E4E /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Myth.cpp */,
+				64B2EBB69F7D4E46989792E1 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Engine.cpp */,
+				3F075EAA40FC44679785F095 /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Mythic_Renderer.cpp */,
+				7934BB14C5024BEA9A7223DF /* /Users/cj/dev/cpp/mythic/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C4C3A4FA0CC4FD2BD3F7829 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = 3449ED67A6BB4F9786DD82F3 /* PBXContainerItemProxy */;
+		};
+		511F1BE11AF346B4BBA369E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3021CA26F89B41A493FDFA11 /* mythic */;
+			targetProxy = 7E66FD3F99854312A589F28B /* PBXContainerItemProxy */;
+		};
+		CFCC5A961EE54F0088BB6636 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = 7A4665BE530F4F9AB59D4343 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		033954121E384BC8AAACD178 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		17CD22E9D6904B538C068C22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		2894175118E14DD4B3D4552C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic/build;
+			};
+			name = Release;
+		};
+		38E8FBDF8E964E838D963627 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11        -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mythic;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		5AC78EB46DFC4993ACACE0FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		60D39C58D8BE41C2A76A1D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mythic;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		71473712B13343C5A6971242 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		726F92F17147476680FE6612 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mythic;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		745199E9A30742859D6DB62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic/build;
+			};
+			name = Debug;
+		};
+		7AD6EB138D4A416FA4EB500D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mythic;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		A82DD616BAE94A28BDC41089 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic/build;
+			};
+			name = RelWithDebInfo;
+		};
+		ACACF959B7B640BA87717D74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		AFB2BB0B8261426C93FF047C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic/build;
+			};
+			name = MinSizeRel;
+		};
+		B059B03ACFFC4D1B82AE0994 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		D1C935AC1EAB484D94A6F21F /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		D34548F0BD354BCEB5F0BF7A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/core/mythic/source, /Users/cj/dev/cpp/mythic/projects/misc/vectoring/source, /Users/cj/dev/cpp/mythic/projects/misc/quartz/source, /Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/core/mythic;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3335AE7B54C64B6DBF7EFB90 /* Build configuration list for PBXProject "mythic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				745199E9A30742859D6DB62A /* Debug */,
+				2894175118E14DD4B3D4552C /* Release */,
+				AFB2BB0B8261426C93FF047C /* MinSizeRel */,
+				A82DD616BAE94A28BDC41089 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4765CC75808044E2B6B130B4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AC78EB46DFC4993ACACE0FD /* Debug */,
+				B059B03ACFFC4D1B82AE0994 /* Release */,
+				033954121E384BC8AAACD178 /* MinSizeRel */,
+				71473712B13343C5A6971242 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8F5B4FF0C8FF49099DAB0A4E /* Build configuration list for PBXNativeTarget "mythic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AD6EB138D4A416FA4EB500D /* Debug */,
+				60D39C58D8BE41C2A76A1D42 /* Release */,
+				726F92F17147476680FE6612 /* MinSizeRel */,
+				38E8FBDF8E964E838D963627 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD9AA95E1EB7453AB931D82B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACACF959B7B640BA87717D74 /* Debug */,
+				17CD22E9D6904B538C068C22 /* Release */,
+				D1C935AC1EAB484D94A6F21F /* MinSizeRel */,
+				D34548F0BD354BCEB5F0BF7A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3C260E8E5B844D158E4F858A /* Project object */;
+}

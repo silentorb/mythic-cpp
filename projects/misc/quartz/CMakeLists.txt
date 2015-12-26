@@ -1,7 +1,7 @@
 
 add_project(quartz)
 
-add_library(quartz
+create_library(quartz
 	source/timing/Quartz.cpp
 	source/timing/Quartz.h
 )

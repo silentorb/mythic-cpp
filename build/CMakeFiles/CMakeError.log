@@ -1,0 +1,72 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /Users/cj/dev/cpp/mythic/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_c2cdd" "-configuration" "Debug"
+=== BUILD TARGET cmTC_c2cdd OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+target specifies product type 'com.apple.product-type.tool', but there's no such product type for the 'iphoneos' platform
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	Check dependencies
+(1 failure)
+
+
+
+Detecting C [-std=c11] compiler features failed to compile with the following output:
+Change Dir: /Users/cj/dev/cpp/mythic/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_6147d" "-configuration" "Debug"
+=== BUILD TARGET cmTC_6147d OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+target specifies product type 'com.apple.product-type.tool', but there's no such product type for the 'iphoneos' platform
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	Check dependencies
+(1 failure)
+
+
+
+Detecting CXX compiler ABI info failed to compile with the following output:
+Change Dir: /Users/cj/dev/cpp/mythic/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_09dc6" "-configuration" "Debug"
+=== BUILD TARGET cmTC_09dc6 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+target specifies product type 'com.apple.product-type.tool', but there's no such product type for the 'iphoneos' platform
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	Check dependencies
+(1 failure)
+
+
+
+Detecting CXX [-std=c++14] compiler features failed to compile with the following output:
+Change Dir: /Users/cj/dev/cpp/mythic/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_e14ad" "-configuration" "Debug"
+=== BUILD TARGET cmTC_e14ad OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+target specifies product type 'com.apple.product-type.tool', but there's no such product type for the 'iphoneos' platform
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	Check dependencies
+(1 failure)
+
+
+

@@ -1,8 +1,8 @@
 
 add_project(mythic)
 
-add_library(mythic
-
+create_library(mythic
+  ${platform_sources}
   source/mythic/Mythic_Engine.cpp
   source/mythic/Mythic_Engine.h
   source/mythic/Myth.cpp

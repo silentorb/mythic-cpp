@@ -1,7 +1,7 @@
 
 add_project(resourceful)
 
-add_library(resourceful
+create_library(resourceful
 
 	source/lookinglass/resourceful/Resource_Manager.cpp source/lookinglass/resourceful/Resource_Manager.h)
 

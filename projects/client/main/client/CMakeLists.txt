@@ -1,7 +1,7 @@
 
 add_project(client)
 
-add_library(client
+create_library(client
 
 	source/clienting/Client.cpp source/clienting/Client.h)
 

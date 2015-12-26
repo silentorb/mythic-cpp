@@ -1,7 +1,7 @@
 
 add_project(shading)
 
-add_library(shading
+create_library(shading
 
   source/lookinglass/shading/Program.cpp
   source/lookinglass/shading/Program.h

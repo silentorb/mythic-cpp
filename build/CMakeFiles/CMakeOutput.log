@@ -1,0 +1,114 @@
+The target system is: Darwin - 1 - 
+The host system is: Darwin - 14.5.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+=== BUILD TARGET CompilerIdC OF PROJECT CompilerIdC WITH THE DEFAULT CONFIGURATION (Debug) ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CompilerIdC.LinkFileList
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+chmod 0755 /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/CompilerIdC.hmap
+
+Create product structure
+/bin/mkdir -p /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest
+
+CompileC CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CMakeCCompilerId.o CMakeCCompilerId.c normal armv7 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk -fstrict-aliasing -Wdeprecated-declarations -miphoneos-version-min=9.1 -g -Wno-sign-conversion -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/CompilerIdC.hmap -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/include -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/DerivedSources/armv7 -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/DerivedSources -F/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -MMD -MT dependencies -MF /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CMakeCCompilerId.d --serialize-diagnostics /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CMakeCCompilerId.dia -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CMakeCCompilerId.c -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CMakeCCompilerId.o
+
+Ld CompilerIdC.xctest/CompilerIdC normal armv7
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC
+    export IPHONEOS_DEPLOYMENT_TARGET=9.1
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk -L/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC -F/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -filelist /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CompilerIdC.LinkFileList -miphoneos-version-min=9.1 -dead_strip -framework XCTest -Xlinker -dependency_info -Xlinker /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Objects-normal/armv7/CompilerIdC_dependency_info.dat -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest/CompilerIdC
+
+GenerateDSYMFile CompilerIdC.xctest.dSYM CompilerIdC.xctest/CompilerIdC
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest/CompilerIdC -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest.dSYM
+
+PhaseScriptExecution Run\ Script CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC
+    /bin/sh -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.build/Debug-iphoneos/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+GCC_VERSION=com.apple.compilers.llvm.clang.1_0
+
+Touch CompilerIdC.xctest
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest
+
+** BUILD SUCCEEDED **
+
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.xctest/CompilerIdC"
+
+The C compiler identification is AppleClang, found in "/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdC/CompilerIdC.xctest/CompilerIdC"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+=== BUILD TARGET CompilerIdCXX OF PROJECT CompilerIdCXX WITH THE DEFAULT CONFIGURATION (Debug) ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CompilerIdCXX.LinkFileList
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/CompilerIdCXX.hmap
+write-file /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+chmod 0755 /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+
+Create product structure
+/bin/mkdir -p /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest
+
+CompileC CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CMakeCXXCompilerId.o CMakeCXXCompilerId.cpp normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=9.1 -g -fvisibility-inlines-hidden -Wno-sign-conversion -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/CompilerIdCXX.hmap -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/include -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/DerivedSources/armv7 -I/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/DerivedSources -F/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -MMD -MT dependencies -MF /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CMakeCXXCompilerId.d --serialize-diagnostics /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CMakeCXXCompilerId.dia -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CMakeCXXCompilerId.cpp -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CMakeCXXCompilerId.o
+
+Ld CompilerIdCXX.xctest/CompilerIdCXX normal armv7
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX
+    export IPHONEOS_DEPLOYMENT_TARGET=9.1
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch armv7 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk -L/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX -F/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -filelist /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CompilerIdCXX.LinkFileList -miphoneos-version-min=9.1 -dead_strip -framework XCTest -Xlinker -dependency_info -Xlinker /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Objects-normal/armv7/CompilerIdCXX_dependency_info.dat -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX
+
+GenerateDSYMFile CompilerIdCXX.xctest.dSYM CompilerIdCXX.xctest/CompilerIdCXX
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX -o /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest.dSYM
+
+PhaseScriptExecution Run\ Script CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX
+    /bin/sh -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.build/Debug-iphoneos/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+GCC_VERSION=com.apple.compilers.llvm.clang.1_0
+
+Touch CompilerIdCXX.xctest
+    cd /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest
+
+** BUILD SUCCEEDED **
+
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.xctest/CompilerIdCXX"
+
+The CXX compiler identification is AppleClang, found in "/Users/cj/dev/cpp/mythic/build/CMakeFiles/3.4.1/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX"
+

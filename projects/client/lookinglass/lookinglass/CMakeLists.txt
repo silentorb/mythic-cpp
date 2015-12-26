@@ -1,7 +1,7 @@
 
 add_project(lookinglass)
 
-add_library(lookinglass
+create_library(lookinglass
   source/lookinglass/House.cpp
 	source/lookinglass/House.h)
 

@@ -5,7 +5,7 @@ find_package(math)
 include_directories(
 )
 
-add_library(perspective
+create_library(perspective
   source/lookinglass/perspective/Viewport.cpp
   source/lookinglass/perspective/Viewport.h
   source/lookinglass/perspective/Viewport_Data.h

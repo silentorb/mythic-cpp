@@ -1,7 +1,7 @@
 
 add_project(scenery)
 
-add_library(scenery
+create_library(scenery
 
 	source/scenery/Scene.cpp
 	source/scenery/Scene.h

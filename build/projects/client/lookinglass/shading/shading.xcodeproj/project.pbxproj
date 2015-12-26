@@ -1,0 +1,740 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		96DAC649114D434699181AA4 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8506FF4DBA9640CFB22E83F8 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				1D75EFC694464FBB92FEE4E6 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		A89DF0C762294C53A80FEB18 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 91752B43C0104123834CDE56 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				B8925B1875A24E64AEC2AADE /* CMake Rules */,
+			);
+			dependencies = (
+				15EF433DFB23495B883D0F0C /* PBXTargetDependency */,
+				128EE94F95E64BFCB815BB59 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		238D69450BD545AF8F270311 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.cpp */ = {isa = PBXBuildFile; fileRef = 17A270B915974775B8D22D47 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		3EECEA7ECA2D42C8B980AD8A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.h */ = {isa = PBXBuildFile; fileRef = 23160EBA3FD7461DAB42719B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.h */; settings = {COMPILER_FLAGS = ""; }; };
+		6C13254CD2F1439D88BFC27A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.cpp */ = {isa = PBXBuildFile; fileRef = EF4BAA2B78AA4F34BFEAA2E3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		710075E7CB4048B2A5C54EBA /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.cpp */ = {isa = PBXBuildFile; fileRef = 523986D054A84CE7B3476D83 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		7E5440D45D3C47DCB56FAE69 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 0E6584A5E2334DF2BB7A8FDF /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */; settings = {COMPILER_FLAGS = ""; }; };
+		8CF26B7B2E5B42F79E3D6A0B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.h */ = {isa = PBXBuildFile; fileRef = 8C02C6F857354C16893D3CDC /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.h */; settings = {COMPILER_FLAGS = ""; }; };
+		92F2174C2837470B9AC73363 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.h */ = {isa = PBXBuildFile; fileRef = E3E75A2ABF104F49B0BC31D5 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.h */; settings = {COMPILER_FLAGS = ""; }; };
+		938BBF737C9A45F5A515D63F /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Loader.h */ = {isa = PBXBuildFile; fileRef = 0C81317B705D4F89809A77D3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Loader.h */; settings = {COMPILER_FLAGS = ""; }; };
+		B5FED43505E34A75905AF82C /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.cpp */ = {isa = PBXBuildFile; fileRef = 0DC5A3EA1A3D4180BB407835 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		B7DDFBF1A8F04CECB5BE82E1 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.h */ = {isa = PBXBuildFile; fileRef = 0C455C7750D14734817D6B05 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.h */; settings = {COMPILER_FLAGS = ""; }; };
+		CC4031B239FF46EAA9A85417 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h */ = {isa = PBXBuildFile; fileRef = 39873A665D384C29B84E67DD /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h */; settings = {COMPILER_FLAGS = ""; }; };
+		DBEDD42EAA7043C880D2B8F7 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp */ = {isa = PBXBuildFile; fileRef = F8D0E163E8094617BF87399A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		E4E06F1EE8274771B2A6437B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h */ = {isa = PBXBuildFile; fileRef = 5E50E701121E4B45A77E08B4 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h */; settings = {COMPILER_FLAGS = ""; }; };
+		EEBE704528FE4588BD9B0B42 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.cpp */ = {isa = PBXBuildFile; fileRef = 0F72285C711C4BAC96B6E5FA /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		2AD8C96921F94352B7A23DF4 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		6D8B6EF1E02645A9881E46F5 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		A30A078C2D564291B2B87077 = {
+			isa = PBXBuildStyle;
+		};
+		C6B51BB28B3C42DDB10363C0 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		D7A100475F57432A8775551D /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		1F788D124A5C46448677631C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 621ECE0CCA8F40A4B5B5DB1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+		A210EC96B64C4B56BD247AD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 621ECE0CCA8F40A4B5B5DB1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB0DD7860BB044FCB928B03B;
+			remoteInfo = shading;
+		};
+		C6E0A1D3A8894FEA8615F6EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 621ECE0CCA8F40A4B5B5DB1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C455C7750D14734817D6B05 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Shader_Manager.h; path = source/lookinglass/shading/Shader_Manager.h; sourceTree = SOURCE_ROOT; };
+		0C81317B705D4F89809A77D3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Loader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Shader_Loader.h; path = source/lookinglass/shading/Shader_Loader.h; sourceTree = SOURCE_ROOT; };
+		0DC5A3EA1A3D4180BB407835 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Shader.cpp; path = source/lookinglass/shading/Shader.cpp; sourceTree = SOURCE_ROOT; };
+		0E6584A5E2334DF2BB7A8FDF /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		0F72285C711C4BAC96B6E5FA /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Texture_Manager.cpp; path = source/lookinglass/shading/Texture_Manager.cpp; sourceTree = SOURCE_ROOT; };
+		17A270B915974775B8D22D47 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Effect.cpp; path = source/lookinglass/shading/effects/Effect.cpp; sourceTree = SOURCE_ROOT; };
+		23160EBA3FD7461DAB42719B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Ancient_Shader_Manager.h; path = source/lookinglass/shading/Ancient_Shader_Manager.h; sourceTree = SOURCE_ROOT; };
+		39873A665D384C29B84E67DD /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Texture_Manager.h; path = source/lookinglass/shading/Texture_Manager.h; sourceTree = SOURCE_ROOT; };
+		523986D054A84CE7B3476D83 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Program.cpp; path = source/lookinglass/shading/Program.cpp; sourceTree = SOURCE_ROOT; };
+		5E50E701121E4B45A77E08B4 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Shader.h; path = source/lookinglass/shading/Shader.h; sourceTree = SOURCE_ROOT; };
+		61304FB810674D508B23D08B /* shading */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libshading.a; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+		89FACBBECAA941D38BBBC8DF /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		8C02C6F857354C16893D3CDC /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Effect.h; path = source/lookinglass/shading/effects/Effect.h; sourceTree = SOURCE_ROOT; };
+		E3E75A2ABF104F49B0BC31D5 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Program.h; path = source/lookinglass/shading/Program.h; sourceTree = SOURCE_ROOT; };
+		EF4BAA2B78AA4F34BFEAA2E3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Shader_Manager.cpp; path = source/lookinglass/shading/Shader_Manager.cpp; sourceTree = SOURCE_ROOT; };
+		F8D0E163E8094617BF87399A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Ancient_Shader_Manager.cpp; path = source/lookinglass/shading/Ancient_Shader_Manager.cpp; sourceTree = SOURCE_ROOT; };
+		FDF0C6EFF4764DE3BC833870 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2246338D0B9A4567B6BE748B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A03DBB99B00441A848048DE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				ABABB7179EC144D29693572B /* shading */,
+				5A50C0FCCC324078A9BBFB8C /* ALL_BUILD */,
+				5E7A82FEBA664458B0A46FC2 /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		4F69F4359C8F449F9560D2CD /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		5A50C0FCCC324078A9BBFB8C /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				4F69F4359C8F449F9560D2CD /* CMake Rules */,
+				FDF0C6EFF4764DE3BC833870 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		5E7A82FEBA664458B0A46FC2 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				C27470032DEC419C95C1783D /* CMake Rules */,
+				89FACBBECAA941D38BBBC8DF /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		66F4F92C63E8468FABA22B92 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				23160EBA3FD7461DAB42719B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.h */,
+				E3E75A2ABF104F49B0BC31D5 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.h */,
+				5E50E701121E4B45A77E08B4 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h */,
+				0C81317B705D4F89809A77D3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Loader.h */,
+				0C455C7750D14734817D6B05 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.h */,
+				39873A665D384C29B84E67DD /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h */,
+				8C02C6F857354C16893D3CDC /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		8FFF0660952B4A798C473A54 = {
+			isa = PBXGroup;
+			children = (
+				2A03DBB99B00441A848048DE /* Sources */,
+				2246338D0B9A4567B6BE748B /* Resources */,
+				BBD92E46E1474374910A8F0F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ABABB7179EC144D29693572B /* shading */ = {
+			isa = PBXGroup;
+			children = (
+				F3E2AA9CF644451C89A2E605 /* Source Files */,
+				66F4F92C63E8468FABA22B92 /* Header Files */,
+				0E6584A5E2334DF2BB7A8FDF /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/CMakeLists.txt */,
+			);
+			name = shading;
+			sourceTree = "<group>";
+		};
+		BBD92E46E1474374910A8F0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				61304FB810674D508B23D08B /* shading */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C27470032DEC419C95C1783D /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		F3E2AA9CF644451C89A2E605 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8D0E163E8094617BF87399A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp */,
+				523986D054A84CE7B3476D83 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.cpp */,
+				0DC5A3EA1A3D4180BB407835 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.cpp */,
+				EF4BAA2B78AA4F34BFEAA2E3 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.cpp */,
+				0F72285C711C4BAC96B6E5FA /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.cpp */,
+				17A270B915974775B8D22D47 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB0DD7860BB044FCB928B03B /* shading */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F5E9A0295C54EB59772E448 /* Build configuration list for PBXNativeTarget "shading" */;
+			buildPhases = (
+				57ABAD46EDF84857A8EF2669 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C92131E69654FE7B95962FB /* PBXTargetDependency */,
+			);
+			name = shading;
+			productName = shading;
+			productReference = 61304FB810674D508B23D08B /* shading */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		621ECE0CCA8F40A4B5B5DB1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = F123E2FA54724C47A8CD302E /* Build configuration list for PBXProject "shading" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				2AD8C96921F94352B7A23DF4 /* Debug */,
+				C6B51BB28B3C42DDB10363C0 /* Release */,
+				D7A100475F57432A8775551D /* MinSizeRel */,
+				6D8B6EF1E02645A9881E46F5 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 8FFF0660952B4A798C473A54;
+			projectDirPath = ../../../../../projects/client/lookinglass/shading;
+			projectRoot = "";
+			targets = (
+				A89DF0C762294C53A80FEB18 /* ALL_BUILD */,
+				96DAC649114D434699181AA4 /* ZERO_CHECK */,
+				AB0DD7860BB044FCB928B03B /* shading */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D75EFC694464FBB92FEE4E6 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading -f /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		B0CEEA3A641E4B169CFABD7D = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		B8925B1875A24E64AEC2AADE /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading -f /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		D01EF0AE2A3B4077BDA73524 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57ABAD46EDF84857A8EF2669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEDD42EAA7043C880D2B8F7 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp */,
+				710075E7CB4048B2A5C54EBA /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Program.cpp */,
+				B5FED43505E34A75905AF82C /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.cpp */,
+				6C13254CD2F1439D88BFC27A /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Shader_Manager.cpp */,
+				EEBE704528FE4588BD9B0B42 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.cpp */,
+				238D69450BD545AF8F270311 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source/lookinglass/shading/effects/Effect.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		128EE94F95E64BFCB815BB59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = 1F788D124A5C46448677631C /* PBXContainerItemProxy */;
+		};
+		15EF433DFB23495B883D0F0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB0DD7860BB044FCB928B03B /* shading */;
+			targetProxy = A210EC96B64C4B56BD247AD3 /* PBXContainerItemProxy */;
+		};
+		8C92131E69654FE7B95962FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = C6E0A1D3A8894FEA8615F6EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0667234E4293407E8ED06B72 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/build;
+			};
+			name = MinSizeRel;
+		};
+		132091F99A0B4353B863A63E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = shading;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		2CED4E6E2171476882932312 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		6271E40594E5471FB92ACFFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/build;
+			};
+			name = Debug;
+		};
+		636D894C399B42448B26AF13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		797CF4EDA48B4E058E0F2C57 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/build;
+			};
+			name = RelWithDebInfo;
+		};
+		94EE25B827FD4F2BB718114E /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11        -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = shading;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		99F10120E22D46E9886B6E2A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		9A8B562B44D746BEBD553EB3 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		C21F26B84C9648609D15BFA4 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = shading;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		CF7B0C805EEB468EB51EF0BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = shading;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		DB29063DCF3E451ABD535C9A /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		DE06F1E1998448B1A4110CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		E9CDB113DD7C45A78F021A57 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		EAD81375DCB248C7AE9C9D58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/shading/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glow/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		EE834C89E61749B08B004EC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/shading/build;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F5E9A0295C54EB59772E448 /* Build configuration list for PBXNativeTarget "shading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF7B0C805EEB468EB51EF0BD /* Debug */,
+				132091F99A0B4353B863A63E /* Release */,
+				C21F26B84C9648609D15BFA4 /* MinSizeRel */,
+				94EE25B827FD4F2BB718114E /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8506FF4DBA9640CFB22E83F8 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE06F1E1998448B1A4110CAE /* Debug */,
+				EAD81375DCB248C7AE9C9D58 /* Release */,
+				DB29063DCF3E451ABD535C9A /* MinSizeRel */,
+				99F10120E22D46E9886B6E2A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		91752B43C0104123834CDE56 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636D894C399B42448B26AF13 /* Debug */,
+				2CED4E6E2171476882932312 /* Release */,
+				9A8B562B44D746BEBD553EB3 /* MinSizeRel */,
+				E9CDB113DD7C45A78F021A57 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F123E2FA54724C47A8CD302E /* Build configuration list for PBXProject "shading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6271E40594E5471FB92ACFFD /* Debug */,
+				EE834C89E61749B08B004EC5 /* Release */,
+				0667234E4293407E8ED06B72 /* MinSizeRel */,
+				797CF4EDA48B4E058E0F2C57 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 621ECE0CCA8F40A4B5B5DB1B /* Project object */;
+}

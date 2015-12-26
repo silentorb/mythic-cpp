@@ -1,7 +1,7 @@
 
 add_project(mesh_export)
 
-add_library(mesh_export
+create_library(mesh_export
 
 	source/lookinglass/mesh_export.h source/lookinglass/mesh_export.cpp)
 

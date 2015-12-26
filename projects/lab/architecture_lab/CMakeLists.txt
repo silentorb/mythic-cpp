@@ -1,7 +1,7 @@
 
 add_project(architecture_lab)
 
-add_library(architecture_lab
+create_library(architecture_lab
 
 	source/laboratory/Architecture_Lab.cpp
 	source/laboratory/Architecture_Lab.h

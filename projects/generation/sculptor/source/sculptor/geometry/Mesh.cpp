@@ -40,6 +40,8 @@ namespace sculptor {
 
 //        add_edge(edge);
       }
+        
+        return polygon;
     }
 
     template<typename Iterator>

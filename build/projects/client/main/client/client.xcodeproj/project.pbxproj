@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		96DAC649114D434699181AA4 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A55025B7DEE445D4ABFDD3E0 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				EC4335D5154D409FA3179C2F /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		A89DF0C762294C53A80FEB18 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 07F88E72022E4B7B89299AB9 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				51223173F7514EE0A1B1A1E2 /* CMake Rules */,
+			);
+			dependencies = (
+				499432FD44894C4784307568 /* PBXTargetDependency */,
+				B1F388F4ED474716BEA59514 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		424541B91B5D4484A202CEE9 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = F966364255CC4597901E6C81 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */; settings = {COMPILER_FLAGS = ""; }; };
+		72E0F6ACCDE144A39B5AE8A3 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.h */ = {isa = PBXBuildFile; fileRef = 46229E9680E6468BA7CC6B83 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.h */; settings = {COMPILER_FLAGS = ""; }; };
+		80ED948D81B44372B0CD952B /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.cpp */ = {isa = PBXBuildFile; fileRef = 7C35FB8C1C8249AD88E1F71D /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		6802D1019D2C45858928FB22 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		747A258BF07A4AC8B442B22B /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		75CAD11CF18B460DAD06EF37 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		8D55633B5E274455AC5417BB /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		9F7D5258B92B4D5693F225D0 = {
+			isa = PBXBuildStyle;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		04F2963F90864C508613F426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DE66FF537D3455D9A756CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+		1FAD5F9E895F4341A7A12548 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DE66FF537D3455D9A756CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CD0C2A9FAEE4D89913DC33E;
+			remoteInfo = client;
+		};
+		CDB245B81C7D4FC9B34A7ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DE66FF537D3455D9A756CD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F036B44B487404FAB5767BC /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		39DA49165E3349DBA757D7D4 /* client */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libclient.a; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+		46229E9680E6468BA7CC6B83 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Client.h; path = source/clienting/Client.h; sourceTree = SOURCE_ROOT; };
+		7C35FB8C1C8249AD88E1F71D /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Client.cpp; path = source/clienting/Client.cpp; sourceTree = SOURCE_ROOT; };
+		A9B8126E6C3B4CADB8105E29 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F966364255CC4597901E6C81 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1C0A24E584D746D6848F3758 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				DB4F3F721FAB47F7901D334B /* CMake Rules */,
+				A9B8126E6C3B4CADB8105E29 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		35AAE7B9F5AB4E37895C65B2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9D928BE6446743BCA45C502F /* client */,
+				1C0A24E584D746D6848F3758 /* ALL_BUILD */,
+				E95365CC21B84F76B18F2286 /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		35E777AF84834CB48EFD66B5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4700BE61305445D192E4C2D3 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C35FB8C1C8249AD88E1F71D /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		6FCDA066755344BF9AC2B035 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				39DA49165E3349DBA757D7D4 /* client */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91CC16703B7C442FBE954912 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				46229E9680E6468BA7CC6B83 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		9D928BE6446743BCA45C502F /* client */ = {
+			isa = PBXGroup;
+			children = (
+				4700BE61305445D192E4C2D3 /* Source Files */,
+				91CC16703B7C442FBE954912 /* Header Files */,
+				F966364255CC4597901E6C81 /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */,
+			);
+			name = client;
+			sourceTree = "<group>";
+		};
+		C23C03BD6EFA459D89570371 = {
+			isa = PBXGroup;
+			children = (
+				35AAE7B9F5AB4E37895C65B2 /* Sources */,
+				35E777AF84834CB48EFD66B5 /* Resources */,
+				6FCDA066755344BF9AC2B035 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB4F3F721FAB47F7901D334B /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		E95365CC21B84F76B18F2286 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				F80EA4D7A62A43668E489744 /* CMake Rules */,
+				0F036B44B487404FAB5767BC /* /Users/cj/dev/cpp/mythic/projects/client/main/client/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		F80EA4D7A62A43668E489744 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6CD0C2A9FAEE4D89913DC33E /* client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD68C35569A0488B9B92EFD4 /* Build configuration list for PBXNativeTarget "client" */;
+			buildPhases = (
+				6E4F654D0A8A480C9A0E24EA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BF640EE8E844B129E26B689 /* PBXTargetDependency */,
+			);
+			name = client;
+			productName = client;
+			productReference = 39DA49165E3349DBA757D7D4 /* client */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DE66FF537D3455D9A756CD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = CAD3C84A837B4603BE69FD96 /* Build configuration list for PBXProject "client" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				75CAD11CF18B460DAD06EF37 /* Debug */,
+				747A258BF07A4AC8B442B22B /* Release */,
+				6802D1019D2C45858928FB22 /* MinSizeRel */,
+				8D55633B5E274455AC5417BB /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = C23C03BD6EFA459D89570371;
+			projectDirPath = ../../../../../projects/client/main/client;
+			projectRoot = "";
+			targets = (
+				A89DF0C762294C53A80FEB18 /* ALL_BUILD */,
+				96DAC649114D434699181AA4 /* ZERO_CHECK */,
+				6CD0C2A9FAEE4D89913DC33E /* client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		51223173F7514EE0A1B1A1E2 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/main/client -f /Users/cj/dev/cpp/mythic/build/projects/client/main/client/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		BFD1EAD202BD4C4AA53C6136 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		D31825417A564B4D976C8035 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		EC4335D5154D409FA3179C2F /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/main/client -f /Users/cj/dev/cpp/mythic/build/projects/client/main/client/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E4F654D0A8A480C9A0E24EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80ED948D81B44372B0CD952B /* /Users/cj/dev/cpp/mythic/projects/client/main/client/source/clienting/Client.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3BF640EE8E844B129E26B689 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = 04F2963F90864C508613F426 /* PBXContainerItemProxy */;
+		};
+		499432FD44894C4784307568 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CD0C2A9FAEE4D89913DC33E /* client */;
+			targetProxy = 1FAD5F9E895F4341A7A12548 /* PBXContainerItemProxy */;
+		};
+		B1F388F4ED474716BEA59514 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = CDB245B81C7D4FC9B34A7ACB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		05E3828AD1EA4CC0AFBB16E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client/build;
+			};
+			name = Release;
+		};
+		06E4E05A8D184390B9ED1A48 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client/build;
+			};
+			name = RelWithDebInfo;
+		};
+		078AF10397844741A9C3AC38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		4967C354795647A9AFF69847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client/build;
+			};
+			name = Debug;
+		};
+		81A216F0E5EE443B8AAA195E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		86ACB2B48C4A419ABB92AFED /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client/build;
+			};
+			name = MinSizeRel;
+		};
+		89D8E6CA73524C99969DE484 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = client;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		8ABEB5B1E3704794BF57EDAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = client;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		946ACF6FDB134B29BB797ED5 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11        -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = client;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		9C53DC7FFA6E4FE1978935F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		9C783DC2D95643028F447D57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		A9AEF4EC52F54DF8B1542ACE /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		BAD5EA3473DA464C8642D3CE /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = client;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		BDD2D9E95B0F4D51B9E942B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		C5126D9D9E4243A986B4F027 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		CD20C565443C4051BB4D3882 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/main/client/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/frame/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/lookinglass/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/main/client;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07F88E72022E4B7B89299AB9 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDD2D9E95B0F4D51B9E942B9 /* Debug */,
+				078AF10397844741A9C3AC38 /* Release */,
+				81A216F0E5EE443B8AAA195E /* MinSizeRel */,
+				A9AEF4EC52F54DF8B1542ACE /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A55025B7DEE445D4ABFDD3E0 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C783DC2D95643028F447D57 /* Debug */,
+				9C53DC7FFA6E4FE1978935F3 /* Release */,
+				CD20C565443C4051BB4D3882 /* MinSizeRel */,
+				C5126D9D9E4243A986B4F027 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CAD3C84A837B4603BE69FD96 /* Build configuration list for PBXProject "client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4967C354795647A9AFF69847 /* Debug */,
+				05E3828AD1EA4CC0AFBB16E3 /* Release */,
+				86ACB2B48C4A419ABB92AFED /* MinSizeRel */,
+				06E4E05A8D184390B9ED1A48 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FD68C35569A0488B9B92EFD4 /* Build configuration list for PBXNativeTarget "client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89D8E6CA73524C99969DE484 /* Debug */,
+				8ABEB5B1E3704794BF57EDAC /* Release */,
+				BAD5EA3473DA464C8642D3CE /* MinSizeRel */,
+				946ACF6FDB134B29BB797ED5 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DE66FF537D3455D9A756CD3 /* Project object */;
+}

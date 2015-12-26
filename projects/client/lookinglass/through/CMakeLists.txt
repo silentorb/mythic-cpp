@@ -6,7 +6,7 @@ include_directories(
 	${shading_includes}
 )
 
-add_library(through
+create_library(through
 
 	source/lookinglass/through/Mist.h
 	source/lookinglass/through/Ancient_Mist.cpp

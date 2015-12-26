@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		96DAC649114D434699181AA4 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E4B5700589CB46BC8E174D2A /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				FE258851EAB74B6080B16581 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		A89DF0C762294C53A80FEB18 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C0290389F4A14DC79C385270 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				3D13C059AA094D6896D1F5E8 /* CMake Rules */,
+			);
+			dependencies = (
+				BDF517155D6C4680812EBA9F /* PBXTargetDependency */,
+				081A32DBFEC14FACAFF98E0B /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		5FB29E3D87714138B6BFDEBE /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp */ = {isa = PBXBuildFile; fileRef = 75F826E9E4314A3DA26446C2 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		BB858AD26D1C4598BBE1139E /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h */ = {isa = PBXBuildFile; fileRef = 65BC2D80695D457D97AFD562 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h */; settings = {COMPILER_FLAGS = ""; }; };
+		DA2A4759D24746FC86A66D46 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B94E6FC271D74E36A2B44B9B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */; settings = {COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		030798AB953D4A94920A2D75 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		459E7BC0D49D457B9EB046CC /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		8089A319F8CF45CD99BC545E = {
+			isa = PBXBuildStyle;
+		};
+		B2BA60FD4DCD4445A94BFE61 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		FAF40469270E448E9AE20FE9 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		48F23AE98278401BA424ADE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0322DB460AB4A31941E4656 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+		62340A6F36B3473ABADDE055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0322DB460AB4A31941E4656 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6958F59AF7E34500ADC73E20;
+			remoteInfo = mesh_export;
+		};
+		A2080A8206874CA4ACA8C147 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0322DB460AB4A31941E4656 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96DAC649114D434699181AA4;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A97635E45004951820A3C88 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		65BC2D80695D457D97AFD562 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = mesh_export.h; path = source/lookinglass/mesh_export.h; sourceTree = SOURCE_ROOT; };
+		75F826E9E4314A3DA26446C2 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mesh_export.cpp; path = source/lookinglass/mesh_export.cpp; sourceTree = SOURCE_ROOT; };
+		B94E6FC271D74E36A2B44B9B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		C8434D63E8654AB7BE0088A1 /* mesh_export */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libmesh_export.a; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+		F35A144F659949A187316305 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0706B0324F0646D1877BF0C5 /* mesh_export */ = {
+			isa = PBXGroup;
+			children = (
+				B969014CFAF44C10999BBCAE /* Header Files */,
+				3EA6E851921F4E429941C836 /* Source Files */,
+				B94E6FC271D74E36A2B44B9B /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */,
+			);
+			name = mesh_export;
+			sourceTree = "<group>";
+		};
+		18AE0D1A14A34E6BA0E74CDA /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		30E905FB5B954FF39838159E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3EA6E851921F4E429941C836 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				75F826E9E4314A3DA26446C2 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		3FE79BBC6B5B487EBF8F60F6 = {
+			isa = PBXGroup;
+			children = (
+				E341B21BCA454B2AB4C81CAF /* Sources */,
+				30E905FB5B954FF39838159E /* Resources */,
+				E7A642DF923F41C387BF8A08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		853D0B1E2D464F6180C336CC /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				F52B382613B74FC5BA9EA30E /* CMake Rules */,
+				0A97635E45004951820A3C88 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		B969014CFAF44C10999BBCAE /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				65BC2D80695D457D97AFD562 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		E341B21BCA454B2AB4C81CAF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				853D0B1E2D464F6180C336CC /* ALL_BUILD */,
+				0706B0324F0646D1877BF0C5 /* mesh_export */,
+				FE5076E259FF47E3987C34D5 /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		E7A642DF923F41C387BF8A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8434D63E8654AB7BE0088A1 /* mesh_export */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F52B382613B74FC5BA9EA30E /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		FE5076E259FF47E3987C34D5 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				18AE0D1A14A34E6BA0E74CDA /* CMake Rules */,
+				F35A144F659949A187316305 /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6958F59AF7E34500ADC73E20 /* mesh_export */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80C65528C0F4AC18F42F884 /* Build configuration list for PBXNativeTarget "mesh_export" */;
+			buildPhases = (
+				664E2826CCAF4B62A357B2E2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4B8F4F04FBF46548DACCE18 /* PBXTargetDependency */,
+			);
+			name = mesh_export;
+			productName = mesh_export;
+			productReference = C8434D63E8654AB7BE0088A1 /* mesh_export */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C0322DB460AB4A31941E4656 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = 8D46BF285E354A4CB4EDC9FD /* Build configuration list for PBXProject "mesh_export" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				459E7BC0D49D457B9EB046CC /* Debug */,
+				FAF40469270E448E9AE20FE9 /* Release */,
+				B2BA60FD4DCD4445A94BFE61 /* MinSizeRel */,
+				030798AB953D4A94920A2D75 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 3FE79BBC6B5B487EBF8F60F6;
+			projectDirPath = ../../../../../projects/client/lookinglass/mesh_export;
+			projectRoot = "";
+			targets = (
+				A89DF0C762294C53A80FEB18 /* ALL_BUILD */,
+				96DAC649114D434699181AA4 /* ZERO_CHECK */,
+				6958F59AF7E34500ADC73E20 /* mesh_export */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D13C059AA094D6896D1F5E8 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export -f /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		93446B4C43084B14A7E5A110 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		E67160246980423BB428F60F = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		FE258851EAB74B6080B16581 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export -f /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		664E2826CCAF4B62A357B2E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FB29E3D87714138B6BFDEBE /* /Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		081A32DBFEC14FACAFF98E0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = 48F23AE98278401BA424ADE4 /* PBXContainerItemProxy */;
+		};
+		BDF517155D6C4680812EBA9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6958F59AF7E34500ADC73E20 /* mesh_export */;
+			targetProxy = 62340A6F36B3473ABADDE055 /* PBXContainerItemProxy */;
+		};
+		E4B8F4F04FBF46548DACCE18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96DAC649114D434699181AA4 /* ZERO_CHECK */;
+			targetProxy = A2080A8206874CA4ACA8C147 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0CEFF3C2499346949317B15F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		0E1A933C7F5F49EBA3828FE4 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/build;
+			};
+			name = MinSizeRel;
+		};
+		238358197226462E80BB8006 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11        -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mesh_export;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		39F7EAF62E904CEDAA5A6F39 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		4025CAB278D645559A3A8088 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/build;
+			};
+			name = RelWithDebInfo;
+		};
+		50254B8431F44CF9A36AB04A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		5E2769A37980479BA340FC0D /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mesh_export;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		63D4F4F81DE04552B777748A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/build;
+			};
+			name = Release;
+		};
+		64971AA0036D491195A753F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mesh_export;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		6C770DE57F9C48B48BF69511 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		8591DEF10D17414885C5BC1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7, armv7s, arm64, );
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = " -std=c++11     ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = mesh_export;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		93499AABF9834B6A83375B1E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		9DADB9C6721741B9A88C41C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		C60D4EFB5E0F4528B9E53D16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		E1387F147F61446995DD5E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/cj/dev/cpp/mythic/projects/client/lookinglass/mesh_export/source, /Users/cj/dev/cpp/mythic/projects/client/lookinglass/glass/source, /Users/cj/dev/cpp/mythic/projects/generation/sculptor/source, );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		F20B12E62FE14B4D908E5D55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64";
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk;
+				SYMROOT = /Users/cj/dev/cpp/mythic/build/projects/client/lookinglass/mesh_export/build;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D46BF285E354A4CB4EDC9FD /* Build configuration list for PBXProject "mesh_export" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20B12E62FE14B4D908E5D55 /* Debug */,
+				63D4F4F81DE04552B777748A /* Release */,
+				0E1A933C7F5F49EBA3828FE4 /* MinSizeRel */,
+				4025CAB278D645559A3A8088 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C0290389F4A14DC79C385270 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60D4EFB5E0F4528B9E53D16 /* Debug */,
+				E1387F147F61446995DD5E02 /* Release */,
+				93499AABF9834B6A83375B1E /* MinSizeRel */,
+				50254B8431F44CF9A36AB04A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E4B5700589CB46BC8E174D2A /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CEFF3C2499346949317B15F /* Debug */,
+				9DADB9C6721741B9A88C41C9 /* Release */,
+				39F7EAF62E904CEDAA5A6F39 /* MinSizeRel */,
+				6C770DE57F9C48B48BF69511 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F80C65528C0F4AC18F42F884 /* Build configuration list for PBXNativeTarget "mesh_export" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8591DEF10D17414885C5BC1D /* Debug */,
+				64971AA0036D491195A753F2 /* Release */,
+				5E2769A37980479BA340FC0D /* MinSizeRel */,
+				238358197226462E80BB8006 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C0322DB460AB4A31941E4656 /* Project object */;
+}

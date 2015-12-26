@@ -1,7 +1,7 @@
 
 add_project(glass)
 
-add_library(glass
+create_library(glass
 	source/lookinglass/Glass.cpp
 	source/lookinglass/Glass.h
 	source/lookinglass/Renderable.h

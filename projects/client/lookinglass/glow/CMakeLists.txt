@@ -5,7 +5,7 @@ include_directories(
 	${glow_includes}
 )
 
-add_library(glow
+create_library(glow
 	source/gl_core_4_4.c
 	source/lookinglass/utility.cpp
 	source/lookinglass/utility.h

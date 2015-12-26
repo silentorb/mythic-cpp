@@ -1,7 +1,7 @@
 
 add_project(drawing)
 
-add_library(drawing
+create_library(drawing
 
 	source/lookinglass/drawing/Draw.cpp source/lookinglass/drawing/Draw.h)
 

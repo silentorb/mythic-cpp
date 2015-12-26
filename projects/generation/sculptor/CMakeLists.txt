@@ -1,7 +1,7 @@
 
 add_project(sculptor)
 
-add_library(sculptor
+create_library(sculptor
 
   source/sculptor/geometry/Mesh.cpp
   source/sculptor/geometry/Mesh.h

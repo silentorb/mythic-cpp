@@ -21,3 +21,10 @@ int vector_index(vector<T> items, T item) {
   return std::find(items.begin(), items.end(), item) - items.begin();
 }
 
+template<typename T>
+T vector_first(vector<T> items) {
+    for (auto item : items) {
+        return item;
+    }
+}
+
