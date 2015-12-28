@@ -2,7 +2,7 @@
 
   namespace scenery {
     namespace elements {
-      Model::Model(Mesh_Data& mesh, shared_ptr<Spatial_Effect *> effect)
+      Model::Model(Mesh_Data& mesh, shared_ptr<Spatial_Effect> effect)
         : mesh(mesh), effect(effect) {
 
       }
@@ -12,9 +12,9 @@
       }
 
       void Model::render(Glass &glass) {
-        (*effect)->activate(*get_transform());
+        effect->activate(*get_transform());
 
-        glass.draw_mesh(mesh,(*effect)->get_draw_method());
+        glass.draw_mesh(mesh,effect->get_draw_method());
       }
 
     }

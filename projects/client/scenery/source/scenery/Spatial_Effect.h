@@ -1,6 +1,6 @@
 #pragma once
 
-#include"lookinglass/shading/effects/Effect.h"
+#include "lookinglass/shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "lookinglass/Draw_Method.h"
 

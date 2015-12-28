@@ -3,7 +3,7 @@
 
 namespace clienting {
 
-  Client::Client(House &house) :
+  Client::Client(House *house) :
     house(house) {
   }
 
@@ -16,14 +16,11 @@ namespace clienting {
 //  }
 
   void Client::update() {
-    house.update();
+    house->update();
   }
 
   bool Client::is_closing() {
-    return house.is_closing();
+    return house->is_closing();
   }
 
-  House* Client::get_house() {
-    return &house;
-  }
 }

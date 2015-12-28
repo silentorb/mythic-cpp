@@ -22,7 +22,6 @@ include_directories(
   ${sculptor_includes}
 )
 find_package(math)
-find_package(vectoring)
 
 target_link_libraries(sculptor
 

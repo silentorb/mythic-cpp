@@ -31,6 +31,7 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/lookinglass-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Platform_Factory.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/through-config.cmake" isTestSource="false" />
@@ -40,11 +41,9 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mist_Maker.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/mesh_export-config.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/frame-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/typography-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.h" isTestSource="false" />
@@ -54,7 +53,6 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Draw_Method.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Mesh_Data.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Renderable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/perspective-config.cmake" isTestSource="false" />
@@ -82,20 +80,29 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/frame-config.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/modeling-config.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/mesh_export.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Mesh_Data.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Schema.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Schema.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Attribute.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Mesh_Data.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/mesh_export.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Textured_Vertex.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Attribute.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/scenery-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Mesh_Exporter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Mesh_Exporter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/sculptor-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" isTestSource="false" />
@@ -142,9 +149,11 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth_Info.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/desktop-config.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/workshop/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/platform/workshop/source/Workshop.h" isTestSource="false" />
@@ -165,13 +174,13 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/resourceful/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source" />
           <root url="file://$MODULE_DIR$/projects/generation/architect/source" />
@@ -194,13 +203,13 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/resourceful/source" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source" />
           <root url="file://$MODULE_DIR$/projects/generation/architect/source" />
@@ -231,6 +240,7 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.c" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/gl_core_4_4.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Platform_Factory.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mister_D.cpp" />
@@ -238,14 +248,11 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mist_Maker.cpp" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.h" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/mesh_export/source/lookinglass/mesh_export.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Draw_Method.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.cpp" />
-          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Mesh_Data.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Renderable.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Camera.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Camera.h" />
@@ -267,16 +274,25 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Ancient_Shader_Manager.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Texture_Manager.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/lookinglass/shading/Shader.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/mesh_export.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Mesh_Data.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Schema.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Schema.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Attribute.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Mesh_Data.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/mesh_export.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Textured_Vertex.h" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/lookinglass/modeling/Vertex_Attribute.h" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.h" />
-          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Mesh_Exporter.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.h" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.h" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.h" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.cpp" />
-          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Mesh_Exporter.h" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.h" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.h" />
           <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.cpp" />
@@ -310,9 +326,11 @@
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.h" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Renderer.cpp" />
           <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth_Info.h" />
-          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" />
-          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.cpp" />
+          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop.h" />
+          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.h" />
+          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop.cpp" />
+          <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Frame.h" />
           <root url="file://$MODULE_DIR$/platform/desktop/source/desktop/Desktop_Shader_Loader.cpp" />
           <root url="file://$MODULE_DIR$/platform/workshop/source/Workshop.h" />
           <root url="file://$MODULE_DIR$/platform/workshop/source/Workshop.cpp" />

@@ -1,14 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
-  set(iOS true)
+if (${IOS})
   add_definitions(-DIOS=1)
-  message(STATUS hello)
-  #include(toolchains/ios.cmake)
   set(BUILD_SHARED_LIBS OFF)
-  message(STATUS bye)
-
-else
 
 endif()
 
@@ -39,20 +33,7 @@ add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/core/mythic)
 include(projects/lab/lab.cmake)
 
-if (NOT ${iOS})
+if (${WIN32})
   add_subdirectory(platform/desktop)
   add_subdirectory(platform/workshop)
 endif()
-
-#add_dependencies(workshop
-#  lookinglass
-#  desktop
-#  )
-
-#add_dependencies(lookinglass
-#  glow
-#  shading
-#  through
-#  perspective
-#  scenery
-#  )

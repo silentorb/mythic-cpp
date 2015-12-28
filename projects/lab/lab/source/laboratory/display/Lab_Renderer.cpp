@@ -3,8 +3,8 @@
 namespace laboratory {
   namespace display {
 
-    void Lab_Renderer::render(Glass &glass) {
-
-    }
+//    void Lab_Renderer::render(Glass &glass) {
+//
+//    }
   }
 }

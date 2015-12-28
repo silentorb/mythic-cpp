@@ -4,7 +4,7 @@
 namespace lookinglass {
   namespace glow {
 
-    Capabilities::Capabilities(Version &version)
+    Capabilities::Capabilities(Version version)
       : version(version) {
 
       multidraw = glMultiDrawArrays != nullptr;

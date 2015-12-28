@@ -1,6 +1,8 @@
 #include <scenery/elements/Model.h>
 #include <sculptor/create.h>
+#include <lookinglass/modeling/mesh_export.h>
 #include "Architecture_Lab.h"
+#include "scenery/Scene.h"
 
 using namespace scenery::elements;
 
@@ -12,8 +14,10 @@ namespace laboratory {
     engine.add_renderable(scene);
     camera = new Freeform_Camera();
     auto mesh = sculptor::create::box(vec3(1, 1, 1));
-    auto mesh_data =
-    auto model = new Model()
+    auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
+    auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect());
+    auto model = new Model(*mesh_data, effect);
+    scene->add(model);
   }
 
   Architecture_Lab::~Architecture_Lab() {

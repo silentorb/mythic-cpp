@@ -1,11 +1,12 @@
 #include "timing/Quartz.h"
 #include <stdint.h>
-#define IOS 1
 
 #if IOS
-    #include <mach/mach_time.h>
+#include <mach/mach_time.h>
 #else
-    #include <windows.h>
+
+#include <windows.h>
+
 #endif
 
 namespace timing {
@@ -19,51 +20,53 @@ namespace timing {
   }
 
   Quartz::~Quartz(void) {
-  }/*
-
-  State interpolate(const State &previous, const State &current, float alpha) {
-    State state;
-    state.x = current.x * alpha + previous.x * (1 - alpha);
-    state.v = current.v * alpha + previous.v * (1 - alpha);
-    return state;
   }
 
-  float acceleration(const State &state, float t) {
-    const float k = 10;
-    const float b = 1;
-    return -k * state.x - b * state.v;
-  }
+  /*
 
-  Derivative evaluate(const State &initial, float t) {
-    Derivative output;
-    output.dx = initial.v;
-    output.dv = acceleration(initial, t);
-    return output;
-  }
+    State interpolate(const State &previous, const State &current, float alpha) {
+      State state;
+      state.x = current.x * alpha + previous.x * (1 - alpha);
+      state.v = current.v * alpha + previous.v * (1 - alpha);
+      return state;
+    }
 
-  Derivative evaluate(const State &initial, float t, float dt, const Derivative &d) {
-    State state;
-    state.x = initial.x + d.dx * dt;
-    state.v = initial.v + d.dv * dt;
-    Derivative output;
-    output.dx = state.v;
-    output.dv = acceleration(state, t + dt);
-    return output;
-  }
+    float acceleration(const State &state, float t) {
+      const float k = 10;
+      const float b = 1;
+      return -k * state.x - b * state.v;
+    }
 
-  void integrate(State &state, float t, float dt) {
-    Derivative a = evaluate(state, t);
-    Derivative b = evaluate(state, t, dt * 0.5f, a);
-    Derivative c = evaluate(state, t, dt * 0.5f, b);
-    Derivative d = evaluate(state, t, dt, c);
+    Derivative evaluate(const State &initial, float t) {
+      Derivative output;
+      output.dx = initial.v;
+      output.dv = acceleration(initial, t);
+      return output;
+    }
 
-    const float dxdt = 1.0f / 6.0f * (a.dx + 2.0f * (b.dx + c.dx) + d.dx);
-    const float dvdt = 1.0f / 6.0f * (a.dv + 2.0f * (b.dv + c.dv) + d.dv);
+    Derivative evaluate(const State &initial, float t, float dt, const Derivative &d) {
+      State state;
+      state.x = initial.x + d.dx * dt;
+      state.v = initial.v + d.dv * dt;
+      Derivative output;
+      output.dx = state.v;
+      output.dv = acceleration(state, t + dt);
+      return output;
+    }
 
-    state.x = state.x + dxdt * dt;
-    state.v = state.v + dvdt * dt;
-  }
-*/
+    void integrate(State &state, float t, float dt) {
+      Derivative a = evaluate(state, t);
+      Derivative b = evaluate(state, t, dt * 0.5f, a);
+      Derivative c = evaluate(state, t, dt * 0.5f, b);
+      Derivative d = evaluate(state, t, dt, c);
+
+      const float dxdt = 1.0f / 6.0f * (a.dx + 2.0f * (b.dx + c.dx) + d.dx);
+      const float dvdt = 1.0f / 6.0f * (a.dv + 2.0f * (b.dv + c.dv) + d.dv);
+
+      state.x = state.x + dxdt * dt;
+      state.v = state.v + dvdt * dt;
+    }
+  */
   float Quartz::update(void) {
     const float newTime = time();
     float deltaTime = newTime - currentTime;
@@ -74,28 +77,24 @@ namespace timing {
   }
 
   float Quartz::time() {
-      #if IOS
-      static bool started = false;
-      static double conversion;
-      if (!started) {
-          mach_timebase_info_data_t info;
-          mach_timebase_info(&info);
-          conversion = info.numer / (1e9 * info.denom);
-          started = true;
-      }
-      return mach_absolute_time() * conversion;
-      
-      #else
+#if IOS
+    static bool started = false;
+    static double conversion;
+    if (!started) {
+        mach_timebase_info_data_t info;
+        mach_timebase_info(&info);
+        conversion = info.numer / (1e9 * info.denom);
+        started = true;
+    }
+    return mach_absolute_time() * conversion;
+
+#else
     static uint64_t start = 0;
     static uint64_t frequency = 0;
 
     if (start == 0) {
-
-        mach_absolute_time(
-
       QueryPerformanceCounter((LARGE_INTEGER *) &start);
       QueryPerformanceFrequency((LARGE_INTEGER *) &frequency);
-
       return 0.0f;
     }
 
@@ -103,6 +102,6 @@ namespace timing {
     QueryPerformanceCounter((LARGE_INTEGER *) &counter);
     return (float) ((counter - start) / double(frequency));
 #endif
-        
+
   }
 }

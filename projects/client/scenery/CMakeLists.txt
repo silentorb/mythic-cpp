@@ -5,16 +5,18 @@ create_library(scenery
 
 	source/scenery/Scene.cpp
 	source/scenery/Scene.h
+	source/scenery/Scene_Manager.cpp
+	source/scenery/Scene_Manager.h
 	source/scenery/elements/Element.h
 	source/scenery/elements/Model.cpp
 	source/scenery/elements/Model.h
 	source/scenery/Spatial_Effect.cpp
 	source/scenery/Spatial_Effect.h
-	source/scenery/elements/Element.cpp source/scenery/Mesh_Exporter.cpp source/scenery/Mesh_Exporter.h)
-
+	source/scenery/elements/Element.cpp)
 
 require_package(scenery glass)
 require_package(scenery shading)
+require_package(scenery modeling)
 
 include_directories(
 	${scenery_includes}

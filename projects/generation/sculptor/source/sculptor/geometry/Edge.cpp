@@ -1,4 +1,3 @@
-#include <vectoring/utility.h>
 #include "sculptor/geometry.h"
 
 namespace sculptor {
@@ -43,24 +42,5 @@ namespace sculptor {
       }
     }
 
-    template<typename Iterator>
-    void Edge::get_vertices(Iterator &edges, vector<Vertex *> vertices) {
-      for (auto edge: edges) {
-        for (auto vertex: edge->vertices) {
-          if (!vector_contains(vertices, vertex))
-            vertices.push_back(vertex);
-        }
-      }
-    }
-
-    template<typename Iterator>
-    void Edge::get_polygons(Iterator &edges, vector<Polygon *> polygons) {
-      for (auto edge: edges) {
-        for (auto polygon: edge->polygons) {
-          if (!vector_contains(polygons, polygon))
-            polygons.push_back(polygon);
-        }
-      }
-    }
   }
 }

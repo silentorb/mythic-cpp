@@ -13,7 +13,7 @@ namespace lookinglass {
         bool multidraw;
         bool uniform_layout;
 
-        Capabilities(Version & version);
+        Capabilities(Version version);
     };
   }
 }

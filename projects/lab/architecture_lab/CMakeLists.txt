@@ -14,6 +14,8 @@ require_package(architecture_lab glass)
 require_package(architecture_lab mythic)
 require_package(architecture_lab scenery)
 require_package(architecture_lab sculptor)
+require_package(architecture_lab shading)
+require_package(architecture_lab modeling)
 
 include_directories(
 	${architecture_lab_includes}

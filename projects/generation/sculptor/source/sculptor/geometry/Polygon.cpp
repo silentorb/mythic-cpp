@@ -18,6 +18,9 @@ namespace sculptor {
       add_vertex(second);
       add_vertex(third);
       add_vertex(fourth);
+      uvs = nullptr;
+
+      initialize();
     }
 
     void Polygon:: add_vertex(Vertex*vertex){
@@ -27,9 +30,9 @@ namespace sculptor {
 
     void Polygon::initialize() {
       for (int i = 0; i < vertices.size(); ++i) {
-        auto next = (i + 1) & vertices.size();
+        auto next = (i + 1) % vertices.size();
         auto existing = vertices[i]->get_edge(vertices[next]);
-        if (existing != NULL) {
+        if (existing != nullptr) {
           edges.push_back(existing);
           existing->polygons.push_back(this);
         }

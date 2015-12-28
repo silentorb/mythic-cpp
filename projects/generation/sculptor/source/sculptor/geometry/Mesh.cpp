@@ -28,20 +28,19 @@ namespace sculptor {
       polygon->meshes.push_back(this);
 
       for (auto vertex : polygon->vertices) {
-        if (std::find(vertices.begin(), vertices.end(), vertex) != vertices.end())
-          continue;
-
-        add_vertex(vertex);
+        if (!vector_contains(vertices, vertex))
+          add_vertex(vertex);
       }
 
       for (auto edge : polygon->edges) {
-        if (std::find(edges.begin(), edges.end(), edge) != edges.end())
-          continue;
-
-//        add_edge(edge);
+        if (!vector_contains(edges, edge)){
+          edges.push_back(edge);
+          edge->meshes.push_back(this);
+        }
+//          add_edge(edge);
       }
-        
-        return polygon;
+
+      return polygon;
     }
 
     template<typename Iterator>

@@ -2,7 +2,10 @@
 
 #include <laboratory/display/Freeform_Camera.h>
 #include "mythic/Mythic_Engine.h"
-#include "scenery/Scene.h"
+
+namespace scenery {
+  class Scene;
+}
 
 using namespace laboratory::display;
 using namespace mythic;

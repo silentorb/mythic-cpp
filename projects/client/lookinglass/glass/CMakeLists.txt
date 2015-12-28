@@ -6,9 +6,11 @@ create_library(glass
 	source/lookinglass/Glass.h
 	source/lookinglass/Renderable.h
 	source/lookinglass/Draw_Method.h
-	source/lookinglass/Mesh_Data.h)
+	)
 
 require_package(glass glow)
+require_package(glass shading)
+require_package(glass modeling)
 
 include_directories(
 	${glass_includes}

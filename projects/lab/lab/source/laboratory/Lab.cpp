@@ -1,5 +1,6 @@
 #include "Lab.h"
 #include "laboratory/display/Lab_Renderer.h"
+#include "laboratory/Architecture_Lab.h"
 
 using namespace laboratory::display;
 
@@ -14,9 +15,9 @@ namespace laboratory {
   }
 
   void Lab::initialize_display() {
-
-    renderer = new Lab_Renderer();
-    engine.add_renderable(renderer);
+    architecture_lab = unique_ptr<Architecture_Lab>(new Architecture_Lab(engine));
+//    renderer = new Lab_Renderer();
+//    engine.add_renderable(renderer);
 
   }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 
 namespace lookinglass {
   class House;
@@ -8,18 +9,22 @@ namespace lookinglass {
 }
 
 using namespace lookinglass;
+using namespace std;
 
 namespace clienting {
   class Client {
   private:
-      House &house;
+      unique_ptr<House> house;
 
   public:
-      Client(House &house);
+      Client(House *house);
       void update();
       bool is_closing();
 //      void add_renderable(Renderable*renderable);
 //      void remove_renderable(Renderable*renderable);
-      House *get_house();
+
+      House &get_house() const {
+        return *house;
+      }
   };
 }
