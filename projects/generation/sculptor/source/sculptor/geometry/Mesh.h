@@ -5,12 +5,14 @@
 
 namespace sculptor {
   namespace geometry {
-    class MYTHIC_EXPORT MYTHIC_EXPORT Mesh {
+    class MYTHIC_EXPORT Mesh {
+		private:
+			vector<Edge *> edges;
+
     public:
         Mesh();
         vector<Vertex *> vertices;
         vector<Polygon *> polygons;
-        vector<Edge *> edges;
 
         Vertex *add_vertex(Vertex *vertex);
 //        ::get_shared::Mesh_Pointer get_shared();
@@ -21,6 +23,10 @@ namespace sculptor {
         Polygon *add_polygon(Polygon *polygon);
         Polygon *add_polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         Polygon *add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth);
+
+        const vector<Edge *> &get_edges() const {
+          return edges;
+        }
     };
 
   }

@@ -11,7 +11,7 @@ namespace sculptor {
 //    template<typename Iterator>
 //    void extrude(Iterator &edges, mat4 &offset, bool fill = false);
     template<typename Iterator>
-    void extrude(Iterator &edges, mat4 &offset, bool fill = false) {
+    void extrude(const Iterator &edges, mat4 &offset, bool fill = false) {
 
       Mesh *mesh = vector_first(vector_first(edges)->meshes);
       auto count = edges.size();

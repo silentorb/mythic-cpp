@@ -23,7 +23,7 @@ int vector_index(vector<T> &items, T item) {
 }
 
 template<typename T>
-T vector_first(vector<T> &items) {
+T vector_first(const vector<T> &items) {
     for (auto item : items) {
         return item;
     }

@@ -33,7 +33,7 @@ namespace sculptor {
       }
 
       if (points[0] == other_polygon->vertices[0]
-          && points[1] == other_polygon->vertices[other_polygon->vertices.size()]) {
+          && points[1] == other_polygon->vertices[other_polygon->vertices.size() - 1]) {
 
         // Reverse the points
         auto temp = points[0];

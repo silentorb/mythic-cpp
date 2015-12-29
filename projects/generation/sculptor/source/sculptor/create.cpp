@@ -16,7 +16,7 @@ namespace sculptor {
       );
 
       auto transform = glm::translate(vec3(0, 0, -size.z));
-      sculptor::operations::extrude(mesh->edges, transform, true);
+      sculptor::operations::extrude(mesh->get_edges(), transform, true);
       return mesh;
     }
   }

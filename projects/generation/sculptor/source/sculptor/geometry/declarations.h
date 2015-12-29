@@ -25,5 +25,6 @@ namespace sculptor {
     typedef shared_ptr<Polygon> Polygon_Pointer;
     typedef shared_ptr<Edge> Edge_Pointer;
 
+		MYTHIC_EXPORT typedef vector<Edge *> Edge_List;
   }
 }
