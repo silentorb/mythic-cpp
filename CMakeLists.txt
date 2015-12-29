@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.3)
+enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
 
-project(mythical)
+#if (MSVC)
+#  project(mythical)
+#endif ()
 
 if (${IOS})
   add_definitions(-DIOS=1)
@@ -9,20 +12,21 @@ else ()
   set(BUILD_SHARED_LIBS true)
 endif ()
 
-
 include(cmake-utility/print-info.cmake)
 include(cmake-utility/project.cmake)
 
-print_info(STATUS)
+#print_info(STATUS)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 
-if (${MINGW})
+if (MINGW)
   set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll)
   set(SDL_LIB ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2.dll.a)
-elseif (${MSVC})
+  set(OPENGL_LIB -lglu32 -lopengl32)
+elseif (MSVC)
   set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/lib/x86/SDL2.dll)
   set(SDL_LIB ${MYTHIC_EXTERNAL}/SDL2-2.0.3/lib/x86/SDL2.lib)
+  set(OPENGL_LIB opengl32.lib)
 endif ()
 
 #add_subdirectory(projects/core/metahub)

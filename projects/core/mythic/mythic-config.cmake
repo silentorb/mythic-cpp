@@ -4,5 +4,5 @@ set(mythic_includes
 )
 
 include_directories(
-  ${mythic_includes}
+  ${CMAKE_CURRENT_LIST_DIR}/source
 )

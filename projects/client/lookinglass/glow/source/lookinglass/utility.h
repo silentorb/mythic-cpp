@@ -7,6 +7,6 @@ namespace lookinglass {
 
     using namespace std;
 
-    void check_error(const char *message);
+    MYTHIC_EXPORT void check_error(const char *message);
   }
 }
