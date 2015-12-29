@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "lookinglass/shading/effects/Effect.h"
 #include "glm/glm.hpp"
@@ -9,7 +10,7 @@ using namespace lookinglass;
 using namespace glm;
 
   namespace scenery {
-    class Spatial_Effect : protected Effect {
+    class MYTHIC_EXPORT Spatial_Effect : protected Effect {
     private:
         Draw_Method draw_method;
 

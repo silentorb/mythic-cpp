@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "geometry/Mesh.h"
 #include "geometry/Vertex.h"

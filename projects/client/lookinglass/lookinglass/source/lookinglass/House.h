@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "lookinglass/Frame.h"
 #include "Platform_Factory.h"
@@ -9,22 +10,22 @@ using namespace std;
 
 namespace lookinglass {
   namespace glow {
-    class Capabilities;
+    class MYTHIC_EXPORT Capabilities;
   }
 
   namespace shading {
-    class Shader_Manager;
+    class MYTHIC_EXPORT Shader_Manager;
 
-    class Shader_Loader;
+    class MYTHIC_EXPORT Shader_Loader;
   }
 
   using namespace shading;
 
-  class Glass;
+  class MYTHIC_EXPORT Glass;
 
-  class Renderable;
+  class MYTHIC_EXPORT Renderable;
 
-  class House {
+  class MYTHIC_EXPORT House {
   private:
       unique_ptr<glow::Capabilities> capabilities;
       vector<Renderable *> renderables;

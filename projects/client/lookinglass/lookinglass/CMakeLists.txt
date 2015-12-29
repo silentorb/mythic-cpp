@@ -18,7 +18,3 @@ require_package(lookinglass glass)
 require_package(lookinglass glow)
 require_package(lookinglass shading)
 
-add_custom_command(TARGET lookinglass POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy ${MYTHIC_EXTERNAL}/SDL2-2.0.3/bin/SDL2.dll $<TARGET_FILE_DIR:lookinglass
-  )
-

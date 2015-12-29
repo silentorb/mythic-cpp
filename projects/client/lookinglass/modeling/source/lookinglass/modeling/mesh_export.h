@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Mesh_Data.h"
 #include "sculptor/geometry.h"

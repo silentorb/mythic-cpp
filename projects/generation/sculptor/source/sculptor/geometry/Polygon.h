@@ -1,10 +1,11 @@
 #pragma once
+#include "dllexport.h"
 
 #include "declarations.h"
 
 namespace sculptor {
   namespace geometry {
-    class Polygon {
+    class MYTHIC_EXPORT Polygon {
     private:
         void initialize();
         void add_vertex(Vertex *vertex);

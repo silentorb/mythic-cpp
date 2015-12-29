@@ -11,16 +11,16 @@ namespace lookinglass {
     Shader *Shader_Manager::create_shader(Shader_Type type, const char *path) {
       string source;
       loader->load(path, source);
-      string code;
-      process(type, source, code);
+      auto code = process(type, source);
+			return new Shader(type, code.c_str());
     }
 
     Program *Shader_Manager::create_program(Shader *vertex_shader, Shader *fragment_shader) {
-
+			return nullptr;
     }
 
-    void Shader_Manager::process(Shader_Type type, const string source, string &result) {
-
+    string Shader_Manager::process(Shader_Type type, const string source) {
+			return source;
     }
 
 //    const Vertex_Schema &Shader_Manager::create_vertex_schema(const string name,

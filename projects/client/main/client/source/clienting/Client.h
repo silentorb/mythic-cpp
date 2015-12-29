@@ -1,18 +1,19 @@
 #pragma once
+#include "dllexport.h"
 
 #include <memory>
 
 namespace lookinglass {
-  class House;
+  class MYTHIC_EXPORT House;
 
-  class Renderable;
+  class MYTHIC_EXPORT Renderable;
 }
 
 using namespace lookinglass;
 using namespace std;
 
 namespace clienting {
-  class Client {
+  class MYTHIC_EXPORT Client {
   private:
       unique_ptr<House> house;
 

@@ -1,8 +1,9 @@
+set(CMAKE_UTILITY ${CMAKE_CURRENT_LIST_DIR})
 
-if(iOS)
+if (iOS)
 
   macro(add_project project_name)
-  message(STATUS "ios ${project_name}")
+    message(STATUS "ios ${project_name}")
     #include(${CMAKE_SOURCE_DIR}/toolchains/ios.cmake)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -16,7 +17,7 @@ if(iOS)
 
   macro(create_library target)
     add_library(${target} STATIC ${ARGN})
-    set_xcode_property (${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
+    set_xcode_property(${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
   endmacro(create_library)
 
   macro(require_package project_name library_name)
@@ -32,10 +33,12 @@ if(iOS)
 
   endmacro(require_package)
 
-else()
+else ()
 
   macro(add_project project_name)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    if (${MINGW})
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    endif ()
 
     project(${project_name})
 
@@ -47,6 +50,9 @@ else()
 
   macro(create_library target)
     add_library(${target} ${ARGN})
+    include_directories(${CMAKE_UTILITY}/include) # for dllexport
+      set_target_properties(${target} PROPERTIES DEFINE_SYMBOL "EXPORTING_DLL")
+#      add_definitions(-DMYTHIC_EXPORT)
   endmacro(create_library)
 
   macro(require_package project_name library_name)
@@ -62,7 +68,7 @@ else()
 
   endmacro(require_package)
 
-endif()
+endif ()
 
 
 macro(add name)

@@ -1,7 +1,8 @@
 #pragma once
+#include "dllexport.h"
 
 namespace architecture {
-  class Architect  {
+  class MYTHIC_EXPORT Architect  {
 
   };
 }

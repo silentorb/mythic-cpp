@@ -1,7 +1,8 @@
 #pragma once
+#include "dllexport.h"
 
 namespace lookinglass {
-  class Frame {
+  class MYTHIC_EXPORT Frame {
   public:
       bool fullscreen;
       bool closing = false;

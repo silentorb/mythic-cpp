@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "glm/gtc/quaternion.hpp"
 #include "glm/vec3.hpp"
@@ -8,7 +9,7 @@ using namespace glm;
 namespace lookinglass {
   namespace perspective {
 
-    class Camera {
+    class MYTHIC_EXPORT Camera {
     private:
         vec3 position;
         quat orientation;

@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 namespace lookinglass {
   namespace shading {
@@ -8,7 +9,7 @@ namespace lookinglass {
         fragment = 0x8B30
     };
 
-    class Shader {
+    class MYTHIC_EXPORT Shader {
     private:
         Shader_Type type;
         const char *source_code;

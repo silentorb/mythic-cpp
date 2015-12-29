@@ -53,6 +53,8 @@ namespace lookinglass {
 
         offset += attribute.count * sizeof(float);
       }
+
+			return schema;
     }
 
   }

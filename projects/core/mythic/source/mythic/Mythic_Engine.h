@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Myth.h"
 #include <map>
@@ -7,15 +8,15 @@
 #include <typeindex>
 
 namespace timing {
-  class Quartz;
+  class MYTHIC_EXPORT Quartz;
 }
 
 namespace clienting {
-  class Client;
+  class MYTHIC_EXPORT Client;
 }
 
 namespace lookinglass {
-  class Renderable;
+  class MYTHIC_EXPORT Renderable;
 }
 
 using namespace clienting;
@@ -23,9 +24,9 @@ using namespace std;
 
 namespace mythic {
 
-  class Mythic_Renderer;
+  class MYTHIC_EXPORT Mythic_Renderer;
 
-  class Mythic_Engine {
+  class MYTHIC_EXPORT Mythic_Engine {
   private:
       timing::Quartz *timer;
       Client *client;

@@ -1,13 +1,14 @@
 #pragma once
+#include "dllexport.h"
 
 #include <string>
 
 using namespace std;
 
 namespace mythic {
-  class Mythic_Engine;
+  class MYTHIC_EXPORT Mythic_Engine;
 
-  class Myth {
+  class MYTHIC_EXPORT Myth {
   protected:
       Mythic_Engine &engine;
       Myth(Mythic_Engine &engine);

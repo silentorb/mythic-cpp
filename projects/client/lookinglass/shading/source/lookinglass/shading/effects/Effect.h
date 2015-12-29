@@ -1,10 +1,11 @@
 #pragma once
+#include "dllexport.h"
 
 
 namespace lookinglass {
   namespace shading {
     namespace effects {
-      class Effect {
+      class MYTHIC_EXPORT Effect {
       public:
           void activate();
       };

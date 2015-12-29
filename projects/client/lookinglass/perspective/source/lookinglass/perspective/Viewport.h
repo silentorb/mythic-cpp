@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "glm/glm.hpp"
 #include "Viewport_Data.h"
@@ -11,7 +12,7 @@ using namespace lookinglass:: through;
 namespace lookinglass {
   namespace perspective {
 
-    class Viewport {
+    class MYTHIC_EXPORT Viewport {
     private:
         Mist<Viewport_Data> *mist;
         Camera *camera;

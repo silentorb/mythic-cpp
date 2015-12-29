@@ -1,8 +1,9 @@
 #pragma once
+#include "dllexport.h"
 
 namespace lookinglass {
   namespace resourceful {
-    class Resource_Manager {
+    class MYTHIC_EXPORT Resource_Manager {
 
     };
   }

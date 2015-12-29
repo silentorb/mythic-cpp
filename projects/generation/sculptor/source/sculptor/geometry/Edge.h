@@ -1,9 +1,10 @@
 #pragma once
+#include "dllexport.h"
 #include <vectoring/utility.h>
 
 namespace sculptor {
   namespace geometry {
-    class Edge {
+    class MYTHIC_EXPORT Edge {
     public:
         Edge(Vertex *first, Vertex *second);
         vector<Mesh *> meshes;

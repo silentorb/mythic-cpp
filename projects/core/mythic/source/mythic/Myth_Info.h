@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include <string>
 
@@ -6,11 +7,11 @@ using namespace std;
 
 namespace mythic {
 
-  class Mythic_Engine;
+  class MYTHIC_EXPORT Mythic_Engine;
 
-  class Myth;
+  class MYTHIC_EXPORT Myth;
 
-  class Myth_Info {
+  class MYTHIC_EXPORT Myth_Info {
   public:
       virtual string get_name() = 0;
       virtual Myth *fabricate(Mythic_Engine &engine) = 0;

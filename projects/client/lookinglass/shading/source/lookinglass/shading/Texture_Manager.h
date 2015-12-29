@@ -1,7 +1,8 @@
 #pragma once
+#include "dllexport.h"
 namespace lookinglass {
   namespace shading {
-    class Texture_Manager {
+    class MYTHIC_EXPORT Texture_Manager {
     };
   }
 }

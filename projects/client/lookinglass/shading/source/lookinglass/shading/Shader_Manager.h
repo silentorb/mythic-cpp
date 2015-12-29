@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Shader.h"
 #include "Program.h"
@@ -10,13 +11,13 @@
 namespace lookinglass {
   namespace shading {
 
-    class Shader_Manager {
+    class MYTHIC_EXPORT Shader_Manager {
     private:
         unique_ptr<Shader_Loader> loader;
 //        std::map<string, std::unique_ptr<Vertex_Schema>> vertex_schemas;
 
     protected:
-        virtual void process(Shader_Type type, const string source, string &result);
+        virtual string process(Shader_Type type, const string source);
 
     public:
         Shader_Manager(Shader_Loader *loader);

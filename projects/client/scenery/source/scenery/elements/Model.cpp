@@ -8,7 +8,7 @@
       }
 
       mat4 *Model::get_transform() {
-
+				return nullptr;
       }
 
       void Model::render(Glass &glass) {

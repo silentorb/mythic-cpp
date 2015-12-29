@@ -1,8 +1,9 @@
 #pragma once
+#include "dllexport.h"
 
 namespace sculptor {
   namespace geometry {
-    class Vertex {
+    class MYTHIC_EXPORT Vertex {
     public:
         Vertex(vec3 tvec3);
 

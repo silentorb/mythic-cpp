@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 
 #include "Vertex_Schema.h"
@@ -6,7 +7,7 @@
 namespace lookinglass {
   namespace modeling {
 
-    class Mesh_Data {
+    class MYTHIC_EXPORT Mesh_Data {
     private:
         unsigned int vao;
         unsigned int vbo;

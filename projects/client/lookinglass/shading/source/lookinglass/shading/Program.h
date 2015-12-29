@@ -1,10 +1,11 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Shader.h"
 
 namespace lookinglass {
   namespace shading {
-    class Program {
+    class MYTHIC_EXPORT Program {
     public:
         unsigned int id;
         Program(Shader first, Shader second);

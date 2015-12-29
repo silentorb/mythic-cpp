@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include <lookinglass/Renderable.h>
 #include "scenery/elements/Element.h"
@@ -10,7 +11,7 @@ using namespace lookinglass;
 
 namespace scenery {
 
-  class Scene : public Renderable {
+  class MYTHIC_EXPORT Scene : public Renderable {
   private:
       std::vector<Element *> elements;
   public:

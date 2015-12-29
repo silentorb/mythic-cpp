@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include<memory>
 #include <scenery/Spatial_Effect.h>
@@ -12,7 +13,7 @@ using namespace lookinglass::modeling;
 
   namespace scenery {
     namespace elements {
-      class Model : public Element {
+      class MYTHIC_EXPORT Model : public Element {
       private:
           Mesh_Data &mesh;
           shared_ptr<Spatial_Effect> effect;

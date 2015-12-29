@@ -1,8 +1,10 @@
 #pragma once
+#include "dllexport.h"
 
 #include "glm/glm.hpp"
 #include <vector>
 #include <memory>
+#include "dllexport.h"
 
 using namespace std;
 using namespace glm;
@@ -10,13 +12,13 @@ using namespace glm;
 namespace sculptor {
   namespace geometry {
 
-    class Mesh;
+    class MYTHIC_EXPORT Mesh;
 
-    class Vertex;
+    class MYTHIC_EXPORT Vertex;
 
-    class Polygon;
+    class MYTHIC_EXPORT Polygon;
 
-    class Edge;
+    class MYTHIC_EXPORT Edge;
 
     typedef shared_ptr<Mesh> Mesh_Pointer;
     typedef shared_ptr<Vertex> Vertex_Pointer;

@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.3)
 
+project(mythical)
+
 if (${IOS})
   add_definitions(-DIOS=1)
   set(BUILD_SHARED_LIBS OFF)
@@ -11,17 +13,16 @@ endif ()
 include(cmake-utility/print-info.cmake)
 include(cmake-utility/project.cmake)
 
-#print_info()
+print_info(STATUS)
 
-set(MYTHIC_EXTERNAL_INCLUDES ${CMAKE_SOURCE_DIR}/external/include)
+set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 
 if (${MINGW})
-  set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/mingw/x86)
-#  set(MYTHIC_EXTERNAL_LIBS ${MYTHIC_EXTERNAL}/external/mingw)
-else ()
-  set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/vs/x86)
-#  set(MYTHIC_EXTERNAL_LIBS ${MYTHIC_EXTERNAL}/external/mingw)
-
+  set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll)
+  set(SDL_LIB ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2.dll.a)
+elseif (${MSVC})
+  set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/lib/x86/SDL2.dll)
+  set(SDL_LIB ${MYTHIC_EXTERNAL}/SDL2-2.0.3/lib/x86/SDL2.lib)
 endif ()
 
 #add_subdirectory(projects/core/metahub)

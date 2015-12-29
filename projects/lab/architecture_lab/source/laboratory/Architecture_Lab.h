@@ -1,10 +1,11 @@
 #pragma once
+#include "dllexport.h"
 
 #include <laboratory/display/Freeform_Camera.h>
 #include "mythic/Mythic_Engine.h"
 
 namespace scenery {
-  class Scene;
+  class MYTHIC_EXPORT Scene;
 }
 
 using namespace laboratory::display;
@@ -13,7 +14,7 @@ using namespace scenery;
 
 namespace laboratory {
 
-  class Architecture_Lab {
+  class MYTHIC_EXPORT Architecture_Lab {
   private:
       Freeform_Camera *camera;
       Scene *scene;

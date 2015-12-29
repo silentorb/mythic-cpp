@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 namespace timing {
 
@@ -14,7 +15,7 @@ namespace timing {
       float dv;
   };
 
-  class Quartz {
+  class MYTHIC_EXPORT Quartz {
   public:
       Quartz(void);
       ~Quartz(void);

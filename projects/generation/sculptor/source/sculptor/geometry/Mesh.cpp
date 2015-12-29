@@ -52,6 +52,7 @@ namespace sculptor {
     Polygon *Mesh::add_polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth) {
       auto polygon = new Polygon(first, second, third, fourth);
       add_polygon(polygon);
+			return polygon;
     }
 
     Polygon *Mesh::add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth) {
@@ -61,6 +62,7 @@ namespace sculptor {
         add_vertex(third),
         add_vertex(fourth));
       add_polygon(polygon);
+			return polygon;
     }
   }
 }

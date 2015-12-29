@@ -1,8 +1,9 @@
 #pragma once
+#include "dllexport.h"
 
 namespace lookinglass {
   namespace typography {
-    class Font_Manager {
+    class MYTHIC_EXPORT Font_Manager {
 
     };
 

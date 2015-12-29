@@ -1,11 +1,12 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Myth_Info.h"
 
 namespace mythic {
 
   template<typename T>
-  class Simple_Myth_Info : public Myth_Info {
+  class MYTHIC_EXPORT Simple_Myth_Info : public Myth_Info {
   private:
       string name;
   public:

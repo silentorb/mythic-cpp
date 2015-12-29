@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 typedef struct List {
     int stride;

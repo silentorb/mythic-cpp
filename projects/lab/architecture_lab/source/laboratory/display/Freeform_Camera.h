@@ -1,8 +1,9 @@
 #pragma once
+#include "dllexport.h"
 
 namespace laboratory {
   namespace display {
-    class Freeform_Camera {
+    class MYTHIC_EXPORT Freeform_Camera {
 
     };
   }

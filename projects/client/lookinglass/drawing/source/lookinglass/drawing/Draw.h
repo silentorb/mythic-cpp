@@ -1,9 +1,10 @@
 #pragma once
+#include "dllexport.h"
 
 namespace lookinglass {
   namespace drawing {
 
-    class Draw {
+    class MYTHIC_EXPORT Draw {
 
     };
   }

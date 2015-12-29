@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "lookinglass/Renderable.h"
 #include "glm/glm.hpp"
@@ -9,7 +10,7 @@ using namespace glm;
 namespace scenery {
   namespace elements {
 
-    class Element : public Renderable {
+    class MYTHIC_EXPORT Element : public Renderable {
     private:
         vec3 position;
 

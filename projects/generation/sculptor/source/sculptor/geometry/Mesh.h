@@ -1,10 +1,11 @@
 #pragma once
+#include "dllexport.h"
 
 #include "declarations.h"
 
 namespace sculptor {
   namespace geometry {
-    class Mesh {
+    class MYTHIC_EXPORT MYTHIC_EXPORT Mesh {
     public:
         Mesh();
         vector<Vertex *> vertices;

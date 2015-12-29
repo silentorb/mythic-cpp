@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "sculptor/geometry.h"
 

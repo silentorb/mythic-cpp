@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include <vector>
 #include "Vertex_Attribute.h"
@@ -7,7 +8,7 @@ using namespace std;
 
 namespace lookinglass {
   namespace modeling {
-    class Vertex_Schema {
+    class MYTHIC_EXPORT Vertex_Schema {
     private:
         vector<Vertex_Attribute> attributes;
         int vertex_size;

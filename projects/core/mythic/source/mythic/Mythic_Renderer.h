@@ -1,4 +1,5 @@
 #pragma once
+#include "dllexport.h"
 
 #include "lookinglass/Renderable.h"
 #include <vector>
@@ -7,7 +8,7 @@ using namespace lookinglass;
 
 namespace mythic {
 
-  class Mythic_Renderer : public Renderable {
+  class MYTHIC_EXPORT Mythic_Renderer : public Renderable {
   private:
       std::vector<Renderable *> renderables;
   public:

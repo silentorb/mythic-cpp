@@ -1,9 +1,10 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Glass.h"
 
 namespace lookinglass {
-  class Renderable {
+  class MYTHIC_EXPORT Renderable {
   public:
       virtual void render(Glass &glass) = 0;
 

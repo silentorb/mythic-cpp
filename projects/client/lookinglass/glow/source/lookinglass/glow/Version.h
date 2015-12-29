@@ -1,8 +1,9 @@
 #pragma once
+#include "dllexport.h"
 namespace lookinglass {
   namespace glow {
 
-    class Version {
+    class MYTHIC_EXPORT Version {
     public:
         int major;
         int minor;

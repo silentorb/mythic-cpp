@@ -1,15 +1,16 @@
 #pragma once
+#include "dllexport.h"
 
 #include "Draw_Method.h"
 
 namespace lookinglass {
   namespace glow {
-    class Capabilities;
+    class MYTHIC_EXPORT Capabilities;
   }
   namespace modeling {
-    class Mesh_Data;
+    class MYTHIC_EXPORT Mesh_Data;
   }
-  class Glass {
+  class MYTHIC_EXPORT Glass {
   private:
       glow::Capabilities &capabilities;
   public:
