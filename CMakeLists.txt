@@ -3,17 +3,26 @@ cmake_minimum_required(VERSION 3.3)
 if (${IOS})
   add_definitions(-DIOS=1)
   set(BUILD_SHARED_LIBS OFF)
+else ()
+  set(BUILD_SHARED_LIBS true)
+endif ()
 
-endif()
-
-set(GLM_INCLUDES ${CMAKE_SOURCE_DIR}/external/glm)
 
 include(cmake-utility/print-info.cmake)
 include(cmake-utility/project.cmake)
 
-set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/mingw)
+#print_info()
 
-set(BUILD_SHARED_LIBS true)
+set(MYTHIC_EXTERNAL_INCLUDES ${CMAKE_SOURCE_DIR}/external/include)
+
+if (${MINGW})
+  set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/mingw/x86)
+#  set(MYTHIC_EXTERNAL_LIBS ${MYTHIC_EXTERNAL}/external/mingw)
+else ()
+  set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external/vs/x86)
+#  set(MYTHIC_EXTERNAL_LIBS ${MYTHIC_EXTERNAL}/external/mingw)
+
+endif ()
 
 #add_subdirectory(projects/core/metahub)
 
@@ -36,4 +45,4 @@ include(projects/lab/lab.cmake)
 if (${WIN32})
   add_subdirectory(platform/desktop)
   add_subdirectory(platform/workshop)
-endif()
+endif ()

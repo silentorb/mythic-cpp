@@ -189,8 +189,8 @@
           <root url="file://$MODULE_DIR$/projects/core/mythic/source" />
           <root url="file://$MODULE_DIR$/platform/desktop/source" />
           <root url="file://$MODULE_DIR$/platform/workshop/source" />
-          <root url="file://$MODULE_DIR$/external/mingw/SDL2-2.0.3/include" />
-          <root url="file://$MODULE_DIR$/external/glm" />
+          <root url="file://$MODULE_DIR$/external/include/SDL2-2.0.3" />
+          <root url="file://$MODULE_DIR$/external/include/glm" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
@@ -218,8 +218,8 @@
           <root url="file://$MODULE_DIR$/projects/core/mythic/source" />
           <root url="file://$MODULE_DIR$/platform/desktop/source" />
           <root url="file://$MODULE_DIR$/platform/workshop/source" />
-          <root url="file://$MODULE_DIR$/external/mingw/SDL2-2.0.3/include" />
-          <root url="file://$MODULE_DIR$/external/glm" />
+          <root url="file://$MODULE_DIR$/external/include/SDL2-2.0.3" />
+          <root url="file://$MODULE_DIR$/external/include/glm" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />

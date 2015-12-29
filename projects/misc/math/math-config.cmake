@@ -1,4 +1,4 @@
 
 include_directories(
-  ${GLM_INCLUDES}
+  ${MYTHIC_EXTERNAL_INCLUDES}/glm
 )
