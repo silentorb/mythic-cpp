@@ -7,6 +7,6 @@ using namespace sculptor::geometry;
 
 namespace sculptor {
   namespace create {
-    Mesh *box(vec3 size);
+    MYTHIC_EXPORT  Mesh *box(vec3 size);
   }
 }

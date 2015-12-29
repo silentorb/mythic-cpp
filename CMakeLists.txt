@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.3)
 enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
 
-#if (MSVC)
-#  project(mythical)
-#endif ()
+if (MSVC)
+  project(mythical)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+endif ()
 
 if (${IOS})
   add_definitions(-DIOS=1)
@@ -15,7 +16,7 @@ endif ()
 include(cmake-utility/print-info.cmake)
 include(cmake-utility/project.cmake)
 
-#print_info(STATUS)
+print_info(STATUS)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 
