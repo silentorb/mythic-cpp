@@ -41,6 +41,7 @@
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mist_Maker.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Data_Buffer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/frame-config.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/frame/CMakeLists.txt" isTestSource="false" />
@@ -250,6 +251,7 @@
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mist_Maker.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Data_Buffer.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.h" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/lookinglass/typography/Font_Manager.cpp" />
           <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.h" />

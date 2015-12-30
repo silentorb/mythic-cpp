@@ -15,6 +15,11 @@ namespace lookinglass {
         bool uniform_layout;
 
         Capabilities(Version version);
+
+
+        const Version &get_version() const {
+          return version;
+        }
     };
   }
 }

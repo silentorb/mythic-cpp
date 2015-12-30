@@ -1,19 +1,23 @@
 #pragma once
+
 #include "dllexport.h"
 
-#include <vector>
+#include <map>
 #include "lookinglass/shading/Program.h"
 
 using namespace std;
 
 namespace lookinglass {
-  namespace through {
+  using namespace shading;
 
-    template<typename T>
-    class MYTHIC_EXPORT Mist {
-    public:
-        virtual void initialize(unsigned int id, char *name, vector<lookinglass::shading::Program> programs) = 0;
-        virtual void update(void *data) = 0;
-    };
-  }
+    namespace through {
+
+      template<typename T>
+      class MYTHIC_EXPORT Mist {
+      public:
+          virtual void initialize(const unsigned int id, const char *name, const std::map<string, Program *> &programs) = 0;
+          virtual void update(T *data) = 0;
+      };
+
+      }
 }

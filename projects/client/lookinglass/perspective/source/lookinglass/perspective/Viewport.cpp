@@ -7,7 +7,7 @@ namespace lookinglass {
   namespace perspective {
     Viewport *active_viewport = NULL;
 
-    Viewport::Viewport(Mist<Viewport_Data> *mist, int width, int height, int left, int top) :
+    Viewport::Viewport(Mist<Viewport_Data> &mist, int width, int height, int left, int top) :
       mist(mist),
       width(width),
       height(height),
@@ -42,7 +42,7 @@ namespace lookinglass {
       data.view = camera->get_view_matrix();
       data.projection = projection;
       data.camera_direction = camera->get_orientation() * vec3(0, 1,0);
-      mist->update(& data);
+      mist.update(& data);
     }
   }
 }

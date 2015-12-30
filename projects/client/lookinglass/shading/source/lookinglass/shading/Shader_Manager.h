@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include "Shader.h"
@@ -14,6 +15,7 @@ namespace lookinglass {
     class MYTHIC_EXPORT Shader_Manager {
     private:
         unique_ptr<Shader_Loader> loader;
+        std::map<string, Program *> programs;
 //        std::map<string, std::unique_ptr<Vertex_Schema>> vertex_schemas;
 
     protected:
@@ -29,6 +31,11 @@ namespace lookinglass {
 //        const Vertex_Schema &get_vertex_schema(const string name) {
 //          return *vertex_schemas[name];
 //        }
+
+
+        const map<string, Program *> &get_programs() const {
+          return programs;
+        }
     };
   }
 }

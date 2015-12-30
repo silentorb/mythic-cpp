@@ -1,1 +1,6 @@
 
+namespace lookinglass {
+  namespace through {
+
+  }
+}

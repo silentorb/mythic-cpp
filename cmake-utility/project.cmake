@@ -53,7 +53,7 @@ else ()
     string(LENGTH "${CMAKE_SOURCE_DIR}" string_length)
     string(SUBSTRING ${CMAKE_CURRENT_SOURCE_DIR} ${string_length} -1 current_path)
     set_target_properties(${target} PROPERTIES FOLDER ${current_path})
-      message( ${current_path})
+#      message( ${current_path})
 #      print_info(STATUS)
     include_directories(${CMAKE_UTILITY}/include) # for dllexport
       set_target_properties(${target} PROPERTIES DEFINE_SYMBOL "EXPORTING_DLL")

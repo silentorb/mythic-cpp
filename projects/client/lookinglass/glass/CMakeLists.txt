@@ -11,6 +11,7 @@ create_library(glass
 require_package(glass glow)
 require_package(glass shading)
 require_package(glass modeling)
+require_package(glass perspective)
 
 include_directories(
 	${glass_includes}

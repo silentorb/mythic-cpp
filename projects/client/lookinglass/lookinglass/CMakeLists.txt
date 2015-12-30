@@ -17,4 +17,5 @@ find_package(vectoring)
 require_package(lookinglass glass)
 require_package(lookinglass glow)
 require_package(lookinglass shading)
-
+require_package(lookinglass perspective)
+require_package(lookinglass through)

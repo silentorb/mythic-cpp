@@ -2,10 +2,11 @@
 #include <lookinglass/glow/Capabilities.h>
 #include "lookinglass/glow.h"
 #include "lookinglass/modeling/Mesh_Data.h"
+#include "lookinglass/perspective/Viewport.h"
 
 namespace lookinglass {
-  Glass::Glass(glow::Capabilities &capabilities) :
-    capabilities(capabilities) {
+  Glass::Glass(const glow::Capabilities &capabilities, Viewport &viewport) :
+    capabilities(capabilities), viewport(&viewport) {
 
   }
 
@@ -27,5 +28,13 @@ namespace lookinglass {
     }
 
     glow::check_error("drawing mesh");
+  }
+
+  Viewport &Glass::get_viewport() const {
+    return *viewport;
+  }
+
+  void Glass::set_viewport(Viewport &viewport) {
+    this->viewport = &viewport;
   }
 }

@@ -16,6 +16,9 @@ require_package(architecture_lab scenery)
 require_package(architecture_lab sculptor)
 require_package(architecture_lab shading)
 require_package(architecture_lab modeling)
+require_package(architecture_lab perspective)
+require_package(architecture_lab lookinglass)
+require_package(architecture_lab client)
 
 include_directories(
 	${architecture_lab_includes}

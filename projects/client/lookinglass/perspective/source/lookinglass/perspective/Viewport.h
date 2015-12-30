@@ -14,7 +14,7 @@ namespace lookinglass {
 
     class MYTHIC_EXPORT Viewport {
     private:
-        Mist<Viewport_Data> *mist;
+        Mist<Viewport_Data> &mist;
         Camera *camera;
 
     public:
@@ -32,10 +32,18 @@ namespace lookinglass {
 
         static Viewport *get_active_viewport();
 
-        Viewport(Mist<Viewport_Data> *mist, int width, int height, int left = 0, int top = 0);
+        Viewport(Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
         void set_projection();
         void activate();
         void update_device();
+
+//        Camera &get_camera() const {
+//          return *camera;
+//        }
+
+        void set_camera(Camera &camera) {
+          this->camera = &camera;
+        }
     };
   }
 }
