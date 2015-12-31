@@ -42,6 +42,7 @@ add_subdirectory(projects/generation/sculptor)
 
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/client/scenery)
+add_subdirectory(projects/client/haft)
 add_subdirectory(projects/client/main/client)
 add_subdirectory(projects/generation/architect)
 #end sub-projects

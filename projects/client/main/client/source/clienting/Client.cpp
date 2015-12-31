@@ -1,19 +1,17 @@
 #include "Client.h"
 #include "lookinglass/House.h"
+#include "haft/Input_Manager.h"
 
 namespace clienting {
 
   Client::Client(House *house) :
-    house(house) {
+    house(house)
+//    , input_manager(new Input_Manager())
+  {
   }
 
-//  void Client::add_renderable(Renderable *renderable) {
-//    house.add_renderable(renderable);
-//  }
-//
-//  void Client::remove_renderable(Renderable *renderable) {
-//    house.remove_renderable(renderable);
-//  }
+  Client::~Client() { }
+
 
   void Client::update() {
     house->update();

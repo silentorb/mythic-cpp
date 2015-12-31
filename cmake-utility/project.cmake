@@ -1,6 +1,34 @@
 set(CMAKE_UTILITY ${CMAKE_CURRENT_LIST_DIR})
 
-if (iOS)
+macro(create_library target)
+
+  if ("${ARGN}" STREQUAL "")
+    #    message("No sources for ${target}")
+    file(GLOB_RECURSE SOURCES source/*.cpp)
+    file(GLOB_RECURSE HEADERS source/*.h)
+    add_library(${target} ${SOURCES} ${HEADERS})
+  else ()
+    add_library(${target} ${ARGN})
+  endif ()
+
+  string(LENGTH "${CMAKE_SOURCE_DIR}" string_length)
+  math(EXPR string_length "${string_length} + 1")
+  string(SUBSTRING ${CMAKE_CURRENT_SOURCE_DIR} ${string_length} -1 current_path)
+  get_filename_component(current_path ${current_path} DIRECTORY)
+  set_target_properties(${target} PROPERTIES FOLDER ${current_path})
+  #      message( "${current_path} ${temp}")
+
+  if (IOS)
+    set_xcode_property(${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
+  else ()
+    include_directories(${CMAKE_UTILITY}/include) # for dllexport
+    set_target_properties(${target} PROPERTIES DEFINE_SYMBOL "EXPORTING_DLL")
+  endif (IOS)
+
+endmacro(create_library)
+
+
+if (IOS)
 
   macro(add_project project_name)
     message(STATUS "ios ${project_name}")
@@ -15,10 +43,10 @@ if (iOS)
     include(${project_name}-config.cmake)
   endmacro(add_project)
 
-  macro(create_library target)
-    add_library(${target} STATIC ${ARGN})
-    set_xcode_property(${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
-  endmacro(create_library)
+  #  macro(create_library target)
+  #    add_library(${target} ${ARGN})
+  #    set_xcode_property(${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
+  #  endmacro(create_library)
 
   macro(require_package project_name library_name)
     find_package(${library_name} REQUIRED)
@@ -47,18 +75,6 @@ else ()
     include(${project_name}-config.cmake)
 
   endmacro(add_project)
-
-  macro(create_library target)
-    add_library(${target} ${ARGN})
-    string(LENGTH "${CMAKE_SOURCE_DIR}" string_length)
-    math(EXPR string_length "${string_length} + 1")
-    string(SUBSTRING ${CMAKE_CURRENT_SOURCE_DIR} ${string_length} -1 current_path)
-    get_filename_component(current_path ${current_path} DIRECTORY)
-    set_target_properties(${target} PROPERTIES FOLDER ${current_path})
-    #      message( "${current_path} ${temp}")
-    include_directories(${CMAKE_UTILITY}/include) # for dllexport
-    set_target_properties(${target} PROPERTIES DEFINE_SYMBOL "EXPORTING_DLL")
-  endmacro(create_library)
 
   macro(require_package project_name library_name)
     find_package(${library_name} REQUIRED)
