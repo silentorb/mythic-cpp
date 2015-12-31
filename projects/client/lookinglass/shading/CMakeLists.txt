@@ -14,15 +14,12 @@ create_library(shading
   source/lookinglass/shading/Texture_Manager.h
   source/lookinglass/shading/Shader_Manager.cpp
   source/lookinglass/shading/Shader_Manager.h
-  source/lookinglass/shading/Ancient_Shader_Manager.cpp
-  source/lookinglass/shading/Ancient_Shader_Manager.h
   source/lookinglass/shading/Shader_Loader.h
   source/lookinglass/shading/effects/Effect.cpp
-
+  source/lookinglass/shading/Code_Processor.cpp
+  source/lookinglass/shading/Code_Processor.h
+  source/lookinglass/shading/Ancient_Code_Processor.cpp
+  source/lookinglass/shading/Ancient_Code_Processor.h
   )
-
-include_directories(
-  ${shading_includes}
-)
 
 require_package(shading glow)

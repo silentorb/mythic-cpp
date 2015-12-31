@@ -66,7 +66,7 @@ namespace lookinglass {
         return *frame;
       }
 
-      const Shader_Manager &get_shader_manager() const {
+       Shader_Manager &get_shader_manager() const {
         return *shader_manager;
       }
 

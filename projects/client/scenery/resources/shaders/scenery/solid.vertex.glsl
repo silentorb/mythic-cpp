@@ -1,5 +1,5 @@
 ﻿
-#include <scene>
+#include <scenery/includes/scene>
 
 in vec3 input_position;
 

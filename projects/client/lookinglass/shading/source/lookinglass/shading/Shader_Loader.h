@@ -11,7 +11,7 @@ namespace lookinglass {
     class MYTHIC_EXPORT Shader_Loader {
 
     public:
-        virtual void load(const char *source, string &result) = 0;
+        virtual string load(string source) = 0;
     };
   }
 }

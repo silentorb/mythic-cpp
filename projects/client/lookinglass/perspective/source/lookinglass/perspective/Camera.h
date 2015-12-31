@@ -16,8 +16,22 @@ namespace lookinglass {
 
     public:
         mat4 get_view_matrix();
-        vec3 get_position();
-        quat get_orientation();
+
+        const vec3 &get_position() const {
+          return position;
+        }
+
+        void set_position(const vec3 &position) {
+          Camera::position = position;
+        }
+
+        const quat &get_orientation() const {
+          return orientation;
+        }
+
+        void set_orientation(const quat &orientation) {
+          Camera::orientation = orientation;
+        }
     };
 
   }

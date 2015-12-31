@@ -35,7 +35,7 @@ namespace lookinglass {
     }
 
     void Viewport::update_device() {
-      if (camera == NULL)
+      if (camera == nullptr)
         return;
 
       auto data = Viewport_Data();

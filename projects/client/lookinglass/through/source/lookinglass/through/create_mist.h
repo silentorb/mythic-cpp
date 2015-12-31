@@ -16,8 +16,6 @@ namespace lookinglass {
     MYTHIC_EXPORT Mist<T> *create_mist(unsigned int id, const char* name, const std::map<string, Program *> &programs,
                                        const Capabilities &capabilities) {
 
-      Data_Buffer buffer;
-      buffer.update(nullptr);
       auto result = capabilities.get_version().major < 3
                     ? (Mist<T> *) new Ancient_Mist<T>()
                     : (Mist<T> *) new Buffer_Mist<T>();

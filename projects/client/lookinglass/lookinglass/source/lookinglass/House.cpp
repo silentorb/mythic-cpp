@@ -10,42 +10,45 @@
 #include "lookinglass/through/create_mist.h"
 
 namespace lookinglass {
-  House::House(Frame *frame, Shader_Loader *shader_loader) :
-    frame(frame),
-    shader_manager(new Shader_Manager(shader_loader)),
-    capabilities(new glow::Capabilities(glow::Version())),
-    viewport_mist(through::create_mist<Viewport_Data>(1, "scene", shader_manager->get_programs(), get_capabilities())),
-    base_viewport(new Viewport(*viewport_mist, 800, 600)),
-    glass(new Glass(get_capabilities(), get_base_viewport())) {
+	House::House(Frame *frame, Shader_Loader *shader_loader) :
+		frame(frame),
+		capabilities(new glow::Capabilities(glow::Version())) {
+		
+		shader_manager= unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, *capabilities));
+		viewport_mist = unique_ptr<Mist<Viewport_Data>>(through::create_mist<Viewport_Data>(1, "scene", shader_manager->get_programs(), get_capabilities()));
+		base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, 800, 600));
+		glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
 
-    frame->set_clear_color(0, 0.1f, 0.3f, 1);
-  }
+		frame->set_clear_color(0, 0.1f, 0.3f, 1);
+	}
 
-  House::House(Platform_Factory &factory) : House(factory.create_frame(), factory.create_shader_loader()) { }
+	House::House(Platform_Factory &factory) : House(factory.create_frame(), factory.create_shader_loader()) {}
 
-  House::~House() {
-  }
+	House::~House() {
+	}
 
-  void House::update() {
-    frame->update_events();
-    frame->clear();
+	void House::update() {
+		frame->update_events();
+		frame->clear();
 
-    for (auto renderable: renderables) {
-      renderable->render(*glass);
-    }
+		base_viewport->update_device();
 
-    frame->flip_buffer();
-  }
+		for (auto renderable : renderables) {
+			renderable->render(*glass);
+		}
 
-  bool House::is_closing() {
-    return frame->closing;
-  }
+		frame->flip_buffer();
+	}
 
-  void House::add_renderable(Renderable *renderable) {
-    renderables.push_back(renderable);
-  }
+	bool House::is_closing() {
+		return frame->closing;
+	}
 
-  void House::remove_renderable(Renderable *renderable) {
-    vector_remove(renderables, renderable);
-  }
+	void House::add_renderable(Renderable *renderable) {
+		renderables.push_back(renderable);
+	}
+
+	void House::remove_renderable(Renderable *renderable) {
+		vector_remove(renderables, renderable);
+	}
 }

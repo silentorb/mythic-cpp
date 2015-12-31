@@ -1,25 +1,26 @@
 #pragma once
-#include "dllexport.h"
 
+#include "dllexport.h"
 #include "lookinglass/shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "lookinglass/Draw_Method.h"
 
 using namespace lookinglass::shading::effects;
+using namespace lookinglass::shading;
 using namespace lookinglass;
 using namespace glm;
 
-  namespace scenery {
-    class MYTHIC_EXPORT Spatial_Effect : protected Effect {
-    private:
-        Draw_Method draw_method;
+namespace scenery {
+  class MYTHIC_EXPORT Spatial_Effect : protected Effect {
+  private:
+      Draw_Method draw_method;
 
-    public:
-        Spatial_Effect();
-        void activate(mat4 &transform);
+  public:
+      Spatial_Effect(Program & program);
+      void activate(mat4 &transform);
 
-        Draw_Method get_draw_method() { return draw_method; }
+      Draw_Method get_draw_method() { return draw_method; }
 
-        void set_draw_method(Draw_Method value) { draw_method = value; }
-    };
-  }
+      void set_draw_method(Draw_Method value) { draw_method = value; }
+  };
+}

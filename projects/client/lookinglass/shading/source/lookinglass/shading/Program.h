@@ -7,8 +7,8 @@ namespace lookinglass {
   namespace shading {
     class MYTHIC_EXPORT Program {
     public:
-        unsigned int id;
-        Program(Shader first, Shader second);
+        const unsigned int id;
+        Program(Shader &first, Shader &second);
         ~Program();
         void activate();
     };

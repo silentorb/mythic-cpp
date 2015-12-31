@@ -17,7 +17,7 @@ endif ()
 include(cmake-utility/print-info.cmake)
 include(cmake-utility/project.cmake)
 
-print_info(STATUS)
+#print_info(STATUS)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 

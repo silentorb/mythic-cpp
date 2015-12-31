@@ -31,9 +31,6 @@ namespace mythic {
     client->get_house().remove_renderable(renderable);
   }
 
-  Client *Mythic_Engine::get_client() {
-    return client;
-  }
 
   void Mythic_Engine::update() {
     float delta = timer->update();

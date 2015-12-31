@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include "Myth.h"
@@ -30,7 +31,7 @@ namespace mythic {
   private:
       timing::Quartz *timer;
       Client *client;
-      std::map<size_t, Myth*> myths;
+      std::map<size_t, Myth *> myths;
       Mythic_Renderer *renderer;
 
   public:
@@ -38,20 +39,23 @@ namespace mythic {
       ~Mythic_Engine();
 
       template<typename T>
-      T& get_myth() {
+      T &get_myth() {
         auto key = typeid(T).hash_code();
         if (!myths.count(key)) {
           myths[key] = new T(*this);
         }
 
-        return (T&)*myths[key];
+        return (T &) *myths[key];
       }
 
       void add_renderable(lookinglass::Renderable *renderable);
       void remove_renderable(lookinglass::Renderable *renderable);
-      Client *get_client();
       void update();
       void loop();
+
 //      static void register_myth(Myth_Info *info);
+      Client &get_client() const {
+        return *client;
+      }
   };
 }
