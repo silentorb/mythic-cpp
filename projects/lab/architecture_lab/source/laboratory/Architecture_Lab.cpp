@@ -18,7 +18,7 @@ namespace laboratory {
     auto &house = client.get_house();
     auto &shader_manager = house.get_shader_manager();
     camera = new Freeform_Camera(house.get_base_viewport());
-    auto mesh = sculptor::create::box(vec3(1, 1, 1));
+    auto mesh = sculptor::create::box(vec3(10, 10, 10));
     auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
     auto& program = shader_manager.create_program("solid",
                                                  *shader_manager.create_shader(Shader_Type::vertex,

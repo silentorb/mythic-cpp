@@ -1,4 +1,4 @@
-﻿
+
 in vec4 color;
 in vec3 position;
 

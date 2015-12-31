@@ -20,6 +20,8 @@ create_library(shading
   source/lookinglass/shading/Code_Processor.h
   source/lookinglass/shading/Ancient_Code_Processor.cpp
   source/lookinglass/shading/Ancient_Code_Processor.h
+  source/lookinglass/shading/Shader_Property.cpp
+  source/lookinglass/shading/Shader_Property.h
   )
 
 require_package(shading glow)

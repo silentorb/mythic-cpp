@@ -1,4 +1,4 @@
-﻿
+
 out vec4 output_color;
 
 uniform vec4 color;

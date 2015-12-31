@@ -1,4 +1,4 @@
-﻿
+
 #include <scene>
 
 in vec2 texture_coordinates;

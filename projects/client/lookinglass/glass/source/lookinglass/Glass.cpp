@@ -18,7 +18,8 @@ namespace lookinglass {
                 ? GL_TRIANGLE_FAN
                 : GL_LINE_STRIP;
 
-    if (capabilities.multidraw) {
+		if (0) {
+//			if (capabilities.multidraw) {
       glMultiDrawArrays(mode, mesh.get_offsets(), mesh.get_counts(), mesh.get_polygon_count());
     }
     else {

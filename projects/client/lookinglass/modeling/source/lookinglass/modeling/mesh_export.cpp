@@ -32,6 +32,7 @@ namespace lookinglass {
             if (polygon->uvs) {
 
             }
+						++vertex;
           }
 
           *offset_pointer++ = offset;

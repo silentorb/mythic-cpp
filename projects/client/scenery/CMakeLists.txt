@@ -17,6 +17,7 @@ create_library(scenery
 require_package(scenery glass)
 require_package(scenery shading)
 require_package(scenery modeling)
+require_package(scenery glow)
 
 target_link_libraries(scenery
 

@@ -1,4 +1,4 @@
-﻿
+
 #include <scene>
 
 in vec3 normal;

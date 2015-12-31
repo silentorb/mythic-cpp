@@ -17,7 +17,7 @@ namespace lookinglass {
     }
 
     void Viewport::set_projection() {
-      projection = glm::perspective(glm::radians(45.0f), get_aspect_ratio(), 1.0f, 600.0f);
+      projection = glm::perspective(glm::radians(45.0f), get_aspect_ratio(), 0.1f, 600.0f);
     }
 
     Viewport *Viewport::get_active_viewport() {

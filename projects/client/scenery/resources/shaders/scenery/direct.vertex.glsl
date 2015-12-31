@@ -1,4 +1,4 @@
-﻿
+
 in vec3 input_position;
 
 uniform mat4 model;

@@ -13,10 +13,12 @@ using namespace lookinglass::modeling;
 
   namespace scenery {
     namespace elements {
+
       class MYTHIC_EXPORT Model : public Element {
       private:
           Mesh_Data &mesh;
           shared_ptr<Spatial_Effect> effect;
+          mat4 tranform;
 
       public:
           Model(Mesh_Data& mesh, shared_ptr<Spatial_Effect> effect);

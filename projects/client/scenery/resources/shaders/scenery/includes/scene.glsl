@@ -1,4 +1,4 @@
-﻿layout(binding = 1) uniform Scene{
+layout(binding = 1) uniform Scene{
 	mat4 view;
 	mat4 projection;
 	vec3 camera_direction;

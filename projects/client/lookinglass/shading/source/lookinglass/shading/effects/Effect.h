@@ -2,20 +2,20 @@
 
 #include "dllexport.h"
 
-
 namespace lookinglass {
-	namespace shading {
-		class Program;
+  namespace shading {
+    class Program;
 
-		namespace effects {
+    namespace effects {
 
-			class MYTHIC_EXPORT Effect {
-				Program * const program;
+      class MYTHIC_EXPORT Effect {
+      protected:
+          Program *const program;
 
-			public:
-				Effect(Program & program);
-				void activate();
-			};
-		}
-	}
+      public:
+          Effect(Program &program);
+          void activate();
+      };
+    }
+  }
 }
