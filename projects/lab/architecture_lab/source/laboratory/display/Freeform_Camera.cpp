@@ -9,8 +9,8 @@ namespace laboratory {
 
     Freeform_Camera::Freeform_Camera(Viewport &viewport)
       : camera(new Camera()) {
-      camera->set_position(vec3(0, 20, 30));
-      camera->set_orientation(quat(vec3(0, -M_PI_4 * 0.7f, 0)));
+      camera->set_position(vec3(0, -20, 6));
+			camera->set_orientation(quat(vec3(M_PI_4 * 0.2f, 0, 0)));
       viewport.set_camera(*camera);
     }
 
