@@ -22,6 +22,10 @@ namespace clienting {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
+
+      Client(const Client&); // no implementation
+      Client& operator=(const Client&); // no implementation
+
   public:
       Client(House *house);
 

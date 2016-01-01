@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/platform" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmake-utility/project.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cmake-utility/print-info.cmake" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

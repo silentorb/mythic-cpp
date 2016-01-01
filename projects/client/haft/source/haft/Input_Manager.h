@@ -13,15 +13,17 @@ namespace haft {
       vector<unique_ptr<Device>> devices;
       vector<unique_ptr<Action>> actions;
 
+      Input_Manager(const Input_Manager&); // no implementation
+      Input_Manager& operator=(const Input_Manager&); // no implementation
   public:
 
       void add_device(Device *device) {
-        devices.push_back(unique_ptr<Device>(device));
+//        devices.push_back(unique_ptr<Device>(device));
       }
 
       Action &add_action(int id, string name) {
         auto action = new Action(id, name);
-        actions.push_back(unique_ptr<Action>(action));
+//        actions.push_back(unique_ptr<Action>(action));
         return *action;
       }
   };

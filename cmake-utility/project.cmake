@@ -1,6 +1,11 @@
 set(CMAKE_UTILITY ${CMAKE_CURRENT_LIST_DIR})
 
 macro(create_library target)
+#message(WARNING "*${PROJECT_NAME} STREQUAL ${target}*")
+  if (NOT "${PROJECT_NAME}" STREQUAL ${target})
+#    message(WARNING "No project for ${target}")
+    add_project(${target})
+  endif ()
 
   if ("${ARGN}" STREQUAL "")
     #    message("No sources for ${target}")
@@ -26,7 +31,6 @@ macro(create_library target)
   endif (IOS)
 
 endmacro(create_library)
-
 
 if (IOS)
 
