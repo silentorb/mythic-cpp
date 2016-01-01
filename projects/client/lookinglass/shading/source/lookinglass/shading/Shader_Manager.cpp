@@ -18,7 +18,7 @@ namespace lookinglass {
     }
 
     Shader *Shader_Manager::create_shader(Shader_Type type, string path) {
-      auto source =loader->load(path);
+      auto source = loader->load(path);
       auto code = process(type, source);
       return new Shader(type, code.c_str());
     }
@@ -26,6 +26,9 @@ namespace lookinglass {
     Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader) {
       auto program = new Program(vertex_shader, fragment_shader);
       programs[name] = program;
+      for (auto listener: program_added) {
+        listener->add_program(*program);
+      }
       return *program;
     }
 

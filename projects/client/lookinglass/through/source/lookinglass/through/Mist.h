@@ -4,6 +4,7 @@
 
 #include <map>
 #include "lookinglass/shading/Program.h"
+#include "Struct_Info.h"
 
 using namespace std;
 
@@ -13,9 +14,10 @@ namespace lookinglass {
     namespace through {
 
       template<typename T>
-      class MYTHIC_EXPORT Mist {
+      class MYTHIC_EXPORT Mist : public Program_Add_Listener {
       public:
-          virtual void initialize(const unsigned int id, const char *name, const std::map<string, Program *> &programs) = 0;
+          virtual void initialize(Struct_Info* info) = 0;
+          virtual void add_program(Program & program) = 0;
           virtual void update(T *data) = 0;
       };
 

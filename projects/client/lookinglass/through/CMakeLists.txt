@@ -19,5 +19,6 @@ create_library(through
 #	source/lookinglass/through/Data_Buffer.cpp
 	)
 
+find_package(math)
 require_package(through glow)
 require_package(through shading)

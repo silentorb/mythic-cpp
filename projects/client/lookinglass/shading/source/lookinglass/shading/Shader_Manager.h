@@ -7,6 +7,7 @@
 #include <map>
 #include <memory>
 #include "Code_Processor.h"
+#include <vector>
 
 namespace lookinglass {
   namespace glow {
@@ -20,6 +21,7 @@ namespace lookinglass {
         unique_ptr<Shader_Loader> loader;
         unique_ptr<Code_Processor> processor;
         std::map<string, Program *> programs;
+        vector<Program_Add_Listener *> program_added;
 
         Code_Processor *create_processor(glow::Capabilities &capabilities);
 
@@ -41,6 +43,10 @@ namespace lookinglass {
 
         const map<string, Program *> &get_programs() const {
           return programs;
+        }
+
+        void add_program_add_listener(Program_Add_Listener &listener) {
+          program_added.push_back(&listener);
         }
     };
   }

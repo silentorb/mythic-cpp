@@ -28,7 +28,8 @@ namespace lookinglass {
 		}
 
 		string Ancient_Code_Processor::process(Shader_Type type, const string source) {
-			return string("precision highp float;\n\n") + olden(source, type);
+			auto included = process_includes(source, type);
+			return string("precision highp float;\n\n") + olden(included, type);
 		}
 	}
 }

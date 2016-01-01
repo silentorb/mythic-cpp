@@ -6,6 +6,7 @@
 
 namespace lookinglass {
   namespace shading {
+
     class MYTHIC_EXPORT Program {
         const unsigned int id;
 
@@ -18,5 +19,11 @@ namespace lookinglass {
           return id;
         }
     };
+
+    class MYTHIC_EXPORT Program_Add_Listener {
+    public:
+        virtual void add_program(Program &program) = 0;
+    };
+
   }
 }

@@ -10,7 +10,7 @@ namespace lookinglass {
     private:
         Shader_Loader& shader_loader;
     protected:
-        string process_includes(Shader_Type type, const string source);
+        string process_includes(const string source, Shader_Type type);
     public:
 
         Code_Processor(Shader_Loader & shader_loader);
