@@ -1,6 +1,4 @@
 
-add_project(shading)
-
 create_library(shading
 
 #  source/lookinglass/shading/Program.cpp
@@ -23,5 +21,4 @@ create_library(shading
 #  source/lookinglass/shading/Shader_Property.cpp
 #  source/lookinglass/shading/Shader_Property.h
   )
-
-require_package(shading glow)
+require(glow textual boost_regex)

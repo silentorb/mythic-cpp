@@ -1,9 +1,9 @@
 set(CMAKE_UTILITY ${CMAKE_CURRENT_LIST_DIR})
 
 macro(create_library target)
-#message(WARNING "*${PROJECT_NAME} STREQUAL ${target}*")
+  #message(WARNING "*${PROJECT_NAME} STREQUAL ${target}*")
   if (NOT "${PROJECT_NAME}" STREQUAL ${target})
-#    message(WARNING "No project for ${target}")
+    #    message(WARNING "No project for ${target}")
     add_project(${target})
   endif ()
 
@@ -31,6 +31,27 @@ macro(create_library target)
   endif (IOS)
 
 endmacro(create_library)
+
+macro(require)
+  foreach (library_name ${ARGN})
+#    message("${PROJECT_NAME} require ${library_name}")
+    find_package(${library_name} REQUIRED)
+
+    if (IOS)
+      target_link_libraries(${PROJECT_NAME}
+        $<TARGET_FILE:${library_name}>
+        )
+    else ()
+      target_link_libraries(${PROJECT_NAME}
+        $<TARGET_LINKER_FILE:${library_name}>
+        )
+    endif ()
+
+    add_dependencies(${PROJECT_NAME}
+      ${library_name}
+      )
+  endforeach ()
+endmacro()
 
 if (IOS)
 

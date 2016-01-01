@@ -1,36 +1,34 @@
 #include "Ancient_Code_Processor.h"
+#include <functional>
+#include "textual/regex_additions.h"
+#include <boost/regex.hpp>
+
+using namespace textual;
 
 namespace lookinglass {
-  namespace shading {
+	namespace shading {
 
-    string olden(const string code, Shader_Type type)
-    {
-      string result = code;
-      /*
-//            code = Regex.Replace(code, @"layout\s*\(.*?\)", "");
-      code = Regex.Replace(code, @"layout\s*\(.*?\)\s*uniform\s+(\w+)(\s*{.*?})\s*(\w+);", "struct $1 $2;\nuniform $1 $3;", RegexOptions.Singleline);
-      code = Regex.Replace(code, @"layout\s*\(.*?\)\s*", "");
-      if (type == Shader_Type.vertex)
-      {
-        code = Regex.Replace (code, @"^\s*in\s", "attribute ", RegexOptions.Multiline);
-        code = Regex.Replace (code, @"^\s*out\s", "varying ", RegexOptions.Multiline);
-      }
-      else
-      {
-        code = Regex.Replace (code, @"^\s*in\s", "varying ", RegexOptions.Multiline);
-        code = code.Replace ("out vec4 output_color;", "");
-        code = code.Replace ("output_color", "gl_FragColor");
-        code = Regex.Replace(code, @"texture\s*\(", "texture2D(");
-      }
+		string olden(const string input, Shader_Type type) {
+			string code = input;
 
-      return code;
-       */
+			code = boost::regex_replace(code, boost::regex(R"(layout\s*\(.*?\)\s*uniform\s+(\w+)(\s*{.*?})\s*(\w+);)"), "struct $1 $2;\nuniform $1 $3;");
+			code = boost::regex_replace(code, boost::regex(R"(layout\s*\(.*?\)\s*)"), "");
+			if (type == Shader_Type::vertex) {
+				code = boost::regex_replace(code, boost::regex(R"(^\s*in\s)"), "attribute ");
+				code = boost::regex_replace(code, boost::regex(R"(^\s*out\s)"), "varying ");
+			}
+			else {
+				code = boost::regex_replace(code, boost::regex(R"(^\s*in\s)"), "varying ");
+				code = string_replace(code, "out vec4 output_color;", "");
+				code = string_replace(code, "output_color", "gl_FragColor");
+				code = boost::regex_replace(code, boost::regex(R"(texture\s*\()"), "texture2D(");
+			}
 
-      return result;
-    }
+			return code;
+		}
 
-    string Ancient_Code_Processor::process(Shader_Type type, const string source) {
-      return string("precision highp float;\n\n") + olden(source, type);
-    }
-  }
+		string Ancient_Code_Processor::process(Shader_Type type, const string source) {
+			return string("precision highp float;\n\n") + olden(source, type);
+		}
+	}
 }

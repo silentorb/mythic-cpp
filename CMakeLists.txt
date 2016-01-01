@@ -38,6 +38,9 @@ endif ()
 add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
 add_subdirectory(projects/misc/vectoring)
+add_subdirectory(projects/misc/textual)
+add_subdirectory(external/boost_regex)
+
 add_subdirectory(projects/generation/sculptor)
 
 include(projects/client/lookinglass/lookinglass.cmake)
