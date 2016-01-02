@@ -23,3 +23,5 @@ set_xcode_property (cmake-sample CODE_SIGN_IDENTITY "iPhone Developer")
 set_xcode_property (cmake-sample CODE_SIGN_IDENTITY[sdk=iphoneos*] "iPhone Developer")
 
 #set_target_properties(${NAME} PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer: Christopher W. Johnson")
+
+# cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/ios.cmake -G Xcode

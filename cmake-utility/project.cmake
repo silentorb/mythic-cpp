@@ -23,10 +23,11 @@ macro(create_library target)
   set_target_properties(${target} PROPERTIES FOLDER ${current_path})
   #      message( "${current_path} ${temp}")
 
+  include_directories(${CMAKE_UTILITY}/include) # for dllexport
+
   if (IOS)
     set_xcode_property(${target} IPHONEOS_DEPLOYMENT_TARGET "8.0")
   else ()
-    include_directories(${CMAKE_UTILITY}/include) # for dllexport
     set_target_properties(${target} PROPERTIES DEFINE_SYMBOL "EXPORTING_DLL")
   endif (IOS)
 
