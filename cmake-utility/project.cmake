@@ -1,6 +1,7 @@
 set(CMAKE_UTILITY ${CMAKE_CURRENT_LIST_DIR})
 
 macro(create_library target)
+  set(CURRENT_TARGET ${target})
   #message(WARNING "*${PROJECT_NAME} STREQUAL ${target}*")
   if (NOT "${PROJECT_NAME}" STREQUAL ${target})
     #    message(WARNING "No project for ${target}")
@@ -9,7 +10,7 @@ macro(create_library target)
 
   if ("${ARGN}" STREQUAL "")
     #    message("No sources for ${target}")
-    file(GLOB_RECURSE SOURCES source/*.cpp)
+    file(GLOB_RECURSE SOURCES source/*.cpp source/*.c)
     file(GLOB_RECURSE HEADERS source/*.h)
     add_library(${target} ${SOURCES} ${HEADERS})
   else ()
@@ -33,22 +34,43 @@ macro(create_library target)
 
 endmacro(create_library)
 
+macro(create_test target)
+  set(LAST_TARGET ${CURRENT_TARGET})
+  set(CURRENT_TARGET ${target})
+
+  file(GLOB_RECURSE SOURCES test/*.cpp test/*.h)
+  add_executable(${target} ${SOURCES})
+
+  include_directories(
+    ${CMAKE_CURRENT_LIST_DIR}/test
+  )
+
+  string(LENGTH "${CMAKE_SOURCE_DIR}" string_length)
+  math(EXPR string_length "${string_length} + 1")
+  string(SUBSTRING ${CMAKE_CURRENT_SOURCE_DIR} ${string_length} -1 current_path)
+  get_filename_component(current_path ${current_path} DIRECTORY)
+  set_target_properties(${target} PROPERTIES FOLDER ${current_path})
+
+  require(${LAST_TEST})
+
+endmacro(create_test)
+
 macro(require)
   foreach (library_name ${ARGN})
 #    message("${PROJECT_NAME} require ${library_name}")
     find_package(${library_name} REQUIRED)
 
     if (IOS)
-      target_link_libraries(${PROJECT_NAME}
+      target_link_libraries(${CURRENT_TARGET}
         $<TARGET_FILE:${library_name}>
         )
     else ()
-      target_link_libraries(${PROJECT_NAME}
+      target_link_libraries(${CURRENT_TARGET}
         $<TARGET_LINKER_FILE:${library_name}>
         )
     endif ()
 
-    add_dependencies(${PROJECT_NAME}
+    add_dependencies(${CURRENT_TARGET}
       ${library_name}
       )
   endforeach ()
