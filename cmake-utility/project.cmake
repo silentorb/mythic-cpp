@@ -9,7 +9,12 @@ macro(create_library target)
 
   if ("${ARGN}" STREQUAL "")
     #    message("No sources for ${target}")
-    file(GLOB_RECURSE SOURCES source/*.cpp)
+    if (IOS)
+      file(GLOB_RECURSE SOURCES source/*.cpp source/*.mm source/*.m)
+    else()
+      file(GLOB_RECURSE SOURCES source/*.cpp)
+    endif()
+
     file(GLOB_RECURSE HEADERS source/*.h)
     add_library(${target} ${SOURCES} ${HEADERS})
   else ()

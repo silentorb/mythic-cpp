@@ -7,12 +7,13 @@ include_directories(
 
 if (MSVC)
 	set(GL_FILES glad/src/glad.c)
-else ()
+elseif (MINGW)
 	set(GL_FILES source/gl_core_4_4.c)
 endif ()
 
 create_library(glow
 	${GL_FILES}
+	source/lookinglass/glow.h
 	source/lookinglass/utility.cpp
 	source/lookinglass/utility.h
 	source/lookinglass/glow/Capabilities.cpp

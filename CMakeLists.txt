@@ -53,7 +53,11 @@ add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/core/mythic)
 include(projects/lab/lab.cmake)
 
-if (${WIN32})
+if (WIN32)
   add_subdirectory(platform/desktop)
   add_subdirectory(platform/workshop)
+
+elseif(IOS)
+  add_subdirectory(platform/mythic_ios)
+  
 endif ()
