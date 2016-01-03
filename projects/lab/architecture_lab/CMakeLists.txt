@@ -1,6 +1,4 @@
 
-add_project(architecture_lab)
-
 create_library(architecture_lab
 
 	source/laboratory/Architecture_Lab.cpp
@@ -19,11 +17,5 @@ require_package(architecture_lab modeling)
 require_package(architecture_lab perspective)
 require_package(architecture_lab lookinglass)
 require_package(architecture_lab client)
+require(architect)
 
-include_directories(
-	${architecture_lab_includes}
-)
-
-target_link_libraries(architecture_lab
-
-  )

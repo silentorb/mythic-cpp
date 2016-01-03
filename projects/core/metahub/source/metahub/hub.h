@@ -5,10 +5,10 @@
 #include "node.h"
 #include "list.h"
 
-typedef struct Hub {
+typedef struct metahub_Hub {
     List nodes;
-} Hub;
+} metahub_Hub;
 
-int metahub_create_hub(Hub **hub);
+MYTHIC_EXPORT int metahub_create_hub(metahub_Hub **hub);
 
-int metahub_delete_hub(Hub *hub);
+MYTHIC_EXPORT int metahub_delete_hub(metahub_Hub *hub);

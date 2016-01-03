@@ -31,7 +31,7 @@ elseif (MSVC)
   set(OPENGL_LIB opengl32.lib)
 endif ()
 
-#add_subdirectory(projects/core/metahub)
+add_subdirectory(projects/core/metahub)
 
 #start sub-projects
 
