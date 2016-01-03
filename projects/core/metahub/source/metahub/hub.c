@@ -1,5 +1,5 @@
 #include "hub.h"
-#include <malloc.h>
+#include <stdlib.h>
 
 int metahub_create_hub(metahub_Hub **hub) {
   *hub = (metahub_Hub*)malloc(sizeof(metahub_Hub));
