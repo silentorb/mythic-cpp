@@ -14,8 +14,7 @@ else ()
   set(BUILD_SHARED_LIBS true)
 endif ()
 
-include(cmake-utility/print-info.cmake)
-include(cmake-utility/project.cmake)
+include(cmake-tools/project.cmake)
 
 #print_info(STATUS)
 

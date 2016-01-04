@@ -6,3 +6,4 @@ platform
 .DS_Store
 build
 vs2013
+cmake-tools
