@@ -23,6 +23,4 @@ target_link_libraries(scenery
 
   )
 
-add_custom_command(TARGET scenery POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${CMAKE_CURRENT_LIST_DIR}/resources $<TARGET_FILE_DIR:scenery>/resources)
+add_resources(resources)
