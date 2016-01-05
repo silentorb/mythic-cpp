@@ -1,14 +1,15 @@
 
-if (MSVC)
-  set(GL_FILES glad/src/glad.c)
-elseif (MINGW)
-  set(GL_FILES source/gl_core_4_4.c)
-endif ()
-
 create_library(glow)
 
+if (MSVC)
+  add_sources(glad/src/glad.c)
+elseif (MINGW)
+  add_sources(glloader/gl_core_4_4.c)
+endif ()
+
 if (ANDROID)
-  set(glow_system_libraries EGL GLESv1_CM PARENT_SCOPE)
+  add_system_libraries(GLESv2)
+  add_sources(android/android-gl.cpp)
 else ()
   target_link_libraries(glow
     ${OPENGL_LIB}
