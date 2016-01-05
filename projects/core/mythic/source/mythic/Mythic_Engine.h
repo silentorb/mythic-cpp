@@ -6,7 +6,6 @@
 #include <map>
 #include <memory>
 #include "Myth_Info.h"
-#include <typeindex>
 
 namespace timing {
   class MYTHIC_EXPORT Quartz;
@@ -31,7 +30,7 @@ namespace mythic {
   private:
       timing::Quartz *timer;
       Client *client;
-      std::map<size_t, Myth *> myths;
+      std::map<string, Myth *> myths;
       Mythic_Renderer *renderer;
 
   public:
@@ -39,13 +38,13 @@ namespace mythic {
       ~Mythic_Engine();
 
       template<typename T>
-      T &get_myth() {
-        auto key = typeid(T).hash_code();
-        if (!myths.count(key)) {
-          myths[key] = new T(*this);
+      T &get_myth(string name) {
+//        auto key = typeid(T).hash_code();
+        if (!myths.count(name)) {
+          myths[name] = new T(*this);
         }
 
-        return (T &) *myths[key];
+        return (T &) *myths[name];
       }
 
       void add_renderable(lookinglass::Renderable *renderable);

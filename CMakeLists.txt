@@ -14,7 +14,7 @@ else ()
   set(BUILD_SHARED_LIBS true)
 endif ()
 
-include(cmake-tools/scripts/project.cmake)
+include(cmake-tools/cmake-tools.cmake)
 
 #print_info(STATUS)
 
@@ -52,11 +52,17 @@ add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/core/mythic)
 include(projects/lab/lab.cmake)
 
-if (WIN32)
+if (ANDROID)
+  add_subdirectory(platform/mythic_android)
+  add_subdirectory(platform/workshop_android)
+
+elseif (IOS)
+  add_subdirectory(platform/mythic_ios)
+
+else ()
   add_subdirectory(platform/desktop)
   add_subdirectory(platform/workshop)
 
-elseif(IOS)
-  add_subdirectory(platform/mythic_ios)
-  
 endif ()
+
+finish_mythic()

@@ -1,21 +1,14 @@
 
-create_library(architecture_lab
+create_library(architecture_lab)
 
-	source/laboratory/Architecture_Lab.cpp
-	source/laboratory/Architecture_Lab.h
-	source/laboratory/display/Freeform_Camera.cpp
-	source/laboratory/display/Freeform_Camera.h
-
-	)
-
-require_package(architecture_lab glass)
-require_package(architecture_lab mythic)
-require_package(architecture_lab scenery)
-require_package(architecture_lab sculptor)
-require_package(architecture_lab shading)
-require_package(architecture_lab modeling)
-require_package(architecture_lab perspective)
-require_package(architecture_lab lookinglass)
-require_package(architecture_lab client)
+require(glass)
+require(mythic)
+require(scenery)
+require(sculptor)
+require(shading)
+require(modeling)
+require(perspective)
+require(lookinglass)
+require(client)
 require(architect)
 

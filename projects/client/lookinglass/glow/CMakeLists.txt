@@ -1,26 +1,16 @@
 
-add_project(glow)
-
-include_directories(
-	${glow_includes}
-)
-
 if (MSVC)
-	set(GL_FILES glad/src/glad.c)
+  set(GL_FILES glad/src/glad.c)
 elseif (MINGW)
-	set(GL_FILES source/gl_core_4_4.c)
+  set(GL_FILES source/gl_core_4_4.c)
 endif ()
 
-create_library(glow
-	${GL_FILES}
-	source/lookinglass/glow.h
-	source/lookinglass/utility.cpp
-	source/lookinglass/utility.h
-	source/lookinglass/glow/Capabilities.cpp
-	source/lookinglass/glow/Capabilities.h
-	source/lookinglass/glow/Version.cpp
-	source/lookinglass/glow/Version.h)
+create_library(glow)
 
-target_link_libraries(glow
-	${OPENGL_LIB}
-	)
+if (ANDROID)
+  set(glow_system_libraries EGL GLESv1_CM PARENT_SCOPE)
+else ()
+  target_link_libraries(glow
+    ${OPENGL_LIB}
+    )
+endif ()

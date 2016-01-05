@@ -59,8 +59,8 @@ namespace lookinglass {
       auto text = (char *) glGetString(GL_VERSION);
       string values[2];
       parse_version_text(text, values);
-      major = stoi(values[0]);
-      minor = stoi(values[1]);
+//      major = stoi(values[0]);
+//      minor = stoi(values[1]);
 //      regex pattern{R"(\d+)\.(\d+)"};
 //
       smatch matches;

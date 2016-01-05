@@ -1,22 +1,13 @@
 
 add_project(glass)
 
-create_library(glass
-	source/lookinglass/Glass.cpp
-	source/lookinglass/Glass.h
-	source/lookinglass/Renderable.h
-	source/lookinglass/Draw_Method.h
-	)
+create_library(glass)
 
-require_package(glass glow)
-require_package(glass shading)
-require_package(glass modeling)
-require_package(glass perspective)
+require(glow)
+require(shading)
+require(modeling)
+require(perspective)
 
 include_directories(
 	${glass_includes}
 )
-
-target_link_libraries(glass
-
-  )
