@@ -7,3 +7,4 @@ platform
 build
 vs2013
 android
+local-config.cmake
