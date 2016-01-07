@@ -1,6 +1,7 @@
 #include "Program.h"
 #include "lookinglass/glow.h"
 #include <string>
+#include <stdexcept>
 
 namespace lookinglass {
 	namespace shading {
@@ -21,14 +22,14 @@ namespace lookinglass {
 				glGetProgramiv(id, GL_INFO_LOG_LENGTH, &message_length);
 				GLchar *message = new GLchar[message_length + 1];
 				glGetProgramInfoLog(id, 255, &message_length, message);
-				throw std::string("Failed to compile shader code.  ") + message;
+				throw std::runtime_error(std::string("Failed to compile shader code.  ") + message);
 			}
 
 			glValidateProgram(id);
 			GLint validated = 1;
 			glGetProgramiv(id, GL_VALIDATE_STATUS, &validated);
 			if (validated == GL_FALSE)
-				throw "Shader program unable to run in current state.";
+				throw std::runtime_error("Shader program unable to run in current state.");
 		}
 
 		Program::~Program() {

@@ -13,7 +13,7 @@ namespace lookinglass {
   House::House(Frame *frame, Shader_Loader *shader_loader) :
     frame(frame) {
         if (!frame) {
-            throw "Frame (Window) was null.";
+            throw std::runtime_error("Frame (Window) was null.");
         }
 //#define GL2_0
 #ifdef GL2_0

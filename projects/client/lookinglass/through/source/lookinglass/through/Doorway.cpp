@@ -1,6 +1,7 @@
 #include "Doorway.h"
 #include "glm/glm.hpp"
 #include "lookinglass/glow.h"
+#include <stdexcept>
 
 using namespace glm;
 
@@ -44,7 +45,7 @@ namespace lookinglass {
           return update_float;
       }
 
-			throw "Invalid field type.";
+			throw std::runtime_error("Invalid field type.");
     }
 
     void Doorway::update(void *data) {
