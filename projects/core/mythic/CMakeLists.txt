@@ -1,14 +1,6 @@
 
-add_project(mythic)
-
 create_library(mythic)
 
 find_package(vectoring)
-require(quartz)
-require(client)
-require(glass)
-require(lookinglass)
+require(quartz client glass lookinglass logger)
 
-include_directories(
-  ${mythic_includes}
-)

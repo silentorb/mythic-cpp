@@ -12,7 +12,8 @@ namespace lookinglass {
       width(width),
       height(height),
       left(left),
-      top(top) {
+      top(top),
+      camera(nullptr) {
       set_projection();
     }
 
@@ -41,8 +42,8 @@ namespace lookinglass {
       auto data = Viewport_Data();
       data.view = camera->get_view_matrix();
       data.projection = projection;
-      data.camera_direction = camera->get_orientation() * vec3(0, 1,0);
-      mist.update(& data);
+      data.camera_direction = camera->get_orientation() * vec3(0, 1, 0);
+      mist.update(&data);
     }
   }
 }

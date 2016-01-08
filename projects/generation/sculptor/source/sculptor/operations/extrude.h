@@ -17,7 +17,7 @@ namespace sculptor {
       auto count = edges.size();
 
       vector<Edge *> original_edges;
-      for (auto edge: edges) {
+      for (auto &edge: edges) {
         original_edges.push_back(edge);
       }
 
@@ -30,12 +30,12 @@ namespace sculptor {
       Edge::get_vertices(edges, original_vertices);
 
       vector<Vertex *> new_vertices;
-      for (auto original_vertex: original_vertices) {
+      for (auto &original_vertex: original_vertices) {
         auto new_vertex = mesh->add_vertex(vec3(vec4(original_vertex->position, 0) * offset));
         new_vertices.push_back(new_vertex);
       }
 
-      for (auto edge:original_edges) {
+      for (auto &edge : original_edges) {
         Vertex *points[2];
         edge->get_ordered_points(points);
         auto a = vector_index(original_vertices, points[0]);
@@ -54,7 +54,7 @@ namespace sculptor {
       }
 
       if (fill) {
-        for (auto polygon: polygons) {
+        for (auto &polygon: polygons) {
           mesh->add_polygon(
             new_vertices[vector_index(original_vertices, polygon->vertices[3])],
             new_vertices[vector_index(original_vertices, polygon->vertices[2])],

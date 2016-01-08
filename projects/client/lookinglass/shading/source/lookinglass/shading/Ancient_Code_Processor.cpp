@@ -11,7 +11,7 @@ namespace lookinglass {
 		string olden(const string input, Shader_Type type) {
 			string code = input;
 
-			code = boost::regex_replace(code, boost::regex(R"(layout\s*\(.*?\)\s*uniform\s+(\w+)(\s*{.*?})\s*(\w+);)"), "struct $1 $2;\nuniform $1 $3;");
+//			code = boost::regex_replace(code, boost::regex(R"(layout\s*\(.*?\)\s*uniform\s+(\w+)(\s*{.*?})\s*(\w+);)"), "struct $1 $2;\nuniform $1 $3;");
 			code = boost::regex_replace(code, boost::regex(R"(layout\s*\(.*?\)\s*)"), "");
 			if (type == Shader_Type::vertex) {
 				code = boost::regex_replace(code, boost::regex(R"(^\s*in\s)"), "attribute ");

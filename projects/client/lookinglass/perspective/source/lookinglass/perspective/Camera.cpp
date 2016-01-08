@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include <glm/gtx/transform.hpp>
+#include "logger.h"
 
 namespace lookinglass {
 	namespace perspective {
@@ -12,7 +13,9 @@ namespace lookinglass {
 //			auto third = glm::inverse(rotation) * translation;
 //			auto fourth = glm::lookAt(position, vec3(0), vec3(0, 0, 1));
 //			return translation * glm::inverse(rotation);
+//			log_info("orientation a");
 			auto forward = vec3(0, 1, 0) * orientation;
+//			log_info("orientation b");
 //			auto forward = Vector3.Transform(new Vector3(0, 1, 0), target_transform.Rotation);
 			auto look_at = position + forward;
 			return glm::lookAt(position, look_at, vec3(0, 0, 1));

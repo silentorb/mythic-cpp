@@ -36,6 +36,7 @@ add_subdirectory(projects/core/metahub)
 
 #start sub-projects
 
+add_subdirectory(projects/misc/logger)
 add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
 add_subdirectory(projects/misc/vectoring)

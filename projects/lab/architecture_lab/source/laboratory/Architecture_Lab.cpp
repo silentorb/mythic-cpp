@@ -5,6 +5,7 @@
 #include "scenery/Scene.h"
 #include <laboratory/display/Freeform_Camera.h>
 #include <lookinglass/shading/Shader_Manager.h>
+#include "logger.h"
 
 using namespace scenery::elements;
 
@@ -20,11 +21,13 @@ namespace laboratory {
     camera = new Freeform_Camera(house.get_base_viewport());
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
     auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
+    log_info(" loading lab shaders");
     auto& program = shader_manager.create_program("solid",
                                                  *shader_manager.create_shader(Shader_Type::vertex,
                                                                                "scenery/solid.vertex"),
                                                  *shader_manager.create_shader(Shader_Type::fragment,
                                                                                "scenery/solid.fragment"));
+    log_info("finished loading lab_shaders");
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(program));
     auto model = new Model(*mesh_data, effect);
     scene->add(model);

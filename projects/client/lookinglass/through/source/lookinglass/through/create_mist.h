@@ -13,11 +13,12 @@ namespace lookinglass {
   namespace through {
 
     template<typename T>
-    MYTHIC_EXPORT Mist<T> *create_mist(Struct_Info* info, const Capabilities &capabilities) {
+    MYTHIC_EXPORT Mist<T> *create_mist(Struct_Info *info, const Capabilities &capabilities) {
 
-			Mist<T> * result = capabilities.get_version().major < 3
-                    ? (Mist<T> *) new Ancient_Mist<T>()
-                    : (Mist<T> *) new Buffer_Mist<T>();
+      auto &version = capabilities.get_version();
+      Mist<T> *result = version.major < 3
+                        ? (Mist<T> *) new Ancient_Mist<T>()
+                        : (Mist<T> *) new Buffer_Mist<T>();
 //      auto result = new Buffer_Mist<T>();
       result->initialize(info);
       return result;

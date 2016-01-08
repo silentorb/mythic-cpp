@@ -24,7 +24,7 @@ namespace lookinglass {
     capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, *capabilities));
-    auto scene_definition = new Struct_Info(1, "scene", {
+    auto scene_definition = new Struct_Info(1, "", {
       new Field_Info("view", Field_Type::matrix),
       new Field_Info("projection", Field_Type::matrix),
       new Field_Info("camera_direction", Field_Type::vector3)
@@ -32,13 +32,14 @@ namespace lookinglass {
     viewport_mist = unique_ptr<Mist<Viewport_Data>>(
       through::create_mist<Viewport_Data>(scene_definition, get_capabilities()));
     shader_manager->add_program_add_listener(*viewport_mist);
-    base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, 800, 600));
+    base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, frame->get_width(), frame->get_height()));
+    base_viewport->activate();
     glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
 
     glFrontFace(GL_CW);
     glDisable(GL_CULL_FACE);
 
-    frame->set_clear_color(0, 0.1f, 0.3f, 1);
+    glClearColor(0, 0.1f, 0.3f, 1);
   }
 
   House::House(Platform_Factory &factory) : House(factory.create_frame(), factory.create_shader_loader()) { }

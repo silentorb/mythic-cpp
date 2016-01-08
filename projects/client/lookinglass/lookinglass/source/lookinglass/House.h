@@ -62,9 +62,9 @@ namespace lookinglass {
         return *glass;
       }
 
-      Frame &get_frame() const {
-        return *frame;
-      }
+//      Frame &get_frame() const {
+//        return *frame;
+//      }
 
        Shader_Manager &get_shader_manager() const {
         return *shader_manager;

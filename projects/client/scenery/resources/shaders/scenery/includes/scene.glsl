@@ -1,8 +1,6 @@
-layout(binding = 1) uniform Scene{
-	mat4 view;
-	mat4 projection;
-	vec3 camera_direction;
-} scene;
+uniform 	mat4 view;
+uniform 	mat4 projection;
+uniform 	vec3 camera_direction;
 
 struct Light {
 	int type;
@@ -13,7 +11,7 @@ struct Light {
 };
 
 const int MAX_LIGHTS = 8;
-layout(binding = 2, std140) uniform Lightingness{
+layout(binding = 2, std140) uniform struct Lightingness{
 	int count;
 	Light lights[MAX_LIGHTS];
 } Lighting;
