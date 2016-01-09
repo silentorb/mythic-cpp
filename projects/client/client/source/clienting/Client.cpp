@@ -4,9 +4,9 @@
 
 namespace clienting {
 
-  Client::Client(House *house) :
-    house(house)
-//    , input_manager(new Input_Manager())
+  Client::Client(House *house, Input_Source*input_source) :
+    house(house),
+    input_manager(new Input_Manager(input_source))
   {
   }
 

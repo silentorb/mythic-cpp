@@ -1,9 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-
 #include "lookinglass/Frame.h"
-#include "Platform_Factory.h"
 #include <vector>
 #include <memory>
 
@@ -23,6 +21,7 @@ namespace lookinglass {
 
   namespace perspective {
     struct Viewport_Data;
+
     class Viewport;
 
   }
@@ -51,7 +50,6 @@ namespace lookinglass {
   public:
 
       House(Frame *frame, Shader_Loader *shader_loader);
-      House(Platform_Factory &factory);
       ~House();
       void update();
       bool is_closing();
@@ -66,7 +64,7 @@ namespace lookinglass {
 //        return *frame;
 //      }
 
-       Shader_Manager &get_shader_manager() const {
+      Shader_Manager &get_shader_manager() const {
         return *shader_manager;
       }
 

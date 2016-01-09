@@ -15,7 +15,7 @@ namespace lookinglass {
         if (!frame) {
             throw std::runtime_error("Frame (Window) was null.");
         }
-//#define GL2_0
+#define GL2_0
 #ifdef GL2_0
     auto version = glow::Version(2, 0);
 #else
@@ -41,8 +41,6 @@ namespace lookinglass {
 
     glClearColor(0, 0.1f, 0.3f, 1);
   }
-
-  House::House(Platform_Factory &factory) : House(factory.create_frame(), factory.create_shader_loader()) { }
 
   House::~House() {
   }

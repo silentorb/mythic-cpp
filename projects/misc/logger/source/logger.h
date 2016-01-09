@@ -11,7 +11,8 @@
 #define log_warning(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 #define log_error(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "native-activity", __VA_ARGS__))
 #else
-void log_info(const char *,...);
-void log_warning(const char *,...);
-void log_error(const char *,...);
+#include "dllexport.h"
+MYTHIC_EXPORT void log_info(const char *,...);
+MYTHIC_EXPORT void log_warning(const char *,...);
+MYTHIC_EXPORT void log_error(const char *,...);
 #endif

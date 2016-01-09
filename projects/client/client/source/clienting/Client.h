@@ -14,6 +14,7 @@ using namespace std;
 
 namespace haft {
   class Input_Manager;
+  class Input_Source;
 }
 using namespace haft;
 
@@ -27,7 +28,7 @@ namespace clienting {
       Client& operator=(const Client&); // no implementation
 
   public:
-      Client(House *house);
+      Client(House *house, Input_Source * input_source);
 
       ~Client();
 

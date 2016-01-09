@@ -48,7 +48,7 @@ add_subdirectory(projects/generation/sculptor)
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/haft)
-add_subdirectory(projects/client/main/client)
+add_subdirectory(projects/client/client)
 add_subdirectory(projects/generation/architect)
 #end sub-projects
 
@@ -63,7 +63,7 @@ elseif (IOS)
   add_subdirectory(platform/mythic_ios)
 
 else ()
-  add_subdirectory(platform/desktop)
+  add_subdirectory(platform/mythic_desktop)
   add_subdirectory(platform/workshop)
 
 endif ()
