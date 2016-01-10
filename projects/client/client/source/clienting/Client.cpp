@@ -4,10 +4,10 @@
 
 namespace clienting {
 
-  Client::Client(House *house, Input_Source*input_source) :
+  Client::Client(House *house) :
     house(house),
-    input_manager(new Input_Manager(input_source))
-  {
+    _is_closing(false),
+    input_manager(new Input_Manager()) {
   }
 
   Client::~Client() { }
@@ -15,10 +15,11 @@ namespace clienting {
 
   void Client::update() {
     house->update();
+    input_manager->update();
   }
 
   bool Client::is_closing() {
-    return house->is_closing();
+    return _is_closing || house->is_closing();
   }
 
 }

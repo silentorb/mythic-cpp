@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 #include "Myth_Info.h"
+#include "Platform_Factory.h"
 
 namespace timing {
   class MYTHIC_EXPORT Quartz;
@@ -34,7 +35,7 @@ namespace mythic {
       Mythic_Renderer *renderer;
 
   public:
-      Mythic_Engine(Client *client);
+      Mythic_Engine(Platform_Factory& factory);
       ~Mythic_Engine();
 
       template<typename T>

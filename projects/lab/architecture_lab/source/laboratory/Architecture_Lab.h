@@ -26,5 +26,7 @@ namespace laboratory {
   public:
       Architecture_Lab(Mythic_Engine &engine);
       ~Architecture_Lab();
+
+      void update(float delta);
   };
 }

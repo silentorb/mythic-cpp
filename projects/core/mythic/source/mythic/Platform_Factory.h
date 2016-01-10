@@ -4,6 +4,7 @@
 
 namespace haft {
   class Input_Source;
+  class Input_Configuration;
 }
 
 namespace lookinglass {
@@ -22,7 +23,7 @@ namespace mythic {
   public:
       virtual Frame *create_frame() const = 0;
       virtual shading::Shader_Loader *create_shader_loader() const = 0;
-      virtual haft::Input_Source *create_input_source() const = 0;
+      virtual haft::Input_Source *create_input_source(haft::Input_Configuration & config) const = 0;
   };
 
 }

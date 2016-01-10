@@ -6,24 +6,23 @@
 #include "Device.h"
 #include "Gesture_Interpreter.h"
 #include "Input_Source.h"
+#include "Input_Configuration.h"
 
 using namespace std;
 
 namespace haft {
 
   class MYTHIC_EXPORT Input_Manager {
-      vector<unique_ptr<Device>> devices;
-      vector<unique_ptr<Action>> actions;
+      unique_ptr<Input_Configuration> config;
       vector<unique_ptr<Gesture_Interpreter>> gesture_interpreters;
       unique_ptr<Input_Source> source;
       unique_ptr<Input_State> current_state;
       unique_ptr<Input_State> previous_state;
 
-      Input_Manager(const Input_Manager &); // no implementation
-      Input_Manager &operator=(const Input_Manager &); // no implementation
+      Input_Manager(const Input_Manager &) = delete;
   public:
 
-      Input_Manager(Input_Source *source);
+      Input_Manager();
 
       void add_device(Device *device) {
 //        devices.push_back(unique_ptr<Device>(device));
@@ -39,12 +38,18 @@ namespace haft {
         gesture_interpreters.push_back(unique_ptr<Gesture_Interpreter>(interpreter));
       }
 
-      const Input_State &getCurrent_state() const {
+      const Input_State &get_current_state() const {
         return *current_state.get();
       }
 
-      const Input_State &getPrevious_state() const {
+      const Input_State &get_previous_state() const {
         return *previous_state.get();
+      }
+
+      void add_input_source(Input_Source *new_source);
+
+      Input_Configuration &get_config() const {
+        return *config;
       }
 
       void update();

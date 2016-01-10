@@ -19,8 +19,8 @@ namespace haft {
         return action;
       }
 
-      void set_action(Action *action) {
-        this->action = action;
+      void set_action(Action &action) {
+        this->action = &action;
       }
 
       const string &get_name() const {

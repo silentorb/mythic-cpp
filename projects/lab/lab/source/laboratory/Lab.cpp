@@ -22,7 +22,7 @@ namespace laboratory {
   }
 
   void Lab::update(float delta) {
-
+    architecture_lab->update(delta);
   }
 
 

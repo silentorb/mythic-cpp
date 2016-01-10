@@ -14,6 +14,7 @@ using namespace std;
 
 namespace haft {
   class Input_Manager;
+
   class Input_Source;
 }
 using namespace haft;
@@ -23,12 +24,13 @@ namespace clienting {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
+      bool _is_closing;
 
-      Client(const Client&); // no implementation
-      Client& operator=(const Client&); // no implementation
+      Client(const Client &); // no implementation
+      Client &operator=(const Client &); // no implementation
 
   public:
-      Client(House *house, Input_Source * input_source);
+      Client(House *house);
 
       ~Client();
 
@@ -39,6 +41,14 @@ namespace clienting {
 
       House &get_house() const {
         return *house;
+      }
+
+      Input_Manager &get_input_manager() const {
+        return *input_manager.get();
+      }
+
+      void close() {
+        _is_closing = true;
       }
   };
 }
