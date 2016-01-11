@@ -22,6 +22,10 @@ include(cmake-tools/cmake-tools.cmake)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 
+macro(include_linq)
+  include_directories(${MYTHIC_EXTERNAL}/cpplinq)
+endmacro()
+
 if (MINGW)
   set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll)
   set(SDL_LIB ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/lib/libSDL2.dll.a)
@@ -41,6 +45,7 @@ add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
 add_subdirectory(projects/misc/vectoring)
 add_subdirectory(projects/misc/textual)
+add_subdirectory(projects/misc/spatial)
 add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)

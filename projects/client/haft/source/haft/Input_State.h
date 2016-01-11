@@ -50,5 +50,13 @@ namespace haft {
 
         return nullptr;
       }
+
+      vector<unique_ptr<Event>>::const_iterator events_begin() const {
+        return events.begin();
+      }
+
+      vector<unique_ptr<Event>>::const_iterator events_end() const {
+        return events.end();
+      }
   };
 }

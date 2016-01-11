@@ -11,10 +11,15 @@ namespace haft {
       int id;
 
   public:
+
       Action(int id, const string &name) : name(name), id(id) { }
 
       const string &get_name() const {
         return name;
+      }
+
+      void set_name(const string &name){
+        this->name = name;
       }
 
       int get_id() const {

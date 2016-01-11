@@ -7,6 +7,7 @@
 #include <lookinglass/shading/Shader_Manager.h>
 #include "logger.h"
 #include "haft/Input_Manager.h"
+#include "Actions.h"
 
 using namespace scenery::elements;
 
@@ -36,10 +37,11 @@ namespace laboratory {
 
     auto &input_manager = client.get_input_manager();
     auto &input_config = input_manager.get_config();
-    auto &quit_action = input_config.add_action("quit");
+//    auto &quit_action = input_config.add_action("quit");
+    Actions::initialize(input_config);
     auto &gamepad = input_config.get_device("gamepad");
     auto &start_trigger = gamepad.get_trigger("Start");
-    gamepad.assign(start_trigger, quit_action);
+    gamepad.assign(start_trigger, *Actions::quit);
   }
 
   Architecture_Lab::~Architecture_Lab() {
@@ -56,5 +58,7 @@ namespace laboratory {
     if (state.get_event(quit_action)) {
       client.close();
     }
+
+    camera->update(delta, client);
   }
 }

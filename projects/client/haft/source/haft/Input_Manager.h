@@ -38,11 +38,11 @@ namespace haft {
         gesture_interpreters.push_back(unique_ptr<Gesture_Interpreter>(interpreter));
       }
 
-      const Input_State &get_current_state() const {
+      Input_State &get_current_state() const {
         return *current_state.get();
       }
 
-      const Input_State &get_previous_state() const {
+      Input_State &get_previous_state() const {
         return *previous_state.get();
       }
 

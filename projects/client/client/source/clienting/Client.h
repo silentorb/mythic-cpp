@@ -14,9 +14,10 @@ using namespace std;
 
 namespace haft {
   class Input_Manager;
-
+class Input_State;
   class Input_Source;
 }
+
 using namespace haft;
 
 namespace clienting {
@@ -46,6 +47,8 @@ namespace clienting {
       Input_Manager &get_input_manager() const {
         return *input_manager.get();
       }
+
+     Input_State &get_current_input_state()const;
 
       void close() {
         _is_closing = true;

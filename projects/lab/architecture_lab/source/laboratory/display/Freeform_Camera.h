@@ -7,6 +7,10 @@
 #include <memory>
 #include <lookinglass/perspective/Viewport.h>
 
+namespace haft {
+  class Event;
+}
+
 using namespace lookinglass::perspective;
 using namespace lookinglass;
 using namespace clienting;
@@ -17,6 +21,7 @@ namespace laboratory {
     class MYTHIC_EXPORT Freeform_Camera {
     private:
         unique_ptr<Camera> camera;
+        void process_event(haft::Event &event,float delta);
     public:
         Freeform_Camera(Viewport &viewport);
 

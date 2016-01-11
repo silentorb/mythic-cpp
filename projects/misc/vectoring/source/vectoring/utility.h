@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include <vector>
@@ -24,8 +25,18 @@ int vector_index(vector<T> &items, T item) {
 
 template<typename T>
 T vector_first(const vector<T> &items) {
-    for (auto item : items) {
-        return item;
-    }
+  for (auto item : items) {
+    return item;
+  }
 }
 
+//template<typename T>
+//class Iterable {
+//    T &container;
+//
+//public:
+//    Iterable(T &container) : container(container) { }
+//
+//    T::iterator begin() { return container.begin(); }
+//   typename T::iterator end() { return container.end(); }
+//};
