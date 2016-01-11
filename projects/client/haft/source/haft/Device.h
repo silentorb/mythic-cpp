@@ -3,16 +3,18 @@
 #include <vector>
 #include "Trigger.h"
 #include <memory>
+#include "dllexport.h"
 
 using namespace std;
 
 namespace haft {
 
-  class Device {
+	class MYTHIC_EXPORT Device {
       string name;
       vector<unique_ptr<Trigger>> triggers;
-
-  public:
+			Device& operator=(const Device&) = delete;
+			Device(Device const &) = delete;
+	public:
 
       Device(const string &name) : name(name) { }
 
@@ -36,6 +38,11 @@ namespace haft {
         auto &trigger = *triggers[index].get();
         trigger.set_action(action);
       }
+
+			void assign(const string trigger_name, Action &action) {
+				auto &trigger = get_trigger(trigger_name);
+				trigger.set_action(action);
+			}
 
       void assign(Trigger &trigger, Action &action) {
         trigger.set_action(action);

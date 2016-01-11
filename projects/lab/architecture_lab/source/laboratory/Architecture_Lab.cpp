@@ -40,8 +40,21 @@ namespace laboratory {
 //    auto &quit_action = input_config.add_action("quit");
     Actions::initialize(input_config);
     auto &gamepad = input_config.get_device("gamepad");
-    auto &start_trigger = gamepad.get_trigger("Start");
-    gamepad.assign(start_trigger, *Actions::quit);
+		gamepad.assign("LS_Left", *Actions::move_left);
+		gamepad.assign("LS_Right", *Actions::move_right);
+		gamepad.assign("LS_Up", *Actions::move_forward);
+		gamepad.assign("LS_Down", *Actions::move_backward);
+
+		gamepad.assign("LTrigger", *Actions::jump);
+		gamepad.assign("RTrigger", *Actions::duck);
+
+		gamepad.assign("RS_Left", *Actions::look_left);
+		gamepad.assign("RS_Right", *Actions::look_right);
+		gamepad.assign("RS_Up", *Actions::look_up);
+		gamepad.assign("RS_Down", *Actions::look_down);
+
+		gamepad.assign("Back", *Actions::quit);
+
   }
 
   Architecture_Lab::~Architecture_Lab() {

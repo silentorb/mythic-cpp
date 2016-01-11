@@ -22,6 +22,7 @@ namespace laboratory {
     private:
         unique_ptr<Camera> camera;
         void process_event(haft::Event &event,float delta);
+        void move_entity(Positioned_Oriented& player, vec3 direction, float amount);
     public:
         Freeform_Camera(Viewport &viewport);
 

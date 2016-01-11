@@ -12,8 +12,7 @@ namespace lookinglass {
         int offset;
         Field_Type type;
         Doorway_Delegate updater;
-
-
+				
     public:
         Doorway(int id, const Field_Type &type, int offset);
 

@@ -9,11 +9,16 @@ using namespace std;
 
 namespace haft {
 
-  class Input_Configuration {
+	class MYTHIC_EXPORT Input_Configuration {
       vector<unique_ptr<Device>> devices;
       vector<unique_ptr<Action>> actions;
 
+      Input_Configuration(Input_Configuration const &) = delete;
+      void operator=(Input_Configuration const &) = delete;
+
   public:
+
+			Input_Configuration() {}
 
       void add_device(Device *device) {
         devices.push_back(unique_ptr<Device>(device));
