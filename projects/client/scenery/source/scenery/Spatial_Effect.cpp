@@ -18,7 +18,7 @@ namespace scenery {
 
 		unsigned int color_uniform = glGetUniformLocation(program->get_id(), "color");
 		if (color_uniform != -1) {
-			glUniform4f(color_uniform, 1, 0, 1, 1);
+			glUniform4f(color_uniform, 1, 0, 1, 0.3);
 		}
 
   }

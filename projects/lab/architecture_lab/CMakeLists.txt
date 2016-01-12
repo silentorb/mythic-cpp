@@ -1,7 +1,7 @@
 
 create_library(architecture_lab)
 
-require(glass logger haft)
+require(glass logger haft glow)
 require(mythic)
 require(scenery)
 require(sculptor)

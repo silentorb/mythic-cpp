@@ -1,5 +1,6 @@
 #include <lookinglass/modeling/mesh_export.h>
 #include "Model.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace scenery {
   namespace elements {
@@ -9,7 +10,7 @@ namespace scenery {
     }
 
     mat4 *Model::get_transform() {
-      tranform = glm::mat4();
+      tranform = glm::translate(glm::mat4(1.f), get_position());
       return &tranform;
     }
 

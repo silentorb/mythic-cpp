@@ -93,16 +93,18 @@ namespace timing {
     return mach_absolute_time() * conversion;
 
 #elif __ANDROID__
-    static double start_time = 0;
-    static double resolution;
+    static uint64_t start_time = 0;
     timespec info;
     if (start_time == 0) {
       clock_gettime(CLOCK_REALTIME, &info);
-      start_time = info.tv_nsec;
+      start_time = (info.tv_sec * 1e9) + info.tv_nsec;
     }
 
     clock_gettime(CLOCK_REALTIME, &info);
-    return (info.tv_nsec - start_time) / 1e9;
+    if ((info.tv_nsec - start_time) < 0) {
+    start_time = start_time;
+    }
+    return ((info.tv_sec * 1e9) - start_time + info.tv_nsec) / 1e9;
 
 #else
     static uint64_t start = 0;

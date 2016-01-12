@@ -41,7 +41,8 @@ namespace lookinglass {
     glFrontFace(GL_CW);
     glDisable(GL_CULL_FACE);
 
-    glClearColor(0, 0.1f, 0.3f, 1);
+//    glClearColor(0, 0.1f, 0.3f, 1);
+    glClearColor(1, 1, 1, 1);
   }
 
   House::~House() {

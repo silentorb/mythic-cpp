@@ -9,6 +9,8 @@
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
+#include "lookinglass/glow.h"
+#include <stdlib.h>
 
 using namespace scenery::elements;
 
@@ -35,10 +37,18 @@ namespace laboratory {
     
     auto surface = input_config.get_device("surface");
     if(surface){
-      surface->assign("swipe_left", *Actions::move_left);
-      surface->assign("swipe_right", *Actions::move_right);
-      surface->assign("swipe_up", *Actions::move_forward);
-      surface->assign("swipe_down", *Actions::move_backward);
+//      surface->assign("swipe_left", *Actions::move_left);
+//      surface->assign("swipe_right", *Actions::move_right);
+//      surface->assign("swipe_up", *Actions::jump);
+//      surface->assign("swipe_down", *Actions::duck);
+//      surface->assign("swipe_left", *Actions::move_right);
+//      surface->assign("swipe_right", *Actions::move_left);
+//      surface->assign("swipe_up", *Actions::duck);
+//      surface->assign("swipe_down", *Actions::jump);
+      surface->assign("swipe_left", *Actions::look_right);
+      surface->assign("swipe_right", *Actions::look_left);
+      surface->assign("swipe_up", *Actions::look_down);
+      surface->assign("swipe_down", *Actions::look_up);
     }
   }
 
@@ -57,7 +67,14 @@ namespace laboratory {
     initialize_lookinglass(client.get_house());
   }
 
+  float random_in_range(float range) {
+    return (((float)rand() / RAND_MAX) * range) - range / 2;
+  }
+
   void Architecture_Lab::initialize_lookinglass(lookinglass::House &house) {
+    srand (1);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     auto &shader_manager = house.get_resources().get_shader_manager();
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
     log_info(" loading lab shaders");
@@ -70,8 +87,31 @@ namespace laboratory {
     log_info("finished loading lab_shaders");
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(program));
     auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
-    auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
-    scene->add(model);
+    {
+      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+      model->set_position(vec3(0, 25, 0));
+      scene->add(model);
+    }
+
+    {
+      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+      model->set_position(vec3(5, 25, 0));
+      scene->add(model);
+    }
+
+
+    const float range = 100;
+    for (int i = 0; i < 300; ++i) {
+      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+      auto position =vec3(
+        random_in_range(range),
+        random_in_range(range),
+        random_in_range(range)
+      );
+      log_info("position %f, %f, %f", position.x, position.y, position.z);
+      model->set_position(position);
+      scene->add(model);
+    }
   }
 
   Architecture_Lab::~Architecture_Lab() {
