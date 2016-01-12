@@ -8,6 +8,7 @@
 #include "logger.h"
 #include "haft/Input_Manager.h"
 #include "Actions.h"
+#include "lookinglass/Lookinglass_Resources.h"
 
 using namespace scenery::elements;
 
@@ -18,11 +19,34 @@ namespace laboratory {
     scene = new Scene();
     engine.add_renderable(scene);
     auto &client = engine.get_client();
-    auto &house = client.get_house();
-    auto &shader_manager = house.get_shader_manager();
-    camera = new Freeform_Camera(house.get_base_viewport());
+    camera = new Freeform_Camera(client.get_house().get_base_viewport());
+
+    auto &input_manager = client.get_input_manager();
+    auto &input_config = input_manager.get_config();
+//    auto &quit_action = input_config.add_action("quit");
+    Actions::initialize(input_config);
+    auto &gamepad = input_config.get_device("gamepad");
+    gamepad.assign("LS_Left", *Actions::move_left);
+    gamepad.assign("LS_Right", *Actions::move_right);
+    gamepad.assign("LS_Up", *Actions::move_forward);
+    gamepad.assign("LS_Down", *Actions::move_backward);
+
+    gamepad.assign("LTrigger", *Actions::jump);
+    gamepad.assign("RTrigger", *Actions::duck);
+
+    gamepad.assign("RS_Left", *Actions::look_left);
+    gamepad.assign("RS_Right", *Actions::look_right);
+    gamepad.assign("RS_Up", *Actions::look_up);
+    gamepad.assign("RS_Down", *Actions::look_down);
+
+    gamepad.assign("Back", *Actions::quit);
+
+    initialize_lookinglass(client.get_house());
+  }
+
+  void Architecture_Lab::initialize_lookinglass(lookinglass::House &house) {
+    auto &shader_manager = house.get_resources().get_shader_manager();
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
-    auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
     log_info(" loading lab shaders");
     auto &program = shader_manager.create_program("solid",
                                                   *shader_manager.create_shader(Shader_Type::vertex,
@@ -32,29 +56,9 @@ namespace laboratory {
 
     log_info("finished loading lab_shaders");
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(program));
-    auto model = new Model(*mesh_data, effect);
+    auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
+    auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
     scene->add(model);
-
-    auto &input_manager = client.get_input_manager();
-    auto &input_config = input_manager.get_config();
-//    auto &quit_action = input_config.add_action("quit");
-    Actions::initialize(input_config);
-    auto &gamepad = input_config.get_device("gamepad");
-		gamepad.assign("LS_Left", *Actions::move_left);
-		gamepad.assign("LS_Right", *Actions::move_right);
-		gamepad.assign("LS_Up", *Actions::move_forward);
-		gamepad.assign("LS_Down", *Actions::move_backward);
-
-		gamepad.assign("LTrigger", *Actions::jump);
-		gamepad.assign("RTrigger", *Actions::duck);
-
-		gamepad.assign("RS_Left", *Actions::look_left);
-		gamepad.assign("RS_Right", *Actions::look_right);
-		gamepad.assign("RS_Up", *Actions::look_up);
-		gamepad.assign("RS_Down", *Actions::look_down);
-
-		gamepad.assign("Back", *Actions::quit);
-
   }
 
   Architecture_Lab::~Architecture_Lab() {

@@ -49,6 +49,7 @@ add_subdirectory(projects/misc/spatial)
 add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)
+add_subdirectory(projects/client/resourceful)
 
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/client/scenery)

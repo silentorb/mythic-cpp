@@ -1,13 +1,14 @@
 #pragma once
+
 #include "dllexport.h"
 
-
 #include "Vertex_Schema.h"
+#include "resourceful/Resource.h"
 
 namespace lookinglass {
   namespace modeling {
 
-    class MYTHIC_EXPORT Mesh_Data {
+    class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource {
     private:
         unsigned int vao;
         unsigned int vbo;
@@ -16,6 +17,7 @@ namespace lookinglass {
         float *vertices;
         int *offsets;
         int *counts;
+        const Vertex_Schema &vertex_schema;
         void register_mesh(const Vertex_Schema &schema);
 
     public:
@@ -48,6 +50,9 @@ namespace lookinglass {
         int *get_counts() const {
           return counts;
         }
+
+        virtual void free() override;
+        virtual void load() override;
     };
 
   }

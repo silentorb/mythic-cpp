@@ -12,7 +12,6 @@ namespace clienting {
 
   Client::~Client() { }
 
-
   void Client::update() {
     house->update();
     input_manager->update();

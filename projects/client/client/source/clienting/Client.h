@@ -4,9 +4,9 @@
 #include <memory>
 
 namespace lookinglass {
-  class MYTHIC_EXPORT House;
+  class House;
 
-  class MYTHIC_EXPORT Renderable;
+  class Renderable;
 }
 using namespace lookinglass;
 
@@ -14,7 +14,9 @@ using namespace std;
 
 namespace haft {
   class Input_Manager;
-class Input_State;
+
+  class Input_State;
+
   class Input_Source;
 }
 
@@ -48,10 +50,12 @@ namespace clienting {
         return *input_manager.get();
       }
 
-     Input_State &get_current_input_state()const;
+      Input_State &get_current_input_state() const;
 
       void close() {
         _is_closing = true;
       }
+
+
   };
 }

@@ -1,5 +1,6 @@
 #message("a")
 find_package(math)
+find_package(resourceful)
 #message("b ${${CURRENT_TARGET}_includes}")
 
 include_directories(

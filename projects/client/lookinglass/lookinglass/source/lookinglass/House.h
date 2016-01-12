@@ -11,14 +11,10 @@ namespace lookinglass {
   namespace glow {
     class MYTHIC_EXPORT Capabilities;
   }
-
   namespace shading {
-    class MYTHIC_EXPORT Shader_Manager;
 
-    class MYTHIC_EXPORT Shader_Loader;
+    class Shader_Loader;
   }
-  using namespace shading;
-
   namespace perspective {
     struct Viewport_Data;
 
@@ -33,23 +29,26 @@ namespace lookinglass {
   }
   using namespace through;
 
-  class MYTHIC_EXPORT Glass;
+  class Glass;
 
-  class MYTHIC_EXPORT Renderable;
+  class Renderable;
+
+  class Lookinglass_Resources;
 
   class MYTHIC_EXPORT House {
   private:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<glow::Capabilities> capabilities;
       vector<Renderable *> renderables;
-      unique_ptr<Shader_Manager> shader_manager;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
       unique_ptr<Frame> frame;
+      bool active;
 
+      unique_ptr<Lookinglass_Resources> resource_manager;
   public:
 
-      House(Frame *frame, Shader_Loader *shader_loader);
+      House(Frame *frame, shading::Shader_Loader *shader_loader);
       ~House();
       void update();
       bool is_closing();
@@ -60,22 +59,32 @@ namespace lookinglass {
         return *glass;
       }
 
-//      Frame &get_frame() const {
-//        return *frame;
-//      }
-
-      Shader_Manager &get_shader_manager() const {
-        return *shader_manager;
+      Frame &get_frame() const {
+        return *frame;
       }
 
+//      virtual void set_clear_color(float red, float green, float blue, float alpha) = 0;
+
+//      Shader_Manager &get_shader_manager() const {
+//        return *shader_manager;
+//      }
 
       Viewport &get_base_viewport() const {
         return *base_viewport;
       }
 
-
       const glow::Capabilities &get_capabilities() const {
         return *capabilities;
       }
+
+      bool is_active() const {
+        return active;
+      }
+
+      void set_active(bool value) {
+        active = value;
+      }
+
+      Lookinglass_Resources& get_resources() const;
   };
 }

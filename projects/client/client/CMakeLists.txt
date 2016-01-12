@@ -1,4 +1,4 @@
 
 create_library(client)
 
-require(lookinglass haft)
+require(lookinglass haft resourceful)

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "dllexport.h"
-
 #include "Draw_Method.h"
 
 namespace lookinglass {
@@ -15,7 +14,7 @@ namespace lookinglass {
   }
 
   namespace modeling {
-    class MYTHIC_EXPORT Mesh_Data;
+    class Mesh_Data;
   }
 
   class MYTHIC_EXPORT Glass {

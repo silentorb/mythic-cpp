@@ -1,10 +1,7 @@
 
 create_library(lookinglass)
 
-include_directories(
-#  ${MYTHIC_EXTERNAL}/SDL2-2.0.3/include
-)
+require(glass glow shading perspective through resourceful modeling)
 
 find_package(math)
 find_package(vectoring)
-require(glass glow shading perspective through)

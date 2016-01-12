@@ -5,11 +5,15 @@
 #include "mythic/Mythic_Engine.h"
 
 namespace scenery {
-  class MYTHIC_EXPORT Scene;
+  class Scene;
 }
 
 using namespace mythic;
 using namespace scenery;
+
+namespace lookinglass {
+  class House;
+}
 
 namespace laboratory {
   namespace display {
@@ -27,6 +31,7 @@ namespace laboratory {
       Architecture_Lab(Mythic_Engine &engine);
       ~Architecture_Lab();
 
+      void initialize_lookinglass(lookinglass::House & house);
       void update(float delta);
   };
 }

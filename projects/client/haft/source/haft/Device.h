@@ -9,12 +9,12 @@ using namespace std;
 
 namespace haft {
 
-	class MYTHIC_EXPORT Device {
+  class MYTHIC_EXPORT Device {
       string name;
       vector<unique_ptr<Trigger>> triggers;
-			Device& operator=(const Device&) = delete;
-			Device(Device const &) = delete;
-	public:
+      Device &operator=(const Device &) = delete;
+      Device(Device const &) = delete;
+  public:
 
       Device(const string &name) : name(name) { }
 
@@ -28,7 +28,7 @@ namespace haft {
         return *triggers[index];
       }
 
-      Trigger &get_trigger(const string trigger_name) const;
+      Trigger *get_trigger(const string trigger_name) const;
 
       const string &get_name() const {
         return name;
@@ -39,10 +39,11 @@ namespace haft {
         trigger.set_action(action);
       }
 
-			void assign(const string trigger_name, Action &action) {
-				auto &trigger = get_trigger(trigger_name);
-				trigger.set_action(action);
-			}
+      void assign(const string trigger_name, Action &action) {
+        auto trigger = get_trigger(trigger_name);
+        if (trigger)
+          trigger->set_action(action);
+      }
 
       void assign(Trigger &trigger, Action &action) {
         trigger.set_action(action);

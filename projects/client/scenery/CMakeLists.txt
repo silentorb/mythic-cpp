@@ -1,11 +1,6 @@
 
-add_project(scenery)
-
 create_library(scenery)
 
-require(glass)
-require(shading)
-require(modeling)
-require(glow)
+require(glass sculptor shading modeling glow)
 
 add_resources(resources)

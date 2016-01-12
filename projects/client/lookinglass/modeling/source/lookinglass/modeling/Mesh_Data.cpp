@@ -8,13 +8,13 @@ namespace lookinglass {
     Mesh_Data::Mesh_Data(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts,
                          const Vertex_Schema &vertex_schema)
       : polygon_count(
-      polygon_count), vertex_count(vertex_count), vertices(vertices), offsets(offsets), counts(counts) {
-      register_mesh(vertex_schema);
+      polygon_count), vertex_count(vertex_count), vertices(vertices),
+        offsets(offsets), counts(counts), vertex_schema(vertex_schema) {
+      load();
     }
 
     Mesh_Data::~Mesh_Data() {
-      glDeleteBuffers(1, &vao);
-      glDeleteBuffers(1, &vbo);
+      free();
     }
 
     void Mesh_Data::register_mesh(const Vertex_Schema &schema) {
@@ -26,6 +26,19 @@ namespace lookinglass {
       glow::check_error("binding vbo buffer data");
 
       vao = schema.create_vao();
+    }
+
+    void Mesh_Data::free() {
+      if (!vao)
+        return;
+
+      glDeleteBuffers(1, &vao);
+      glDeleteBuffers(1, &vbo);
+      vao = 0;
+    }
+
+    void Mesh_Data::load() {
+      register_mesh(vertex_schema);
     }
   }
 }
