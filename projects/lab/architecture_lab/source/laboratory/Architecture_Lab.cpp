@@ -14,6 +14,34 @@ using namespace scenery::elements;
 
 namespace laboratory {
 
+  void initialize_input(Input_Configuration &input_config) {
+    auto gamepad = input_config.get_device("gamepad");
+    if (gamepad) {
+      gamepad->assign("LS_Left", *Actions::move_left);
+      gamepad->assign("LS_Right", *Actions::move_right);
+      gamepad->assign("LS_Up", *Actions::move_forward);
+      gamepad->assign("LS_Down", *Actions::move_backward);
+
+      gamepad->assign("LTrigger", *Actions::jump);
+      gamepad->assign("RTrigger", *Actions::duck);
+
+      gamepad->assign("RS_Left", *Actions::look_left);
+      gamepad->assign("RS_Right", *Actions::look_right);
+      gamepad->assign("RS_Up", *Actions::look_up);
+      gamepad->assign("RS_Down", *Actions::look_down);
+
+      gamepad->assign("Back", *Actions::quit);
+    }
+    
+    auto surface = input_config.get_device("surface");
+    if(surface){
+      surface->assign("swipe_left", *Actions::move_left);
+      surface->assign("swipe_right", *Actions::move_right);
+      surface->assign("swipe_up", *Actions::move_forward);
+      surface->assign("swipe_down", *Actions::move_backward);
+    }
+  }
+
   Architecture_Lab::Architecture_Lab(Mythic_Engine &engine) :
     engine(engine) {
     scene = new Scene();
@@ -25,22 +53,7 @@ namespace laboratory {
     auto &input_config = input_manager.get_config();
 //    auto &quit_action = input_config.add_action("quit");
     Actions::initialize(input_config);
-    auto &gamepad = input_config.get_device("gamepad");
-    gamepad.assign("LS_Left", *Actions::move_left);
-    gamepad.assign("LS_Right", *Actions::move_right);
-    gamepad.assign("LS_Up", *Actions::move_forward);
-    gamepad.assign("LS_Down", *Actions::move_backward);
-
-    gamepad.assign("LTrigger", *Actions::jump);
-    gamepad.assign("RTrigger", *Actions::duck);
-
-    gamepad.assign("RS_Left", *Actions::look_left);
-    gamepad.assign("RS_Right", *Actions::look_right);
-    gamepad.assign("RS_Up", *Actions::look_up);
-    gamepad.assign("RS_Down", *Actions::look_down);
-
-    gamepad.assign("Back", *Actions::quit);
-
+    initialize_input(input_config);
     initialize_lookinglass(client.get_house());
   }
 

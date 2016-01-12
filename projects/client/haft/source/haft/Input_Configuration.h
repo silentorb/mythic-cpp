@@ -38,7 +38,7 @@ namespace haft {
         return *devices[index];
       }
 
-      Device &get_device(const string name) const;
+      Device *get_device(const string name) const;
 
       Action &get_action(const string name) const {
         for (auto &action: actions) {
