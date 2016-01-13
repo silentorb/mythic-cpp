@@ -36,19 +36,8 @@ namespace lookinglass {
 
     public:
         Shader_Manager(Shader_Loader *loader, glow::Capabilities &capabilities);
-        Shader *create_shader(Shader_Type type, string path);
+        Shader &create_shader(Shader_Type type, string path);
         Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader);
-
-//        const Vertex_Schema &create_vertex_schema(const string name, std::initializer_list <Vertex_Attribute>attributes);
-//
-//        const Vertex_Schema &get_vertex_schema(const string name) {
-//          return *vertex_schemas[name];
-//        }
-
-
-//        const vector<unique_ptr<Program> &get_programs() const {
-//          return programs;
-//        }
 
         void add_program_add_listener(Program_Add_Listener &listener) {
           program_added.push_back(&listener);

@@ -23,12 +23,12 @@ namespace lookinglass {
       return new Ancient_Code_Processor(*loader);
     }
 
-    Shader *Shader_Manager::create_shader(Shader_Type type, string path) {
+    Shader &Shader_Manager::create_shader(Shader_Type type, string path) {
       auto source = loader->load(path);
       auto code = process(type, source);
       auto shader = new Shader(type, code.c_str());
-      shaders->add_resource(shader);
-      return shader;
+//      shaders->add_resource(shader);
+      return *shader;
     }
 
     Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader) {

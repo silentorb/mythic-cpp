@@ -30,7 +30,7 @@ namespace lookinglass {
       glAttachShader(id, second.id);
 
       glLinkProgram(id);
-      glow::check_error("linking cheater program");
+      glow::check_error("linking shader program");
 
       GLint result = 1;
       glGetProgramiv(id, GL_LINK_STATUS, &result);

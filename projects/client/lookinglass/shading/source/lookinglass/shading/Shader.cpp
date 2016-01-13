@@ -8,9 +8,10 @@ using namespace std;
 
 namespace lookinglass {
   namespace shading {
-    Shader::Shader(Shader_Type type, const char *code) :
+    Shader::Shader(Shader_Type type, string code) :
       type(type), source_code(code) {
 //      log_info("Creating shader: ") + code).c_str());
+      load();
     }
 
     Shader::~Shader() {
@@ -27,7 +28,8 @@ namespace lookinglass {
 
     void Shader::load() {
       id = glCreateShader(type);
-      glShaderSource(id, 1, &source_code, NULL);
+			const char* code = source_code.c_str();
+				glShaderSource(id, 1, &code, NULL);
       glow::check_error("Error loading shader code.");
 
       glCompileShader(id);

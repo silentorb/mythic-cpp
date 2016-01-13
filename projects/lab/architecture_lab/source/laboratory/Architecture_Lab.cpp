@@ -65,6 +65,9 @@ namespace laboratory {
     Actions::initialize(input_config);
     initialize_input(input_config);
     initialize_lookinglass(client.get_house());
+
+    client.free();
+    client.load();
   }
 
   float random_in_range(float range) {
@@ -80,9 +83,9 @@ namespace laboratory {
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
     log_info(" loading lab shaders");
     auto &program = shader_manager.create_program("solid",
-                                                  *shader_manager.create_shader(Shader_Type::vertex,
+                                                  shader_manager.create_shader(Shader_Type::vertex,
                                                                                 "scenery/solid.vertex"),
-                                                  *shader_manager.create_shader(Shader_Type::fragment,
+                                                  shader_manager.create_shader(Shader_Type::fragment,
                                                                                 "scenery/solid.fragment"));
 
     log_info("finished loading lab_shaders");
