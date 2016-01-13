@@ -1,5 +1,7 @@
 #pragma once
+
 #include "dllexport.h"
+#include "resourceful/Resource.h"
 
 namespace lookinglass {
   namespace shading {
@@ -9,7 +11,7 @@ namespace lookinglass {
         fragment = 0x8B30
     };
 
-    class MYTHIC_EXPORT Shader {
+    class MYTHIC_EXPORT Shader : public resourceful::Resource {
     private:
         Shader_Type type;
         const char *source_code;
@@ -18,6 +20,9 @@ namespace lookinglass {
         unsigned int id;
         Shader(Shader_Type type, const char *code);
         ~Shader();
+
+        virtual void free() override;
+        virtual void load() override;
     };
   }
 }

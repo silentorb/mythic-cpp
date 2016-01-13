@@ -21,7 +21,15 @@ namespace clienting {
     return _is_closing || house->is_closing();
   }
 
- Input_State& Client::get_current_input_state() const {
+  Input_State &Client::get_current_input_state() const {
     return input_manager->get_current_state();
+  }
+
+  void Client::free() {
+    house->free();
+  }
+
+  void Client::load() {
+    house->load();
   }
 }

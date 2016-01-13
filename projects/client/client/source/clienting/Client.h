@@ -56,6 +56,7 @@ namespace clienting {
         _is_closing = true;
       }
 
-
+      void free();
+      void load();
   };
 }

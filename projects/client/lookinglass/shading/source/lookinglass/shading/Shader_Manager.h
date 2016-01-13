@@ -9,6 +9,10 @@
 #include "Code_Processor.h"
 #include <vector>
 
+namespace resourceful {
+  class Resource_Manager;
+}
+
 namespace lookinglass {
   namespace glow {
     class Capabilities;
@@ -20,7 +24,8 @@ namespace lookinglass {
     private:
         unique_ptr<Shader_Loader> loader;
         unique_ptr<Code_Processor> processor;
-        std::map<string, Program *> programs;
+        unique_ptr<resourceful::Resource_Manager> shaders;
+        unique_ptr<resourceful::Resource_Manager> programs;
         vector<Program_Add_Listener *> program_added;
 
         Code_Processor *create_processor(glow::Capabilities &capabilities);
@@ -41,13 +46,16 @@ namespace lookinglass {
 //        }
 
 
-        const map<string, Program *> &get_programs() const {
-          return programs;
-        }
+//        const vector<unique_ptr<Program> &get_programs() const {
+//          return programs;
+//        }
 
         void add_program_add_listener(Program_Add_Listener &listener) {
           program_added.push_back(&listener);
         }
+
+        void free();
+        void load();
     };
   }
 }

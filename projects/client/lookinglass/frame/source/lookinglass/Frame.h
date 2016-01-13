@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 namespace lookinglass {
@@ -10,6 +11,8 @@ namespace lookinglass {
       virtual int get_width() = 0;
       virtual int get_height() = 0;
       virtual void flip_buffer() = 0;
+      virtual void free() = 0;
+      virtual void initialize_window() = 0;
 //      virtual void create_gl_context();
   };
 }

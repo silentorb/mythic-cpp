@@ -11,8 +11,23 @@ namespace lookinglass {
     Shader::Shader(Shader_Type type, const char *code) :
       type(type), source_code(code) {
 //      log_info("Creating shader: ") + code).c_str());
+    }
+
+    Shader::~Shader() {
+      free();
+    }
+
+    void Shader::free() {
+      if (!id)
+        return;
+
+      glDeleteShader(id);
+      id = 0;
+    }
+
+    void Shader::load() {
       id = glCreateShader(type);
-      glShaderSource(id, 1, &code, NULL);
+      glShaderSource(id, 1, &source_code, NULL);
       glow::check_error("Error loading shader code.");
 
       glCompileShader(id);
@@ -23,13 +38,9 @@ namespace lookinglass {
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &message_length);
         GLchar *message = new GLchar[message_length + 1];
         glGetShaderInfoLog(id, 255, &message_length, message);
-        log_info("Failed code: %s", code);
+        log_info("Failed code: %s", source_code);
         throw std::runtime_error(std::string("Failed to compile shader code.  ") + message);
       }
-    }
-
-    Shader::~Shader() {
-      glDeleteShader(id);
     }
   }
 }

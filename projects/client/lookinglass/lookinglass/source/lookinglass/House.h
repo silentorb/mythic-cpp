@@ -85,6 +85,9 @@ namespace lookinglass {
         active = value;
       }
 
+      void free();
+      void load();
+
       Lookinglass_Resources& get_resources() const;
   };
 }

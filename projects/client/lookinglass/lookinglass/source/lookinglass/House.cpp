@@ -79,4 +79,16 @@ namespace lookinglass {
   Lookinglass_Resources& House::get_resources() const {
     return *resource_manager;
   }
+
+  void House::load() {
+    frame->initialize_window();
+    resource_manager->load();
+    set_active(true);
+  }
+
+  void House::free() {
+    resource_manager->free();
+    frame->free();
+    set_active(false);
+  }
 }

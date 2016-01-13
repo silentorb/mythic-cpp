@@ -27,10 +27,13 @@ namespace lookinglass {
 //      unique_ptr<resourceful::Resource_Manager> shader_manager;
 //      unique_ptr<resourceful::Resource_Manager> texture_manager;
       unique_ptr<shading::Shader_Manager> shader_manager;
-//      unique_ptr<resourceful::Resource_Manager<modeling::Mesh_Data>> mesh_manager;
+      unique_ptr<resourceful::Resource_Manager> mesh_manager;
   public:
       Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities);
 
       shading::Shader_Manager &get_shader_manager() const;
+
+      void free();
+      void load();
   };
 }

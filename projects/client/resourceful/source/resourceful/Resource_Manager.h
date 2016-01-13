@@ -16,23 +16,26 @@ namespace resourceful {
       Resource_Manager &operator=(const Resource_Manager &) = delete;
       Resource_Manager(Resource_Manager const &) = delete;
   public:
-      Resource_Manager(const string name): name(name) { }
+      Resource_Manager(const string name) : name(name) { }
 
 //      void free() override;
 //      void load() override;
 
-      void free() override{
+      void free() override {
         for (auto &resource: resources) {
           resource->free();
         }
       }
 
-      void load() override{
+      void load() override {
         for (auto &resource: resources) {
           resource->load();
         }
       }
 
+      void add_resource(Resource *resource) {
+        resources.push_back(unique_ptr<Resource>(resource));
+      }
 
   };
 

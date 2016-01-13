@@ -1,12 +1,18 @@
 #include "Shader_Manager.h"
 #include "Ancient_Code_Processor.h"
 #include "lookinglass/glow/Capabilities.h"
+#include "resourceful/Resource_Manager.h"
+
+using namespace resourceful;
 
 namespace lookinglass {
   namespace shading {
 
     Shader_Manager::Shader_Manager(Shader_Loader *loader, glow::Capabilities &capabilities) :
-      loader(loader), processor(create_processor(capabilities)) {
+      shaders(new Resource_Manager("shaders")),
+      programs(new Resource_Manager("programs")),
+      loader(loader),
+      processor(create_processor(capabilities)) {
 
     }
 
@@ -20,12 +26,14 @@ namespace lookinglass {
     Shader *Shader_Manager::create_shader(Shader_Type type, string path) {
       auto source = loader->load(path);
       auto code = process(type, source);
-      return new Shader(type, code.c_str());
+      auto shader = new Shader(type, code.c_str());
+      shaders->add_resource(shader);
+      return shader;
     }
 
     Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader) {
       auto program = new Program(vertex_shader, fragment_shader);
-      programs[name] = program;
+      programs->add_resource(program);
       for (auto listener: program_added) {
         listener->add_program(*program);
       }
@@ -38,5 +46,15 @@ namespace lookinglass {
 //      vertex_schemas[name] = std::unique_ptr<Vertex_Schema>(schema);
 //      return *schema;
 //    }
+
+    void Shader_Manager::free() {
+      shaders->free();
+      programs->free();
+    }
+
+    void Shader_Manager::load() {
+      shaders->load();
+      programs->load();
+    }
   }
 }
