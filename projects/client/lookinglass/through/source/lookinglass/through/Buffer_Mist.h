@@ -23,6 +23,8 @@ namespace lookinglass {
         virtual void update(T *data) {
           buffer.update(data);
         }
+
+        virtual void free() override {}
     };
   }
 }

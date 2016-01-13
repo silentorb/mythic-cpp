@@ -1,9 +1,11 @@
 #pragma once
 
 #include "dllexport.h"
-
+#include <memory>
 #include "Vertex_Schema.h"
 #include "resourceful/Resource.h"
+
+using namespace std;
 
 namespace lookinglass {
   namespace modeling {
@@ -17,13 +19,12 @@ namespace lookinglass {
         float *vertices;
         int *offsets;
         int *counts;
-        const Vertex_Schema &vertex_schema;
-        void register_mesh(const Vertex_Schema &schema);
+        shared_ptr<Vertex_Schema> vertex_schema;
 
     public:
 
         Mesh_Data(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts,
-                  const Vertex_Schema &vertex_schema);
+                  shared_ptr<Vertex_Schema> vertex_schema);
 
         ~Mesh_Data();
 

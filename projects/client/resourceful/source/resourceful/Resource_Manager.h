@@ -37,6 +37,13 @@ namespace resourceful {
         resources.push_back(unique_ptr<Resource>(resource));
       }
 
+      vector<unique_ptr<Resource>>::iterator begin() {
+        return resources.begin();
+      }
+
+      vector<unique_ptr<Resource>>::iterator end() {
+        return resources.end();
+      }
   };
 
 }

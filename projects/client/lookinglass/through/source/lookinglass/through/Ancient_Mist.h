@@ -56,6 +56,10 @@ namespace lookinglass {
             map->update(data);
           }
         }
+
+        virtual void free() override {
+            maps.clear();
+        }
     };
   }
 }

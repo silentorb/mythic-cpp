@@ -28,5 +28,6 @@ namespace lookinglass {
         doorway->update(data);
       }
     }
+
   }
 }

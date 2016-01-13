@@ -6,6 +6,7 @@
 #include "lookinglass/perspective/Viewport.h"
 #include "lookinglass/through/create_mist.h"
 #include "Lookinglass_Resources.h"
+#include "lookinglass/shading/Shader_Manager.h"
 
 using namespace resourceful;
 
@@ -21,9 +22,7 @@ namespace lookinglass {
 #else
     auto version = glow::Version();
 #endif
-    active = true;
     capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
-
 
     resource_manager = unique_ptr<Lookinglass_Resources>(new Lookinglass_Resources(shader_loader, *capabilities));
     auto scene_definition = new Struct_Info(1, "", {
@@ -37,12 +36,7 @@ namespace lookinglass {
     base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, frame->get_width(), frame->get_height()));
     base_viewport->activate();
     glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
-
-    glFrontFace(GL_CW);
-    glDisable(GL_CULL_FACE);
-
-//    glClearColor(0, 0.1f, 0.3f, 1);
-    glClearColor(1, 1, 1, 1);
+    initialize();
   }
 
   House::~House() {
@@ -76,17 +70,27 @@ namespace lookinglass {
     vector_remove(renderables, renderable);
   }
 
-  Lookinglass_Resources& House::get_resources() const {
+  Lookinglass_Resources &House::get_resources() const {
     return *resource_manager;
+  }
+
+  void House::initialize() {
+    glFrontFace(GL_CW);
+    glDisable(GL_CULL_FACE);
+
+//    glClearColor(0, 0.1f, 0.3f, 1);
+    glClearColor(1, 1, 1, 1);
   }
 
   void House::load() {
     frame->initialize_window();
+    initialize();
     resource_manager->load();
     set_active(true);
   }
 
   void House::free() {
+    viewport_mist->free();
     resource_manager->free();
     frame->free();
     set_active(false);

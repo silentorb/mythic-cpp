@@ -2,11 +2,7 @@
 #include "lookinglass/glow.h"
 #include <string>
 #include <stdexcept>
-
-#if __ANDROID__
-#include <android/log.h>
-#define log_info(...) ((void)__android_log_print(ANDROID_LOG_INFO, "mythic", __VA_ARGS__))
-#endif
+#include "logger.h"
 
 namespace lookinglass {
   namespace shading {
@@ -26,6 +22,7 @@ namespace lookinglass {
       id = glCreateProgram();
       glow::check_error("creating shader program");
 
+      log_info("Program %d, Shaders: %d, %d", id, first.id, second.id);
       glAttachShader(id, first.id);
       glAttachShader(id, second.id);
 

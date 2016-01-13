@@ -46,6 +46,7 @@ namespace lookinglass {
       bool active;
 
       unique_ptr<Lookinglass_Resources> resource_manager;
+      void initialize();
   public:
 
       House(Frame *frame, shading::Shader_Loader *shader_loader);

@@ -27,14 +27,14 @@ namespace lookinglass {
       auto source = loader->load(path);
       auto code = process(type, source);
       auto shader = new Shader(type, code.c_str());
-//      shaders->add_resource(shader);
+      shaders->add_resource(shader);
       return *shader;
     }
 
     Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader) {
       auto program = new Program(vertex_shader, fragment_shader);
       programs->add_resource(program);
-      for (auto listener: program_added) {
+      for (auto& listener: program_added) {
         listener->add_program(*program);
       }
       return *program;
@@ -55,6 +55,12 @@ namespace lookinglass {
     void Shader_Manager::load() {
       shaders->load();
       programs->load();
+      for (auto it = programs->begin(); it != programs->end(); ++it) {
+        for (auto& listener : program_added) {
+          auto program = (Program*)it->get();
+          listener->add_program(*program);
+        }
+      }
     }
   }
 }

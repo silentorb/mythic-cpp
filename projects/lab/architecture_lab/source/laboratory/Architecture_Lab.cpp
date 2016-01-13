@@ -11,6 +11,7 @@
 #include "lookinglass/Lookinglass_Resources.h"
 #include "lookinglass/glow.h"
 #include <stdlib.h>
+#include "scenery/Scene_Shaders.h"
 
 using namespace scenery::elements;
 
@@ -66,8 +67,8 @@ namespace laboratory {
     initialize_input(input_config);
     initialize_lookinglass(client.get_house());
 
-    client.free();
-    client.load();
+//    client.free();
+//    client.load();
   }
 
   float random_in_range(float range) {
@@ -78,20 +79,13 @@ namespace laboratory {
     auto &resources = house.get_resources();
     auto &shader_manager = resources.get_shader_manager();
     srand(1);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
     log_info(" loading lab shaders");
-    auto &program = shader_manager.create_program("solid",
-                                                  shader_manager.create_shader(Shader_Type::vertex,
-                                                                                "scenery/solid.vertex"),
-                                                  shader_manager.create_shader(Shader_Type::fragment,
-                                                                                "scenery/solid.fragment"));
 
     log_info("finished loading lab_shaders");
-    auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(program));
+    auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(scenery::create_solid_program(shader_manager)));
     auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
-
+    resources.add_mesh(mesh_data);
 
     {
       auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
@@ -105,7 +99,6 @@ namespace laboratory {
       scene->add(model);
     }
 
-
     const float range = 100;
     for (int i = 0; i < 300; ++i) {
       auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
@@ -114,7 +107,7 @@ namespace laboratory {
         random_in_range(range),
         random_in_range(range)
       );
-      log_info("position %f, %f, %f", position.x, position.y, position.z);
+//      log_info("position %f, %f, %f", position.x, position.y, position.z);
       model->set_position(position);
       scene->add(model);
     }
@@ -127,6 +120,9 @@ namespace laboratory {
   }
 
   void Architecture_Lab::update(float delta) {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+
     auto &client = engine.get_client();
     auto &input_manager = client.get_input_manager();
     auto &state = input_manager.get_current_state();

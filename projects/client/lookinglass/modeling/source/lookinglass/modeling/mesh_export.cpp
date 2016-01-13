@@ -1,5 +1,6 @@
 #include "mesh_export.h"
 #include "Textured_Vertex.h"
+#include <memory>
 
 namespace lookinglass {
   namespace modeling {
@@ -14,7 +15,7 @@ namespace lookinglass {
       }
 
       Mesh_Data *output_textured(Mesh &mesh) {
-        const auto vertex_schema = Vertex_Schema({3, 3, 2});
+        const auto vertex_schema = new Vertex_Schema({3, 3, 2});
         auto vertex_count = get_vertex_count(mesh);
         auto vertices = new Textured_Vertex[vertex_count];
         auto offsets = new int[mesh.polygons.size()];
@@ -47,7 +48,7 @@ namespace lookinglass {
           (float *) vertices,
           offsets,
           counts,
-          vertex_schema
+          std::shared_ptr<Vertex_Schema>(vertex_schema)
         );
       }
     }
