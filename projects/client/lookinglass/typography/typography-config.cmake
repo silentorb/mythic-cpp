@@ -1,4 +1,6 @@
+find_package(math)
 
-set(typography_includes
+include_directories(
+  ${MYTHIC_EXTERNAL}/freetype/include
   ${CMAKE_CURRENT_LIST_DIR}/source
 )

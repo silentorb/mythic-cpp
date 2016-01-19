@@ -2,6 +2,7 @@
 #include <lookinglass/glow/Capabilities.h>
 #include "lookinglass/shading/Shader_Manager.h"
 #include "lookinglass/shading/Texture.h"
+#include "resourceful/Resource_Manager.h"
 
 using namespace resourceful;
 
@@ -14,6 +15,10 @@ namespace lookinglass {
     mesh_manager(new Resource_Manager("meshes")) {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
+  }
+
+  Lookinglass_Resources::~Lookinglass_Resources(){
+
   }
 
   shading::Shader_Manager &Lookinglass_Resources::get_shader_manager() const {
@@ -32,5 +37,9 @@ namespace lookinglass {
 
   void Lookinglass_Resources::add_texture(shading::Texture *texture) {
     texture_manager->add_resource(texture);
+  }
+
+  void Lookinglass_Resources::add_mesh(Mesh_Data *data) {
+    mesh_manager->add_resource(data);
   }
 }

@@ -4,9 +4,12 @@
 #include <vector>
 #include <memory>
 #include "lookinglass/modeling/Mesh_Data.h"
-#include "resourceful/Resource_Manager.h"
 
 using namespace std;
+
+namespace resourceful {
+  class Resource_Manager;
+}
 
 namespace lookinglass {
   using namespace modeling;
@@ -29,15 +32,14 @@ namespace lookinglass {
       unique_ptr<shading::Shader_Manager> shader_manager;
   public:
       Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities);
+      ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;
 
       void free();
       void load();
 
-      void add_mesh(Mesh_Data *data) {
-        mesh_manager->add_resource(data);
-      }
+      void add_mesh(Mesh_Data *data);
 
       void add_texture(shading::Texture *texture);
   };

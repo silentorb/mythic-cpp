@@ -10,24 +10,25 @@ using namespace std;
 
 namespace resourceful {
 
-  class MYTHIC_EXPORT Resource_Manager : public Resource {
+  class MYTHIC_EXPORT Resource_Manager {
       const string name;
       vector<unique_ptr<Resource>> resources;
       Resource_Manager &operator=(const Resource_Manager &) = delete;
       Resource_Manager(Resource_Manager const &) = delete;
   public:
       Resource_Manager(const string name) : name(name) { }
+      ~Resource_Manager();
 
 //      void free() override;
 //      void load() override;
 
-      void free() override {
+      void free() {
         for (auto &resource: resources) {
           resource->free();
         }
       }
 
-      void load() override {
+      void load() {
         for (auto &resource: resources) {
           resource->load();
         }

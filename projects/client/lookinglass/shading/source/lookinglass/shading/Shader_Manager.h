@@ -36,6 +36,7 @@ namespace lookinglass {
 
     public:
         Shader_Manager(Shader_Loader *loader, glow::Capabilities &capabilities);
+        ~Shader_Manager();
         Shader &create_shader(Shader_Type type, string path);
         Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader);
 

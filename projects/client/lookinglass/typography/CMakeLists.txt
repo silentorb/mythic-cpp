@@ -1,8 +1,13 @@
 
-add_project(typography)
-
 create_library(typography)
 
-include_directories(
-	${typography_includes}
-)
+require(resourceful shading glow)
+
+add_resources(resources)
+
+if (MSVC)
+
+elseif (MINGW)
+  target_link_libraries(desktop ${MYTHIC_EXTERNAL}/freetype/mingw64/libfreetype.a)
+endif ()
+

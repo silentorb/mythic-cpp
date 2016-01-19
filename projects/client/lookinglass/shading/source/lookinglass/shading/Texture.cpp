@@ -3,15 +3,16 @@
 
 namespace lookinglass {
   namespace shading {
-    Texture::Texture(int width, int height, Texture_Generator*generator)
+    Texture::Texture(int width, int height, Texture_Generator *generator)
       : width(width), height(height),
-                                                                                     generator(generator) { }
+        generator(generator) { }
+
     void Texture::load() {
       if (id)
         return;
 
-      float data[width * height * 3];
-      generator->generate(data, width, height);
+      unique_ptr<float[]> data(new float[width * height * 3]);
+      generator->generate(data.get(), width, height);
 
       glGenTextures(1, &id);
       glBindTexture(GL_TEXTURE_2D, id);

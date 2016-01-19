@@ -1,8 +1,8 @@
 # Lookinglass Projects
 
 add(glow)
-add(typography)
 add(shading)
+add(typography)
 add(frame)
 add(through)
 add(perspective)

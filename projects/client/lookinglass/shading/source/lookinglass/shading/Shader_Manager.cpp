@@ -16,6 +16,8 @@ namespace lookinglass {
 
     }
 
+    Shader_Manager::~Shader_Manager() { }
+
     Code_Processor *Shader_Manager::create_processor(glow::Capabilities &capabilities) {
       if (capabilities.uniform_layout)
         return new Code_Processor(*loader);
