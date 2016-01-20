@@ -5,8 +5,8 @@
 #include "logger.h"
 
 using namespace std;
+using namespace lookinglass;
 
-namespace lookinglass {
   namespace shading {
     Shader::Shader(Shader_Type type, string code) :
       type(type), source_code(code) {
@@ -45,4 +45,3 @@ namespace lookinglass {
       }
     }
   }
-}

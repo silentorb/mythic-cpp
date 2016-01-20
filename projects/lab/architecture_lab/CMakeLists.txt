@@ -12,3 +12,4 @@ require(lookinglass)
 require(client)
 require(architect)
 
+add_resources(resources)

@@ -1,6 +1,6 @@
 #include "Spatial_Effect.h"
 #include "lookinglass/glow.h"
-#include "lookinglass/shading/Program.h"
+#include "shading/Program.h"
 
 namespace scenery {
   Spatial_Effect::Spatial_Effect(Program &program) :

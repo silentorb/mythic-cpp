@@ -3,7 +3,6 @@
 #include "clienting/Client.h"
 #include "lookinglass/House.h"
 #include "Mythic_Renderer.h"
-#include "Myth_Info.h"
 #include "haft/Input_Manager.h"
 
 namespace mythic {

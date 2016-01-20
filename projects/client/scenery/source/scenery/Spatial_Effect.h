@@ -1,12 +1,12 @@
 #pragma once
 
 #include "dllexport.h"
-#include "lookinglass/shading/effects/Effect.h"
+#include "shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "lookinglass/Draw_Method.h"
 
-using namespace lookinglass::shading::effects;
-using namespace lookinglass::shading;
+using namespace shading::effects;
+using namespace shading;
 using namespace lookinglass;
 using namespace glm;
 

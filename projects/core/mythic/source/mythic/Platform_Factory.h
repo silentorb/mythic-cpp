@@ -7,13 +7,13 @@ namespace haft {
   class Input_Configuration;
 }
 
+namespace shading {
+  class MYTHIC_EXPORT Shader_Loader;
+}
+
 namespace lookinglass {
 
   class MYTHIC_EXPORT Frame;
-
-  namespace shading {
-    class MYTHIC_EXPORT Shader_Loader;
-  }
 };
 using namespace lookinglass;
 

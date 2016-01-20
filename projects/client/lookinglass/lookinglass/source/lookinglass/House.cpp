@@ -6,7 +6,7 @@
 #include "lookinglass/perspective/Viewport.h"
 #include "lookinglass/through/create_mist.h"
 #include "Lookinglass_Resources.h"
-#include "lookinglass/shading/Shader_Manager.h"
+#include "shading/Shader_Manager.h"
 
 using namespace resourceful;
 

@@ -7,6 +7,7 @@
 #include <memory>
 #include "Myth_Info.h"
 #include "Platform_Factory.h"
+#include <functional>
 
 namespace timing {
   class MYTHIC_EXPORT Quartz;

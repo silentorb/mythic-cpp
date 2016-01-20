@@ -1,23 +1,27 @@
 #include "Lookinglass_Resources.h"
 #include <lookinglass/glow/Capabilities.h>
-#include "lookinglass/shading/Shader_Manager.h"
-#include "lookinglass/shading/Texture.h"
+#include "shading/Shader_Manager.h"
+#include "shading/Texture.h"
 #include "resourceful/Resource_Manager.h"
+#include "typography/Font_Manager.h"
 
 using namespace resourceful;
+using namespace typography;
+using namespace shading;
 
 namespace lookinglass {
   using namespace modeling;
-  using namespace shading;
 
-  Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities):
+  Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities) :
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
+    Font_Manager m(*shader_manager);
+//    font_manager = unique_ptr<Font_Manager>(new Font_Manager(*shader_manager));
   }
 
-  Lookinglass_Resources::~Lookinglass_Resources(){
+  Lookinglass_Resources::~Lookinglass_Resources() {
 
   }
 
@@ -42,4 +46,9 @@ namespace lookinglass {
   void Lookinglass_Resources::add_mesh(Mesh_Data *data) {
     mesh_manager->add_resource(data);
   }
+
+  void Lookinglass_Resources::add_font(const string name, const string path) {
+//    font_manager->create_font(name, path);
+  }
+
 }

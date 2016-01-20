@@ -4,7 +4,7 @@
 #include "Architecture_Lab.h"
 #include "scenery/Scene.h"
 #include <laboratory/display/Freeform_Camera.h>
-#include <lookinglass/shading/Shader_Manager.h>
+#include <shading/Shader_Manager.h>
 #include "logger.h"
 #include "haft/Input_Manager.h"
 #include "Actions.h"
@@ -80,9 +80,9 @@ namespace laboratory {
     auto &shader_manager = resources.get_shader_manager();
     srand(1);
     auto mesh = sculptor::create::box(vec3(10, 10, 10));
-    log_info(" loading lab shaders");
 
-    log_info("finished loading lab_shaders");
+    resources.add_font("text","resources/fonts/main.ttf");
+
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(scenery::create_solid_program(shader_manager)));
     auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
     resources.add_mesh(mesh_data);

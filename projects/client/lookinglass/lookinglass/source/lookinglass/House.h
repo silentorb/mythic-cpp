@@ -5,16 +5,17 @@
 #include <vector>
 #include <memory>
 
+namespace shading {
+  class Shader_Loader;
+}
+
 using namespace std;
 
 namespace lookinglass {
   namespace glow {
     class MYTHIC_EXPORT Capabilities;
   }
-  namespace shading {
 
-    class Shader_Loader;
-  }
   namespace perspective {
     struct Viewport_Data;
 

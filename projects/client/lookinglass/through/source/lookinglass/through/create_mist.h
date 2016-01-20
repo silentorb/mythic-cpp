@@ -6,9 +6,10 @@
 #include "Buffer_Mist.h"
 #include "Ancient_Mist.h"
 
+using namespace shading;
+
 namespace lookinglass {
   using namespace glow;
-  using namespace shading;
 
   namespace through {
 

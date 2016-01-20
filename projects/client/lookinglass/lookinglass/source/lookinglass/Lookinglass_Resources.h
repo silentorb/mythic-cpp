@@ -11,15 +11,23 @@ namespace resourceful {
   class Resource_Manager;
 }
 
+namespace typography {
+  class Font;
+
+  class Font_Manager;
+}
+
+namespace shading {
+  class Shader_Manager;
+
+  class Shader_Loader;
+
+  class Texture;
+}
+
 namespace lookinglass {
   using namespace modeling;
-  namespace shading {
-    class Shader_Manager;
 
-    class Shader_Loader;
-
-    class Texture;
-  }
   namespace glow {
     class Capabilities;
   }
@@ -30,6 +38,7 @@ namespace lookinglass {
       unique_ptr<resourceful::Resource_Manager> texture_manager;
       unique_ptr<resourceful::Resource_Manager> mesh_manager;
       unique_ptr<shading::Shader_Manager> shader_manager;
+//      unique_ptr<typography::Font_Manager> font_manager;
   public:
       Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities);
       ~Lookinglass_Resources();
@@ -42,5 +51,6 @@ namespace lookinglass {
       void add_mesh(Mesh_Data *data);
 
       void add_texture(shading::Texture *texture);
+      void add_font(const string name, const string path);
   };
 }

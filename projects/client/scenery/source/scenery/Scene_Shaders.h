@@ -1,10 +1,10 @@
 #pragma once
 
 #include "dllexport.h"
-#include <lookinglass/shading/Shader_Manager.h>
-#include "lookinglass/shading/Program.h"
+#include <shading/Shader_Manager.h>
+#include "shading/Program.h"
 
-using namespace lookinglass::shading;
+using namespace shading;
 
 namespace scenery {
   MYTHIC_EXPORT Program &create_solid_program(Shader_Manager &shader_manager);

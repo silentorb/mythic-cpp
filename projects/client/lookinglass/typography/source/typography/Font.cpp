@@ -5,8 +5,8 @@ namespace typography {
   const unsigned char first_char = 33;
   const unsigned char last_char = 126;
 
-  Font::Font(const string filename, const FT_Library &library) :
-    filename(filename), library(library) {
+  Font::Font(const string name, const string filename, const FT_Library &library) :
+    name(name), filename(filename), library(library) {
 
     load();
   }

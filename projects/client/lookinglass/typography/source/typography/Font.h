@@ -30,15 +30,20 @@ namespace typography {
       const FT_Library &library;
       unsigned int texture;
       glm::ivec2 dimensions;
+      string name;
 
       std::map<char, Character *> characters;
       void generate_texture();
       glm::ivec2 determine_texture_dimensions();
 
   public:
-      Font(const string filename, const FT_Library &library);
+      Font(const string name,const string filename, const FT_Library &library);
       ~Font();
       virtual void free() override;
       virtual void load() override;
+
+      const string &get_name() const {
+        return name;
+      }
   };
 }

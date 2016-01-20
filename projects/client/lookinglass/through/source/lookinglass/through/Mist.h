@@ -3,13 +3,13 @@
 #include "dllexport.h"
 
 #include <map>
-#include "lookinglass/shading/Program.h"
+#include "shading/Program.h"
 #include "Struct_Info.h"
 
 using namespace std;
+using namespace shading;
 
 namespace lookinglass {
-  using namespace shading;
 
   namespace through {
 

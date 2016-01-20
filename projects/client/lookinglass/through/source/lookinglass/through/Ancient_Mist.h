@@ -7,6 +7,8 @@
 #include <vector>
 #include <memory>
 
+using namespace shading;
+
 namespace lookinglass {
   namespace through {
 

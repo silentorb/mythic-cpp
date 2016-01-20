@@ -21,9 +21,19 @@ namespace typography {
     FT_Done_FreeType(library);
   }
 
-  Font &Font_Manager::create_font(const char *filename) {
-    auto font = new Font(filename, library);
+  Font &Font_Manager::create_font(const string name, const string filename) {
+    auto font = new Font(name, filename, library);
     fonts->add_resource(font);
     return *font;
+  }
+
+  Font &Font_Manager::get_font(const string &name) {
+    for (auto it = fonts->begin(); it != fonts->end(); ++it) {
+      auto font = (Font *) it->get();
+      if (font->get_name() == name)
+        return *font;
+    }
+
+    throw runtime_error("Could not find font: " + name + ".");
   }
 }

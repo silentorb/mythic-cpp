@@ -1,7 +1,6 @@
 #include "Effect.h"
-#include "lookinglass/shading/Program.h"
+#include "shading/Program.h"
 
-namespace lookinglass {
   namespace shading {
     namespace effects {
 
@@ -15,4 +14,3 @@ namespace lookinglass {
       }
     }
   }
-}
