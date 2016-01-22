@@ -1,14 +1,43 @@
 #pragma once
-#include "dllexport.h"
 
-#include "common.h"
-#include "node.h"
-#include "list.h"
+#include <map>
+#include "Entity.h"
+#include "Trellis.h"
 
-typedef struct metahub_Hub {
-    List nodes;
-} metahub_Hub;
+using namespace std;
 
-MYTHIC_EXPORT int metahub_create_hub(metahub_Hub **hub);
+namespace metahub {
 
-MYTHIC_EXPORT int metahub_delete_hub(metahub_Hub *hub);
+  class Hub {
+
+      map<Guid, Entity *> entities;
+      Trellis *trellis_trellis;
+      Trellis *property_trellis;
+
+      void bootstrap_trellises();
+      void initialize_entity(Entity *entity, Guid &trellis);
+      void free_entity(Entity &entity);
+  public:
+      Hub();
+      ~Hub();
+
+      template<typename T>
+      T &create_entity(Guid trellis) {
+        auto entity = new T();
+        initialize_entity(entity, trellis);
+        return *entity;
+      }
+
+      Entity &get_entity(const Guid &guid) const {
+        return *entities.at(guid);
+      }
+
+      Guid &get_property_trellis_id() const {
+        return property_trellis->id;
+      }
+
+      void delete_entity(Entity &entity);
+  };
+
+}
+

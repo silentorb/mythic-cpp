@@ -14,6 +14,19 @@ namespace typography {
 
   class Font;
 
+  struct Vertex {
+      float x, y, u, v;
+
+      Vertex() { }
+
+      Vertex(float x, float y, float u, float v) {
+        this->x = x;
+        this->y = y;
+        this->u = u;
+        this->v = v;
+      }
+  };
+
   class Text {
       unsigned int vao;
       unsigned int vbo;
@@ -25,6 +38,9 @@ namespace typography {
       int element_count;
       float line_height = 1.3;
       string content;
+
+      void create_buffers();
+      void prepare(int viewport_width, int viewport_height);
 
   public:
 
@@ -38,5 +54,9 @@ namespace typography {
       void set_content(const string &content) {
         Text::content = content;
       }
+
+      void render(int viewport_width, int viewport_height, vec4 color);
+
+
   };
 }

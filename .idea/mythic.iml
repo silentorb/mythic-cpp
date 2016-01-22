@@ -12,9 +12,9 @@
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/w32_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_debug.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cpp_regex_traits.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_raw_buffer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cregex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cregex.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_raw_buffer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/winstances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/static_mutex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/c_regex_traits.cpp" isTestSource="false" />

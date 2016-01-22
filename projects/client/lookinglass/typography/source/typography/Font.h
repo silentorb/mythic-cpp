@@ -45,5 +45,17 @@ namespace typography {
       const string &get_name() const {
         return name;
       }
+
+      const glm::ivec2 &get_dimensions() const {
+        return dimensions;
+      }
+
+      const map<char, Character *> &get_characters() const {
+        return characters;
+      }
+
+      unsigned int get_texture() const {
+        return texture;
+      }
   };
 }
