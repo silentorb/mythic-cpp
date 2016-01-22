@@ -18,8 +18,7 @@ namespace lookinglass {
         Camera *camera;
 
     public:
-        int width;
-        int height;
+        ivec2 dimensions;
         int left;
         int top;
 //        mat4 view;
@@ -27,7 +26,7 @@ namespace lookinglass {
 //        mat4 view_projection;
 
         float get_aspect_ratio() {
-          return (float) width / height;
+          return (float) dimensions.x / dimensions.y;
         }
 
         static Viewport *get_active_viewport();
@@ -46,11 +45,15 @@ namespace lookinglass {
         }
 
         int get_width() const {
-          return width;
+          return dimensions.x;
         }
 
         int get_height() const {
-          return height;
+          return dimensions.y;
+        }
+
+        const ivec2& get_dimensions() const {
+          return dimensions;
         }
     };
   }

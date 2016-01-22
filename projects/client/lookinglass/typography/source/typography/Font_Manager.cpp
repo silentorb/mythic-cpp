@@ -16,7 +16,7 @@ namespace typography {
                                   shader_manager.create_shader(Shader_Type::fragment,
                                                                "typography/text.fragment"));
 
-    text_effect = unique_ptr<Color_Effect>(new Color_Effect(program));
+    text_effect = unique_ptr<Text_Effect>(new Text_Effect(program));
   }
 
   Font_Manager::~Font_Manager() {

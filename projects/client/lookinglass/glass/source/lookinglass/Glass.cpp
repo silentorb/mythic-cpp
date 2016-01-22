@@ -41,11 +41,8 @@ namespace lookinglass {
     this->viewport = &viewport;
   }
 
-  int Glass::get_viewport_width() const {
-    return viewport->get_width();
+  const ivec2& Glass::get_viewport_dimensions() const {
+    return viewport->get_dimensions();
   }
 
-  int Glass::get_viewport_height() const {
-    return viewport->get_height();
-  }
 }

@@ -52,11 +52,11 @@ namespace lookinglass {
     font_manager->create_font(name, path);
   }
 
-  Font& Lookinglass_Resources::get_font(const string name) {
+  Font &Lookinglass_Resources::get_font(const string name) {
     return font_manager->get_font(name);
   }
 
-  shading::Color_Effect& Lookinglass_Resources::get_text_effect() const {
+  typography::Text_Effect &Lookinglass_Resources::get_text_effect() const {
     return font_manager->get_text_effect();
   }
 }

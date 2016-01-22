@@ -15,14 +15,13 @@ namespace typography {
   class Font;
 
   class Font_Manager;
+  class Text_Effect;
 }
 
 namespace shading {
   class Shader_Manager;
 
   class Shader_Loader;
-
-  class Color_Effect;
 
   class Texture;
 }
@@ -54,6 +53,6 @@ namespace lookinglass {
       void add_texture(shading::Texture *texture);
       void add_font(const string name, const string path);
       typography::Font &get_font(const string name);
-      shading::Color_Effect &get_text_effect() const;
+      typography::Text_Effect &get_text_effect() const;
   };
 }

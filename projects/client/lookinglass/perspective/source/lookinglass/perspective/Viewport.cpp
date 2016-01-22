@@ -9,8 +9,7 @@ namespace lookinglass {
 
     Viewport::Viewport(Mist<Viewport_Data> &mist, int width, int height, int left, int top) :
       mist(mist),
-      width(width),
-      height(height),
+      dimensions(ivec2(width, height)),
       left(left),
       top(top),
       camera(nullptr) {
@@ -31,7 +30,7 @@ namespace lookinglass {
 
       active_viewport = this;
 
-      glViewport(left, top, width, height);
+      glViewport(left, top, dimensions.x, dimensions.y);
       update_device();
     }
 

@@ -2,7 +2,6 @@
 #include "shading/effects/Color_Effect.h"
 #include "lookinglass/glow.h"
 #include "textual/string_additions.h"
-#include <glm/gtc/matrix_transform.hpp>
 #include "typography/Font.h"
 
 using namespace textual;
@@ -10,7 +9,7 @@ using namespace lookinglass;
 
 namespace typography {
 
-  Text::Text(Font &font, shading::Color_Effect &effect, const string &content) : font(font), effect(effect),
+  Text::Text(Font &font, Text_Effect &effect, const string &content) : font(font), effect(effect),
                                                                                  content(content) {
     create_buffers();
     changed = true;
@@ -42,7 +41,7 @@ namespace typography {
 
     auto vertices = new Vertex[6 * element_count];
 //		Vertex vertices[60];
-		float left = 0;// - viewport_width * 0.5f;
+    float left = 0;// - viewport_width * 0.5f;
     auto step = 0;
     float top = -characters.at('A')->size.y;
     //            actual_height = font.characters['A'].size.y * line_size;
@@ -71,12 +70,12 @@ namespace typography {
       //                vertices[step + 2] = new Vertex(x + width, y + height, 0, character.offset + character.height);
       //                vertices[step + 3] = new Vertex(x + width, y, 0, character.offset + height);
 
-      auto texture_width = (float)character->size.x / font.get_dimensions().x;
+      auto texture_width = (float) character->size.x / font.get_dimensions().x;
 
-			vertices[step + 0] = Vertex(x, y, 0, character->offset + character->height);
-			vertices[step + 1] = Vertex(x, y + height, 0, character->offset);
-			vertices[step + 2] = Vertex(x + width, y + height, texture_width, character->offset);
-			vertices[step + 3] = Vertex(x + width, y, texture_width, character->offset + character->height);
+      vertices[step + 0] = Vertex(x, y, 0, character->offset + character->height);
+      vertices[step + 1] = Vertex(x, y + height, 0, character->offset);
+      vertices[step + 2] = Vertex(x + width, y + height, texture_width, character->offset);
+      vertices[step + 3] = Vertex(x + width, y, texture_width, character->offset + character->height);
 
 //			x = 0;
 //			y = -1450;
@@ -97,17 +96,16 @@ namespace typography {
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4 * element_count, vertices, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-		delete vertices;
-		glow::check_error("Error preparing text.");
+    delete vertices;
+    glow::check_error("Error preparing text.");
     changed = false;
-	}
+  }
 
   void Text::render(Glass &glass) {
-    auto viewport_width = glass.get_viewport_width();
-    auto viewport_height = glass.get_viewport_height();
+    auto dimensions = glass.get_viewport_dimensions();
 
     if (changed)
-      prepare(viewport_width, viewport_height);
+      prepare(dimensions.x, dimensions.y);
 
     if (element_count == 0)
       return;
@@ -115,22 +113,12 @@ namespace typography {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		glm::mat4 projection = glm::ortho(0.0f, (float)viewport_width, 0.0f, (float)viewport_height);
+    effect.activate(color, dimensions, position, size * dimensions.x / 18000);
 
-		effect.activate();
-		effect.set_color(color);
-    auto projection_index = glGetUniformLocation(effect.get_program_id(), "projection");
-		glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *)&projection);
-    auto position_index = glGetUniformLocation(effect.get_program_id(), "position");
-    glUniform2f(position_index,
-                position.x,
-                viewport_height - position.y);
-
-//    float scale = (size * viewport_width / 36000);
-    float scale = (size * viewport_width / 18000);
-//    scale = 0.5;
-    glUniform2f(glGetUniformLocation(effect.get_program_id(), "scale"), scale, scale);
-		glow::check_error("setting text values");
+//    float scale = (size * dimensions.x / 36000);
+//    float scale = (size * dimensions.x / 18000);
+//    glUniform2f(glGetUniformLocation(effect.get_program_id(), "scale"), scale, scale);
+    glow::check_error("setting text values");
 
     glBindTexture(GL_TEXTURE_2D, font.get_texture());
     glActiveTexture(GL_TEXTURE0);

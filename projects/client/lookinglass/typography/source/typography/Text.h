@@ -4,10 +4,8 @@
 #include "glm/glm.hpp"
 #include <string>
 #include "lookinglass/Renderable.h"
+#include "Text_Effect.h"
 
-namespace shading {
-  class Color_Effect;
-}
 using namespace glm;
 using namespace std;
 
@@ -35,7 +33,7 @@ namespace typography {
       bool changed;
       ivec2 position = ivec2(0, 100);
       float size = 12;
-      shading::Color_Effect &effect;
+      Text_Effect &effect;
       int element_count;
       float line_height = 1.3;
       string content;
@@ -46,7 +44,7 @@ namespace typography {
 
   public:
 
-      Text(Font &font, shading::Color_Effect &effect, const string &content);
+      Text(Font &font, Text_Effect &effect, const string &content);
 
       const string &get_content() const {
         return content;

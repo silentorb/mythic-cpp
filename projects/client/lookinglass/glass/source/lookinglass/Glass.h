@@ -2,6 +2,7 @@
 
 #include "dllexport.h"
 #include "Draw_Method.h"
+#include "glm/glm.hpp"
 
 namespace lookinglass {
   namespace perspective {
@@ -30,8 +31,7 @@ namespace lookinglass {
 
       void set_viewport(Viewport &viewport);
 
-      int get_viewport_width() const;
-      int get_viewport_height() const;
+      const glm::ivec2 &get_viewport_dimensions() const;
   };
 
 }
