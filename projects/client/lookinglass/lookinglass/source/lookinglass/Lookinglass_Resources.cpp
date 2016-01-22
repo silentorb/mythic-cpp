@@ -4,6 +4,7 @@
 #include "shading/Texture.h"
 #include "resourceful/Resource_Manager.h"
 #include "typography/Font_Manager.h"
+#include "shading/effects/Color_Effect.h"
 
 using namespace resourceful;
 using namespace typography;
@@ -18,7 +19,7 @@ namespace lookinglass {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
     Font_Manager m(*shader_manager);
-//    font_manager = unique_ptr<Font_Manager>(new Font_Manager(*shader_manager));
+    font_manager = unique_ptr<Font_Manager>(new Font_Manager(*shader_manager));
   }
 
   Lookinglass_Resources::~Lookinglass_Resources() {
@@ -48,7 +49,14 @@ namespace lookinglass {
   }
 
   void Lookinglass_Resources::add_font(const string name, const string path) {
-//    font_manager->create_font(name, path);
+    font_manager->create_font(name, path);
   }
 
+  Font& Lookinglass_Resources::get_font(const string name) {
+    return font_manager->get_font(name);
+  }
+
+  shading::Color_Effect& Lookinglass_Resources::get_text_effect() const {
+    return font_manager->get_text_effect();
+  }
 }

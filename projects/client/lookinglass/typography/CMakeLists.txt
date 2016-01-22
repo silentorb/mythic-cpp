@@ -1,7 +1,7 @@
 
 create_library(typography)
 
-require(resourceful shading glow textual)
+require(resourceful shading glow textual glass)
 
 add_resources(resources)
 

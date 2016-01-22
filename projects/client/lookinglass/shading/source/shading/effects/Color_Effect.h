@@ -5,14 +5,12 @@
 using namespace glm;
 
 namespace shading {
-  class Color_Effect: public Effect {
+  class MYTHIC_EXPORT Color_Effect: public Effect {
 
   public:
       Color_Effect(Program &program) : Effect(program) { }
 
-      void set_color(const vec4 value){
-
-      }
+      void set_color(const vec4 &value);
   };
 
 }

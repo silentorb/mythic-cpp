@@ -2,11 +2,11 @@
 
 add(glow)
 add(shading)
-add(typography)
 add(frame)
 add(through)
 add(perspective)
 add(modeling)
 add(glass)
+add(typography)
 add(lookinglass)
 add(drawing)

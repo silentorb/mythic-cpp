@@ -36,13 +36,11 @@ namespace typography {
 
   void Font::generate_texture() {
     dimensions = determine_texture_dimensions();
-    unsigned int new_texture;
-    glGenTextures(1, &new_texture);
-    glBindTexture(GL_TEXTURE_2D, new_texture);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
     auto buffer = new unsigned char[dimensions.x * dimensions.y];
     memset(buffer, 0, dimensions.x * dimensions.y);
 
-    texture = new_texture;
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -52,7 +50,6 @@ namespace typography {
 
     int memory_offset = 0;
     float vertical_offset = 0;
-    auto count = last_char - first_char;
     for (unsigned char c = first_char; c <= last_char; c++) {
       if (FT_Load_Char(face, c, FT_LOAD_RENDER) != 0)
         throw runtime_error("Failed to load glyph");
@@ -74,7 +71,7 @@ namespace typography {
       );
 
       for (int i = 0; i < bitmap.rows; i++) {
-        memcpy(buffer + memory_offset, bitmap.buffer + (i * bitmap.width), (int) bitmap.width);
+        memcpy(buffer + memory_offset, bitmap.buffer + i * bitmap.width, bitmap.width);
         memory_offset += dimensions.x;
       }
 

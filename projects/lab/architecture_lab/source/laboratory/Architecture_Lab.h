@@ -15,6 +15,10 @@ namespace lookinglass {
   class House;
 }
 
+namespace typography {
+  class Text;
+}
+
 namespace laboratory {
   namespace display {
     class Freeform_Camera;
@@ -26,6 +30,7 @@ namespace laboratory {
       Freeform_Camera *camera;
       Scene *scene;
       Mythic_Engine &engine;
+      unique_ptr<typography::Text> debug_text;
 
   public:
       Architecture_Lab(Mythic_Engine &engine);

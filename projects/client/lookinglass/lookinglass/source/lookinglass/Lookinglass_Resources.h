@@ -22,6 +22,8 @@ namespace shading {
 
   class Shader_Loader;
 
+  class Color_Effect;
+
   class Texture;
 }
 
@@ -33,12 +35,11 @@ namespace lookinglass {
   }
   class MYTHIC_EXPORT Lookinglass_Resources {
 
-//      unique_ptr<resourceful::Resource_Manager<shading::Program>> program_manager;
-//      unique_ptr<resourceful::Resource_Manager> shader_manager;
       unique_ptr<resourceful::Resource_Manager> texture_manager;
       unique_ptr<resourceful::Resource_Manager> mesh_manager;
       unique_ptr<shading::Shader_Manager> shader_manager;
-//      unique_ptr<typography::Font_Manager> font_manager;
+      unique_ptr<typography::Font_Manager> font_manager;
+
   public:
       Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities);
       ~Lookinglass_Resources();
@@ -52,5 +53,7 @@ namespace lookinglass {
 
       void add_texture(shading::Texture *texture);
       void add_font(const string name, const string path);
+      typography::Font &get_font(const string name);
+      shading::Color_Effect &get_text_effect() const;
   };
 }

@@ -19,7 +19,7 @@ namespace lookinglass {
 
     public:
         int width;
-        int height;;
+        int height;
         int left;
         int top;
 //        mat4 view;
@@ -43,6 +43,14 @@ namespace lookinglass {
 
         void set_camera(Camera &camera) {
           this->camera = &camera;
+        }
+
+        int get_width() const {
+          return width;
+        }
+
+        int get_height() const {
+          return height;
         }
     };
   }

@@ -10,11 +10,13 @@ namespace typography {
     if (FT_Init_FreeType(&library))
       throw runtime_error("Could not init FreeType Library");
 
-    shader_manager.create_program("text",
+    auto &program = shader_manager.create_program("text",
                                   shader_manager.create_shader(Shader_Type::vertex,
                                                                "typography/text.vertex"),
                                   shader_manager.create_shader(Shader_Type::fragment,
                                                                "typography/text.fragment"));
+
+    text_effect = unique_ptr<Color_Effect>(new Color_Effect(program));
   }
 
   Font_Manager::~Font_Manager() {

@@ -12,8 +12,10 @@
 #include "lookinglass/glow.h"
 #include <stdlib.h>
 #include "scenery/Scene_Shaders.h"
+#include "typography/Text.h"
 
 using namespace scenery::elements;
+using namespace typography;
 
 namespace laboratory {
 
@@ -111,6 +113,12 @@ namespace laboratory {
       model->set_position(position);
       scene->add(model);
     }
+
+    debug_text = unique_ptr<Text>(new Text(resources.get_font("text"), resources.get_text_effect(), "Hello World abcdefghijklmnopqrstuvwxyz"));
+//    debug_text = unique_ptr<Text>(new Text(resources.get_font("text"), resources.get_text_effect(), "Hello World QWERTYUIOPLKJHGFDSAZXCVBNM"));
+    debug_text->set_color(vec4(0, 1, 0, 1));
+    debug_text->set_position(ivec2(100,50));
+    engine.add_renderable(debug_text.get());
   }
 
   Architecture_Lab::~Architecture_Lab() {

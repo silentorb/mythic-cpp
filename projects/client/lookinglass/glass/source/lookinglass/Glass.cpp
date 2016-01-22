@@ -19,7 +19,7 @@ namespace lookinglass {
                 : GL_LINE_STRIP;
 
 //		if (0) {
-			if (capabilities.multidraw) {
+    if (capabilities.multidraw) {
 #ifdef glMultiDrawArrays
       glMultiDrawArrays(mode, mesh.get_offsets(), mesh.get_counts(), mesh.get_polygon_count());
 #endif
@@ -39,5 +39,13 @@ namespace lookinglass {
 
   void Glass::set_viewport(Viewport &viewport) {
     this->viewport = &viewport;
+  }
+
+  int Glass::get_viewport_width() const {
+    return viewport->get_width();
+  }
+
+  int Glass::get_viewport_height() const {
+    return viewport->get_height();
   }
 }
