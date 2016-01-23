@@ -108,4 +108,9 @@ namespace typography {
 
     return glm::ivec2((int) max_width, (int) offset);
   }
+
+  void Font::activate() {
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glActiveTexture(GL_TEXTURE0);
+  }
 }

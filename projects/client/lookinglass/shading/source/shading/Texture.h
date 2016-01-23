@@ -18,5 +18,7 @@ namespace shading {
 
       virtual void free() override;
       virtual void load() override;
+
+      void activate();
   };
 }

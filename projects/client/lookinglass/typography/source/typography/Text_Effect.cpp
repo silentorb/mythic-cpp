@@ -7,12 +7,15 @@
 namespace typography {
 
   void Text_Effect::activate(const vec4 &color, const ivec2 &viewport_dimensions, const ivec2 &position, float scale) {
-
     Color_Effect::activate(color);
-    glm::mat4 projection = glm::ortho(0.0f, (float)viewport_dimensions.x, 0.0f, (float)viewport_dimensions.y);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glm::mat4 projection = glm::ortho(0.0f, (float) viewport_dimensions.x, 0.0f, (float) viewport_dimensions.y);
 
     auto projection_index = glGetUniformLocation(program->get_id(), "projection");
-    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *)&projection);
+    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &projection);
     auto position_index = glGetUniformLocation(program->get_id(), "position");
     glUniform2f(position_index,
                 position.x,

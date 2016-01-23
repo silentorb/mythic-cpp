@@ -1,5 +1,4 @@
 #include "Text.h"
-#include "shading/effects/Color_Effect.h"
 #include "lookinglass/glow.h"
 #include "textual/string_additions.h"
 #include "typography/Font.h"
@@ -16,11 +15,8 @@ namespace typography {
   }
 
   void Text::create_buffers() {
-    uint VAO = vao, VBO = vbo;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    vbo = VBO;
-    vao = VAO;
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
 
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -29,7 +25,7 @@ namespace typography {
     glow::check_error("creating text buffer");
   }
 
-  void Text::prepare(int viewport_width, int viewport_height) {
+  void Text::prepare() {
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     auto without_spaces = string_replace(content, " ", "");
@@ -40,8 +36,7 @@ namespace typography {
       return;
 
     auto vertices = new Vertex[6 * element_count];
-//		Vertex vertices[60];
-    float left = 0;// - viewport_width * 0.5f;
+    float left = 0;
     auto step = 0;
     float top = -characters.at('A')->size.y;
     //            actual_height = font.characters['A'].size.y * line_size;
@@ -64,11 +59,6 @@ namespace typography {
       float height = character->size.y;
       auto x = left;
       float y = top + (character->bearing.y - character->size.y);//-font.max_height*scale;
-
-      //                vertices[step + 0] = new Vertex(x, y, 0, character.offset + height);
-      //                vertices[step + 1] = new Vertex(x, y + height, 0, character.offset + character.height);
-      //                vertices[step + 2] = new Vertex(x + width, y + height, 0, character.offset + character.height);
-      //                vertices[step + 3] = new Vertex(x + width, y, 0, character.offset + height);
 
       auto texture_width = (float) character->size.x / font.get_dimensions().x;
 
@@ -105,23 +95,15 @@ namespace typography {
     auto dimensions = glass.get_viewport_dimensions();
 
     if (changed)
-      prepare(dimensions.x, dimensions.y);
+      prepare();
 
     if (element_count == 0)
       return;
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     effect.activate(color, dimensions, position, size * dimensions.x / 18000);
 
-//    float scale = (size * dimensions.x / 36000);
-//    float scale = (size * dimensions.x / 18000);
-//    glUniform2f(glGetUniformLocation(effect.get_program_id(), "scale"), scale, scale);
     glow::check_error("setting text values");
 
-    glBindTexture(GL_TEXTURE_2D, font.get_texture());
-    glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(vao);
     glow::check_error("rendering text");
 

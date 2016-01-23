@@ -54,8 +54,6 @@ namespace typography {
         return characters;
       }
 
-      unsigned int get_texture() const {
-        return texture;
-      }
+      void activate();
   };
 }

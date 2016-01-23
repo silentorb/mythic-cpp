@@ -1,0 +1,20 @@
+#pragma once
+
+#include "dllexport.h"
+#include <string>
+
+using namespace std;
+
+namespace modeling {
+  struct Vertex_Attribute {
+      string name;
+      int count;
+//        int type;
+//        int stride;
+
+      Vertex_Attribute(const string &name, int count)
+        : name(name), count(count) {
+
+      }
+  };
+}

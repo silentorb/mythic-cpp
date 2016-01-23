@@ -4,6 +4,10 @@
 #include "Draw_Method.h"
 #include "glm/glm.hpp"
 
+namespace modeling {
+  class Mesh_Data;
+}
+
 namespace lookinglass {
   namespace perspective {
     class Viewport;
@@ -12,10 +16,6 @@ namespace lookinglass {
 
   namespace glow {
     class MYTHIC_EXPORT Capabilities;
-  }
-
-  namespace modeling {
-    class Mesh_Data;
   }
 
   class MYTHIC_EXPORT Glass {

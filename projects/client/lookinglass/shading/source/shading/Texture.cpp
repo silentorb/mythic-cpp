@@ -35,4 +35,8 @@ namespace shading {
     glDeleteTextures(1, &id);
     id = 0;
   }
+
+  void Texture::activate() {
+    glBindTexture(GL_TEXTURE_2D, id);
+  }
 }

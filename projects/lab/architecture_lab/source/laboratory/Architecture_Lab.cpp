@@ -1,6 +1,6 @@
 ﻿#include <scenery/elements/Model.h>
 #include <sculptor/create.h>
-#include <lookinglass/modeling/mesh_export.h>
+#include <modeling/mesh_export.h>
 #include "Architecture_Lab.h"
 #include "scenery/Scene.h"
 #include <laboratory/display/Freeform_Camera.h>
@@ -86,7 +86,7 @@ namespace laboratory {
     resources.add_font("text","resources/fonts/main.ttf");
 
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(scenery::create_solid_program(shader_manager)));
-    auto mesh_data = lookinglass::modeling::mesh_export::output_textured(*mesh);
+    auto mesh_data = modeling::mesh_export::output_textured(*mesh);
     resources.add_mesh(mesh_data);
 
     {

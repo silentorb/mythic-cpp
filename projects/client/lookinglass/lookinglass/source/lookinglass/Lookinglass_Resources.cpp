@@ -4,14 +4,13 @@
 #include "shading/Texture.h"
 #include "resourceful/Resource_Manager.h"
 #include "typography/Font_Manager.h"
-#include "shading/effects/Color_Effect.h"
 
 using namespace resourceful;
 using namespace typography;
 using namespace shading;
+using namespace modeling;
 
 namespace lookinglass {
-  using namespace modeling;
 
   Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities) :
     texture_manager(new Resource_Manager("textures")),

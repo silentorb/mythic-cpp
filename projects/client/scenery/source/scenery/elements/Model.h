@@ -6,12 +6,12 @@
 #include <scenery/Spatial_Effect.h>
 #include "Element.h"
 #include "glm/glm.hpp"
-#include "lookinglass/modeling/Mesh_Data.h"
+#include "modeling/Mesh_Data.h"
 #include "sculptor/geometry/Mesh.h"
 
 using namespace std;
 using namespace glm;
-using namespace lookinglass::modeling;
+using namespace modeling;
 using namespace sculptor::geometry;
 
 namespace scenery {

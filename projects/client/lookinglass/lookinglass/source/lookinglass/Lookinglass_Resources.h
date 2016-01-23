@@ -3,7 +3,7 @@
 #include "dllexport.h"
 #include <vector>
 #include <memory>
-#include "lookinglass/modeling/Mesh_Data.h"
+#include "modeling/Mesh_Data.h"
 
 using namespace std;
 
@@ -27,7 +27,6 @@ namespace shading {
 }
 
 namespace lookinglass {
-  using namespace modeling;
 
   namespace glow {
     class Capabilities;
@@ -48,7 +47,7 @@ namespace lookinglass {
       void free();
       void load();
 
-      void add_mesh(Mesh_Data *data);
+      void add_mesh(modeling::Mesh_Data *data);
 
       void add_texture(shading::Texture *texture);
       void add_font(const string name, const string path);

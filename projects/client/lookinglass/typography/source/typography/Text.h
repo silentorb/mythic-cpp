@@ -40,7 +40,7 @@ namespace typography {
       vec4 color;
 
       void create_buffers();
-      void prepare(int viewport_width, int viewport_height);
+      void prepare();
 
   public:
 

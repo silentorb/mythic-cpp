@@ -1,7 +1,7 @@
 #include "lookinglass/Glass.h"
 #include <lookinglass/glow/Capabilities.h>
 #include "lookinglass/glow.h"
-#include "lookinglass/modeling/Mesh_Data.h"
+#include "modeling/Mesh_Data.h"
 #include "lookinglass/perspective/Viewport.h"
 
 namespace lookinglass {
