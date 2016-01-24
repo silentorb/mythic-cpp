@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.3)
 enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+include(cmake-tools/scripts/generator-key.cmake)
 
 include(local-config.cmake OPTIONAL)
 
@@ -21,6 +22,7 @@ include(cmake-tools/cmake-tools.cmake)
 #print_info(STATUS)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
+set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/external/${GENERATOR_KEY})
 
 macro(include_linq)
   include_directories(${MYTHIC_EXTERNAL}/cpplinq)
