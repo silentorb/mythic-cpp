@@ -28,7 +28,7 @@ namespace metahub {
 
     auto &name_property = create_entity<Property>(property_trellis->id);
     name_property.name = new string("name");
-    name_property.offset = offsetof(struct Property, name);
+//    name_property.offset = offsetof(struct Property, name);
     name_property.type = Property_Type::String;
     property_trellis->properties->push_back(name_property.id);
   }

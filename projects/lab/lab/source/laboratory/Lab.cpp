@@ -1,6 +1,6 @@
 #include "Lab.h"
-#include "laboratory/display/Lab_Renderer.h"
 #include "laboratory/Architecture_Lab.h"
+#include "laboratory/Sprite_Lab.h"
 
 using namespace laboratory::display;
 
@@ -15,14 +15,21 @@ namespace laboratory {
   }
 
   void Lab::initialize_display() {
-    architecture_lab = unique_ptr<Architecture_Lab>(new Architecture_Lab(engine));
-//    renderer = new Lab_Renderer();
-//    engine.add_renderable(renderer);
-
+    if (false) {
+      architecture_lab = unique_ptr<Architecture_Lab>(new Architecture_Lab(engine));
+    }
+    else {
+      sprite_lab = unique_ptr<Sprite_Lab>(new Sprite_Lab(engine));
+    }
   }
 
   void Lab::update(float delta) {
-    architecture_lab->update(delta);
+    if (false) {
+      architecture_lab->update(delta);
+    }
+    else {
+      sprite_lab->update(delta);
+    }
   }
 
 

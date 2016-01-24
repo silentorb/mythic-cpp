@@ -1,8 +1,6 @@
 #pragma once
 #include "dllexport.h"
-#include "lookinglass/Renderable.h"
 
-using namespace lookinglass;
 
 namespace laboratory {
   namespace display {

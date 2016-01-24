@@ -3,10 +3,6 @@ add_project(lab)
 
 create_library(lab)
 
-require(mythic)
-require(architecture_lab)
-require(glass)
+require(mythic architecture_lab sprite_lab)
 
-include_directories(
-	${lab_includes}
-)
+add_resources(resources)

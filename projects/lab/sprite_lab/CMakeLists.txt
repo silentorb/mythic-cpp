@@ -1,14 +1,13 @@
 
-create_library(architecture_lab)
+create_library(sprite_lab)
 
-require(glass logger haft glow typography)
+require(glass logger haft glow typography drawing)
 require(mythic)
-require(scenery)
 require(sculptor)
 require(shading)
 require(modeling)
 require(perspective)
 require(lookinglass)
 require(client)
-require(architect)
 
+add_resources(resources)
