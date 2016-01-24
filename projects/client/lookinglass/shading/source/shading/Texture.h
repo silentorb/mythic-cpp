@@ -20,5 +20,13 @@ namespace shading {
       virtual void load() override;
 
       void activate();
+
+      int get_width() const {
+        return width;
+      }
+
+      int get_height() const {
+        return height;
+      }
   };
 }

@@ -2,6 +2,7 @@
 #include "lookinglass/glow.h"
 #include "textual/string_additions.h"
 #include "typography/Font.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace textual;
 using namespace lookinglass;
@@ -9,7 +10,7 @@ using namespace lookinglass;
 namespace typography {
 
   Text::Text(Font &font, Text_Effect &effect, const string &content) : font(font), effect(effect),
-                                                                                 content(content) {
+                                                                       content(content) {
     create_buffers();
     changed = true;
   }
@@ -100,7 +101,14 @@ namespace typography {
     if (element_count == 0)
       return;
 
-    effect.activate(color, dimensions, position, size * dimensions.x / 18000);
+    auto scale = size * dimensions.x / 18000;
+
+//    auto transform = glm::translate(mat4(1.f), vec3( position.x, dimensions.y - position.y, 0));
+    auto transform = glm::translate(mat4(1), vec3(position.x, dimensions.y - position.y, 0))
+                     * glm::scale(mat4(1), vec3(scale, scale, 1));
+
+//    glUniform2f(glGetUniformLocation(program->get_id(), "scale"), scale, scale);
+    effect.activate(color, dimensions, transform);
 
     glow::check_error("setting text values");
 

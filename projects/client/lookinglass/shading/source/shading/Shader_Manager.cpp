@@ -13,6 +13,14 @@ namespace shading {
     loader(loader),
     processor(create_processor(capabilities)) {
 
+    auto &image_vertex = create_shader(Shader_Type::vertex, "shading/image.vertex");
+    create_program("image",
+                   image_vertex,
+                   create_shader(Shader_Type::fragment, "shading/image.fragment"));
+
+    create_program("colored-image",
+                   image_vertex,
+                   create_shader(Shader_Type::fragment, "shading/colored-image.fragment"));
   }
 
   Shader_Manager::~Shader_Manager() { }
@@ -32,9 +40,10 @@ namespace shading {
     return *shader;
   }
 
-  Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader) {
-    auto program = new Program(vertex_shader, fragment_shader);
+  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader) {
+    auto program = new Program(name, vertex_shader, fragment_shader);
     programs->add_resource(program);
+
     for (auto &listener: program_added) {
       listener->add_program(*program);
     }
@@ -57,10 +66,20 @@ namespace shading {
     shaders->load();
     programs->load();
     for (auto it = programs->begin(); it != programs->end(); ++it) {
+      auto program = (Program *) it->get();
       for (auto &listener : program_added) {
-        auto program = (Program *) it->get();
         listener->add_program(*program);
       }
     }
+  }
+
+  Program &Shader_Manager::get_program(const string name) const {
+    for (auto it = programs->begin(); it != programs->end(); ++it) {
+      auto program = (Program *) it->get();
+      if (program->get_name() == name)
+        return *program;
+    }
+
+    throw runtime_error("Could not find shader program: " + name + ".");
   }
 }

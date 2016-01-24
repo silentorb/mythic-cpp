@@ -19,23 +19,255 @@
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/static_mutex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/c_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wc_regex_traits.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/platform" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source/desktop/Desktop_Frame.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source/desktop/Desktop_Shader_Loader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source/desktop/Desktop_Input.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source/desktop/Controller_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/mythic_desktop/source/desktop/Desktop.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/platform/workshop/source/Workshop.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/projects" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/misc/quartz/source/timing/Quartz.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/misc/logger/platform/logger-desktop.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/misc/textual/source/textual/string_additions.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/misc/textual/source/textual/regex_additions.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/resourceful/source/resourceful/Resource_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/resourceful/source/resourceful/Resource.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Text_Effect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Font_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Font.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Text.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Camera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Viewport.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Lookinglass_Resources.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Struct_Info.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Doorway.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mister_D.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Data_Buffer.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Sprite.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Draw.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Image_Effect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/glloader/gl_core_4_4.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader_Property.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Texture_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/effects/Effect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/effects/Color_Effect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Ancient_Code_Processor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Texture.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Code_Processor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Program.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Vertex_Schema.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Simple_Mesh.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Mesh_Data.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Vertex_Attribute.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/mesh_export.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/client/source/clienting/Client.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/haft/source/haft/Trigger.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/haft/source/haft/Input_Configuration.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/haft/source/haft/Input_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/haft/source/haft/Action.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/haft/source/haft/Device.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Shaders.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/create.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/generation/architect/source/architecture/Architect.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/metahub/test/metahub_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Trellis.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Guid.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Hub.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Renderer.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/display/Lab_Renderer.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/Lab.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/display/Freeform_Camera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/Architecture_Lab.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/Actions.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
+          <root url="file://$MODULE_DIR$/external/SDL2-2.0.3/include" />
+          <root url="file://$MODULE_DIR$/external/boost_regex/include" />
+          <root url="file://$MODULE_DIR$/external/glm" />
+          <root url="file://$MODULE_DIR$/external/freetype/include" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/math/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/vectoring/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/quartz/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/spatial/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/logger/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/textual/source" />
+          <root url="file://$MODULE_DIR$/projects/client/resourceful/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/glloader" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source" />
+          <root url="file://$MODULE_DIR$/projects/client/client/source" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source" />
+          <root url="file://$MODULE_DIR$/projects/generation/architect/source" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/test" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/source" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source" />
+          <root url="file://$MODULE_DIR$/projects/lab/lab/source" />
+          <root url="file://$MODULE_DIR$/projects/lab/architecture_lab/source" />
+          <root url="file://$MODULE_DIR$/cmake-tools/include" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/lib/gcc/i686-w64-mingw32/5.1.0/include-fixed" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/lib/gcc/i686-w64-mingw32/5.1.0/include" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/i686-w64-mingw32/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
-          <root url="file://C:/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
+          <root url="file://$MODULE_DIR$/external/SDL2-2.0.3/include" />
+          <root url="file://$MODULE_DIR$/external/boost_regex/include" />
+          <root url="file://$MODULE_DIR$/external/glm" />
+          <root url="file://$MODULE_DIR$/external/freetype/include" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/math/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/vectoring/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/quartz/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/spatial/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/logger/source" />
+          <root url="file://$MODULE_DIR$/projects/misc/textual/source" />
+          <root url="file://$MODULE_DIR$/projects/client/resourceful/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/frame/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/glloader" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source" />
+          <root url="file://$MODULE_DIR$/projects/client/client/source" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source" />
+          <root url="file://$MODULE_DIR$/projects/generation/architect/source" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/test" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/source" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source" />
+          <root url="file://$MODULE_DIR$/projects/lab/lab/source" />
+          <root url="file://$MODULE_DIR$/projects/lab/architecture_lab/source" />
+          <root url="file://$MODULE_DIR$/cmake-tools/include" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/lib/gcc/i686-w64-mingw32/5.1.0/include-fixed" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/lib/gcc/i686-w64-mingw32/5.1.0/include" />
+          <root url="file://C:/mingw-w64/i686-5.1.0-posix-sjlj-rt_v4-rev0/mingw32/i686-w64-mingw32/include" />
         </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source/desktop/Desktop_Frame.cpp" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_display/source/desktop/Desktop_Shader_Loader.cpp" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source/desktop/Desktop_Input.cpp" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/desktop_input/source/desktop/Controller_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/platform/mythic_desktop/source/desktop/Desktop.cpp" />
+          <root url="file://$MODULE_DIR$/projects/misc/quartz/source/timing/Quartz.cpp" />
+          <root url="file://$MODULE_DIR$/projects/misc/textual/source/textual/string_additions.cpp" />
+          <root url="file://$MODULE_DIR$/projects/misc/textual/source/textual/regex_additions.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/resourceful/source/resourceful/Resource_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/resourceful/source/resourceful/Resource.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Text_Effect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Font_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Font.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/typography/source/typography/Text.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Camera.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/perspective/source/lookinglass/perspective/Viewport.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/House.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/lookinglass/source/lookinglass/Lookinglass_Resources.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Struct_Info.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Doorway.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Mister_D.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Buffer_Mist.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Ancient_Mist.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/through/source/lookinglass/through/Data_Buffer.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Sprite.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Draw.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/drawing/source/drawing/Image_Effect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glass/source/lookinglass/Glass.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/glloader/gl_core_4_4.c" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/utility.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Capabilities.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/glow/source/lookinglass/glow/Version.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader_Property.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Texture_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/effects/Effect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/effects/Color_Effect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Ancient_Code_Processor.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Texture.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Code_Processor.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Program.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/shading/source/shading/Shader_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Vertex_Schema.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Simple_Mesh.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Mesh_Data.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/Vertex_Attribute.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/lookinglass/modeling/source/modeling/mesh_export.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/client/source/clienting/Client.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source/haft/Trigger.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source/haft/Input_Configuration.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source/haft/Input_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source/haft/Action.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/haft/source/haft/Device.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Spatial_Effect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Shaders.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/Scene_Manager.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Element.cpp" />
+          <root url="file://$MODULE_DIR$/projects/client/scenery/source/scenery/elements/Model.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Edge.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Vertex.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Polygon.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/geometry/Mesh.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/operations/extrude.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/sculptor/source/sculptor/create.cpp" />
+          <root url="file://$MODULE_DIR$/projects/generation/architect/source/architecture/Architect.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/test/metahub_test.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Trellis.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Guid.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/metahub/source/metahub/Hub.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Simple_Myth_Info.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Renderer.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Myth.cpp" />
+          <root url="file://$MODULE_DIR$/projects/core/mythic/source/mythic/Mythic_Engine.cpp" />
+          <root url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/display/Lab_Renderer.cpp" />
+          <root url="file://$MODULE_DIR$/projects/lab/lab/source/laboratory/Lab.cpp" />
+          <root url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/display/Freeform_Camera.cpp" />
+          <root url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/Architecture_Lab.cpp" />
+          <root url="file://$MODULE_DIR$/projects/lab/architecture_lab/source/laboratory/Actions.cpp" />
+        </excluded>
       </library>
     </orderEntry>
   </component>

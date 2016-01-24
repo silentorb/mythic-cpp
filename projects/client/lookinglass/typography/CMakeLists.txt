@@ -3,8 +3,6 @@ create_library(typography)
 
 require(resourceful shading glow textual glass)
 
-add_resources(resources)
-
 if (MSVC)
   target_link_libraries(typography ${MYTHIC_EXTERNAL}/freetype/msvc/freetype262.lib)
   add_custom_command(TARGET typography POST_BUILD

@@ -10,10 +10,11 @@ namespace shading {
 
   class MYTHIC_EXPORT Program : public resourceful::Resource {
       unsigned int id;
+      const string name;
       Shader &first, &second;
 
   public:
-      Program(Shader &first, Shader &second);
+      Program(const string name,Shader &first, Shader &second);
       ~Program();
       void activate();
 
@@ -21,9 +22,12 @@ namespace shading {
         return id;
       }
 
-
       virtual void free() override;
       virtual void load() override;
+
+      const string &get_name() const {
+        return name;
+      }
   };
 
   class MYTHIC_EXPORT Program_Add_Listener {

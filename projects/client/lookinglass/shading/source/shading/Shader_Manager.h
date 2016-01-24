@@ -47,5 +47,7 @@ namespace shading {
 
       void free();
       void load();
+
+      Program &get_program(const string name) const;
   };
 }

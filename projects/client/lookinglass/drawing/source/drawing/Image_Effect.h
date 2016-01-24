@@ -1,0 +1,19 @@
+#pragma once
+
+#include <modeling/Simple_Mesh.h>
+#include "shading/effects/Effect.h"
+#include "glm/fwd.hpp"
+
+using namespace glm;
+
+namespace drawing {
+  class Image_Effect : protected shading::Effect {
+      modeling::Simple_Mesh &mesh;
+
+  public:
+      Image_Effect(shading::Program &program, modeling::Simple_Mesh &mesh);
+
+      void render(const mat4 &transform);
+  };
+
+}

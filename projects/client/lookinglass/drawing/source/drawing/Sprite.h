@@ -2,7 +2,7 @@
 
 #include "dllexport.h"
 #include "glm/glm.hpp"
-#include "lookinglass/Renderable.h"
+#include "Image_Effect.h"
 
 using namespace glm;
 
@@ -12,13 +12,14 @@ namespace shading {
 
 namespace drawing {
 
-  class MYTHIC_EXPORT Sprite: public lookinglass::Renderable {
+  class MYTHIC_EXPORT Sprite {
       vec2 position;
       shading::Texture *texture;
+      Image_Effect &effect;
 
   public:
 
-      Sprite(shading::Texture *texture, const vec2 &position = vec2(0, 0));
+      Sprite(Image_Effect &effect, shading::Texture *texture, const vec2 &position = vec2(0, 0));
 
       const vec2 &get_position() const {
         return position;
@@ -29,6 +30,6 @@ namespace drawing {
       }
 
 
-      virtual void render(lookinglass::Glass &glass) override;
+      void render();
   };
 }
