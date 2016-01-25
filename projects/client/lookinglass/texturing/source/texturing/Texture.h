@@ -6,15 +6,16 @@
 
 using namespace std;
 
-namespace shading {
+namespace texturing {
 
-  class Texture : public resourceful::Resource {
+  class MYTHIC_EXPORT Texture : public resourceful::Resource {
       unsigned int id;
       int width, height;
       unique_ptr<Texture_Generator> generator;
 
   public:
       Texture(int width, int height, Texture_Generator *generator);
+      Texture(Texture_Generator *generator);
 
       virtual void free() override;
       virtual void load() override;

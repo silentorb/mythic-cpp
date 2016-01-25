@@ -1,13 +1,13 @@
-#include "Image_Loader.h"
+#include "loader.h"
 #include <png.h>
 #include <stdexcept>
-#include "lookinglass/glow.h"
 
 using namespace std;
 
-namespace shading {
+namespace texturing {
 
-  unsigned int load_png(const char* filename, int &width, int &height) {
+  unsigned char *load_png(const char *filename, int &width, int &height) {
+
     //header for testing if it is a png
     png_byte header[8];
 
@@ -112,19 +112,19 @@ namespace shading {
     png_read_image(png_ptr, row_pointers);
 
     //Now generate the OpenGL texture object
-    GLuint texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D,0, GL_RGBA, width, height, 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*) image_data);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+//    GLuint texture;
+//    glGenTextures(1, &texture);
+//    glBindTexture(GL_TEXTURE_2D, texture);
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
+//                 GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *) image_data);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
     //clean up memory and close stuff
     png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-    delete[] image_data;
+//    delete[] image_data;
     delete[] row_pointers;
     fclose(fp);
 
-    return texture;
+    return image_data;
   }
 }

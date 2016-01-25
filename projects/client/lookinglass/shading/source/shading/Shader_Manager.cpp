@@ -13,14 +13,6 @@ namespace shading {
     loader(loader),
     processor(create_processor(capabilities)) {
 
-    auto &image_vertex = create_shader(Shader_Type::vertex, "shading/image.vertex");
-    create_program("image",
-                   image_vertex,
-                   create_shader(Shader_Type::fragment, "shading/image.fragment"));
-
-    create_program("colored-image",
-                   image_vertex,
-                   create_shader(Shader_Type::fragment, "shading/colored-image.fragment"));
   }
 
   Shader_Manager::~Shader_Manager() { }

@@ -13,7 +13,7 @@ namespace drawing {
   public:
       Image_Effect(shading::Program &program, modeling::Simple_Mesh &mesh);
 
-      void render(const mat4 &transform);
+      void render(const mat4 &transform, const ivec2 &viewport_dimensions);
   };
 
 }

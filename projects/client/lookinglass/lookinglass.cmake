@@ -2,6 +2,7 @@
 
 add(glow)
 add(shading)
+add(texturing)
 add(frame)
 add(through)
 add(perspective)

@@ -17,7 +17,6 @@ namespace typography {
     auto projection_index = glGetUniformLocation(program->get_id(), "projection");
     glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &projection);
 
-
     auto transform_index = glGetUniformLocation(program->get_id(), "transform");
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 

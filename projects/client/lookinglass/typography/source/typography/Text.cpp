@@ -112,6 +112,8 @@ namespace typography {
 
     glow::check_error("setting text values");
 
+    font.activate();
+
     glBindVertexArray(vao);
     glow::check_error("rendering text");
 

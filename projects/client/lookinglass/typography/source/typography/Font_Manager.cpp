@@ -1,4 +1,5 @@
 #include "Font_Manager.h"
+#include "texturing/initialize.h"
 
 using namespace resourceful;
 
@@ -6,6 +7,7 @@ namespace typography {
   Font_Manager::Font_Manager(Shader_Manager &shader_manager)
     : fonts(new Resource_Manager("fonts")),
       shader_manager(shader_manager) {
+    texturing::initialize_texture_shaders(shader_manager);
 
     if (FT_Init_FreeType(&library))
       throw runtime_error("Could not init FreeType Library");

@@ -2,7 +2,7 @@
 
 #include "dllexport.h"
 
-namespace shading {
+namespace texturing {
   class MYTHIC_EXPORT Texture_Manager {
   };
 }

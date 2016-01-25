@@ -11,7 +11,6 @@ namespace laboratory {
   }
 
   Lab::~Lab() {
-//    delete camera;
   }
 
   void Lab::initialize_display() {

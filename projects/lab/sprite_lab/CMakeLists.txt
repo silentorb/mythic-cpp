@@ -1,9 +1,8 @@
 
 create_library(sprite_lab)
 
-require(glass logger haft glow typography drawing)
+require(glass logger haft glow typography drawing texturing)
 require(mythic)
-require(sculptor)
 require(shading)
 require(modeling)
 require(perspective)

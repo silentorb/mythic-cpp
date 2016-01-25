@@ -1,6 +1,7 @@
-﻿#include <sculptor/create.h>
-#include "Sprite_Lab.h"
+﻿#include "Sprite_Lab.h"
 #include <shading/Shader_Manager.h>
+#include <texturing/Texture_From_File.h>
+#include <drawing/Draw.h>
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
@@ -8,8 +9,13 @@
 #include "typography/Text.h"
 #include "clienting/Client.h"
 #include "lookinglass/House.h"
+#include "texturing/Texture.h"
+#include "drawing/Image_Effect.h"
+#include "drawing/Sprite.h"
 
 using namespace typography;
+using namespace texturing;
+using namespace drawing;
 
 namespace laboratory {
 
@@ -41,8 +47,6 @@ namespace laboratory {
   void Sprite_Lab::initialize_lookinglass(lookinglass::House &house) {
     auto &resources = house.get_resources();
     auto &shader_manager = resources.get_shader_manager();
-    srand(1);
-    auto mesh = sculptor::create::box(vec3(10, 10, 10));
 
     resources.add_font("text", "resources/fonts/main.ttf");
 
@@ -52,6 +56,12 @@ namespace laboratory {
     debug_text->set_color(vec4(0, 1, 0, 1));
     debug_text->set_position(ivec2(100, 50));
     engine.add_renderable(debug_text.get());
+
+    auto texture = new Texture(new Texture_From_File("resources/images/deevee2.png"));
+    auto draw = new Draw();
+    auto image_effect = new Image_Effect(shader_manager.get_program("image"), draw->get_image_mesh());
+    auto sprite = new Sprite(*image_effect, *texture, vec2(200, 100));
+    engine.add_renderable(sprite);
   }
 
   Sprite_Lab::~Sprite_Lab() {

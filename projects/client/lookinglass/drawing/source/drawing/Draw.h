@@ -22,6 +22,14 @@ namespace drawing {
   public:
       Draw();
 
+
+      modeling::Simple_Mesh &get_solid_mesh() const {
+        return *solid_mesh;
+      }
+
+      modeling::Simple_Mesh &get_image_mesh() const {
+        return *image_mesh;
+      }
   };
 }
 

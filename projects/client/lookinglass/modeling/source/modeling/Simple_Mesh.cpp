@@ -17,7 +17,7 @@ namespace modeling {
 
   void Simple_Mesh::render() {
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count + 2);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count);
   }
 
   void Simple_Mesh::load() {
@@ -25,7 +25,7 @@ namespace modeling {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glow::check_error("Error storing mesh data.");
 
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * 3 * sizeof(float), data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data, GL_STATIC_DRAW);
     glow::check_error("Error storing mesh data.");
 
     vao = vertex_schema.create_vao();

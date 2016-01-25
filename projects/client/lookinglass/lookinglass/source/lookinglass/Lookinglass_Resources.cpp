@@ -1,7 +1,7 @@
 #include "Lookinglass_Resources.h"
 #include <lookinglass/glow/Capabilities.h>
 #include "shading/Shader_Manager.h"
-#include "shading/Texture.h"
+#include "texturing/Texture.h"
 #include "resourceful/Resource_Manager.h"
 #include "typography/Font_Manager.h"
 
@@ -39,7 +39,7 @@ namespace lookinglass {
     shader_manager->free();
   }
 
-  void Lookinglass_Resources::add_texture(shading::Texture *texture) {
+  void Lookinglass_Resources::add_texture(texturing::Texture *texture) {
     texture_manager->add_resource(texture);
   }
 
