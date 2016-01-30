@@ -2,4 +2,4 @@
 create_library(architect)
 
 find_package(math)
-require(sculptor metahub)
+require(sculptor)
