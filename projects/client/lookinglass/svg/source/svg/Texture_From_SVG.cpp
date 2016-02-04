@@ -15,7 +15,7 @@
 
 namespace svg {
 
-  unsigned char *Texture_From_SVG2::generate(int &width, int &height) {
+  unsigned char *Texture_From_SVG::generate(int &width, int &height) {
 //    return load_png(filename.c_str(), width, height);
 
     NSVGimage *image = NULL;

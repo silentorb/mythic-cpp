@@ -7,12 +7,12 @@ using namespace std;
 
 namespace svg {
 
-  class MYTHIC_EXPORT Texture_From_SVG2 : public texturing::Texture_Generator {
+  class MYTHIC_EXPORT Texture_From_SVG : public texturing::Texture_Generator {
       string filename;
 
   public:
 
-      Texture_From_SVG2(const string &filename) : filename(filename) { }
+      Texture_From_SVG(const string &filename) : filename(filename) { }
 
       virtual unsigned char *generate(int &width, int &height) override;
 

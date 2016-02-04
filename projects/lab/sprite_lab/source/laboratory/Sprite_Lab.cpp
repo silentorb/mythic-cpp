@@ -2,7 +2,7 @@
 #include <shading/Shader_Manager.h>
 #include <texturing/Texture_From_File.h>
 #include <drawing/Draw.h>
-#include "../../../../client/lookinglass/svg/rebuild/Texture_From_SVG.h"
+#include "svg/Texture_From_SVG.h"
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
