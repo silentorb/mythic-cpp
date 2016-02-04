@@ -2,6 +2,7 @@
 #include <shading/Shader_Manager.h>
 #include <texturing/Texture_From_File.h>
 #include <drawing/Draw.h>
+#include "../../../../client/lookinglass/svg/rebuild/Texture_From_SVG.h"
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
@@ -57,11 +58,20 @@ namespace laboratory {
     debug_text->set_position(ivec2(100, 50));
     engine.add_renderable(debug_text.get());
 
-    auto texture = new Texture(new Texture_From_File("resources/images/deevee2.png"));
     auto draw = new Draw();
     auto image_effect = new Image_Effect(shader_manager.get_program("image"), draw->get_image_mesh());
-    auto sprite = new Sprite(*image_effect, *texture, vec2(200, 100));
-    engine.add_renderable(sprite);
+
+    {
+      auto texture = new Texture(new svg::Texture_From_SVG("resources/images/test-gradient.svg"));
+      auto sprite = new Sprite(*image_effect, *texture, vec2(300, 0));
+      engine.add_renderable(sprite);
+    }
+
+    {
+      auto texture = new Texture(new Texture_From_File("resources/images/deevee2.png"));
+      auto sprite = new Sprite(*image_effect, *texture, vec2(100, 0));
+      engine.add_renderable(sprite);
+    }
   }
 
   Sprite_Lab::~Sprite_Lab() {

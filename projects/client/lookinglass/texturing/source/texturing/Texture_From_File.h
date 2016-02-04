@@ -16,6 +16,5 @@ namespace texturing {
       Texture_From_File(const string &filename) : filename(filename) { }
 
       virtual unsigned char *generate(int &width, int &height) override;
-
   };
 }

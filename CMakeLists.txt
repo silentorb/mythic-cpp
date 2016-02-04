@@ -3,18 +3,12 @@ enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist b
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(cmake-tools/scripts/generator-key.cmake)
 
+set(LOCAL_HEADER 1)
 include(local-config.cmake OPTIONAL)
 
 if (NOT MINGW)
   project(mythical)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-endif ()
-
-if (${IOS})
-  add_definitions(-DIOS=1)
-  set(BUILD_SHARED_LIBS OFF)
-else ()
-  set(BUILD_SHARED_LIBS true)
 endif ()
 
 include(cmake-tools/cmake-tools.cmake)
@@ -71,5 +65,9 @@ else ()
   add_subdirectory(platform/workshop)
 
 endif ()
+
+unset(LOCAL_HEADER)
+set(LOCAL_FOOTER 1)
+include(local-config.cmake OPTIONAL)
 
 finish_mythic()

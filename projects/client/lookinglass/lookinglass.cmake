@@ -13,3 +13,4 @@ add(lookinglass)
 
 #Extensions
 add(drawing)
+add(svg)

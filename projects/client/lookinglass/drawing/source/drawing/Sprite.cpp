@@ -11,7 +11,8 @@ namespace drawing {
   }
 
   void Sprite::render(lookinglass::Glass &glass) {
-    auto transform = glm::translate(mat4(1), vec3(position.x, glass.get_viewport_dimensions().y - position.y, 0))
+    auto transform = glm::translate(mat4(1), vec3(position.x,
+                                                  glass.get_viewport_dimensions().y - position.y - texture->get_height(), 0))
                      * glm::scale(mat4(1), vec3(texture->get_width(), texture->get_height(), 1));
 
     texture->activate();

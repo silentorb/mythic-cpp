@@ -12,7 +12,7 @@ namespace drawing {
 
   void Image_Effect::render(const mat4 &transform, const ivec2 &viewport_dimensions) {
     shading::Effect::activate();
-    glDisable(GL_BLEND);
+    glEnable(GL_BLEND);
     glm::mat4 projection = glm::ortho(0.0f, (float) viewport_dimensions.x, 0.0f, (float) viewport_dimensions.y);
 
     auto projection_index = glGetUniformLocation(program->get_id(), "projection");
