@@ -9,4 +9,4 @@ elseif (MINGW)
   set(freetype_lib libfreetype.dll.a)
 endif ()
 
-link_external(freetype)
+link_external_static(freetype)

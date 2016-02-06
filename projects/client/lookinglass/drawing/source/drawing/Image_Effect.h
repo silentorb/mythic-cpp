@@ -1,5 +1,6 @@
 #pragma once
 
+#include "dllexport.h"
 #include <modeling/Simple_Mesh.h>
 #include "shading/effects/Effect.h"
 #include "glm/fwd.hpp"
@@ -7,7 +8,7 @@
 using namespace glm;
 
 namespace drawing {
-  class Image_Effect : protected shading::Effect {
+  class MYTHIC_EXPORT Image_Effect : protected shading::Effect {
       modeling::Simple_Mesh &mesh;
 
   public:
