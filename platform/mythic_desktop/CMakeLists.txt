@@ -7,13 +7,15 @@ create_library(desktop)
 require(mythic desktop_display desktop_input shading haft client logger)
 
 include_directories(
-    ${MYTHIC_EXTERNAL}/SDL2-2.0.3/include
+    ${MYTHIC_DEPENDENCIES}/sdl2/include
 )
 
-target_link_libraries(desktop
-  ${SDL_LIB}
-  )
+link_external(sdl2 SDL2)
 
-add_custom_command(TARGET desktop POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy ${SDL_BIN} $<TARGET_FILE_DIR:desktop>
-  )
+#target_link_libraries(desktop
+#  ${SDL_LIB}
+#  )
+#
+#add_custom_command(TARGET desktop POST_BUILD
+#  COMMAND ${CMAKE_COMMAND} -E copy ${SDL_BIN} $<TARGET_FILE_DIR:desktop>
+#  )

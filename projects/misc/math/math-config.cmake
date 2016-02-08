@@ -1,5 +1,4 @@
-#message(${CURRENT_TARGET})
 include_directories(
-  ${MYTHIC_EXTERNAL}/glm
+  ${MYTHIC_DEPENDENCIES}/glm/include
   ${CMAKE_CURRENT_LIST_DIR}/source
 )
