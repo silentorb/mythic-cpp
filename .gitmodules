@@ -1,3 +1,6 @@
 [submodule "cmake-tools"]
 	path = cmake-tools
 	url = git@github.com:silentorb/cmake-tools.git
+[submodule "external/boost_regex"]
+	path = external/boost_regex
+	url = git@bitbucket.org:silentorb/boost_regex.git

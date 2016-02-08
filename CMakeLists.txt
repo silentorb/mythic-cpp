@@ -16,7 +16,7 @@ include(cmake-tools/cmake-tools.cmake)
 #print_info(STATUS)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
-set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/external/${GENERATOR_KEY})
+set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/dependencies/${GENERATOR_KEY})
 
 if (MINGW)
   set(SDL_BIN ${MYTHIC_EXTERNAL}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll)
