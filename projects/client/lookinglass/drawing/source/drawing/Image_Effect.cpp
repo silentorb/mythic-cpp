@@ -2,6 +2,7 @@
 #include "lookinglass/glow.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "shading/Program.h"
+#include <modeling/Simple_Mesh.h>
 
 namespace drawing {
   Image_Effect::Image_Effect(shading::Program &program, modeling::Simple_Mesh &mesh) :

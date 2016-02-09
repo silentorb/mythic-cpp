@@ -21,7 +21,7 @@ namespace drawing {
       unique_ptr<modeling::Simple_Mesh> image_mesh;
   public:
       Draw();
-
+~Draw();
 
       modeling::Simple_Mesh &get_solid_mesh() const {
         return *solid_mesh;

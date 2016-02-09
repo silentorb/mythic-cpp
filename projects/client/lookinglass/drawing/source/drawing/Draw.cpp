@@ -31,4 +31,6 @@ namespace drawing {
     solid_mesh = unique_ptr<Simple_Mesh>(new Simple_Mesh(solid_vertices, 4, *solid_vertex_schema.get()));
     image_mesh = unique_ptr<Simple_Mesh>(new Simple_Mesh(image_vertices, 4, *image_vertex_schema.get()));
   }
+
+  Draw::~Draw() { }
 }

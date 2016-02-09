@@ -3,7 +3,6 @@
 #include "dllexport.h"
 #include <vector>
 #include <memory>
-#include "modeling/Mesh_Data.h"
 
 using namespace std;
 
@@ -27,6 +26,10 @@ namespace shading {
 
 namespace texturing {
   class Texture;
+}
+
+namespace modeling {
+  class Mesh_Data;
 }
 
 namespace lookinglass {

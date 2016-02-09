@@ -1,9 +1,12 @@
 #pragma once
 
 #include "dllexport.h"
-#include <modeling/Simple_Mesh.h>
 #include "shading/effects/Effect.h"
 #include "glm/fwd.hpp"
+
+namespace modeling {
+  class Simple_Mesh;
+}
 
 using namespace glm;
 

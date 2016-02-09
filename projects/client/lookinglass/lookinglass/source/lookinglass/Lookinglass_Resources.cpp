@@ -4,6 +4,7 @@
 #include "texturing/Texture.h"
 #include "resourceful/Resource_Manager.h"
 #include "typography/Font_Manager.h"
+#include "modeling/Mesh_Data.h"
 
 using namespace resourceful;
 using namespace typography;
