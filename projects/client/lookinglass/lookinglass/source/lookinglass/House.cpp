@@ -62,12 +62,12 @@ namespace lookinglass {
     return frame->closing;
   }
 
-  void House::add_renderable(Renderable *renderable) {
-    renderables.push_back(renderable);
+  void House::add_renderable(Renderable &renderable) {
+    renderables.push_back(&renderable);
   }
 
-  void House::remove_renderable(Renderable *renderable) {
-    vector_remove(renderables, renderable);
+  void House::remove_renderable(Renderable &renderable) {
+    vector_remove(renderables, &renderable);
   }
 
   Lookinglass_Resources &House::get_resources() const {

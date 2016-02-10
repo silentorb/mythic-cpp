@@ -54,8 +54,8 @@ namespace lookinglass {
       ~House();
       void update();
       bool is_closing();
-      void add_renderable(Renderable *renderable);
-      void remove_renderable(Renderable *renderable);
+      void add_renderable(Renderable &renderable);
+      void remove_renderable(Renderable &renderable);
 
       Glass &get_glass() const {
         return *glass;

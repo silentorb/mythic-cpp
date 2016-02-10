@@ -10,6 +10,12 @@ namespace modeling {
     load();
   }
 
+  Simple_Mesh::Simple_Mesh(Vertex_Schema &vertex_schema) :
+    vertex_schema(vertex_schema) {
+    vertex_count = 0;
+  }
+
+
   Simple_Mesh::~Simple_Mesh() {
     free();
     delete data;
@@ -25,10 +31,22 @@ namespace modeling {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glow::check_error("Error storing mesh data.");
 
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data, GL_STATIC_DRAW);
-    glow::check_error("Error storing mesh data.");
+    if (vertex_count > 0) {
+      glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
+                   GL_STATIC_DRAW);
+      glow::check_error("Error storing mesh data.");
+    }
 
     vao = vertex_schema.create_vao();
+  }
+
+  void Simple_Mesh::load(float *data, int vertex_count) {
+    this->data = data;
+    this->vertex_count = vertex_count;
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
+                 GL_STATIC_DRAW);
   }
 
   void Simple_Mesh::free() {

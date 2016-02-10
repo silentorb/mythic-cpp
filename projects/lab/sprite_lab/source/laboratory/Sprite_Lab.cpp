@@ -56,22 +56,22 @@ namespace laboratory {
 //    debug_text = unique_ptr<Text>(new Text(resources.get_font("text"), resources.get_text_effect(), "Hello World QWERTYUIOPLKJHGFDSAZXCVBNM"));
     debug_text->set_color(vec4(0, 1, 0, 1));
     debug_text->set_position(ivec2(100, 50));
-    engine.add_renderable(debug_text.get());
+    engine.add_renderable(*debug_text.get());
 
-    auto draw = new Draw();
+		auto draw = new Draw(shader_manager);
     auto image_effect = new Image_Effect(shader_manager.get_program("image"), draw->get_image_mesh());
 
-    {
-      auto texture = new Texture(new svg::Texture_From_SVG("resources/images/test-gradient.svg"));
-      auto sprite = new Sprite(*image_effect, *texture, vec2(300, 0));
-      engine.add_renderable(sprite);
-    }
-
-    {
-      auto texture = new Texture(new Texture_From_File("resources/images/deevee2.png"));
-      auto sprite = new Sprite(*image_effect, *texture, vec2(100, 0));
-      engine.add_renderable(sprite);
-    }
+//    {
+//      auto texture = new Texture(new svg::Texture_From_SVG("resources/images/test-gradient.svg"));
+//      auto sprite = new Sprite(*image_effect, *texture, vec2(300, 0));
+//      engine.add_renderable(sprite);
+//    }
+//
+//    {
+//      auto texture = new Texture(new Texture_From_File("resources/images/deevee2.png"));
+//      auto sprite = new Sprite(*image_effect, *texture, vec2(100, 0));
+//      engine.add_renderable(sprite);
+//    }
   }
 
   Sprite_Lab::~Sprite_Lab() {

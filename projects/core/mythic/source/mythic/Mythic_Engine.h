@@ -49,8 +49,8 @@ namespace mythic {
         return (T &) *myths[name];
       }
 
-      void add_renderable(lookinglass::Renderable *renderable);
-      void remove_renderable(lookinglass::Renderable *renderable);
+      void add_renderable(lookinglass::Renderable &renderable);
+      void remove_renderable(lookinglass::Renderable &renderable);
       void update();
       void loop();
 

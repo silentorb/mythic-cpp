@@ -8,21 +8,24 @@
 using namespace glm;
 
 namespace texturing {
-  class Texture;
+  class Image_Info;
 }
 
 using namespace texturing;
 
 namespace drawing {
+  class Draw;
 
   class MYTHIC_EXPORT Sprite : public lookinglass::Renderable {
       vec2 position;
-      Texture *texture;
-      Image_Effect &effect;
+      const Image_Info *image;
+      Image_Effect *effect;
+      Draw &draw;
 
   public:
 
-      Sprite(Image_Effect &effect, Texture &texture, const vec2 &position = vec2(0, 0));
+      Sprite(Draw &draw, Image_Effect &effect, const Image_Info &image, const vec2 &position = vec2(0, 0));
+      Sprite(Draw &draw, const Image_Info &image, const vec2 &position = vec2(0, 0));
 
       const vec2 &get_position() const {
         return position;
@@ -33,5 +36,7 @@ namespace drawing {
       }
 
       void render(lookinglass::Glass &glass);
+
+      const Image_Info &get_image() const;
   };
 }

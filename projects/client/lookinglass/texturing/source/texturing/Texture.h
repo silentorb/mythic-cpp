@@ -29,5 +29,9 @@ namespace texturing {
       int get_height() const {
         return height;
       }
+
+//      int get_id()const {
+//        return id;
+//      }
   };
 }

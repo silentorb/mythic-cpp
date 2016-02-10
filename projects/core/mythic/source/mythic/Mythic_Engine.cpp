@@ -30,11 +30,11 @@ namespace mythic {
 //    myths[myth->get_name()] = unique_ptr<Myth>(myth);
 //  }
 
-  void Mythic_Engine::add_renderable(lookinglass::Renderable *renderable) {
+  void Mythic_Engine::add_renderable(lookinglass::Renderable &renderable) {
     client->get_house().add_renderable(renderable);
   }
 
-  void Mythic_Engine::remove_renderable(lookinglass::Renderable *renderable) {
+  void Mythic_Engine::remove_renderable(lookinglass::Renderable &renderable) {
     client->get_house().remove_renderable(renderable);
   }
 
