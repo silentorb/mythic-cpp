@@ -3,7 +3,6 @@
 #include <sstream>
 #include <algorithm>
 #include <windows.h>
-#include <stdio.h>  /* defines FILENAME_MAX */
 
 
 std::string getexepath() {

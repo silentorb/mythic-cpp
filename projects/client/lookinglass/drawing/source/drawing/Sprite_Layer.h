@@ -8,7 +8,7 @@
 #include <vector>
 
 namespace texturing {
-  class Sprite_Sheet;
+  class Texture;
 }
 
 using namespace std;
@@ -21,13 +21,13 @@ namespace drawing {
 
   class MYTHIC_EXPORT Sprite_Layer : public lookinglass::Renderable {
       vector<Sprite *> sprites;
-      Sprite_Sheet &sheet;
+      Texture &texture;
       unique_ptr<modeling::Simple_Mesh> mesh;
       Image_Effect *effect;
       vector<Vertex_Data> data;
 
   public:
-      Sprite_Layer(Sprite_Sheet &sheet, Image_Effect &effect);
+      Sprite_Layer(Texture &texture, Image_Effect &effect, Draw &draw);
       ~Sprite_Layer();
 
       void add_sprite(Sprite &sprite);

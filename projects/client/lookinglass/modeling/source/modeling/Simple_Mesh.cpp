@@ -5,12 +5,12 @@
 using namespace lookinglass;
 
 namespace modeling {
-  Simple_Mesh::Simple_Mesh(float *data, int vertex_count, modeling::Vertex_Schema &vertex_schema)
+  Simple_Mesh::Simple_Mesh(float *data, int vertex_count, const modeling::Vertex_Schema &vertex_schema)
     : data(data), vertex_count(vertex_count), vertex_schema(vertex_schema) {
     load();
   }
 
-  Simple_Mesh::Simple_Mesh(Vertex_Schema &vertex_schema) :
+  Simple_Mesh::Simple_Mesh(const Vertex_Schema &vertex_schema) :
     vertex_schema(vertex_schema) {
     vertex_count = 0;
   }
@@ -44,9 +44,11 @@ namespace modeling {
     this->data = data;
     this->vertex_count = vertex_count;
 
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
                  GL_STATIC_DRAW);
+
+    glow::check_error("Error storing mesh data.");
   }
 
   void Simple_Mesh::free() {

@@ -1,0 +1,14 @@
+{
+  "name":"{{settings.tpsName}}",
+  "width": {{texture.size.width}},
+  "height": {{texture.size.height}},
+  "sprites": [{% for sprite in allSprites %}
+    {
+      "name": "{{sprite.trimmedName}}",
+      "x": {{sprite.frameRect.x}},
+      "y": {{sprite.frameRect.y}},
+      "width": {{sprite.frameRect.width}},
+      "height": {{sprite.frameRect.height}}
+    }{% if not forloop.last %},{% endif %}{% endfor %}
+  ]
+}

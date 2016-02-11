@@ -59,10 +59,10 @@
         </file>
         <file>
             <name>mythicsource</name>
-            <displayName>C++ source</displayName>
-            <fileExtension>cpp</fileExtension>
-            <description>C++ source exporter for TexturePacker</description>
-            <template>exporter.cpp</template>
+            <displayName>json</displayName>
+            <fileExtension>json</fileExtension>
+            <description>json exporter for TexturePacker</description>
+            <template>exporter.json</template>
             <optional>false</optional>
             <hasSeparateAutoSDFiles>all</hasSeparateAutoSDFiles>
             <hasSeparateMultiPackFiles>true</hasSeparateMultiPackFiles>

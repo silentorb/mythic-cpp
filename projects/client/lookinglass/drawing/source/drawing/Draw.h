@@ -17,8 +17,7 @@ namespace shading {
 }
 
 namespace texturing {
-  struct Image_Info;
-  struct Sprite_Sheet;
+  struct Texture;
 }
 
 using namespace std;
@@ -27,6 +26,8 @@ namespace drawing {
   class Image_Effect;
 
   class Sprite;
+
+  class Image;
 
   class Sprite_Layer;
 
@@ -43,11 +44,11 @@ namespace drawing {
       Draw(shading::Shader_Manager &shader_manager);
       ~Draw();
 
-      Sprite &create_sprite(const texturing::Image_Info &image, const glm::vec2 &position = glm::vec2(0, 0));
+      Sprite &create_sprite(Image &image, const glm::vec2 &position = glm::vec2(0, 0));
 
-      void add_sprite_sheet(texturing::Sprite_Sheet &sheet, const string &filename);
+      void add_sprite_sheet(texturing::Texture &texture, const string &filename);
 
-      Sprite_Layer &create_sprite_layer(texturing::Sprite_Sheet &sheet);
+      Sprite_Layer &create_sprite_layer(texturing::Texture &texture);
 
       modeling::Simple_Mesh &get_solid_mesh() const {
         return *solid_mesh;
@@ -55,6 +56,10 @@ namespace drawing {
 
       modeling::Simple_Mesh &get_image_mesh() const {
         return *image_mesh;
+      }
+
+      const modeling::Vertex_Schema &get_image_vertex_schema() const {
+        return *image_vertex_schema;
       }
   };
 }

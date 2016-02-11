@@ -5,13 +5,12 @@
 #include <modeling/Simple_Mesh.h>
 
 namespace drawing {
-  Image_Effect::Image_Effect(shading::Program &program, modeling::Simple_Mesh &mesh) :
-    Effect(program),
-    mesh(mesh) {
+  Image_Effect::Image_Effect(shading::Program &program) :
+    Effect(program) {
 
   }
 
-  void Image_Effect::render(const mat4 &transform, const ivec2 &viewport_dimensions) {
+  void Image_Effect::render(const mat4 &transform, const ivec2 &viewport_dimensions, modeling::Simple_Mesh &mesh, const mat4 &texture_transform) {
     shading::Effect::activate();
     glEnable(GL_BLEND);
     glm::mat4 projection = glm::ortho(0.0f, (float) viewport_dimensions.x, 0.0f, (float) viewport_dimensions.y);
@@ -21,6 +20,9 @@ namespace drawing {
 
     auto transform_index = glGetUniformLocation(program->get_id(), "transform");
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
+
+    auto texture_transform_index = glGetUniformLocation(program->get_id(), "texture_transform");
+    glUniformMatrix4fv(texture_transform_index, 1, GL_FALSE, (GLfloat *) &texture_transform);
 
     mesh.render();
   }

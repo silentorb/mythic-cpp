@@ -12,12 +12,12 @@ using namespace glm;
 
 namespace drawing {
   class MYTHIC_EXPORT Image_Effect : protected shading::Effect {
-      modeling::Simple_Mesh &mesh;
+//      modeling::Simple_Mesh &mesh;
 
   public:
-      Image_Effect(shading::Program &program, modeling::Simple_Mesh &mesh);
+      Image_Effect(shading::Program &program);
 
-      void render(const mat4 &transform, const ivec2 &viewport_dimensions);
+      void render(const mat4 &transform, const ivec2 &viewport_dimensions, modeling::Simple_Mesh &mesh, const mat4 &texture_transform);
   };
 
 }

@@ -1,5 +1,6 @@
 #include "Texture.h"
 #include "lookinglass/glow.h"
+#include <texturing/Texture_From_File.h>
 
 namespace texturing {
   Texture::Texture(int width, int height, Texture_Generator *generator)
@@ -11,6 +12,12 @@ namespace texturing {
   Texture::Texture(Texture_Generator *generator)
     : id(0), width(0), height(0),
       generator(generator) {
+    load();
+  }
+
+  Texture::Texture(const string filename)
+    : id(0), width(0), height(0),
+      generator(new Texture_From_File(filename)) {
     load();
   }
 

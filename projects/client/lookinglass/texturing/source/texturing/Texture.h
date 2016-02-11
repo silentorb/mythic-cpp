@@ -3,6 +3,7 @@
 #include "resourceful/Resource.h"
 #include "Texture_Generator.h"
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ namespace texturing {
   public:
       Texture(int width, int height, Texture_Generator *generator);
       Texture(Texture_Generator *generator);
+      Texture(const string filename);
 
       virtual void free() override;
       virtual void load() override;
