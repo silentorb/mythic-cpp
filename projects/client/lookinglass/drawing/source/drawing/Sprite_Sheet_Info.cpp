@@ -27,16 +27,16 @@ namespace drawing {
         const auto &sprite = sprites[i];
 
         int x = sprite["x"].GetInt();
-        int y = (sprite["y"].GetInt() - 2);
+        int y = (sprite["y"].GetInt());
         int width = sprite["width"].GetInt();
         int height = sprite["height"].GetInt();
 
         auto image = new Image(
           *this, texture,
           (float) x / pixel_width,
-          (float) y / pixel_height,
+          (float) (pixel_height - y) / pixel_height,
           (float) (x + width) / pixel_width,
-          (float) (y - height) / pixel_height,
+          (float) (pixel_width - (y + height)) / pixel_height,
           width,
           height
         );
