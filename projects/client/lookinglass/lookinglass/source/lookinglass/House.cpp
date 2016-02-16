@@ -7,12 +7,13 @@
 #include "lookinglass/through/create_mist.h"
 #include "Lookinglass_Resources.h"
 #include "shading/Shader_Manager.h"
+#include "lookinglass/Renderable_List.h"
 
 using namespace resourceful;
 
 namespace lookinglass {
   House::House(Frame *frame, Shader_Loader *shader_loader) :
-    frame(frame) {
+    frame(frame), renderables(new Renderable_List()) {
     if (!frame) {
       throw std::runtime_error("Frame (Window) was null.");
     }
@@ -51,9 +52,7 @@ namespace lookinglass {
 
     base_viewport->update_device();
 
-    for (auto renderable : renderables) {
-      renderable->render(*glass);
-    }
+    renderables->render(*glass);
 
     frame->flip_buffer();
   }
@@ -63,11 +62,11 @@ namespace lookinglass {
   }
 
   void House::add_renderable(Renderable &renderable) {
-    renderables.push_back(&renderable);
+    renderables->add(renderable);
   }
 
   void House::remove_renderable(Renderable &renderable) {
-    vector_remove(renderables, &renderable);
+    renderables->remove(renderable);
   }
 
   Lookinglass_Resources &House::get_resources() const {
@@ -94,5 +93,9 @@ namespace lookinglass {
     resource_manager->free();
     frame->free();
     set_active(false);
+  }
+
+  shading:: Shader_Manager& House::get_shader_manager() const {
+    return resource_manager->get_shader_manager();
   }
 }

@@ -22,6 +22,7 @@ namespace sculptor {
         Polygon *add_polygon(Iterator vertices);
         Polygon *add_polygon(Polygon *polygon);
         Polygon *add_polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
+        Polygon *add_polygon(vec3 first, vec3 second, vec3 third);
         Polygon *add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth);
 
         const vector<Edge *> &get_edges() const {

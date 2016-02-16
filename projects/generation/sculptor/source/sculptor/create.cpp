@@ -2,6 +2,8 @@
 #include <glm/gtx/transform.hpp>
 #include "create.h"
 
+using namespace glm;
+
 namespace sculptor {
   namespace create {
 

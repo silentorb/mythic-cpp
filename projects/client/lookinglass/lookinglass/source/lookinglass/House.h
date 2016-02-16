@@ -7,6 +7,7 @@
 
 namespace shading {
   class Shader_Loader;
+  class Shader_Manager;
 }
 
 using namespace std;
@@ -34,18 +35,19 @@ namespace lookinglass {
 
   class Renderable;
 
+  class Renderable_List;
+
   class Lookinglass_Resources;
 
   class MYTHIC_EXPORT House {
   private:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<glow::Capabilities> capabilities;
-      vector<Renderable *> renderables;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
       unique_ptr<Frame> frame;
       bool active;
-
+      unique_ptr<Renderable_List> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
       void initialize();
   public:
@@ -90,6 +92,8 @@ namespace lookinglass {
       void free();
       void load();
 
-      Lookinglass_Resources& get_resources() const;
+      Lookinglass_Resources &get_resources() const;
+
+      shading:: Shader_Manager & get_shader_manager()const;
   };
 }

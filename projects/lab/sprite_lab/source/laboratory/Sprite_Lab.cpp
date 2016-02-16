@@ -58,8 +58,8 @@ namespace laboratory {
     debug_text->set_position(ivec2(100, 50));
     engine.add_renderable(*debug_text.get());
 
-		auto draw = new Draw(shader_manager);
-    auto image_effect = new Image_Effect(shader_manager.get_program("image"), draw->get_image_mesh());
+//		auto draw = new Draw(shader_manager);
+//    auto image_effect = new Image_Effect(shader_manager.get_program("image"), draw->get_image_mesh());
 
 //    {
 //      auto texture = new Texture(new svg::Texture_From_SVG("resources/images/test-gradient.svg"));

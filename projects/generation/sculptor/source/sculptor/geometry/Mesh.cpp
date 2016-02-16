@@ -64,5 +64,14 @@ namespace sculptor {
       add_polygon(polygon);
 			return polygon;
     }
+
+    Polygon *Mesh::add_polygon(vec3 first, vec3 second, vec3 third) {
+      auto polygon = new Polygon(
+        add_vertex(first),
+        add_vertex(second),
+        add_vertex(third));
+      add_polygon(polygon);
+      return polygon;
+    }
   }
 }

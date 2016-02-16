@@ -32,7 +32,7 @@ namespace drawing {
         int height = sprite["height"].GetInt();
 
         auto image = new Image(
-          *this, texture,
+          *this, texture, sprite["name"].GetString(),
           (float) x / pixel_width,
           (float) (pixel_height - y) / pixel_height,
           (float) (x + width) / pixel_width,
@@ -54,5 +54,23 @@ namespace drawing {
         images.push_back(unique_ptr<Image>(image));
       }
     }
+  }
+
+  Image &Sprite_Sheet_Info::get_image(const string &name) const {
+    for (auto &image: images) {
+      if (image->get_name() == name)
+        return *image;
+    }
+
+    throw runtime_error("Could not find image " + name + ".");
+  }
+
+  int Sprite_Sheet_Info::get_image_index(const string &name) const {
+    for (int i = 0; i < images.size(); ++i) {
+      if (images[i]->get_name() == name)
+        return i;
+    }
+
+    throw runtime_error("Could not find image " + name + ".");
   }
 }

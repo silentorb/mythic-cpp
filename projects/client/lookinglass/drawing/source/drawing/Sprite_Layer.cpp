@@ -69,6 +69,6 @@ namespace drawing {
     texture.activate();
     effect->render(mat4(1)//* glm::scale(mat4(1), vec3(dimensions.x, dimensions.y, 1))
                    * glm::scale(mat4(1), vec3(10, 10, 1))
-      , glass.get_viewport_dimensions(), *mesh, mat4(1));
+      , *mesh, mat4(1));
   }
 }

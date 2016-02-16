@@ -40,6 +40,7 @@ namespace shading {
       ~Shader_Manager();
       Shader &create_shader(Shader_Type type, string path);
       Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader);
+      Program &create_program_from_files(const string name, const string vertex, const string fragment);
 
       void add_program_add_listener(Program_Add_Listener &listener) {
         program_added.push_back(&listener);
@@ -49,5 +50,6 @@ namespace shading {
       void load();
 
       Program &get_program(const string name) const;
+      Program *get_program_or_null(const string name) const;
   };
 }

@@ -5,6 +5,7 @@
 #include "Image_Effect.h"
 #include "lookinglass/Renderable.h"
 #include "Image.h"
+#include "Element.h"
 
 using namespace glm;
 
@@ -17,11 +18,12 @@ using namespace texturing;
 namespace drawing {
   class Draw;
 
-  class MYTHIC_EXPORT Sprite : public lookinglass::Renderable {
+  class MYTHIC_EXPORT Sprite : public Element {
       vec2 position;
       Image *image;
       Image_Effect *effect;
       Draw &draw;
+
 
   public:
       Sprite(Draw &draw, Image_Effect &effect, Image &image, const vec2 &position = vec2(0, 0));
@@ -35,7 +37,7 @@ namespace drawing {
         Sprite::position = position;
       }
 
-      void render(lookinglass::Glass &glass);
+      void render();
 
       const Image &get_image() const {
         return *image;

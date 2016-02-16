@@ -19,6 +19,7 @@ namespace sculptor {
         template<typename Iterator>
         Polygon(Iterator vertices);
         Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
+        Polygon(Vertex *first, Vertex *second, Vertex *third);
         ~Polygon();
 
         void remove(Mesh *mesh);

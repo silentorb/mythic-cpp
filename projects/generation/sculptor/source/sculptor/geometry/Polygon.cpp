@@ -13,7 +13,7 @@ namespace sculptor {
       initialize();
     }
 
-    Polygon:: Polygon(Vertex*first, Vertex*second, Vertex*third, Vertex*fourth){
+    Polygon::Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth) {
       add_vertex(first);
       add_vertex(second);
       add_vertex(third);
@@ -23,7 +23,16 @@ namespace sculptor {
       initialize();
     }
 
-    void Polygon:: add_vertex(Vertex*vertex){
+    Polygon::Polygon(Vertex *first, Vertex *second, Vertex *third) {
+      add_vertex(first);
+      add_vertex(second);
+      add_vertex(third);
+      uvs = nullptr;
+
+      initialize();
+    }
+
+    void Polygon::add_vertex(Vertex *vertex) {
       vertex->polygons.push_back(this);
       vertices.push_back(vertex);
     }

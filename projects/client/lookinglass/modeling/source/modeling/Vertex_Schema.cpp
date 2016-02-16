@@ -36,17 +36,18 @@ namespace modeling {
   }
 
   unsigned int Vertex_Schema::create_vao() const {
-    unsigned int schema = 0;
+    unsigned int schema = vertex_size;
     int offset = 0;
     glGenVertexArrays(1, &schema);
     glBindVertexArray(schema);
     glow::check_error("creating vao");
 
-    const int stride = 0;
+//    const int stride = 0;
+    const int stride = vertex_size;
 
     for (int i = 0; i < attributes.size(); ++i) {
       auto &attribute = attributes[i];
-      glVertexAttribPointer(i, attribute.count, GL_FLOAT, false, stride, i == 0 ? 0 : (void *) offset);
+      glVertexAttribPointer(i, attribute.count, GL_FLOAT, GL_FALSE, stride, i == 0 ? 0 : (void *) offset);
       glow::check_error("creating vertex attribute");
 
       glEnableVertexAttribArray(i);

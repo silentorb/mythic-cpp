@@ -1,10 +1,13 @@
 #pragma once
 
 #include "dllexport.h"
+#include <string>
 
 namespace texturing {
   class Texture;
 }
+
+using namespace std;
 
 namespace drawing {
 
@@ -13,7 +16,7 @@ namespace drawing {
   class MYTHIC_EXPORT Image {
       texturing::Texture &texture;
       const Sprite_Sheet_Info &sheet;
-//      const char *name;
+      const string name;
       float left, top, bottom, right;
       int pixel_width, pixel_height;
 
@@ -21,7 +24,7 @@ namespace drawing {
       Image &operator=(Image const &) = delete;
   public:
 
-      Image(const Sprite_Sheet_Info &sheet, texturing::Texture &texture, float left, float top, float right, float bottom, int pixel_width,
+      Image(const Sprite_Sheet_Info &sheet, texturing::Texture &texture, const string name, float left, float top, float right, float bottom, int pixel_width,
             int pixel_height);
 
       texturing::Texture &get_texture() const {
@@ -55,6 +58,11 @@ namespace drawing {
       float get_width() const;
 
       float get_height() const;
+
+
+      const string &get_name() const {
+        return name;
+      }
   };
 
 }
