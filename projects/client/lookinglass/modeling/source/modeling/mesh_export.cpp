@@ -13,13 +13,12 @@ namespace modeling {
       return result;
     }
 
-    Mesh_Data *output_textured(Mesh &mesh) {
-      const auto vertex_schema = new Vertex_Schema({3, 3, 2});
+    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema) {
       auto vertex_count = get_vertex_count(mesh);
-      auto vertices = new Textured_Vertex[vertex_count];
+      auto vertices = new float[vertex_count * vertex_schema.get_vertex_size()];
       auto offsets = new int[mesh.polygons.size()];
       auto counts = new int[mesh.polygons.size()];
-      Textured_Vertex *vertex = &vertices[0];
+      float *value = &vertices[0];
       int *offset_pointer = &offsets[0];
       int *count_pointer = &counts[0];
       int offset = 0;
@@ -27,12 +26,21 @@ namespace modeling {
       for (auto polygon: mesh.polygons) {
         for (int j = 0; j < polygon->vertices.size(); ++j) {
           auto source = polygon->vertices[j];
-          vertex->position = source->position;
-          vertex->normal = glm::normalize(source->position);
-          if (polygon->uvs) {
+          vec3 *position = (vec3 *) value;
+          *position = source->get_position();
+          value += 3;
+          for (int i = 1; i < vertex_schema.get_attribute_count(); ++i) {
+            auto &attribute = vertex_schema.get_attribute(i);
+            float *data = polygon->get_data(attribute.get_name(), j);
+            if (!data) {
+              value += attribute.get_count();
+              continue;
+            }
 
+            for (int k = 0; k < attribute.get_count(); ++k) {
+              *value++ = *data++;
+            }
           }
-          ++vertex;
         }
 
         *offset_pointer++ = offset;
@@ -44,10 +52,10 @@ namespace modeling {
       return new Mesh_Data(
         mesh.polygons.size(),
         vertex_count,
-        (float *) vertices,
+        vertices,
         offsets,
         counts,
-        std::shared_ptr<Vertex_Schema>(vertex_schema)
+        vertex_schema
       );
     }
   }

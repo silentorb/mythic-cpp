@@ -11,7 +11,7 @@ using namespace sculptor::geometry;
 namespace modeling {
   namespace mesh_export {
 
-    MYTHIC_EXPORT Mesh_Data *output_textured(Mesh &mesh);
+    MYTHIC_EXPORT Mesh_Data *output(Mesh &mesh, Vertex_Schema & schema);
     void register_mesh(Mesh_Data &mesh, Vertex_Schema &schema);
   }
 }

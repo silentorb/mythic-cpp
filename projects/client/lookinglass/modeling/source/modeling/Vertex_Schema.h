@@ -25,5 +25,13 @@ namespace modeling {
       int get_vertex_size() const {
         return vertex_size;
       }
+
+      int get_attribute_count() const {
+        return attributes.size();
+      }
+
+      const Vertex_Attribute &get_attribute(int index) const {
+        return attributes[index];
+      }
   };
 }

@@ -18,12 +18,12 @@ namespace modeling {
       float *vertices;
       int *offsets;
       int *counts;
-      shared_ptr<Vertex_Schema> vertex_schema;
+      Vertex_Schema& vertex_schema;
 
   public:
 
       Mesh_Data(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts,
-                shared_ptr<Vertex_Schema> vertex_schema);
+                Vertex_Schema& vertex_schema);
 
       ~Mesh_Data();
 

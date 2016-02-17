@@ -16,4 +16,12 @@ namespace scenery {
                                          shader_manager.create_shader(Shader_Type::fragment,
                                                                       "scenery/textured.fragment"));
   }
+
+  Program &create_colored_program(Shader_Manager &shader_manager) {
+    return shader_manager.create_program("colored",
+                                         shader_manager.create_shader(Shader_Type::vertex,
+                                                                      "scenery/textured.vertex"),
+                                         shader_manager.create_shader(Shader_Type::fragment,
+                                                                      "scenery/textured.fragment"));
+  }
 }

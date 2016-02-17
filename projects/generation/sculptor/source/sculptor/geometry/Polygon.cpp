@@ -18,8 +18,6 @@ namespace sculptor {
       add_vertex(second);
       add_vertex(third);
       add_vertex(fourth);
-      uvs = nullptr;
-
       initialize();
     }
 
@@ -27,8 +25,6 @@ namespace sculptor {
       add_vertex(first);
       add_vertex(second);
       add_vertex(third);
-      uvs = nullptr;
-
       initialize();
     }
 
@@ -51,20 +47,13 @@ namespace sculptor {
       }
 
       if (vertices.size() <= 4) {
-        uvs = new vec2[vertices.size()];
         for (int i = 0; i < vertices.size(); ++i) {
 
         }
       }
-      else {
-        uvs = NULL;
-      }
-
     }
 
     Polygon::~Polygon() {
-      if (uvs)
-        delete uvs;
     }
 
     void Polygon::remove(Mesh *mesh) {
@@ -81,6 +70,22 @@ namespace sculptor {
       }
 
       edges.empty();
+    }
+
+    vec3 Polygon::calculate_normal() const {
+      vec3 first = vertices[0]->get_position(),
+        second = vertices[1]->get_position(),
+        third = vertices[2]->get_position();
+      return glm::cross(first - second, third - second);
+    }
+
+//    void Polygon::add_normal(const vec3 normal) {
+//      normals.push_back(normal);
+//    }
+
+    void Polygon::add_data(const string &name, float *values, int count) {
+      data.insert(Vertex_Data::value_type(name, vector<float>()));
+      data[name].assign(values, values + count);
     }
   }
 }

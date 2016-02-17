@@ -1,4 +1,4 @@
-﻿
+
 const float constant_attenuation = 0.5;
 const float linear_attenuation = 0.2;
 const float quadratic_attenuation = 0.05;
@@ -27,9 +27,9 @@ vec3 process_light(Light light, vec4 input_color) {
 			);
 	}
 
-	vec3 half_vector = normalize(light_direction + scene.camera_direction);
+	vec3 half_vector = normalize(light_direction + camera_direction);
 
-	float diffuse = max(0.0, dot(normal, scene.camera_direction * 0.8));
+	float diffuse = max(0.0, dot(normal, camera_direction * 0.8));
 	float specular = max(0.0, dot(normal, half_vector));
 
 	if (diffuse == 0.0)

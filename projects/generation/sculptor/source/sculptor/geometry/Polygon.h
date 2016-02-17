@@ -1,20 +1,27 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include "declarations.h"
+#include <map>
 
 namespace sculptor {
   namespace geometry {
+
+    typedef map<const string, vector<float>> Vertex_Data;
+
     class MYTHIC_EXPORT Polygon {
     private:
         void initialize();
         void add_vertex(Vertex *vertex);
+        Vertex_Data data;
 
     public:
         vector<Mesh *> meshes;
         vector<Vertex *> vertices;
         vector<Edge *> edges;
-        vec2 *uvs;
+//        vector<vec3> normals;
+//        vector<vec2> uvs;
 
         template<typename Iterator>
         Polygon(Iterator vertices);
@@ -23,6 +30,27 @@ namespace sculptor {
         ~Polygon();
 
         void remove(Mesh *mesh);
+
+        vec3 calculate_normal() const;
+//        void add_normal(const vec3 normal);
+
+        void add_data(const string &name, float* data, int count);
+
+        float *get_data(const string &name) {
+          if (!data.count(name))
+            return nullptr;
+
+          return data[name].data();
+        }
+
+        float *get_data(const string &name, int index) {
+          if (!data.count(name))
+            return nullptr;
+
+          float *values = data[name].data();
+          auto step = data[name].size() / vertices.size();
+          return values + index * step;
+        }
     };
   }
 }

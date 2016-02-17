@@ -4,6 +4,8 @@
 namespace sculptor {
   namespace geometry {
     class MYTHIC_EXPORT Vertex {
+        vec3 position;
+
     public:
         Vertex(vec3 tvec3);
 
@@ -12,8 +14,12 @@ namespace sculptor {
         vector<Mesh *> meshes;
         vector<Polygon *> polygons;
         vector<Edge *> edges;
-        vec3 position;
         Edge *get_edge(Vertex *other);
+
+
+        const vec3 & get_position() const {
+          return position;
+        }
     };
   }
 }

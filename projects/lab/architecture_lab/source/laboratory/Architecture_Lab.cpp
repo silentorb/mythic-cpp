@@ -86,33 +86,33 @@ namespace laboratory {
     resources.add_font("text","resources/fonts/main.ttf");
 
     auto effect = shared_ptr<Spatial_Effect>(new Spatial_Effect(scenery::create_solid_program(shader_manager)));
-    auto mesh_data = modeling::mesh_export::output_textured(*mesh);
-    resources.add_mesh(mesh_data);
-
-    {
-      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
-      model->set_position(vec3(0, 25, 0));
-      scene->add(model);
-    }
-
-    {
-      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
-      model->set_position(vec3(5, 25, 0));
-      scene->add(model);
-    }
-
-    const float range = 100;
-    for (int i = 0; i < 300; ++i) {
-      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
-      auto position = vec3(
-        random_in_range(range),
-        random_in_range(range),
-        random_in_range(range)
-      );
-//      log_info("position %f, %f, %f", position.x, position.y, position.z);
-      model->set_position(position);
-      scene->add(model);
-    }
+//    auto mesh_data = modeling::mesh_export::output_textured(*mesh);
+//    resources.add_mesh(mesh_data);
+//
+//    {
+//      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+//      model->set_position(vec3(0, 25, 0));
+//      scene->add(model);
+//    }
+//
+//    {
+//      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+//      model->set_position(vec3(5, 25, 0));
+//      scene->add(model);
+//    }
+//
+//    const float range = 100;
+//    for (int i = 0; i < 300; ++i) {
+//      auto model = new Model(shared_ptr<Mesh_Data>(mesh_data), effect);
+//      auto position = vec3(
+//        random_in_range(range),
+//        random_in_range(range),
+//        random_in_range(range)
+//      );
+////      log_info("position %f, %f, %f", position.x, position.y, position.z);
+//      model->set_position(position);
+//      scene->add(model);
+//    }
 
     debug_text = unique_ptr<Text>(new Text(resources.get_font("text"), resources.get_text_effect(), "Hello World abcdefghijklmnopqrstuvwxyz"));
 //    debug_text = unique_ptr<Text>(new Text(resources.get_font("text"), resources.get_text_effect(), "Hello World QWERTYUIOPLKJHGFDSAZXCVBNM"));

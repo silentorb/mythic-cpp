@@ -31,7 +31,7 @@ namespace sculptor {
 
       vector<Vertex *> new_vertices;
       for (auto &original_vertex: original_vertices) {
-				auto temp = offset * vec4(original_vertex->position, 1);
+				auto temp = offset * vec4(original_vertex->get_position(), 1);
 				auto new_vector = vec3(temp);
 				auto new_vertex = mesh->add_vertex(new_vector);
         new_vertices.push_back(new_vertex);
