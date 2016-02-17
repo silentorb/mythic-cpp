@@ -40,6 +40,7 @@ namespace sculptor {
 //          add_edge(edge);
       }
 
+      polygon->set_normal(polygon->calculate_normal());
       return polygon;
     }
 
@@ -72,6 +73,15 @@ namespace sculptor {
         add_vertex(third));
       add_polygon(polygon);
       return polygon;
+    }
+
+    vec3 Mesh::get_center() const {
+      vec3 result = vec3(0);
+      for(auto vertex: vertices) {
+        result += vertex->get_position();
+      }
+
+      return result / (float)vertices.size();
     }
   }
 }

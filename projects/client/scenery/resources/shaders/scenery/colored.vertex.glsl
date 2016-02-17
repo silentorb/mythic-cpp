@@ -1,19 +1,19 @@
 
 #include <scenery/includes/scene>
 
-in vec3 input_position;
-in vec4 input_color;
-in vec3 input_normal;
+in vec3 position;
+in vec3 normal;
+in vec4 color;
 
-out vec4 color;
-out vec3 position;
-out vec3 normal;
+out vec4 fragment_color;
+out vec3 fragment_position;
+out vec3 fragment_normal;
 
 uniform mat4 model;
 
 void main() {
-	color = input_color;
-	position = input_position;
-	normal = input_normal;
-    gl_Position = projection * view * model * vec4(input_position, 1.0);
+	fragment_color = color;
+	fragment_position = position;
+	fragment_normal = normal;
+    gl_Position = projection * view * model * vec4(position, 1.0);
 }

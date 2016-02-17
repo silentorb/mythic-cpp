@@ -8,7 +8,6 @@ using namespace lookinglass;
 using namespace glm;
 
 namespace scenery {
-  namespace elements {
 
     class MYTHIC_EXPORT Element : public Renderable {
     private:
@@ -23,6 +22,7 @@ namespace scenery {
         void set_position(const vec3 &position) {
           this->position = position;
         }
+
+        virtual void render(Glass &glass) override;
     };
-  }
 }

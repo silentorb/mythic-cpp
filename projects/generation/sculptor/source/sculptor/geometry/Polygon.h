@@ -15,6 +15,7 @@ namespace sculptor {
         void initialize();
         void add_vertex(Vertex *vertex);
         Vertex_Data data;
+        vec3 normal;
 
     public:
         vector<Mesh *> meshes;
@@ -34,7 +35,7 @@ namespace sculptor {
         vec3 calculate_normal() const;
 //        void add_normal(const vec3 normal);
 
-        void add_data(const string &name, float* data, int count);
+        void set_data(const string &name, float* data, int count);
 
         float *get_data(const string &name) {
           if (!data.count(name))
@@ -51,6 +52,16 @@ namespace sculptor {
           auto step = data[name].size() / vertices.size();
           return values + index * step;
         }
+
+        const vec3 &get_normal() const {
+          return normal;
+        }
+
+        void set_normal(const vec3 &normal) {
+          Polygon::normal = normal;
+        }
+
+        vec3 get_center()const;
     };
   }
 }

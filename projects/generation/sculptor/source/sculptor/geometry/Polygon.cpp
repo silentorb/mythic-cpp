@@ -76,16 +76,34 @@ namespace sculptor {
       vec3 first = vertices[0]->get_position(),
         second = vertices[1]->get_position(),
         third = vertices[2]->get_position();
-      return glm::cross(first - second, third - second);
+      auto result = glm::normalize(glm::cross(first - second, third - second));
+      auto a = get_center() + result;
+      auto b = get_center() - result;
+      return a.length() > b.length() ? result : -result;
     }
 
 //    void Polygon::add_normal(const vec3 normal) {
 //      normals.push_back(normal);
 //    }
 
-    void Polygon::add_data(const string &name, float *values, int count) {
-      data.insert(Vertex_Data::value_type(name, vector<float>()));
-      data[name].assign(values, values + count);
+    void Polygon::set_data(const string &name, float *values, int count) {
+      data.insert(Vertex_Data::value_type(name, vector<float>(vertices.size() * count)));
+//      data[name].assign(values, values + count);
+      float *entry = data[name].data();
+      for (int i = 0; i < vertices.size(); ++i) {
+        for (int j = 0; j < count; ++j) {
+          *entry++ = values[j];
+        }
+      }
+    }
+
+    vec3 Polygon::get_center() const {
+      vec3 result = vec3(0);
+      for (auto vertex: vertices) {
+        result += vertex->get_position();
+      }
+
+      return result / (float)vertices.size();
     }
   }
 }

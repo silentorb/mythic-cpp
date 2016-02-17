@@ -39,7 +39,7 @@ using namespace lookinglass;
         GLint message_length;
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &message_length);
         GLchar *message = new GLchar[message_length + 1];
-        glGetShaderInfoLog(id, 255, &message_length, message);
+        glGetShaderInfoLog(id, 512, &message_length, message);
         log_info("Failed code: %s", source_code.c_str());
         throw std::runtime_error(std::string("Failed to compile shader code.  ") + message);
       }

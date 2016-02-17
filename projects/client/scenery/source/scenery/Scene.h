@@ -6,7 +6,7 @@
 #include <vector>
 #include <scenery/elements/Model.h>
 
-using namespace scenery::elements;
+using namespace scenery;
 using namespace lookinglass;
 
 namespace scenery {
@@ -16,7 +16,7 @@ namespace scenery {
       std::vector<Element *> elements;
   public:
       virtual void render(Glass &glass);
-      void add(elements::Element *element);
+      void add(Element *element);
   };
 }
 

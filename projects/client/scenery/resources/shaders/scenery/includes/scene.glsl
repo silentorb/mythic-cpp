@@ -11,7 +11,7 @@ struct Light {
 };
 
 const int MAX_LIGHTS = 8;
-layout(binding = 2, std140) uniform struct Lightingness{
-	int count;
+layout(binding = 2, std140) uniform struct _Lightingness {
 	Light lights[MAX_LIGHTS];
+	int count;
 } Lighting;

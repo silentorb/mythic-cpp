@@ -9,7 +9,7 @@ namespace scenery {
     }
   }
 
-  void Scene::add(elements::Element *element) {
+  void Scene::add(Element *element) {
     elements.push_back(element);
   }
 }

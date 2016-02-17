@@ -1,7 +1,7 @@
 #include "Element.h"
 
 namespace scenery {
-  namespace elements {
-    
+  void Element::render(Glass &glass) {
+
   }
 }

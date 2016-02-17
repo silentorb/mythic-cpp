@@ -11,6 +11,7 @@ namespace scenery {
 
   void Spatial_Effect::activate(mat4 &transform) {
     Effect::activate();
+
     unsigned int model = glGetUniformLocation(program->get_id(), "model");
 		if (model != -1) {
 			glUniformMatrix4fv(model, 1, GL_FALSE, (float*)&transform);

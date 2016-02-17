@@ -8,7 +8,9 @@ namespace lookinglass {
         matrix,
         vector3,
         integer,
-        floating_point
+        floating_point,
+        structure,
+        array
     };
 
     const int Field_Type_Lengths[] = {
@@ -16,6 +18,8 @@ namespace lookinglass {
       sizeof(glm::vec3),
       sizeof(int),
       sizeof(float),
+      sizeof(void*),
+      sizeof(void*)
     };
   }
 }

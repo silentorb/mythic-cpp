@@ -14,7 +14,7 @@
 #include "scenery/Scene_Shaders.h"
 #include "typography/Text.h"
 
-using namespace scenery::elements;
+using namespace scenery;
 using namespace typography;
 
 namespace laboratory {

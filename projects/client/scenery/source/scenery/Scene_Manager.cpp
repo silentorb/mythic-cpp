@@ -4,13 +4,31 @@
 
 namespace scenery {
 
-  Scene_Manager::Scene_Manager(lookinglass::House &house) {
-    auto scene_definition = new Struct_Info(1, "", {
-      new Field_Info("view", Field_Type::matrix),
-      new Field_Info("projection", Field_Type::matrix),
-      new Field_Info("camera_direction", Field_Type::vector3)
+  Scene_Manager::Scene_Manager(lookinglass::House &house) :
+    lighting(new Lighting_Data()) {
+
+    lighting->count = 0;
+
+    auto scene_definition = new Struct_Info(2, "Lighting", {
+//      new Field_Info("lights", Field_Type::array, new Field_Info("Light", Field_Type::structure)),
+      new Field_Info("count", Field_Type::integer),
     });
     lighting_mist = unique_ptr<Mist<Lighting_Data>>(
       create_mist<Lighting_Data>(scene_definition, house.get_capabilities()));
+  }
+
+  void Scene_Manager::update_lights() {
+    lighting_mist->update(lighting.get());
+  }
+
+  void Scene_Manager::update() {
+    update_lights();
+  }
+
+  Light_Data &Scene_Manager::add_light() {
+    lighting->count++;
+    Light_Data *light = &lighting->lights[lighting->count - 1];
+    memset(light, 0, sizeof(Light_Data));
+    return *light;
   }
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include "declarations.h"
@@ -6,8 +7,8 @@
 namespace sculptor {
   namespace geometry {
     class MYTHIC_EXPORT Mesh {
-		private:
-			vector<Edge *> edges;
+    private:
+        vector<Edge *> edges;
 
     public:
         Mesh();
@@ -28,6 +29,8 @@ namespace sculptor {
         const vector<Edge *> &get_edges() const {
           return edges;
         }
+
+        vec3 get_center() const;
     };
 
   }
