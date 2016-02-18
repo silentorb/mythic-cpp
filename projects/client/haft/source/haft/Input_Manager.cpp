@@ -15,6 +15,10 @@ namespace haft {
 
     previous_state = move(current_state);
     current_state = unique_ptr<Input_State>(source->get_input_state());
+
+    current_state->set_previous(previous_state.get());
+    previous_state->set_previous(nullptr);
+
     for (auto &interpreter: gesture_interpreters) {
       interpreter->interpret(*current_state, *current_state);
     }

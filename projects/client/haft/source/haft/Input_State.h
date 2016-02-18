@@ -17,6 +17,7 @@ namespace haft {
       vector<unique_ptr<Gesture>> gestures;
       vector<unique_ptr<Event>> events;
       ivec2 position;
+      Input_State *previous;
 
       Input_State(const Input_State &) = delete;
 
@@ -67,6 +68,18 @@ namespace haft {
 
       void set_position(const ivec2 &position) {
         Input_State::position = position;
+      }
+
+      Input_State *get_previous() const {
+        return previous;
+      }
+
+      void set_previous(Input_State *previous) {
+        this->previous = previous;
+      }
+
+      bool just_pressed(const Action &action) const {
+        return get_event(action) && (!previous || !previous->get_event(action));
       }
   };
 }
