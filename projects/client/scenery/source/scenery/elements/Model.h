@@ -2,7 +2,7 @@
 
 #include "dllexport.h"
 
-#include<memory>
+#include <memory>
 #include <scenery/Spatial_Effect.h>
 #include "Element.h"
 #include "glm/glm.hpp"
@@ -18,12 +18,12 @@ namespace scenery {
 
   class MYTHIC_EXPORT Model : public Element {
   private:
-      shared_ptr<Mesh_Data> mesh_data;
-      shared_ptr<Spatial_Effect> effect;
+      Mesh_Data *mesh_data;
+      Spatial_Effect *effect;
       mat4 tranform;
 
   public:
-      Model(shared_ptr<Mesh_Data> mesh_data, shared_ptr<Spatial_Effect> effect);
+      Model(Mesh_Data *mesh_data, Spatial_Effect *effect);
       void render(Glass &glass);
       mat4 *get_transform();
   };

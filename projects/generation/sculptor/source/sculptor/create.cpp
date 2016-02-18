@@ -13,10 +13,16 @@ namespace sculptor {
       auto half = size * 0.5f;
       auto mesh = new Mesh();
       Polygon *polygon = mesh->add_polygon(
-        vec3(-half.x, half.y, half.z),
+//        vec3(-half.x, half.y, half.z),
+//        vec3(half.x, half.y, half.z),
+//        vec3(half.x, -half.y, half.z),
+//        vec3(-half.x, -half.y, half.z)
+
+      vec3(-half.x, -half.y, half.z),
+      vec3(half.x, -half.y, half.z),
         vec3(half.x, half.y, half.z),
-        vec3(half.x, -half.y, half.z),
-        vec3(-half.x, -half.y, half.z)
+        vec3(-half.x, half.y, half.z)
+
       );
       polygon->set_normal(vec3(0, 0, 1));
 

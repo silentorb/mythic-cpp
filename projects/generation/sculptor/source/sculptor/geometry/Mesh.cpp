@@ -87,7 +87,9 @@ namespace sculptor {
     }
 
     void Mesh::add_vertices(vec3 *points, int count) {
-
+			for (size_t i = 0; i < count; i++) {
+				add_vertex(points[i]);
+			}
     }
   }
 }
