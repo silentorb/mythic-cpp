@@ -4,8 +4,7 @@
 namespace sculptor {
   namespace geometry {
 
-    template<typename Iterator>
-    Polygon::Polygon(Iterator source) {
+    Polygon::Polygon(initializer_list<Vertex *> source) {
       for (Vertex *vertex : source) {
         add_vertex(vertex);
       }
@@ -103,7 +102,7 @@ namespace sculptor {
         result += vertex->get_position();
       }
 
-      return result / (float)vertices.size();
+      return result / (float) vertices.size();
     }
   }
 }

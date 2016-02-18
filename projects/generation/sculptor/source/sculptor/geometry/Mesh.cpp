@@ -1,5 +1,5 @@
 #include "sculptor/geometry.h"
-#include "vectoring/utility.h"
+//#include "vectoring/utility.h"
 
 using namespace std;
 
@@ -8,10 +8,6 @@ namespace sculptor {
     Mesh::Mesh() {
 
     }
-
-//    Mesh_Pointer Mesh::get_shared() {
-//      return std::make_shared<Mesh>(&this);
-//    }
 
     Vertex *Mesh::add_vertex(Vertex *vertex) {
       vertices.push_back(vertex);
@@ -33,7 +29,7 @@ namespace sculptor {
       }
 
       for (auto edge : polygon->edges) {
-        if (!vector_contains(edges, edge)){
+        if (!vector_contains(edges, edge)) {
           edges.push_back(edge);
           edge->meshes.push_back(this);
         }
@@ -44,16 +40,22 @@ namespace sculptor {
       return polygon;
     }
 
-    template<typename Iterator>
-    Polygon *Mesh::add_polygon(Iterator vertices) {
+//    template<typename Iterator>
+//    Polygon *Mesh::add_polygon(Iterator vertices) {
+//      auto polygon = new Polygon(vertices);
+//      add_polygon(polygon);
+//    }
+
+    Polygon *Mesh::add_polygon(std::initializer_list<Vertex *> vertices) {
       auto polygon = new Polygon(vertices);
       add_polygon(polygon);
+      return polygon;
     }
 
     Polygon *Mesh::add_polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth) {
       auto polygon = new Polygon(first, second, third, fourth);
       add_polygon(polygon);
-			return polygon;
+      return polygon;
     }
 
     Polygon *Mesh::add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth) {
@@ -63,7 +65,7 @@ namespace sculptor {
         add_vertex(third),
         add_vertex(fourth));
       add_polygon(polygon);
-			return polygon;
+      return polygon;
     }
 
     Polygon *Mesh::add_polygon(vec3 first, vec3 second, vec3 third) {
@@ -77,11 +79,15 @@ namespace sculptor {
 
     vec3 Mesh::get_center() const {
       vec3 result = vec3(0);
-      for(auto vertex: vertices) {
+      for (auto vertex: vertices) {
         result += vertex->get_position();
       }
 
-      return result / (float)vertices.size();
+      return result / (float) vertices.size();
+    }
+
+    void Mesh::add_vertices(vec3 *points, int count) {
+
     }
   }
 }

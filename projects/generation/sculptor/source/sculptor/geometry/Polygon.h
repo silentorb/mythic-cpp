@@ -24,11 +24,20 @@ namespace sculptor {
 //        vector<vec3> normals;
 //        vector<vec2> uvs;
 
-        template<typename Iterator>
-        Polygon(Iterator vertices);
+//        template<typename Iterator>
+//        Polygon(Iterator vertices);
+        Polygon(initializer_list<Vertex *>);
         Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         Polygon(Vertex *first, Vertex *second, Vertex *third);
         ~Polygon();
+
+//        Polygon(initializer_list<Vertex *> source) {
+//          for (Vertex *vertex : source) {
+//            add_vertex(vertex);
+//          }
+//
+//          initialize();
+//        }
 
         void remove(Mesh *mesh);
 
