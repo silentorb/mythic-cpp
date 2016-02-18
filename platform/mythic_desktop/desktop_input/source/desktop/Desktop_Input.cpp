@@ -1,3 +1,4 @@
+#include <SDL2/SDL_mouse.h>
 #include "Desktop_Input.h"
 #include "Device_Type.h"
 #include "Gamepad_Trigger.h"
@@ -17,7 +18,11 @@ namespace desktop {
   }
 
   void Desktop_Input::initialize_mouse() {
-    mouse = new Device("mouse");
+    mouse = new Device("mouse", {
+      new Trigger("Left", 1),
+      new Trigger("Right", 2),
+      new Trigger("Middle", 3),
+    });
     config.add_device(mouse);
   }
 
@@ -62,7 +67,17 @@ namespace desktop {
   }
 
   void Desktop_Input::update_mouse(Input_State &state) {
+    ivec2 point;
+    auto buttons = SDL_GetMouseState(&point.x, &point.y);
+    state.set_position(point);
 
+    for (int i = 0; i <= 2; i++) {
+      auto &trigger = mouse->get_trigger(i);
+      if (trigger.get_action()) {
+        if (trigger.get_id() < 4 && (buttons & trigger.get_id()) != 0)
+          state.add_event(*trigger.get_action());
+      }
+    }
   }
 
   void Desktop_Input::update_gamepad(Input_State &state) {
@@ -91,10 +106,10 @@ namespace desktop {
     check_axis(SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_RIGHTY),
                gamepad, Gamepad_Trigger::RS_Up, state);
 
-		check_positive_direction(SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) / 32767.5,
+    check_positive_direction(SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) / 32767.5,
                              gamepad->get_trigger(Gamepad_Trigger::LTrigger), state);
 
-		check_positive_direction(SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) / 32767.5,
+    check_positive_direction(SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) / 32767.5,
                              gamepad->get_trigger(Gamepad_Trigger::RTrigger), state);
   }
 

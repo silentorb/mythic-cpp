@@ -63,10 +63,10 @@ namespace typography {
 
       auto texture_width = (float) character->size.x / font.get_dimensions().x;
 
-      vertices[step + 0] = Vertex(x, y, 0, character->offset + character->height);
-      vertices[step + 1] = Vertex(x, y + height, 0, character->offset);
-      vertices[step + 2] = Vertex(x + width, y + height, texture_width, character->offset);
-      vertices[step + 3] = Vertex(x + width, y, texture_width, character->offset + character->height);
+      vertices[step + 5] = Vertex(x, y, 0, character->offset + character->height);
+      vertices[step + 4] = Vertex(x, y + height, 0, character->offset);
+      vertices[step + 3] = Vertex(x + width, y + height, texture_width, character->offset);
+      vertices[step + 2] = Vertex(x + width, y, texture_width, character->offset + character->height);
 
 //			x = 0;
 //			y = -1450;
@@ -77,8 +77,8 @@ namespace typography {
 //			vertices[step + 2] = Vertex(x + width, y + height, 1, 0);
 //			vertices[step + 3] = Vertex(x + width, y, 1, 1);
 
-      vertices[step + 4] = vertices[step + 0];
-      vertices[step + 5] = vertices[step + 2];
+      vertices[step + 1] = vertices[step + 5];
+      vertices[step + 0] = vertices[step + 3];
       step += 6;
       //                left += (character->advance >> 6);
       left += character->size.x + 6;

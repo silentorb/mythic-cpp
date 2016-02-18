@@ -35,7 +35,7 @@ namespace sculptor {
       auto points = new vec3[vertical_count];
       operations::circle_vertices(points, vertical_count, radius, M_PI);
       operations::transform(points, glm::eulerAngleX((float)M_PI_2), vertical_count);
-      return operations::lathe(points, horizontal_count, degrees);
+			return operations::lathe(points, vertical_count, horizontal_count, degrees);
     }
   }
 }

@@ -50,7 +50,7 @@ namespace sculptor {
       return result;
     }
 
-    Vertex **clone(Vertex **source, mat4 offset, int count) {
+    Vertex **clone(Vertex **source, mat4 &offset, int count) {
       if (count == 0)
         return nullptr;
 
@@ -64,14 +64,14 @@ namespace sculptor {
       return result;
     }
 
-    Mesh *lathe(vec3 *vertices, int point_count, float degrees) {
+    Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees) {
       auto mesh = new Mesh();
-      mesh->add_vertices(vertices, point_count);
-      auto first = mesh->get_vertex(0);
-      auto last = mesh->get_vertex(mesh->get_vertex_count() - 1);
+      mesh->add_vertices(vertices, vertical_count);
+      auto &first = mesh->get_vertex(0);
+      auto &last = mesh->get_vertex(mesh->get_vertex_count() - 1);
 //      auto previous = mesh->vertices.Skip(1).Take(vertices.Length - 2).ToArray();
-      auto previous = get_slice(mesh->get_vertex_data(), 1, point_count - 2);
-      int previous_count = point_count - 3;
+      auto previous = get_slice(mesh->get_vertex_data(), 1, vertical_count - 2);
+      int previous_count = vertical_count - 3;
       auto rotation = glm::eulerAngleZ(degrees / point_count);
 
       for (int i = 0; i < point_count; i++) {
@@ -90,7 +90,7 @@ namespace sculptor {
                               previous[j],
                             });
         }
-        //
+
         mesh->add_polygon({
                             next[previous_count - 1],
                             previous[previous_count - 1],
@@ -103,7 +103,7 @@ namespace sculptor {
       return mesh;
     }
 
-    vec3 transform(vec3 point, mat4 matrix) {
+    vec3 transform(const vec3 point, const mat4 matrix) {
       return vec3(matrix * vec4(point, 1));
     }
   }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 
 #include "glm/glm.hpp"
@@ -7,7 +8,7 @@
 #include "lookinglass/through/Mist.h"
 
 using namespace glm;
-using namespace lookinglass:: through;
+using namespace lookinglass::through;
 
 namespace lookinglass {
   namespace perspective {
@@ -52,9 +53,11 @@ namespace lookinglass {
           return dimensions.y;
         }
 
-        const ivec2& get_dimensions() const {
+        const ivec2 &get_dimensions() const {
           return dimensions;
         }
+
+        void shoot_ray(const ivec2 &point, vec3 &start, vec3 &end) const;
     };
   }
 }

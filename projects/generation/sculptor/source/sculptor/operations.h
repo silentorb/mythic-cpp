@@ -19,8 +19,8 @@ namespace sculptor {
 
     MYTHIC_EXPORT void transform(vec3 *points, mat4 matrix, int count);
 
-    MYTHIC_EXPORT Mesh *lathe(vec3 *vertices, int point_count, float degrees = M_PI * 2);
+    MYTHIC_EXPORT Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees = M_PI * 2);
 
-    vec3 transform(vec3 point, mat4 matrix);
+    vec3 transform(const vec3 point, const mat4 matrix);
   }
 }

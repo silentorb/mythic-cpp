@@ -8,6 +8,10 @@ namespace sculptor {
       : position(vector) {
     }
 
+    Vertex::~Vertex() {
+
+    }
+
     template<typename Iterator>
     Vertex::Vertex(vec3 vector, Iterator new_meshes)
       : position(vector) {

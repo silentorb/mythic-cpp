@@ -44,5 +44,22 @@ namespace lookinglass {
       data.camera_direction = camera->get_orientation() * vec3(0, 1, 0);
       mist.update(&data);
     }
+
+    void Viewport::shoot_ray(const ivec2 &point, vec3 &start, vec3 &end) const {
+//      float x = (2.0f * point.x) / dimensions.x - 1.0f;
+//      float y = 1.0f - (2.0f * point.y) / dimensions.y;
+//      vec4 ray_clip = vec4(x, 1, y, 1.0);
+//      vec4 ray_eye = inverse(projection) * ray_clip;
+//      ray_eye = vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+//      vec3 ray_wor = vec3(inverse(camera->get_view_matrix()) * ray_eye);
+//      ray_wor = glm::normalize(ray_wor);
+
+      int y = dimensions.y - point.y;
+      auto bounds = vec4(left, top, dimensions.x, dimensions.y);
+
+      start = glm::unProject(vec3(float(point.x), float(y), 0), camera->get_view_matrix(), projection, bounds);
+      end = glm::unProject(vec3(float(point.x), float(y), 1), camera->get_view_matrix(), projection, bounds);
+
+    }
   }
 }

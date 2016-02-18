@@ -9,7 +9,7 @@ using namespace glm;
 
 namespace scenery {
 
-    class MYTHIC_EXPORT Element : public Renderable {
+    class MYTHIC_EXPORT Element : public Renderable, no_copy {
     private:
         vec3 position;
 

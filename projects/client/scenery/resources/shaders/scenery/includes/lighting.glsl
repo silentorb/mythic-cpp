@@ -4,7 +4,7 @@ const float linear_attenuation = 0.2;
 const float quadratic_attenuation = 0.05;
 const float shininess = 0.9;
 const float strength = 0.3;
-const vec3 ambient = vec3(0.1, 0.1, 0.1) * 5.0;
+const vec3 ambient = vec3(0.1);
 
 struct Relationship {
     vec3 direction;
@@ -13,11 +13,10 @@ struct Relationship {
 
 Relationship get_relationship(Light light) {
     Relationship info;
-    vec3 light_position = light.position;
-	info.direction = vec3(1) - fragment_position;
+	info.direction = normalize(light.position - fragment_position);
 	info.distance = length(info.direction);
 
-	info.direction = info.direction / info.distance;
+//	info.direction = info.direction / info.distance;
 	return info;
 }
 
@@ -39,8 +38,9 @@ vec3 process_light(Light light, vec4 input_color) {
 
 	vec3 half_vector = normalize(info.direction + camera_direction);
 
-	float diffuse = max(0.0, dot(fragment_normal, camera_direction * 0.8));
+	float diffuse = max(0.0, dot(fragment_normal, info.direction * 0.8));
 	float specular = max(0.0, dot(fragment_normal, half_vector));
+//	diffuse = diffuse > 0.1 ? 2 : 0;
 
 	if (diffuse == 0.0)
 		specular = 0.0;
@@ -50,7 +50,7 @@ vec3 process_light(Light light, vec4 input_color) {
 	//specular = 0;
 	vec3 scattered_light = ambient + light.color * diffuse * attenuation;
 	vec3 reflected_light = light.color * specular * attenuation;
-//	return reflected_light;
+//	return scattered_light;
 	vec3 rgb = min(input_color.rgb * scattered_light + reflected_light, vec3(1.0));
 	return rgb;
 }

@@ -38,6 +38,7 @@ add_subdirectory(projects/misc/math)
 add_subdirectory(projects/misc/vectoring)
 add_subdirectory(projects/misc/textual)
 add_subdirectory(projects/misc/spatial)
+add_subdirectory(projects/misc/random)
 add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)

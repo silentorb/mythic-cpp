@@ -18,7 +18,7 @@ namespace lookinglass {
         quat orientation;
 
     public:
-        mat4 get_view_matrix();
+        virtual mat4 get_view_matrix();
 
         const vec3 &get_position() const override {
           return position;

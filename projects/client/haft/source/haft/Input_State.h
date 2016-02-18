@@ -16,9 +16,11 @@ namespace haft {
   class Input_State : public Event_Consumer, public Gesture_Container {
       vector<unique_ptr<Gesture>> gestures;
       vector<unique_ptr<Event>> events;
+      ivec2 position;
+
       Input_State(const Input_State &) = delete;
+
   public:
-      vec2 mouse_position;
 
       Input_State() { }
 
@@ -57,6 +59,14 @@ namespace haft {
 
       vector<unique_ptr<Event>>::const_iterator events_end() const {
         return events.end();
+      }
+
+      const ivec2 &get_position() const {
+        return position;
+      }
+
+      void set_position(const ivec2 &position) {
+        Input_State::position = position;
       }
   };
 }

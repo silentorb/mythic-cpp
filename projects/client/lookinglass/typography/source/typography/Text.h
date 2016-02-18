@@ -52,20 +52,24 @@ namespace typography {
 
       void set_content(const string &content) {
         Text::content = content;
+				changed = true;
       }
 
       virtual void render(lookinglass::Glass &glass) override;
 
       void set_color(const vec4 value) {
         color = value;
-      }
+				changed = true;
+			}
 
       void set_position(const ivec2 &value) {
         position = value;
-      }
+				changed = true;
+			}
 
       void set_size(float value) {
         size = value;
-      }
+				changed = true;
+			}
   };
 }
