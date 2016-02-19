@@ -9,7 +9,7 @@ using namespace glm;
 namespace sculptor {
   namespace create {
 
-    Mesh *box(vec3 size) {
+    Mesh*square(vec2 size, float z){
       auto half = size * 0.5f;
       auto mesh = new Mesh();
       Polygon *polygon = mesh->add_polygon(
@@ -18,16 +18,20 @@ namespace sculptor {
 //        vec3(half.x, -half.y, half.z),
 //        vec3(-half.x, -half.y, half.z)
 
-      vec3(-half.x, -half.y, half.z),
-      vec3(half.x, -half.y, half.z),
-        vec3(half.x, half.y, half.z),
-        vec3(-half.x, half.y, half.z)
-
+        vec3(-half.x, -half.y, z),
+        vec3(half.x, -half.y, z),
+        vec3(half.x, half.y, z),
+        vec3(-half.x, half.y, z)
       );
-      polygon->set_normal(vec3(0, 0, 1));
+//      polygon->set_normal(vec3(0, 0, 1));
+      return mesh;
+    }
 
+    Mesh *box(vec3 size) {
+      auto half = size * 0.5f;
+      auto mesh = square(vec2(size.x, size.y), half.z);
       auto transform = glm::translate(vec3(0, 0, -size.z));
-      sculptor::operations::extrude(mesh->get_edges(), transform, true);
+      operations::extrude(mesh->get_edges(), transform, true);
       return mesh;
     }
 

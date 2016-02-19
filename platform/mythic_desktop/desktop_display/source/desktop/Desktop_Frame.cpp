@@ -50,7 +50,7 @@ namespace desktop {
 			throw std::runtime_error("Could not load OpenGL functions.");
 		}
 #endif
-		glFrontFace(GL_CW);
+//		glFrontFace(GL_CW);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 

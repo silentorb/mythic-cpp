@@ -12,6 +12,14 @@ namespace sculptor {
       initialize();
     }
 
+    Polygon::Polygon(const Selection &selection) {
+      for (int i = 0; i < selection.size(); ++i) {
+        add_vertex(selection[i]);
+      }
+
+      initialize();
+    }
+
     Polygon::Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth) {
       add_vertex(first);
       add_vertex(second);
@@ -75,10 +83,11 @@ namespace sculptor {
       vec3 first = vertices[0]->get_position(),
         second = vertices[1]->get_position(),
         third = vertices[2]->get_position();
-      auto result = glm::normalize(glm::cross(first - second, third - second));
-      auto a = get_center() + result;
-      auto b = get_center() - result;
-      return a.length() > b.length() ? result : -result;
+
+      // The order of cross arguments is essential in this case.
+      // calculate_normal is relying on the order of vertices
+      // to have the cross product face in the right direction.
+      return glm::normalize(glm::cross(third - second, first - second));
     }
 
 //    void Polygon::add_normal(const vec3 normal) {
@@ -103,6 +112,19 @@ namespace sculptor {
       }
 
       return result / (float) vertices.size();
+    }
+
+    const vector<int> Polygon::get_indices(const Mesh &mesh) const {
+      vector<int> result(vertices.size());
+      for (int i = 0; i < vertices.size(); ++i) {
+        result[i] = mesh.get_vertex_index(*vertices[i]);
+      }
+
+      return result;
+    }
+
+    void Polygon::flip() {
+      std::reverse(vertices.begin(), vertices.end());
     }
   }
 }

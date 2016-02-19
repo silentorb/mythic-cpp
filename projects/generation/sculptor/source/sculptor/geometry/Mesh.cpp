@@ -91,5 +91,9 @@ namespace sculptor {
 				add_vertex(points[i]);
 			}
     }
+
+    int Mesh::get_vertex_index(Vertex &vertex) const {
+     return std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin();
+    }
   }
 }

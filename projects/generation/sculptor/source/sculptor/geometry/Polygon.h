@@ -29,6 +29,7 @@ namespace sculptor {
         Polygon(initializer_list<Vertex *>);
         Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         Polygon(Vertex *first, Vertex *second, Vertex *third);
+        Polygon(const Selection &selection);
         ~Polygon();
 
 //        Polygon(initializer_list<Vertex *> source) {
@@ -44,7 +45,7 @@ namespace sculptor {
         vec3 calculate_normal() const;
 //        void add_normal(const vec3 normal);
 
-        void set_data(const string &name, float* data, int count);
+        void set_data(const string &name, float *data, int count);
 
         float *get_data(const string &name) {
           if (!data.count(name))
@@ -70,7 +71,11 @@ namespace sculptor {
           Polygon::normal = normal;
         }
 
-        vec3 get_center()const;
+        vec3 get_center() const;
+
+        const vector<int> get_indices(const Mesh & mesh) const;
+
+        void flip();
     };
   }
 }
