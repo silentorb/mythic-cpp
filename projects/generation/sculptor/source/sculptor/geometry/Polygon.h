@@ -27,9 +27,9 @@ namespace sculptor {
 //        template<typename Iterator>
 //        Polygon(Iterator vertices);
         Polygon(initializer_list<Vertex *>);
+        Polygon(const Selection &selection);
         Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         Polygon(Vertex *first, Vertex *second, Vertex *third);
-        Polygon(const Selection &selection);
         ~Polygon();
 
 //        Polygon(initializer_list<Vertex *> source) {

@@ -4,12 +4,12 @@
 namespace scenery {
 
   void Scene::render(Glass &glass) {
-    for (auto element: elements) {
+    for (auto &element: elements) {
       element->render(glass);
     }
   }
 
   void Scene::add(Element *element) {
-    elements.push_back(element);
+    elements.push_back(unique_ptr<Element>(element));
   }
 }

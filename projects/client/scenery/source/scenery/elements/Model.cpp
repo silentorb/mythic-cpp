@@ -7,13 +7,15 @@ namespace scenery {
 
   }
 
-  mat4 *Model::get_transform() {
-    tranform = glm::translate(glm::mat4(1.f), get_position());
-    return &tranform;
-  }
+//  mat4 *Model::get_transform() {
+//    tranform = glm::translate(glm::mat4(1.f), get_position());
+//    return &tranform;
+//  }
 
   void Model::render(Glass &glass) {
-    effect->activate(*get_transform());
+    auto transform = get_transform();
+//    auto transform = glm::translate(glm::mat4(1.f), get_position());
+    effect->activate(transform);
 
     glass.draw_mesh(*mesh_data, effect->get_draw_method());
   }

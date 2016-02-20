@@ -9,7 +9,7 @@ using namespace glm;
 namespace sculptor {
   namespace create {
 
-    Mesh*square(vec2 size, float z){
+    Mesh *square(vec2 size, float z) {
       auto half = size * 0.5f;
       auto mesh = new Mesh();
       Polygon *polygon = mesh->add_polygon(
@@ -18,10 +18,11 @@ namespace sculptor {
 //        vec3(half.x, -half.y, half.z),
 //        vec3(-half.x, -half.y, half.z)
 
-        vec3(-half.x, -half.y, z),
-        vec3(half.x, -half.y, z),
-        vec3(half.x, half.y, z),
-        vec3(-half.x, half.y, z)
+        {vec3(-half.x, -half.y, z),
+         vec3(half.x, -half.y, z),
+         vec3(half.x, half.y, z),
+         vec3(-half.x, half.y, z)
+        }
       );
 //      polygon->set_normal(vec3(0, 0, 1));
       return mesh;
@@ -38,8 +39,8 @@ namespace sculptor {
     Mesh *sphere(int vertical_count, int horizontal_count, float radius, float degrees) {
       auto points = new vec3[vertical_count];
       operations::circle_vertices(points, vertical_count, radius, M_PI);
-      operations::transform(points, glm::eulerAngleX((float)M_PI_2), vertical_count);
-			return operations::lathe(points, vertical_count, horizontal_count, degrees);
+      operations::transform(points, glm::eulerAngleX((float) M_PI_2), vertical_count);
+      return operations::lathe(points, vertical_count, horizontal_count, degrees);
     }
   }
 }

@@ -58,12 +58,13 @@ namespace sculptor {
       return polygon;
     }
 
-    Polygon *Mesh::add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth) {
-      auto polygon = new Polygon(
-        add_vertex(first),
-        add_vertex(second),
-        add_vertex(third),
-        add_vertex(fourth));
+    Polygon *Mesh::add_polygon(initializer_list<vec3> vectors) {
+      Selection selection;
+      for (auto &v: vectors) {
+        auto vertex = add_vertex(v);
+        selection.push_back(vertex);
+      }
+      auto polygon = new Polygon(selection);
       add_polygon(polygon);
       return polygon;
     }
@@ -87,13 +88,13 @@ namespace sculptor {
     }
 
     void Mesh::add_vertices(vec3 *points, int count) {
-			for (size_t i = 0; i < count; i++) {
-				add_vertex(points[i]);
-			}
+      for (size_t i = 0; i < count; i++) {
+        add_vertex(points[i]);
+      }
     }
 
     int Mesh::get_vertex_index(Vertex &vertex) const {
-     return std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin();
+      return std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin();
     }
   }
 }
