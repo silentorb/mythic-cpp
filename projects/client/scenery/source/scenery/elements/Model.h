@@ -22,7 +22,7 @@ namespace scenery {
       Spatial_Effect *effect;
 
   public:
-      Model(Mesh_Data *mesh_data, Spatial_Effect *effect);
+      Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent & parent);
       void render(Glass &glass);
   };
 }

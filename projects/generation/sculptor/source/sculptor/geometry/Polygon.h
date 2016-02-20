@@ -73,7 +73,7 @@ namespace sculptor {
 
         vec3 get_center() const;
 
-        const vector<int> get_indices(const Mesh & mesh) const;
+        const vector<int> get_indices(const Selection & selection) const;
 
         void flip();
     };

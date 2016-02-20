@@ -2,8 +2,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace scenery {
-  Model::Model(Mesh_Data* mesh_data, Spatial_Effect *effect)
-    : mesh_data(mesh_data), effect(effect) {
+  Model::Model(Mesh_Data* mesh_data, Spatial_Effect *effect, Parent & parent)
+    : mesh_data(mesh_data), effect(effect), Element(parent) {
 
   }
 

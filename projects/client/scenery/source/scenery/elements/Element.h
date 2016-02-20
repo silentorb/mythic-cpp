@@ -5,6 +5,7 @@
 
 #include "lookinglass/Renderable.h"
 #include "glm/glm.hpp"
+#include "Parent.h"
 
 using namespace lookinglass;
 using namespace glm;
@@ -17,11 +18,17 @@ namespace scenery {
       vec3 position;
       quat orientation;
       vec3 scale;
-      Group *parent;
+      Parent *parent;
+      bool visible;
 
   public:
-      Element() :
-        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(nullptr) { }
+//      Element() :
+//        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(nullptr) { }
+
+      Element(Parent &parent) :
+        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(&parent), visible(true) {
+        parent.add(unique_ptr<Element>(this));
+      }
 
       const vec3 &get_position() const {
         return position;
@@ -33,11 +40,11 @@ namespace scenery {
 
       virtual void render(Glass &glass) override;
 
-      Group *get_parent() const {
+      Parent *get_parent() const {
         return parent;
       }
 
-      void set_parent(Group *parent) {
+      void set_parent(Parent *parent) {
         this->parent = parent;
       }
 
@@ -57,6 +64,14 @@ namespace scenery {
         this->scale = scale;
       }
 
-      mat4 get_transform() const;
+      virtual mat4 get_transform();
+
+      bool is_visible()const {
+        return visible;
+      }
+
+      void set_visible(bool value){
+        visible = value;
+      }
   };
 }

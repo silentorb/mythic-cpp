@@ -17,7 +17,7 @@ namespace sculptor {
 
   namespace selecting {
     Mesh *const get_mesh(const Selection &selection);
-    Selection clone(const Selection &selection, const mat4 offset);
+    MYTHIC_EXPORT Selection clone(const Selection &selection, const mat4 offset);
     const vector<Polygon *> get_polygons(const Selection &selection);
     bool contains_polygon(const Selection &selection, const Polygon &polygon);
     Selection from_indices(const Selection &selection, const vector<int> &indices);

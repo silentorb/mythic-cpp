@@ -114,10 +114,10 @@ namespace sculptor {
       return result / (float) vertices.size();
     }
 
-    const vector<int> Polygon::get_indices(const Mesh &mesh) const {
+    const vector<int> Polygon::get_indices(const Selection & selection) const {
       vector<int> result(vertices.size());
       for (int i = 0; i < vertices.size(); ++i) {
-        result[i] = mesh.get_vertex_index(*vertices[i]);
+        result[i] = selecting::get_vertex_index(selection,*vertices[i]);
       }
 
       return result;

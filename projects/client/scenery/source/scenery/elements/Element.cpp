@@ -7,12 +7,12 @@ namespace scenery {
 
   }
 
-  mat4 Element::get_transform() const {
+  mat4 Element::get_transform() {
     auto transform = glm::translate(position)
-           * glm::scale(scale)
-           * glm::mat4_cast(orientation);
+                     * glm::scale(scale)
+                     * glm::mat4_cast(orientation);
 
-    if (parent)
+    if (parent && parent->has_transform())
       transform = transform * parent->get_transform();
 
     return transform;

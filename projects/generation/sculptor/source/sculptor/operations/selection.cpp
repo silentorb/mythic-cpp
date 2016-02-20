@@ -27,7 +27,7 @@ namespace sculptor {
 
       auto polygons = get_polygons(selection);
       for (auto polygon:polygons) {
-        auto indices = polygon->get_indices(*mesh);
+        auto indices = polygon->get_indices(selection);
         auto new_polygon = new Polygon(from_indices(result, indices));
         mesh->add_polygon(new_polygon);
       }
