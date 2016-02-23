@@ -17,7 +17,7 @@ namespace lookinglass {
     }
 
     void Viewport::set_projection() {
-      projection = glm::perspective(glm::radians(45.0f), get_aspect_ratio(), 0.1f, 600.0f);
+      projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
     }
 
     Viewport *Viewport::get_active_viewport() {
@@ -37,6 +37,11 @@ namespace lookinglass {
     void Viewport::update_device() {
       if (camera == nullptr)
         return;
+
+      if (angle != camera->get_angle()) {
+        angle = camera->get_angle();
+        set_projection();
+      }
 
       auto data = Viewport_Data();
       data.view = camera->get_view_matrix();

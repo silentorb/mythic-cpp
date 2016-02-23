@@ -24,6 +24,7 @@ namespace lookinglass {
         int top;
 //        mat4 view;
         mat4 projection;
+        float angle = glm::radians(45.0f);
 //        mat4 view_projection;
 
         float get_aspect_ratio() {
@@ -43,6 +44,7 @@ namespace lookinglass {
 
         void set_camera(Camera &camera) {
           this->camera = &camera;
+
         }
 
         int get_width() const {

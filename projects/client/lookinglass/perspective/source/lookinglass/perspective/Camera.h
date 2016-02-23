@@ -16,6 +16,7 @@ namespace lookinglass {
     private:
         vec3 position;
         quat orientation;
+        float angle = glm::radians(45.0f);
 
     public:
         virtual mat4 get_view_matrix();
@@ -34,6 +35,14 @@ namespace lookinglass {
 
         void set_orientation(const quat &orientation) override {
           Camera::orientation = orientation;
+        }
+
+        float get_angle() const {
+          return angle;
+        }
+
+        void set_angle(float angle) {
+          this->angle = angle;
         }
     };
 

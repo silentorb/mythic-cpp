@@ -38,6 +38,10 @@ namespace scenery {
         this->position = position;
       }
 
+      void set_position(float x, float y, float z) {
+        this->position = vec3(x, y, z);
+      }
+
       virtual void render(Glass &glass) override;
 
       Parent *get_parent() const {
@@ -66,11 +70,11 @@ namespace scenery {
 
       virtual mat4 get_transform();
 
-      bool is_visible()const {
+      bool is_visible() const {
         return visible;
       }
 
-      void set_visible(bool value){
+      void set_visible(bool value) {
         visible = value;
       }
   };
