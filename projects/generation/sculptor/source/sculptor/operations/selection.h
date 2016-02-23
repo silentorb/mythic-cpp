@@ -25,6 +25,7 @@ namespace sculptor {
     Selection slice(const Selection &selection, int start, int end);
     bool contains_edge(const Selection &selection, const Edge &edge);
     const vector<Edge *> get_edges(const Selection &selection);
+    const vector<Edge *> get_edge_edges(const Selection &selection);
     int get_vertex_index(const Selection &selection, Vertex &vertex);
   }
 //  class MYTHIC_EXPORT Selection {

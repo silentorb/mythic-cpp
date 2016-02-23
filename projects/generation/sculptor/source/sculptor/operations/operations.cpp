@@ -137,11 +137,8 @@ namespace sculptor {
 
     void fill_gap(Selection &first, Selection &second) {
       auto mesh = selecting::get_mesh(first);
-      auto edges = selecting::get_edges(first);
+      auto edges = selecting::get_edge_edges(first);
       for (auto edge: edges) {
-        if (edge->polygons.size() != 1)
-          continue;
-
         Vertex *points[2];
         edge->get_ordered_points(points);
         auto a = selecting::get_vertex_index(first, *points[0]);
@@ -159,5 +156,28 @@ namespace sculptor {
         );
       }
     }
+/*
+    void disconnect_edges(vector<Edge *> edges) {
+
+    }
+    */
+/*
+    void bevel(Selection &selection, const mat4 &offset) {
+      Mesh *mesh = selecting::get_mesh(selection);
+      auto edges = selecting::get_edge_edges(selection);
+      for (auto edge: edges) {
+
+      }
+
+//      auto other = selecting::clone(selection, offset);
+
+//      auto polygons = selecting::get_polygons(selection);
+//      for (auto polygon: polygons) {
+//        polygon->flip();
+//      }
+
+      fill_gap(selection, other);
+    }
+    */
   }
 }

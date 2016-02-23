@@ -1,4 +1,5 @@
 #include "string_additions.h"
+#include <sstream>
 
 namespace textual {
 
@@ -19,5 +20,23 @@ namespace textual {
     }
 
     return result;
+  }
+
+  vector<string> &split(const string &input, char delimiter, vector<string> &elements) {
+    stringstream stream(input);
+    string item;
+
+    while (getline(stream, item, delimiter)) {
+      elements.push_back(item);
+    }
+
+    return elements;
+  }
+
+
+  vector<string> split(const std::string &input, char delimiter) {
+    vector<string> elements;
+    split(input, delimiter, elements);
+    return elements;
   }
 }

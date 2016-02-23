@@ -13,7 +13,7 @@ namespace scenery {
                      * glm::mat4_cast(orientation);
 
     if (parent && parent->has_transform())
-      transform = transform * parent->get_transform();
+      transform = parent->get_transform() * transform ;
 
     return transform;
   }

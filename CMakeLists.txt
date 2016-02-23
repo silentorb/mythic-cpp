@@ -43,6 +43,7 @@ add_subdirectory(projects/misc/breeze)
 add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)
+add_subdirectory(projects/generation/archaeology)
 add_subdirectory(projects/client/resourceful)
 
 include(projects/client/lookinglass/lookinglass.cmake)

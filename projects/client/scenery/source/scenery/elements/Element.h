@@ -68,6 +68,10 @@ namespace scenery {
         this->scale = scale;
       }
 
+      void set_scale(const float value) {
+        this->scale = vec3(value);
+      }
+
       virtual mat4 get_transform();
 
       bool is_visible() const {

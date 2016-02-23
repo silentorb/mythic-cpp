@@ -39,23 +39,6 @@ namespace sculptor {
         new_vertices.push_back(new_vertex);
       }
 
-//      for (auto &edge : original_edges) {
-//        Vertex *points[2];
-//        edge->get_ordered_points(points);
-//        auto a = selecting::get_vertex_index(original_vertices, *points[0]);
-//        auto b = selecting::get_vertex_index(original_vertices, *points[1]);
-//        if (edge->vertices[0] != points[0]) {
-//          auto c = a;
-//          a = b;
-//          b = c;
-//        }
-//        mesh->add_polygon(
-//          points[1],
-//          points[0],
-//          new_vertices[a],
-//          new_vertices[b]
-//        );
-//      }
       operations:: fill_gap(original_vertices, new_vertices);
 
       if (fill) {

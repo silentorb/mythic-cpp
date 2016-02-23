@@ -40,7 +40,7 @@ namespace sculptor {
 //          initialize();
 //        }
 
-        void remove(Mesh *mesh);
+        void remove();
 
         vec3 calculate_normal() const;
 //        void add_normal(const vec3 normal);

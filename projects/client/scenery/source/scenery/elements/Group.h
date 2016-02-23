@@ -14,6 +14,7 @@ namespace scenery {
 
   public:
       Group(Parent &parent) : Element(parent) { }
+
       virtual void render(lookinglass::Glass &glass);
       virtual void add(unique_ptr<Element> element);
       virtual bool has_transform() override;
@@ -22,5 +23,9 @@ namespace scenery {
       virtual void move_element(unique_ptr<Element> &element, Parent &destination) override;
 
       virtual void move_element(Element &element, Parent &destination) override;
+
+      Element &get_child(int index) const {
+        return *elements[index];
+      }
   };
 }

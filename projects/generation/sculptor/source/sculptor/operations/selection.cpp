@@ -61,6 +61,29 @@ namespace sculptor {
       return polygons;
     }
 
+    bool edge_polygon_count(const Selection &selection, Edge &edge) {
+      auto count = 0;
+      for (auto polygon: edge.polygons) {
+        if (contains_polygon(selection, *polygon))
+          ++count;
+      }
+
+      return count;
+    }
+
+    const vector<Edge *> get_edge_edges(const Selection &selection) {
+      vector<Edge *> polygons;
+      auto mesh = get_mesh(selection);
+
+      for (auto edge: mesh->edges) {
+        if (contains_edge(selection, *edge) && edge_polygon_count(selection, *edge) == 1) {
+          polygons.push_back(edge);
+        }
+      }
+
+      return polygons;
+    }
+
     bool contains_polygon(const Selection &selection, const Polygon &polygon) {
       for (auto vertex: polygon.vertices) {
         if (!contains_vertex(selection, *vertex))

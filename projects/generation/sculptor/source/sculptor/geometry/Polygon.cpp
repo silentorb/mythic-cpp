@@ -63,7 +63,7 @@ namespace sculptor {
     Polygon::~Polygon() {
     }
 
-    void Polygon::remove(Mesh *mesh) {
+    void Polygon::remove() {
       for (int i = vertices.size() - 1; i >= 0; --i) {
         auto vertex = vertices[i];
         vector_remove(vertex->polygons, this);
@@ -77,6 +77,10 @@ namespace sculptor {
       }
 
       edges.empty();
+
+      for(auto mesh : meshes) {
+        vector_remove(mesh->polygons, this);
+      }
     }
 
     vec3 Polygon::calculate_normal() const {

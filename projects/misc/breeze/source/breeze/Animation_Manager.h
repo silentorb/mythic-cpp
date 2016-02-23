@@ -9,7 +9,7 @@ using namespace std;
 
 namespace breeze {
 
-  class MYTHIC_EXPORT Animation_Manager {
+  class MYTHIC_EXPORT Animation_Manager : no_copy {
       vector<unique_ptr<Animation>> animations;
 
   public:

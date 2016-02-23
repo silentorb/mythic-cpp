@@ -28,5 +28,8 @@ namespace sculptor {
     MYTHIC_EXPORT Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees = M_PI * 2);
     MYTHIC_EXPORT void mirror(Selection &selection, bool fill);
     MYTHIC_EXPORT void fill_gap(Selection &first, Selection &second);
-  }
+
+   MYTHIC_EXPORT void bevel(Selection &selection, const mat4 &offset);
+
+    }
 }
