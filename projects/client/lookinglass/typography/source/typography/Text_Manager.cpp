@@ -1,10 +1,10 @@
-#include "Font_Manager.h"
+#include "Text_Manager.h"
 #include "texturing/initialize.h"
 
 using namespace resourceful;
 
 namespace typography {
-  Font_Manager::Font_Manager(Shader_Manager &shader_manager)
+  Text_Manager::Text_Manager(Shader_Manager &shader_manager, const ivec2 &viewport_dimensions)
     : fonts(new Resource_Manager("fonts")),
       shader_manager(shader_manager) {
     texturing::initialize_texture_shaders(shader_manager);
@@ -12,20 +12,21 @@ namespace typography {
     if (FT_Init_FreeType(&library))
       throw runtime_error("Could not init FreeType Library");
 
-    text_effect = unique_ptr<Text_Effect>(new Text_Effect(shader_manager.get_program("colored-image")));
+    text_effect = unique_ptr<Text_Effect>(
+      new Text_Effect(shader_manager.get_program("colored-image"), viewport_dimensions));
   }
 
-  Font_Manager::~Font_Manager() {
+  Text_Manager::~Text_Manager() {
     FT_Done_FreeType(library);
   }
 
-  Font &Font_Manager::create_font(const string name, const string filename) {
+  Font &Text_Manager::create_font(const string name, const string filename) {
     auto font = new Font(name, filename, library);
     fonts->add_resource(font);
     return *font;
   }
 
-  Font &Font_Manager::get_font(const string &name) {
+  Font &Text_Manager::get_font(const string &name) {
     for (auto it = fonts->begin(); it != fonts->end(); ++it) {
       auto font = (Font *) it->get();
       if (font->get_name() == name)

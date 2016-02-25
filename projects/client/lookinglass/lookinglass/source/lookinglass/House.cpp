@@ -25,7 +25,8 @@ namespace lookinglass {
 #endif
     capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
 
-    resource_manager = unique_ptr<Lookinglass_Resources>(new Lookinglass_Resources(shader_loader, *capabilities));
+    resource_manager = unique_ptr<Lookinglass_Resources>(
+      new Lookinglass_Resources(shader_loader, *capabilities, ivec2(frame->get_width(), frame->get_height())));
     auto scene_definition = new Struct_Info(1, "", {
       new Field_Info("view", Field_Type::matrix),
       new Field_Info("projection", Field_Type::matrix),
@@ -76,7 +77,7 @@ namespace lookinglass {
   void House::initialize() {
     glFrontFace(GL_CCW);
     glEnable(GL_CULL_FACE);
-    glEnable (GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
 
 //    glClearColor(0, 0.1f, 0.3f, 1);
     glClearColor(1, 1, 1, 1);
@@ -96,7 +97,7 @@ namespace lookinglass {
     set_active(false);
   }
 
-  shading:: Shader_Manager& House::get_shader_manager() const {
+  shading::Shader_Manager &House::get_shader_manager() const {
     return resource_manager->get_shader_manager();
   }
 }

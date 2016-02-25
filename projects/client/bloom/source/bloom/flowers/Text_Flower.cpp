@@ -4,10 +4,12 @@
 
 namespace bloom {
 
-  Text_Flower::Text_Flower(drawing::Draw & draw, typography::Font &font, typography::Text_Effect &effect,
+  Text_Flower::Text_Flower(drawing::Draw &draw, typography::Font &font, typography::Text_Effect &effect,
                            const string content) :
     draw(draw),
     text(new typography::Text(font, effect, content)) { }
+
+  Text_Flower::~Text_Flower() { }
 
   void Text_Flower::set_content(const string &content) {
     text->set_content(content);
@@ -23,8 +25,12 @@ namespace bloom {
 
   void Text_Flower::render() {
     auto &absolute_position = get_absolute_position();
-    text->set_position(ivec2((int)absolute_position.x, (int)absolute_position.y));
-    text->render(draw.get_dimensions());
+    text->set_position(ivec2((int) absolute_position.x, (int) absolute_position.y));
+    text->render();
     Flower::render();
+  }
+
+  void Text_Flower::update_dimensions() {
+    dimensions = text->get_dimensions();
   }
 }

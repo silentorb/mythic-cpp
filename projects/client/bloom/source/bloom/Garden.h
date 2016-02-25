@@ -26,6 +26,7 @@ namespace bloom {
 
   public:
       Garden(drawing::Draw &draw);
+			~Garden();
 
       void update_input(haft::Input_State &input_state);
 

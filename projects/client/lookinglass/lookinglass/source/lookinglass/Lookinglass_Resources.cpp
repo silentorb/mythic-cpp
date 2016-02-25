@@ -3,7 +3,7 @@
 #include "shading/Shader_Manager.h"
 #include "texturing/Texture.h"
 #include "resourceful/Resource_Manager.h"
-#include "typography/Font_Manager.h"
+#include "typography/Text_Manager.h"
 #include "modeling/Mesh_Data.h"
 
 using namespace resourceful;
@@ -13,13 +13,13 @@ using namespace modeling;
 
 namespace lookinglass {
 
-  Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities) :
+  Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities,
+                                               const ivec2 &viewport_dimensions) :
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
-    Font_Manager m(*shader_manager);
-    font_manager = unique_ptr<Font_Manager>(new Font_Manager(*shader_manager));
+    font_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport_dimensions));
   }
 
   Lookinglass_Resources::~Lookinglass_Resources() {

@@ -6,7 +6,7 @@
 
 namespace typography {
 
-  void Text_Effect::activate(const vec4 &color, const ivec2 &viewport_dimensions, const mat4 &transform) {
+  void Text_Effect::activate(const vec4 &color,const mat4 &transform) {
     Color_Effect::activate(color);
 
     glEnable(GL_BLEND);

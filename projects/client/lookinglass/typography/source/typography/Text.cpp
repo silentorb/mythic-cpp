@@ -51,7 +51,7 @@ namespace typography {
       }
 
       if (c == '\n') {
-        top += -characters.at('A')->size.y * line_height;
+        top -= characters.at('A')->size.y * line_height;
         left = 0;
         continue;
       }
@@ -83,8 +83,10 @@ namespace typography {
       step += 6;
       //                left += (character->advance >> 6);
       left += character->size.x + 6;
-
     }
+
+    block_dimensions.x = left;
+    block_dimensions.y = -top;
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4 * element_count, vertices, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -93,21 +95,22 @@ namespace typography {
     changed = false;
   }
 
-  void Text::render(const ivec2 &viewport_dimensions) {
+  void Text::render() {
     if (changed)
       prepare();
 
     if (element_count == 0)
       return;
 
-    auto scale = size * viewport_dimensions.x / 18000;
+    auto &viewport_dimensions = effect.get_viewport_dimensions();
+    auto scale = get_scale();
 
 //    auto transform = glm::translate(mat4(1.f), vec3( position.x, dimensions.y - position.y, 0));
     auto transform = glm::translate(mat4(1), vec3(position.x, viewport_dimensions.y - position.y, 0))
                      * glm::scale(mat4(1), vec3(scale, scale, 1));
 
 //    glUniform2f(glGetUniformLocation(program->get_id(), "scale"), scale, scale);
-    effect.activate(color, viewport_dimensions, transform);
+    effect.activate(color, transform);
 
     glow::check_error("setting text values");
 
@@ -119,5 +122,18 @@ namespace typography {
     glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
     glBindVertexArray(0);
     glow::check_error("rendering text");
+  }
+
+  vec2 Text::get_dimensions() {
+    if (changed)
+      prepare();
+
+    return block_dimensions * get_scale();
+  }
+
+  float Text::get_scale() const {
+    auto &viewport_dimensions = effect.get_viewport_dimensions();
+    return size * viewport_dimensions.x / 18000;
+
   }
 }

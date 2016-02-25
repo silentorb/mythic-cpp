@@ -28,7 +28,7 @@ namespace mythic {
 
   class MYTHIC_EXPORT Mythic_Renderer;
 
-  class MYTHIC_EXPORT Mythic_Engine {
+  class MYTHIC_EXPORT Mythic_Engine : no_copy {
   private:
       timing::Quartz *timer;
       Client *client;

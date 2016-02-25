@@ -7,10 +7,15 @@
 using namespace glm;
 using namespace std;
 
+namespace drawing {
+  class Draw;
+}
+
 namespace typography {
 
   class Font;
-class Text_Effect;
+
+  class Text_Effect;
 
   struct Vertex {
       float x, y, u, v;
@@ -37,6 +42,7 @@ class Text_Effect;
       float line_height = 1.3;
       string content;
       vec4 color;
+      vec2 block_dimensions;
 
       void create_buffers();
       void prepare();
@@ -51,24 +57,28 @@ class Text_Effect;
 
       void set_content(const string &content) {
         Text::content = content;
-				changed = true;
+        changed = true;
       }
 
-      void render(const ivec2 &viewport_dimensions);
+      void render();
 
       void set_color(const vec4 value) {
         color = value;
-				changed = true;
-			}
+        changed = true;
+      }
 
       void set_position(const ivec2 &value) {
         position = value;
-				changed = true;
-			}
+        changed = true;
+      }
 
       void set_size(float value) {
         size = value;
-				changed = true;
-			}
+        changed = true;
+      }
+
+      vec2 get_dimensions();
+
+      float get_scale() const;
   };
 }

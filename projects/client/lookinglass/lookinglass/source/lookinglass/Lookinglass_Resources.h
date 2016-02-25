@@ -3,6 +3,7 @@
 #include "dllexport.h"
 #include <vector>
 #include <memory>
+#include "glm/glm.hpp"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ namespace resourceful {
 namespace typography {
   class Font;
 
-  class Font_Manager;
+  class Text_Manager;
 
   class Text_Effect;
 }
@@ -42,10 +43,10 @@ namespace lookinglass {
       unique_ptr<resourceful::Resource_Manager> texture_manager;
       unique_ptr<resourceful::Resource_Manager> mesh_manager;
       unique_ptr<shading::Shader_Manager> shader_manager;
-      unique_ptr<typography::Font_Manager> font_manager;
+      unique_ptr<typography::Text_Manager> font_manager;
 
   public:
-      Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities);
+      Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities, const glm::ivec2 & viewport_dimensions);
       ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;

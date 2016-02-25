@@ -15,6 +15,8 @@ namespace bloom {
     draw.add(*root);
   }
 
+	Garden::~Garden() {}
+
   void Garden::update_input(haft::Input_State &input_state) {
 //    auto &client = engine.get_client();
 //    auto &input_state = client.get_current_input_state();
