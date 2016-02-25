@@ -4,6 +4,7 @@
 #include "texturing/Texture.h"
 #include "Draw.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "Image_Effect.h"
 
 namespace drawing {
 

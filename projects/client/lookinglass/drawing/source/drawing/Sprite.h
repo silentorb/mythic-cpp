@@ -2,8 +2,6 @@
 
 #include "dllexport.h"
 #include "glm/glm.hpp"
-#include "Image_Effect.h"
-#include "lookinglass/Renderable.h"
 #include "Image.h"
 #include "Element.h"
 
@@ -18,12 +16,13 @@ using namespace texturing;
 namespace drawing {
   class Draw;
 
+  class Image_Effect;
+
   class MYTHIC_EXPORT Sprite : public Element {
       vec2 position;
       Image *image;
       Image_Effect *effect;
       Draw &draw;
-
 
   public:
       Sprite(Draw &draw, Image_Effect &effect, Image &image, const vec2 &position = vec2(0, 0));

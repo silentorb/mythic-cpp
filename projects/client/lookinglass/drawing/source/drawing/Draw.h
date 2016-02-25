@@ -80,6 +80,10 @@ namespace drawing {
       Image_Effect &get_default_image_effect() const {
         return *default_image_effect;
       }
+
+      lookinglass::House &get_house() const {
+        return house;
+      }
   };
 }
 

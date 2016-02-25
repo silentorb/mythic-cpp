@@ -6,12 +6,12 @@
 using namespace std;
 
 namespace haft {
+
   class MYTHIC_EXPORT Action {
       string name;
       int id;
 
   public:
-
       Action(int id, const string &name) : name(name), id(id) { }
 
       const string &get_name() const {

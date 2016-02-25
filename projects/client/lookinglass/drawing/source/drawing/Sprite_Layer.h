@@ -11,6 +11,10 @@ namespace texturing {
   class Texture;
 }
 
+namespace modeling {
+  class Simple_Mesh;
+}
+
 using namespace std;
 
 namespace drawing {

@@ -1,7 +1,7 @@
 
 create_library(typography)
 
-require(resourceful shading glow textual glass texturing)
+require(resourceful shading glow textual texturing)
 
 #if (MSVC)
 #  set(freetype_lib freetype.lib)

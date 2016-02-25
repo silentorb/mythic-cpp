@@ -8,13 +8,13 @@ using namespace std;
 namespace mythic {
   class MYTHIC_EXPORT Mythic_Engine;
 
-  class MYTHIC_EXPORT Myth {
+  class MYTHIC_EXPORT Myth : no_copy {
   protected:
       Mythic_Engine &engine;
       Myth(Mythic_Engine &engine);
 
   public:
-      string get_name();
+      virtual string get_name() = 0;
       virtual void update(float delta);
 
       Mythic_Engine &getEngine() const {

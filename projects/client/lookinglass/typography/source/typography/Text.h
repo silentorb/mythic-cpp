@@ -3,8 +3,6 @@
 #include "dllexport.h"
 #include "glm/glm.hpp"
 #include <string>
-#include "lookinglass/Renderable.h"
-#include "Text_Effect.h"
 
 using namespace glm;
 using namespace std;
@@ -12,6 +10,7 @@ using namespace std;
 namespace typography {
 
   class Font;
+class Text_Effect;
 
   struct Vertex {
       float x, y, u, v;
@@ -26,7 +25,7 @@ namespace typography {
       }
   };
 
-  class MYTHIC_EXPORT Text : public lookinglass::Renderable {
+  class MYTHIC_EXPORT Text {
       unsigned int vao;
       unsigned int vbo;
       Font &font;
@@ -55,7 +54,7 @@ namespace typography {
 				changed = true;
       }
 
-      virtual void render(lookinglass::Glass &glass) override;
+      void render(const ivec2 &viewport_dimensions);
 
       void set_color(const vec4 value) {
         color = value;

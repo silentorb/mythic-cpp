@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Draw.h"
 #include "texturing/Texture.h"
+#include "Image_Effect.h"
 
 namespace drawing {
   Sprite::Sprite(Draw &draw, Image_Effect &effect,  Image &image, const vec2 &position) :

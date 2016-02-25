@@ -54,7 +54,9 @@ namespace mythic {
     }
   }
 
-
+  void Mythic_Engine::add_myth(Myth *myth) {
+    myths[myth->get_name()] = unique_ptr<Myth>(myth);
+  }
 
 //  void Mythic_Engine::register_myth(Myth_Info *info) {
 //    myth_registrations[info->get_name()] = std::unique_ptr<Myth_Info>(info);;

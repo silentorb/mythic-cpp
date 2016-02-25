@@ -32,18 +32,18 @@ namespace mythic {
   private:
       timing::Quartz *timer;
       Client *client;
-      std::map<string, Myth *> myths;
+      std::map<string, unique_ptr<Myth>> myths;
       Mythic_Renderer *renderer;
 
   public:
-      Mythic_Engine(Platform_Factory& factory);
+      Mythic_Engine(Platform_Factory &factory);
       ~Mythic_Engine();
 
       template<typename T>
       T &get_myth(string name) {
 //        auto key = typeid(T).hash_code();
         if (!myths.count(name)) {
-          myths[name] = new T(*this);
+          myths[name] = unique_ptr<T>(new T(*this));
         }
 
         return (T &) *myths[name];
@@ -58,5 +58,7 @@ namespace mythic {
       Client &get_client() const {
         return *client;
       }
+
+      void add_myth(Myth *myth);
   };
 }

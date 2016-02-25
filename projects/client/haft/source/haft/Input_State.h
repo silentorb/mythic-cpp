@@ -7,6 +7,7 @@
 #include "Event_Consumer.h"
 #include "Gesture_Container.h"
 #include <glm/glm.hpp>
+#include <algorithm>
 
 using namespace std;
 using namespace glm;
@@ -80,6 +81,19 @@ namespace haft {
 
       bool just_pressed(const Action &action) const {
         return get_event(action) && (!previous || !previous->get_event(action));
+      }
+
+      void remove_event(const Action &action) {
+        for (auto &event: events) {
+          if (&event->get_action() == &action) {
+            int offset = std::find_if(events.begin(), events.end(), [&](unique_ptr<Event> const &item) {
+              return item.get() == event.get();
+            }) - events.begin();
+
+            events.erase(events.begin() + offset);
+            return;
+          }
+        }
       }
   };
 }

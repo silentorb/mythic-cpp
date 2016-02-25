@@ -3,6 +3,7 @@
 #include "textual/string_additions.h"
 #include "typography/Font.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "Text_Effect.h"
 
 using namespace textual;
 using namespace lookinglass;
@@ -92,23 +93,21 @@ namespace typography {
     changed = false;
   }
 
-  void Text::render(Glass &glass) {
-    auto dimensions = glass.get_viewport_dimensions();
-
+  void Text::render(const ivec2 &viewport_dimensions) {
     if (changed)
       prepare();
 
     if (element_count == 0)
       return;
 
-    auto scale = size * dimensions.x / 18000;
+    auto scale = size * viewport_dimensions.x / 18000;
 
 //    auto transform = glm::translate(mat4(1.f), vec3( position.x, dimensions.y - position.y, 0));
-    auto transform = glm::translate(mat4(1), vec3(position.x, dimensions.y - position.y, 0))
+    auto transform = glm::translate(mat4(1), vec3(position.x, viewport_dimensions.y - position.y, 0))
                      * glm::scale(mat4(1), vec3(scale, scale, 1));
 
 //    glUniform2f(glGetUniformLocation(program->get_id(), "scale"), scale, scale);
-    effect.activate(color, dimensions, transform);
+    effect.activate(color, viewport_dimensions, transform);
 
     glow::check_error("setting text values");
 

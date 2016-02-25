@@ -54,6 +54,9 @@ add_subdirectory(projects/generation/architect)
 #end sub-projects
 
 add_subdirectory(projects/core/mythic)
+
+add_subdirectory(projects/client/bloom)
+
 include(projects/lab/lab.cmake)
 
 if (ANDROID)
