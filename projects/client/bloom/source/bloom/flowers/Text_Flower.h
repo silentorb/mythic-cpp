@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
+#include <string>
 #include "Flower.h"
 
 namespace typography {

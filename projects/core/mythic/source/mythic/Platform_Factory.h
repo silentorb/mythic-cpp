@@ -8,12 +8,12 @@ namespace haft {
 }
 
 namespace shading {
-  class MYTHIC_EXPORT Shader_Loader;
+  class Shader_Loader;
 }
 
 namespace lookinglass {
 
-  class MYTHIC_EXPORT Frame;
+  class Frame;
 };
 using namespace lookinglass;
 
@@ -21,8 +21,8 @@ namespace mythic {
 
   class MYTHIC_EXPORT Platform_Factory {
   public:
-      virtual Frame *create_frame() const = 0;
-      virtual shading::Shader_Loader *create_shader_loader() const = 0;
+      virtual Frame *create_frame() = 0;
+      virtual shading::Shader_Loader *create_shader_loader() = 0;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration & config) = 0;
   };
 

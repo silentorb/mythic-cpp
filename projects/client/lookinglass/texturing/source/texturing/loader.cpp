@@ -1,3 +1,5 @@
+#ifndef IOS
+
 #include "loader.h"
 #include <png.h>
 #include <stdexcept>
@@ -128,3 +130,4 @@ namespace texturing {
     return image_data;
   }
 }
+#endif

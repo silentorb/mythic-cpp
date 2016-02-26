@@ -4,6 +4,7 @@
 
 #include "declarations.h"
 #include <map>
+#include <string>
 
 namespace sculptor {
   namespace geometry {

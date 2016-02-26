@@ -9,5 +9,7 @@ include_directories(
   ${MYTHIC_DEPENDENCIES}/libpng/include
 )
 
-link_external(libpng libpng16)
-link_external(zlib)
+if(NOT IOS)
+  link_external(libpng libpng16)
+  link_external(zlib)
+endif()
