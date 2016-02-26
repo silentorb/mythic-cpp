@@ -35,7 +35,7 @@ namespace sculptor {
 
         vec3 get_center() const;
 
-        int get_vertex_count() const {
+        unsigned long get_vertex_count() const {
           return vertices.size();
         }
 

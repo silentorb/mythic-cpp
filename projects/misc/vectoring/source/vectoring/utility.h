@@ -28,6 +28,8 @@ T vector_first(const vector<T> &items) {
   for (auto item : items) {
     return item;
   }
+    
+    throw std::runtime_error("Could not find item in vector");
 }
 
 //template<typename T>

@@ -64,14 +64,14 @@ namespace sculptor {
     }
 
     void Polygon::remove() {
-      for (int i = vertices.size() - 1; i >= 0; --i) {
+      for (int i = (int)vertices.size() - 1; i >= 0; --i) {
         auto vertex = vertices[i];
         vector_remove(vertex->polygons, this);
       }
 
       vertices.empty();
 
-      for (int i = edges.size() - 1; i >= 0; --i) {
+      for (int i = (int)edges.size() - 1; i >= 0; --i) {
         auto edge = edges[i];
         vector_remove(edge->polygons, this);
       }

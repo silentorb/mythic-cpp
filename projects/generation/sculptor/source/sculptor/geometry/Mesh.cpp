@@ -94,7 +94,7 @@ namespace sculptor {
     }
 
     int Mesh::get_vertex_index(Vertex &vertex) const {
-      return std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin();
+      return (int)(std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin());
     }
   }
 }

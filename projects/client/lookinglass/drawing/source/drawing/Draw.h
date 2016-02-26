@@ -41,7 +41,7 @@ namespace drawing {
 
   class Sprite_Layer;
 
-  class MYTHIC_EXPORT Draw : public Group {
+  class MYTHIC_EXPORT Draw : public Group, no_copy {
       unique_ptr<modeling::Vertex_Schema> solid_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> solid_mesh;
 

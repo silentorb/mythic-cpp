@@ -8,9 +8,9 @@ using namespace resourceful;
 namespace shading {
 
   Shader_Manager::Shader_Manager(Shader_Loader *loader, lookinglass::glow::Capabilities &capabilities) :
+    loader(loader),
     shaders(new Resource_Manager("shaders")),
     programs(new Resource_Manager("programs")),
-    loader(loader),
     processor(create_processor(capabilities)) {
 
   }

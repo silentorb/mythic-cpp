@@ -8,7 +8,7 @@ using namespace lookinglass;
 
 namespace shading {
   Program::Program(const string name, Shader &first, Shader &second) :
-    name(name), id(0), first(first), second(second) {
+    id(0), name(name), first(first), second(second) {
     load();
   }
 

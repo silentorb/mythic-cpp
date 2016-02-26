@@ -25,11 +25,12 @@ class iOS_Frame : public Frame {
 
 private:
     EAGLContext* context;
+    int width, height;
     void create_window(const char *title, int width, int height);
     void create_gl_context();
 
 public:
-    iOS_Frame(EAGLContext* context);
+    iOS_Frame(EAGLContext* context, int width, int height);
     virtual void update_events();
     virtual int get_width();
     virtual int get_height();
@@ -42,6 +43,8 @@ class  iOS_Shader_Loader : public shading::Shader_Loader {
 public:
     virtual string load(string path);
 };
+
+void initialize_mythic_engine(mythic::Mythic_Engine & engine);
 
 class Mythic_iOS : public mythic::Platform_Factory {
     EAGLContext* context;

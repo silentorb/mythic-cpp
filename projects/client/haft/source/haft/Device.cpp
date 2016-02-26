@@ -15,6 +15,7 @@ namespace haft {
         return trigger.get();
     }
 
+      return nullptr;
 //    throw runtime_error(string("Invalid trigger name ") + trigger_name + ".");
   }
 }

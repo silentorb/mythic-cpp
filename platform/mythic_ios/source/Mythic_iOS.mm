@@ -18,13 +18,17 @@ string iOS_Shader_Loader::load(string path) {
     NSString *content = [NSString stringWithContentsOfFile:formatted_path
                                                   encoding:NSASCIIStringEncoding
                                                      error:&error];
+
+    if (content == nil)
+        throw std::runtime_error("Could not open file \"" + path + "\"");
+
 //    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:formatted_path];
 //    NSLog(@"\n%lu\n%@",(unsigned long)NSASCIIStringEncoding,error);
     return std::string([content UTF8String]);
 }
 
-iOS_Frame::iOS_Frame(EAGLContext* context)
-    :context(context){
+iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
+    :context(context), width(width), height(height) {
 
 }
 
@@ -50,11 +54,17 @@ void  iOS_Frame::update_events() {
 }
 
 int iOS_Frame::get_width() {
-    return 0;
+  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+  CGFloat screenScale = [[UIScreen mainScreen] scale];
+  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    return pixels.width;
 }
 
 int iOS_Frame::get_height() {
-    return 0;
+  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+  CGFloat screenScale = [[UIScreen mainScreen] scale];
+  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    return pixels.height;
 }
 
 void iOS_Frame::flip_buffer() {
@@ -79,11 +89,14 @@ void iOS_Frame::initialize_window() {
 }
 
 Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
+    
     try {
-   
+
      engine=unique_ptr<Mythic_Engine>{new Mythic_Engine(*this)};
 
     engine->get_client().load();
+        
+        initialize_mythic_engine(*engine);
     }
     catch(std::exception ex) {
         @throw [NSException exceptionWithName:@"Mythic Error"
@@ -100,7 +113,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
 }
 
 Frame *Mythic_iOS::create_frame() {
-    return new iOS_Frame(context);
+    return new iOS_Frame(context, 0, 0);
 }
 
 haft::Input_Source *Mythic_iOS::create_input_source(haft::Input_Configuration & config) {
