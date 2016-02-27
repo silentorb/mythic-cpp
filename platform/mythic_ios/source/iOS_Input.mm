@@ -2,12 +2,17 @@
 #include "Device_Type.h"
 //#include "Gamepad_Trigger.h"
 
+iOS_Input *iOS_Input::instance = nullptr;
+
 const float gamepad_min_threshold = 0.25f;
 
   iOS_Input::iOS_Input(Input_Configuration &config) : Input_Source(config) {
     initialize_keyboard();
     initialize_mouse();
     initialize_gamepad();
+      instance = this;
+      current_state = &states[0];
+      next_state = &states[1];
   }
 
   void iOS_Input::initialize_keyboard() {
@@ -53,11 +58,16 @@ const float gamepad_min_threshold = 0.25f;
   }
 
   Input_State *iOS_Input::get_input_state() {
-    auto state = new Input_State();
-    update_gamepad(*state);
-    update_keyboard(*state);
-    update_mouse(*state);
-    return state;
+//    auto state = new Input_State();
+//    update_gamepad(*state);
+//    update_keyboard(*state);
+//    update_mouse(*state);
+//    return state;
+      auto temp = current_state;
+      current_state = next_state;
+      next_state = temp;
+      next_state->clear_events();
+      return current_state;
   }
 
   void iOS_Input::update_keyboard(Input_State &state) {
@@ -128,3 +138,14 @@ const float gamepad_min_threshold = 0.25f;
       state.add_event(*trigger.get_action(), value);
     }
   }
+
+void input_single_tap(int x, int y) {
+    iOS_Input::instance->single_click(x, y);
+}
+
+void iOS_Input::single_click(int x, int y) {
+    auto &trigger = mouse->get_trigger(1);
+    auto action = trigger.get_action();
+    if (action)
+        next_state->add_event(*action);
+}

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+void input_single_tap(int x, int y);
+
 @interface Mythic_ViewController : UIViewController
 
 @end

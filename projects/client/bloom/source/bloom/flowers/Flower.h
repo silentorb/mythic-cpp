@@ -25,7 +25,7 @@ namespace bloom {
 
   protected:
       vec2 position;
-      bool visible;
+      bool visible = true;
       vec2 dimensions = vec2(0);
 
   public:

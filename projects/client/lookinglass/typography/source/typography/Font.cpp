@@ -1,6 +1,6 @@
 #include "Font.h"
 #include "lookinglass/glow.h"
-
+#include <fstream>
 namespace typography {
   const unsigned char first_char = 33;
   const unsigned char last_char = 126;
@@ -24,8 +24,13 @@ namespace typography {
   }
 
   void Font::load() {
-    if (FT_New_Face(library, filename.c_str(), 0, &face))
-      throw "ERROR::FREETYPE: Failed to load font";
+      
+      auto root = string(get_resource_path());
+//      ifstream input( root + "/images/deevee.png");
+//      auto good = input.good();
+      auto error = FT_New_Face(library, (root + filename).c_str(), 0, &face);
+    if (error)
+      throw runtime_error("ERROR::FREETYPE: Failed to load font: ");
 
     FT_Set_Pixel_Sizes(face, 0, 48);
 

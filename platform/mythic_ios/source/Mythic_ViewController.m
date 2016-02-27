@@ -9,6 +9,7 @@
 #import "Mythic_ViewController.h"
 #import "OpenGL_View.h"
 
+
 @interface Mythic_ViewController ()
 
 @end
@@ -24,11 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *single_finger_tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(on_single_tap:)];
+    
+    [self.view addGestureRecognizer:single_finger_tap];
+    [single_finger_tap release];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)on_single_tap:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    input_single_tap(location.x, location.y);
 }
 
 @end

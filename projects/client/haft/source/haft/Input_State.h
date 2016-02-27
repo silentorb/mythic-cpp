@@ -95,5 +95,9 @@ namespace haft {
           }
         }
       }
+      
+      void clear_events() {
+          events.clear();
+      }
   };
 }

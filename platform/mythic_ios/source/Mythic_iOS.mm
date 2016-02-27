@@ -9,6 +9,10 @@
 
 using namespace laboratory;
 
+const char * get_resource_path() {
+    return [[[NSBundle mainBundle] resourcePath] UTF8String];
+}
+
 string iOS_Shader_Loader::load(string path) {
     NSString *formatted_path = [[[NSBundle mainBundle] resourcePath]
                                 stringByAppendingString:[NSString stringWithUTF8String:("/shaders/" + path + ".glsl").c_str()]];
