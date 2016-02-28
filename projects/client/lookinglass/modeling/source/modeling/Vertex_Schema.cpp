@@ -42,8 +42,11 @@ namespace modeling {
     glBindVertexArray(schema);
     glow::check_error("creating vao");
 
-//    const int stride = 0;
+#ifdef IOS2
+    const int stride = 0;
+#else
     const int stride = vertex_size;
+#endif
 
     for (int i = 0; i < attributes.size(); ++i) {
       auto &attribute = attributes[i];

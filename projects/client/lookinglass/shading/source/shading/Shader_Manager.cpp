@@ -32,8 +32,8 @@ namespace shading {
     return *shader;
   }
 
-  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader) {
-    auto program = new Program(name, vertex_shader, fragment_shader);
+  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader, initializer_list<string> names) {
+    auto program = new Program(name, vertex_shader, fragment_shader, names);
     programs->add_resource(program);
 
     for (auto &listener: program_added) {
@@ -42,10 +42,11 @@ namespace shading {
     return *program;
   }
 
-  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment) {
+  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment, initializer_list<string> names) {
     return create_program(name,
                           create_shader(Shader_Type::vertex, vertex),
-                          create_shader(Shader_Type::fragment, fragment)
+                          create_shader(Shader_Type::fragment, fragment),
+                          names
     );
   }
 

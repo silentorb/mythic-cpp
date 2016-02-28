@@ -58,7 +58,7 @@ namespace drawing {
     auto program = shader_manager.get_program_or_null("sprite");
     if (!program) {
       program = &shader_manager.create_program_from_files("sprite", "drawing/sprite.vertex",
-                                                          "texturing/image.fragment");
+                                                          "texturing/image.fragment", {});
     }
     default_image_effect = unique_ptr<Image_Effect>(
       new Image_Effect(*program, house.get_glass().get_viewport_dimensions()));

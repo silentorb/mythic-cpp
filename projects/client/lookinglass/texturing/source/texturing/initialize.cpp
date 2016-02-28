@@ -14,11 +14,11 @@ namespace texturing {
 
     shader_manager.create_program("image",
                                   image_vertex,
-                                  shader_manager.create_shader(Shader_Type::fragment, "texturing/image.fragment"));
+                                  shader_manager.create_shader(Shader_Type::fragment, "texturing/image.fragment"), {});
 
     shader_manager.create_program("colored-image",
                                   image_vertex,
                                   shader_manager.create_shader(Shader_Type::fragment,
-                                                               "texturing/colored-image.fragment"));
+                                                               "texturing/colored-image.fragment"), {});
   }
 }

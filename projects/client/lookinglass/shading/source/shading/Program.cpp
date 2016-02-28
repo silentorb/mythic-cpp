@@ -7,8 +7,8 @@
 using namespace lookinglass;
 
 namespace shading {
-  Program::Program(const string name, Shader &first, Shader &second) :
-    id(0), name(name), first(first), second(second) {
+  Program::Program(const string name, Shader &first, Shader &second, initializer_list<string> names) :
+    id(0), name(name), first(first), second(second), attribute_names(names) {
     load();
   }
 
@@ -23,6 +23,7 @@ namespace shading {
     id = glCreateProgram();
     glow::check_error("creating shader program");
 
+    bind_attributes();
     log_info("Program %d, Shaders: %d, %d", id, first.id, second.id);
     glAttachShader(id, first.id);
     glAttachShader(id, second.id);
@@ -58,5 +59,14 @@ namespace shading {
 
     glDeleteProgram(id);
     id = 0;
+  }
+
+//    program->bind_attributes({"position", "normal", "color"});
+
+  void Program::bind_attributes() {
+    int index = 0;
+    for(auto & attribute : attribute_names) {
+      glBindAttribLocation(id, index++, attribute.c_str());
+    }
   }
 }

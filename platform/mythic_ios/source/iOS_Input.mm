@@ -11,8 +11,7 @@ const float gamepad_min_threshold = 0.25f;
     initialize_mouse();
     initialize_gamepad();
       instance = this;
-      current_state = &states[0];
-      next_state = &states[1];
+      next_state = new Input_State();
   }
 
   void iOS_Input::initialize_keyboard() {
@@ -63,11 +62,9 @@ const float gamepad_min_threshold = 0.25f;
 //    update_keyboard(*state);
 //    update_mouse(*state);
 //    return state;
-      auto temp = current_state;
-      current_state = next_state;
-      next_state = temp;
-      next_state->clear_events();
-      return current_state;
+      auto result = next_state;
+      next_state = new Input_State();
+      return result;
   }
 
   void iOS_Input::update_keyboard(Input_State &state) {
@@ -139,13 +136,17 @@ const float gamepad_min_threshold = 0.25f;
     }
   }
 
+extern "C" {
 void input_single_tap(int x, int y) {
     iOS_Input::instance->single_click(x, y);
 }
+}
 
 void iOS_Input::single_click(int x, int y) {
-    auto &trigger = mouse->get_trigger(1);
+    auto &trigger = mouse->get_trigger(0);
     auto action = trigger.get_action();
     if (action)
         next_state->add_event(*action);
+    
+    next_state->set_position(ivec2(x, y));
 }

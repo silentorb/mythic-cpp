@@ -4,7 +4,7 @@
 
 #include "Shader.h"
 #include "resourceful/Resource.h"
-
+#include <vector>
 
 namespace shading {
 
@@ -12,9 +12,10 @@ namespace shading {
       unsigned int id;
       const string name;
       Shader &first, &second;
+      vector<string> attribute_names;
 
   public:
-      Program(const string name,Shader &first, Shader &second);
+      Program(const string name,Shader &first, Shader &second, initializer_list<string> names);
       ~Program();
       void activate();
 
@@ -28,6 +29,8 @@ namespace shading {
       const string &get_name() const {
         return name;
       }
+
+      void bind_attributes();
   };
 
   class MYTHIC_EXPORT Program_Add_Listener {
