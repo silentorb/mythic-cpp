@@ -21,8 +21,8 @@ namespace desktop {
   public:
       Desktop(const char *title);
 
-      virtual Frame *create_frame() const override;
-      virtual shading::Shader_Loader *create_shader_loader() const override;
+      virtual Frame *create_frame() override;
+      virtual shading::Shader_Loader *create_shader_loader() override;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
 
       Mythic_Engine &get_engine() const {

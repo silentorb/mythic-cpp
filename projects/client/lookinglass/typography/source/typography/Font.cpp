@@ -1,6 +1,8 @@
 #include "Font.h"
 #include "lookinglass/glow.h"
 #include <fstream>
+#include <resourceful/path.h>
+
 namespace typography {
   const unsigned char first_char = 33;
   const unsigned char last_char = 126;
@@ -25,12 +27,13 @@ namespace typography {
 
   void Font::load() {
       
-      auto root = string(get_resource_path());
+      auto root = string(MYTHIC_RESOURCES_PATH);
 //      ifstream input( root + "/images/deevee.png");
 //      auto good = input.good();
-      auto error = FT_New_Face(library, (root + filename).c_str(), 0, &face);
+    auto path = root + filename;
+      auto error = FT_New_Face(library, path.c_str(), 0, &face);
     if (error)
-      throw runtime_error("ERROR::FREETYPE: Failed to load font: ");
+      throw runtime_error("ERROR::FREETYPE: Failed to load font: " + path);
 
     FT_Set_Pixel_Sizes(face, 0, 48);
 

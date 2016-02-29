@@ -14,16 +14,21 @@ namespace desktop {
     engine->get_client().load();
   }
 
-  Frame *Desktop::create_frame() const {
+  Frame *Desktop::create_frame() {
     return new Desktop_Frame(title);
   }
 
-  shading::Shader_Loader *Desktop::create_shader_loader() const {
+  shading::Shader_Loader *Desktop::create_shader_loader() {
     return new Desktop_Shader_Loader("resources/shaders");
   }
 
   haft::Input_Source *Desktop::create_input_source(haft::Input_Configuration & config) {
     return new Desktop_Input(config);
   }
+
+  const char * get_resource_path() {
+    return "resources";
+  }
+
 }
 

@@ -4,7 +4,11 @@ create_library(typography)
 require(resourceful shading glow textual texturing)
 
 if(NOT IOS)
-  link_external(zlib)
+#  link_external(zlib)
 endif()
 
-link_external_static(freetype)
+if (MINGW)
+  link_external(freetype)
+else()
+  link_external_static(freetype)
+endif()
