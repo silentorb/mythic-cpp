@@ -4,9 +4,9 @@
 
 namespace bloom {
 
-  Text_Flower::Text_Flower(drawing::Draw &draw, typography::Font &font, typography::Text_Effect &effect,
+  Text_Flower::Text_Flower(Garden & garden, typography::Font &font, typography::Text_Effect &effect,
                            const string content) :
-    draw(draw),
+    Flower(garden),
     text(new typography::Text(font, effect, content)) { }
 
   Text_Flower::~Text_Flower() { }

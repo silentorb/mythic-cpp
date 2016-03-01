@@ -11,11 +11,11 @@ using namespace haft;
 namespace bloom {
 
   Garden::Garden(drawing::Draw &draw) :
-    draw(draw), select_action(new Action(1, "Select")), root(new Flower()) {
+    draw(draw), select_action(new Action(1, "Select")), root(new Flower(*this)) {
     draw.add(*root);
   }
 
-	Garden::~Garden() {}
+  Garden::~Garden() { }
 
   void Garden::update_input(haft::Input_State &input_state) {
 //    auto &client = engine.get_client();
@@ -34,6 +34,11 @@ namespace bloom {
 
   Text_Flower *Garden::create_text(const string font, const string content) {
     auto &resources = draw.get_house().get_resources();
-    return new Text_Flower(draw, resources.get_font(font), resources.get_text_effect(), content);
+    return new Text_Flower(*this, resources.get_font(font), resources.get_text_effect(), content);
+  }
+
+  Flower &Garden::create_generic_flower() {
+    auto flower = new Flower(*this, *root);
+    return *flower;
   }
 }

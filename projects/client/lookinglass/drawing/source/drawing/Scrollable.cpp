@@ -8,8 +8,8 @@ namespace drawing {
   void Scrollable::render() {
     auto &image_effect = draw.get_default_image_effect();
     auto transform = glm::translate(mat4(1), vec3(offset.x, offset.y, 0));
-    image_effect.modify_projection(transform);
-    Group::render();
-    image_effect.initialize_projection(draw.get_dimensions());
+//    image_effect.modify_projection(transform);
+//    Group::render();
+//    image_effect.initialize_projection(draw.get_dimensions());
   }
 }

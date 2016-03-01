@@ -1,11 +1,17 @@
 #include <algorithm>
 #include "Flower.h"
+#include "bloom/styling/Border.h"
+#include "bloom/Garden.h"
 
 namespace bloom {
 
-  Flower::Flower(Flower &parent) {
-    parent.add(this);
+  Flower::Flower(Garden &garden) : garden(garden) { }
+
+  Flower::Flower(Garden &garden, Flower &parent) : garden(garden) {
+    parent.add_child(this);
   }
+
+  Flower::~Flower() { }
 
   bool Flower::activate() {
     if (on_activate.size() == 0)
@@ -80,6 +86,11 @@ namespace bloom {
   }
 
   void Flower::render() {
+    if (border.get() != nullptr) {
+      auto &bounds = get_bounds();
+      border->render(garden.get_draw(), bounds);
+    }
+
     for (auto &child: children) {
       if (child->is_visible()) {
         child->render();
@@ -98,11 +109,24 @@ namespace bloom {
     return parent->get_absolute_position();
   }
 
-  void Flower::remove(Flower *child) {
+  void Flower::remove_child(Flower *child) {
     int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Flower> const &item) {
       return item.get() == child;
     }) - children.begin();
 
     children.erase(children.begin() + offset);
+  }
+
+  void Flower::set_border(vec4 color) {
+    if (border.get() == nullptr) {
+      border = unique_ptr<Border>(new Border());
+    }
+
+    border->set_color(color);
+  }
+
+  Flower &Flower::create_generic_flower() {
+    auto flower = new Flower(garden, *this);
+    return *flower;
   }
 }

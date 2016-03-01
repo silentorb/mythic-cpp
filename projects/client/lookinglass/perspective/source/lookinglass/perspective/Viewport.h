@@ -24,6 +24,7 @@ namespace lookinglass {
         int top;
 //        mat4 view;
         mat4 projection;
+        mat4 flat_projection;
         float angle = glm::radians(45.0f);
 //        mat4 view_projection;
 
@@ -60,6 +61,10 @@ namespace lookinglass {
         }
 
         void shoot_ray(const ivec2 &point, vec3 &start, vec3 &end) const;
+
+        const mat4 &get_flat_projection() const {
+          return flat_projection;
+        }
     };
   }
 }

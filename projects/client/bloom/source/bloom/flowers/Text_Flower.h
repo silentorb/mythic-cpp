@@ -2,7 +2,7 @@
 
 #include "dllexport.h"
 #include <string>
-#include "Flower.h"
+#include "bloom/layout/Flower.h"
 
 namespace typography {
   class Text;
@@ -20,11 +20,10 @@ namespace bloom {
 
   class MYTHIC_EXPORT Text_Flower : public Flower {
       unique_ptr<typography::Text> text;
-      drawing::Draw &draw;
       void update_dimensions();
 
   public:
-      Text_Flower(drawing::Draw &draw, typography::Font &font, typography::Text_Effect &effect,
+      Text_Flower(Garden &garden, typography::Font &font, typography::Text_Effect &effect,
                   const string content = "");
       ~Text_Flower();
 

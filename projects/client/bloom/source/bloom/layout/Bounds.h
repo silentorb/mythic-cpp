@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
+#include <glm/vec2.hpp>
 
 using namespace glm;
 

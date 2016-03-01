@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Flower.h"
+#include "bloom/layout/Flower.h"
 #include <memory>
 
 namespace drawing {
@@ -16,7 +16,7 @@ namespace bloom {
 
   public:
 
-      Image_Flower(unique_ptr<drawing::Sprite> &sprite);
+      Image_Flower(Garden & garden,unique_ptr<drawing::Sprite> &sprite);
 
       virtual void render() override;
   };

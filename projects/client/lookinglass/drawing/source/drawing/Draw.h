@@ -23,6 +23,8 @@ namespace modeling {
 
 namespace shading {
   class Shader_Manager;
+
+  class Program;
 }
 
 namespace texturing {
@@ -48,6 +50,7 @@ namespace drawing {
       unique_ptr<modeling::Vertex_Schema> image_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> image_mesh;
       unique_ptr<Image_Effect> default_image_effect;
+      shading::Program *flat_program;
 //      unique_ptr<lookinglass::Renderable_List> sprites;
       lookinglass::House &house;
 
@@ -84,6 +87,8 @@ namespace drawing {
       lookinglass::House &get_house() const {
         return house;
       }
+
+      void draw_square(float left, float top, float width, float height, const vec4 &color, bool solid);
   };
 }
 

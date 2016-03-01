@@ -8,6 +8,9 @@
 #include "modeling/Simple_Mesh.h"
 #include "Sprite_Layer.h"
 #include "lookinglass/House.h"
+#include "lookinglass/glow.h"
+#include "lookinglass/perspective/Viewport.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace modeling;
 using namespace texturing;
@@ -55,13 +58,23 @@ namespace drawing {
     solid_mesh = unique_ptr<Simple_Mesh>(new Simple_Mesh(solid_vertices, 4, *solid_vertex_schema.get()));
     image_mesh = unique_ptr<Simple_Mesh>(new Simple_Mesh(image_vertices, 4, *image_vertex_schema.get()));
 
-    auto program = shader_manager.get_program_or_null("sprite");
-    if (!program) {
-      program = &shader_manager.create_program_from_files("sprite", "drawing/sprite.vertex",
-                                                          "texturing/image.fragment", {});
+    {
+      auto program = shader_manager.get_program_or_null("sprite");
+      if (!program) {
+        program = &shader_manager.create_program_from_files("sprite", "drawing/sprite.vertex",
+                                                            "texturing/image.fragment", {});
+      }
+
+      default_image_effect = unique_ptr<Image_Effect>(
+        new Image_Effect(*program, house.get_base_viewport()));
     }
-    default_image_effect = unique_ptr<Image_Effect>(
-      new Image_Effect(*program, house.get_glass().get_viewport_dimensions()));
+
+    flat_program = shader_manager.get_program_or_null("drawing.flat");
+    if (!flat_program) {
+      flat_program = &shader_manager.create_program_from_files("drawing.flat", "drawing/flat.vertex",
+                                                               "drawing/flat.fragment", {});
+    }
+
   }
 
   Draw::~Draw() { }
@@ -79,6 +92,27 @@ namespace drawing {
 
   const ivec2 &Draw::get_dimensions() const {
     return house.get_glass().get_viewport_dimensions();
+  }
+
+  void Draw::draw_square(float left, float top, float width, float height, const vec4 &color, bool solid) {
+    flat_program->activate();
+
+    auto &viewport = house.get_base_viewport();
+    auto &dimensions = viewport.get_dimensions();
+
+    auto transform = glm::translate(mat4(1), vec3(left, dimensions.y - top, 0))
+                     * glm::scale(mat4(1), vec3(width, height, 1));
+
+    auto color_index = glGetUniformLocation(flat_program->get_id(), "color");
+    glUniform4fv(color_index, 1, (float *) &color);
+
+    auto projection_index = glGetUniformLocation(flat_program->get_id(), "projection");
+    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &viewport.get_flat_projection());
+
+    auto transform_index = glGetUniformLocation(flat_program->get_id(), "transform");
+    glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
+
+    solid_mesh->render();
   }
 
 }

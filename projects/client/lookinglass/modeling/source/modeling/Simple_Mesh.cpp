@@ -15,15 +15,14 @@ namespace modeling {
     vertex_count = 0;
   }
 
-
   Simple_Mesh::~Simple_Mesh() {
     free();
     delete data;
   }
 
-  void Simple_Mesh::render() {
+  void Simple_Mesh::render(bool solid) {
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count);
+    glDrawArrays(solid ? GL_TRIANGLE_FAN : GL_LINE_STRIP, 0, vertex_count);
   }
 
   void Simple_Mesh::load() {
@@ -44,7 +43,7 @@ namespace modeling {
     this->data = data;
     this->vertex_count = vertex_count;
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
                  GL_STATIC_DRAW);
 

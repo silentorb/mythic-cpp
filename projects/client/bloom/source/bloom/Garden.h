@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "flowers/Flower.h"
+#include "bloom/layout/Flower.h"
 
 namespace haft {
   class Action;
@@ -36,5 +36,11 @@ namespace bloom {
 
       Text_Flower *create_text(const string font, const string content);
       virtual void render() override;
+
+      drawing::Draw &get_draw() const {
+        return draw;
+      }
+
+      Flower & create_generic_flower();
   };
 }

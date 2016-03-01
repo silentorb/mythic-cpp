@@ -18,6 +18,7 @@ namespace lookinglass {
 
     void Viewport::set_projection() {
       projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
+      flat_projection=glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);
     }
 
     Viewport *Viewport::get_active_viewport() {

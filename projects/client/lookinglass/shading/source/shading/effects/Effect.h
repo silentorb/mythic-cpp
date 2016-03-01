@@ -7,7 +7,7 @@
 namespace shading {
   class Program;
 
-    class MYTHIC_EXPORT Effect {
+    class MYTHIC_EXPORT Effect : no_copy {
     protected:
         Program *const program;
         void set_vec4(unsigned int index, const glm::vec4 &value);
