@@ -11,7 +11,11 @@ using namespace haft;
 namespace bloom {
 
   Garden::Garden(drawing::Draw &draw) :
-    draw(draw), select_action(new Action(1, "Select")), root(new Flower(*this)) {
+    draw(draw),
+    select_action(new Action(1, "Select")),
+    root(new Flower(*this)),
+    converter(draw.get_dimensions())
+  {
     draw.add(*root);
   }
 

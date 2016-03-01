@@ -2,7 +2,7 @@
 
 #include "dllexport.h"
 #include <string>
-#include "bloom/layout/Flower.h"
+#include "Flower.h"
 
 namespace typography {
   class Text;

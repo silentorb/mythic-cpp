@@ -8,6 +8,7 @@
 #include "Lookinglass_Resources.h"
 #include "shading/Shader_Manager.h"
 #include "lookinglass/Renderable_List.h"
+#include "typography/Text_Effect.h"
 
 using namespace resourceful;
 
@@ -37,6 +38,9 @@ namespace lookinglass {
     resource_manager->get_shader_manager().add_program_add_listener(*viewport_mist);
     base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, frame->get_width(), frame->get_height()));
     base_viewport->activate();
+    base_viewport->add_listener(Vector2_Delegate(
+      [&](const ivec2 &dimensions) { resource_manager->get_text_effect().set_viewport_dimensions(dimensions); }));
+    
     glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
     initialize();
   }
@@ -51,6 +55,7 @@ namespace lookinglass {
     frame->update_events();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    base_viewport->set_dimensions(frame->get_dimensions());
     base_viewport->update_device();
 
     renderables->render(*glass);

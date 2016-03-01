@@ -22,7 +22,7 @@ namespace modeling {
 
   void Simple_Mesh::render(bool solid) {
     glBindVertexArray(vao);
-    glDrawArrays(solid ? GL_TRIANGLE_FAN : GL_LINE_STRIP, 0, vertex_count);
+    glDrawArrays(solid ? GL_TRIANGLE_FAN : GL_LINE_STRIP, 0, solid ? vertex_count : vertex_count + 3);
   }
 
   void Simple_Mesh::load() {

@@ -19,7 +19,7 @@ namespace lookinglass {
     mesh_manager(new Resource_Manager("meshes")) {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
-    font_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport_dimensions));
+    text_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport_dimensions));
   }
 
   Lookinglass_Resources::~Lookinglass_Resources() {
@@ -49,14 +49,14 @@ namespace lookinglass {
   }
 
   void Lookinglass_Resources::add_font(const string name, const string path) {
-    font_manager->create_font(name, path);
+    text_manager->create_font(name, path);
   }
 
   Font &Lookinglass_Resources::get_font(const string name) {
-    return font_manager->get_font(name);
+    return text_manager->get_font(name);
   }
 
   typography::Text_Effect &Lookinglass_Resources::get_text_effect() const {
-    return font_manager->get_text_effect();
+    return text_manager->get_text_effect();
   }
 }

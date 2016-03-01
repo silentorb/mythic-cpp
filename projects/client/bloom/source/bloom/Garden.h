@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "bloom/layout/Flower.h"
+#include "bloom/flowers/Flower.h"
 
 namespace haft {
   class Action;
@@ -23,6 +23,7 @@ namespace bloom {
       Flower *root;
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;
+      Measurement_Converter converter;
 
   public:
       Garden(drawing::Draw &draw);
@@ -42,5 +43,9 @@ namespace bloom {
       }
 
       Flower & create_generic_flower();
+
+      const Measurement_Converter &get_converter() const {
+        return converter;
+      }
   };
 }

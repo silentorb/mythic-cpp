@@ -13,11 +13,12 @@ namespace bloom {
       vec4 color;
 
   public:
-      void render(drawing::Draw &draw, const Bounds & bounds) {
-draw.draw_square(bounds.top_left.x, bounds.top_left.y, bounds.bottom_right.x - bounds.top_left.x, bounds.bottom_right.y - bounds.top_left.y, color, false);
+      void render(drawing::Draw &draw, const Bounds &bounds) {
+        draw.draw_square(bounds.get_position().x, bounds.get_position().y, bounds.get_dimensions().x,
+                         bounds.get_dimensions().y, color, false);
       }
 
-      void set_color(vec4 color){
+      void set_color(vec4 color) {
         this->color = color;
       }
   };

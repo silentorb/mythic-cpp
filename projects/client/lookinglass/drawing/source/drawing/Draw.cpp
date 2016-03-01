@@ -37,10 +37,20 @@ namespace drawing {
     house.add_renderable(*wrapper);
 
     float solid_vertices[] = {
-      -1, -1,
-      -1, 1,
+//      0, 0,
+//      1, 0,
+//      1, 1,
+//      0, 1
+
+//      1, -1,
+//      1, 1,
+//      -1, 1,
+//      -1, -1,
+//
+      1, 0,
       1, 1,
-      1, -1,
+      0, 1,
+      0, 0,
     };
 
     float image_vertices[] = {
@@ -100,19 +110,29 @@ namespace drawing {
     auto &viewport = house.get_base_viewport();
     auto &dimensions = viewport.get_dimensions();
 
-    auto transform = glm::translate(mat4(1), vec3(left, dimensions.y - top, 0))
+    vec2 scaling = dimensions.x > dimensions.y
+                   ? vec2(1, (float)dimensions.x / dimensions.y)
+                   : vec2((float)dimensions.y / dimensions.x, 1);
+
+    auto transform = glm::translate(mat4(1), vec3(left, top, 0))
                      * glm::scale(mat4(1), vec3(width, height, 1));
+
+//    auto transform = glm::scale(mat4(1), vec3(width, height, 1));
+
 
     auto color_index = glGetUniformLocation(flat_program->get_id(), "color");
     glUniform4fv(color_index, 1, (float *) &color);
 
-    auto projection_index = glGetUniformLocation(flat_program->get_id(), "projection");
-    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &viewport.get_flat_projection());
+    auto scaling_index = glGetUniformLocation(flat_program->get_id(), "scaling");
+    glUniform2fv(scaling_index, 1, (float *) &scaling);
+
+//    auto projection_index = glGetUniformLocation(flat_program->get_id(), "projection");
+//    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &viewport.get_flat_projection());
 
     auto transform_index = glGetUniformLocation(flat_program->get_id(), "transform");
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 
-    solid_mesh->render();
+    solid_mesh->render(solid);
   }
 
 }

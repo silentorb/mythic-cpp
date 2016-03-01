@@ -24,7 +24,7 @@ namespace bloom {
   }
 
   void Text_Flower::render() {
-    auto &absolute_position = get_absolute_position();
+    auto absolute_position = get_absolute_position();
     text->set_position(ivec2((int) absolute_position.x, (int) absolute_position.y));
     text->render();
     Flower::render();

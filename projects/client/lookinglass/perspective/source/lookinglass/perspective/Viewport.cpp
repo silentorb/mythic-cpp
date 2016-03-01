@@ -18,7 +18,7 @@ namespace lookinglass {
 
     void Viewport::set_projection() {
       projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
-      flat_projection=glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);
+      flat_projection = glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);
     }
 
     Viewport *Viewport::get_active_viewport() {
@@ -66,6 +66,19 @@ namespace lookinglass {
       start = glm::unProject(vec3(float(point.x), float(y), 0), camera->get_view_matrix(), projection, bounds);
       end = glm::unProject(vec3(float(point.x), float(y), 1), camera->get_view_matrix(), projection, bounds);
 
+    }
+
+    void Viewport::set_dimensions(const ivec2 &value) {
+      if (dimensions == value)
+        return;
+
+      dimensions = value;
+      set_projection();
+      glViewport(left, top, dimensions.x, dimensions.y);
+
+      for (auto &listener: listeners) {
+        listener(dimensions);
+      }
     }
   }
 }

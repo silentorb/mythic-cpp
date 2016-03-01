@@ -6,17 +6,23 @@
 #include "Viewport_Data.h"
 #include "Camera.h"
 #include "lookinglass/through/Mist.h"
+#include <vector>
+#include <functional>
 
 using namespace glm;
 using namespace lookinglass::through;
+using namespace std;
 
 namespace lookinglass {
   namespace perspective {
+
+    typedef function<void(const ivec2 &)> Vector2_Delegate;
 
     class MYTHIC_EXPORT Viewport {
     private:
         Mist<Viewport_Data> &mist;
         Camera *camera;
+        vector<Vector2_Delegate> listeners;
 
     public:
         ivec2 dimensions;
@@ -64,6 +70,11 @@ namespace lookinglass {
 
         const mat4 &get_flat_projection() const {
           return flat_projection;
+        }
+
+        void set_dimensions(const ivec2 &value);
+        void add_listener(Vector2_Delegate listener){
+          listeners.push_back(listener);
         }
     };
   }

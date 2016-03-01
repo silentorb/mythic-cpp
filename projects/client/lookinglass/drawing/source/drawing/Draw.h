@@ -76,8 +76,6 @@ namespace drawing {
         return *image_vertex_schema;
       }
 
-//      lookinglass::Renderable &get_renderable() const;
-
       const ivec2 &get_dimensions() const;
 
       Image_Effect &get_default_image_effect() const {

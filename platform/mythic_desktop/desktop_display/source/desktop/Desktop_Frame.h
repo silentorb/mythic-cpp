@@ -1,13 +1,13 @@
 #pragma once
-#include "dllexport.h"
 
+#include "dllexport.h"
 #include "lookinglass/Frame.h"
 
 struct SDL_Window;
-namespace desktop {
-  class MYTHIC_EXPORT Desktop_Frame : public lookinglass::Frame {
 
-  private:
+namespace desktop {
+
+  class MYTHIC_EXPORT Desktop_Frame : public lookinglass::Frame {
       void *gl_context;
       void create_window(const char *title, int width, int height);
       SDL_Window *sdl_window;

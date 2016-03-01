@@ -13,24 +13,24 @@ using namespace shading;
 namespace typography {
 
   class MYTHIC_EXPORT Text_Manager {
-    unique_ptr<resourceful::Resource_Manager> fonts;
-    FT_Library library;
-    Shader_Manager &shader_manager;
-    unique_ptr<Text_Effect> text_effect;
+      unique_ptr<resourceful::Resource_Manager> fonts;
+      FT_Library library;
+      Shader_Manager &shader_manager;
+      unique_ptr<Text_Effect> text_effect;
 
   public:
-    Text_Manager(Shader_Manager &shader_manager, const ivec2 &viewport_dimensions);
+      Text_Manager(Shader_Manager &shader_manager, const ivec2 &viewport_dimensions);
 
-    ~Text_Manager();
+      ~Text_Manager();
 
-    Font &create_font(const string name, const string filename);
+      Font &create_font(const string name, const string filename);
 
-    Font &get_font(const string &name);
+      Font &get_font(const string &name);
 
+      Text_Effect &get_text_effect() const {
+        return *text_effect;
+      }
 
-    Text_Effect &get_text_effect() const {
-      return *text_effect;
-    }
   };
 }
 
