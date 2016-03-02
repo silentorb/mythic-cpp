@@ -13,6 +13,8 @@ using namespace glm;
 
 namespace bloom {
 
+  struct Axis_Value;
+
   enum Box_Properties {
       width,
       height,
@@ -23,14 +25,11 @@ namespace bloom {
   };
   const static int BOX_PROPERTY_COUNT = 6;
 
-  template<typename T>
-  class Box : no_copy, Abstract_Box<T> {
+  class Box : no_copy {
   protected:
-      vector<unique_ptr<T>> children;
-      T *parent = nullptr;
       Vector2 dimensions;
       Vector2 position;
-      Vector2 corner;
+      Vector2 far;
       const Measurement_Converter &converter;
 
       inline Measurement *get_properties() {
@@ -68,11 +67,29 @@ namespace bloom {
       }
 
       const Vector2 &get_corner() const {
-        return corner;
+        return far;
       }
 
       void set_corner(const Vector2 &corner) {
-        Box::corner = corner;
+        Box::far = corner;
+      }
+
+      virtual Box *get_parent_box() const = 0;
+
+      const Measurement_Converter &get_converter() const {
+        return converter;
+      }
+
+      void set_right(const Measurement & value){
+        far.x = value;
+      }
+
+      void set_left(const Measurement & value){
+        position.x = value;
       }
   };
+
+  template<typename Axis>
+  Axis_Value calculate_axis(const Box &box);
+
 }

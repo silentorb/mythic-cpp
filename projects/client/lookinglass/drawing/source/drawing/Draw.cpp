@@ -33,8 +33,6 @@ namespace drawing {
     image_vertex_schema(new Vertex_Schema({4})) {
 
     auto &shader_manager = house.get_shader_manager();
-    auto wrapper = new Renderable_Draw(*this);
-    house.add_renderable(*wrapper);
 
     float solid_vertices[] = {
 //      0, 0,
@@ -42,15 +40,15 @@ namespace drawing {
 //      1, 1,
 //      0, 1
 
-//      1, -1,
+//      1, 0,
 //      1, 1,
-//      -1, 1,
-//      -1, -1,
-//
-      1, 0,
-      1, 1,
-      0, 1,
+//      0, 1,
+//      0, 0,
+
       0, 0,
+      0, 1,
+      1, 1,
+      1, 0,
     };
 
     float image_vertices[] = {
@@ -89,6 +87,10 @@ namespace drawing {
 
   Draw::~Draw() { }
 
+  void Draw::add_to_house() {
+    auto wrapper = new Renderable_Draw(*this);
+    house.add_renderable(*wrapper);
+  }
   Sprite *Draw::create_sprite(Image &image, const glm::vec2 &position) {
     auto sprite = new Sprite(*this, *default_image_effect, image, position);
 //    add(*sprite);
@@ -106,6 +108,10 @@ namespace drawing {
 
   void Draw::draw_square(float left, float top, float width, float height, const vec4 &color, bool solid) {
     flat_program->activate();
+
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     auto &viewport = house.get_base_viewport();
     auto &dimensions = viewport.get_dimensions();
@@ -133,6 +139,7 @@ namespace drawing {
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 
     solid_mesh->render(solid);
+    glEnable(GL_DEPTH_TEST);
   }
 
 }

@@ -19,7 +19,7 @@ namespace bloom {
 
   public:
 
-      Measurement() : type(Measurements::units), value(0) { }
+      Measurement() : type(Measurements::stretch), value(0) { }
 
       Measurement(Measurements type, float value) : type(type), value(value) { }
 

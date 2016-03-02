@@ -3,6 +3,7 @@
 #include "bloom/styling/Border.h"
 #include "bloom/Garden.h"
 #include "bloom/layout/Box_Source.h"
+#include "bloom/styling/Fill.h"
 
 namespace bloom {
 
@@ -67,17 +68,25 @@ namespace bloom {
   }
 
   const Bounds Flower::get_bounds() {
-    return Bounds(get_absolute_position(), get_absolute_dimensions());
+    auto x = calculate_axis<Horizontal_Axis>(*this);
+    auto y = calculate_axis<Vertical_Axis>(*this);
+    return Bounds(
+      vec2(x.near, y.near),
+      vec2(x.length, y.length)
+    );
   }
 
   bool Flower::point_is_inside(const vec2 &point) {
     auto bounds = get_bounds();
-    auto &top_left = bounds.get_position();
-    auto &bottom_right = bounds.get_corner();
-    return point.x > top_left.x
-           && point.y > top_left.y
-           && point.x < bottom_right.x
-           && point.y < bottom_right.y;
+    auto top_left = converter.convert(bounds.get_position());
+    auto bottom_right = converter.convert(bounds.get_corner());
+
+    auto result = point.x > top_left.x
+                  && point.y > top_left.y
+                  && point.x < bottom_right.x
+                  && point.y < bottom_right.y;
+
+    return result;
   }
 
   bool Flower::check_activate(const vec2 &point) {
@@ -94,6 +103,11 @@ namespace bloom {
   }
 
   void Flower::render() {
+    if (fill.get() != nullptr) {
+      auto &bounds = get_bounds();
+      fill->render(garden.get_draw(), bounds);
+    }
+
     if (border.get() != nullptr) {
       auto &bounds = get_bounds();
       border->render(garden.get_draw(), bounds);
@@ -127,6 +141,14 @@ namespace bloom {
     }
 
     border->set_color(color);
+  }
+
+  void Flower::set_fill(vec4 color) {
+    if (fill.get() == nullptr) {
+      fill = unique_ptr<Fill>(new Fill());
+    }
+
+    fill->set_color(color);
   }
 
   Flower &Flower::create_generic_flower() {

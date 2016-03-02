@@ -19,6 +19,8 @@ namespace bloom {
 
   class Border;
 
+  class Fill;
+
   class Garden;
 
   typedef function<void(Flower *flower)> Click_Listener;
@@ -27,11 +29,14 @@ namespace bloom {
 //
 //  };
 
-  class MYTHIC_EXPORT Flower : public drawing::Element, public Box<Flower> {
+  class MYTHIC_EXPORT Flower : public drawing::Element, public Box {
       vector<Click_Listener> on_activate;
       vec2 get_ancestor_offset() const;
+      vector<unique_ptr<Flower>> children;
+      Flower *parent = nullptr;
 
       unique_ptr<Border> border;
+      unique_ptr<Fill> fill;
       Garden &garden;
 
   protected:
@@ -74,6 +79,12 @@ namespace bloom {
       }
 
       void set_border(vec4 color);
+      void set_fill(vec4 color);
       Flower &create_generic_flower();
+
+      virtual Box *get_parent_box() const override {
+        return parent;
+      }
+
   };
 }

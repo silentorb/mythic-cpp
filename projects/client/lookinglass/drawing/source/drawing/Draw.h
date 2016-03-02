@@ -87,6 +87,7 @@ namespace drawing {
       }
 
       void draw_square(float left, float top, float width, float height, const vec4 &color, bool solid);
+      void add_to_house();
   };
 }
 

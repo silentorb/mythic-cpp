@@ -27,7 +27,7 @@ namespace bloom {
 
   public:
       Garden(drawing::Draw &draw);
-			~Garden();
+      ~Garden();
 
       void update_input(haft::Input_State &input_state);
 
@@ -42,10 +42,14 @@ namespace bloom {
         return draw;
       }
 
-      Flower & create_generic_flower();
+      Flower &create_generic_flower();
 
       const Measurement_Converter &get_converter() const {
         return converter;
+      }
+
+       haft::Action &get_select_action() const {
+        return *select_action;
       }
   };
 }

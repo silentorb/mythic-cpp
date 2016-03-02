@@ -40,7 +40,7 @@ namespace lookinglass {
     base_viewport->activate();
     base_viewport->add_listener(Vector2_Delegate(
       [&](const ivec2 &dimensions) { resource_manager->get_text_effect().set_viewport_dimensions(dimensions); }));
-    
+
     glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
     initialize();
   }
