@@ -32,8 +32,6 @@ private:
 public:
     iOS_Frame(EAGLContext* context, int width, int height);
     virtual void update_events();
-    virtual int get_width();
-    virtual int get_height();
     virtual void flip_buffer();
     virtual void free();
     virtual void initialize_window();
@@ -52,7 +50,7 @@ class Mythic_iOS : public mythic::Platform_Factory {
 
 public:
     Mythic_iOS(EAGLContext* context);
-    virtual lookinglass::Frame *create_frame() override;
+    virtual lookinglass::Frame *create_frame(int width, int height) override;
     virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
 

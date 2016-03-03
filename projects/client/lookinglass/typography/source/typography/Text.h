@@ -68,8 +68,10 @@ namespace typography {
       }
 
       void set_position(const ivec2 &value) {
-        position = value;
-        changed = true;
+        if (value != position) {
+          position = value;
+          changed = true;
+        }
       }
 
       void set_size(float value) {

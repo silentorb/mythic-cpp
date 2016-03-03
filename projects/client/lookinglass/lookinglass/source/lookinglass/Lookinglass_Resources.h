@@ -38,6 +38,10 @@ namespace lookinglass {
   namespace glow {
     class Capabilities;
   }
+  namespace perspective {
+   class Viewport;
+  }
+
   class MYTHIC_EXPORT Lookinglass_Resources {
 
       unique_ptr<resourceful::Resource_Manager> texture_manager;
@@ -46,7 +50,8 @@ namespace lookinglass {
       unique_ptr<typography::Text_Manager> text_manager;
 
   public:
-      Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities, const glm::ivec2 & viewport_dimensions);
+      Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities,
+                            perspective::Viewport &viewport);
       ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;

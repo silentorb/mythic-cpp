@@ -4,7 +4,7 @@
 using namespace resourceful;
 
 namespace typography {
-  Text_Manager::Text_Manager(Shader_Manager &shader_manager, const ivec2 &viewport_dimensions)
+  Text_Manager::Text_Manager(Shader_Manager &shader_manager, lookinglass:: perspective::Viewport & viewport)
     : fonts(new Resource_Manager("fonts")),
       shader_manager(shader_manager) {
     texturing::initialize_texture_shaders(shader_manager);
@@ -13,7 +13,7 @@ namespace typography {
       throw runtime_error("Could not init FreeType Library");
 
     text_effect = unique_ptr<Text_Effect>(
-      new Text_Effect(shader_manager.get_program("colored-image"), viewport_dimensions));
+      new Text_Effect(shader_manager.get_program("colored-image"), viewport));
   }
 
   Text_Manager::~Text_Manager() {

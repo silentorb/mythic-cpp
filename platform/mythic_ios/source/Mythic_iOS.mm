@@ -33,7 +33,7 @@ string iOS_Shader_Loader::load(string path) {
 
 iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
     :context(context), width(width), height(height) {
-
+  set_dimensions(width, height);
 }
 
 void iOS_Frame::create_window(const char *title, int width, int height) {
@@ -57,19 +57,19 @@ void  iOS_Frame::update_events() {
 //    }
 }
 
-int iOS_Frame::get_width() {
-  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-  CGFloat screenScale = [[UIScreen mainScreen] scale];
-  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-    return pixels.width;
-}
-
-int iOS_Frame::get_height() {
-  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-  CGFloat screenScale = [[UIScreen mainScreen] scale];
-  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-    return pixels.height;
-}
+//int iOS_Frame::get_width() {
+//  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//  CGFloat screenScale = [[UIScreen mainScreen] scale];
+//  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+//    return pixels.width;
+//}
+//
+//int iOS_Frame::get_height() {
+//  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//  CGFloat screenScale = [[UIScreen mainScreen] scale];
+//  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+//    return pixels.height;
+//}
 
 void iOS_Frame::flip_buffer() {
 //    SDL_GL_SwapWindow(sdl_window);
@@ -116,7 +116,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
     }
 }
 
-Frame *Mythic_iOS::create_frame() {
+Frame *Mythic_iOS::create_frame(int width, int height) {
     return new iOS_Frame(context, 0, 0);
 }
 

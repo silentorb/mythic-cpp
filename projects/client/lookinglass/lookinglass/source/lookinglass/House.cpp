@@ -26,8 +26,8 @@ namespace lookinglass {
 #endif
     capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
 
-    resource_manager = unique_ptr<Lookinglass_Resources>(
-      new Lookinglass_Resources(shader_loader, *capabilities, ivec2(frame->get_width(), frame->get_height())));
+    auto &dimensions = frame->get_dimensions();
+
     auto scene_definition = new Struct_Info(1, "", {
       new Field_Info("view", Field_Type::matrix),
       new Field_Info("projection", Field_Type::matrix),
@@ -35,11 +35,16 @@ namespace lookinglass {
     });
     viewport_mist = unique_ptr<Mist<Viewport_Data>>(
       through::create_mist<Viewport_Data>(scene_definition, get_capabilities()));
-    resource_manager->get_shader_manager().add_program_add_listener(*viewport_mist);
-    base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, frame->get_width(), frame->get_height()));
+    base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, dimensions.x, dimensions.y));
     base_viewport->activate();
-    base_viewport->add_listener(Vector2_Delegate(
-      [&](const ivec2 &dimensions) { resource_manager->get_text_effect().set_viewport_dimensions(dimensions); }));
+
+    resource_manager = unique_ptr<Lookinglass_Resources>(
+      new Lookinglass_Resources(shader_loader, *capabilities, *base_viewport));
+
+    resource_manager->get_shader_manager().add_program_add_listener(*viewport_mist);
+
+//    base_viewport->add_listener(Vector2_Delegate(
+//      [&](const ivec2 &dimensions) { resource_manager->get_text_effect().set_viewport_dimensions(dimensions); }));
 
     glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
     initialize();
@@ -104,5 +109,9 @@ namespace lookinglass {
 
   shading::Shader_Manager &House::get_shader_manager() const {
     return resource_manager->get_shader_manager();
+  }
+
+  const glm::ivec2& House::get_dimensions() {
+    return base_viewport->get_dimensions();
   }
 }

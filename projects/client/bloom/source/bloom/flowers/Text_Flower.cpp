@@ -7,12 +7,15 @@ namespace bloom {
   Text_Flower::Text_Flower(Garden & garden, typography::Font &font, typography::Text_Effect &effect,
                            const string content) :
     Flower(garden),
-    text(new typography::Text(font, effect, content)) { }
+    text(new typography::Text(font, effect, content)) {
+	  update_dimensions();
+  }
 
   Text_Flower::~Text_Flower() { }
 
   void Text_Flower::set_content(const string &content) {
     text->set_content(content);
+	update_dimensions();
   }
 
   void Text_Flower::set_color(const vec4 value) {
@@ -24,13 +27,15 @@ namespace bloom {
   }
 
   void Text_Flower::render() {
-    auto absolute_position = get_absolute_position();
-    text->set_position(ivec2((int) absolute_position.x, (int) absolute_position.y));
+		Flower::render();
+		auto &bounds = get_bounds();
+		text->set_position(ivec2((int) bounds.get_position().x, (int)bounds.get_position().y));
     text->render();
-    Flower::render();
   }
 
   void Text_Flower::update_dimensions() {
-    dimensions = text->get_dimensions();
+    auto text_dimensions = text->get_dimensions();
+    dimensions.x = Measurement(text_dimensions.x);
+    dimensions.y = Measurement(text_dimensions.y);
   }
 }

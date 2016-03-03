@@ -19,7 +19,7 @@ namespace typography {
       unique_ptr<Text_Effect> text_effect;
 
   public:
-      Text_Manager(Shader_Manager &shader_manager, const ivec2 &viewport_dimensions);
+      Text_Manager(Shader_Manager &shader_manager, lookinglass:: perspective:: Viewport& viewport);
 
       ~Text_Manager();
 

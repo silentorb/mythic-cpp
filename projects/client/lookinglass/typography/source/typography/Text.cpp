@@ -41,6 +41,8 @@ namespace typography {
     float left = 0;
     auto step = 0;
     float top = -characters.at('A')->size.y;
+    auto offset = characters.at('A')->size.y * 2;
+//    float top = 0;
     //            actual_height = font.characters['A'].size.y * line_size;
 
     auto items = string_replace(content, "\r\n", "\n");
@@ -60,28 +62,18 @@ namespace typography {
       float width = character->size.x;
       float height = character->size.y;
       auto x = left;
-      float y = top + (character->bearing.y - character->size.y);//-font.max_height*scale;
+      float y = top - (character->bearing.y - character->size.y) + offset;//-font.max_height*scale;
 
       auto texture_width = (float) character->size.x / font.get_dimensions().x;
 
       vertices[step + 5] = Vertex(x, y, 0, character->offset + character->height);
-      vertices[step + 4] = Vertex(x, y + height, 0, character->offset);
-      vertices[step + 3] = Vertex(x + width, y + height, texture_width, character->offset);
+      vertices[step + 4] = Vertex(x, y - height, 0, character->offset);
+      vertices[step + 3] = Vertex(x + width, y - height, texture_width, character->offset);
       vertices[step + 2] = Vertex(x + width, y, texture_width, character->offset + character->height);
-
-//			x = 0;
-//			y = -1450;
-//			width  = 100;
-//			height = 6000;
-//			vertices[step + 0] = Vertex(x, y, 0, 1);
-//			vertices[step + 1] = Vertex(x, y + height, 0, 0);
-//			vertices[step + 2] = Vertex(x + width, y + height, 1, 0);
-//			vertices[step + 3] = Vertex(x + width, y, 1, 1);
 
       vertices[step + 1] = vertices[step + 5];
       vertices[step + 0] = vertices[step + 3];
       step += 6;
-      //                left += (character->advance >> 6);
       left += character->size.x + 6;
     }
 
@@ -102,12 +94,12 @@ namespace typography {
     if (element_count == 0)
       return;
 
-    auto &viewport_dimensions = effect.get_viewport_dimensions();
     auto scale = get_scale();
+    vec2 scaling = effect.get_viewport().get_unit_scaling();
 
-//    auto transform = glm::translate(mat4(1.f), vec3( position.x, dimensions.y - position.y, 0));
-    auto transform = glm::translate(mat4(1), vec3(position.x, viewport_dimensions.y - position.y, 0))
-                     * glm::scale(mat4(1), vec3(scale, scale, 1));
+    auto transform =
+      glm::translate(mat4(1), vec3(position.x * scaling.x, position.y * scaling.y, 0))
+      * glm::scale(mat4(1), vec3(scale * scaling.x, scale * scaling.y, 1));
 
 //    glUniform2f(glGetUniformLocation(program->get_id(), "scale"), scale, scale);
     effect.activate(color, transform);
@@ -132,8 +124,8 @@ namespace typography {
   }
 
   float Text::get_scale() const {
-    auto &viewport_dimensions = effect.get_viewport_dimensions();
-    return size * viewport_dimensions.x / 18000;
+//    auto &viewport_dimensions = effect.get_viewport_dimensions();
+    return size * 1000 / 18000;
 
   }
 }

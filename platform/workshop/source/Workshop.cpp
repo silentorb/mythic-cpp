@@ -11,7 +11,7 @@ int main(int argc, char *const argv[]) {
 
   try {
 
-    desktop::Desktop desk("Mythic Workshop");
+    desktop::Desktop desk("Mythic Workshop", 800, 600);
     auto& engine = desk.get_engine();
 
     engine.get_myth<Lab>("lab");

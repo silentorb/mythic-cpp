@@ -7,15 +7,14 @@
 #include <vector>
 #include <memory>
 #include <glm/vec2.hpp>
+#include "Axis_Value.h"
 
 using namespace std;
 using namespace glm;
 
 namespace bloom {
 
-  struct Axis_Value;
-
-  enum Box_Properties {
+  enum class Box_Properties {
       width,
       height,
       left,
@@ -23,22 +22,40 @@ namespace bloom {
       right,
       bottom
   };
+
   const static int BOX_PROPERTY_COUNT = 6;
 
+  enum class Arrangement {
+      canvas,
+      down,
+      right,
+      up,
+      left,
+  };
+
   class Box : no_copy {
+      friend class Horizontal_Axis;
+      friend class Vertical_Axis;
+
   protected:
       Vector2 dimensions;
       Vector2 position;
       Vector2 far;
       const Measurement_Converter &converter;
+      Arrangement arrangement = Arrangement::canvas;
+
+      Axis_Value absolute_horizontal;
+      Axis_Value absolute_vertical;
 
       inline Measurement *get_properties() {
         return &dimensions.x;
       }
 
-      void set_width(Measurement &value) {
-        dimensions.x = value;
-      }
+      template<typename Axis>
+      Axis_Value get_parent_axis_values();
+
+      template<typename Axis>
+      Axis_Value calculate_axis();
 
   public:
       Box(const Measurement_Converter &converter);
@@ -87,9 +104,20 @@ namespace bloom {
       void set_left(const Measurement & value){
         position.x = value;
       }
-  };
 
-  template<typename Axis>
-  Axis_Value calculate_axis(const Box &box);
+      Arrangement get_arrangement() const {
+        return arrangement;
+      }
+
+      void set_arrangement(Arrangement arrangement) {
+        Box::arrangement = arrangement;
+      }
+
+      void set_width(Measurement value) {
+        dimensions.x = value;
+      }
+
+      void update_absolute_dimensions();
+  };
 
 }

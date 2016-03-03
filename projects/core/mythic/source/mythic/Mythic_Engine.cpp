@@ -8,9 +8,9 @@
 namespace mythic {
 //  std::map<string, std::unique_ptr<Myth_Info>> myth_registrations;
 
-  Mythic_Engine::Mythic_Engine(Platform_Factory &factory) {
+  Mythic_Engine::Mythic_Engine(Platform_Factory &factory,int width, int height) {
 
-    auto house = new lookinglass::House(factory.create_frame(), factory.create_shader_loader());
+    auto house = new lookinglass::House(factory.create_frame(width, height), factory.create_shader_loader());
     client = new Client(house);
 
     auto &input_manager = client->get_input_manager();

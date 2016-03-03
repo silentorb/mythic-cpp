@@ -30,19 +30,25 @@ namespace bloom {
 //  };
 
   class MYTHIC_EXPORT Flower : public drawing::Element, public Box {
+
+      enum class Deletion_Mode {
+          alive,
+          defer_deletion,
+          deletion_pending
+      };
+
       vector<Click_Listener> on_activate;
       vec2 get_ancestor_offset() const;
       vector<unique_ptr<Flower>> children;
-      Flower *parent = nullptr;
-
       unique_ptr<Border> border;
       unique_ptr<Fill> fill;
       Garden &garden;
+      Deletion_Mode deletion = Deletion_Mode::alive;
 
   protected:
       vec2 position;
       bool visible = true;
-      vec2 dimensions = vec2(0);
+      Flower *parent = nullptr;
 
       const Bounds fit_to_children();
 
@@ -60,15 +66,25 @@ namespace bloom {
 
       virtual void render() override;
 
-      void add_activate_listener(Click_Listener listener) {
+      void click(Click_Listener listener) {
         on_activate.push_back(listener);
       }
 
       void add_child(Flower *child) {
+        child->parent = this;
         children.push_back(unique_ptr<Flower>(child));
       }
 
       void remove_child(Flower *child);
+
+      void prune() {
+        if (deletion == Deletion_Mode::alive) {
+          parent->remove_child(this);
+        }
+        else if (deletion == Deletion_Mode::defer_deletion) {
+          deletion = Deletion_Mode::deletion_pending;
+        }
+      }
 
       bool is_visible() const {
         return visible;
@@ -85,6 +101,5 @@ namespace bloom {
       virtual Box *get_parent_box() const override {
         return parent;
       }
-
   };
 }

@@ -14,12 +14,9 @@ namespace desktop {
       void create_gl_context();
 
   public:
-      Desktop_Frame(const char *title);
+      Desktop_Frame(const char *title, int width, int height);
       virtual void update_events();
-      virtual int get_width();
-      virtual int get_height();
       virtual void flip_buffer();
-
       virtual void free() override;
       virtual void initialize_window() override;
   };

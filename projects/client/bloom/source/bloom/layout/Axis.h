@@ -47,10 +47,6 @@ namespace bloom {
 //  class Axis {
 //  };
 
-  struct Axis_Value {
-      float near, length, absolute_far;
-  };
-
   class Horizontal_Axis  {
   public:
       static const Measurement &get_near(const Box &box) {
@@ -69,6 +65,9 @@ namespace bloom {
         return value.x;
       }
 
+      static const Axis_Value &get_cache(const Box &box) {
+        return box.absolute_horizontal;
+      }
   };
 
   class Vertical_Axis  {
@@ -89,6 +88,9 @@ namespace bloom {
         return value.y;
       }
 
+      static const Axis_Value &get_cache(const Box &box) {
+        return box.absolute_vertical;
+      }
   };
 
 }

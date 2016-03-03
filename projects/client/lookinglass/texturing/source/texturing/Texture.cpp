@@ -25,7 +25,6 @@ namespace texturing {
     if (id)
       return;
 
-//    unique_ptr<float[]> data(new float[width * height * 3]);
     unsigned char *data = generator->generate(width, height);
 
     glGenTextures(1, &id);
@@ -37,7 +36,6 @@ namespace texturing {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 //    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-//    memset(data, 0, width * height * 4);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     lookinglass::glow::check_error("Creating texture.");
 

@@ -91,6 +91,7 @@ namespace drawing {
     auto wrapper = new Renderable_Draw(*this);
     house.add_renderable(*wrapper);
   }
+
   Sprite *Draw::create_sprite(Image &image, const glm::vec2 &position) {
     auto sprite = new Sprite(*this, *default_image_effect, image, position);
 //    add(*sprite);
@@ -114,23 +115,18 @@ namespace drawing {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     auto &viewport = house.get_base_viewport();
-    auto &dimensions = viewport.get_dimensions();
+    vec2 scaling = viewport.get_unit_scaling();
 
-    vec2 scaling = dimensions.x > dimensions.y
-                   ? vec2(1, (float)dimensions.x / dimensions.y)
-                   : vec2((float)dimensions.y / dimensions.x, 1);
-
-    auto transform = glm::translate(mat4(1), vec3(left, top, 0))
-                     * glm::scale(mat4(1), vec3(width, height, 1));
+    auto transform = glm::translate(mat4(1), vec3(left * scaling.x, top * scaling.y, 0))
+                     * glm::scale(mat4(1), vec3(width * scaling.x, height * scaling.y, 1));
 
 //    auto transform = glm::scale(mat4(1), vec3(width, height, 1));
-
 
     auto color_index = glGetUniformLocation(flat_program->get_id(), "color");
     glUniform4fv(color_index, 1, (float *) &color);
 
-    auto scaling_index = glGetUniformLocation(flat_program->get_id(), "scaling");
-    glUniform2fv(scaling_index, 1, (float *) &scaling);
+    //auto scaling_index = glGetUniformLocation(flat_program->get_id(), "scaling");
+    //glUniform2fv(scaling_index, 1, (float *) &scaling);
 
 //    auto projection_index = glGetUniformLocation(flat_program->get_id(), "projection");
 //    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &viewport.get_flat_projection());

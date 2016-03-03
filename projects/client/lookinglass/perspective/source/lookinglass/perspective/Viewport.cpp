@@ -80,5 +80,11 @@ namespace lookinglass {
         listener(dimensions);
       }
     }
+
+    vec2 Viewport::get_unit_scaling() const {
+      return dimensions.x > dimensions.y
+                     ? vec2(1, (float)dimensions.x / dimensions.y)
+                     : vec2((float)dimensions.y / dimensions.x, 1);
+    }
   }
 }

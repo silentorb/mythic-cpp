@@ -1,7 +1,7 @@
 
 create_library(typography)
 
-require(resourceful shading glow textual texturing)
+require(resourceful shading glow textual texturing perspective)
 
 if(NOT IOS)
 #  link_external(zlib)

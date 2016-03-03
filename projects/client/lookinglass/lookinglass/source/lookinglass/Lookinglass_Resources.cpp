@@ -14,12 +14,12 @@ using namespace modeling;
 namespace lookinglass {
 
   Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader, glow::Capabilities &capabilities,
-                                               const ivec2 &viewport_dimensions) :
+                                               perspective::Viewport & viewport) :
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
 
     shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader, capabilities));
-    text_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport_dimensions));
+    text_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport));
   }
 
   Lookinglass_Resources::~Lookinglass_Resources() {

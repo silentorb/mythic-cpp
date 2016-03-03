@@ -19,8 +19,13 @@ namespace bloom {
     if (on_activate.size() == 0)
       return false;
 
+    deletion = Deletion_Mode::defer_deletion;
     for (auto &listener: on_activate) {
       listener(this);
+      if (deletion == Deletion_Mode::deletion_pending) {
+        parent->remove_child(this);
+        return true;
+      }
     }
 
     return true;
@@ -68,11 +73,9 @@ namespace bloom {
   }
 
   const Bounds Flower::get_bounds() {
-    auto x = calculate_axis<Horizontal_Axis>(*this);
-    auto y = calculate_axis<Vertical_Axis>(*this);
     return Bounds(
-      vec2(x.near, y.near),
-      vec2(x.length, y.length)
+      vec2(absolute_horizontal.near, absolute_vertical.near),
+      vec2(absolute_horizontal.length, absolute_vertical.length)
     );
   }
 
@@ -103,6 +106,8 @@ namespace bloom {
   }
 
   void Flower::render() {
+    update_absolute_dimensions();
+
     if (fill.get() != nullptr) {
       auto &bounds = get_bounds();
       fill->render(garden.get_draw(), bounds);

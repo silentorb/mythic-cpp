@@ -95,5 +95,7 @@ namespace lookinglass {
       Lookinglass_Resources &get_resources() const;
 
       shading:: Shader_Manager & get_shader_manager()const;
+
+     const glm::ivec2 &get_dimensions();
   };
 }

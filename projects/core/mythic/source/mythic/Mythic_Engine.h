@@ -36,7 +36,7 @@ namespace mythic {
       Mythic_Renderer *renderer;
 
   public:
-      Mythic_Engine(Platform_Factory &factory);
+      Mythic_Engine(Platform_Factory &factory, int width = 0, int height = 0);
       ~Mythic_Engine();
 
       template<typename T>

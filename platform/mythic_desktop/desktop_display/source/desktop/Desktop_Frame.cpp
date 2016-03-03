@@ -5,9 +5,9 @@
 #include "lookinglass/glow.h"
 
 namespace desktop {
-  Desktop_Frame::Desktop_Frame(const char *title) {
+  Desktop_Frame::Desktop_Frame(const char *title, int width, int height) {
     fullscreen = false;
-    create_window(title, 800, 600);
+    create_window(title, width, height);
     create_gl_context();
   }
 
@@ -77,14 +77,6 @@ namespace desktop {
       }
 
     }
-  }
-
-  int Desktop_Frame::get_width() {
-    return 800;
-  }
-
-  int Desktop_Frame::get_height() {
-    return 600;
   }
 
   void Desktop_Frame::flip_buffer() {

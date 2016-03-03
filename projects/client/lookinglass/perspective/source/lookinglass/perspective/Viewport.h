@@ -73,9 +73,12 @@ namespace lookinglass {
         }
 
         void set_dimensions(const ivec2 &value);
-        void add_listener(Vector2_Delegate listener){
+
+        void add_listener(Vector2_Delegate listener) {
           listeners.push_back(listener);
         }
+
+        vec2 get_unit_scaling() const;
     };
   }
 }
