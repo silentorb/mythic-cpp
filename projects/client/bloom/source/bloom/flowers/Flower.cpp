@@ -7,28 +7,28 @@
 
 namespace bloom {
 
-  Flower::Flower(Garden &garden) : garden(garden), Box(garden.get_converter()) { }
+  Flower::Flower(Garden &garden) : garden(garden), Box(garden.get_converter()), is_deleted(new bool(false)) { }
 
-  Flower::Flower(Garden &garden, Flower &parent) : garden(garden), Box(garden.get_converter()) {
+  Flower::Flower(Garden &garden, Flower &parent) : garden(garden), Box(garden.get_converter()), is_deleted(new bool(false)) {
     parent.add_child(this);
   }
 
   Flower::~Flower() { }
 
-  bool Flower::activate() {
-    if (on_activate.size() == 0)
-      return false;
+  bool Flower::emit(Events event) {
+    bool has_events = false;
+    shared_ptr<bool> local_is_deleted = is_deleted;
+    for (auto &listener: listeners) {
+      if (listener.type == event) {
+        has_events = true;
 
-    deletion = Deletion_Mode::defer_deletion;
-    for (auto &listener: on_activate) {
-      listener(this);
-      if (deletion == Deletion_Mode::deletion_pending) {
-        parent->remove_child(this);
-        return true;
+        listener.action(this);
+        if (local_is_deleted)
+          return true;
       }
     }
 
-    return true;
+    return has_events;
   }
 
   const Bounds Flower::fit_to_children() {
@@ -94,12 +94,13 @@ namespace bloom {
 
   bool Flower::check_activate(const vec2 &point) {
     for (auto &child: children) {
-      if (child->check_activate(point))
+      if (child->check_activate(point)) {
         return true;
+      }
     }
 
     if (point_is_inside(point)) {
-      return activate();
+      return emit(Events::activate);
     }
 
     return false;

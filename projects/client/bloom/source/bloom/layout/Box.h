@@ -105,6 +105,14 @@ namespace bloom {
         position.x = value;
       }
 
+      void set_top(const Measurement & value){
+        position.y = value;
+      }
+
+      void set_bottom(const Measurement & value){
+        far.y = value;
+      }
+
       Arrangement get_arrangement() const {
         return arrangement;
       }

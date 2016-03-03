@@ -7,6 +7,7 @@ namespace haft {
   class Event {
       Action &action;
       float value;
+      bool handled = false;
 
   public:
 
@@ -19,6 +20,14 @@ namespace haft {
 
       float get_value() const {
         return value;
+      }
+
+      bool was_handled() const {
+        return handled;
+      }
+
+      void set_handled(bool handled) {
+        Event::handled = handled;
       }
   };
 

@@ -80,24 +80,33 @@ namespace haft {
       }
 
       bool just_pressed(const Action &action) const {
-        return get_event(action) && (!previous || !previous->get_event(action));
+        auto current_event = get_event(action);
+        return current_event && !current_event->was_handled() && !previous->get_event(action);
       }
 
-      void remove_event(const Action &action) {
-        for (auto &event: events) {
-          if (&event->get_action() == &action) {
-            int offset = std::find_if(events.begin(), events.end(), [&](unique_ptr<Event> const &item) {
-              return item.get() == event.get();
-            }) - events.begin();
-
-            events.erase(events.begin() + offset);
-            return;
-          }
-        }
+      void set_handled(const Action &action) const {
+        get_event(action)->set_handled(true);
       }
-      
+
+//      void remove_event(const Action &action) {
+//        for (auto &event: events) {
+//          if (&event->get_action() == &action) {
+//            int offset = std::find_if(events.begin(), events.end(), [&](unique_ptr<Event> const &item) {
+//              return item.get() == event.get();
+//            }) - events.begin();
+//
+//            events.erase(events.begin() + offset);
+//            return;
+//          }
+//        }
+//      }
+
       void clear_events() {
-          events.clear();
+        events.clear();
+      }
+
+      int get_event_count() const {
+        return events.size();
       }
   };
 }

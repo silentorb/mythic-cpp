@@ -6,7 +6,7 @@ namespace haft {
     config(new Input_Configuration()),
     source(nullptr),
     current_state(new Input_State()),
-    previous_state(nullptr) {
+    previous_state(new Input_State()) {
   }
 
   void Input_Manager::update() {

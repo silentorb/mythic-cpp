@@ -11,7 +11,7 @@ namespace scenery {
     }
   }
 
-  void Scene::add(unique_ptr<Element> element) {
+  void Scene::add_child(unique_ptr<Element> element) {
     elements.push_back(std::move(element));
   }
 
@@ -23,7 +23,7 @@ namespace scenery {
     throw runtime_error("Not supported.");
   }
 
-  void Scene::move_element(unique_ptr<Element> &element, Parent &destination) {
+  void Scene::move_child(unique_ptr<Element> &element, Parent &destination) {
 //    destination.add(std::move(element));
 //    auto offset = std::find(elements.begin(), elements.end(), [=](std::unique_ptr<int> &p) {
 //      return p.get() == nullptr;
@@ -32,12 +32,20 @@ namespace scenery {
 //    elements.erase(std::remove(elements.begin(), elements.end(), element), elements.end());
   }
 
-  void Scene::move_element(Element &element, Parent &destination) {
+  void Scene::move_child(Element &element, Parent &destination) {
     int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
       return item.get() == &element;
     }) - elements.begin();
 
-    destination.add(std::move(elements[offset]));
+    destination.add_child(std::move(elements[offset]));
+    elements.erase(elements.begin() + offset);
+  }
+
+  void Scene::remove_child(Element &element) {
+    int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
+      return item.get() == &element;
+    }) - elements.begin();
+
     elements.erase(elements.begin() + offset);
   }
 }

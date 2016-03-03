@@ -5,7 +5,7 @@
 #include "drawing/Draw.h"
 #include "lookinglass/House.h"
 #include "lookinglass/Lookinglass_Resources.h"
-
+#include <iostream>
 using namespace haft;
 
 namespace bloom {
@@ -25,9 +25,10 @@ namespace bloom {
 //    auto &client = engine.get_client();
 //    auto &input_state = client.get_current_input_state();
     if (input_state.just_pressed(*select_action)) {
+      std::cout << "pressed" << std::endl;
       auto &position = input_state.get_position();
       if (root->check_activate(vec2(position.x, position.y))) {
-        input_state.remove_event(*select_action);
+        input_state.set_handled(*select_action);
       }
     }
   }

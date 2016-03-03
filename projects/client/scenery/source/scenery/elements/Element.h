@@ -27,7 +27,7 @@ namespace scenery {
 
       Element(Parent &parent) :
         position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(&parent), visible(true) {
-        parent.add(unique_ptr<Element>(this));
+        parent.add_child(unique_ptr<Element>(this));
       }
 
       const vec3 &get_position() const {
@@ -50,6 +50,10 @@ namespace scenery {
 
       void set_parent(Parent *parent) {
         this->parent = parent;
+      }
+
+      void remove() {
+        parent->remove_child(*this);
       }
 
       const quat &get_orientation() const {
