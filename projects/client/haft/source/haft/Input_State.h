@@ -14,13 +14,11 @@ using namespace glm;
 
 namespace haft {
 
-  class Input_State : public Event_Consumer, public Gesture_Container {
+  class Input_State : public Event_Consumer, public Gesture_Container, no_copy {
       vector<unique_ptr<Gesture>> gestures;
       vector<unique_ptr<Event>> events;
       ivec2 position;
       Input_State *previous;
-
-      Input_State(const Input_State &) = delete;
 
   public:
 

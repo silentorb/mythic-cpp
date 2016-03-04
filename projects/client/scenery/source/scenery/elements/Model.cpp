@@ -3,7 +3,7 @@
 
 namespace scenery {
   Model::Model(Mesh_Data* mesh_data, Spatial_Effect *effect, Parent & parent)
-    : mesh_data(mesh_data), effect(effect), Element(parent) {
+    : mesh_data(mesh_data), effect(effect), Element(&parent) {
 
   }
 

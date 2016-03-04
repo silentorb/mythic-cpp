@@ -13,15 +13,15 @@ namespace scenery {
       vector<unique_ptr<Element>> elements;
 
   public:
-      Group(Parent &parent) : Element(parent) { }
+      Group(Parent *parent) : Element(parent) { }
 
       virtual void render(lookinglass::Glass &glass);
       virtual void add_child(unique_ptr<Element> element);
+      virtual void add_child(Element &element);
       virtual bool has_transform() override;
       virtual mat4 get_transform() override;
 
       virtual void move_child(unique_ptr<Element> &element, Parent &destination) override;
-
       virtual void move_child(Element &element, Parent &destination) override;
 
       Element &get_child(int index) const {

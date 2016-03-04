@@ -12,14 +12,13 @@ using namespace std;
 
 namespace haft {
 
-  class MYTHIC_EXPORT Input_Manager {
+  class MYTHIC_EXPORT Input_Manager : no_copy {
       unique_ptr<Input_Configuration> config;
       vector<unique_ptr<Gesture_Interpreter>> gesture_interpreters;
       unique_ptr<Input_Source> source;
       unique_ptr<Input_State> current_state;
       unique_ptr<Input_State> previous_state;
 
-      Input_Manager(const Input_Manager &) = delete;
   public:
 
       Input_Manager();

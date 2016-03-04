@@ -57,8 +57,8 @@ namespace laboratory {
 
   Architecture_Lab::Architecture_Lab(Mythic_Engine &engine) :
     engine(engine) {
-    scene = new Scene();
-    engine.add_renderable(*scene);
+  /*  scene = new scenery::Group();
+    engine.add_renderable(*scene);*/
     auto &client = engine.get_client();
     camera = new Freeform_Camera(client.get_house().get_base_viewport());
 
@@ -122,7 +122,7 @@ namespace laboratory {
   }
 
   Architecture_Lab::~Architecture_Lab() {
-    engine.remove_renderable(*scene);
+    //engine.remove_renderable(*scene);
     delete scene;
     delete camera;
   }

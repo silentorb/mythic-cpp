@@ -23,14 +23,11 @@ namespace haft {
 using namespace haft;
 
 namespace clienting {
-  class MYTHIC_EXPORT Client {
+  class MYTHIC_EXPORT Client : no_copy {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
       bool _is_closing;
-
-      Client(const Client &); // no implementation
-      Client &operator=(const Client &); // no implementation
 
   public:
       Client(House *house);

@@ -11,23 +11,23 @@ using namespace lookinglass;
 using namespace glm;
 
 namespace scenery {
-  class Group;
 
   class MYTHIC_EXPORT Element : public Renderable, no_copy {
   private:
       vec3 position;
       quat orientation;
       vec3 scale;
-      Parent *parent;
+      Parent *parent = nullptr;
       bool visible;
 
   public:
 //      Element() :
 //        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(nullptr) { }
 
-      Element(Parent &parent) :
-        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(&parent), visible(true) {
-        parent.add_child(unique_ptr<Element>(this));
+      Element(Parent *parent) :
+        position(vec3(0)), orientation(quat()), scale(vec3(1)), parent(parent), visible(true) {
+        if (parent)
+          parent->add_child(unique_ptr<Element>(this));
       }
 
       const vec3 &get_position() const {
@@ -48,8 +48,10 @@ namespace scenery {
         return parent;
       }
 
-      void set_parent(Parent *parent) {
+      void set_parent(Parent *parent, bool update_other = true) {
         this->parent = parent;
+        if (parent && update_other)
+          parent->add_child(*this);
       }
 
       void remove() {

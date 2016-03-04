@@ -11,8 +11,23 @@ namespace scenery {
   }
 
   void Group::add_child(unique_ptr<Element> element) {
-    element->set_parent(this);
-    elements.push_back(std::move(element));
+    if (element->get_parent() && element->get_parent() != this) {
+      element->get_parent()->move_child(element, *this);
+    }
+    else {
+      element->set_parent(this, false);
+      elements.push_back(std::move(element));
+    }
+  }
+
+  void Group::add_child(Element& element) {
+    if (element.get_parent() && element.get_parent() != this) {
+      element.get_parent()->move_child(element, *this);
+    }
+    else {
+      element.set_parent(this, false);
+      elements.push_back(unique_ptr<Element>(&element));
+    }
   }
 
   bool Group::has_transform() {
@@ -24,11 +39,13 @@ namespace scenery {
   }
 
   void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
-//    destination.add(std::move(element));
-//    auto offset = std::find(elements.begin(), elements.end(), [=](std::unique_ptr<int> &p) {
-//      return p.get() == nullptr;
-//    }) - elements.begin();
-//    elements.erase(elements.begin() + offset);
+    int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
+      return item.get() == element.get();
+    }) - elements.begin();
+
+    element->set_parent(nullptr);
+    destination.add_child(std::move(elements[offset]));
+    elements.erase(elements.begin() + offset);
   }
 
   void Group::move_child(Element &element, Parent &destination) {
@@ -36,6 +53,7 @@ namespace scenery {
       return item.get() == &element;
     }) - elements.begin();
 
+    element.set_parent(nullptr);
     destination.add_child(std::move(elements[offset]));
     elements.erase(elements.begin() + offset);
   }
