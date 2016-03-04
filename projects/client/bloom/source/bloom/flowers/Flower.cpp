@@ -161,4 +161,8 @@ namespace bloom {
     auto flower = new Flower(garden, *this);
     return *flower;
   }
+
+  void Flower::remove() {
+    parent->remove_child(this);
+  }
 }

@@ -65,4 +65,8 @@ namespace scenery {
 
     elements.erase(elements.begin() + offset);
   }
+
+  void Group::clear() {
+    elements.clear();
+  }
 }

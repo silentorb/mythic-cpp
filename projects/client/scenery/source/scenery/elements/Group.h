@@ -29,5 +29,6 @@ namespace scenery {
       }
 
       virtual void remove_child(Element &element) override;
+      void clear();
   };
 }
