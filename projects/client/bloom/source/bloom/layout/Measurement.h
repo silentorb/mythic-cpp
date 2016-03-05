@@ -5,7 +5,7 @@
 
 namespace bloom {
 
-  enum Measurements {
+  enum class Measurements {
       units,
       stretch
   };
@@ -55,5 +55,14 @@ namespace bloom {
       glm::vec2 get_vec2() const {
         return glm::vec2(x.get_value(), y.get_value());
       }
+  };
+
+  struct MYTHIC_EXPORT Vector4 {
+      Vector2 near;
+      Vector2 far;
+
+      Vector4() { }
+
+      Vector4(const Vector2 &near, const Vector2 &far) : near(near), far(far) { }
   };
 }

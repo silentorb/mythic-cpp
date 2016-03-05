@@ -74,8 +74,8 @@ namespace bloom {
 
   const Bounds Flower::get_bounds() {
     return Bounds(
-      vec2(absolute_horizontal.near, absolute_vertical.near),
-      vec2(absolute_horizontal.length, absolute_vertical.length)
+      vec2(axis_cache.x.near, axis_cache.y.near),
+      vec2(axis_cache.x.length, axis_cache.y.length)
     );
   }
 
@@ -107,8 +107,6 @@ namespace bloom {
   }
 
   void Flower::render() {
-    update_absolute_dimensions();
-
     if (fill.get() != nullptr) {
       auto &bounds = get_bounds();
       fill->render(garden.get_draw(), bounds);

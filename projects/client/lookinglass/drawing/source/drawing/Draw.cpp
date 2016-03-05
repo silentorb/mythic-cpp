@@ -138,4 +138,10 @@ namespace drawing {
     glEnable(GL_DEPTH_TEST);
   }
 
+  void Draw::set_depth_test(bool value) {
+    if (value)
+      glEnable(GL_DEPTH_TEST);
+    else
+      glDisable(GL_DEPTH_TEST);
+  }
 }

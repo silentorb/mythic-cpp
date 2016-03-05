@@ -128,5 +128,14 @@ namespace bloom {
       }
 
       void remove();
+
+      virtual int get_child_count() const override {
+        return children.size();
+      }
+
+      virtual Box &get_child_box(int index) const override {
+        return *children[index];
+      }
+
   };
 }

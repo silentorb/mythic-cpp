@@ -41,7 +41,7 @@ namespace typography {
       int element_count;
       float line_height = 1.3;
       string content;
-      vec4 color;
+      vec4 color = vec4(0.9, 0.9, 0.9, 1);
       vec2 block_dimensions;
 
       void create_buffers();

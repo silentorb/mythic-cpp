@@ -8,6 +8,7 @@
 #include <memory>
 #include <glm/vec2.hpp>
 #include "Axis_Value.h"
+#include <memory>
 
 using namespace std;
 using namespace glm;
@@ -35,37 +36,33 @@ namespace bloom {
 
   class Box : no_copy {
       friend class Horizontal_Axis;
+
       friend class Vertical_Axis;
 
   protected:
+      Vector4 position;
       Vector2 dimensions;
-      Vector2 position;
-      Vector2 far;
       const Measurement_Converter &converter;
       Arrangement arrangement = Arrangement::canvas;
 
-      Axis_Value absolute_horizontal;
-      Axis_Value absolute_vertical;
+      Axis_Values axis_cache;
 
       inline Measurement *get_properties() {
         return &dimensions.x;
       }
 
-      template<typename Axis>
-      Axis_Value get_parent_axis_values();
-
-      template<typename Axis>
-      Axis_Value calculate_axis();
+//      template<typename Axis>
+//      Axis_Value get_parent_axis_values();
 
   public:
       Box(const Measurement_Converter &converter);
 
       const Vector2 &get_position() const {
-        return position;
+        return position.near;
       }
 
       void set_position(const Vector2 &value) {
-        position = value;
+        position.near = value;
       }
 
       vec2 get_absolute_position() const;
@@ -84,11 +81,11 @@ namespace bloom {
       }
 
       const Vector2 &get_corner() const {
-        return far;
+        return position.far;
       }
 
       void set_corner(const Vector2 &corner) {
-        Box::far = corner;
+        position.far = corner;
       }
 
       virtual Box *get_parent_box() const = 0;
@@ -97,20 +94,20 @@ namespace bloom {
         return converter;
       }
 
-      void set_right(const Measurement & value){
-        far.x = value;
+      void set_right(const Measurement &value) {
+        position.far.x = value;
       }
 
-      void set_left(const Measurement & value){
-        position.x = value;
+      void set_left(const Measurement &value) {
+        position.near.x = value;
       }
 
-      void set_top(const Measurement & value){
-        position.y = value;
+      void set_top(const Measurement &value) {
+        position.near.y = value;
       }
 
-      void set_bottom(const Measurement & value){
-        far.y = value;
+      void set_bottom(const Measurement &value) {
+        position.far.y = value;
       }
 
       Arrangement get_arrangement() const {
@@ -125,7 +122,12 @@ namespace bloom {
         dimensions.x = value;
       }
 
-      void update_absolute_dimensions();
+
+      template<typename Axis>
+      Axis_Value calculate_axis(Axis_Value &parent_values, float margin);
+      void update_absolute_dimensions(Axis_Values parent_values, vec2 margin = vec2(0));
+      virtual int get_child_count() const = 0;
+      virtual Box &get_child_box(int index) const = 0;
   };
 
 }

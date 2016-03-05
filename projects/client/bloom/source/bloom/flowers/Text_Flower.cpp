@@ -4,18 +4,18 @@
 
 namespace bloom {
 
-  Text_Flower::Text_Flower(Garden & garden, typography::Font &font, typography::Text_Effect &effect,
+  Text_Flower::Text_Flower(Garden &garden, typography::Font &font, typography::Text_Effect &effect,
                            const string content) :
     Flower(garden),
     text(new typography::Text(font, effect, content)) {
-	  update_dimensions();
+    update_dimensions();
   }
 
   Text_Flower::~Text_Flower() { }
 
   void Text_Flower::set_content(const string &content) {
     text->set_content(content);
-	update_dimensions();
+    update_dimensions();
   }
 
   void Text_Flower::set_color(const vec4 value) {
@@ -24,12 +24,13 @@ namespace bloom {
 
   void Text_Flower::set_size(float value) {
     text->set_size(value);
+    update_dimensions();
   }
 
   void Text_Flower::render() {
-		Flower::render();
-		auto &bounds = get_bounds();
-		text->set_position(ivec2((int) bounds.get_position().x, (int)bounds.get_position().y));
+    Flower::render();
+    auto &bounds = get_bounds();
+    text->set_position(ivec2((int) bounds.get_position().x, (int) bounds.get_position().y));
     text->render();
   }
 

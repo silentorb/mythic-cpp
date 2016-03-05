@@ -66,7 +66,7 @@ namespace bloom {
       }
 
       static const Axis_Value &get_cache(const Box &box) {
-        return box.absolute_horizontal;
+        return box.axis_cache.x;
       }
   };
 
@@ -89,7 +89,7 @@ namespace bloom {
       }
 
       static const Axis_Value &get_cache(const Box &box) {
-        return box.absolute_vertical;
+        return box.axis_cache.y;
       }
   };
 

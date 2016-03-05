@@ -3,6 +3,7 @@
 #include "dllexport.h"
 #include "Measurement.h"
 #include "glm/vec2.hpp"
+#include "Axis_Value.h"
 
 using namespace glm;
 
@@ -54,5 +55,14 @@ namespace bloom {
       const vec2 &get_unit_dimensions() const {
         return unit_dimensions;
       }
+
+      template<typename Axis>
+      Axis_Value get_axis_values() {
+        Axis_Value result;
+        result.near = 0;
+        result.length = result.absolute_far = Axis::get_aligned(get_unit_dimensions());
+        return result;
+      }
+
   };
 }
