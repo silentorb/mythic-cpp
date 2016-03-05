@@ -14,7 +14,7 @@ namespace lookinglass {
 
   public:
 //      Renderable();
-//      ~Renderable();
+      virtual ~Renderable() { }
       virtual void render(Glass &glass) = 0;
 
       virtual bool is_transparent() { return false; }
