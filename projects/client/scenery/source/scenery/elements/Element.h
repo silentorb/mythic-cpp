@@ -30,6 +30,8 @@ namespace scenery {
           parent->add_child(unique_ptr<Element>(this));
       }
 
+      virtual ~Element() { }
+
       const vec3 &get_position() const {
         return position;
       }

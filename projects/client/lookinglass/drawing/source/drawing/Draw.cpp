@@ -35,16 +35,6 @@ namespace drawing {
     auto &shader_manager = house.get_shader_manager();
 
     float solid_vertices[] = {
-//      0, 0,
-//      1, 0,
-//      1, 1,
-//      0, 1
-
-//      1, 0,
-//      1, 1,
-//      0, 1,
-//      0, 0,
-
       0, 0,
       0, 1,
       1, 1,
@@ -52,11 +42,6 @@ namespace drawing {
     };
 
     float image_vertices[] = {
-//      -1, -1, 0, 1,
-//      -1, 1, 1, 1,
-//      1, 1, 1, 0,
-//      1, -1, 0, 0
-
       0, 0, 0, 0,
       1, 0, 1, 0,
       1, 1, 1, 1,

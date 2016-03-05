@@ -10,7 +10,7 @@
 using namespace laboratory;
 
 const char * get_resource_path() {
-    return [[[NSBundle mainBundle] resourcePath] UTF8String];
+    return [[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/"] UTF8String];
 }
 
 string iOS_Shader_Loader::load(string path) {
@@ -33,7 +33,11 @@ string iOS_Shader_Loader::load(string path) {
 
 iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
     :context(context), width(width), height(height) {
-  set_dimensions(width, height);
+          CGRect screenBounds = [[UIScreen mainScreen] bounds];
+          CGFloat screenScale = [[UIScreen mainScreen] scale];
+          CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+
+  set_dimensions(pixels.width, pixels.height);
 }
 
 void iOS_Frame::create_window(const char *title, int width, int height) {
