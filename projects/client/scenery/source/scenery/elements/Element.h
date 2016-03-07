@@ -45,6 +45,7 @@ namespace scenery {
       }
 
       virtual void render(Glass &glass) override;
+      virtual void render();
 
       Parent *get_parent() const {
         return parent;

@@ -4,7 +4,7 @@
 
 namespace bloom {
 
-  Button::Button(string text_content, Garden &garden, Flower &parent) :
+  Button::Button(string text_content, Garden &garden, Flower *parent) :
     Flower(garden, parent) {
 
     text = garden.create_text("default", text_content);

@@ -32,15 +32,16 @@ namespace texturing {
 namespace modeling {
   class Mesh_Data;
 }
+namespace perspective {
+  class Viewport;
+}
 
 namespace lookinglass {
 
   namespace glow {
     class Capabilities;
   }
-  namespace perspective {
-   class Viewport;
-  }
+
 
   class MYTHIC_EXPORT Lookinglass_Resources {
 

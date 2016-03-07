@@ -7,21 +7,22 @@
 namespace modeling {
   class Mesh_Data;
 }
+namespace perspective {
+  class Viewport;
+}
+using namespace perspective;
 
 namespace lookinglass {
-  namespace perspective {
-    class Viewport;
-  }
-  using namespace perspective;
 
   namespace glow {
-    class MYTHIC_EXPORT Capabilities;
+    class Capabilities;
   }
 
   class MYTHIC_EXPORT Glass {
   private:
       const glow::Capabilities &capabilities;
       Viewport *viewport;
+      static Glass *instance;
 
   public:
       Glass(const glow::Capabilities &capabilities, Viewport &viewport);
@@ -32,6 +33,9 @@ namespace lookinglass {
       void set_viewport(Viewport &viewport);
 
       const glm::ivec2 &get_viewport_dimensions() const;
+      static Glass &get_instance() {
+        return *instance;
+      }
   };
 
 }

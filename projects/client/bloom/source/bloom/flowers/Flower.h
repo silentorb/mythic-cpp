@@ -6,6 +6,7 @@
 #include <memory>
 #include <glm/glm.hpp>
 #include <bloom/layout/Box.h>
+#include <bloom/styling/Style.h>
 #include "bloom/layout/Bounds.h"
 #include "bloom/layout/Measurement.h"
 #include "Events.h"
@@ -21,25 +22,12 @@ namespace bloom {
 
   class Garden;
 
-
-//  class MYTHIC_EXPORT Abstract_Flower: public Abstract_Box<Abstract_Flower> {
-//
-//  };
-
   class MYTHIC_EXPORT Flower : public drawing::Element, public Box {
 
-      enum class Deletion_Mode {
-          alive,
-          defer_deletion,
-          deletion_pending
-      };
-
       vector<Listener> listeners;
-      vec2 get_ancestor_offset() const;
       vector<unique_ptr<Flower>> children;
-      unique_ptr<Border> border;
-      unique_ptr<Fill> fill;
       Garden &garden;
+      shared_ptr<Style> style;
 
       // Being a shared variable allows this variable to persist in local variables
       //  after the flower is deleted.
@@ -52,25 +40,9 @@ namespace bloom {
 
       const Bounds fit_to_children();
 
-//      void configure_deleted(bool &deleted) {
-//        if (!_deleted) {
-//          _deleted =
-//        }
-//      }
-//
-//      bool is_deleted() {
-//
-////        if (deletion == Deletion_Mode::deletion_pending) {
-////          parent->remove_child(this);
-////          return true;
-////        }
-////        return false;
-//      }
-
   public:
-      Flower(Garden &garden);
-
-      Flower(Garden &garden, Flower &parent);
+      Flower(Garden &garden, Flower *parent = nullptr);
+      Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent = nullptr);
 
       virtual ~Flower();
 
@@ -99,12 +71,6 @@ namespace bloom {
       void prune() {
         *is_deleted = true;
         parent->remove_child(this);
-//        if (deletion == Deletion_Mode::alive) {
-//          parent->remove_child(this);
-//        }
-//        else if (deletion == Deletion_Mode::defer_deletion) {
-//          deletion = Deletion_Mode::deletion_pending;
-//        }
       }
 
       bool is_visible() const {
@@ -137,5 +103,12 @@ namespace bloom {
         return *children[index];
       }
 
+      virtual Flower *get_default_focus() const;
+
+      void modal();
+
+      const vector<unique_ptr<Flower>> &get_children() const {
+        return children;
+      }
   };
 }

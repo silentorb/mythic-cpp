@@ -16,8 +16,7 @@ namespace bloom {
     draw(draw),
     select_action(new Action(1, "Select")),
     root(new Flower(*this)),
-    converter(draw.get_dimensions())
-  {
+    converter(draw.get_dimensions()) {
     draw.add(*this);
   }
 
@@ -29,14 +28,19 @@ namespace bloom {
     if (input_state.just_pressed(*select_action)) {
       std::cout << "pressed" << std::endl;
       auto &position = input_state.get_position();
-      if (root->check_activate(vec2(position.x, position.y))) {
+
+      Flower &start = modal_stack.size() > 0
+                      ? *modal_stack.top()->root
+                      : *root;
+
+      if (start.check_activate(vec2(position.x, position.y))) {
         input_state.set_handled(*select_action);
       }
     }
   }
 
   void Garden::render() {
-    Axis_Values base_axis_values {
+    Axis_Values base_axis_values{
       converter.get_axis_values<Horizontal_Axis>(),
       converter.get_axis_values<Vertical_Axis>()
     };
@@ -53,7 +57,11 @@ namespace bloom {
   }
 
   Flower &Garden::create_generic_flower() {
-    auto flower = new Flower(*this, *root);
+    auto flower = new Flower(*this, root);
     return *flower;
+  }
+
+  void Garden::add_modal(Flower &flower) {
+    modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
   }
 }

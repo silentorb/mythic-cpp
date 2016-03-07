@@ -2,6 +2,8 @@
 
 #include "dllexport.h"
 #include "bloom/flowers/Flower.h"
+#include "Modal.h"
+#include <stack>
 
 namespace haft {
   class Action;
@@ -24,6 +26,8 @@ namespace bloom {
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;
       Measurement_Converter converter;
+      Flower *focused_flower;
+      stack<unique_ptr<Modal>> modal_stack;
 
   public:
       Garden(drawing::Draw &draw);
@@ -48,8 +52,18 @@ namespace bloom {
         return converter;
       }
 
-       haft::Action &get_select_action() const {
+      haft::Action &get_select_action() const {
         return *select_action;
       }
+
+      Flower *get_focused() const {
+        return focused_flower;
+      }
+
+      void set_focused(Flower *focused_flower) {
+        Garden::focused_flower = focused_flower;
+      }
+
+      void add_modal(Flower &flower);
   };
 }

@@ -2,12 +2,15 @@
 #include <lookinglass/glow/Capabilities.h>
 #include "lookinglass/glow.h"
 #include "modeling/Mesh_Data.h"
-#include "lookinglass/perspective/Viewport.h"
+#include "perspective/Viewport.h"
 
 namespace lookinglass {
+
+  Glass *Glass::instance;
+
   Glass::Glass(const glow::Capabilities &capabilities, Viewport &viewport) :
     capabilities(capabilities), viewport(&viewport) {
-
+    instance = this;
   }
 
   void Glass::draw_mesh(modeling::Mesh_Data &mesh, Draw_Method draw_method) {
@@ -41,7 +44,7 @@ namespace lookinglass {
     this->viewport = &viewport;
   }
 
-  const ivec2& Glass::get_viewport_dimensions() const {
+  const ivec2 &Glass::get_viewport_dimensions() const {
     return viewport->get_dimensions();
   }
 

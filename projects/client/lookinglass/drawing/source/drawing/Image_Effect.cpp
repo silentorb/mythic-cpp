@@ -3,9 +3,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "shading/Program.h"
 #include <modeling/Simple_Mesh.h>
-#include "lookinglass/perspective/Viewport.h"
+#include "perspective/Viewport.h"
 
-using namespace lookinglass::perspective;
+using namespace perspective;
 
 namespace drawing {
   Image_Effect::Image_Effect(shading::Program &program, Viewport &viewport) :

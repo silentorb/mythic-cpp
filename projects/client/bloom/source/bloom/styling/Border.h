@@ -9,11 +9,11 @@ using namespace glm;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Border : no_copy {
+  class MYTHIC_EXPORT Border {
       vec4 color;
 
   public:
-      void render(drawing::Draw &draw, const Bounds &bounds) {
+      void render(drawing::Draw &draw, const Bounds &bounds) const {
         draw.draw_square(bounds.get_position().x, bounds.get_position().y, bounds.get_dimensions().x,
                          bounds.get_dimensions().y, color, false);
       }

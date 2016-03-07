@@ -4,7 +4,7 @@
 using namespace resourceful;
 
 namespace typography {
-  Text_Manager::Text_Manager(Shader_Manager &shader_manager, lookinglass:: perspective::Viewport & viewport)
+  Text_Manager::Text_Manager(Shader_Manager &shader_manager,  perspective::Viewport & viewport)
     : fonts(new Resource_Manager("fonts")),
       shader_manager(shader_manager) {
     texturing::initialize_texture_shaders(shader_manager);

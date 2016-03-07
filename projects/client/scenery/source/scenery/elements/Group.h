@@ -15,7 +15,7 @@ namespace scenery {
   public:
       Group(Parent *parent) : Element(parent) { }
 
-      virtual void render(lookinglass::Glass &glass);
+      virtual void render();
       virtual void add_child(unique_ptr<Element> element);
       virtual void add_child(Element &element);
       virtual bool has_transform() override;

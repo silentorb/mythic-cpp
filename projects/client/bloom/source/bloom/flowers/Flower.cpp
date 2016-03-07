@@ -7,11 +7,15 @@
 
 namespace bloom {
 
-  Flower::Flower(Garden &garden) : garden(garden), Box(garden.get_converter()), is_deleted(new bool(false)) { }
-
-  Flower::Flower(Garden &garden, Flower &parent) : garden(garden), Box(garden.get_converter()), is_deleted(new bool(false)) {
-    parent.add_child(this);
+  Flower::Flower(Garden &garden, Flower *parent) :
+    garden(garden), Box(garden.get_converter()),
+    is_deleted(new bool(false)) {
+    if (parent)
+      parent->add_child(this);
   }
+
+  Flower::Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent) :
+    Flower(garden, parent) { }
 
   Flower::~Flower() { }
 
@@ -107,14 +111,16 @@ namespace bloom {
   }
 
   void Flower::render() {
-    if (fill.get() != nullptr) {
-      auto &bounds = get_bounds();
-      fill->render(garden.get_draw(), bounds);
-    }
+    if (style) {
+      if (style->get_fill() != nullptr) {
+        auto &bounds = get_bounds();
+        style->get_fill()->render(garden.get_draw(), bounds);
+      }
 
-    if (border.get() != nullptr) {
-      auto &bounds = get_bounds();
-      border->render(garden.get_draw(), bounds);
+      if (style->get_border() != nullptr) {
+        auto &bounds = get_bounds();
+        style->get_border()->render(garden.get_draw(), bounds);
+      }
     }
 
     for (auto &child: children) {
@@ -122,13 +128,6 @@ namespace bloom {
         child->render();
       }
     }
-  }
-
-  vec2 Flower::get_ancestor_offset() const {
-    if (parent == nullptr)
-      return vec2(0);
-
-    return parent->get_absolute_position();
   }
 
   void Flower::remove_child(Flower *child) {
@@ -140,27 +139,39 @@ namespace bloom {
   }
 
   void Flower::set_border(vec4 color) {
-    if (border.get() == nullptr) {
-      border = unique_ptr<Border>(new Border());
-    }
+    if (!style)
+      style = shared_ptr<Style>(new Style());
 
-    border->set_color(color);
+    style->set_border_color(color);
   }
 
   void Flower::set_fill(vec4 color) {
-    if (fill.get() == nullptr) {
-      fill = unique_ptr<Fill>(new Fill());
-    }
+    if (!style)
+      style = shared_ptr<Style>(new Style());
 
-    fill->set_color(color);
+    style->set_fill_color(color);
   }
 
   Flower &Flower::create_generic_flower() {
-    auto flower = new Flower(garden, *this);
+    auto flower = new Flower(garden, this);
     return *flower;
   }
 
   void Flower::remove() {
     parent->remove_child(this);
+  }
+
+  void Flower::modal() {
+    garden.add_modal(*this);
+  }
+
+  Flower *Flower::get_default_focus() const {
+    for (auto &child: children) {
+      auto result = child->get_default_focus();
+      if (result)
+        return result;
+    }
+
+    return nullptr;
   }
 }

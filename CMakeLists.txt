@@ -56,6 +56,7 @@ add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/core/mythic)
 
 add_subdirectory(projects/client/bloom)
+add_subdirectory(projects/client/bloom_scenery)
 
 include(projects/lab/lab.cmake)
 

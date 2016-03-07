@@ -10,6 +10,14 @@ namespace shading {
   class Shader_Manager;
 }
 
+namespace perspective {
+  struct Viewport_Data;
+
+  class Viewport;
+
+}
+using namespace perspective;
+
 using namespace std;
 
 namespace lookinglass {
@@ -17,13 +25,6 @@ namespace lookinglass {
     class MYTHIC_EXPORT Capabilities;
   }
 
-  namespace perspective {
-    struct Viewport_Data;
-
-    class Viewport;
-
-  }
-  using namespace perspective;
 
   namespace through {
     template<typename T>
@@ -97,5 +98,9 @@ namespace lookinglass {
       shading:: Shader_Manager & get_shader_manager()const;
 
      const glm::ivec2 &get_dimensions();
+
+      Mist<Viewport_Data> &get_viewport_mist() const {
+        return *viewport_mist;
+      }
   };
 }

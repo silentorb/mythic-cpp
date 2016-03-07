@@ -4,6 +4,10 @@
 
 namespace scenery {
   void Element::render(Glass &glass) {
+    render();
+  }
+
+  void Element::render() {
 
   }
 
@@ -13,7 +17,7 @@ namespace scenery {
                      * glm::mat4_cast(orientation);
 
     if (parent && parent->has_transform())
-      transform = parent->get_transform() * transform ;
+      transform = parent->get_transform() * transform;
 
     return transform;
   }

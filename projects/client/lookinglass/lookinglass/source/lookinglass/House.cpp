@@ -3,7 +3,7 @@
 #include "House.h"
 #include "lookinglass/glow.h"
 #include "lookinglass/glow/Capabilities.h"
-#include "lookinglass/perspective/Viewport.h"
+#include "perspective/Viewport.h"
 #include "lookinglass/through/create_mist.h"
 #include "Lookinglass_Resources.h"
 #include "shading/Shader_Manager.h"

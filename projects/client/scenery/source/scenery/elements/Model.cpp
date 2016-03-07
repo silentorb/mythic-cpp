@@ -12,11 +12,11 @@ namespace scenery {
 //    return &tranform;
 //  }
 
-  void Model::render(Glass &glass) {
+  void Model::render() {
     auto transform = get_transform();
 //    auto transform = glm::translate(glm::mat4(1.f), get_position());
     effect->activate(transform);
 
-    glass.draw_mesh(*mesh_data, effect->get_draw_method());
+    Glass::get_instance().draw_mesh(*mesh_data, effect->get_draw_method());
   }
 }

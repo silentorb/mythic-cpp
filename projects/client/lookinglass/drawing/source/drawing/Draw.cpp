@@ -9,7 +9,7 @@
 #include "Sprite_Layer.h"
 #include "lookinglass/House.h"
 #include "lookinglass/glow.h"
-#include "lookinglass/perspective/Viewport.h"
+#include "perspective/Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 using namespace modeling;

@@ -3,10 +3,10 @@
 
 namespace scenery {
 
-  void Group::render(lookinglass::Glass &glass) {
+  void Group::render() {
     for (auto &element: elements) {
       if (element->is_visible())
-        element->render(glass);
+        element->render();
     }
   }
 
