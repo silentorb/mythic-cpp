@@ -25,7 +25,6 @@ namespace bloom {
 
       vector<Listener> listeners;
       vector<unique_ptr<Flower>> children;
-      Garden &garden;
       shared_ptr<Style> style;
 
       // Being a shared variable allows this variable to persist in local variables
@@ -33,6 +32,7 @@ namespace bloom {
       shared_ptr<bool> is_deleted;
 
   protected:
+      Garden &garden;
       vec2 position;
       bool visible = true;
       Flower *parent = nullptr;
@@ -109,5 +109,7 @@ namespace bloom {
       const vector<unique_ptr<Flower>> &get_children() const {
         return children;
       }
+
+      void clear();
   };
 }

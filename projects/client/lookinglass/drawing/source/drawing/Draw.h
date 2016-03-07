@@ -8,7 +8,7 @@
 #include <vector>
 
 namespace lookinglass {
-  class Renderable_List;
+  typedef function<void()> Renderable;
 
   class House;
 }
@@ -41,7 +41,7 @@ namespace drawing {
 
   class Sprite_Layer;
 
-  class MYTHIC_EXPORT Draw : public Group, no_copy {
+  class MYTHIC_EXPORT Draw : no_copy {
       unique_ptr<modeling::Vertex_Schema> solid_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> solid_mesh;
 
@@ -51,6 +51,7 @@ namespace drawing {
       shading::Program *flat_program;
 //      unique_ptr<lookinglass::Renderable_List> sprites;
       lookinglass::House &house;
+      vector<lookinglass::Renderable> renderables;
 
   public:
       Draw(lookinglass::House &house);
@@ -87,6 +88,8 @@ namespace drawing {
       void draw_square(float left, float top, float width, float height, const vec4 &color, bool solid);
       void add_to_house();
       void set_depth_test(bool value);
+      void render();
+      void add_renderable(lookinglass::Renderable renderable);
   };
 }
 

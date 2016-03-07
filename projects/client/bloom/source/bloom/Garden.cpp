@@ -10,6 +10,17 @@
 
 using namespace haft;
 
+//class Draw_Wrapper : public drawing::Element {
+//    Renderable renderable;
+//
+//public:
+//    Draw_Wrapper(const Renderable renderable) : renderable(renderable) { }
+//
+//    virtual void render() override {
+//      renderable();
+//    }
+//};
+
 namespace bloom {
 
   Garden::Garden(drawing::Draw &draw) :
@@ -17,7 +28,9 @@ namespace bloom {
     select_action(new Action(1, "Select")),
     root(new Flower(*this)),
     converter(draw.get_dimensions()) {
-    draw.add(*this);
+    draw.add_renderable([&] () {
+      render();
+    });
   }
 
   Garden::~Garden() { }
@@ -63,5 +76,9 @@ namespace bloom {
 
   void Garden::add_modal(Flower &flower) {
     modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
+  }
+
+  lookinglass::House& Garden::get_house() const {
+    return draw.get_house();
   }
 }

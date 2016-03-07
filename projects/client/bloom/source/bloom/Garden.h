@@ -4,7 +4,6 @@
 #include "bloom/flowers/Flower.h"
 #include "Modal.h"
 #include <stack>
-#include "drawing/Element.h"
 
 namespace haft {
   class Action;
@@ -12,6 +11,9 @@ namespace haft {
   class Input_State;
 }
 
+namespace lookinglass {
+  class House;
+}
 namespace drawing {
   class Draw;
 
@@ -22,7 +24,7 @@ namespace bloom {
 
   class Text_Flower;
 
-  class MYTHIC_EXPORT Garden : drawing::Element {
+  class MYTHIC_EXPORT Garden {
       Flower *root;
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;
@@ -41,7 +43,7 @@ namespace bloom {
       }
 
       Text_Flower *create_text(const string content, const string font = "default");
-      virtual void render() override;
+      void render();
 
       drawing::Draw &get_draw() const {
         return draw;
@@ -66,5 +68,6 @@ namespace bloom {
       }
 
       void add_modal(Flower &flower);
+      lookinglass::House &get_house() const;
   };
 }

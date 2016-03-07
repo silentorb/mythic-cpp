@@ -128,4 +128,14 @@ namespace drawing {
     else
       glDisable(GL_DEPTH_TEST);
   }
+
+  void Draw::render() {
+    for(auto & renderable: renderables){
+      renderable();
+    }
+  }
+
+  void Draw::add_renderable(lookinglass::Renderable renderable) {
+    renderables.push_back(renderable);
+  }
 }

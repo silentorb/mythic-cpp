@@ -177,4 +177,8 @@ namespace bloom {
 
     return nullptr;
   }
+
+  void Flower::clear() {
+    children.clear();
+  }
 }
