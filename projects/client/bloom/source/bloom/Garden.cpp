@@ -51,7 +51,7 @@ namespace bloom {
     draw.set_depth_test(true);
   }
 
-  Text_Flower *Garden::create_text(const string font, const string content) {
+  Text_Flower *Garden::create_text( const string content,const string font) {
     auto &resources = draw.get_house().get_resources();
     return new Text_Flower(*this, resources.get_font(font), resources.get_text_effect(), content);
   }

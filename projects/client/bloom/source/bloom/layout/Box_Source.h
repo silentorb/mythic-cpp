@@ -33,19 +33,6 @@ namespace bloom {
     }
   }
 
-//  template<typename Axis>
-//  Axis_Value Box::get_parent_axis_values() {
-//    if (get_parent_box()) {
-//      return Axis::get_cache(*get_parent_box());
-//    }
-//    else {
-//      Axis_Value result;
-//      result.near = 0;
-//      result.length = result.absolute_far = Axis::get_aligned(get_converter().get_unit_dimensions());
-//      return result;
-//    }
-//  }
-
   template<typename Axis>
   Axis_Value Box::calculate_axis(Axis_Value &parent_values, float margin) {
     Axis_Value result;
@@ -72,6 +59,13 @@ namespace bloom {
       auto middle = (parent_values.length - result.length) / 2;
       result.near = parent_values.near + middle;
       result.absolute_far = result.near + result.length;
+    }
+    else if (near.get_type() == Measurements::units && length.get_type() == Measurements::stretch &&
+             far.get_type() == Measurements::units) {
+
+      result.near = parent_values.near + near.get_value();
+      result.absolute_far = parent_values.absolute_far - far.get_value();
+      result.length = result.absolute_far - result.near;
     }
     else {
       result.near = parent_values.near + near.get_value();

@@ -18,9 +18,8 @@ namespace clienting {
 }
 
 namespace lookinglass {
-  class MYTHIC_EXPORT Renderable;
+  typedef function<void()> Renderable;
 }
-
 using namespace clienting;
 using namespace std;
 
@@ -50,7 +49,7 @@ namespace mythic {
       }
 
       void add_renderable(lookinglass::Renderable &renderable);
-      void remove_renderable(lookinglass::Renderable &renderable);
+//      void remove_renderable(lookinglass::Renderable &renderable);
       void update();
       void loop();
 

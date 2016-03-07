@@ -23,7 +23,7 @@ namespace drawing {
       float x, y, u, v;
   };
 
-  class MYTHIC_EXPORT Sprite_Layer : public lookinglass::Renderable {
+  class MYTHIC_EXPORT Sprite_Layer {
       vector<Sprite *> sprites;
       Texture &texture;
       unique_ptr<modeling::Simple_Mesh> mesh;
@@ -36,6 +36,6 @@ namespace drawing {
 
       void add_sprite(Sprite &sprite);
 
-      virtual void render(lookinglass::Glass &glass) override;
+      virtual void render();
   };
 }

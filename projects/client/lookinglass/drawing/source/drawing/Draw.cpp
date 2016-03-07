@@ -17,15 +17,15 @@ using namespace texturing;
 
 namespace drawing {
 
-  class Renderable_Draw : public lookinglass::Renderable {
-      Draw &draw;
-  public:
-      Renderable_Draw(Draw &draw) : draw(draw) { }
-
-      virtual void render(lookinglass::Glass &glass) override {
-        draw.render();
-      }
-  };
+//  class Renderable_Draw : public lookinglass::Renderable {
+//      Draw &draw;
+//  public:
+//      Renderable_Draw(Draw &draw) : draw(draw) { }
+//
+//      virtual void render(lookinglass::Glass &glass) override {
+//        draw.render();
+//      }
+//  };
 
   Draw::Draw(lookinglass::House &house) :
     house(house),
@@ -73,8 +73,7 @@ namespace drawing {
   Draw::~Draw() { }
 
   void Draw::add_to_house() {
-    auto wrapper = new Renderable_Draw(*this);
-    house.add_renderable(*wrapper);
+    house.add_renderable([&]() { render(); });
   }
 
   Sprite *Draw::create_sprite(Image &image, const glm::vec2 &position) {

@@ -4,9 +4,11 @@
 #include "lookinglass/Frame.h"
 #include <vector>
 #include <memory>
+#include <functional>
 
 namespace shading {
   class Shader_Loader;
+
   class Shader_Manager;
 }
 
@@ -34,9 +36,7 @@ namespace lookinglass {
 
   class Glass;
 
-  class Renderable;
-
-  class Renderable_List;
+  typedef function<void()> Renderable;
 
   class Lookinglass_Resources;
 
@@ -48,7 +48,7 @@ namespace lookinglass {
       unique_ptr<Glass> glass;
       unique_ptr<Frame> frame;
       bool active;
-      unique_ptr<Renderable_List> renderables;
+      vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
       void initialize();
   public:
@@ -57,8 +57,8 @@ namespace lookinglass {
       ~House();
       void update();
       bool is_closing();
-      void add_renderable(Renderable &renderable);
-      void remove_renderable(Renderable &renderable);
+      void add_renderable(Renderable renderable);
+//      void remove_renderable(Renderable &renderable);
 
       Glass &get_glass() const {
         return *glass;
@@ -95,9 +95,9 @@ namespace lookinglass {
 
       Lookinglass_Resources &get_resources() const;
 
-      shading:: Shader_Manager & get_shader_manager()const;
+      shading::Shader_Manager &get_shader_manager() const;
 
-     const glm::ivec2 &get_dimensions();
+      const glm::ivec2 &get_dimensions();
 
       Mist<Viewport_Data> &get_viewport_mist() const {
         return *viewport_mist;

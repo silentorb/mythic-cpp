@@ -9,7 +9,8 @@ namespace bloom {
 
   enum class Events {
       activate,
-      cancel
+      close,
+      cancel,
   };
 
   class Flower;

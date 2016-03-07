@@ -5,8 +5,6 @@
 
 namespace lookinglass {
   class House;
-
-  class Renderable;
 }
 using namespace lookinglass;
 

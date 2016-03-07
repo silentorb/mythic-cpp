@@ -97,6 +97,9 @@ namespace bloom {
   }
 
   bool Flower::check_activate(const vec2 &point) {
+    if (!visible)
+      return false;
+
     for (auto &child: children) {
       if (child->check_activate(point)) {
         return true;

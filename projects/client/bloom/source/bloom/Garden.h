@@ -4,6 +4,7 @@
 #include "bloom/flowers/Flower.h"
 #include "Modal.h"
 #include <stack>
+#include "drawing/Element.h"
 
 namespace haft {
   class Action;
@@ -27,7 +28,7 @@ namespace bloom {
       drawing::Draw &draw;
       Measurement_Converter converter;
       Flower *focused_flower;
-      stack<unique_ptr<Modal>> modal_stack;
+      stack <unique_ptr<Modal>> modal_stack;
 
   public:
       Garden(drawing::Draw &draw);
@@ -39,7 +40,7 @@ namespace bloom {
         return *root;
       }
 
-      Text_Flower *create_text(const string font, const string content);
+      Text_Flower *create_text(const string content, const string font = "default");
       virtual void render() override;
 
       drawing::Draw &get_draw() const {

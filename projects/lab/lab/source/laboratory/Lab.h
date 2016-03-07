@@ -8,7 +8,7 @@
 using namespace mythic;
 
 namespace lookinglass {
-  class Renderable;
+
 }
 namespace laboratory {
   class Architecture_Lab;

@@ -1,5 +1,6 @@
 #include "Scene_Flower.h"
 #include "scenery/Scene.h"
+#include "perspective/Viewport.h"
 
 namespace bloom {
 
@@ -10,7 +11,13 @@ namespace bloom {
   }
 
   void Scene_Flower::render() {
-    scene->render();
     Flower::render();
+    auto bounds = get_bounds();
+    auto pos = bounds.get_position();
+    auto position = converter.convert(vec2(pos.x, 1000 - bounds.get_corner().y));
+    auto dimensions = converter.convert(bounds.get_dimensions());
+
+    scene->get_viewport().set_bounds(position, dimensions);
+    scene->render();
   }
 }

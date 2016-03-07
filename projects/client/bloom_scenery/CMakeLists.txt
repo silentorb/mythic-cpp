@@ -1,4 +1,4 @@
 
 create_library(bloom_scenery)
 
-require(bloom scenery)
+require(bloom scenery lookinglass perspective)

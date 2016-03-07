@@ -6,11 +6,11 @@
 
 namespace lookinglass {
 
-  Glass *Glass::instance;
+  Glass *glass_instance;
 
   Glass::Glass(const glow::Capabilities &capabilities, Viewport &viewport) :
     capabilities(capabilities), viewport(&viewport) {
-    instance = this;
+    glass_instance = this;
   }
 
   void Glass::draw_mesh(modeling::Mesh_Data &mesh, Draw_Method draw_method) {
@@ -48,4 +48,7 @@ namespace lookinglass {
     return viewport->get_dimensions();
   }
 
+	Glass &Glass::get_instance() {
+		return *glass_instance;
+	}
 }

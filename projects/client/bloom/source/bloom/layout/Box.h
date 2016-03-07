@@ -63,6 +63,11 @@ namespace bloom {
 
       void set_position(const Vector2 &value) {
         position.near = value;
+
+      }
+
+      void set_position(const Measurement & left, const Measurement & top) {
+        position.near = Vector2(left, top);
       }
 
       vec2 get_absolute_position() const;

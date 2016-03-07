@@ -1,11 +1,12 @@
 #include "Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "lookinglass/glow.h"
+#include "lookinglass/through/Mist.h"
 
 namespace perspective {
   Viewport *active_viewport = NULL;
 
-  Viewport::Viewport(Mist <Viewport_Data> &mist, int width, int height, int left, int top) :
+  Viewport::Viewport(lookinglass::through::Mist <Viewport_Data> &mist, int width, int height, int left, int top) :
     mist(mist),
     dimensions(ivec2(width, height)),
     position(left, top),
@@ -14,6 +15,9 @@ namespace perspective {
   }
 
   void Viewport::set_projection() {
+		if (dimensions.x == 0 || dimensions.y == 0)
+			return;
+
     projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
     flat_projection = glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);
   }

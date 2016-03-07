@@ -1,6 +1,5 @@
 #pragma once
 
-#include <drawing/Element.h>
 #include "dllexport.h"
 #include <vector>
 #include <memory>
@@ -22,7 +21,7 @@ namespace bloom {
 
   class Garden;
 
-  class MYTHIC_EXPORT Flower : public drawing::Element, public Box {
+  class MYTHIC_EXPORT Flower : public Box {
 
       vector<Listener> listeners;
       vector<unique_ptr<Flower>> children;
@@ -51,7 +50,7 @@ namespace bloom {
       bool point_is_inside(const vec2 &point);
       bool check_activate(const vec2 &point);
 
-      virtual void render() override;
+      virtual void render();
 
       void listen(Events event, Flower_Delegate action) {
         listeners.push_back({event, action});

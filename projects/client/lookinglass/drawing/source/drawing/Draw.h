@@ -10,8 +10,6 @@
 namespace lookinglass {
   class Renderable_List;
 
-  class Renderable;
-
   class House;
 }
 

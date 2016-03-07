@@ -13,8 +13,9 @@
 using namespace resourceful;
 
 namespace lookinglass {
+
   House::House(Frame *frame, Shader_Loader *shader_loader) :
-    frame(frame), renderables(new Renderable_List()) {
+    frame(frame) {
     if (!frame) {
       throw std::runtime_error("Frame (Window) was null.");
     }
@@ -63,7 +64,9 @@ namespace lookinglass {
     base_viewport->set_dimensions(frame->get_dimensions());
     base_viewport->update_device();
 
-    renderables->render(*glass);
+    for(auto &renderable : renderables) {
+      renderable();
+    }
 
     frame->flip_buffer();
   }
@@ -72,13 +75,13 @@ namespace lookinglass {
     return frame->closing;
   }
 
-  void House::add_renderable(Renderable &renderable) {
-    renderables->add(renderable);
+  void House::add_renderable(Renderable renderable) {
+    renderables.push_back(renderable);
   }
 
-  void House::remove_renderable(Renderable &renderable) {
-    renderables->remove(renderable);
-  }
+//  void House::remove_renderable(Renderable &renderable) {
+//    renderables->remove(renderable);
+//  }
 
   Lookinglass_Resources &House::get_resources() const {
     return *resource_manager;
@@ -111,7 +114,7 @@ namespace lookinglass {
     return resource_manager->get_shader_manager();
   }
 
-  const glm::ivec2& House::get_dimensions() {
+  const glm::ivec2 &House::get_dimensions() {
     return base_viewport->get_dimensions();
   }
 }

@@ -1,17 +1,17 @@
 #pragma once
 
-#include <lookinglass/perspective/Camera.h>
+#include <perspective/Camera.h>
 #include <lookinglass/House.h>
 #include "dllexport.h"
 #include "clienting/Client.h"
 #include <memory>
-#include <lookinglass/perspective/Viewport.h>
+#include <perspective/Viewport.h>
 
 namespace haft {
   class Event;
 }
 
-using namespace lookinglass::perspective;
+using namespace perspective;
 using namespace lookinglass;
 using namespace clienting;
 using namespace std;

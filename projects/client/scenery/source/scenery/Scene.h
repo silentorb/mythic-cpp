@@ -25,6 +25,8 @@ namespace scenery {
 
   public:
       Scene(lookinglass::House &house);
+      ~Scene();
+
       void render();
 
       Camera &get_camera() const {

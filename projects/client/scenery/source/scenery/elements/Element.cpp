@@ -3,9 +3,6 @@
 #include "Group.h"
 
 namespace scenery {
-  void Element::render(Glass &glass) {
-    render();
-  }
 
   void Element::render() {
 

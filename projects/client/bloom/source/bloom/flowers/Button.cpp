@@ -7,7 +7,7 @@ namespace bloom {
   Button::Button(string text_content, Garden &garden, Flower *parent) :
     Flower(garden, parent) {
 
-    text = garden.create_text("default", text_content);
+    text = garden.create_text(text_content);
       text->set_color(vec4(vec3(0), 1));
 //    text->set_color(vec4(1, 0, 0, 1));
     text->set_position(Vector2(Measurement(Measurements::stretch), Measurement(Measurements::stretch)));

@@ -3,16 +3,14 @@
 #include <glm/gtc/quaternion.hpp>
 #include "dllexport.h"
 
-#include "lookinglass/Renderable.h"
 #include "glm/glm.hpp"
 #include "Parent.h"
 
-using namespace lookinglass;
 using namespace glm;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Element : public Renderable, no_copy {
+  class MYTHIC_EXPORT Element : no_copy {
   private:
       vec3 position;
       quat orientation;
@@ -44,7 +42,6 @@ namespace scenery {
         this->position = vec3(x, y, z);
       }
 
-      virtual void render(Glass &glass) override;
       virtual void render();
 
       Parent *get_parent() const {

@@ -22,7 +22,6 @@ namespace lookinglass {
   private:
       const glow::Capabilities &capabilities;
       Viewport *viewport;
-      static Glass *instance;
 
   public:
       Glass(const glow::Capabilities &capabilities, Viewport &viewport);
@@ -33,9 +32,7 @@ namespace lookinglass {
       void set_viewport(Viewport &viewport);
 
       const glm::ivec2 &get_viewport_dimensions() const;
-      static Glass &get_instance() {
-        return *instance;
-      }
+			static Glass &get_instance();
   };
 
 }

@@ -5,12 +5,17 @@
 #include "glm/glm.hpp"
 #include "Viewport_Data.h"
 #include "Camera.h"
-#include "lookinglass/through/Mist.h"
 #include <vector>
 #include <functional>
 
+namespace lookinglass {
+  namespace through {
+    template<typename T>
+    class Mist;
+  }
+}
+
 using namespace glm;
-using namespace lookinglass::through;
 using namespace std;
 
 namespace perspective {
@@ -19,7 +24,7 @@ namespace perspective {
 
   class MYTHIC_EXPORT Viewport {
   private:
-      Mist<Viewport_Data> &mist;
+      lookinglass::through::Mist<Viewport_Data> &mist;
       Camera *camera;
       vector<Vector2_Delegate> listeners;
 
@@ -38,7 +43,7 @@ namespace perspective {
 
       static Viewport *get_active_viewport();
 
-      Viewport(Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
+      Viewport(lookinglass::through::Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
       void set_projection();
       void activate();
       void update_device();

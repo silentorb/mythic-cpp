@@ -1,5 +1,6 @@
 #include "Model.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include <lookinglass/Glass.h>
 
 namespace scenery {
   Model::Model(Mesh_Data* mesh_data, Spatial_Effect *effect, Parent & parent)

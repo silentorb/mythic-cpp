@@ -34,10 +34,9 @@ namespace mythic {
     client->get_house().add_renderable(renderable);
   }
 
-  void Mythic_Engine::remove_renderable(lookinglass::Renderable &renderable) {
-    client->get_house().remove_renderable(renderable);
-  }
-
+//  void Mythic_Engine::remove_renderable(lookinglass::Renderable &renderable) {
+//    client->get_house().remove_renderable(renderable);
+//  }
 
   void Mythic_Engine::update() {
     float delta = timer->update();
