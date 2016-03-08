@@ -6,19 +6,14 @@
 using namespace std;
 
 namespace bloom {
-
-  enum class Events {
-      activate,
-      close,
-      cancel,
-  };
-
   class Flower;
 
   typedef function<void(Flower *flower)> Flower_Delegate;
 
-  struct MYTHIC_EXPORT Listener {
-      Events type;
-      Flower_Delegate action;
+  namespace Events {
+    extern songbird::Song<Flower_Delegate> activate;
+    extern songbird::Song<Flower_Delegate> close;
+    extern songbird::Song<Flower_Delegate> cancel;
   };
+
 }

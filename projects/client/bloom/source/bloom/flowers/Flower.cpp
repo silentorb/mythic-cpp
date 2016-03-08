@@ -8,8 +8,7 @@
 namespace bloom {
 
   Flower::Flower(Garden &garden, Flower *parent) :
-    garden(garden), Box(garden.get_converter()),
-    is_deleted(new bool(false)) {
+    garden(garden), Box(garden.get_converter()) {
     if (parent)
       parent->add_child(this);
   }
@@ -19,21 +18,21 @@ namespace bloom {
 
   Flower::~Flower() { }
 
-  bool Flower::emit(Events event) {
-    bool has_events = false;
-    shared_ptr<bool> local_is_deleted = is_deleted;
-    for (auto &listener: listeners) {
-      if (listener.type == event) {
-        has_events = true;
-
-        listener.action(this);
-        if (local_is_deleted)
-          return true;
-      }
-    }
-
-    return has_events;
-  }
+//  bool Flower::emit(Events event) {
+//    bool has_events = false;
+//    shared_ptr<bool> local_is_deleted = is_deleted;
+//    for (auto &listener: listeners) {
+//      if (listener.type == event) {
+//        has_events = true;
+//
+//        listener.action(this);
+//        if (local_is_deleted)
+//          return true;
+//      }
+//    }
+//
+//    return has_events;
+//  }
 
   const Bounds Flower::fit_to_children() {
     throw runtime_error("Not implemented.");
@@ -107,7 +106,10 @@ namespace bloom {
     }
 
     if (point_is_inside(point)) {
-      return emit(Events::activate);
+      if (has_listeners(Events::activate)) {
+        sing(Events::activate, this);
+        return true;
+      }
     }
 
     return false;

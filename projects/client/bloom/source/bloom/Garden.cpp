@@ -23,6 +23,12 @@ using namespace haft;
 
 namespace bloom {
 
+  namespace Events {
+    songbird::Song<Flower_Delegate> activate;
+    songbird::Song<Flower_Delegate> close;
+    songbird::Song<Flower_Delegate> cancel;
+  };
+
   Garden::Garden(drawing::Draw &draw) :
     draw(draw),
     select_action(new Action(1, "Select")),

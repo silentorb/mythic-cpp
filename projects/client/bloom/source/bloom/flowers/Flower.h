@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <bloom/layout/Box.h>
 #include <bloom/styling/Style.h>
+#include <songbird/Singer.h>
 #include "bloom/layout/Bounds.h"
 #include "bloom/layout/Measurement.h"
 #include "Events.h"
@@ -21,15 +22,10 @@ namespace bloom {
 
   class Garden;
 
-  class MYTHIC_EXPORT Flower : public Box {
+  class MYTHIC_EXPORT Flower : public Box, public songbird::Singer {
 
-      vector<Listener> listeners;
       vector<unique_ptr<Flower>> children;
       shared_ptr<Style> style;
-
-      // Being a shared variable allows this variable to persist in local variables
-      //  after the flower is deleted.
-      shared_ptr<bool> is_deleted;
 
   protected:
       Garden &garden;
@@ -45,16 +41,16 @@ namespace bloom {
 
       virtual ~Flower();
 
-      virtual bool emit(Events event);
+//      virtual bool emit(Events event);
       virtual const Bounds get_bounds();
       bool point_is_inside(const vec2 &point);
       bool check_activate(const vec2 &point);
 
       virtual void render();
 
-      void listen(Events event, Flower_Delegate action) {
-        listeners.push_back({event, action});
-      }
+//      void listen(Events event, Flower_Delegate action) {
+//        listeners.push_back({event, action});
+//      }
 
       void click(Flower_Delegate action) {
         listen(Events::activate, action);
@@ -68,7 +64,7 @@ namespace bloom {
       void remove_child(Flower *child);
 
       void prune() {
-        *is_deleted = true;
+        set_singer_deleted();
         parent->remove_child(this);
       }
 

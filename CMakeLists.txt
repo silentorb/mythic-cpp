@@ -40,6 +40,7 @@ add_subdirectory(projects/misc/textual)
 add_subdirectory(projects/misc/spatial)
 add_subdirectory(projects/misc/random)
 add_subdirectory(projects/misc/breeze)
+add_subdirectory(projects/misc/songbird)
 add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)
