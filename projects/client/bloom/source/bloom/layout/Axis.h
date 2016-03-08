@@ -68,6 +68,10 @@ namespace bloom {
       static const Axis_Value &get_cache(const Box &box) {
         return box.axis_cache.x;
       }
+
+      static const int get_index() {
+        return 0;
+      }
   };
 
   class Vertical_Axis  {
@@ -90,6 +94,10 @@ namespace bloom {
 
       static const Axis_Value &get_cache(const Box &box) {
         return box.axis_cache.y;
+      }
+
+      static const int get_index() {
+        return 1;
       }
   };
 

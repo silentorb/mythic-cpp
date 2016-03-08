@@ -127,6 +127,8 @@ namespace bloom {
         dimensions.x = value;
       }
 
+      template<typename Axis>
+      float get_content_length(float initial_length, float near) const;
 
       template<typename Axis>
       Axis_Value calculate_axis(Axis_Value &parent_values, float margin);

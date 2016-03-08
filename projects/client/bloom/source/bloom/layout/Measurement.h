@@ -39,6 +39,12 @@ namespace bloom {
         return value;
       }
 
+      float get_checked_value() const {
+        return type == Measurements::units
+               ? value
+               : 0;
+      }
+
       void set_value(float value) {
         Measurement::value = value;
       }

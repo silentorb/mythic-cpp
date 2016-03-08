@@ -34,6 +34,23 @@ namespace bloom {
   }
 
   template<typename Axis>
+  float Box::get_content_length(float initial_length, float near) const {
+    if (initial_length != 0)
+      return initial_length;
+
+    float current_length = 0;
+    for (int i = 0; i < get_child_count(); ++i) {
+      auto &child = get_child_box(i);
+      auto child_far = Axis::get_cache(child).absolute_far;
+      auto temp_length = child_far - near;
+      if (temp_length > current_length)
+        current_length = temp_length;
+    }
+
+    return current_length;
+  }
+
+  template<typename Axis>
   Axis_Value Box::calculate_axis(Axis_Value &parent_values, float margin) {
     Axis_Value result;
 
@@ -43,6 +60,17 @@ namespace bloom {
 
 //    Axis_Value parent_values = this->get_parent_axis_values<Axis>();
 
+    auto arrangement = get_parent_box()
+                       ? get_parent_box()->get_arrangement()
+                       : Arrangement::canvas;
+
+    if (arrangement == Arrangement::down && Axis::get_index() == 1) {
+      result.near = parent_values.near + near.get_checked_value();
+      result.length = get_content_length<Axis>(length.get_value(), result.near);
+      result.absolute_far = result.near + result.length;
+      return result;
+    }
+
     if (length.get_type() == Measurements::stretch) {
       result.length = parent_values.length;
     }
@@ -50,8 +78,9 @@ namespace bloom {
       result.length = length.get_value();
     }
 
-    if (near.get_type() == Measurements::stretch && far.get_type() == Measurements::units && get_parent_box() &&
-        get_parent_box()->get_arrangement() == Arrangement::canvas) {
+
+    if (near.get_type() == Measurements::stretch && far.get_type() == Measurements::units &&
+        arrangement == Arrangement::canvas) {
       result.absolute_far = parent_values.absolute_far - far.get_value();
       result.near = result.absolute_far - result.length;
     }
@@ -91,6 +120,9 @@ namespace bloom {
     }
     else if (arrangement == Arrangement::down) {
       auto current = axis_cache;
+//      current.y.length = 0;
+//      current.y.absolute_far = current.y.near;
+      int temp = get_child_count();
       for (int i = 0; i < get_child_count(); ++i) {
         auto &child = get_child_box(i);
         child.update_absolute_dimensions(current);
