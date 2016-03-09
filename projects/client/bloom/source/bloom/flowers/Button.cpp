@@ -18,4 +18,8 @@ namespace bloom {
 
     set_dimensions(Measurement(400), Measurement(50));
   }
+
+  void Button::set_text(string content) {
+    text->set_content(content);
+  }
 }

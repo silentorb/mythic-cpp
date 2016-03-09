@@ -6,6 +6,7 @@
 #include "Group.h"
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace lookinglass {
   typedef function<void()> Renderable;

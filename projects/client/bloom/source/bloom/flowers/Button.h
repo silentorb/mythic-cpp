@@ -14,5 +14,6 @@ namespace bloom {
 
   public:
       Button(string text_content, Garden &garden, Flower *parent);
+      void set_text(string content);
   };
 }

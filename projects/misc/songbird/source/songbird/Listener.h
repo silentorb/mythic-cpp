@@ -7,15 +7,21 @@
 
 namespace songbird {
 
-  struct MYTHIC_EXPORT Listener_Interface {
+  struct MYTHIC_EXPORT Listener_Interface : no_copy {
       void *id;
 
       virtual ~Listener_Interface() { }
+      Listener_Interface(Listener_Interface&&) {}
+      Listener_Interface() {}
   };
 
   template<typename T>
   struct MYTHIC_EXPORT Listener : public Listener_Interface {
       T dance;
 
+      Listener(Listener<T> &&listener) : Listener_Interface(listener) { }
+      Listener() { }
+
+      virtual ~Listener() override { }
   };
 }

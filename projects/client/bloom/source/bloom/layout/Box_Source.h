@@ -10,6 +10,8 @@ namespace bloom {
 //    position(Vector2(Measurement(Measurement()), Measurement(0)), Vector2()) { }
   { }
 
+  Box::~Box() { }
+
   vec2 Box::get_absolute_position() const {
     if (get_parent_box())
       return get_parent_box()->get_absolute_position() + position.near.get_vec2();

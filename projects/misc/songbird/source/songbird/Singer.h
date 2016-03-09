@@ -23,8 +23,12 @@ namespace songbird {
         *_is_deleted = true;
       }
 
+      Singer(Singer const &) = delete;
+      Singer &operator=(Singer const &) = delete;
+
   public:
       Singer() : _is_deleted(new bool(false)) { }
+      virtual ~Singer() {}
 
       template<typename T>
       void listen(Song<T> &song, T dance) {

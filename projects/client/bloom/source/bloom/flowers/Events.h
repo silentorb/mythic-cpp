@@ -11,9 +11,9 @@ namespace bloom {
   typedef function<void(Flower *flower)> Flower_Delegate;
 
   namespace Events {
-    extern songbird::Song<Flower_Delegate> activate;
-    extern songbird::Song<Flower_Delegate> close;
-    extern songbird::Song<Flower_Delegate> cancel;
+    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> activate;
+    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> close;
+    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> cancel;
   };
 
 }

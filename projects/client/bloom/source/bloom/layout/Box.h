@@ -56,6 +56,7 @@ namespace bloom {
 
   public:
       Box(const Measurement_Converter &converter);
+      ~Box();
 
       const Vector2 &get_position() const {
         return position.near;
