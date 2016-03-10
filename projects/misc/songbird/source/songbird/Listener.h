@@ -8,7 +8,7 @@
 namespace songbird {
 
   struct MYTHIC_EXPORT Listener_Interface : no_copy {
-      void *id;
+      const void *id;
 
       virtual ~Listener_Interface() { }
       Listener_Interface(Listener_Interface&&) {}

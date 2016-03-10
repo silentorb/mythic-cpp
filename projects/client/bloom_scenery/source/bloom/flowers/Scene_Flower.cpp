@@ -1,3 +1,4 @@
+#define bloom_scenery
 #include "Scene_Flower.h"
 #include "scenery/Scene.h"
 #include "perspective/Viewport.h"
@@ -8,7 +9,6 @@ namespace bloom {
   Scene_Flower::Scene_Flower(Garden &garden, shared_ptr<scenery::Scene> scene, Flower *parent) :
     scene(scene),
     Flower(garden, parent) {
-
   }
 
   Scene_Flower::Scene_Flower(Garden &garden, Flower *parent) :

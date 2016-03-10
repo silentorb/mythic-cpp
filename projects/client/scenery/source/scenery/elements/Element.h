@@ -30,7 +30,7 @@ namespace scenery {
 
       virtual ~Element() { }
 
-      const vec3 &get_position() const {
+      vec3 &get_position() {
         return position;
       }
 

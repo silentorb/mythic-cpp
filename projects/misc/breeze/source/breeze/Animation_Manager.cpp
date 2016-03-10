@@ -2,13 +2,15 @@
 
 namespace breeze {
 
-  void Animation_Manager::add_animation(Animation *animation) {
-    animations.push_back(unique_ptr<Animation>(animation));
-  }
-
   void Animation_Manager::update(float delta) {
-    for (auto &animation: animations) {
-      animation->update(delta);
+    this->delta = delta;
+
+    for (int i = animations.size() - 1; i >= 0; --i) {
+//    for (auto &animation: animations) {
+      auto animation = animations[i].get();
+      if (animation->update(delta)) {
+        animations.erase(animations.begin() + i);
+      }
     }
   }
 }

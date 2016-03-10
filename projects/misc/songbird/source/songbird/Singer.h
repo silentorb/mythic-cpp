@@ -31,18 +31,18 @@ namespace songbird {
       virtual ~Singer() {}
 
       template<typename T>
-      void listen(Song<T> &song, T dance) {
+      void listen(const Song<T> &song, T dance) {
         auto listener = new Listener<T>;
-        listener->id = static_cast<void *>(&song);
+        listener->id = static_cast<const void *>(&song);
         listener->dance = dance;
         listeners.push_back(unique_ptr<Listener_Interface>(listener));
       }
 
       template<typename T, typename A>
-      void sing(Song<T> &song, A a) {
+      void sing(const Song<T> &song, A a) {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         for (auto &listener: listeners) {
-          if (listener->id == static_cast<void *>(&song)) {
+          if (listener->id == static_cast<const void *>(&song)) {
             auto particular_listener = static_cast<Listener<T> *>(listener.get());
             particular_listener->dance(a);
             if (local_is_deleted)
@@ -52,9 +52,9 @@ namespace songbird {
       };
 
       template<typename T>
-      bool has_listeners(Song<T> &song) {
+      bool has_listeners(const Song<T> &song) {
         for (auto &listener: listeners) {
-          if (listener->id == static_cast<void *>(&song))
+          if (listener->id == static_cast<const void *>(&song))
             return true;
         }
 

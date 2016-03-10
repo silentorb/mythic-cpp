@@ -5,15 +5,21 @@
 
 using namespace std;
 
+#ifdef BLOOM_LIB
+#define BLOOM_EXPORT __declspec(dllexport) extern
+#else
+#define BLOOM_EXPORT __declspec(dllimport) extern
+#endif
+
 namespace bloom {
   class Flower;
 
   typedef function<void(Flower *flower)> Flower_Delegate;
 
   namespace Events {
-    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> activate;
-    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> close;
-    MYTHIC_EXPORT extern songbird::Song<Flower_Delegate> cancel;
+     BLOOM_EXPORT const songbird::Song<Flower_Delegate> activate;
+     BLOOM_EXPORT const songbird::Song<Flower_Delegate> close;
+     BLOOM_EXPORT const songbird::Song<Flower_Delegate> cancel;
   };
 
 }
