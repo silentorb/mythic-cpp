@@ -24,15 +24,15 @@ namespace promising {
   template<typename O>
   class MYTHIC_EXPORT Promise : public Promise_Interface {
 
-      vector<unique_ptr<Promise>> dependents;
+  protected:
       bool _is_done = false;
+      vector<unique_ptr<Promise>> dependents;
+
+      Promise() { }
 
       virtual void execute() {
         resolve();
       }
-
-  protected:
-      Promise() {}
 
   public:
 
@@ -47,34 +47,20 @@ namespace promising {
       }
 
       Promise &then(function<O()> action);
-
-//      Promise &then(Promise &promise) {
-////        dependents.push_back(unique_ptr<Promise>(promise));
-//        return promise;
-//      }
-
-      static Promise &defer(function<O()> action = []() { }) {
-        auto promise = new Promise(action);
-        Promise_Interface::add_promise(*promise);
-        return *promise;
-      }
-
-      static Promise &resolved(function<O()> action = []() { }) {
-        auto &result = defer(action);
-        result.resolve();
-        return result;
-      }
+      Promise &then(function<Promise<O> &()> action);
+      static Promise &defer(function<O()> action = []() { });
+      static Promise &resolved(function<O()> action = []() { });
 
       template<typename E>
-      static Promise &update_sequence(vector<E> &items, function<Promise &(E item)> action, int step) {
+      static Promise &update_sequence(vector<E> items, function<Promise &(E item)> action, int step) {
         return action(items[step])
-          .then([&items, action, step]() -> Promise & {
+          .then(static_cast<function<Promise &()>>([items, action, step]() -> Promise & {
             int next_step = step + 1;
             if (next_step >= items.size())
               return Promise::resolved();
 
             return update_sequence(items, action, next_step);
-          });
+          }));
       }
 
       template<typename E>
@@ -102,39 +88,62 @@ namespace promising {
   };
 
   template<typename O>
-  class Promise_Returning_Void : public Promise<O> {
-      function<Promise()> action;
+  class Promise_Returning_Value : public Promise<O> {
+      function<O()> action;
+  public:
 
-      Promise_Returning_Void(function<O()> action) : action(action) {
+      Promise_Returning_Value(function<O()> action) : action(action) {
       }
 
       virtual void execute() override {
-        auto promise = action();
-        resolve();
+        action();
+        this->resolve();
       }
-
   };
 
   template<typename O>
   class Promise_Returning_Promise : public Promise<O> {
-      function<Promise()> action;
+      function<Promise<O> &()> action;
 
-      Promise_Returning_Promise(function<O()> action) : action(action) {
+  public:
+      Promise_Returning_Promise(function<Promise<O> &()> action) : action(action) {
       }
 
-
       virtual void execute() override {
-        auto promise = action();
-        resolve();
+        auto &promise = action();
+        promise.then(static_cast<function<void()>>([&]() {
+          this->resolve();
+        }));
       }
   };
 
   typedef Promise<void> Empty_Promise;
 
-  template <typename O>
-  Promise &Promise::then(function<O()> action) {
-    auto promise = new Promise(action);
-    dependents.push_back(unique_ptr<Promise>(promise));
+  template<typename O>
+  Promise<O> &Promise<O>::defer(function<O()> action) {
+    auto promise = new Promise_Returning_Value<O>(action);
+    Promise_Interface::add_promise(*promise);
+    return *promise;
+  }
+
+  template<typename O>
+  Promise<O> &Promise<O>::resolved(function<O()> action) {
+    auto &result = defer(action);
+    result.resolve();
+    return result;
+  }
+
+  template<typename O>
+  Promise<O> &Promise<O>::then(function<O()> action) {
+    auto promise = new Promise_Returning_Value<O>(action);
+    dependents.push_back(unique_ptr<Promise<O>>(promise));
+    return *promise;
+  }
+
+  template<typename O>
+  Promise<O> &Promise<O>::then(function<Promise<O> &()> action) {
+    auto promise = new Promise_Returning_Promise<O>(action);
+    dependents.push_back(unique_ptr<Promise<O>>(promise));
     return *promise;
   }
 }
