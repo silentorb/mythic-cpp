@@ -4,12 +4,14 @@
 #include "dllexport.h"
 #include "Animation_Delegate.h"
 
+using namespace promising;
+
 namespace breeze {
 
   class MYTHIC_EXPORT Animation_Interface : no_copy {
+
   public:
       virtual ~Animation_Interface() { }
-
       virtual bool update(float delta) = 0;
   };
 
@@ -22,18 +24,17 @@ namespace breeze {
       T final_value;
       T &target;
 
-      promising::Promise<void> &promise;
+      Empty_Promise &promise;
 
   public:
       Animation(float duration, T final_value, T &target,
-                promising::Promise<void> &on_end) : duration(duration),
+                Empty_Promise &promise) : duration(duration),
                                               final_value(final_value), target(target),
                                               promise(promise) {
         start_value = target;
         gap = final_value - start_value;
       }
 
-  private:
       virtual ~Animation() override { }
 
       virtual bool update(float delta) override {

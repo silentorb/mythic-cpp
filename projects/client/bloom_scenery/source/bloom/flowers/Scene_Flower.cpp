@@ -1,4 +1,3 @@
-#define bloom_scenery
 #include "Scene_Flower.h"
 #include "scenery/Scene.h"
 #include "perspective/Viewport.h"
