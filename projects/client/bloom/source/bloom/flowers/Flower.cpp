@@ -7,6 +7,8 @@
 
 namespace bloom {
 
+  Flower::Flower(Flower *parent) : Flower(Garden::get_instance(), parent) { }
+
   Flower::Flower(Garden &garden, Flower *parent) :
     garden(garden), Box(garden.get_converter()) {
     if (parent)
@@ -182,5 +184,13 @@ namespace bloom {
 
   void Flower::clear() {
     children.clear();
+  }
+
+  bool Flower::is_landscape() const {
+    return garden.get_orientation() == Orientation::landscape;
+  }
+
+  bool Flower::is_portrait() const {
+    return garden.get_orientation() == Orientation::portrait;
   }
 }

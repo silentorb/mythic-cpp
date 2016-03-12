@@ -22,6 +22,11 @@ namespace bloom {
 
   class Garden;
 
+  enum class Orientation {
+      portrait,
+      landscape
+  };
+
   class MYTHIC_EXPORT Flower : public Box, public songbird::Singer {
 
       vector<unique_ptr<Flower>> children;
@@ -36,6 +41,7 @@ namespace bloom {
       const Bounds fit_to_children();
 
   public:
+      Flower(Flower *parent = nullptr);
       Flower(Garden &garden, Flower *parent = nullptr);
       Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent = nullptr);
 
@@ -107,5 +113,8 @@ namespace bloom {
       }
 
       void clear();
+
+      bool is_landscape() const;
+      bool is_portrait() const;
   };
 }

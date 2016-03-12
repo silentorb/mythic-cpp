@@ -31,6 +31,8 @@ namespace bloom {
     const int hello = 1;
   };
 
+  Garden *Garden::instance = nullptr;
+
   Garden::Garden(drawing::Draw &draw) :
     draw(draw),
     select_action(new Action(1, "Select")),
@@ -39,8 +41,8 @@ namespace bloom {
     draw.add_renderable([&]() {
       render();
     });
-
-		auto &k = Events::hello;
+    instance = this;
+    auto &k = Events::hello;
   }
 
   Garden::~Garden() { }
@@ -90,5 +92,12 @@ namespace bloom {
 
   lookinglass::House &Garden::get_house() const {
     return draw.get_house();
+  }
+
+  Orientation Garden::get_orientation() const {
+    auto &dimensions = draw.get_dimensions();
+    return dimensions.x > dimensions.y
+                  ? Orientation::landscape
+                  : Orientation::portrait;
   }
 }

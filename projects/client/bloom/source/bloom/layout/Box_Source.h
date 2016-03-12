@@ -12,11 +12,27 @@ namespace bloom {
 
   Box::~Box() { }
 
-  vec2 Box::get_absolute_position() const {
-    if (get_parent_box())
-      return get_parent_box()->get_absolute_position() + position.near.get_vec2();
+  template<typename Axis>
+  vec2 Box::get_parent_dimensions()const {
+    auto parent_box = get_parent_box();
+    if (parent_box)
+      return parent_box->get_absolute_dimensions();
+    else
+      return get_converter().get_pixel_dimensions();
+  }
 
-    return position.near.get_vec2();
+  vec2 Box::get_absolute_position() const {
+
+    auto parent_box = get_parent_box();
+    if (parent_box) {
+      return parent_box->get_absolute_position() + position.near.get_vec2(parent_box->get_absolute_dimensions());
+    }
+
+    return position.near.get_vec2(get_converter().get_pixel_dimensions());
+  }
+
+  vec2 Box::get_absolute_dimensions() const {
+    return dimensions.get_vec2(get_converter().get_pixel_dimensions());
   }
 
   template<typename Axis>
@@ -31,7 +47,7 @@ namespace bloom {
       }
     }
     else {
-      return length.get_value();
+      return Axis::get_aligned(box.get_parent_dimensions<Axis>());
     }
   }
 
@@ -68,7 +84,7 @@ namespace bloom {
 
     if (arrangement == Arrangement::down && Axis::get_index() == 1) {
       result.near = parent_values.near + near.get_checked_value();
-      result.length = get_content_length<Axis>(length.get_value(), result.near);
+      result.length = get_content_length<Axis>(length.get_value(parent_values.length), result.near);
       result.absolute_far = result.near + result.length;
       return result;
     }
@@ -77,13 +93,13 @@ namespace bloom {
       result.length = parent_values.length;
     }
     else {
-      result.length = length.get_value();
+      result.length = length.get_value(parent_values.length);
     }
 
 
-    if (near.get_type() == Measurements::stretch && far.get_type() == Measurements::units &&
+    if (near.get_type() == Measurements::stretch && far.get_type() != Measurements::stretch &&
         arrangement == Arrangement::canvas) {
-      result.absolute_far = parent_values.absolute_far - far.get_value();
+      result.absolute_far = parent_values.absolute_far - far.get_value(parent_values.length);
       result.near = result.absolute_far - result.length;
     }
     else if (near.get_type() == Measurements::stretch && far.get_type() == Measurements::stretch) {
@@ -91,21 +107,21 @@ namespace bloom {
       result.near = parent_values.near + middle;
       result.absolute_far = result.near + result.length;
     }
-    else if (near.get_type() == Measurements::units && length.get_type() == Measurements::stretch &&
-             far.get_type() == Measurements::units) {
+    else if (near.get_type() != Measurements::stretch && length.get_type() == Measurements::stretch &&
+             far.get_type() != Measurements::stretch) {
 
-      result.near = parent_values.near + near.get_value();
-      result.absolute_far = parent_values.absolute_far - far.get_value();
+      result.near = parent_values.near + near.get_value(parent_values.length);
+      result.absolute_far = parent_values.absolute_far - far.get_value(parent_values.length);
       result.length = result.absolute_far - result.near;
     }
     else {
-      result.near = parent_values.near + near.get_value();
+      result.near = parent_values.near + near.get_value(parent_values.length);
       if (margin > result.near)
         result.near = margin;
 
       result.absolute_far = result.near + result.length;
       if (far.get_type() == Measurements::units)
-        result.absolute_far += far.get_value();
+        result.absolute_far += far.get_value(parent_values.length);
     }
 
     return result;

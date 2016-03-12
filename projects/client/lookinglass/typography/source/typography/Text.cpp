@@ -125,7 +125,7 @@ namespace typography {
 
   float Text::get_scale() const {
 //    auto &viewport_dimensions = effect.get_viewport_dimensions();
-    return size * 1000 / 18000;
+    return size / 32;
 
   }
 }

@@ -132,6 +132,9 @@ namespace bloom {
       float get_content_length(float initial_length, float near) const;
 
       template<typename Axis>
+      vec2 get_parent_dimensions() const;
+
+      template<typename Axis>
       Axis_Value calculate_axis(Axis_Value &parent_values, float margin);
       void update_absolute_dimensions(Axis_Values parent_values, vec2 margin = vec2(0));
       virtual int get_child_count() const = 0;

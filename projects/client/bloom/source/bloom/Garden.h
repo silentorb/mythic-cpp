@@ -31,6 +31,7 @@ namespace bloom {
       Measurement_Converter converter;
       Flower *focused_flower;
       stack <unique_ptr<Modal>> modal_stack;
+      static Garden *instance;
 
   public:
       Garden(drawing::Draw &draw);
@@ -69,5 +70,11 @@ namespace bloom {
 
       void add_modal(Flower &flower);
       lookinglass::House &get_house() const;
+
+      static Garden &get_instance() {
+        return *instance;
+      }
+
+      Orientation get_orientation() const;
   };
 }

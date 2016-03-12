@@ -9,6 +9,8 @@
 
 using namespace std;
 
+typedef function<void()> Empty_Delegate;
+
 namespace songbird {
 
   class MYTHIC_EXPORT Singer {
@@ -28,7 +30,8 @@ namespace songbird {
 
   public:
       Singer() : _is_deleted(new bool(false)) { }
-      virtual ~Singer() {}
+
+      virtual ~Singer() { }
 
       template<typename T>
       void listen(const Song<T> &song, T dance) {
@@ -45,6 +48,19 @@ namespace songbird {
           if (listener->id == static_cast<const void *>(&song)) {
             auto particular_listener = static_cast<Listener<T> *>(listener.get());
             particular_listener->dance(a);
+            if (local_is_deleted)
+              return;
+          }
+        }
+      };
+
+      template<typename T>
+      void sing(const Song<T> &song) {
+        shared_ptr<bool> local_is_deleted = _is_deleted;
+        for (auto &listener: listeners) {
+          if (listener->id == static_cast<const void *>(&song)) {
+            auto particular_listener = static_cast<Listener<T> *>(listener.get());
+            particular_listener->dance();
             if (local_is_deleted)
               return;
           }

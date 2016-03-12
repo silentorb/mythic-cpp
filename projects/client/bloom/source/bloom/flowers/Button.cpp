@@ -4,8 +4,8 @@
 
 namespace bloom {
 
-  Button::Button(string text_content, Garden &garden, Flower *parent) :
-    Flower(garden, parent) {
+  Button::Button(string text_content, Flower *parent) :
+    Flower(parent) {
 
     text = garden.create_text(text_content);
       text->set_color(vec4(vec3(0), 1));

@@ -4,48 +4,8 @@
 #include "Box.h"
 
 namespace bloom {
-//
-//  class Axis {
-//  public:
-//      virtual Measurement &get_near(Box &box) = 0;
-//      virtual Measurement &get_length(Box &box) = 0;
-//      virtual Measurement &get_far(Box &box) = 0;
-//  };
-//
-//  class Horizontal_Axis : public Axis {
-//  public:
-//      virtual Measurement &get_near(Box &box) override {
-//        return box.get_position().x;
-//      }
-//
-//      virtual Measurement &get_length(Box &box) override {
-//        return box.get_dimensions().x;
-//      }
-//
-//      virtual Measurement &get_far(Box &box) override {
-//        return box.get_corner().x;
-//      }
-//  };
-//
-//
-//  class Vertical_Axis : public Axis {
-//  public:
-//      virtual Measurement &get_near(Box &box) override {
-//        return box.get_position().y;
-//      }
-//
-//      virtual Measurement &get_length(Box &box) override {
-//        return box.get_dimensions().y;
-//      }
-//
-//      virtual Measurement &get_far(Box &box) override {
-//        return box.get_corner().y;
-//      }
-//  };
 
-
-//  class Axis {
-//  };
+  class Vertical_Axis;
 
   class Horizontal_Axis  {
   public:
@@ -72,6 +32,8 @@ namespace bloom {
       static const int get_index() {
         return 0;
       }
+
+      using other = Vertical_Axis;
   };
 
   class Vertical_Axis  {
@@ -99,6 +61,8 @@ namespace bloom {
       static const int get_index() {
         return 1;
       }
+
+      using other = Horizontal_Axis;
   };
 
 }

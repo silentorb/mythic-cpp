@@ -29,10 +29,10 @@ namespace bloom {
         update_scale();
       }
 
-      vec2 convert(const Vector2 &position) const {
+      vec2 convert(const Vector2 &position, vec2 parent_length) const {
         return vec2(
-          position.x.get_value() * scale,
-          position.y.get_value() * scale
+          position.x.get_value(parent_length.x) * scale,
+          position.y.get_value(parent_length.y) * scale
         );
       }
 
