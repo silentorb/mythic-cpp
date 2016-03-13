@@ -12,8 +12,7 @@ namespace bloom {
 
   Box::~Box() { }
 
-  template<typename Axis>
-  vec2 Box::get_parent_dimensions()const {
+  vec2 Box::get_parent_dimensions() const {
     auto parent_box = get_parent_box();
     if (parent_box)
       return parent_box->get_absolute_dimensions();
@@ -21,18 +20,18 @@ namespace bloom {
       return get_converter().get_pixel_dimensions();
   }
 
-  vec2 Box::get_absolute_position() const {
-
-    auto parent_box = get_parent_box();
-    if (parent_box) {
-      return parent_box->get_absolute_position() + position.near.get_vec2(parent_box->get_absolute_dimensions());
-    }
-
-    return position.near.get_vec2(get_converter().get_pixel_dimensions());
-  }
+//  vec2 Box::get_absolute_position() const {
+//
+//    auto parent_box = get_parent_box();
+//    if (parent_box) {
+//      return parent_box->get_absolute_position() + position.near.get_vec2(parent_box->get_absolute_dimensions());
+//    }
+//
+//    return position.near.get_vec2();
+//  }
 
   vec2 Box::get_absolute_dimensions() const {
-    return dimensions.get_vec2(get_converter().get_pixel_dimensions());
+    return vec2(axis_cache.x.length, axis_cache.y.length);
   }
 
   template<typename Axis>
@@ -47,7 +46,7 @@ namespace bloom {
       }
     }
     else {
-      return Axis::get_aligned(box.get_parent_dimensions<Axis>());
+      return Axis::get_aligned(box.get_parent_dimensions());
     }
   }
 
@@ -68,6 +67,7 @@ namespace bloom {
     return current_length;
   }
 
+
   template<typename Axis>
   Axis_Value Box::calculate_axis(Axis_Value &parent_values, float margin) {
     Axis_Value result;
@@ -76,6 +76,11 @@ namespace bloom {
     const Measurement &length = Axis::get_length(*this);
     const Measurement &far = Axis::get_far(*this);
 
+    auto parent_dimensions = get_parent_dimensions();
+    result.near = near.resolve<Axis>(parent_dimensions, converter);
+    result.length = length.resolve<Axis>(parent_dimensions, converter);
+    result.absolute_far = far.resolve<Axis>(parent_dimensions, converter);
+
 //    Axis_Value parent_values = this->get_parent_axis_values<Axis>();
 
     auto arrangement = get_parent_box()
@@ -83,8 +88,8 @@ namespace bloom {
                        : Arrangement::canvas;
 
     if (arrangement == Arrangement::down && Axis::get_index() == 1) {
-      result.near = parent_values.near + near.get_checked_value();
-      result.length = get_content_length<Axis>(length.get_value(parent_values.length), result.near);
+      result.near = parent_values.near + result.near;
+      result.length = get_content_length<Axis>(result.length, result.near);
       result.absolute_far = result.near + result.length;
       return result;
     }
@@ -92,14 +97,13 @@ namespace bloom {
     if (length.get_type() == Measurements::stretch) {
       result.length = parent_values.length;
     }
-    else {
-      result.length = length.get_value(parent_values.length);
-    }
-
+//    else {
+//      result.length = length.get_value(parent_values.length);
+//    }
 
     if (near.get_type() == Measurements::stretch && far.get_type() != Measurements::stretch &&
         arrangement == Arrangement::canvas) {
-      result.absolute_far = parent_values.absolute_far - far.get_value(parent_values.length);
+      result.absolute_far = parent_values.absolute_far - result.absolute_far;
       result.near = result.absolute_far - result.length;
     }
     else if (near.get_type() == Measurements::stretch && far.get_type() == Measurements::stretch) {
@@ -110,18 +114,18 @@ namespace bloom {
     else if (near.get_type() != Measurements::stretch && length.get_type() == Measurements::stretch &&
              far.get_type() != Measurements::stretch) {
 
-      result.near = parent_values.near + near.get_value(parent_values.length);
-      result.absolute_far = parent_values.absolute_far - far.get_value(parent_values.length);
+      result.near = parent_values.near + result.near;
+      result.absolute_far = parent_values.absolute_far - result.absolute_far;
       result.length = result.absolute_far - result.near;
     }
     else {
-      result.near = parent_values.near + near.get_value(parent_values.length);
+      result.near = parent_values.near + result.near;
       if (margin > result.near)
         result.near = margin;
 
       result.absolute_far = result.near + result.length;
       if (far.get_type() == Measurements::units)
-        result.absolute_far += far.get_value(parent_values.length);
+        result.absolute_far += result.absolute_far;
     }
 
     return result;

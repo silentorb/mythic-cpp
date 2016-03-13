@@ -24,7 +24,7 @@ namespace bloom {
 
   class Text_Flower;
 
-  class MYTHIC_EXPORT Garden {
+  class BLOOM_EXPORT Garden {
       Flower *root;
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;

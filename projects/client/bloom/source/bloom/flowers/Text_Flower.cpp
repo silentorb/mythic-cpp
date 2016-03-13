@@ -36,7 +36,7 @@ namespace bloom {
 
   void Text_Flower::update_dimensions() {
     auto text_dimensions = text->get_dimensions();
-    dimensions.x = Measurement(text_dimensions.x);
-    dimensions.y = Measurement(text_dimensions.y);
+    dimensions.set_x(Simple_Measurement(text_dimensions.x));
+    dimensions.set_y(Simple_Measurement(text_dimensions.y));
   }
 }

@@ -10,19 +10,23 @@ namespace bloom {
   class Horizontal_Axis  {
   public:
       static const Measurement &get_near(const Box &box) {
-        return box.get_position().x;
+        return box.get_position().get_x();
       }
 
       static const Measurement &get_length(const Box &box) {
-        return box.get_dimensions().x;
+        return box.get_dimensions().get_x();
       }
 
       static const Measurement &get_far(const Box &box) {
-        return box.get_corner().x;
+        return box.get_corner().get_x();
       }
 
       static const float get_aligned(const vec2 &value) {
         return value.x;
+      }
+
+      static const float get_perpendicular(const vec2 &value) {
+        return value.y;
       }
 
       static const Axis_Value &get_cache(const Box &box) {
@@ -39,19 +43,23 @@ namespace bloom {
   class Vertical_Axis  {
   public:
       static const Measurement &get_near(const Box &box) {
-        return box.get_position().y;
+        return box.get_position().get_y();
       }
 
       static const Measurement &get_length(const Box &box) {
-        return box.get_dimensions().y;
+        return box.get_dimensions().get_y();
       }
 
       static const Measurement &get_far(const Box &box) {
-        return box.get_corner().y;
+        return box.get_corner().get_y();
       }
 
       static const float get_aligned(const vec2 &value) {
         return value.y;
+      }
+
+      static const float get_perpendicular(const vec2 &value) {
+        return value.x;
       }
 
       static const Axis_Value &get_cache(const Box &box) {
