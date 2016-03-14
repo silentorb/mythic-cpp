@@ -12,6 +12,7 @@ namespace breeze {
 
   public:
       virtual ~Animation_Interface() { }
+
       virtual bool update(float delta) = 0;
   };
 
@@ -27,10 +28,10 @@ namespace breeze {
       Empty_Promise &promise;
 
   public:
-      Animation(float duration, T final_value, T &target,
-                Empty_Promise &promise) : duration(duration),
-                                              final_value(final_value), target(target),
-                                              promise(promise) {
+      Animation(float duration, T final_value, T &target)
+        : duration(duration), final_value(final_value), target(target),
+          promise(promising::Promise<void>::defer()) {
+
         start_value = target;
         gap = final_value - start_value;
       }
@@ -47,6 +48,10 @@ namespace breeze {
 
         target = start_value + gap * counter / duration;
         return false;
+      }
+
+      Empty_Promise &get_promise() const {
+        return promise;
       }
   };
 }

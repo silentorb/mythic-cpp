@@ -19,10 +19,11 @@ namespace breeze {
 
       template<typename T>
       promising::Promise<void> &animate(float duration, T &target, T final_value) {
-        auto &promise = promising::Promise<void>::defer();
-        auto animation = new Animation<T>(duration, final_value, target, promise);
+        auto animation = new Animation<T>(duration, final_value, target);
         animations.push_back(unique_ptr<Animation_Interface>(animation));
-        return promise;
+        return animation->get_promise();
       }
+
+      promising::Promise<void> &delay(float duration);
   };
 }

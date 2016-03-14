@@ -1,4 +1,5 @@
 #include "Animation_Manager.h"
+#include "Delay.h"
 
 namespace breeze {
 
@@ -12,5 +13,11 @@ namespace breeze {
         animations.erase(animations.begin() + i);
       }
     }
+  }
+
+  promising::Promise<void> &Animation_Manager::delay(float duration) {
+    auto animation = new Delay(duration);
+    animations.push_back(unique_ptr<Animation_Interface>(animation));
+    return animation->get_promise();
   }
 }
