@@ -66,7 +66,7 @@ namespace scenery {
         this->orientation = orientation;
       }
 
-      const vec3 &get_scale() const {
+      vec3 &get_scale() {
         return scale;
       }
 

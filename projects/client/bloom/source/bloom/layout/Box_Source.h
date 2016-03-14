@@ -69,7 +69,7 @@ namespace bloom {
 
 
   template<typename Axis>
-  Axis_Value Box::calculate_axis(Axis_Value &parent_values, float margin) {
+  Axis_Value Box::calculate_axis(const Axis_Value &parent_values, float margin) const {
     Axis_Value result;
 
     const Measurement &near = Axis::get_near(*this);

@@ -13,9 +13,9 @@ namespace bloom {
       unique_ptr<Border> border;
       unique_ptr<Fill> fill;
       shared_ptr<Style> highlighed;
+      float padding = 0;// Eventually will be a box but most of the time and for now I just need it even.
 
   public:
-
       const Fill *get_fill() const {
         return fill.get();
       }
@@ -36,6 +36,14 @@ namespace bloom {
           border = unique_ptr<Border>(new Border());
 
         border->set_color(color);
+      }
+
+      float get_padding() const {
+        return padding;
+      }
+
+      void set_padding(float padding) {
+        Style::padding = padding;
       }
   };
 }

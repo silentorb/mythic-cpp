@@ -162,6 +162,14 @@ namespace bloom {
       const Measurement &get_y() const {
         return *y;
       }
+
+      const shared_ptr<Measurement> &get_x_pointer() const {
+        return x;
+      }
+
+      const shared_ptr<Measurement> &get_y_pointer() const {
+        return y;
+      }
   };
 
   struct MYTHIC_EXPORT Vector4 {

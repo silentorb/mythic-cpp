@@ -51,6 +51,8 @@ namespace lookinglass {
       vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
       void initialize();
+      static House *instance;
+
   public:
 
       House(Frame *frame, shading::Shader_Loader *shader_loader);
@@ -102,5 +104,7 @@ namespace lookinglass {
       Mist<Viewport_Data> &get_viewport_mist() const {
         return *viewport_mist;
       }
+
+      static House &get_instance();
   };
 }

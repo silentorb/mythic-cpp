@@ -84,6 +84,7 @@ namespace bloom {
 
       void set_border(vec4 color);
       void set_fill(vec4 color);
+      void set_padding(float amount);
       Flower &create_generic_flower();
 
       virtual Box *get_parent_box() const override {
@@ -116,5 +117,9 @@ namespace bloom {
 
       bool is_landscape() const;
       bool is_portrait() const;
+
+      float get_padding() const {
+        return style ? style->get_padding() : 0;
+      }
   };
 }

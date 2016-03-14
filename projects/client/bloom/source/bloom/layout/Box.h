@@ -9,6 +9,7 @@
 #include <glm/vec2.hpp>
 #include "Axis_Value.h"
 #include <memory>
+#include "bloom/bloom_export.h"
 
 using namespace std;
 using namespace glm;
@@ -34,7 +35,7 @@ namespace bloom {
       left,
   };
 
-  class Box : no_copy {
+  class BLOOM_EXPORT Box : no_copy {
       friend class Horizontal_Axis;
 
       friend class Vertical_Axis;
@@ -55,7 +56,7 @@ namespace bloom {
 //      Axis_Value get_parent_axis_values();
 
   public:
-		int debug_id = 0;
+      int debug_id = 0;
 
       Box(const Measurement_Converter &converter);
       ~Box();
@@ -68,7 +69,7 @@ namespace bloom {
         position.near = value;
       }
 
-      void set_position(const Measurement & left, const Measurement & top) {
+      void set_position(const Measurement &left, const Measurement &top) {
         position.near = Vector2(left, top);
       }
 
@@ -121,7 +122,7 @@ namespace bloom {
         position.near.set_y(Simple_Measurement(value));
       }
 
-      template <typename T>
+      template<typename T>
       void set_top(T value) {
         position.near.set_y(value);
       }
@@ -142,12 +143,12 @@ namespace bloom {
         Box::arrangement = arrangement;
       }
 
-      template <typename T>
+      template<typename T>
       void set_width(T value) {
         dimensions.set_x(value);
       }
 
-      template <typename T>
+      template<typename T>
       void set_height(T value) {
         dimensions.set_y(value);
       }
@@ -158,10 +159,18 @@ namespace bloom {
       vec2 get_parent_dimensions() const;
 
       template<typename Axis>
-      Axis_Value calculate_axis(Axis_Value &parent_values, float margin);
-      void update_absolute_dimensions(Axis_Values parent_values, vec2 margin = vec2(0));
+      Axis_Value calculate_axis(const Axis_Value &parent_values, float margin) const;
+      virtual void update_absolute_dimensions(Axis_Values parent_values, vec2 margin = vec2(0));
       virtual int get_child_count() const = 0;
       virtual Box &get_child_box(int index) const = 0;
+
+//      virtual const Measurement &get_estimated_width() const {
+//        return dimensions.get_x();
+//      }
+
+      const Axis_Values & get_cache()const {
+        return axis_cache;
+      }
   };
 
 }

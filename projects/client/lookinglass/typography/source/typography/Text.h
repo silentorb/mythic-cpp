@@ -3,6 +3,7 @@
 #include "dllexport.h"
 #include "glm/glm.hpp"
 #include <string>
+#include <vector>
 
 using namespace glm;
 using namespace std;
@@ -39,12 +40,15 @@ namespace typography {
       float size = 12;
       Text_Effect &effect;
       int element_count;
-      float line_height = 1.3;
+      float line_height = 1.4;
       string content;
       vec4 color = vec4(0.9, 0.9, 0.9, 1);
       vec2 block_dimensions;
+      float _max_width = 0;
+      vector<int> inserted_newlines;
 
       void create_buffers();
+      void calculate();
       void prepare();
 
   public:
@@ -55,10 +59,7 @@ namespace typography {
         return content;
       }
 
-      void set_content(const string &content) {
-        Text::content = content;
-        changed = true;
-      }
+      void set_content(const string &value);
 
       void render();
 
@@ -82,5 +83,17 @@ namespace typography {
       vec2 get_dimensions();
 
       float get_scale() const;
+
+      float get_max_width() const {
+        return _max_width;
+      }
+
+      void set_max_width(float max_width) {
+        if (this->_max_width == max_width)
+          return;
+
+        Text::_max_width = max_width;
+        changed = true;
+      }
   };
 }

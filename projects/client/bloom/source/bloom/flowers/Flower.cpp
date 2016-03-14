@@ -159,6 +159,13 @@ namespace bloom {
     style->set_fill_color(color);
   }
 
+  void Flower::set_padding(float amount) {
+    if (!style)
+      style = shared_ptr<Style>(new Style());
+
+    style->set_padding(amount);
+  }
+
   Flower &Flower::create_generic_flower() {
     auto flower = new Flower(garden, this);
     return *flower;
