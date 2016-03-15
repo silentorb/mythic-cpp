@@ -25,5 +25,7 @@ namespace breeze {
       }
 
       promising::Promise<void> &delay(float duration);
+
+      void clear();
   };
 }

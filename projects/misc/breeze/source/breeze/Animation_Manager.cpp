@@ -20,4 +20,8 @@ namespace breeze {
     animations.push_back(unique_ptr<Animation_Interface>(animation));
     return animation->get_promise();
   }
+
+  void Animation_Manager::clear() {
+    animations.clear();
+  }
 }
