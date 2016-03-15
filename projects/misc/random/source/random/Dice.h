@@ -38,6 +38,9 @@ namespace random {
 
       template<typename T>
       T get_item(std::vector<T> &items) {
+        if (items.size() == 0)
+          throw runtime_error("Cannot grab random item out of empty vector.");
+
         int index = get_int(items.size());
         return items[index];
       }

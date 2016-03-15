@@ -24,5 +24,7 @@ namespace scenery {
 		if (color_uniform != -1) {
 			glUniform4f(color_uniform, 1, 0, 1, 0.3);
 		}
-  }
+
+		glow::check_error("Spatial Effect::activate()");
+	}
 }
