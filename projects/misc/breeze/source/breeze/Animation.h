@@ -39,6 +39,7 @@ namespace breeze {
       virtual ~Animation() override { }
 
       virtual bool update(float delta) override {
+
         counter += delta;
         if (counter >= duration) {
           target = final_value;
@@ -54,4 +55,5 @@ namespace breeze {
         return promise;
       }
   };
+
 }

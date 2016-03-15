@@ -24,6 +24,13 @@ namespace breeze {
         return animation->get_promise();
       }
 
+//      template<typename T>
+//      Animation<T> &animate(T &target, T final_value) {
+//        auto animation = new Animation<T>(Animation::, final_value, target);
+//        animations.push_back(unique_ptr<Animation_Interface>(animation));
+//        return animation;
+//      }
+
       promising::Promise<void> &delay(float duration);
 
       void clear();

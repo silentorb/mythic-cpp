@@ -79,6 +79,7 @@ namespace scenery {
       }
 
       virtual mat4 get_transform();
+      virtual mat4 get_absolute_orientation();
 
       bool is_visible() const {
         return visible;
