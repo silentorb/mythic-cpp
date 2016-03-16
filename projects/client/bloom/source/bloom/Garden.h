@@ -4,6 +4,7 @@
 #include "bloom/flowers/Flower.h"
 #include "Modal.h"
 #include <stack>
+#include <string>
 
 namespace haft {
   class Action;
