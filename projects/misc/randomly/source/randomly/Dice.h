@@ -4,7 +4,7 @@
 #include <random>
 #include <vector>
 
-namespace random {
+namespace randomly {
 
   class MYTHIC_EXPORT Dice {
       std::mt19937 engine;
