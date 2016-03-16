@@ -49,6 +49,7 @@ add_subdirectory(projects/generation/archaeology)
 add_subdirectory(projects/client/resourceful)
 
 include(projects/client/lookinglass/lookinglass.cmake)
+add_subdirectory(projects/server/substance)
 add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/haft)
 add_subdirectory(projects/client/client)
