@@ -18,7 +18,10 @@ namespace bloom {
   Flower::Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent) :
     Flower(garden, parent) { }
 
-  Flower::~Flower() { }
+  Flower::~Flower() {
+    if (garden.get_modal() == this)
+      garden.pop_modal();
+  }
 
 //  bool Flower::emit(Events event) {
 //    bool has_events = false;
@@ -200,4 +203,12 @@ namespace bloom {
   bool Flower::is_portrait() const {
     return garden.get_orientation() == Orientation::portrait;
   }
+
+  void Flower::close() {
+    shared_ptr<bool> local_is_deleted = get_is_deleted();
+    sing(Events::close, this);
+    if (!local_is_deleted)
+      remove();
+  }
+
 }

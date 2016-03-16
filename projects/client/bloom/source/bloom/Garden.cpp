@@ -100,4 +100,15 @@ namespace bloom {
                   ? Orientation::landscape
                   : Orientation::portrait;
   }
+
+  Flower* Garden::get_modal() const {
+    if (modal_stack.size() == 0)
+      return nullptr;
+
+    return modal_stack.top().get()->root;
+  }
+
+  void Garden::pop_modal() {
+    modal_stack.pop();
+  }
 }

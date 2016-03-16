@@ -76,5 +76,7 @@ namespace bloom {
       }
 
       Orientation get_orientation() const;
+      Flower *get_modal() const;
+      void pop_modal();
   };
 }

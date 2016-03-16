@@ -16,6 +16,7 @@ namespace promising {
       static void add_promise(Promise_Interface &promise);
 //      static void add_promise(unique_ptr<Promise_Interface> &promise);
       static void update_queue();
+      static void clear();
       virtual bool update() = 0;
 
       virtual ~Promise_Interface() { }
@@ -52,11 +53,12 @@ namespace promising {
       static Promise &resolved(function<O()> action = []() { });
 
       template<typename E>
-      static Promise &update_sequence(vector<E> items, function<Promise &(E item)> action, int step) {
-        return action(items[step])
-          .then(static_cast<function<Promise &()>>([items, action, step]() -> Promise & {
+      static Promise &update_sequence(vector<E> items, function<Promise &(E item, bool &)> action, int step) {
+        bool cancel = false;
+        return action(items[step], cancel)
+          .then(static_cast<function<Promise &()>>([items, action, step, cancel]() -> Promise & {
             int next_step = step + 1;
-            if (next_step >= items.size())
+            if (cancel || next_step >= items.size())
               return Promise::resolved();
 
             return update_sequence(items, action, next_step);
@@ -64,13 +66,42 @@ namespace promising {
       }
 
       template<typename E>
-      static Promise &sequence(vector<E> &items, function<Promise &(E item)> action) {
+      static Promise &sequence(vector<E> &items, function<Promise &(E item, bool &)> action) {
         if (items.size() == 0)
           return Promise::resolved();
 
         int step = 0;
 //        auto &promise = resolved([&items, action, step]() {
         return update_sequence(items, action, step);
+//        });
+
+//        return promise;
+      }
+//
+//      template<typename E>
+//      static Promise &update_sequence(vector<unique_ptr<E>> &items, function<Promise &(E *item)> action, int step) {
+//        return action(items[step].get())
+//          .then(static_cast<function<Promise &()>>([items, action, step]() -> Promise & {
+//            int next_step = step + 1;
+//            if (next_step >= items.size())
+//              return Promise::resolved();
+//
+//            return update_sequence(items, action, next_step);
+//          }));
+//      }
+
+      template<typename E>
+      static Promise &unique_sequence(const vector<unique_ptr<E>> &items, function<Promise &(E *item, bool &)> action) {
+        if (items.size() == 0)
+          return Promise::resolved();
+
+        vector<E*> clone;
+        for(auto & item: items){
+          clone.push_back(item.get());
+        }
+        int step = 0;
+//        auto &promise = resolved([&items, action, step]() {
+        return update_sequence(clone, action, step);
 //        });
 
 //        return promise;

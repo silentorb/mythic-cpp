@@ -66,6 +66,11 @@ namespace scenery {
         this->orientation = orientation;
       }
 
+      void set_orientation(const vec3 value) {
+        this->orientation = quat(value);
+      }
+
+
       vec3 &get_scale() {
         return scale;
       }

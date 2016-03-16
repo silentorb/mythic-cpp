@@ -121,5 +121,7 @@ namespace bloom {
       float get_padding() const {
         return style ? style->get_padding() : 0;
       }
+
+      virtual void close();
   };
 }
