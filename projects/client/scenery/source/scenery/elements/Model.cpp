@@ -16,7 +16,8 @@ namespace scenery {
   void Model::render() {
     auto transform = get_transform();
 //    auto transform = glm::translate(glm::mat4(1.f), get_position());
-    effect->activate(transform);
+    auto normal_transform = get_absolute_orientation();
+    effect->activate(transform, normal_transform);
 
     Glass::get_instance().draw_mesh(*mesh_data, effect->get_draw_method());
   }

@@ -14,6 +14,8 @@ using namespace resourceful;
 
 namespace lookinglass {
 
+  House *House::instance = nullptr;
+
   House::House(Frame *frame, Shader_Loader *shader_loader) :
     frame(frame) {
     if (!frame) {
@@ -25,6 +27,7 @@ namespace lookinglass {
 #else
     auto version = glow::Version();
 #endif
+    instance = this;
     capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
 
     auto &dimensions = frame->get_dimensions();
@@ -64,7 +67,7 @@ namespace lookinglass {
     base_viewport->set_dimensions(frame->get_dimensions());
     base_viewport->update_device();
 
-    for(auto &renderable : renderables) {
+    for (auto &renderable : renderables) {
       renderable();
     }
 
@@ -116,5 +119,9 @@ namespace lookinglass {
 
   const glm::ivec2 &House::get_dimensions() {
     return base_viewport->get_dimensions();
+  }
+
+  House &House::get_instance() {
+    return *instance;
   }
 }

@@ -22,6 +22,11 @@ namespace bloom {
 
   class Garden;
 
+  enum class Orientation {
+      portrait,
+      landscape
+  };
+
   class MYTHIC_EXPORT Flower : public Box, public songbird::Singer {
 
       vector<unique_ptr<Flower>> children;
@@ -36,6 +41,7 @@ namespace bloom {
       const Bounds fit_to_children();
 
   public:
+      Flower(Flower *parent = nullptr);
       Flower(Garden &garden, Flower *parent = nullptr);
       Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent = nullptr);
 
@@ -78,6 +84,7 @@ namespace bloom {
 
       void set_border(vec4 color);
       void set_fill(vec4 color);
+      void set_padding(float amount);
       Flower &create_generic_flower();
 
       virtual Box *get_parent_box() const override {
@@ -107,5 +114,14 @@ namespace bloom {
       }
 
       void clear();
+
+      bool is_landscape() const;
+      bool is_portrait() const;
+
+      float get_padding() const {
+        return style ? style->get_padding() : 0;
+      }
+
+      virtual void close();
   };
 }

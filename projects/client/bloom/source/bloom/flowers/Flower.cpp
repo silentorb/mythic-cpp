@@ -7,6 +7,8 @@
 
 namespace bloom {
 
+  Flower::Flower(Flower *parent) : Flower(Garden::get_instance(), parent) { }
+
   Flower::Flower(Garden &garden, Flower *parent) :
     garden(garden), Box(garden.get_converter()) {
     if (parent)
@@ -16,7 +18,10 @@ namespace bloom {
   Flower::Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent) :
     Flower(garden, parent) { }
 
-  Flower::~Flower() { }
+  Flower::~Flower() {
+    if (garden.get_modal() == this)
+      garden.pop_modal();
+  }
 
 //  bool Flower::emit(Events event) {
 //    bool has_events = false;
@@ -157,6 +162,13 @@ namespace bloom {
     style->set_fill_color(color);
   }
 
+  void Flower::set_padding(float amount) {
+    if (!style)
+      style = shared_ptr<Style>(new Style());
+
+    style->set_padding(amount);
+  }
+
   Flower &Flower::create_generic_flower() {
     auto flower = new Flower(garden, this);
     return *flower;
@@ -183,4 +195,20 @@ namespace bloom {
   void Flower::clear() {
     children.clear();
   }
+
+  bool Flower::is_landscape() const {
+    return garden.get_orientation() == Orientation::landscape;
+  }
+
+  bool Flower::is_portrait() const {
+    return garden.get_orientation() == Orientation::portrait;
+  }
+
+  void Flower::close() {
+    shared_ptr<bool> local_is_deleted = get_is_deleted();
+    sing(Events::close, this);
+    if (!local_is_deleted)
+      remove();
+  }
+
 }

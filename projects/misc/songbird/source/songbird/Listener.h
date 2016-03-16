@@ -1,27 +1,45 @@
 #pragma once
 
 #include "dllexport.h"
-//#include <functional>
+#include "Listener_Channel.h"
+#include "Singer.h"
+#include <vector>
 
-//using namespace std;
+using namespace std;
 
 namespace songbird {
 
-  struct MYTHIC_EXPORT Listener_Interface : no_copy {
-      void *id;
-
-      virtual ~Listener_Interface() { }
-      Listener_Interface(Listener_Interface&&) {}
-      Listener_Interface() {}
+  struct Channel_Connection {
+      Singer *singer;
+      Channel_Interface *channel;
   };
 
-  template<typename T>
-  struct MYTHIC_EXPORT Listener : public Listener_Interface {
-      T dance;
+  class MYTHIC_EXPORT Listener {
+      vector<Channel_Connection> connections;
 
-      Listener(Listener<T> &&listener) : Listener_Interface(listener) { }
-      Listener() { }
+  public:
+      template<typename T>
+      void listen(Singer &singer, const Song<T> &song, T dance) {
+        auto &channel = singer.listen(song, dance);
+        channel.listener = this;
+        connections.push_back({&singer, static_cast<Channel_Interface *>(&channel)});
+      }
 
-      virtual ~Listener() override { }
+      virtual ~Listener() {
+        //for (auto connection:connections) {
+				for (int i = connections.size() - 1; i >= 0; --i) {
+					connections[i].singer->remove(*connections[i].channel);
+          //connection.singer->remove(*connection.channel);
+        }
+      }
+
+      void remove_connection(Channel_Interface *channel) {
+        for (int i = 0; i < connections.size(); ++i) {
+          if (connections[i].channel == channel) {
+            connections.erase(connections.begin() + i);
+            break;
+          }
+        }
+      }
   };
 }

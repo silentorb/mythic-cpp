@@ -18,4 +18,13 @@ namespace scenery {
 
     return transform;
   }
+
+  mat4 Element::get_absolute_orientation() {
+    auto transform = glm::mat4_cast(orientation);
+
+    if (parent && parent->has_transform())
+      transform = parent->get_absolute_orientation() * transform;
+
+    return transform;
+  }
 }

@@ -13,7 +13,8 @@ uniform mat4 model;
 
 void main() {
 	fragment_color = color;
-	fragment_position = position;
-	fragment_normal = normal;
-    gl_Position = projection * view * model * vec4(position, 1.0);
+	vec4 translated_position = projection * view * model * vec4(position, 1.0);
+	fragment_position = translated_position.xyz;
+	fragment_normal = projection * view * model * vec4(normal, 1.0);
+    gl_Position = translated_position;
 }

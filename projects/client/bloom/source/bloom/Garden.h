@@ -25,13 +25,14 @@ namespace bloom {
 
   class Text_Flower;
 
-  class MYTHIC_EXPORT Garden {
+  class BLOOM_EXPORT Garden {
       Flower *root;
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;
       Measurement_Converter converter;
       Flower *focused_flower;
       stack <unique_ptr<Modal>> modal_stack;
+      static Garden *instance;
 
   public:
       Garden(drawing::Draw &draw);
@@ -70,5 +71,13 @@ namespace bloom {
 
       void add_modal(Flower &flower);
       lookinglass::House &get_house() const;
+
+      static Garden &get_instance() {
+        return *instance;
+      }
+
+      Orientation get_orientation() const;
+      Flower *get_modal() const;
+      void pop_modal();
   };
 }

@@ -16,7 +16,7 @@ namespace scenery {
 
   public:
       Spatial_Effect(Program & program);
-      void activate(mat4 &transform);
+      void activate(mat4 &transform, mat4 &normal_transform);
 
       Draw_Method get_draw_method() { return draw_method; }
 

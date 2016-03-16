@@ -120,6 +120,7 @@ namespace drawing {
 
     solid_mesh->render(solid);
     glEnable(GL_DEPTH_TEST);
+		lookinglass::glow::check_error("drew_square");
   }
 
   void Draw::set_depth_test(bool value) {

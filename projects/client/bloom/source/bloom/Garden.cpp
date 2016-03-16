@@ -20,23 +20,29 @@ using namespace haft;
 //      renderable();
 //    }
 //};
+int hello2 = 2;
 
 namespace bloom {
 
   namespace Events {
-    songbird::Song<Flower_Delegate> activate;
-    songbird::Song<Flower_Delegate> close;
-    songbird::Song<Flower_Delegate> cancel;
+    const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
+    const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
+    const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
+    const int hello = 1;
   };
+
+  Garden *Garden::instance = nullptr;
 
   Garden::Garden(drawing::Draw &draw) :
     draw(draw),
     select_action(new Action(1, "Select")),
     root(new Flower(*this)),
     converter(draw.get_dimensions()) {
-    draw.add_renderable([&] () {
+    draw.add_renderable([&]() {
       render();
     });
+    instance = this;
+    auto &k = Events::hello;
   }
 
   Garden::~Garden() { }
@@ -70,7 +76,7 @@ namespace bloom {
     draw.set_depth_test(true);
   }
 
-  Text_Flower *Garden::create_text( const string content,const string font) {
+  Text_Flower *Garden::create_text(const string content, const string font) {
     auto &resources = draw.get_house().get_resources();
     return new Text_Flower(*this, resources.get_font(font), resources.get_text_effect(), content);
   }
@@ -84,7 +90,25 @@ namespace bloom {
     modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
   }
 
-  lookinglass::House& Garden::get_house() const {
+  lookinglass::House &Garden::get_house() const {
     return draw.get_house();
+  }
+
+  Orientation Garden::get_orientation() const {
+    auto &dimensions = draw.get_dimensions();
+    return dimensions.x > dimensions.y
+                  ? Orientation::landscape
+                  : Orientation::portrait;
+  }
+
+  Flower* Garden::get_modal() const {
+    if (modal_stack.size() == 0)
+      return nullptr;
+
+    return modal_stack.top().get()->root;
+  }
+
+  void Garden::pop_modal() {
+    modal_stack.pop();
   }
 }

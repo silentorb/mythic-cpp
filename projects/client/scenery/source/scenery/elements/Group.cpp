@@ -38,6 +38,10 @@ namespace scenery {
     return Element::get_transform();
   }
 
+  mat4 Group::get_absolute_orientation() {
+    return Element::get_absolute_orientation();
+  }
+
   void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
     int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
       return item.get() == element.get();

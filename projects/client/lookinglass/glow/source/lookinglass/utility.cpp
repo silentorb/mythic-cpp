@@ -24,6 +24,8 @@ namespace lookinglass {
     }
 
     void check_error(const char *message) {
+			static unsigned long step = 0;
+			++step;
       GLenum error = glGetError();
 
       if (error != GL_NO_ERROR)

@@ -30,7 +30,7 @@ namespace scenery {
 
       virtual ~Element() { }
 
-      const vec3 &get_position() const {
+      vec3 &get_position() {
         return position;
       }
 
@@ -66,7 +66,12 @@ namespace scenery {
         this->orientation = orientation;
       }
 
-      const vec3 &get_scale() const {
+      void set_orientation(const vec3 value) {
+        this->orientation = quat(value);
+      }
+
+
+      vec3 &get_scale() {
         return scale;
       }
 
@@ -79,6 +84,7 @@ namespace scenery {
       }
 
       virtual mat4 get_transform();
+      virtual mat4 get_absolute_orientation();
 
       bool is_visible() const {
         return visible;
