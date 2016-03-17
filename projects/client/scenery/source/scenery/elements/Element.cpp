@@ -27,4 +27,6 @@ namespace scenery {
 
     return transform;
   }
+
+  void Element::update(float delta) { }
 }

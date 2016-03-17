@@ -70,7 +70,6 @@ namespace scenery {
         this->orientation = quat(value);
       }
 
-
       vec3 &get_scale() {
         return scale;
       }
@@ -93,5 +92,7 @@ namespace scenery {
       void set_visible(bool value) {
         visible = value;
       }
+
+      virtual void update(float delta);
   };
 }

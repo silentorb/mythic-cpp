@@ -4,7 +4,7 @@
 namespace scenery {
 
   void Group::render() {
-    for (auto &element: elements) {
+    for (auto &element: children) {
       if (element->is_visible())
         element->render();
     }
@@ -16,7 +16,7 @@ namespace scenery {
     }
     else {
       element->set_parent(this, false);
-      elements.push_back(std::move(element));
+      children.push_back(std::move(element));
     }
   }
 
@@ -26,7 +26,7 @@ namespace scenery {
     }
     else {
       element.set_parent(this, false);
-      elements.push_back(unique_ptr<Element>(&element));
+      children.push_back(unique_ptr<Element>(&element));
     }
   }
 
@@ -43,34 +43,41 @@ namespace scenery {
   }
 
   void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
-    int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
+    int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Element> const &item) {
       return item.get() == element.get();
-    }) - elements.begin();
+    }) - children.begin();
 
     element->set_parent(nullptr);
-    destination.add_child(std::move(elements[offset]));
-    elements.erase(elements.begin() + offset);
+    destination.add_child(std::move(children[offset]));
+    children.erase(children.begin() + offset);
   }
 
   void Group::move_child(Element &element, Parent &destination) {
-    int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
+    int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Element> const &item) {
       return item.get() == &element;
-    }) - elements.begin();
+    }) - children.begin();
 
     element.set_parent(nullptr);
-    destination.add_child(std::move(elements[offset]));
-    elements.erase(elements.begin() + offset);
+    destination.add_child(std::move(children[offset]));
+    children.erase(children.begin() + offset);
   }
 
   void Group::remove_child(Element &element) {
-    int offset = std::find_if(elements.begin(), elements.end(), [&](unique_ptr<Element> const &item) {
+    int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Element> const &item) {
       return item.get() == &element;
-    }) - elements.begin();
+    }) - children.begin();
 
-    elements.erase(elements.begin() + offset);
+    children.erase(children.begin() + offset);
   }
 
   void Group::clear() {
-    elements.clear();
+    children.clear();
+  }
+
+  void Group::update(float delta) {
+    for (auto &element: children) {
+//      if (element->is_visible())
+        element->update(delta);
+    }
   }
 }

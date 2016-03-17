@@ -10,7 +10,8 @@ using namespace std;
 namespace scenery {
 
   class MYTHIC_EXPORT Group : public Parent, public Element {
-      vector<unique_ptr<Element>> elements;
+  protected:
+      vector<unique_ptr<Element>> children;
 
   public:
       Group(Parent *parent) : Element(parent) { }
@@ -26,10 +27,14 @@ namespace scenery {
       virtual void move_child(Element &element, Parent &destination) override;
 
       Element &get_child(int index) const {
-        return *elements[index];
+        return *children[index];
       }
 
       virtual void remove_child(Element &element) override;
       void clear();
+
+      virtual void update(float delta) override;
+
+
   };
 }

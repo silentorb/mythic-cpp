@@ -1,3 +1,3 @@
 
 create_library(substance)
-require(randomly)
+find_package(randomly)

@@ -11,6 +11,8 @@ namespace substance {
       vec3 position;
       vec3 velocity;
       vec3 acceleration;
+      float lifetime = 1;
+      float timer = 0;
 
   public:
 
@@ -20,6 +22,10 @@ namespace substance {
 
       void set_position(const vec3 &position) {
         Particle::position = position;
+      }
+
+      void modify_position(const vec3 offset) {
+        position += offset;
       }
 
       const vec3 &get_velocity() const {
@@ -37,5 +43,11 @@ namespace substance {
       void set_acceleration(const vec3 &acceleration) {
         Particle::acceleration = acceleration;
       }
+
+      bool is_finished() const {
+        return timer >= lifetime;
+      }
+
+      void update(float delta);
   };
 }
