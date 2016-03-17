@@ -10,16 +10,21 @@ namespace scenery {
   }
 
   Emitter_Element::Emitter_Element(
-    const Particle_Generator &generator, Particle_Element_Delegate initializer, Parent *parent) :
-    emitter(new Emitter(generator, this)), initializer(initializer), Group(parent) {
+    const Particle_Generator &generator, Particle_Element_Delegate initializer,
+    Particle_Element_Delegate animator, Parent *parent) :
+    emitter(new Emitter(generator, this)), initializer(initializer), animator(animator), Group(parent) {
 
   }
 
   void Emitter_Element::update(float delta) {
-		auto absolute_position = vec3(get_transform() * vec4(vec3(0), 1));
+    auto absolute_position = vec3(get_transform() * vec4(vec3(0), 1));
     emitter->set_position(absolute_position);
     emitter->update(delta);
     Group::update(delta);
+    for (auto &element: children) {
+      auto particle_element = static_cast<Particle_Element*>(element.get());
+      animator(*particle_element);
+    }
   }
 
   void Emitter_Element::particle_added(Particle &particle) {
@@ -36,6 +41,6 @@ namespace scenery {
       }
     }
 
-		throw runtime_error("Could not find particle element to remove.  Particle element unaccounted for.");
+    throw runtime_error("Could not find particle element to remove.  Particle element unaccounted for.");
   }
 }

@@ -49,5 +49,9 @@ namespace substance {
       }
 
       void update(float delta);
+
+      float get_life() const {
+        return timer / lifetime;
+      }
   };
 }

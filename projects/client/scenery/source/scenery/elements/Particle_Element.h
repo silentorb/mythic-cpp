@@ -27,5 +27,8 @@ namespace scenery {
       virtual mat4 get_transform() override;
 
 
+      float get_life() const {
+        return particle.get_life();
+      }
   };
 }

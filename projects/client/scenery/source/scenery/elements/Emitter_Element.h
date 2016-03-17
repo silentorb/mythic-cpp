@@ -15,10 +15,11 @@ namespace scenery {
   protected:
       unique_ptr<Emitter> emitter;
       Particle_Element_Delegate initializer;
+      Particle_Element_Delegate animator;
 
   public:
       Emitter_Element(Emitter *emitter, Particle_Element_Delegate initializer, Parent *parent = nullptr);
-      Emitter_Element(const Particle_Generator &generator, Particle_Element_Delegate initializer, Parent *parent);
+      Emitter_Element(const Particle_Generator &generator, Particle_Element_Delegate initializer, Particle_Element_Delegate animator, Parent *parent);
 
       virtual void update(float delta) override;
 

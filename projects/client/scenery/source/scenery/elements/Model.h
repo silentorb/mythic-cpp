@@ -20,9 +20,18 @@ namespace scenery {
   private:
       Mesh_Data *mesh_data;
       Spatial_Effect *effect;
+      float opacity = 1;
 
   public:
       Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent = nullptr);
       virtual void render() override;
+
+      float get_opacity() const {
+        return opacity;
+      }
+
+      void set_opacity(float opacity) {
+        Model::opacity = opacity;
+      }
   };
 }

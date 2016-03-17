@@ -13,10 +13,11 @@ namespace scenery {
   class MYTHIC_EXPORT Spatial_Effect : protected Effect {
   private:
       Draw_Method draw_method;
+      float opacity = -1;
 
   public:
-      Spatial_Effect(Program & program);
-      void activate(mat4 &transform, mat4 &normal_transform);
+      Spatial_Effect(Program &program);
+      void activate(mat4 &transform, mat4 &normal_transform, float opacity = 1);
 
       Draw_Method get_draw_method() { return draw_method; }
 
