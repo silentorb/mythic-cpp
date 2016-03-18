@@ -7,7 +7,7 @@ using namespace std;
 
 namespace svg {
 
-  class MYTHIC_EXPORT Texture_From_SVG : public texturing::Texture_Generator {
+  class MYTHIC_EXPORT Texture_From_SVG : public texturing::Texture_Generator_Old {
       string filename;
 
   public:
