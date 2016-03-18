@@ -17,6 +17,7 @@ namespace scenery {
 
   public:
       Spatial_Effect(Program &program);
+      void activate(mat4 &transform, float opacity = 1);
       void activate(mat4 &transform, mat4 &normal_transform, float opacity = 1);
 
       Draw_Method get_draw_method() { return draw_method; }

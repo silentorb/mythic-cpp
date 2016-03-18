@@ -9,6 +9,9 @@
 #include "modeling/Mesh_Data.h"
 #include "sculptor/geometry/Mesh.h"
 
+namespace texturing {
+  class Texture;
+}
 using namespace std;
 using namespace glm;
 using namespace modeling;
@@ -20,6 +23,7 @@ namespace scenery {
   private:
       Mesh_Data *mesh_data;
       Spatial_Effect *effect;
+      texturing:: Texture*texture = nullptr;
       float opacity = 1;
 
   public:
@@ -32,6 +36,14 @@ namespace scenery {
 
       void set_opacity(float opacity) {
         Model::opacity = opacity;
+      }
+
+      texturing::Texture *get_texture() const {
+        return texture;
+      }
+
+      void set_texture(texturing::Texture *texture) {
+        Model::texture = texture;
       }
   };
 }

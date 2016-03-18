@@ -40,6 +40,7 @@ namespace scenery {
       scenery::Group &get_root() const {
         return *root;
       }
+
   };
 }
 

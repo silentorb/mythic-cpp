@@ -8,7 +8,7 @@ using namespace std;
 
 namespace texturing {
 
-  class MYTHIC_EXPORT Texture_From_File : public Texture_Generator {
+  class MYTHIC_EXPORT Texture_From_File : public Texture_Generator_Old {
       string filename;
 
   public:
