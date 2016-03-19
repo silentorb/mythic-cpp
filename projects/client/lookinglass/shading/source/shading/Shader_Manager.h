@@ -29,14 +29,14 @@ namespace shading {
       unique_ptr<resourceful::Resource_Manager> programs;
       vector<Program_Add_Listener *> program_added;
 
-      Code_Processor *create_processor(lookinglass::glow::Capabilities &capabilities);
+      Code_Processor *create_processor();
 
       string process(Shader_Type type, const string source) {
         return processor->process(type, source);
       }
 
   public:
-      Shader_Manager(Shader_Loader *loader, lookinglass::glow::Capabilities &capabilities);
+      Shader_Manager(Shader_Loader *loader);
       ~Shader_Manager();
       Shader &create_shader(Shader_Type type, string path);
       Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader, initializer_list<string> names);

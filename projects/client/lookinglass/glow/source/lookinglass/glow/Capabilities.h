@@ -9,17 +9,17 @@ namespace lookinglass {
     class MYTHIC_EXPORT Capabilities {
     private:
         Version version;
+        Capabilities(Version version);
+        bool _multidraw;
+        bool _uniform_layout;
 
     public:
-        bool multidraw;
-        bool uniform_layout;
 
-        Capabilities(Version version);
+        static Version &get_version();
 
-
-        const Version &get_version() const {
-          return version;
-        }
+        static void initialize(Version version);
+        static bool multidraw();
+        static bool uniform_layout();
     };
   }
 }

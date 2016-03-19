@@ -23,6 +23,8 @@ namespace modeling {
     polygon_count = data.polygon_count;
     vertex_count = data.vertex_count;
 
+    float* vertices = data.vertices.get();
+//    if ()
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glow::check_error("binding vbo");

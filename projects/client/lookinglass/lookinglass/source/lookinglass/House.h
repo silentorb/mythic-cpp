@@ -43,7 +43,6 @@ namespace lookinglass {
   class MYTHIC_EXPORT House {
   private:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
-      unique_ptr<glow::Capabilities> capabilities;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
       unique_ptr<Frame> frame;
@@ -78,10 +77,6 @@ namespace lookinglass {
 
       Viewport &get_base_viewport() const {
         return *base_viewport;
-      }
-
-      const glow::Capabilities &get_capabilities() const {
-        return *capabilities;
       }
 
       bool is_active() const {

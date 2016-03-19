@@ -14,7 +14,7 @@ namespace scenery {
       new Field_Info("count", Field_Type::integer),
     });
     lighting_mist = unique_ptr<Mist<Lighting_Data>>(
-      create_mist<Lighting_Data>(scene_definition, house.get_capabilities()));
+      create_mist<Lighting_Data>(scene_definition));
   }
 
   void Scene_Manager::update_lights() {

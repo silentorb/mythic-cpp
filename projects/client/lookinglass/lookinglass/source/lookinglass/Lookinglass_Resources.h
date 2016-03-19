@@ -51,8 +51,7 @@ namespace lookinglass {
       unique_ptr<typography::Text_Manager> text_manager;
 
   public:
-      Lookinglass_Resources(shading::Shader_Loader *shader_loader, glow::Capabilities &capabilities,
-                            perspective::Viewport &viewport);
+      Lookinglass_Resources(shading::Shader_Loader *shader_loader, perspective::Viewport &viewport);
       ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;

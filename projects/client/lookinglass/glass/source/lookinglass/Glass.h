@@ -24,7 +24,7 @@ namespace lookinglass {
       Viewport *viewport;
 
   public:
-      Glass(const glow::Capabilities &capabilities, Viewport &viewport);
+      Glass(Viewport &viewport);
       void draw_mesh(modeling::Mesh_Data &mesh, Draw_Method draw_method);
 
       Viewport &get_viewport() const;

@@ -8,7 +8,7 @@ namespace lookinglass {
 
   Glass *glass_instance;
 
-  Glass::Glass(const glow::Capabilities &capabilities, Viewport &viewport) :
+  Glass::Glass(Viewport &viewport) :
     capabilities(capabilities), viewport(&viewport) {
     glass_instance = this;
   }
@@ -22,7 +22,7 @@ namespace lookinglass {
                 : GL_LINE_STRIP;
 
 //		if (0) {
-    if (capabilities.multidraw) {
+    if (glow::Capabilities::multidraw()) {
 #ifdef glMultiDrawArrays
       glMultiDrawArrays(mode, mesh.get_offsets(), mesh.get_counts(), mesh.get_polygon_count());
 #endif
@@ -48,7 +48,7 @@ namespace lookinglass {
     return viewport->get_dimensions();
   }
 
-	Glass &Glass::get_instance() {
-		return *glass_instance;
-	}
+  Glass &Glass::get_instance() {
+    return *glass_instance;
+  }
 }
