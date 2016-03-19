@@ -5,11 +5,9 @@
 using namespace lookinglass;
 
 namespace modeling {
-  Mesh_Data::Mesh_Data(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts,
-                       Vertex_Schema& vertex_schema)
-    : polygon_count(
-    polygon_count), vertex_count(vertex_count), vertices(vertices),
-      offsets(offsets), counts(counts), vertex_schema(vertex_schema) {
+  Mesh_Data::Mesh_Data(Mesh_Data_Generator generator,
+                       Vertex_Schema &vertex_schema) :
+    generator(generator), vertex_schema(vertex_schema) {
     load();
   }
 
@@ -18,11 +16,18 @@ namespace modeling {
   }
 
   void Mesh_Data::load() {
+    Mesh_Export data;
+    generator(data);
+    offsets = data.offsets;
+    counts = data.counts;
+    polygon_count = data.polygon_count;
+    vertex_count = data.vertex_count;
+
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glow::check_error("binding vbo");
 
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data.vertices.get(), GL_STATIC_DRAW);
     glow::check_error("binding vbo buffer data");
 
     vao = vertex_schema.create_vao();

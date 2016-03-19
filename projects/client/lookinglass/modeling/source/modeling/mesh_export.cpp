@@ -1,6 +1,4 @@
 #include "mesh_export.h"
-#include "Textured_Vertex.h"
-#include <memory>
 
 namespace modeling {
   namespace mesh_export {
@@ -13,7 +11,7 @@ namespace modeling {
       return result;
     }
 
-    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema) {
+    void output(Mesh &mesh, Vertex_Schema &vertex_schema, Mesh_Export &result) {
       auto vertex_count = get_vertex_count(mesh);
       auto vertices = new float[vertex_count * vertex_schema.get_vertex_size()];
       auto offsets = new int[mesh.polygons.size()];
@@ -49,14 +47,28 @@ namespace modeling {
         *count_pointer++ = polygon->vertices.size();
       }
 
-      return new Mesh_Data(
+      result.initialize(
         mesh.polygons.size(),
         vertex_count,
         vertices,
         offsets,
-        counts,
-        vertex_schema
+        counts
       );
+
+//      result.polygon_count = mesh.polygons.size();
+//      result.vertex_count = vertex_count;
+//      result.vertices = shared_ptr<float>(vertices);
+//      result.offsets = offsets;
+//      result.counts = counts;
+    }
+
+    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema) {
+      Mesh_Export cache;
+      output(mesh, vertex_schema, cache);
+
+      return new Mesh_Data([=](Mesh_Export &result) {
+        result = cache;
+      }, vertex_schema);
     }
   }
 }
