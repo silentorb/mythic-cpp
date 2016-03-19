@@ -20,6 +20,7 @@ namespace modeling {
       int *offset_pointer = &offsets[0];
       int *count_pointer = &counts[0];
       int offset = 0;
+      bool has_opacity = false;
 
       for (auto polygon: mesh.polygons) {
         for (int j = 0; j < polygon->vertices.size(); ++j) {
@@ -33,6 +34,10 @@ namespace modeling {
             if (!data) {
               value += attribute.get_count();
               continue;
+            }
+
+            if (attribute.get_name() == "color" && *(data + 3) != 1) {
+              has_opacity = true;
             }
 
             for (int k = 0; k < attribute.get_count(); ++k) {
@@ -52,7 +57,8 @@ namespace modeling {
         vertex_count,
         vertices,
         offsets,
-        counts
+        counts,
+        has_opacity
       );
 
 //      result.polygon_count = mesh.polygons.size();
@@ -62,13 +68,13 @@ namespace modeling {
 //      result.counts = counts;
     }
 
-    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema) {
+    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
       Mesh_Export cache;
       output(mesh, vertex_schema, cache);
 
       return new Mesh_Data([=](Mesh_Export &result) {
         result = cache;
-      }, vertex_schema);
+      }, vertex_schema, support_lines);
     }
   }
 }

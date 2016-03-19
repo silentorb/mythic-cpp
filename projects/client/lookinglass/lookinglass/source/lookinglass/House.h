@@ -21,11 +21,11 @@ namespace perspective {
 using namespace perspective;
 
 using namespace std;
+namespace glow {
+  class Capabilities;
+}
 
 namespace lookinglass {
-  namespace glow {
-    class MYTHIC_EXPORT Capabilities;
-  }
 
 
   namespace through {

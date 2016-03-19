@@ -92,8 +92,7 @@ namespace lookinglass {
 
   void House::initialize() {
     glFrontFace(GL_CCW);
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
+    glow::set_depth_test(true);
 
 //    glClearColor(0, 0.1f, 0.3f, 1);
     glClearColor(1, 1, 1, 1);

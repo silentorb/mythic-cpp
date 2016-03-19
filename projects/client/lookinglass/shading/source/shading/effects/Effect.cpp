@@ -2,8 +2,6 @@
 #include "shading/Program.h"
 #include "lookinglass/glow.h"
 
-using namespace lookinglass;
-
 namespace shading {
 
   Effect::Effect(Program &program) :

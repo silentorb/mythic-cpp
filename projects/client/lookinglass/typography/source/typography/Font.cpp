@@ -92,7 +92,7 @@ namespace typography {
       dimensions.y,
       0, GL_RED, GL_UNSIGNED_BYTE, buffer);
 
-    lookinglass::glow::check_error("Loading texture.");
+    glow::check_error("Loading texture.");
   }
 
   glm::ivec2 Font::determine_texture_dimensions() {

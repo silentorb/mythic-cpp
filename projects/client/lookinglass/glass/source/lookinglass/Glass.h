@@ -12,11 +12,11 @@ namespace perspective {
 }
 using namespace perspective;
 
+namespace glow {
+  class Capabilities;
+}
 namespace lookinglass {
 
-  namespace glow {
-    class Capabilities;
-  }
 
   class MYTHIC_EXPORT Glass {
   private:

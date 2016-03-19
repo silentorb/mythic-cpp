@@ -13,10 +13,8 @@ namespace resourceful {
   class Resource_Manager;
 }
 
-namespace lookinglass {
-  namespace glow {
-    class Capabilities;
-  }
+namespace glow {
+  class Capabilities;
 }
 
 namespace shading {
@@ -39,8 +37,10 @@ namespace shading {
       Shader_Manager(Shader_Loader *loader);
       ~Shader_Manager();
       Shader &create_shader(Shader_Type type, string path);
-      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader, initializer_list<string> names);
-      Program &create_program_from_files(const string name, const string vertex, const string fragment, initializer_list<string> names);
+      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
+                              initializer_list<string> names);
+      Program &create_program_from_files(const string name, const string vertex, const string fragment,
+                                         initializer_list<string> names);
 
       void add_program_add_listener(Program_Add_Listener &listener) {
         program_added.push_back(&listener);

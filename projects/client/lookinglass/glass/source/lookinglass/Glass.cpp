@@ -21,15 +21,21 @@ namespace lookinglass {
                 ? GL_TRIANGLE_FAN
                 : GL_LINE_STRIP;
 
-//		if (0) {
     if (glow::Capabilities::multidraw()) {
+      // The preprocessor is needed or this will fail to compile on some platforms.
 #ifdef glMultiDrawArrays
       glMultiDrawArrays(mode, mesh.get_offsets(), mesh.get_counts(), mesh.get_polygon_count());
 #endif
     }
     else {
-      for (int i = 0; i < mesh.get_polygon_count(); ++i) {
-        glDrawArrays(mode, mesh.get_offsets()[i], mesh.get_counts()[i]);
+      if (draw_method == Draw_Method::lines || mesh.supports_lines()) {
+        for (int i = 0; i < mesh.get_polygon_count(); ++i) {
+          glDrawArrays(mode, mesh.get_offsets()[i], mesh.get_counts()[i]);
+        }
+      }
+      else {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.get_ebo());
+        glDrawElements(GL_TRIANGLES, mesh.get_index_count(), GL_UNSIGNED_SHORT, nullptr);
       }
     }
 

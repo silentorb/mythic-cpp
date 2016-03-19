@@ -18,7 +18,7 @@ namespace shading {
   Shader_Manager::~Shader_Manager() { }
 
   Code_Processor *Shader_Manager::create_processor() {
-    if (lookinglass::glow::Capabilities::uniform_layout())
+    if (glow::Capabilities::uniform_layout())
       return new Code_Processor(*loader);
 
     return new Ancient_Code_Processor(*loader);

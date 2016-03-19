@@ -1,8 +1,6 @@
 #include "Vertex_Schema.h"
 #include "lookinglass/glow.h"
 
-using namespace lookinglass;
-
 namespace modeling {
 
   int get_sum(vector<Vertex_Attribute> attributes) {

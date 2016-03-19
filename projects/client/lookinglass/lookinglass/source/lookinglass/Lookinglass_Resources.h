@@ -35,12 +35,12 @@ namespace modeling {
 namespace perspective {
   class Viewport;
 }
+namespace glow {
+  class Capabilities;
+}
 
 namespace lookinglass {
 
-  namespace glow {
-    class Capabilities;
-  }
 
 
   class MYTHIC_EXPORT Lookinglass_Resources {

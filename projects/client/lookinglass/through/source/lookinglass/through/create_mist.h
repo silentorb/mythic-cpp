@@ -7,9 +7,9 @@
 #include "Ancient_Mist.h"
 
 using namespace shading;
+using namespace glow;
 
 namespace lookinglass {
-  using namespace glow;
 
   namespace through {
 
