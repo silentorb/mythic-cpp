@@ -75,7 +75,7 @@ namespace perspective {
 
     set_projection();
     glViewport(position.x, position.y, dimensions.x, dimensions.y);
-		lookinglass::glow::check_error("changing viewport bounds");
+		glow::check_error("changing viewport bounds");
 
     for (auto &listener: listeners) {
       listener(dimensions);

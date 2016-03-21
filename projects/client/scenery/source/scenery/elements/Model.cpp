@@ -1,6 +1,7 @@
 #include "Model.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <lookinglass/Glass.h>
+#include <lookinglass/glow.h>
 #include "texturing/Texture.h"
 
 namespace scenery {
@@ -23,6 +24,14 @@ namespace scenery {
       texture->activate();
 
     effect->activate(transform, normal_transform, opacity);
+    if (opacity != 1 || mesh_data->has_opacity()) {
+      glow::set_culling(false);
+      glow::set_blend(true);
+    }
+    else {
+      glow::set_culling(true);
+      glow::set_blend(false);
+    }
 
     Glass::get_instance().draw_mesh(*mesh_data, effect->get_draw_method());
   }

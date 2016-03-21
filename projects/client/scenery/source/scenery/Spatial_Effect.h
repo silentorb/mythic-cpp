@@ -1,5 +1,6 @@
 #pragma once
 
+#include <shading/Shader_Property.h>
 #include "dllexport.h"
 #include "shading/effects/Effect.h"
 #include "glm/glm.hpp"
@@ -14,6 +15,9 @@ namespace scenery {
   private:
       Draw_Method draw_method;
       float opacity = -1;
+      Shader_Property model_property;
+      Shader_Property normal_property;
+      Shader_Property color_property;
 
   public:
       Spatial_Effect(Program &program);

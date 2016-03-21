@@ -13,10 +13,8 @@ namespace resourceful {
   class Resource_Manager;
 }
 
-namespace lookinglass {
-  namespace glow {
-    class Capabilities;
-  }
+namespace glow {
+  class Capabilities;
 }
 
 namespace shading {
@@ -29,18 +27,20 @@ namespace shading {
       unique_ptr<resourceful::Resource_Manager> programs;
       vector<Program_Add_Listener *> program_added;
 
-      Code_Processor *create_processor(lookinglass::glow::Capabilities &capabilities);
+      Code_Processor *create_processor();
 
       string process(Shader_Type type, const string source) {
         return processor->process(type, source);
       }
 
   public:
-      Shader_Manager(Shader_Loader *loader, lookinglass::glow::Capabilities &capabilities);
+      Shader_Manager(Shader_Loader *loader);
       ~Shader_Manager();
       Shader &create_shader(Shader_Type type, string path);
-      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader, initializer_list<string> names);
-      Program &create_program_from_files(const string name, const string vertex, const string fragment, initializer_list<string> names);
+      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
+                              initializer_list<string> names);
+      Program &create_program_from_files(const string name, const string vertex, const string fragment,
+                                         initializer_list<string> names);
 
       void add_program_add_listener(Program_Add_Listener &listener) {
         program_added.push_back(&listener);

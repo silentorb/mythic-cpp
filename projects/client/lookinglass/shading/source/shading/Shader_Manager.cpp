@@ -7,18 +7,18 @@ using namespace resourceful;
 
 namespace shading {
 
-  Shader_Manager::Shader_Manager(Shader_Loader *loader, lookinglass::glow::Capabilities &capabilities) :
+  Shader_Manager::Shader_Manager(Shader_Loader *loader) :
     loader(loader),
     shaders(new Resource_Manager("shaders")),
     programs(new Resource_Manager("programs")),
-    processor(create_processor(capabilities)) {
+    processor(create_processor()) {
 
   }
 
   Shader_Manager::~Shader_Manager() { }
 
-  Code_Processor *Shader_Manager::create_processor(lookinglass::glow::Capabilities &capabilities) {
-    if (capabilities.uniform_layout)
+  Code_Processor *Shader_Manager::create_processor() {
+    if (glow::Capabilities::uniform_layout())
       return new Code_Processor(*loader);
 
     return new Ancient_Code_Processor(*loader);
@@ -49,13 +49,6 @@ namespace shading {
                           names
     );
   }
-
-//    const Vertex_Schema &Shader_Manager::create_vertex_schema(const string name,
-//                                                              std::initializer_list<Vertex_Attribute> attributes) {
-//      auto schema = new Vertex_Schema(attributes);
-//      vertex_schemas[name] = std::unique_ptr<Vertex_Schema>(schema);
-//      return *schema;
-//    }
 
   void Shader_Manager::free() {
     shaders->free();

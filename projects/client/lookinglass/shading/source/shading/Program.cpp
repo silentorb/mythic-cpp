@@ -4,8 +4,6 @@
 #include <stdexcept>
 #include "logger.h"
 
-using namespace lookinglass;
-
 namespace shading {
   Program::Program(const string name, Shader &first, Shader &second, initializer_list<string> names) :
     id(0), name(name), first(first), second(second), attribute_names(names) {

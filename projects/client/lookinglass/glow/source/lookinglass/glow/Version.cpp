@@ -5,79 +5,77 @@
 
 using namespace std;
 
-namespace lookinglass {
-  namespace glow {
+namespace glow {
 
-    void parse_version_text(char *text, string values[2]) {
-      auto i = 0;
-      auto mode = 0;
+  void parse_version_text(char *text, string values[2]) {
+    auto i = 0;
+    auto mode = 0;
 
-      while (auto current = text[i++]) {
-        switch (mode) {
-          case 0:
-            if (current >= '0' && current <= '9') {
-              values[0] = current;
-              mode = 1;
-            }
-            break;
+    while (auto current = text[i++]) {
+      switch (mode) {
+        case 0:
+          if (current >= '0' && current <= '9') {
+            values[0] = current;
+            mode = 1;
+          }
+          break;
 
-          case 1:
-            if (current >= '0' && current <= '9') {
-              values[0] += current;
-            }
-            else if (current == '.') {
-              mode = 2;
-            }
-            else {
-              mode = 0;
-            }
-            break;
+        case 1:
+          if (current >= '0' && current <= '9') {
+            values[0] += current;
+          }
+          else if (current == '.') {
+            mode = 2;
+          }
+          else {
+            mode = 0;
+          }
+          break;
 
-          case 2:
-            if (current >= '0' && current <= '9') {
-              values[1] = current;
-              mode = 3;
-            }
-            break;
+        case 2:
+          if (current >= '0' && current <= '9') {
+            values[1] = current;
+            mode = 3;
+          }
+          break;
 
-          case 3:
-            if (current >= '0' && current <= '9') {
-              values[1] += current;
-            }
-            else {
-              return;
-            }
-            break;
-        }
+        case 3:
+          if (current >= '0' && current <= '9') {
+            values[1] += current;
+          }
+          else {
+            return;
+          }
+          break;
       }
-
-      if (mode != 3)
-        throw string("Could not parse OpenGL version text '") + text + "'";
     }
 
-    Version::Version() {
-      auto text = (char *) glGetString(GL_VERSION);
-      string values[2];
-      parse_version_text(text, values);
-      major = values[0][0] - '0';
-      minor = values[1][0] - '0';
+    if (mode != 3)
+      throw string("Could not parse OpenGL version text '") + text + "'";
+  }
+
+  Version::Version() {
+    auto text = (char *) glGetString(GL_VERSION);
+    string values[2];
+    parse_version_text(text, values);
+    major = values[0][0] - '0';
+    minor = values[1][0] - '0';
 
 //      major = stoi(values[0]);
 //      minor = stoi(values[1]);
 //      regex pattern{R"(\d+)\.(\d+)"};
 //
-      smatch matches;
+    smatch matches;
 //      if (!regex_match(text, matches, pattern))
 //        throw "Could not determine OpenGL version";
 //
 //      major = stoi(matches[0]);
 //      minor = stoi(matches[1]);
-    }
+  }
 
-    Version::Version(int major, int minor) :
-      major(major), minor(minor) {
-      ES = false;
-    }
+  Version::Version(int major, int minor) :
+    major(major), minor(minor) {
+    ES = false;
   }
 }
 

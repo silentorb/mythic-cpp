@@ -15,3 +15,5 @@ else ()
     ${OPENGL_LIB}
     )
 endif ()
+
+add_definitions(-DGLOW_LIB)

@@ -2,8 +2,6 @@
 #include "Vertex_Schema.h"
 #include "lookinglass/glow.h"
 
-using namespace lookinglass;
-
 namespace modeling {
   Simple_Mesh::Simple_Mesh(float *data, int vertex_count, const modeling::Vertex_Schema &vertex_schema)
     : data(data), vertex_count(vertex_count), vertex_schema(vertex_schema) {

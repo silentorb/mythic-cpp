@@ -28,7 +28,7 @@ namespace lookinglass {
     auto version = glow::Version();
 #endif
     instance = this;
-    capabilities = unique_ptr<Capabilities>(new glow::Capabilities(version));
+    Capabilities::initialize(version);
 
     auto &dimensions = frame->get_dimensions();
 
@@ -38,19 +38,19 @@ namespace lookinglass {
       new Field_Info("camera_direction", Field_Type::vector3)
     });
     viewport_mist = unique_ptr<Mist<Viewport_Data>>(
-      through::create_mist<Viewport_Data>(scene_definition, get_capabilities()));
+      through::create_mist<Viewport_Data>(scene_definition));
     base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, dimensions.x, dimensions.y));
     base_viewport->activate();
 
     resource_manager = unique_ptr<Lookinglass_Resources>(
-      new Lookinglass_Resources(shader_loader, *capabilities, *base_viewport));
+      new Lookinglass_Resources(shader_loader, *base_viewport));
 
     resource_manager->get_shader_manager().add_program_add_listener(*viewport_mist);
 
 //    base_viewport->add_listener(Vector2_Delegate(
 //      [&](const ivec2 &dimensions) { resource_manager->get_text_effect().set_viewport_dimensions(dimensions); }));
 
-    glass = unique_ptr<Glass>(new Glass(get_capabilities(), get_base_viewport()));
+    glass = unique_ptr<Glass>(new Glass(get_base_viewport()));
     initialize();
   }
 
@@ -92,8 +92,7 @@ namespace lookinglass {
 
   void House::initialize() {
     glFrontFace(GL_CCW);
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
+    glow::set_depth_test(true);
 
 //    glClearColor(0, 0.1f, 0.3f, 1);
     glClearColor(1, 1, 1, 1);

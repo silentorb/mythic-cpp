@@ -3,7 +3,6 @@
 #include "Shader.h"
 #include "Shader_Loader.h"
 
-
 namespace shading {
 
   class Code_Processor {
