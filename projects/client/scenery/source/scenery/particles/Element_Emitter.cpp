@@ -1,38 +1,37 @@
 #include <glm/gtc/matrix_transform.hpp>
-#include "Emitter_Element.h"
+#include "Element_Emitter.h"
 #include "Particle_Element.h"
 
 namespace scenery {
 
-  Emitter_Element::Emitter_Element(Emitter *emitter, Particle_Element_Delegate initializer, Parent *parent) :
-    emitter(emitter), initializer(initializer), Group(parent) {
+  Element_Emitter::Element_Emitter(Emitter *emitter, Particle_Element_Delegate initializer, Parent *parent) :
+    emitter(emitter), initializer(initializer), scenery::Group(parent) {
 
   }
 
-  Emitter_Element::Emitter_Element(
+  Element_Emitter::Element_Emitter(
     const Particle_Generator &generator, Particle_Element_Delegate initializer,
     Particle_Element_Delegate animator, Parent *parent) :
-    emitter(new Emitter(generator, this)), initializer(initializer), animator(animator), Group(parent) {
+    emitter(new Emitter(generator, this)), initializer(initializer), animator(animator), scenery::Group(parent) {
 
   }
 
-  void Emitter_Element::update(float delta) {
+  void Element_Emitter::update(float delta) {
     auto absolute_position = vec3(get_transform() * vec4(vec3(0), 1));
     emitter->set_position(absolute_position);
     emitter->update(delta);
-    Group::update(delta);
     for (auto &element: children) {
-      auto particle_element = static_cast<Particle_Element*>(element.get());
+      auto particle_element = static_cast<Particle_Element *>(element.get());
       animator(*particle_element);
     }
   }
 
-  void Emitter_Element::particle_added(Particle &particle) {
+  void Element_Emitter::particle_added(Particle &particle) {
     auto child = new Particle_Element(particle, this);
     initializer(*child);
   }
 
-  void Emitter_Element::particle_removed(Particle &particle) {
+  void Element_Emitter::particle_removed(Particle &particle) {
     for (int i = 0; i < children.size(); ++i) {
       auto child = static_cast<Particle_Element *>(children[i].get());
       if (&child->get_particle() == &particle) {

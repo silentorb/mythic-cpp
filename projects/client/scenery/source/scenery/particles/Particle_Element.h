@@ -2,7 +2,7 @@
 
 #include <substance/Particle.h>
 #include "dllexport.h"
-#include "Group.h"
+#include "scenery/elements/Group.h"
 
 using namespace substance;
 
