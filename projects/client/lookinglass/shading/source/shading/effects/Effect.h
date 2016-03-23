@@ -1,7 +1,6 @@
 #pragma once
 
 #include "dllexport.h"
-//#include "shading/Program.h"
 #include "glm/glm.hpp"
 
 namespace shading {

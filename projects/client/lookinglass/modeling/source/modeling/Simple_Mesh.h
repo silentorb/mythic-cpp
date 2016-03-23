@@ -3,9 +3,13 @@
 #include "dllexport.h"
 #include "resourceful/Resource.h"
 
+namespace shading {
+  class Vertex_Schema;
+}
+using namespace shading;
+
 namespace modeling {
 
-  class Vertex_Schema;
 
   class MYTHIC_EXPORT Simple_Mesh : public resourceful::Resource {
       unsigned int vao;

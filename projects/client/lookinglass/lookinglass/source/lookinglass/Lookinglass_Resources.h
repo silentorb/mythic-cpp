@@ -9,6 +9,7 @@ using namespace std;
 
 namespace resourceful {
   class Resource_Manager;
+  class Resource;
 }
 
 namespace typography {
@@ -49,6 +50,7 @@ namespace lookinglass {
       unique_ptr<resourceful::Resource_Manager> mesh_manager;
       unique_ptr<shading::Shader_Manager> shader_manager;
       unique_ptr<typography::Text_Manager> text_manager;
+      unique_ptr<resourceful::Resource_Manager> general;
 
   public:
       Lookinglass_Resources(shading::Shader_Loader *shader_loader, perspective::Viewport &viewport);
@@ -65,5 +67,7 @@ namespace lookinglass {
       void add_font(const string name, const string path);
       typography::Font &get_font(const string name);
       typography::Text_Effect &get_text_effect() const;
+      void add_resource(resourceful::Resource *resource);
+      void remove_resource(resourceful::Resource *resource);
   };
 }

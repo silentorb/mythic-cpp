@@ -11,7 +11,9 @@ namespace randomly {
       std::mt19937 engine;
 
   public:
-      Dice() { }
+      Dice() {
+        engine.seed(1);
+      }
 
       Dice(unsigned int seed) {
         engine.seed(seed);
@@ -27,6 +29,12 @@ namespace randomly {
 
       float get_float(float min, float max) {
         return min + get_float() * (max - min);
+      }
+
+      float get_float_relative(float a, float b) {
+        return b > a
+               ? a + get_float() * (b - a)
+               : b + get_float() * (a - b);
       }
 
       int get_int(int min, int max) {

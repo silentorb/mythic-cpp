@@ -5,7 +5,8 @@
 
 using namespace std;
 
-namespace modeling {
+namespace shading {
+
   class Vertex_Attribute {
   public:
       string name;

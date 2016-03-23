@@ -2,8 +2,10 @@
 
 #include "dllexport.h"
 #include <memory>
-#include "Vertex_Schema.h"
+#include "shading/Vertex_Schema.h"
 #include "resourceful/Resource.h"
+#include "Vertex_Buffer.h"
+#include "Draw_Method.h"
 #include <functional>
 
 using namespace std;
@@ -42,28 +44,22 @@ namespace modeling {
 
   class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource {
   private:
-      unsigned int vao;
-      unsigned int vbo;
       unsigned int ebo = 0;
       int polygon_count;
 //      int vertex_count;
       shared_ptr<int> offsets;
       shared_ptr<int> counts;
-      Vertex_Schema &vertex_schema;
       Mesh_Data_Generator generator;
       bool support_lines;
       int index_count;
       bool _has_opacity;
+      Vertex_Buffer vertex_buffer;
 
   public:
 
       Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true, bool has_opacity = false);
 
       ~Mesh_Data();
-
-      const unsigned int &get_vao() const {
-        return vao;
-      }
 
       const unsigned int &get_ebo() const {
         return ebo;
@@ -111,6 +107,8 @@ namespace modeling {
       bool has_opacity() const {
         return _has_opacity;
       }
+
+      void draw(Draw_Method draw_method);
   };
 
 }

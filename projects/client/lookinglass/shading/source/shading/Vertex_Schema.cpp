@@ -1,7 +1,7 @@
 #include "Vertex_Schema.h"
 #include "lookinglass/glow.h"
 
-namespace modeling {
+namespace shading {
 
   int get_sum(vector<Vertex_Attribute> attributes) {
     int total = 0;

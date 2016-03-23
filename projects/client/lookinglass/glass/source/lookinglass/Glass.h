@@ -25,7 +25,7 @@ namespace lookinglass {
 
   public:
       Glass(Viewport &viewport);
-      void draw_mesh(modeling::Mesh_Data &mesh, Draw_Method draw_method);
+//      void draw_mesh(modeling::Mesh_Data &mesh, Draw_Method draw_method);
 
       Viewport &get_viewport() const;
 

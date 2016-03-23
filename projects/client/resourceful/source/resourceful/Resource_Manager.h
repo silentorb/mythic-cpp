@@ -15,8 +15,10 @@ namespace resourceful {
       vector<unique_ptr<Resource>> resources;
       Resource_Manager &operator=(const Resource_Manager &) = delete;
       Resource_Manager(Resource_Manager const &) = delete;
+
   public:
       Resource_Manager(const string name) : name(name) { }
+
       ~Resource_Manager();
 
 //      void free() override;
@@ -37,6 +39,8 @@ namespace resourceful {
       void add_resource(Resource *resource) {
         resources.push_back(unique_ptr<Resource>(resource));
       }
+
+      void remove_resource(Resource *resource);
 
       vector<unique_ptr<Resource>>::iterator begin() {
         return resources.begin();

@@ -16,12 +16,13 @@ namespace lookinglass {
 
 namespace modeling {
   class Simple_Mesh;
-
-  class Vertex_Schema;
 }
+
 
 namespace shading {
   class Shader_Manager;
+
+  class Vertex_Schema;
 
   class Program;
 }
@@ -43,10 +44,10 @@ namespace drawing {
   class Sprite_Layer;
 
   class MYTHIC_EXPORT Draw : no_copy {
-      unique_ptr<modeling::Vertex_Schema> solid_vertex_schema;
+      unique_ptr<shading::Vertex_Schema> solid_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> solid_mesh;
 
-      unique_ptr<modeling::Vertex_Schema> image_vertex_schema;
+      unique_ptr<shading::Vertex_Schema> image_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> image_mesh;
       unique_ptr<Image_Effect> default_image_effect;
       shading::Program *flat_program;
@@ -72,7 +73,7 @@ namespace drawing {
         return *image_mesh;
       }
 
-      const modeling::Vertex_Schema &get_image_vertex_schema() const {
+      const shading::Vertex_Schema &get_image_vertex_schema() const {
         return *image_vertex_schema;
       }
 

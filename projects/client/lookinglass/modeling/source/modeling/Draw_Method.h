@@ -1,7 +1,7 @@
 #pragma once
-#include "dllexport.h"
 
-namespace lookinglass {
+namespace modeling {
+
   enum class Draw_Method {
       lines,
       triangles

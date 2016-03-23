@@ -1,12 +1,12 @@
 #include <lookinglass/glow/Capabilities.h>
 #include "Mesh_Data.h"
 #include "lookinglass/glow.h"
-#include "Vertex_Schema.h"
+#include "Vertex_Buffer.h"
 
 namespace modeling {
   Mesh_Data::Mesh_Data(Mesh_Data_Generator generator,
                        Vertex_Schema &vertex_schema, bool support_lines, bool has_opacity) :
-    generator(generator), vertex_schema(vertex_schema), support_lines{support_lines}, _has_opacity(has_opacity) {
+    generator(generator), vertex_buffer(vertex_schema), support_lines{support_lines}, _has_opacity(has_opacity) {
     load();
   }
 
@@ -57,7 +57,8 @@ namespace modeling {
     this->_has_opacity = data.has_opacity;
 
     if (!glow::Capabilities::multidraw() && !support_lines) {
-      indices = shared_ptr<unsigned short>(convert_to_indices(index_count, data, vertex_schema.get_vertex_size()));
+      indices = shared_ptr<unsigned short>(
+        convert_to_indices(index_count, data, vertex_buffer.get_vertex_schema().get_vertex_size()));
       glGenBuffers(1, &ebo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * index_count, indices.get(), GL_STATIC_DRAW);
@@ -67,27 +68,43 @@ namespace modeling {
       counts = data.counts;
     }
 
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glow::check_error("binding vbo");
-
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data.vertices.get(), GL_STATIC_DRAW);
-    glow::check_error("binding vbo buffer data");
-
-    vao = vertex_schema.create_vao();
+    vertex_buffer.load(vertex_count, data.vertices.get());
   }
 
   void Mesh_Data::free() {
-    if (!vao)
-      return;
+    vertex_buffer.free();
 
     if (ebo) {
       glDeleteBuffers(1, &ebo);
       ebo = 0;
     }
+  }
 
-    glDeleteBuffers(1, &vao);
-    glDeleteBuffers(1, &vbo);
-    vao = 0;
+  void Mesh_Data::draw(Draw_Method draw_method) {
+    vertex_buffer.activate();
+
+    auto mode = draw_method == Draw_Method::triangles
+                ? GL_TRIANGLE_FAN
+                : GL_LINE_STRIP;
+
+    if (glow::Capabilities::multidraw()) {
+      // The preprocessor is needed or this will fail to compile on some platforms.
+#ifdef glMultiDrawArrays
+      glMultiDrawArrays(mode, get_offsets(), get_counts(), get_polygon_count());
+#endif
+    }
+    else {
+      if (draw_method == Draw_Method::lines || supports_lines()) {
+        for (int i = 0; i < get_polygon_count(); ++i) {
+          glDrawArrays(mode, get_offsets()[i], get_counts()[i]);
+        }
+      }
+      else {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, get_ebo());
+        glDrawElements(GL_TRIANGLES, get_index_count(), GL_UNSIGNED_SHORT, nullptr);
+      }
+    }
+
+    glow::check_error("drawing mesh");
   }
 }

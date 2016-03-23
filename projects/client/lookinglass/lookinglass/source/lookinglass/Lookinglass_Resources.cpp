@@ -15,6 +15,7 @@ namespace lookinglass {
 
   Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader,
                                                perspective::Viewport & viewport) :
+    general(new Resource_Manager("general")),
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
 
@@ -58,5 +59,13 @@ namespace lookinglass {
 
   typography::Text_Effect &Lookinglass_Resources::get_text_effect() const {
     return text_manager->get_text_effect();
+  }
+
+  void Lookinglass_Resources::add_resource(resourceful::Resource *resource) {
+    general->add_resource(resource);
+  }
+
+  void Lookinglass_Resources::remove_resource(resourceful::Resource *resource) {
+    general->remove_resource(resource);
   }
 }

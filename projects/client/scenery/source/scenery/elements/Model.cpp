@@ -23,16 +23,17 @@ namespace scenery {
     if(texture)
       texture->activate();
 
-    effect->activate(transform, normal_transform, opacity);
-    if (opacity != 1 || mesh_data->has_opacity()) {
-      glow::set_culling(false);
-      glow::set_blend(true);
-    }
-    else {
-      glow::set_culling(true);
-      glow::set_blend(false);
-    }
+    effect->activate(transform, normal_transform, opacity != 1 || mesh_data->has_opacity());
+//    if (opacity != 1 || mesh_data->has_opacity()) {
+//      glow::set_culling(false);
+//      glow::set_blend(true);
+//    }
+//    else {
+//      glow::set_culling(true);
+//      glow::set_blend(false);
+//    }
 
-    Glass::get_instance().draw_mesh(*mesh_data, effect->get_draw_method());
+//    Glass::get_instance().draw_mesh(*mesh_data, effect->get_draw_method());
+    mesh_data->draw(effect->get_draw_method());
   }
 }

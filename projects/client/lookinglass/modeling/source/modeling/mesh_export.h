@@ -4,7 +4,7 @@
 
 #include "Mesh_Data.h"
 #include "sculptor/geometry.h"
-#include "Vertex_Schema.h"
+#include "shading/Vertex_Schema.h"
 
 using namespace sculptor::geometry;
 

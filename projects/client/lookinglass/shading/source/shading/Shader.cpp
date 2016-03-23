@@ -42,5 +42,7 @@ namespace shading {
       log_info("Failed code: %s", source_code.c_str());
       throw std::runtime_error(std::string("Failed to compile shader code.  ") + message);
     }
+
+    glow::check_error("compiling shader code.");
   }
 }

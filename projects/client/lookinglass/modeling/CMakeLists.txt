@@ -1,4 +1,4 @@
 
 create_library(modeling)
 
-require(sculptor glow resourceful)
+require(sculptor glow resourceful shading)

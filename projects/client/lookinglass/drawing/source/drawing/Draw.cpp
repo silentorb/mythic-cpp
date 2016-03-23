@@ -1,7 +1,7 @@
 #include "lookinglass/Renderable_List.h"
 #include "Draw.h"
 #include <texturing/Texture.h>
-#include "modeling/Vertex_Schema.h"
+#include "shading/Vertex_Schema.h"
 #include "shading/Shader_Manager.h"
 #include "Image_Effect.h"
 #include "Sprite.h"

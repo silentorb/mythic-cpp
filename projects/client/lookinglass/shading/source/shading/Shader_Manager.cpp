@@ -7,11 +7,14 @@ using namespace resourceful;
 
 namespace shading {
 
+  Shader_Manager *instance = nullptr;
+
   Shader_Manager::Shader_Manager(Shader_Loader *loader) :
     loader(loader),
     shaders(new Resource_Manager("shaders")),
     programs(new Resource_Manager("programs")),
     processor(create_processor()) {
+    instance = this;
 
   }
 
@@ -24,6 +27,14 @@ namespace shading {
     return new Ancient_Code_Processor(*loader);
   }
 
+  void Shader_Manager::register_program(Program *program) {
+    programs->add_resource(program);
+
+    for (auto &listener: program_added) {
+      listener->add_program(*program);
+    }
+  }
+
   Shader &Shader_Manager::create_shader(Shader_Type type, string path) {
     auto source = loader->load(path);
     auto code = process(type, source);
@@ -32,23 +43,39 @@ namespace shading {
     return *shader;
   }
 
-  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader, initializer_list<string> names) {
+  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader,
+                                          initializer_list<string> names) {
     auto program = new Program(name, vertex_shader, fragment_shader, names);
-    programs->add_resource(program);
-
-    for (auto &listener: program_added) {
-      listener->add_program(*program);
-    }
+    register_program(program);
     return *program;
   }
 
-  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment, initializer_list<string> names) {
-    return create_program(name,
-                          create_shader(Shader_Type::vertex, vertex),
-                          create_shader(Shader_Type::fragment, fragment),
-                          names
+//  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader,
+//                                          Vertex_Schema &vertex_schema) {
+//    auto program = new Program(name, vertex_shader, fragment_shader, vertex_schema);
+//    register_program(program);
+//    return *program;
+//  }
+
+  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
+                                                     initializer_list<string> names) {
+    return create_program(
+      name,
+      create_shader(Shader_Type::vertex, vertex),
+      create_shader(Shader_Type::fragment, fragment),
+      names
     );
   }
+
+//  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
+//                                                     Vertex_Schema &vertex_schema) {
+//    return create_program(
+//      name,
+//      create_shader(Shader_Type::vertex, vertex),
+//      create_shader(Shader_Type::fragment, fragment),
+//      vertex_schema
+//    );
+//  }
 
   void Shader_Manager::free() {
     shaders->free();
@@ -84,5 +111,9 @@ namespace shading {
     }
 
     return nullptr;
+  }
+
+  Shader_Manager &Shader_Manager::get_instance() {
+    return *instance;
   }
 }

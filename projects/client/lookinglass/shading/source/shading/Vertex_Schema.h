@@ -7,10 +7,10 @@
 
 using namespace std;
 
-namespace modeling {
+namespace shading {
+
   class MYTHIC_EXPORT Vertex_Schema {
-  private:
-      vector<Vertex_Attribute> attributes;
+        vector<Vertex_Attribute> attributes;
       int vertex_size;
       int field_count;
 
@@ -32,6 +32,10 @@ namespace modeling {
 
       const Vertex_Attribute &get_attribute(int index) const {
         return attributes[index];
+      }
+
+      const vector<Vertex_Attribute> &get_attributes() const {
+        return attributes;
       }
   };
 }

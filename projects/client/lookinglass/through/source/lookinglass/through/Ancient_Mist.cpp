@@ -19,6 +19,8 @@ namespace lookinglass {
         log_info("doorway %s", name.c_str());
         doorways.push_back(unique_ptr<Doorway>(new Doorway(index, field->type, (Field_Type) offset)));
         offset += field->length;
+
+				glow::check_error("creating door");
       }
     }
 

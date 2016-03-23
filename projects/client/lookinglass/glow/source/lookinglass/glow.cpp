@@ -22,6 +22,7 @@ namespace glow {
 
     cache::depth_test = value;
     toggle(GL_DEPTH_TEST, value);
+//    glDepthMask(value);
   }
 
   void set_culling(bool value) {
