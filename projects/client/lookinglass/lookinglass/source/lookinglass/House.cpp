@@ -94,8 +94,13 @@ namespace lookinglass {
     glFrontFace(GL_CCW);
     glow::set_depth_test(true);
 
+#ifdef GL_PROGRAM_POINT_SIZE
     glEnable(GL_PROGRAM_POINT_SIZE);
     glEnable(0x8861);  // GL_POINT_SPRITE
+#else
+     // glEnable(0x8861);
+#endif
+      
     //    glClearColor(0, 0.1f, 0.3f, 1);
     glClearColor(1, 1, 1, 1);
   }

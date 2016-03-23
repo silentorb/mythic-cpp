@@ -12,7 +12,7 @@ namespace glow {
 #ifdef glMultiDrawArrays
     _multidraw = glMultiDrawArrays != nullptr;
 #else
-    multidraw = false;
+    _multidraw = false;
 #endif
 
     _multidraw = false; // For testing mobile code on desktop
