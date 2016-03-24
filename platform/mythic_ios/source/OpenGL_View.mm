@@ -96,7 +96,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentScaleFactor = 2;
+        self.contentScaleFactor = [[UIScreen mainScreen] scale];
         [self setup_layer];
         [self setup_context];
         [self setup_render_buffer];
