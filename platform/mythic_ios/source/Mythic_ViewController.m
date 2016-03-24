@@ -44,4 +44,8 @@
     input_single_tap(location.x, location.y);
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 @end

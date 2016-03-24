@@ -14,16 +14,16 @@ namespace scenery {
     effect(effect),
     Element(parent) {
 
-    vertex_buffer = unique_ptr<Vertex_Buffer>(new Vertex_Buffer(effect->get_vertex_schema(), [&](int &vertex_count) {
+    vertex_buffer = new Vertex_Buffer(effect->get_vertex_schema(), [&](int &vertex_count) {
       vertex_count = particles.size();
       return (float *) vertices.data();
-    }));
+    });
 
-    lookinglass::House::get_instance().get_resources().add_resource(vertex_buffer.get());
+    lookinglass::House::get_instance().get_resources().add_resource(vertex_buffer);
   }
 
   Particle_Array::~Particle_Array() {
-    lookinglass::House::get_instance().get_resources().remove_resource(vertex_buffer.get());
+    lookinglass::House::get_instance().get_resources().remove_resource(vertex_buffer);
   }
 
 //  float *Particle_Array::generate(int &vertex_count) {

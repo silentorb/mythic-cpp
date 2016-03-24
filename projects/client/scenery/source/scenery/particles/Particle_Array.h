@@ -29,7 +29,7 @@ namespace scenery {
       bool changed = true;
       vector<unique_ptr<Pretty_Particle>> particles;
       vector<Particle_Data> vertices;
-      unique_ptr<modeling::Vertex_Buffer> vertex_buffer;
+      modeling::Vertex_Buffer* vertex_buffer;
       shared_ptr<Particle_Effect> effect;
 
 //      float* generate(int & vertex_count);

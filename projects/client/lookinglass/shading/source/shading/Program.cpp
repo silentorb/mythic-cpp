@@ -26,6 +26,7 @@ namespace shading {
 	}
 
   Program::~Program() {
+      Shader_Manager::get_instance().remove_program(*this);
     glDeleteProgram(id);
   }
 

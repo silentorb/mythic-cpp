@@ -116,4 +116,8 @@ namespace shading {
   Shader_Manager &Shader_Manager::get_instance() {
     return *instance;
   }
+    
+    void Shader_Manager::remove_program(Program &program) {
+        programs->remove_resource(&program);
+    }
 }
