@@ -29,6 +29,10 @@ namespace lookinglass {
         }
 
         void update(void *data);
+
+        Program &get_program() const {
+          return program;
+        }
     };
 
     template<typename T>
@@ -53,6 +57,14 @@ namespace lookinglass {
             delete map;
         }
 
+        virtual void remove_program(Program &program) override {
+          for (int i = maps.size() - 1; i >= 0; --i) {
+            if (&maps[i].get()->get_program() == &program) {
+              maps.erase(maps.begin() + i);
+            }
+          }
+        }
+
         virtual void update(T *data) {
           for (auto &map : maps) {
             map->update(data);
@@ -60,7 +72,7 @@ namespace lookinglass {
         }
 
         virtual void free() override {
-            maps.clear();
+          maps.clear();
         }
     };
   }

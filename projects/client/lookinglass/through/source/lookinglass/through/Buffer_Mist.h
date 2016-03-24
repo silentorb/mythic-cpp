@@ -20,6 +20,10 @@ namespace lookinglass {
 
         }
 
+        virtual void remove_program(Program &program) override {
+
+        }
+
         virtual void update(T *data) {
           buffer.update(data);
         }

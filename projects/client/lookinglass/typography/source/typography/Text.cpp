@@ -160,7 +160,7 @@ namespace typography {
       auto x = left;
       float y = top - (character->bearing.y - character->size.y) + offset;//-font.max_height*scale;
 
-      auto texture_width = (float) character->size.x / font.get_dimensions().x;
+      auto texture_width = (float) (character->size.x + 1) / font.get_dimensions().x;
 
       vertices[step + 5] = Vertex(x, y, 0, character->offset + character->height);
       vertices[step + 4] = Vertex(x, y - height, 0, character->offset);

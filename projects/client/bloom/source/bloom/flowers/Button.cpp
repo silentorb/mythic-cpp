@@ -22,4 +22,8 @@ namespace bloom {
   void Button::set_text(string content) {
     text->set_content(content);
   }
+
+  void Button::set_font_size(int size) {
+    text->set_size(size);
+  }
 }

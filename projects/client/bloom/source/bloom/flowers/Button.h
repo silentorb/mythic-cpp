@@ -17,5 +17,7 @@ namespace bloom {
   public:
       Button(string text_content, Flower *parent);
       void set_text(string content);
+
+      void set_font_size(int size);
   };
 }
