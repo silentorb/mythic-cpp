@@ -43,6 +43,7 @@ namespace shading {
   class MYTHIC_EXPORT Program_Add_Listener {
   public:
       virtual void add_program(Program &program) = 0;
+      virtual void remove_program(Program &program) = 0;
   };
 
 }

@@ -28,8 +28,6 @@ namespace shading {
   }
 
   void Shader_Manager::register_program(Program *program) {
-    programs->add_resource(program);
-
     for (auto &listener: program_added) {
       listener->add_program(*program);
     }
@@ -46,6 +44,7 @@ namespace shading {
   Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader,
                                           initializer_list<string> names) {
     auto program = new Program(name, vertex_shader, fragment_shader, names);
+    programs->add_resource(program);
     register_program(program);
     return *program;
   }
@@ -116,8 +115,18 @@ namespace shading {
   Shader_Manager &Shader_Manager::get_instance() {
     return *instance;
   }
-    
-    void Shader_Manager::remove_program(Program &program) {
-        programs->remove_resource(&program);
+
+  void Shader_Manager::remove_program(Program &program) {
+    unregister_program(program);
+
+    programs->remove_resource(&program);
+  }
+
+
+  void Shader_Manager::unregister_program(Program &program) {
+    for (auto &listener: program_added) {
+      listener->remove_program(program);
     }
+
+  }
 }

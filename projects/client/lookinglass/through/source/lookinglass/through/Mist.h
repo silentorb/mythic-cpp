@@ -18,6 +18,7 @@ namespace lookinglass {
     public:
         virtual void initialize(Struct_Info *info) = 0;
         virtual void add_program(Program &program) = 0;
+        virtual void remove_program(Program &program) = 0;
         virtual void update(T *data) = 0;
         virtual void free() = 0;
     };

@@ -74,5 +74,6 @@ namespace shading {
       Program *get_program_or_null(const string name) const;
       static Shader_Manager & get_instance();
       void remove_program(Program &program);
+      void unregister_program(Program &program);
   };
 }

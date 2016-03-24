@@ -58,6 +58,7 @@ namespace typography {
 
     int memory_offset = 0;
     float vertical_offset = 0;
+    const int memory_margin = dimensions.x * 2;
     for (unsigned char c = first_char; c <= last_char; c++) {
       if (FT_Load_Char(face, c, FT_LOAD_RENDER) != 0)
         throw runtime_error("Failed to load glyph");
@@ -78,12 +79,14 @@ namespace typography {
         (float) bitmap.rows / dimensions.y
       );
 
+      memory_offset++;
       for (int i = 0; i < bitmap.rows; i++) {
         memcpy(buffer + memory_offset, bitmap.buffer + i * bitmap.width, bitmap.width);
         memory_offset += dimensions.x;
       }
-
-      vertical_offset += bitmap.rows;
+      memory_offset--;
+      memory_offset += memory_margin; // margin between characters
+      vertical_offset += bitmap.rows + 2;
     }
 
     glTexImage2D(
@@ -108,13 +111,13 @@ namespace typography {
 
       auto glyph = face->glyph;
       auto bitmap = glyph->bitmap;
-      if (bitmap.rows > max_width)
+      if (bitmap.width > max_width)
         max_width = bitmap.width;
 
-      offset += bitmap.rows;
+      offset += bitmap.rows + 2;
     }
 
-    return glm::ivec2((int) max_width, (int) offset);
+    return glm::ivec2((int) max_width + 1, (int) offset);
   }
 
   void Font::activate() {
