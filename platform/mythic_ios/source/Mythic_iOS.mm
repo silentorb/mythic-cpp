@@ -35,7 +35,7 @@ iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
     :context(context), width(width), height(height) {
           CGRect screenBounds = [[UIScreen mainScreen] bounds];
           CGFloat screenScale = [[UIScreen mainScreen] scale];
-        screenScale = 1;
+//        screenScale = 1;
           CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
 
   set_dimensions(pixels.width, pixels.height);

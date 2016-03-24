@@ -54,10 +54,14 @@
     glGenRenderbuffers(1, &_colorRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
     [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eagl_layer];
+    GLint w;
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &w);
     
     glGenRenderbuffers(1, &_depthRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, self.frame.size.width, self.frame.size.height);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16,
+                          self.frame.size.width * self.contentScaleFactor,
+                          self.frame.size.height * self.contentScaleFactor);
     glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
     
     GLuint framebuffer;
@@ -92,13 +96,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.contentScaleFactor = 2;
         [self setup_layer];
         [self setup_context];
         [self setup_render_buffer];
         [self setup_frame_buffer];
         
-        glClearColor(0, 1, 1, 1);
-      glViewport(0, 0, self.frame.size.width, self.frame.size.height);
+//        glClearColor(0, 1, 1, 1);
+//      glViewport(0, 0, self.frame.size.width, self.frame.size.height);
         
         [self initialize_mythic];
         [self setup_display_link];
