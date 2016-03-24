@@ -41,7 +41,7 @@
 
 - (void)on_single_tap:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
-    input_single_tap(location.x, location.y);
+    input_single_tap(location.x * self.view.contentScaleFactor, location.y * self.view.contentScaleFactor);
 }
 
 -(BOOL)prefersStatusBarHidden{
