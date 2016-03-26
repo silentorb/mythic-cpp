@@ -16,7 +16,7 @@ namespace bloom {
     set_border(vec4(vec3(0.3), 1));
     set_fill(vec4(vec3(0.8), 1));
 		auto t = Simple_Measurement(100);
-    set_dimensions(Simple_Measurement(250), Simple_Measurement(45));
+    set_dimensions(Simple_Measurement(500), Simple_Measurement(60));
   }
 
   void Button::set_text(string content) {

@@ -37,7 +37,7 @@ namespace typography {
       Font &font;
       bool changed;
       ivec2 position = ivec2(0, 100);
-      float size = 15;
+      float size = 14;
       Text_Effect &effect;
       int element_count;
       float line_height = 1.4;

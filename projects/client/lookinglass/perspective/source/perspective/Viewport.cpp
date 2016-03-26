@@ -90,7 +90,10 @@ namespace perspective {
   }
 
   vec2 Viewport::get_unit_scaling() const {
-    return dimensions.x > dimensions.y
+//    return dimensions.x > dimensions.y
+//           ? vec2(1, (float) ((dimensions.x - dimensions.y) / 2) / dimensions.y)
+//           : vec2((float) ((dimensions.y - dimensions.x) / 2) / dimensions.x, 1);
+    return dimensions.x < dimensions.y
            ? vec2(1, (float) dimensions.x / dimensions.y)
            : vec2((float) dimensions.y / dimensions.x, 1);
   }

@@ -10,7 +10,7 @@ using namespace lookinglass;
 
 namespace typography {
 
-  const float unit_conversion = 32;
+  const float unit_conversion = 24;
 
   Text::Text(Font &font, Text_Effect &effect, const string &value) : font(font), effect(effect) {
     set_content(value);

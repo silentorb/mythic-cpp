@@ -20,8 +20,8 @@ namespace bloom {
     Flower::render();
     auto bounds = get_bounds();
     auto pos = bounds.get_position();
-    auto position = converter.convert(vec2(pos.x, converter.get_unit_dimensions().y - bounds.get_corner().y));
-    auto dimensions = converter.convert(bounds.get_dimensions());
+    auto position = converter.convert_to_pixels(vec2(pos.x, converter.get_unit_dimensions().y - bounds.get_corner().y));
+    auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());
 
     scene->get_viewport().set_bounds(position, dimensions);
     scene->render();
