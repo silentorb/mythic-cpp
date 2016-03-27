@@ -1,5 +1,6 @@
 #pragma once
 #include <sqlite3.h>
+#include <memory>
 
 namespace vineyard {
   namespace database {
@@ -11,6 +12,7 @@ namespace vineyard {
 
     public:
         Connection(Database *database);
+        Connection(std::unique_ptr<Database> &database);
         ~Connection();
     };
   }

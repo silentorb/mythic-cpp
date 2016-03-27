@@ -12,6 +12,8 @@ namespace vineyard {
       }
     }
 
+    Connection::Connection(std::unique_ptr<Database> &database) : Connection(database.get()) { }
+
     Connection::~Connection() {
       sqlite3_close(handle);
     }

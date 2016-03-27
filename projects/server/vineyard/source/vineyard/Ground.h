@@ -9,7 +9,6 @@ namespace landscape {
 }
 
 using namespace std;
-using namespace landscape;
 
 namespace vineyard {
 
@@ -18,11 +17,15 @@ namespace vineyard {
   }
 
   class MYTHIC_EXPORT Ground {
-      vector<unique_ptr<Trellis>> trellises;
+      vector<unique_ptr<landscape::Trellis>> trellises;
       unique_ptr<database::Database> db;
 
+      void add_trellis(landscape::Trellis *trellis);
+
   public:
-      Ground(const string &filename);
+      Ground(const string &filename, initializer_list<landscape::Trellis *> initializer);
       ~Ground();
+
+      void initialize();
   };
 }
