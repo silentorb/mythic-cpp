@@ -14,6 +14,8 @@ namespace vineyard {
         sqlite3 *handle;
         bool logging = true;
 
+        void log(const string & message);
+
     public:
         Connection(Database *database);
         Connection(Database &database);
@@ -26,6 +28,7 @@ namespace vineyard {
         sqlite3* get_handle()const {
           return handle;
         }
+
     };
   }
 }

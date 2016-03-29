@@ -14,7 +14,7 @@ namespace vineyard {
   namespace database {
 
     const string get_sql_value(const Property &property, void *value);
-    void update_property(Database &db, Trellis &trellis, Property &property, void *value);
+    void update_property(Database &db, Trellis &trellis, const Property &property, void *value);
     void update_seed(Database &db, Seed & seed);
   }
 }

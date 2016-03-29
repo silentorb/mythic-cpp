@@ -33,5 +33,7 @@ namespace vineyard {
       }
 
       void clear_database();
+
+      landscape::Trellis& get_trellis(const string & trellis_name) const;
   };
 }

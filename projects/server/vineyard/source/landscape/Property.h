@@ -33,6 +33,10 @@ namespace landscape {
         this->trellis = &trellis;
       }
 
+      void set_other_trellis(Trellis* other_trellis) {
+        this->other_trellis = other_trellis;
+      }
+
       Types get_type() const {
         return type;
       }

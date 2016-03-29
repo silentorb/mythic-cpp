@@ -1,6 +1,6 @@
+#include <vineyard/identity.h>
 #include "Update.h"
 #include "Connection.h"
-#include "landscape/Property.h"
 #include "vineyard/Seed.h"
 
 namespace vineyard {
@@ -12,17 +12,26 @@ namespace vineyard {
           return string("'") + **(string **) value + "'";
 
         case Types::integer:
-            return to_string(*(int *) value);
+          return to_string(*(int *) value);
 
         case Types::longer:
-          return to_string(*(long *) value);
+          return to_string(*(vineyard::Identity *) value);
+
+        case Types::reference: {
+          auto pointer = (void**) value;
+          if (!*pointer)
+            return "NULL";
+
+          auto seed = (Seed *) *pointer;
+          return to_string(*(vineyard::Identity *) seed->get_value<vineyard::Identity>(0));
+        }
 
         default:
           throw runtime_error("Not implemented.");
       }
     }
 
-    void update_property(Database &db, Trellis &trellis, Property &property, void *value) {
+    void update_property(Database &db, Trellis &trellis, const Property &property, void *value) {
       string sql = "REPLACE INTO " + trellis.get_name() + "(" + property.get_name() + ")"
                    + " VALUES (" + get_sql_value(property, value) + ");";
 
@@ -41,10 +50,9 @@ namespace vineyard {
           field_names += ", ";
           values += ", ";
         }
-        else if (*seed.get<long>(i) == 0) {
+        else if (seed.get_value<long>(i) == 0) {
           ++i;
         }
-//auto k = seed.get<long>(i);
 
         auto &property = properties[i];
 

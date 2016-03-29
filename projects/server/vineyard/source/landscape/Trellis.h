@@ -6,9 +6,15 @@
 #include <vector>
 #include <stdexcept>
 
+namespace vineyard {
+  class Ground;
+}
+
 using namespace std;
+using namespace vineyard;
 
 namespace landscape {
+
 
   class MYTHIC_EXPORT Trellis {
       const string name;
@@ -43,5 +49,7 @@ namespace landscape {
       int get_block_size()const {
         return block_size;
       }
+
+      void finalize(Ground & ground);
   };
 }

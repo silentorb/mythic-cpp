@@ -5,10 +5,10 @@
 namespace landscape {
   Type_Info info[] = {
     {"INTEGER", sizeof(int)},
-    {"INTEGER", sizeof(long)},
+    {"INTEGER", sizeof(vineyard::Identity)},
     {"REAL",    sizeof(float)},
     {"STRING",  sizeof(std::string*)},
-    {"IDENTITY", sizeof(vineyard::Identity)}
+    {"INTEGER", sizeof(vineyard::Identity)}
   };
 
   Type_Info &get_type_info(Types type) {

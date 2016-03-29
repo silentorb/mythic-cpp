@@ -15,9 +15,12 @@ namespace vineyard {
       add_trellis(trellis);
     }
 
+    for (auto &trellis: trellises) {
+      trellis->finalize(*this);
+    }
+
 //    if (ifstream(filename))
 //      remove(filename.c_str());
-    clear_database();
 
 //    if (!ifstream(filename))
     initialize();
@@ -27,6 +30,10 @@ namespace vineyard {
   Ground::~Ground() { }
 
   void Ground::initialize() {
+    {
+      ofstream log_file("db.log", ios::out);
+    }
+    clear_database();
     Connection connection(db);
     for (auto &trellis: trellises) {
       db->create_table(*trellis, connection);
@@ -38,12 +45,21 @@ namespace vineyard {
   }
 
   void Ground::clear_database() {
-    string sql;
+//    string sql;
     for (auto &trellis: trellises) {
-      sql += "DROP TABLE IF EXISTS " + trellis->get_name() + ";\n";
+      db->execute("DROP TABLE IF EXISTS " + trellis->get_name() + ";");
+//      sql += "DROP TABLE IF EXISTS " + trellis->get_name() + ";\n";
+    }
+  }
+
+  landscape::Trellis &Ground::get_trellis(const string &trellis_name) const {
+    for(auto &trellis: trellises) {
+      if (trellis->get_name() == trellis_name)
+        return *trellis;
     }
 
-    db->execute(sql);
+    throw runtime_error("Could not find trellis named " + trellis_name + ".");
   }
+
 
 }

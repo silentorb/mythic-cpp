@@ -1,6 +1,7 @@
 #include "Seed.h"
 #include "Ground.h"
 #include "database/Update.h"
+#include "identity.h"
 
 using namespace landscape;
 
@@ -39,7 +40,8 @@ namespace vineyard {
         break;
 
       case Types::longer:
-        *(long *) pointer = 0;
+      case Types::reference:
+        *(vineyard::Identity *) pointer = 0;
         break;
 
 //      default:
@@ -54,6 +56,10 @@ namespace vineyard {
   void Seed::save() {
 //    update_property(ground.get_database(), trellis, property,);
     update_seed(ground.get_database(), *this);
+  }
+
+  void Seed::save_property(const landscape::Property &property, void *value) {
+    update_property(ground.get_database(), trellis, property, value);
   }
 
   void *Seed::get_pointer(const Property &property) const {
