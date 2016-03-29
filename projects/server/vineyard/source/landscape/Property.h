@@ -16,6 +16,7 @@ namespace landscape {
       Trellis *trellis;
       Types type;
       Trellis *other_trellis = nullptr;
+      int offset = -1;
 
   public:
       Property(const string &name, Types type);
@@ -39,5 +40,16 @@ namespace landscape {
       Trellis *get_other_trellis() const {
         return other_trellis;
       }
+
+      int get_offset() const {
+        return offset;
+      }
+
+      void set_offset(int offset) {
+        Property::offset = offset;
+      }
+
+      const Type_Info &get_info() const;
+
   };
 }

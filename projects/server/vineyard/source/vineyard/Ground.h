@@ -27,5 +27,11 @@ namespace vineyard {
       ~Ground();
 
       void initialize();
+
+      database::Database &get_database() const {
+        return *db;
+      }
+
+      void clear_database();
   };
 }

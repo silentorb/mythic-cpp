@@ -17,17 +17,17 @@ namespace vineyard {
 
     class Database {
         const string filename;
+        bool logging = true;
 
     public:
         Database(const string &filename);
-
-        void initialize();
 
         const string &get_filename() const {
           return filename;
         }
 
         void create_table(const landscape::Trellis & trellis, Connection &connection);
+        void execute(const string & sql);
     };
   }
 }
