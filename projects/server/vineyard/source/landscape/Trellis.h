@@ -33,6 +33,10 @@ namespace landscape {
         return properties;
       }
 
+//       vector<Property> &get_properties()  {
+//        return properties;
+//      }
+
       const Property &get_property(const string &property_name) const {
         for (auto &property: properties) {
           if (property.get_name() == property_name)

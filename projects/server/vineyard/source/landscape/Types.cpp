@@ -7,7 +7,7 @@ namespace landscape {
     {"INTEGER", sizeof(int)},
     {"INTEGER", sizeof(vineyard::Identity)},
     {"REAL",    sizeof(float)},
-    {"STRING",  sizeof(std::string*)},
+    {"STRING",  sizeof(std::string)},
     {"INTEGER", sizeof(vineyard::Identity)}
   };
 

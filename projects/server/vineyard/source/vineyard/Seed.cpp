@@ -10,43 +10,45 @@ namespace vineyard {
   Seed::Seed(Ground &ground, Trellis &trellis) :
     ground(ground), trellis(trellis) {
     auto buffer = new char[trellis.get_block_size()];
-    data = unique_ptr<char>(buffer);
+//    data = unique_ptr<char>(buffer);
 
-    for (auto &property : trellis.get_properties()) {
-      initialize_field(buffer + property.get_offset(), property);
-    }
+    *(vineyard::Identity *) (this + 1) = 0;
+
+//    for (auto &property : trellis.get_properties()) {
+//      initialize_field(buffer + property.get_offset(), property);
+//    }
   }
 
   Seed::~Seed() {
     for (auto &property : trellis.get_properties()) {
       if (property.get_type() == Types::string) {
-        string *field = (string *) data.get() + property.get_offset();
+        string *field = (string *) ((char *) this) + property.get_offset();
         delete field;
       }
     }
   }
 
   void Seed::initialize_field(void *pointer, const Property &property) {
-    switch (property.get_type()) {
-
-      case Types::string: {
-        auto temp = (string **) pointer;
-        *temp = new string();
-        break;
-      }
-
-      case Types::integer:
-        *(int *) pointer = 0;
-        break;
-
-      case Types::longer:
-      case Types::reference:
-        *(vineyard::Identity *) pointer = 0;
-        break;
-
-//      default:
-//        throw runtime_error("Not implemented.");
-    }
+//    switch (property.get_type()) {
+//
+//      case Types::string: {
+//        auto temp = (string **) pointer;
+//        *temp = new string();
+//        break;
+//      }
+//
+//      case Types::integer:
+//        *(int *) pointer = 0;
+//        break;
+//
+//      case Types::longer:
+//      case Types::reference:
+//        *(vineyard::Identity *) pointer = 0;
+//        break;
+//
+////      default:
+////        throw runtime_error("Not implemented.");
+//    }
   }
 
   void Seed::load() {
@@ -62,8 +64,13 @@ namespace vineyard {
     update_property(ground.get_database(), trellis, property, value);
   }
 
-  void *Seed::get_pointer(const Property &property) const {
-    return (data.get() + property.get_offset());
+  void Seed::save_property(int index) {
+    auto &property = trellis.get_property(index);
+    update_property(ground.get_database(), trellis, property, get_pointer(property));
+  }
+
+  void *Seed::get_pointer(const Property &property) {
+    return ((char *) this) + property.get_offset();
   }
 }
 

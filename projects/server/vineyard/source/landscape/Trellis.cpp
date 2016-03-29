@@ -1,3 +1,4 @@
+#include <vineyard/Seed.h>
 #include "Trellis.h"
 #include "vineyard/Ground.h"
 
@@ -13,7 +14,7 @@ namespace landscape {
       properties[i++].set_trellis(*this);
     }
 
-    block_size = 0;
+    block_size = sizeof(vineyard::Seed);
     for (auto &property : properties) {
       property.set_offset(block_size);
       block_size += property.get_info().size;

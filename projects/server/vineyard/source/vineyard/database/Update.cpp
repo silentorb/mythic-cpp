@@ -9,7 +9,7 @@ namespace vineyard {
     const string get_sql_value(const Property &property, void *value) {
       switch (property.get_type()) {
         case Types::string:
-          return string("'") + **(string **) value + "'";
+          return string("'") + *(string *) value + "'";
 
         case Types::integer:
           return to_string(*(int *) value);
@@ -18,12 +18,12 @@ namespace vineyard {
           return to_string(*(vineyard::Identity *) value);
 
         case Types::reference: {
-          auto pointer = (void**) value;
-          if (!*pointer)
-            return "NULL";
+          auto seed = *(Seed **) value;
+					if (!seed)
+						return "NULL";
 
-          auto seed = (Seed *) *pointer;
-          return to_string(*(vineyard::Identity *) seed->get_value<vineyard::Identity>(0));
+					auto id = seed->get_value<vineyard::Identity>(0);
+          return to_string(id);
         }
 
         default:
@@ -57,7 +57,8 @@ namespace vineyard {
         auto &property = properties[i];
 
         field_names += property.get_name();
-        values += get_sql_value(property, seed.get_pointer(property));
+				auto value = seed.get_pointer(property);
+        values += get_sql_value(property, value);
       }
 
       string sql = "REPLACE INTO " + trellis.get_name() + "(" + field_names + ")"
