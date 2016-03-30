@@ -86,7 +86,8 @@ namespace archaeology {
           auto &material = materials[material_id];
 
           auto index_string = polygon_list.child("p").first_child().value();
-          auto indices = textual::split(index_string, ' ');
+          vector<string> indices;
+          textual::split(index_string, ' ', indices);
 
           int step = 0;
           for (auto count_string : counts) {

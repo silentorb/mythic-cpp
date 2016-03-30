@@ -22,17 +22,14 @@ namespace textual {
     return result;
   }
 
-  vector<string> &split(const string &input, char delimiter, vector<string> &elements) {
+  void split(const string &input, char delimiter, vector<string> &elements) {
     stringstream stream(input);
     string item;
 
     while (getline(stream, item, delimiter)) {
       elements.push_back(item);
     }
-
-    return elements;
   }
-
 
   vector<string> split(const std::string &input, char delimiter) {
     vector<string> elements;
