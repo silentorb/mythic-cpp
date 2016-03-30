@@ -19,7 +19,7 @@ namespace landscape {
   class MYTHIC_EXPORT Trellis {
       const string name;
       vector<Property> properties;
-      int block_size;
+      int offset;
 
   public:
       Trellis(const string &name, initializer_list<Property> initializer);
@@ -51,7 +51,7 @@ namespace landscape {
       }
 
       int get_block_size()const {
-        return block_size;
+        return offset;
       }
 
       void finalize(Ground & ground);

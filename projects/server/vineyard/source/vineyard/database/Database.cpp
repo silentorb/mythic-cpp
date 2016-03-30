@@ -18,6 +18,9 @@ namespace vineyard {
 
       auto first = true;
       for (auto &property : trellis.get_properties()) {
+				if (property.get_type() == Types::list)
+					continue;
+
         if (!first)
           sql += ",\n";
 

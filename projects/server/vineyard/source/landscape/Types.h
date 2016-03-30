@@ -7,6 +7,7 @@ namespace landscape {
       longer,
       floating,
       string,
+      boolean,
       reference,
       list
   };

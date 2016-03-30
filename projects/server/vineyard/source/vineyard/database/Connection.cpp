@@ -8,6 +8,8 @@
 namespace vineyard {
   namespace database {
 
+    sqlite3 *static_handle = nullptr;
+
     Connection::Connection(Database *database) {
       check(sqlite3_open(database->get_filename().c_str(), &handle), "opening database file");
     }

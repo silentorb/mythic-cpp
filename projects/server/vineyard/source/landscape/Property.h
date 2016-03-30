@@ -6,20 +6,29 @@
 
 using namespace std;
 
-
 namespace landscape {
 
   class Trellis;
+
+  enum class List_Type {
+      none,
+      value,
+      pointer,
+      unique_ptr
+  };
 
   class MYTHIC_EXPORT Property {
       const string name;
       Trellis *trellis;
       Types type;
       Trellis *other_trellis = nullptr;
+      const string other_trellis_name;
       int offset = -1;
+      List_Type list_type;
 
   public:
-      Property(const string &name, Types type);
+      Property(const string &name, Types type, const string other_trellis_name = "",
+               List_Type list_type = List_Type::none);
 
       const string &get_name() const {
         return name;
@@ -33,7 +42,7 @@ namespace landscape {
         this->trellis = &trellis;
       }
 
-      void set_other_trellis(Trellis* other_trellis) {
+      void set_other_trellis(Trellis *other_trellis) {
         this->other_trellis = other_trellis;
       }
 
@@ -55,5 +64,12 @@ namespace landscape {
 
       const Type_Info &get_info() const;
 
+      const string &get_other_trellis_name() const {
+        return other_trellis_name;
+      }
+
+      List_Type get_list_type() const {
+        return list_type;
+      }
   };
 }

@@ -8,7 +8,8 @@ namespace landscape {
     {"INTEGER", sizeof(vineyard::Identity)},
     {"REAL",    sizeof(float)},
     {"STRING",  sizeof(std::string)},
-    {"INTEGER", sizeof(vineyard::Identity)}
+    {"INTEGER", sizeof(bool)},
+    {"INTEGER", sizeof(void*)}
   };
 
   Type_Info &get_type_info(Types type) {

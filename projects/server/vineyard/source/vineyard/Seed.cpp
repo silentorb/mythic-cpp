@@ -1,3 +1,4 @@
+#include <vineyard/database/Connection.h>
 #include "Seed.h"
 #include "Ground.h"
 #include "database/Update.h"
@@ -7,12 +8,10 @@ using namespace landscape;
 
 namespace vineyard {
 
-  Seed::Seed(Ground &ground, Trellis &trellis) :
+  Seed::Seed(Ground *ground, Trellis *trellis) :
     ground(ground), trellis(trellis) {
-    auto buffer = new char[trellis.get_block_size()];
+//    auto buffer = new char[trellis.get_block_size()];
 //    data = unique_ptr<char>(buffer);
-
-    *(vineyard::Identity *) (this + 1) = 0;
 
 //    for (auto &property : trellis.get_properties()) {
 //      initialize_field(buffer + property.get_offset(), property);
@@ -20,12 +19,12 @@ namespace vineyard {
   }
 
   Seed::~Seed() {
-    for (auto &property : trellis.get_properties()) {
-      if (property.get_type() == Types::string) {
-        string *field = (string *) ((char *) this) + property.get_offset();
-        delete field;
-      }
-    }
+//    for (auto &property : trellis.get_properties()) {
+//      if (property.get_type() == Types::string) {
+//        string *field = (string *) get_data() + property.get_offset();
+//        delete field;
+//      }
+//    }
   }
 
   void Seed::initialize_field(void *pointer, const Property &property) {
@@ -57,16 +56,20 @@ namespace vineyard {
 
   void Seed::save() {
 //    update_property(ground.get_database(), trellis, property,);
-    update_seed(ground.get_database(), *this);
+    database::Connection connection(ground->get_database());
+    update_seed(connection, *this);
   }
 
   void Seed::save_property(const landscape::Property &property, void *value) {
-    update_property(ground.get_database(), trellis, property, value);
+    update_property(ground->get_database(), *this, property, value);
   }
 
   void Seed::save_property(int index) {
-    auto &property = trellis.get_property(index);
-    update_property(ground.get_database(), trellis, property, get_pointer(property));
+    if (initializing)
+      return;
+
+    auto &property = trellis->get_property(index);
+    update_property(ground->get_database(), *this, property, get_pointer(property));
   }
 
   void *Seed::get_pointer(const Property &property) {

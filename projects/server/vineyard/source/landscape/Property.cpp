@@ -3,24 +3,8 @@
 
 namespace landscape {
 
-  Property::Property(const string &name, Types type) :
-    name(name), type(type) {
-//    if (byte_size > 0)
-//      this->byte_size = byte_size;
-//    else {
-//      switch (type) {
-//        case Types::string:
-//          this->byte_size = sizeof(void *);
-//          break;
-//
-//        case Types::integer:
-//          this->byte_size = sizeof(int);
-//          break;
-//
-//        default:
-//          throw runtime_error("Not implemented.");
-//      }
-//    }
+  Property::Property(const string &name, Types type, const string other_trellis_name, List_Type list_type) :
+    name(name), type(type), other_trellis_name(other_trellis_name), list_type(list_type) {
 
   }
 

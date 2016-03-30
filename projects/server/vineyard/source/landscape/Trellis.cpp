@@ -14,17 +14,17 @@ namespace landscape {
       properties[i++].set_trellis(*this);
     }
 
-    block_size = sizeof(vineyard::Seed);
+    offset = sizeof(vineyard::Seed) - sizeof(Identity);
     for (auto &property : properties) {
-      property.set_offset(block_size);
-      block_size += property.get_info().size;
+      property.set_offset(offset);
+      offset += property.get_info().size;
     }
   }
 
   void Trellis::finalize(Ground & ground) {
     for (auto &property : properties) {
-      if (property.get_type() == Types::reference) {
-        property.set_other_trellis(&ground.get_trellis(property.get_name()));
+      if (property.get_type() == Types::reference || property.get_type() == Types::list) {
+        property.set_other_trellis(&ground.get_trellis(property.get_other_trellis_name()));
       }
     }
   }
