@@ -45,7 +45,7 @@ namespace vineyard {
       connection.execute(sql);
     }
 
-    void update_seed(Connection & connection, Seed &seed) {
+    void update_seed(Connection &connection, Seed &seed) {
       string field_names;
       string values;
       auto &trellis = seed.get_trellis();
@@ -95,7 +95,7 @@ namespace vineyard {
     }
 
     void update_list(Connection &connection, Seed &seed, const Property &property) {
-      switch(property.get_list_type()) {
+      switch (property.get_list_type()) {
         case List_Type::value:
 
           break;
@@ -105,5 +105,11 @@ namespace vineyard {
       }
     }
 
+    void remove_seed(database::Connection &connection, Seed &seed) {
+      string sql = "DELETE FROM " + seed.get_trellis().get_name()
+                   + " WHERE id = " + to_string(seed.get_id()) + ";";
+
+      connection.execute(sql);
+    }
   }
 }

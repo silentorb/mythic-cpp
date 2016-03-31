@@ -82,6 +82,8 @@ namespace vineyard {
         save();
       }
 
+      void remove();
+
       const landscape::Trellis &get_trellis() const {
         return *trellis;
       }

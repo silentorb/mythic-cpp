@@ -25,6 +25,8 @@ namespace vineyard {
 //        delete field;
 //      }
 //    }
+
+    remove();
   }
 
   void Seed::initialize_field(void *pointer, const Property &property) {
@@ -74,6 +76,11 @@ namespace vineyard {
 
   void *Seed::get_pointer(const Property &property) {
     return ((char *) this) + property.get_offset();
+  }
+
+  void Seed::remove() {
+    database::Connection connection(*ground);
+    remove_seed(connection, *this);
   }
 }
 
