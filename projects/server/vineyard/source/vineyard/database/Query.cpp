@@ -2,6 +2,7 @@
 #include "Query.h"
 #include "Statement.h"
 #include "Connection.h"
+#include "Connection.h"
 
 using namespace landscape;
 
@@ -110,6 +111,17 @@ namespace vineyard {
         initializer(seed);
       }
     }
+
+
+    int query_integer(Ground &ground, const string &sql) {
+      Connection connection(ground);
+      {
+        Statement statement(sql, connection);
+        statement.step();
+        return sqlite3_column_int(statement.get_handle(), 0);
+      }
+    }
+
 
   }
 }

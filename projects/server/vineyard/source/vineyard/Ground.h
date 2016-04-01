@@ -28,6 +28,8 @@ namespace vineyard {
       void query_trellis(landscape::Trellis &trellis, Seed_Initializer &initializer,
                                 Seed_Creator &creator);
 
+      bool _writing_enabled = true;
+
   public:
       Ground(const string &filename, initializer_list<landscape::Trellis *> initializer);
       ~Ground();
@@ -50,6 +52,14 @@ namespace vineyard {
       void query_trellis(landscape::Trellis &trellis, Seed_Initializer initializer) {
         Seed_Creator creator = []() { return new T(); };
         query_trellis(trellis, initializer, creator);
+      }
+
+      bool is_writing_enabled() const {
+        return _writing_enabled;
+      }
+
+      void set_writing_enabled(bool _writing_enabled) {
+        Ground::_writing_enabled = _writing_enabled;
       }
   };
 }

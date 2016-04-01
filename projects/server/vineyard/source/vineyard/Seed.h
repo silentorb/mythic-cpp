@@ -77,14 +77,7 @@ namespace vineyard {
 //        }
       }
 
-      void finalize() {
-//#define SPACEGAME_SKIP_SAVE
-#ifdef SPACEGAME_SKIP_SAVE
-        return;
-#endif
-        initializing = false;
-        save();
-      }
+      void finalize();
 
       void remove();
 

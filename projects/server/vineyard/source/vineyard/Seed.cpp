@@ -28,6 +28,18 @@ namespace vineyard {
     remove();
   }
 
+  void Seed::finalize() {
+    if(!  initializing)
+      throw runtime_error("Seed cannot be finalized twice.");
+
+//#define SPACEGAME_SKIP_SAVE
+#ifdef SPACEGAME_SKIP_SAVE
+    return;
+#endif
+    initializing = false;
+    save();
+  }
+
   void Seed::initialize_field(void *pointer, const Property &property) {
 //    switch (property.get_type()) {
 //
@@ -56,20 +68,23 @@ namespace vineyard {
   }
 
   void Seed::save() {
+    if (!ground->is_writing_enabled())
+      return;
+
 //    update_property(ground.get_database(), trellis, property,);
     database::Connection connection(ground->get_database());
     update_seed(connection, *this);
   }
 
   void Seed::save_property(const landscape::Property &property, void *value) {
-    if (initializing)
+    if (initializing || !ground->is_writing_enabled())
       return;
 
     update_property(ground->get_database(), *this, property, value);
   }
 
   void Seed::save_property(int index) {
-    if (initializing)
+    if (initializing || !ground->is_writing_enabled())
       return;
 
     auto &property = trellis->get_property(index);
@@ -81,6 +96,9 @@ namespace vineyard {
   }
 
   void Seed::remove() {
+    if (!ground->is_writing_enabled())
+      return;
+
     database::Connection connection(*ground);
     remove_seed(connection, *this);
   }

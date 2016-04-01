@@ -59,7 +59,6 @@ namespace vineyard {
     throw runtime_error("Could not find trellis named " + trellis_name + ".");
   }
 
-
   void Ground::query_trellis(landscape::Trellis &trellis,
                            Seed_Initializer &initializer, Seed_Creator &creator) {
     database::Connection connection(*this);

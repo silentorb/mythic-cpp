@@ -29,7 +29,11 @@ namespace vineyard {
           if (!seed)
             return "NULL";
 
-          return to_string(seed->get_id());
+          auto id =seed->get_id();
+          if(!  id)
+            throw runtime_error("Seed::id cannot be 0.");
+
+          return to_string(id);
         }
 
         default:
