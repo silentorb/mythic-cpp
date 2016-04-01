@@ -2,8 +2,12 @@
 
 #include "dllexport.h"
 
+namespace aura {
+  class Speaker;
+}
 namespace haft {
   class Input_Source;
+
   class Input_Configuration;
 }
 
@@ -23,7 +27,8 @@ namespace mythic {
   public:
       virtual Frame *create_frame(int width, int height) = 0;
       virtual shading::Shader_Loader *create_shader_loader() = 0;
-      virtual haft::Input_Source *create_input_source(haft::Input_Configuration & config) = 0;
+      virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) = 0;
+      virtual aura::Speaker *create_speaker() = 0;
   };
 
 }

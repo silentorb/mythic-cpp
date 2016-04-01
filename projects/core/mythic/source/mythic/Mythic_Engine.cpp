@@ -11,7 +11,7 @@ namespace mythic {
   Mythic_Engine::Mythic_Engine(Platform_Factory &factory,int width, int height) {
 
     auto house = new lookinglass::House(factory.create_frame(width, height), factory.create_shader_loader());
-    client = new Client(house);
+    client = new Client(house, factory.create_speaker());
 
     auto &input_manager = client->get_input_manager();
     auto input_source = factory.create_input_source(input_manager.get_config());

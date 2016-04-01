@@ -18,6 +18,11 @@ namespace haft {
   class Input_Source;
 }
 
+namespace aura {
+  class Player;
+  class Speaker;
+}
+
 using namespace haft;
 
 namespace clienting {
@@ -25,10 +30,11 @@ namespace clienting {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
+      unique_ptr<aura::Player> audio;
       bool _is_closing;
 
   public:
-      Client(House *house);
+      Client(House *house, aura::Speaker* speaker);
 
       ~Client();
 

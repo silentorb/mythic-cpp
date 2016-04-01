@@ -50,7 +50,9 @@ include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/server/substance)
 add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/haft)
+add_subdirectory(projects/client/aura/aura_player)
 add_subdirectory(projects/client/client)
+
 add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/server/vineyard)
 
