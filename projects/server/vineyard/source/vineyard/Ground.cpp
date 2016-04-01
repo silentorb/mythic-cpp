@@ -4,7 +4,7 @@
 #include "database/Connection.h"
 #include <fstream>
 #include "Seed.h"
-#include <cstdio>
+#include <vineyard/database/Query.h>
 
 namespace vineyard {
   using namespace database;
@@ -19,12 +19,10 @@ namespace vineyard {
       trellis->finalize(*this);
     }
 
-//    if (ifstream(filename))
-//      remove(filename.c_str());
-
-//    if (!ifstream(filename))
-    initialize();
-
+    if (!ifstream(filename)) {
+      _file_existed = false;
+      initialize();
+    }
   }
 
   Ground::~Ground() { }
@@ -53,7 +51,7 @@ namespace vineyard {
   }
 
   landscape::Trellis &Ground::get_trellis(const string &trellis_name) const {
-    for(auto &trellis: trellises) {
+    for (auto &trellis: trellises) {
       if (trellis->get_name() == trellis_name)
         return *trellis;
     }
@@ -62,4 +60,9 @@ namespace vineyard {
   }
 
 
+  void Ground::query_trellis(landscape::Trellis &trellis,
+                           Seed_Initializer &initializer, Seed_Creator &creator) {
+    database::Connection connection(*this);
+    database::query_trellis(connection, trellis, initializer, creator);
+  }
 }

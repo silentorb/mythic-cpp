@@ -2,7 +2,6 @@
 #include "Seed.h"
 #include "Ground.h"
 #include "database/Update.h"
-#include "identity.h"
 
 using namespace landscape;
 
@@ -63,6 +62,9 @@ namespace vineyard {
   }
 
   void Seed::save_property(const landscape::Property &property, void *value) {
+    if (initializing)
+      return;
+
     update_property(ground->get_database(), *this, property, value);
   }
 

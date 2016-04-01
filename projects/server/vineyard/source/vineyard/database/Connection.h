@@ -9,7 +9,8 @@ using namespace std;
 namespace vineyard {
 
   class Static_Connection;
-class Transaction;
+
+  class Transaction;
 
   class Ground;
 
@@ -17,8 +18,11 @@ class Transaction;
 
     class Database;
 
+    class Statement;
+
     class Connection {
         friend class vineyard::Static_Connection;
+
         friend class vineyard::Transaction;
 
         sqlite3 *handle;
@@ -33,7 +37,7 @@ class Transaction;
         Connection(Database *database);
         Connection(Database &database);
         Connection(std::unique_ptr<Database> &database);
-        Connection(Ground & ground);
+        Connection(Ground &ground);
         ~Connection();
 
         void execute(const string &sql);
@@ -43,6 +47,9 @@ class Transaction;
           return handle;
         }
 
+        void add_statement(const string &key, shared_ptr<Statement> &statement);
+        void remove_statement(const string &key);
+        shared_ptr<Statement> get_statement(const string &key);
     };
   }
 }

@@ -5,9 +5,11 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <functional>
 
 namespace vineyard {
   class Ground;
+  class Seed;
 }
 
 using namespace std;
@@ -15,14 +17,16 @@ using namespace vineyard;
 
 namespace landscape {
 
+  typedef function<Seed*(int)> Seedery;
 
   class MYTHIC_EXPORT Trellis {
       const string name;
       vector<Property> properties;
       int offset;
+      Seedery seedery;
 
   public:
-      Trellis(const string &name, initializer_list<Property> initializer);
+      Trellis(const string &name, initializer_list<Property> initializer, Seedery seedery);
 
 
       const string &get_name() const {
@@ -55,5 +59,9 @@ namespace landscape {
       }
 
       void finalize(Ground & ground);
+
+      Seed* find_seed(int id) const {
+        return seedery(id);
+      }
   };
 }

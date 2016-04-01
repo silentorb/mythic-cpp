@@ -78,6 +78,10 @@ namespace vineyard {
       }
 
       void finalize() {
+//#define SPACEGAME_SKIP_SAVE
+#ifdef SPACEGAME_SKIP_SAVE
+        return;
+#endif
         initializing = false;
         save();
       }
@@ -98,6 +102,10 @@ namespace vineyard {
 
       char *get_data() {
         return ((char *) this) + sizeof(Seed) - sizeof(Identity);
+      }
+
+      static void set_initializing(Seed &seed) {
+        seed.initializing = false;
       }
   };
 

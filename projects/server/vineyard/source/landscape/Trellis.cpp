@@ -4,8 +4,8 @@
 
 namespace landscape {
 
-  Trellis::Trellis(const string &name, initializer_list<Property> initializer) :
-    name(name) {
+  Trellis::Trellis(const string &name, initializer_list<Property> initializer, Seedery seedery) :
+    name(name), seedery(seedery) {
 
     properties.push_back(Property("id", Types::longer));
     int i = 0;
