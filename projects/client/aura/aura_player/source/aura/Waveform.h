@@ -2,6 +2,7 @@
 #include "dllexport.h"
 #include <memory>
 #include "resourceful/Resource.h"
+#include <string>
 
 using namespace std;
 
