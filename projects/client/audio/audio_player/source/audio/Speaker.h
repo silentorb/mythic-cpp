@@ -1,9 +1,10 @@
 #pragma once
 
 #include "dllexport.h"
+#include "Device_Settings.h"
 #include <cstdint>
 
-namespace aura {
+namespace audio {
 
   class Player;
 
@@ -11,8 +12,9 @@ namespace aura {
       Player *player;
 
   public:
-      virtual void start() = 0;
+      virtual Device_Settings start() = 0;
       virtual void stop() = 0;
+
       void update(uint8_t *data, int length);
 
       void set_player(Player *player) {

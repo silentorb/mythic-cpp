@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace aura {
+namespace audio {
 
     class MYTHIC_EXPORT Waveform: resourceful::Resource {
         virtual void load() override;

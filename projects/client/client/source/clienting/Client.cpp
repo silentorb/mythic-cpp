@@ -1,15 +1,15 @@
 #include "Client.h"
 #include "lookinglass/House.h"
 #include "haft/Input_Manager.h"
-#include <aura/Player.h>
+#include <audio/Player.h>
 
 namespace clienting {
 
-  Client::Client(House *house, aura::Speaker *speaker) :
+  Client::Client(House *house, audio::Speaker *speaker) :
     house(house),
     _is_closing(false),
     input_manager(new Input_Manager()),
-    audio(new aura::Player(speaker)) {
+    audio_player(new audio::Player(speaker)) {
   }
 
   Client::~Client() { }

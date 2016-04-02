@@ -11,15 +11,16 @@ namespace desktop {
     speaker->update(stream, len);
   }
 
-  void Desktop_Speaker::start() {
+  audio::Device_Settings Desktop_Speaker::start() {
     SDL_InitSubSystem(SDL_INIT_AUDIO);
-    SDL_AudioSpec want, have;
+    SDL_AudioSpec want;
 
     SDL_memset(&want, 0, sizeof(want)); /* or SDL_zero(want) */
-    want.freq = 48000;
+    want.freq = 44100;
     want.format = AUDIO_F32;
     want.channels = 2;
     want.samples = 4096;
+//    want.samples = 4096;
     want.callback = audio_callback;  // you wrote this function elsewhere.
     want.userdata = this;
 
@@ -34,11 +35,15 @@ namespace desktop {
 //      SDL_Delay(5000);  // let the audio callback play some sound for 5 seconds.
     }
 
+    return {
+      have.freq,
+      have.samples,
+      have.channels
+    };
   }
 
   void Desktop_Speaker::stop() {
     SDL_CloseAudioDevice(device);
   }
-
 
 }

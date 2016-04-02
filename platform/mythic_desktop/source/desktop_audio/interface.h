@@ -1,3 +1,3 @@
 #pragma once
 
-aura::Speaker* desktop_create_speaker();
+audio::Speaker* desktop_create_speaker();

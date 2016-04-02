@@ -18,7 +18,7 @@ namespace haft {
   class Input_Source;
 }
 
-namespace aura {
+namespace audio {
   class Player;
   class Speaker;
 }
@@ -30,11 +30,11 @@ namespace clienting {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
-      unique_ptr<aura::Player> audio;
+      unique_ptr<audio::Player> audio_player;
       bool _is_closing;
 
   public:
-      Client(House *house, aura::Speaker* speaker);
+      Client(House *house, audio::Speaker* speaker);
 
       ~Client();
 
@@ -59,5 +59,9 @@ namespace clienting {
 
       void free();
       void load();
+
+      audio:: Player & get_audio_player()const {
+        return *audio_player;
+      }
   };
 }

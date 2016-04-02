@@ -1,5 +1,5 @@
 #include <desktop/Desktop_Input.h>
-#include <aura/Speaker.h>
+#include <audio/Speaker.h>
 #include "Desktop.h"
 #include "desktop/Desktop_Frame.h"
 #include "desktop/Desktop_Shader_Loader.h"
@@ -28,7 +28,7 @@ namespace desktop {
     return new Desktop_Input(config);
   }
 
-  aura::Speaker *Desktop::create_speaker() {
+  audio::Speaker *Desktop::create_speaker() {
     return desktop_create_speaker();
   }
 

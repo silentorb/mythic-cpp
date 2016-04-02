@@ -1,6 +1,6 @@
 #include "Waveform.h"
 
-namespace aura {
+namespace audio {
 
   Waveform::Waveform(const string &filename) :
     filename(filename) {

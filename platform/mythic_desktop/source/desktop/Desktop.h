@@ -19,7 +19,7 @@ namespace desktop {
       unique_ptr<Mythic_Engine> engine;
 
   public:
-      virtual aura::Speaker *create_speaker() override;
+      virtual audio::Speaker *create_speaker() override;
       Desktop(const char *title, int width, int height);
 
       virtual Frame *create_frame(int width, int height) override;

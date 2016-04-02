@@ -2,7 +2,7 @@
 #include "dllexport.h"
 #include "Waveform.h"
 
-namespace aura {
+namespace audio {
 
   struct MYTHIC_EXPORT Sound {
       Waveform & waveform;

@@ -1,4 +1,4 @@
 
 create_library(client)
 
-require(lookinglass haft resourceful aura_player)
+require(lookinglass haft resourceful audio_player)
