@@ -1,7 +1,8 @@
 #pragma once
 
-#include <aura/conductor/Buffer.h>
+#include <aura/engineer/Buffer.h>
 #include "dllexport.h"
+#include <functional>
 
 namespace aura {
   class Note;
@@ -31,4 +32,6 @@ namespace aura {
         return progress >= duration;
       }
   };
+
+  typedef std::function<Stroke *(const Note &note)> Stroke_Generator;
 }

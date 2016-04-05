@@ -1,19 +1,19 @@
 #pragma once
 
-#include <aura/conductor/Buffer.h>
+#include <aura/engineer/Buffer.h>
 #include "dllexport.h"
 #include "Loop.h"
 
 namespace aura {
-  class Conductor;
+  class Engineer;
 
   class MYTHIC_EXPORT Oscillator {
       Loop loop;
       Loop_Function operation;
-      Conductor & conductor;
+      Engineer & engineer;
 
   public:
-      Oscillator(Conductor &conductor, float frequency, Loop_Function operation);
+      Oscillator(Engineer &engineer, float frequency, Loop_Function operation);
 
 //      void update(Buffer & buffer);
       float update();

@@ -5,7 +5,7 @@
 namespace aura {
   class Buffer_Manager;
 
-  class Conductor;
+  class Engineer;
 
   class MYTHIC_EXPORT Buffer {
       float *data;
@@ -13,7 +13,7 @@ namespace aura {
       const int _size;
 
   public:
-      Buffer(Conductor &conductor);
+      Buffer(Engineer &engineer);
       Buffer(float *data, int buffer_size);
       Buffer(unsigned char *data, int buffer_size);
 

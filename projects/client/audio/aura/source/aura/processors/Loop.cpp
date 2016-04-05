@@ -1,11 +1,11 @@
 #include "Loop.h"
 #include <cmath>
 #include <iostream>
-#include "aura/conductor/Conductor.h"
+#include "aura/engineer/Engineer.h"
 
 namespace aura {
 
-  Loop::Loop(Conductor & conductor, double frequency) :
+  Loop::Loop(Engineer & conductor, double frequency) :
 	frequency(frequency),
   sample_rate(conductor.get_sample_rate()) {
     increment = frequency / sample_rate;

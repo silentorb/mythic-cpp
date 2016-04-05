@@ -1,12 +1,12 @@
 #include "Buffer.h"
-#include "Conductor.h"
+#include "Engineer.h"
 
 namespace aura {
 
 
-  Buffer::Buffer(Conductor &conductor) :
-    manager(&conductor.get_buffer_manager()),
-    _size(conductor.get_buffer_byte_size() / sizeof(float)) {
+  Buffer::Buffer(Engineer &engineer) :
+    manager(&engineer.get_buffer_manager()),
+    _size(engineer.get_buffer_byte_size() / sizeof(float)) {
     data = (float*)manager->push();
   }
 

@@ -11,5 +11,4 @@ namespace aura {
 //      virtual Stroke *create_stroke(const Note &note) = 0;
 //  };
 
-  typedef std::function<Stroke *(const Note &note)> Stroke_Generator;
 }

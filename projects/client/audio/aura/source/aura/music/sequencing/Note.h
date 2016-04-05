@@ -27,5 +27,8 @@ namespace aura {
         return frequency;
       }
 
+      const Pitch *get_pitch() const {
+        return pitch;
+      }
   };
 }

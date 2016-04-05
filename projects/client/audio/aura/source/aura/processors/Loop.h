@@ -4,7 +4,7 @@
 
 namespace aura {
 
-  class Conductor;
+  class Engineer;
 
   const float default_frequency = 440;
 
@@ -21,7 +21,7 @@ namespace aura {
         frequency(frequency),
         increment(frequency / sample_rate), sample_rate(sample_rate) { }
 
-      Loop(Conductor &conductor, double frequency = default_frequency);
+      Loop(Engineer &conductor, double frequency = default_frequency);
 
       float next();
       float next(int cycles);
@@ -35,8 +35,12 @@ namespace aura {
         increment = frequency / sample_rate;
       }
 
-      float get_position() const {
+      double get_position() const {
         return position;
+      }
+
+      void set_position(double value) {
+        position = value;
       }
   };
 }

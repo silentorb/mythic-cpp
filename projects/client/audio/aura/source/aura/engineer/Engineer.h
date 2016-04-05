@@ -12,15 +12,14 @@ using namespace std;
 
 namespace aura {
 
-  class MYTHIC_EXPORT Conductor {
+  class MYTHIC_EXPORT Engineer {
       int sample_rate;
       int buffer_size;
       unsigned char channel_count;
       Buffer_Manager buffer_manager;
 
   public:
-
-      Conductor(const audio::Device_Settings &device_settings);
+      Engineer(const audio::Device_Settings &device_settings);
 
       int get_sample_rate() const {
         return sample_rate;
@@ -39,7 +38,7 @@ namespace aura {
       }
 
       float bytes_to_seconds(int byte_count) {
-        return (float)byte_count / sizeof(float) / sample_rate / channel_count;
+        return (float) byte_count / sizeof(float) / sample_rate / channel_count;
       }
 
       int bytes_to_samples(int byte_count) {
