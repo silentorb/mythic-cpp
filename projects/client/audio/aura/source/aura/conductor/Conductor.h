@@ -20,13 +20,13 @@ namespace aura {
 
   public:
 
-      Conductor(audio::Device_Settings &device_settings);
+      Conductor(const audio::Device_Settings &device_settings);
 
       int get_sample_rate() const {
         return sample_rate;
       }
 
-      int get_buffer_size() const {
+      int get_buffer_byte_size() const {
         return buffer_size;
       }
 
@@ -36,6 +36,14 @@ namespace aura {
 
       Buffer_Manager &get_buffer_manager() {
         return buffer_manager;
+      }
+
+      float bytes_to_seconds(int byte_count) {
+        return (float)byte_count / sizeof(float) / sample_rate / channel_count;
+      }
+
+      int bytes_to_samples(int byte_count) {
+        return byte_count / sizeof(float) / channel_count;
       }
   };
 }

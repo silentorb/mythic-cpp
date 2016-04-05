@@ -33,5 +33,9 @@ namespace audio {
       void set_source(Signal_Source source) {
         this->source = source;
       }
+
+      const Device_Settings &get_device_settings() const {
+        return device_settings;
+      }
   };
 }

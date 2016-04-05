@@ -8,12 +8,14 @@ namespace aura {
   class Conductor;
 
   class MYTHIC_EXPORT Buffer {
-      unsigned char *data;
-      Buffer_Manager &manager;
+      float *data;
+      Buffer_Manager *manager;
       const int _size;
 
   public:
       Buffer(Conductor &conductor);
+      Buffer(float *data, int buffer_size);
+      Buffer(unsigned char *data, int buffer_size);
 
       ~Buffer();
 
@@ -21,7 +23,7 @@ namespace aura {
         return _size;
       }
 
-      unsigned char *get() const {
+      float *get() const {
         return data;
       }
   };
