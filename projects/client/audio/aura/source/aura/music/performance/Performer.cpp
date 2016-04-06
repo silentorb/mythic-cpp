@@ -52,7 +52,9 @@ namespace aura {
         strokes.erase(strokes.begin() + i);
 //        std::cout << "Removed note" << std::endl;
       }
-      result = value;
+      else {
+        result += value;
+      }
     }
 
     return result;

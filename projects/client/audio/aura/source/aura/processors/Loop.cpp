@@ -27,4 +27,5 @@ namespace aura {
     position = fmod(position + increment * cycles, 1.0);
     return position;
   }
+
 }

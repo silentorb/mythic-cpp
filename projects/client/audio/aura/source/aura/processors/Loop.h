@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
+#include <functional>
 
 namespace aura {
 
@@ -8,7 +9,7 @@ namespace aura {
 
   const float default_frequency = 440;
 
-  typedef float (*Loop_Function)(float position);
+  typedef std::function<float(float position)> Loop_Function;
 
   class MYTHIC_EXPORT Loop {
       double position = 0;

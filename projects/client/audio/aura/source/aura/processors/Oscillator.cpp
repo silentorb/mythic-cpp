@@ -19,7 +19,8 @@ namespace aura {
 //  }
 
   float Oscillator::update() {
-    return sin(loop.next() * 2 * Pi);
+//    return sin(loop.next() * 2 * Pi);
+    return operation(loop.next());
   }
 
 }
