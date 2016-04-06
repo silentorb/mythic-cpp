@@ -44,10 +44,11 @@ namespace bloom {
     text->render();
   }
 
-  void Text_Flower::update_absolute_dimensions(Axis_Values parent_values, vec2 margin) {
+  void Text_Flower::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
 //    set_width(Simple_Measurement(40));
-    axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
-    axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+//    axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
+//    axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+    update_axis_cache(parent_values, margin);
 //    if (dimensions_changed) {
 //      dimensions_changed = false;
       text->set_max_width(axis_cache.x.length - get_padding() * 2);
@@ -57,8 +58,9 @@ namespace bloom {
       auto temp_y = dimensions.get_y_pointer();
       dimensions.set_x(Simple_Measurement(text_dimensions.x));
       dimensions.set_y(Simple_Measurement(text_dimensions.y));
-      axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
-      axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+//      axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
+//      axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+    update_axis_cache(parent_values, margin);
       dimensions.set_x(*temp_x);
       dimensions.set_y(*temp_y);
 //    }

@@ -4,6 +4,7 @@
 #include "Measurement.h"
 #include "glm/vec2.hpp"
 #include "Axis_Value.h"
+#include "perspective/unit_measurements.h"
 
 using namespace glm;
 
@@ -15,11 +16,11 @@ namespace bloom {
       float scale;
 
       void update_scale() {
-        auto longest = pixel_dimensions.x > pixel_dimensions.y
+        auto shortest = pixel_dimensions.x < pixel_dimensions.y
                        ? pixel_dimensions.x
                        : pixel_dimensions.y;
 
-        scale = longest / UNIT_RESOLUTION;
+        scale = shortest / UNIT_RESOLUTION;
 
         unit_dimensions = pixel_dimensions / scale;
       }
@@ -36,7 +37,7 @@ namespace bloom {
 //        );
 //      }
 
-      vec2 convert(const vec2 &position) const {
+      vec2 convert_to_pixels(const vec2 &position) const {
         return vec2(
           position.x * scale,
           position.y * scale

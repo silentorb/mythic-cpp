@@ -1,0 +1,14 @@
+#include "Stroke.h"
+#include "aura/music/sequencing/Note.h"
+
+namespace aura {
+
+  Stroke::Stroke(const Note &note) :
+    duration(note.get_duration()),
+    frequency(note.get_frequency()) { }
+
+  float Stroke::update(float delta) {
+    progress += delta;
+		return 0;
+  }
+}

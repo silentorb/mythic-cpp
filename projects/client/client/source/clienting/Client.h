@@ -18,6 +18,11 @@ namespace haft {
   class Input_Source;
 }
 
+namespace audio {
+  class Player;
+  class Speaker;
+}
+
 using namespace haft;
 
 namespace clienting {
@@ -25,10 +30,11 @@ namespace clienting {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
+      unique_ptr<audio::Player> audio_player;
       bool _is_closing;
 
   public:
-      Client(House *house);
+      Client(House *house, audio::Speaker* speaker);
 
       ~Client();
 
@@ -53,5 +59,9 @@ namespace clienting {
 
       void free();
       void load();
+
+      audio:: Player & get_audio_player()const {
+        return *audio_player;
+      }
   };
 }

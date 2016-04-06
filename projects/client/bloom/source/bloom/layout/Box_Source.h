@@ -131,7 +131,12 @@ namespace bloom {
     return result;
   }
 
-  void Box::update_absolute_dimensions(Axis_Values parent_values, vec2 margin) {
+  void Box::update_axis_cache(const Axis_Values &parent_values, const vec2 &margin) {
+    axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
+    axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+  }
+
+  void Box::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
 

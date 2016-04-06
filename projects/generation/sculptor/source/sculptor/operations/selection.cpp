@@ -11,7 +11,7 @@ namespace sculptor {
       if (selection.size() == 0)
         return nullptr;
 
-      return selection[0]->meshes[0];
+      return selection[0]->get_mesh();
     }
 
     Selection clone(const Selection &selection, const mat4 offset) {

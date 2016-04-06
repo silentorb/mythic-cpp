@@ -30,8 +30,6 @@ endif ()
 
 #add_subdirectory(projects/core/metahub)
 
-#start sub-projects
-
 add_subdirectory(projects/misc/logger)
 add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
@@ -52,9 +50,12 @@ include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/server/substance)
 add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/haft)
+add_subdirectory(projects/client/audio/audio_player)
+add_subdirectory(projects/client/audio/aura)
 add_subdirectory(projects/client/client)
+
 add_subdirectory(projects/generation/architect)
-#end sub-projects
+add_subdirectory(projects/server/vineyard)
 
 add_subdirectory(projects/core/mythic)
 

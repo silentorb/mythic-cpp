@@ -45,15 +45,7 @@ namespace bloom {
       Vector2 dimensions;
       const Measurement_Converter &converter;
       Arrangement arrangement = Arrangement::canvas;
-
       Axis_Values axis_cache;
-
-//      inline Measurement *get_properties() {
-//        return &dimensions.get_x();
-//      }
-
-//      template<typename Axis>
-//      Axis_Value get_parent_axis_values();
 
   public:
       int debug_id = 0;
@@ -160,7 +152,8 @@ namespace bloom {
 
       template<typename Axis>
       Axis_Value calculate_axis(const Axis_Value &parent_values, float margin) const;
-      virtual void update_absolute_dimensions(Axis_Values parent_values, vec2 margin = vec2(0));
+      void update_axis_cache(const Axis_Values &parent_values, const vec2 &margin);
+      virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin = vec2(0));
       virtual int get_child_count() const = 0;
       virtual Box &get_child_box(int index) const = 0;
 

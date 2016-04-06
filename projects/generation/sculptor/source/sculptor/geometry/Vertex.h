@@ -16,7 +16,8 @@ namespace sculptor {
 
         template<typename Iterator>
         Vertex(vec3 vector, Iterator new_meshes);
-        vector<Mesh *> meshes;
+//        vector<Mesh *> meshes;
+        Mesh *mesh;
         vector<Polygon *> polygons;
         vector<Edge *> edges;
         Edge *get_edge(Vertex *other);
@@ -27,6 +28,14 @@ namespace sculptor {
 
         void set_position(const vec3 &position) {
           this->position = position;
+        }
+
+        Mesh* get_mesh() const {
+          return mesh;
+        }
+
+        void set_mesh(Mesh *mesh) {
+          this->mesh = mesh;
         }
     };
   }

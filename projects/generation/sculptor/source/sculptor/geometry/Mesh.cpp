@@ -11,7 +11,7 @@ namespace sculptor {
 
     Vertex *Mesh::add_vertex(Vertex *vertex) {
       vertices.push_back(vertex);
-      vertex->meshes.push_back(this);
+      vertex->set_mesh(this);
       return vertex;
     }
 
@@ -24,14 +24,14 @@ namespace sculptor {
       polygon->meshes.push_back(this);
 
       for (auto vertex : polygon->vertices) {
-        if (!vector_contains(vertices, vertex))
+        if (vertex->get_mesh() != this)
           add_vertex(vertex);
       }
 
       for (auto edge : polygon->edges) {
-        if (!vector_contains(edges, edge)) {
+        if (edge->get_mesh() != this) {
           edges.push_back(edge);
-          edge->meshes.push_back(this);
+          edge->set_mesh(this);
         }
 //          add_edge(edge);
       }

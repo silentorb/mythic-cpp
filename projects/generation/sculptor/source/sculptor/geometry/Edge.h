@@ -1,13 +1,18 @@
 #pragma once
+
 #include "dllexport.h"
 #include <vectoring/utility.h>
 
 namespace sculptor {
   namespace geometry {
     class MYTHIC_EXPORT Edge {
+
+        void find_polygons();
+
     public:
         Edge(Vertex *first, Vertex *second);
-        vector<Mesh *> meshes;
+//        vector<Mesh *> meshes;
+        Mesh *mesh = nullptr;
         Vertex *vertices[2];
         vector<Polygon *> polygons;
         bool contains(Vertex *vertex);
@@ -37,6 +42,14 @@ namespace sculptor {
                 polygons.push_back(polygon);
             }
           }
+        }
+
+        Mesh *get_mesh() const {
+          return mesh;
+        }
+
+        void set_mesh(Mesh *mesh) {
+          Edge::mesh = mesh;
         }
     };
   }

@@ -89,8 +89,8 @@ namespace bloom {
 
   bool Flower::point_is_inside(const vec2 &point) {
     auto bounds = get_bounds();
-    auto top_left = converter.convert(bounds.get_position());
-    auto bottom_right = converter.convert(bounds.get_corner());
+    auto top_left = converter.convert_to_pixels(bounds.get_position());
+    auto bottom_right = converter.convert_to_pixels(bounds.get_corner());
 
     auto result = point.x > top_left.x
                   && point.y > top_left.y

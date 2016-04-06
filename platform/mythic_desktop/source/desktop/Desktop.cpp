@@ -1,9 +1,11 @@
 #include <desktop/Desktop_Input.h>
+#include <audio/Speaker.h>
 #include "Desktop.h"
 #include "desktop/Desktop_Frame.h"
 #include "desktop/Desktop_Shader_Loader.h"
 #include "logger.h"
 #include "clienting/Client.h"
+#include <desktop_audio/interface.h>
 
 using namespace lookinglass;
 
@@ -24,6 +26,10 @@ namespace desktop {
 
   haft::Input_Source *Desktop::create_input_source(haft::Input_Configuration & config) {
     return new Desktop_Input(config);
+  }
+
+  audio::Speaker *Desktop::create_speaker() {
+    return desktop_create_speaker();
   }
 
   const char * get_resource_path() {

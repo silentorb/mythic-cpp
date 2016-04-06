@@ -34,7 +34,7 @@ namespace bloom {
       void set_size(float value);
 
       virtual void render() override;
-      virtual void update_absolute_dimensions(Axis_Values parent_values, vec2 margin) override;
+      virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) override;
 
 
   };
