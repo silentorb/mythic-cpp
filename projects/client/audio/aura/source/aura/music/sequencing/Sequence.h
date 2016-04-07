@@ -28,7 +28,7 @@ namespace aura {
         return beats;
       }
 
-      float set_beats(float value) {
+      void set_beats(float value) {
         beats = value;
       }
 

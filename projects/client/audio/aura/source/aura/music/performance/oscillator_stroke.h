@@ -7,6 +7,6 @@
 
 namespace aura {
 
-  Stroke* create_oscillator_stroke(Engineer &engineer, const Note & note, Loop_Function operation);
+  MYTHIC_EXPORT Stroke *create_oscillator_stroke(Engineer &engineer, const Note &note, Loop_Function operation);
 
 }

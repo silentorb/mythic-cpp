@@ -79,7 +79,7 @@ namespace aura {
         std::cout << "Chord changed " << get_keyname(chord.chord.key) << std::endl;
         /* if (strokes.size() == 1)
            throw runtime_error("error");*/
-        conductor.set_chord(chord.chord);
+        conductor.set_chord(chord);
       }
     }
   }

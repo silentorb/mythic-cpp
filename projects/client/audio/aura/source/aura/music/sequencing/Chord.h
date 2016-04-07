@@ -12,6 +12,13 @@ namespace aura {
       augmented,
   };
 
+  enum class Transpose_Direction {
+      down,
+      up,
+      incidental,
+      nearest
+  };
+
   struct Chord {
       Key key;
       Chord_Type type;
@@ -23,9 +30,15 @@ namespace aura {
   struct Chord_Instance {
       Chord chord;
       float duration;
+      Transpose_Direction direction;
 
-      Chord_Instance(const Chord &chord, float duration = 1) : chord(chord), duration(duration) { }
-      Chord_Instance(Key key, Chord_Type type, float duration = 1) : chord(key, type), duration(duration) { }
+      Chord_Instance(const Chord &chord, float duration = 1,
+                     Transpose_Direction direction = Transpose_Direction::incidental) :
+        chord(chord), duration(duration), direction(direction) { }
+
+      Chord_Instance(Key key, Chord_Type type, float duration = 1,
+                     Transpose_Direction direction = Transpose_Direction::incidental) :
+        chord(key, type), duration(duration), direction(direction) { }
   };
 
   namespace chords {

@@ -34,7 +34,7 @@ namespace aura {
         return arpeggio->size();
       }
 
-      Pitch transpose(Pitch &pitch, const Chord &chord);
+      Pitch transpose(Pitch &pitch, const Chord_Instance &chord);
 
       virtual const Note &get_note(int index, Conductor &conductor) override;
 

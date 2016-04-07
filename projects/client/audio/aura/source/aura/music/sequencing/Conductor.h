@@ -7,22 +7,22 @@
 namespace aura {
 
   class MYTHIC_EXPORT Conductor {
-      Chord chord;
+      Chord_Instance chord;
       float tempo = 120;
       Time_Signature time_signature;
 
   public:
 
-      Conductor(const Chord &chord) :
+      Conductor(const Chord_Instance &chord) :
         chord(chord), time_signature({4, 4}) { }
 
       Conductor() : Conductor(Chord(Key::C)) { }
 
-      const Chord &get_chord() const {
+      const Chord_Instance &get_chord() const {
         return chord;
       }
 
-      void set_chord(const Chord chord) {
+      void set_chord(const Chord_Instance chord) {
         this->chord = chord;
       }
 

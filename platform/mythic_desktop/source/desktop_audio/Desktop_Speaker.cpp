@@ -8,7 +8,7 @@ namespace desktop {
 
   void audio_callback(void *userdata, Uint8 *stream, int len) {
     auto speaker = (Desktop_Speaker*)userdata;
-    speaker->update(stream, len);
+    speaker->update((float*)stream, len);
   }
 
   audio::Device_Settings Desktop_Speaker::start() {

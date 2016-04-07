@@ -2,10 +2,19 @@
 
 namespace aura {
 
-  Pitch Arpeggio_Sequencer::transpose(Pitch &pitch, const Chord &chord) {
-    int offset = static_cast<int>(chord.key) - static_cast<int>(Key::C);
+  Pitch Arpeggio_Sequencer::transpose(Pitch &pitch, const Chord_Instance &chord) {
+    const int baseline =  static_cast<int>(Key::C);
+    const int original = static_cast<int>(chord.chord.key);
+    int offset = original - baseline;
+
+    if (chord.direction == Transpose_Direction::down) {
+      if (original > baseline)
+      offset -= 12;
+    }
+
+//    int offset = static_cast<int>(chord.key) - static_cast<int>(Key::C);
     auto index = pitch.index + offset;
-    if (chord.type == Chord_Type::minor && pitch.key == Key::E) {
+    if (chord.chord.type == Chord_Type::minor && pitch.key == Key::E) {
       --index;
     }
     return Pitches[index];
