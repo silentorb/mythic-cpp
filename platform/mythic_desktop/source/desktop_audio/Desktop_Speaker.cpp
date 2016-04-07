@@ -15,25 +15,22 @@ namespace desktop {
     SDL_InitSubSystem(SDL_INIT_AUDIO);
     SDL_AudioSpec want;
 
-    SDL_memset(&want, 0, sizeof(want)); /* or SDL_zero(want) */
+    SDL_memset(&want, 0, sizeof(want));
     want.freq = 44100;
     want.format = AUDIO_F32;
     want.channels = 2;
     want.samples = 4096;
-//    want.samples = 4096;
-    want.callback = audio_callback;  // you wrote this function elsewhere.
+    want.callback = audio_callback;
     want.userdata = this;
 
     device = SDL_OpenAudioDevice(NULL, 0, &want, &have, SDL_AUDIO_ALLOW_FORMAT_CHANGE);
-    if (device == 0) {
+    if (device == 0)
       throw runtime_error(string("Failed to open audio: %s\n") + SDL_GetError());
-    } else {
-      if (have.format != want.format) { // we let this one thing change.
-        throw runtime_error("We didn't get Float32 audio format.\n");
-      }
-      SDL_PauseAudioDevice(device, 0); // start audio playing.
-//      SDL_Delay(5000);  // let the audio callback play some sound for 5 seconds.
-    }
+
+    if (have.format != want.format)
+      throw runtime_error("We didn't get Float32 audio format.\n");
+
+    SDL_PauseAudioDevice(device, 0);
 
     return {
       have.freq,

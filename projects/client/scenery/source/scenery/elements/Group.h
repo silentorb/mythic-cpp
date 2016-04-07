@@ -14,11 +14,11 @@ namespace scenery {
       vector<unique_ptr<Element>> children;
 
   public:
-      Group(Parent *parent) : Element(parent) { }
+      Group(Parent *parent = nullptr) : Element(parent) { }
 
-      virtual void render();
-      virtual void add_child(unique_ptr<Element> element);
-      virtual void add_child(Element &element);
+      virtual void render() override;
+      virtual void add_child(unique_ptr<Element> element) override;
+      virtual void add_child(Element &element) override;
       virtual bool has_transform() override;
       virtual mat4 get_transform() override;
       virtual mat4 get_absolute_orientation() override;

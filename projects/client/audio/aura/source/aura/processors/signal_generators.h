@@ -13,7 +13,7 @@ namespace aura {
     }
 
     float triangle(float position) {
-      return abs(fmod(position, 2) - 1);
+      return fabs(fmod(position, 2) - 1);
     }
 
     float white_noise(float position);

@@ -3,5 +3,5 @@
 
 namespace audio {
 
-  typedef std::function<void(unsigned char*, int)> Signal_Source;
+  typedef std::function<void(float*, int)> Signal_Source;
 }

@@ -45,11 +45,11 @@ namespace lookinglass {
 
     public:
 
-        virtual void initialize(Struct_Info *info) {
+        virtual void initialize(Struct_Info *info) override {
           this->info = unique_ptr<Struct_Info>(info);
         }
 
-        virtual void add_program(Program &program) {
+        virtual void add_program(Program &program) override {
           auto map = new Ancient_Mist_Map(program, *info);
           if (map->get_doorway_count() > 0)
             maps.push_back(unique_ptr<Ancient_Mist_Map>(map));
@@ -65,7 +65,7 @@ namespace lookinglass {
           }
         }
 
-        virtual void update(T *data) {
+        virtual void update(T *data) override {
           for (auto &map : maps) {
             map->update(data);
           }

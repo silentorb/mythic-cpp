@@ -53,6 +53,7 @@ public:
     virtual lookinglass::Frame *create_frame(int width, int height) override;
     virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
+    virtual audio::Speaker *create_speaker() override;
 
     void update();
 };

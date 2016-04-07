@@ -7,7 +7,7 @@
 namespace audio {
 
   Player::Player(Speaker *speaker) : speaker(speaker) {
-    source = [](unsigned char *data, int length) {
+    source = [](float *data, int length) {
       memset(data, 0, length);
     };
     speaker->set_player(this);
@@ -26,7 +26,7 @@ namespace audio {
 //    last_delta = delta;
 //  }
 
-  void Player::speaker_update_buffer(uint8_t *data, int data_length) {
+  void Player::speaker_update_buffer(float *data, int data_length) {
     source(data, data_length);
 
 //    float *buffer = (float *) data;

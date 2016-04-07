@@ -11,12 +11,12 @@ namespace lookinglass {
     class MYTHIC_EXPORT Buffer_Mist : public Mist<T> {
         Data_Buffer buffer;
     public:
-        virtual void initialize(Struct_Info *info) {
+        virtual void initialize(Struct_Info *info) override {
           buffer.initialize(info->get_id(), sizeof(T));
           delete info;
         }
 
-        virtual void add_program(Program &program) {
+        virtual void add_program(Program &program) override {
 
         }
 
@@ -24,7 +24,7 @@ namespace lookinglass {
 
         }
 
-        virtual void update(T *data) {
+        virtual void update(T *data) override {
           buffer.update(data);
         }
 

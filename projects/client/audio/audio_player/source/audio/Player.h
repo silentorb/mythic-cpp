@@ -21,7 +21,7 @@ namespace audio {
       float current = 0;
       Device_Settings device_settings;
       Signal_Source source = nullptr;
-      void speaker_update_buffer(uint8_t *data, int length);
+      void speaker_update_buffer(float *data, int length);
 
   public:
 

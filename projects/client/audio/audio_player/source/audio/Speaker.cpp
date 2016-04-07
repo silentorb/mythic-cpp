@@ -3,7 +3,7 @@
 
 namespace audio {
 
-  void Speaker::update(uint8_t *data, int length) {
+  void Speaker::update(float *data, int length) {
     player->speaker_update_buffer(data, length);
   }
 }

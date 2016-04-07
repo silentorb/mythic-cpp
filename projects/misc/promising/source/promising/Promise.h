@@ -39,9 +39,7 @@ namespace promising {
 
       Promise(Promise &&) { }
 
-      virtual ~Promise() override {
-        int k = 0;
-      }
+      virtual ~Promise() override { }
 
       void resolve() {
         _is_done = true;

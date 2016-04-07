@@ -6,7 +6,6 @@ namespace promising {
 
   void Promise_Interface::add_promise(Promise_Interface &promise) {
     promises.push_back(unique_ptr<Promise_Interface>(&promise));
-    int k = 0;
   }
 
 //  void Promise_Interface::add_promise(unique_ptr<Promise_Interface> &promise) {
@@ -20,7 +19,6 @@ namespace promising {
           return;
 
         promises.erase(promises.begin() + i);
-        int k = 1;
       }
       else {
         if (promises.size() == 0)

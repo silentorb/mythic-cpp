@@ -73,12 +73,10 @@ namespace bloom {
       Simple_Measurement() : Measurement(Measurements::stretch), value(0) { }
 
       Simple_Measurement(Measurements type, float value) : Measurement(type), value(value) {
-        int k = 0;
         debug_value = value;
       }
 
       Simple_Measurement(float value) : value(value), Measurement(Measurements::units) {
-        int k = 0;
         debug_value = value;
       }
 
