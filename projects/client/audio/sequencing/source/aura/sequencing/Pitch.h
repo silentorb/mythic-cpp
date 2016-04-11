@@ -1,6 +1,6 @@
 #pragma once
 
-#include <aura/music/sequencing/Key.h>
+#include <aura/sequencing/Key.h>
 #include "dllexport.h"
 
 namespace aura {

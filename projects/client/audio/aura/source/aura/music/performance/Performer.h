@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 #include <aura/engineer/Buffer.h>
-#include <aura/music/sequencing/Conductor.h>
+#include <aura/sequencing/Conductor.h>
 #include "Instrument.h"
 
 using namespace std;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "aura/music/Pitch.h"
+#include "aura/sequencing/Pitch.h"
 
 namespace aura {
 

@@ -1,5 +1,5 @@
 #include "Stroke.h"
-#include "aura/music/sequencing/Note.h"
+#include "aura/sequencing/Note.h"
 
 namespace aura {
 

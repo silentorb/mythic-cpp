@@ -1,8 +1,8 @@
 #include <iostream>
-#include <aura/music/sequencing/Note.h>
+#include <aura/sequencing/Note.h>
 #include "Performer.h"
-#include "aura/music/sequencing/Sequencer.h"
-#include "aura/music/sequencing/Chord_Structure.h"
+#include "aura/sequencing/Sequencer.h"
+#include "aura/sequencing/Chord_Structure.h"
 #include <string>
 
 namespace aura {

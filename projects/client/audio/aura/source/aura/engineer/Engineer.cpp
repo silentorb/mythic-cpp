@@ -1,5 +1,4 @@
 #include <audio/Device_Settings.h>
-#include <aura/music/sequencing/Chord.h>
 #include "Engineer.h"
 
 namespace aura {

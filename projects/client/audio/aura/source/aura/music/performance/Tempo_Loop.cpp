@@ -1,5 +1,5 @@
 #include "Tempo_Loop.h"
-#include "aura/music/sequencing/Conductor.h"
+#include "aura/sequencing/Conductor.h"
 
 namespace aura {
 

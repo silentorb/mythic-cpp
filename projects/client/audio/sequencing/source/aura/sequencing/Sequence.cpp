@@ -1,5 +1,4 @@
 #include "Sequence.h"
-#include "aura/music/performance/Performer.h"
 
 namespace aura {
 

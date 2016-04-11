@@ -18,6 +18,8 @@ namespace aura {
 
       Conductor() : Conductor(Chord(Key::C)) { }
 
+      void commence();
+
       const Chord_Instance &get_chord() const {
         return chord;
       }

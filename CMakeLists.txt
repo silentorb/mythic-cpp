@@ -51,6 +51,7 @@ add_subdirectory(projects/server/substance)
 add_subdirectory(projects/client/scenery)
 add_subdirectory(projects/client/haft)
 add_subdirectory(projects/client/audio/audio_player)
+add_subdirectory(projects/client/audio/sequencing)
 add_subdirectory(projects/client/audio/aura)
 add_subdirectory(projects/client/client)
 
