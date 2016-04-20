@@ -6,9 +6,13 @@ namespace aura {
   void Tempo_Loop::update(Conductor &conductor) {
     loop.set_frequency(conductor.get_tempo() / 60 / beats);
     auto old = loop.get_position();
-    auto next = loop.next();
-    for(auto &handler: handlers){
-      handler(conductor, old, next);
+    bool looped;
+    auto next = loop.next(looped);
+    if (looped && on_loop) {
+      on_loop(conductor, old, next);
     }
+
+    trigger(conductor, old, next);
   }
+
 }

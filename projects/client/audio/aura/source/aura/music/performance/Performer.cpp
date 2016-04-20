@@ -76,7 +76,7 @@ namespace aura {
 
       offset += chord.duration;
       if (is_inside) {
-        std::cout << "Chord changed " << get_keyname(chord.chord.key) << std::endl;
+//        std::cout << "Chord changed " << get_keyname(chord.chord.key) << std::endl;
         /* if (strokes.size() == 1)
            throw runtime_error("error");*/
         conductor.set_chord(chord);

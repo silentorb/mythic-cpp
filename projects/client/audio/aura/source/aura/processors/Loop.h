@@ -26,6 +26,7 @@ namespace aura {
 
       float next();
       float next(int cycles);
+      float next(bool & looped);
 
       float get_frequency() const {
         return frequency;

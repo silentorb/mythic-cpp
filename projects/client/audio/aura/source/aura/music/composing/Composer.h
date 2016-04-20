@@ -25,5 +25,7 @@ namespace aura {
       Chord_Structure &get_current_chord_structure() const {
         return *chord_structures[current_structure_index];
       }
+
+      void next_chord();
   };
 }

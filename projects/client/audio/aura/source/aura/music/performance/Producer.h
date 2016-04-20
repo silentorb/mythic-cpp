@@ -15,5 +15,6 @@ namespace aura {
   public:
       Producer(Composer &composer, Conductor &conductor, Engineer & engineer);
       void update();
+      void commence();
   };
 }

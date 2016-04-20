@@ -13,4 +13,8 @@ namespace aura {
       add_chord_structure(structure);
     }
   }
+
+  void Composer::next_chord() {
+    current_structure_index = (current_structure_index + 1) % chord_structures.size();
+  }
 }

@@ -16,6 +16,7 @@ namespace aura {
       Loop loop;
       vector<Range_Handler> handlers;
       float beats;
+      Range_Handler on_loop = nullptr;
 
   public:
 
@@ -31,6 +32,12 @@ namespace aura {
 
       void update(Conductor &conductor);
 
+      void trigger(Conductor &conductor, double start, double end) {
+        for (auto &handler: handlers) {
+          handler(conductor, start, end);
+        }
+      }
+
       double get_position() const {
         return loop.get_position();
       }
@@ -39,5 +46,12 @@ namespace aura {
         loop.set_position(value);
       }
 
+      const Range_Handler &get_on_loop() const {
+        return on_loop;
+      }
+
+      void set_on_loop(const Range_Handler &on_loop) {
+        Tempo_Loop::on_loop = on_loop;
+      }
   };
 }
