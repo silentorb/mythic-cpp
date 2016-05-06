@@ -41,7 +41,7 @@ namespace aura {
     float result = 0;
     for (int i = strokes.size() - 1; i >= 0; --i) {
       auto &stroke = strokes[i];
-      auto value = stroke->update(delta);
+      auto value = stroke->update(delta, conductor);
       if (stroke->is_finished()) {
 //        std::cout << "Removed note" << std::endl;
         auto recorder = conductor.get_recorder();

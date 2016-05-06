@@ -10,6 +10,7 @@ namespace aura {
   class MYTHIC_EXPORT Conductor {
       Chord_Instance chord;
       float tempo = 120;
+      float seconds_tempo = tempo / 60;
       Time_Signature time_signature;
       Event_Recorder *recorder = nullptr;
 
@@ -31,8 +32,12 @@ namespace aura {
         return tempo;
       }
 
-      void set_tempo(float tempo) {
-        Conductor::tempo = tempo;
+      float get_seconds_tempo() const {
+        return seconds_tempo;
+      }
+      void set_tempo(float value) {
+        tempo = value;
+        seconds_tempo = value / 60;
       }
 
       const Time_Signature &get_time_signature() const {

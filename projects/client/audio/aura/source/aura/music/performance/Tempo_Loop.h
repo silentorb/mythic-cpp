@@ -17,6 +17,9 @@ namespace aura {
       vector<Range_Handler> handlers;
       float beats;
       Range_Handler on_loop = nullptr;
+      int skip = 0;
+      double last_time = 0;
+      bool started = false;
 
   public:
 

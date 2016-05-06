@@ -19,8 +19,8 @@ namespace aura {
 
       }
 
-      virtual float update(float delta) override {
-        Stroke::update(delta);
+      virtual float update(float delta, Conductor &conductor) override {
+        Stroke::update(delta, conductor);
         return updater(delta);
       }
   };
