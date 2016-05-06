@@ -12,12 +12,14 @@ namespace aura {
   class MYTHIC_EXPORT Stroke {
       float duration;
       float frequency;
-      float progress = 0;
       Note note;
+
+  protected:
+      double progress = 0;
 
   public:
       Stroke(const Note &note);
-      virtual float update(float delta, Conductor &conductor);
+      virtual float update(float beat_delta) = 0;
 
       float get_duration() const {
         return duration;
@@ -27,7 +29,7 @@ namespace aura {
         return frequency;
       }
 
-      float get_progress() const {
+      const double get_progress() const {
         return progress;
       }
 
@@ -40,5 +42,5 @@ namespace aura {
       }
   };
 
-  typedef std::function<Stroke *(const Note &note)> Stroke_Generator;
+//  typedef std::function<Stroke *(const Note &note)> Instrument;
 }

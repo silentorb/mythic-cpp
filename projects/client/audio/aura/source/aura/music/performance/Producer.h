@@ -10,11 +10,24 @@ namespace aura {
   class MYTHIC_EXPORT Producer {
       Composer &composer;
       Conductor &conductor;
+      Engineer & engineer;
       unique_ptr<Tempo_Loop> chord_loop;
 
   public:
       Producer(Composer &composer, Conductor &conductor, Engineer & engineer);
       void update();
       void commence();
+
+      Composer &get_composer() const {
+        return composer;
+      }
+
+      Conductor &get_conductor() const {
+        return conductor;
+      }
+
+      Engineer &get_engineer() const {
+        return engineer;
+      }
   };
 }

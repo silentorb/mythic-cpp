@@ -12,7 +12,7 @@ namespace aura {
     strokes.push_back(unique_ptr<Stroke>(stroke));
   }
 
-  void Performer::perform(Conductor &conductor, Stroke_Generator &generate, Sequencer &sequencer,
+  void Performer::perform(Conductor &conductor, Instrument &instrument, Sequencer &sequencer,
                           float start, float end) {
     if (end == start)
       return;
@@ -29,7 +29,7 @@ namespace aura {
 
       if (is_inside) {
 //        std::cout << "Added note " << note.get_start() << " " << note.get_pitch()->name << std::endl;
-        add_stroke(generate(note));
+        add_stroke(instrument.generate_stroke(note));
         auto recorder = conductor.get_recorder();
         if (recorder)
           recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end));
@@ -39,9 +39,10 @@ namespace aura {
 
   float Performer::update(float delta, Conductor &conductor) {
     float result = 0;
+    float beat_delta = conductor.get_seconds_tempo() * beat_delta;
     for (int i = strokes.size() - 1; i >= 0; --i) {
       auto &stroke = strokes[i];
-      auto value = stroke->update(delta, conductor);
+      auto value = stroke->update(beat_delta);
       if (stroke->is_finished()) {
 //        std::cout << "Removed note" << std::endl;
         auto recorder = conductor.get_recorder();

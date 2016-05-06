@@ -6,7 +6,8 @@
 #include <memory>
 #include <aura/engineer/Buffer.h>
 #include <aura/sequencing/Conductor.h>
-#include "Instrument.h"
+#include "aura/music/performance/instruments/Instrument.h"
+#include "aura/music/performance/instruments/Instrument.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ namespace aura {
 
   public:
       void add_stroke(Stroke *stroke);
-      void perform(Conductor &conductor, Stroke_Generator &generate, Sequencer &sequencer, float start, float end);
+      void perform(Conductor &conductor, Instrument &instrument, Sequencer &sequencer, float start, float end);
       float update(float delta, Conductor &conductor);
   };
 

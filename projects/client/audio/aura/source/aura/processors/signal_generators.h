@@ -16,6 +16,10 @@ namespace aura {
       return fabs(fmod(position, 2) - 1);
     }
 
+    MYTHIC_EXPORT float square(float position) {
+      return fmod(position, 6) < 3 ? 3 : 0;
+    }
+
     MYTHIC_EXPORT float white_noise(float position);
 
   }
