@@ -15,4 +15,12 @@ namespace aura {
     auto oscillator = new Oscillator(producer.get_engineer(), note.get_frequency(), operation);
     return new Simple_Instrument_Stroke(note, oscillator, volume_envelope.generate_envelope());
   }
+
+  float Simple_Instrument_Stroke::update(float beat_delta) {
+    progress += beat_delta;
+    auto value = oscillator->update();
+    return value * volume_envelope->get_value(progress);
+//    return value;
+  }
+
 }

@@ -56,5 +56,9 @@ namespace aura {
       void set_on_loop(const Range_Handler &on_loop) {
         Tempo_Loop::on_loop = on_loop;
       }
+
+      float get_beats() const {
+        return beats;
+      }
   };
 }

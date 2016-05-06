@@ -4,18 +4,20 @@
 #include <aura/music/composing/Composer.h>
 #include "dllexport.h"
 #include "Tempo_Loop.h"
+#include "Performer.h"
 
 namespace aura {
 
   class MYTHIC_EXPORT Producer {
       Composer &composer;
       Conductor &conductor;
-      Engineer & engineer;
+      Engineer &engineer;
+      unique_ptr<Performer> performer;
       unique_ptr<Tempo_Loop> chord_loop;
 
   public:
-      Producer(Composer &composer, Conductor &conductor, Engineer & engineer);
-      void update();
+      Producer(Composer &composer, Conductor &conductor, Engineer &engineer);
+      float update(float delta);
       void commence();
 
       Composer &get_composer() const {
@@ -28,6 +30,10 @@ namespace aura {
 
       Engineer &get_engineer() const {
         return engineer;
+      }
+
+      Performer &get_performer() const {
+        return *performer;
       }
   };
 }

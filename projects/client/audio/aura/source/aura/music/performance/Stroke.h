@@ -10,7 +10,7 @@ namespace aura {
   class Conductor;
 
   class MYTHIC_EXPORT Stroke {
-      float duration;
+      double duration;
       float frequency;
       Note note;
 
@@ -21,7 +21,7 @@ namespace aura {
       Stroke(const Note &note);
       virtual float update(float beat_delta) = 0;
 
-      float get_duration() const {
+      double get_duration() const {
         return duration;
       }
 
