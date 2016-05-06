@@ -51,6 +51,7 @@ namespace mythic {
     while (!client->is_closing()) {
       update();
     }
+		int k = 0;
   }
 
   void Mythic_Engine::add_myth(Myth *myth) {

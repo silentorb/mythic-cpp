@@ -3,7 +3,7 @@
 
 namespace aura {
 
-  class MYTHIC_EXPORT Clip {
+  class MYTHIC_EXPORT Clip : no_copy {
 
   };
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sequencing_export.h"
+
 namespace aura {
 
   enum class Key : int {
@@ -22,5 +24,5 @@ namespace aura {
       AF = 11
   };
 
-  const char *get_keyname(Key key);
+  SEQUENCING_EXPORT const char *get_keyname(Key key);
 }

@@ -58,8 +58,8 @@ namespace vineyard {
         return _writing_enabled;
       }
 
-      void set_writing_enabled(bool _writing_enabled) {
-        Ground::_writing_enabled = _writing_enabled;
+      void set_writing_enabled(bool value) {
+        this->_writing_enabled = value;
       }
   };
 }

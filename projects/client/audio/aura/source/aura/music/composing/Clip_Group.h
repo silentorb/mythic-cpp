@@ -9,7 +9,7 @@ using namespace std;
 
 namespace aura {
 
-  class MYTHIC_EXPORT Clip_Group {
+  class MYTHIC_EXPORT Clip_Group : no_copy {
       vector<unique_ptr<Clip>> clips;
   };
 }

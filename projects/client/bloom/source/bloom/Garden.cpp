@@ -28,7 +28,6 @@ namespace bloom {
     const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
-    const int hello = 1;
   };
 
   Garden *Garden::instance = nullptr;
@@ -42,7 +41,6 @@ namespace bloom {
       render();
     });
     instance = this;
-    auto &k = Events::hello;
   }
 
   Garden::~Garden() { }

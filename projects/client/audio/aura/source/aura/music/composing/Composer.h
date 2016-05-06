@@ -11,7 +11,7 @@ using namespace std;
 
 namespace aura {
 
-  class MYTHIC_EXPORT Composer {
+  class MYTHIC_EXPORT Composer : no_copy {
       vector<unique_ptr<Chord_Structure>> chord_structures;
       vector<unique_ptr<Clip_Group>> clip_groups;
       int current_structure_index = 0;

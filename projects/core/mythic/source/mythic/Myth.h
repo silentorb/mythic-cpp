@@ -14,6 +14,7 @@ namespace mythic {
       Myth(Mythic_Engine &engine);
 
   public:
+      virtual ~Myth() {}
       virtual string get_name() = 0;
       virtual void update(float delta);
 

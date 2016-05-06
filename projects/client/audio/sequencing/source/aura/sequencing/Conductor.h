@@ -5,16 +5,17 @@
 #include "Time_Signature.h"
 
 namespace aura {
+  class Event_Recorder;
 
   class MYTHIC_EXPORT Conductor {
       Chord_Instance chord;
       float tempo = 120;
       Time_Signature time_signature;
+      Event_Recorder *recorder = nullptr;
 
   public:
-
       Conductor(const Chord_Instance &chord) :
-        chord(chord), time_signature({4, 4}) { }
+        chord(chord), time_signature(4, 4) { }
 
       Conductor() : Conductor(Chord(Key::C)) { }
 
@@ -24,9 +25,7 @@ namespace aura {
         return chord;
       }
 
-      void set_chord(const Chord_Instance chord) {
-        this->chord = chord;
-      }
+      void set_chord(const Chord_Instance chord, float offset = 0, float start = 0, float end = 0);
 
       float get_tempo() const {
         return tempo;
@@ -42,6 +41,14 @@ namespace aura {
 
       void set_time_signature(const Time_Signature &_time_signature) {
         Conductor::time_signature = _time_signature;
+      }
+
+      Event_Recorder *get_recorder() const {
+        return recorder;
+      }
+
+      void set_recorder(Event_Recorder *recorder) {
+        Conductor::recorder = recorder;
       }
   };
 }

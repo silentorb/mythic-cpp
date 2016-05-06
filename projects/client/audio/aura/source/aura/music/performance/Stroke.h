@@ -3,14 +3,15 @@
 #include <aura/engineer/Buffer.h>
 #include "dllexport.h"
 #include <functional>
+#include <aura/sequencing/Note.h>
 
 namespace aura {
-  class Note;
 
   class MYTHIC_EXPORT Stroke {
       float duration;
       float frequency;
       float progress = 0;
+      Note note;
 
   public:
       Stroke(const Note &note);
@@ -30,6 +31,10 @@ namespace aura {
 
       bool is_finished() const {
         return progress >= duration;
+      }
+
+      const Note &get_note() const {
+        return note;
       }
   };
 

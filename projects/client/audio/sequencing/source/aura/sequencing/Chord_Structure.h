@@ -7,7 +7,6 @@
 using namespace std;
 
 namespace aura {
-//  typedef vector<Chord_Instance> Chord_Structure;
 
   class MYTHIC_EXPORT Chord_Structure {
       vector<Chord_Instance> chords;

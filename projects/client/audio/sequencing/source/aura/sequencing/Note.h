@@ -6,10 +6,11 @@
 namespace aura {
 
   class MYTHIC_EXPORT Note {
-       float duration;
+      float duration;
       const Pitch *pitch;
       float frequency;
       float start;
+      unsigned long id;
 
   public:
       Note(const Pitch &pitch, float start, float duration = 1);
@@ -29,6 +30,10 @@ namespace aura {
 
       const Pitch *get_pitch() const {
         return pitch;
+      }
+
+      const unsigned long get_id() const {
+        return id;
       }
   };
 }

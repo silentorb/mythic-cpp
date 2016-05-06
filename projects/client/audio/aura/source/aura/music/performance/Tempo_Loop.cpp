@@ -4,7 +4,8 @@
 namespace aura {
 
   void Tempo_Loop::update(Conductor &conductor) {
-    loop.set_frequency(conductor.get_tempo() / 60 / beats);
+    auto frequency = conductor.get_tempo() / 60 / beats;
+    loop.set_frequency(frequency);
     auto old = loop.get_position();
     bool looped;
     auto next = loop.next(looped);

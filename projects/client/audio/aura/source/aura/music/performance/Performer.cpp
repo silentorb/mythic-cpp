@@ -4,6 +4,7 @@
 #include "aura/sequencing/Sequencer.h"
 #include "aura/sequencing/Chord_Structure.h"
 #include <string>
+#include <aura/sequencing/Event_Recorder.h>
 
 namespace aura {
 
@@ -21,36 +22,33 @@ namespace aura {
 
     for (int i = 0; i < sequencer.size(); ++i) {
       auto &note = sequencer.get_note(i, conductor);
+      auto offset = note.get_start();
       auto is_inside = end > start
-                       ? note.get_start() >= start && note.get_start() < end
-                       : note.get_start() >= start || note.get_start() < end;
+                       ? note.get_start() >= start && offset < end
+                       : note.get_start() >= start || offset < end;
 
       if (is_inside) {
-        std::cout << "Added note " << note.get_start()<< " "  << note.get_pitch()->name << std::endl;
-        /* if (strokes.size() == 1)
-                throw runtime_error("error");*/
+//        std::cout << "Added note " << note.get_start() << " " << note.get_pitch()->name << std::endl;
         add_stroke(generate(note));
+        auto recorder = conductor.get_recorder();
+        if (recorder)
+          recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end));
       }
     }
-//    }
-//    else {
-//      for (auto &note:sequence.get_notes()) {
-//        if (note.get_start() >= start || note.get_start() < end) {
-//					//if (strokes.size() == 1)
-//					//	throw runtime_error("error");
-//          add_stroke(generate(note));
-//        }
-//      }
   }
 
-  float Performer::update(float delta) {
+  float Performer::update(float delta, Conductor &conductor) {
     float result = 0;
     for (int i = strokes.size() - 1; i >= 0; --i) {
       auto &stroke = strokes[i];
       auto value = stroke->update(delta);
       if (stroke->is_finished()) {
-        strokes.erase(strokes.begin() + i);
 //        std::cout << "Removed note" << std::endl;
+        auto recorder = conductor.get_recorder();
+        if (recorder)
+          recorder->add_event(new Note_Event(Event_Type::note_end, stroke->get_note(), stroke->get_duration(), stroke->get_progress()));
+
+        strokes.erase(strokes.begin() + i);
       }
       else {
         result += value;
@@ -76,10 +74,8 @@ namespace aura {
 
       offset += chord.duration;
       if (is_inside) {
-//        std::cout << "Chord changed " << get_keyname(chord.chord.key) << std::endl;
-        /* if (strokes.size() == 1)
-           throw runtime_error("error");*/
-        conductor.set_chord(chord);
+
+        conductor.set_chord(chord, offset, start, end);
       }
     }
   }

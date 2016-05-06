@@ -21,7 +21,7 @@ namespace aura {
   public:
       void add_stroke(Stroke *stroke);
       void perform(Conductor &conductor, Stroke_Generator &generate, Sequencer &sequencer, float start, float end);
-      float update(float delta);
+      float update(float delta, Conductor &conductor);
   };
 
   struct Chord_Structure;

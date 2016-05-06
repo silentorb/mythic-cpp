@@ -53,6 +53,7 @@ add_subdirectory(projects/client/haft)
 add_subdirectory(projects/client/audio/audio_player)
 add_subdirectory(projects/client/audio/sequencing)
 add_subdirectory(projects/client/audio/aura)
+add_subdirectory(projects/client/audio/tuning)
 add_subdirectory(projects/client/client)
 
 add_subdirectory(projects/generation/architect)
