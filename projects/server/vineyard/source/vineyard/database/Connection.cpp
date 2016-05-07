@@ -44,7 +44,7 @@ namespace vineyard {
     }
 
     void Connection::execute(const string &sql) {
-      log(sql);
+//      log(sql);
       Statement statement(sql, *this);
       statement.step();
     }

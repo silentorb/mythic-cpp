@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #include "dllexport.h"
 #include "resourceful/Resource.h"

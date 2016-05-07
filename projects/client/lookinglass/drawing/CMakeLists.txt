@@ -3,6 +3,6 @@ create_library(drawing)
 
 require(glass glow shading modeling texturing lookinglass perspective)
 
-include_directories(${MYTHIC_DEPENDENCIES}/rapidjson/include)
+include_external_directory(rapidjson)
 
 add_resources(resources)

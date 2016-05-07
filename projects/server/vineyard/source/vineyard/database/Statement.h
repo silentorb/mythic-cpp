@@ -14,6 +14,7 @@ namespace vineyard {
         sqlite3_stmt *handle;
         Connection &connection;
         const string name;
+        const string debug_sql;
 
     public:
         Statement(const string &sql, Connection &connection, const string name = "");

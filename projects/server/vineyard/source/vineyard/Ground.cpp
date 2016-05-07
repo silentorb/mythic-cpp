@@ -4,6 +4,7 @@
 #include "database/Connection.h"
 #include <fstream>
 #include "Seed.h"
+#include "Transaction.h"
 #include <vineyard/database/Query.h>
 
 namespace vineyard {
@@ -11,6 +12,9 @@ namespace vineyard {
 
   Ground::Ground(const string &filename, initializer_list<landscape::Trellis *> initializer) :
     db(new Database(filename)) {
+
+    clear_log();
+
     for (auto trellis : initializer) {
       add_trellis(trellis);
     }
@@ -28,14 +32,16 @@ namespace vineyard {
   Ground::~Ground() { }
 
   void Ground::initialize() {
-    {
-      ofstream log_file("db.log", ios::out);
-    }
+    Transaction transaction(*this);
     clear_database();
     Connection connection(db);
     for (auto &trellis: trellises) {
       db->create_table(*trellis, connection);
     }
+  }
+
+  void Ground::clear_log() {
+    ofstream log_file("db.log", ios::out);
   }
 
   void Ground::add_trellis(landscape::Trellis *trellis) {

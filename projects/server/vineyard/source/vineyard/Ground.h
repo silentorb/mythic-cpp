@@ -61,5 +61,7 @@ namespace vineyard {
       void set_writing_enabled(bool value) {
         this->_writing_enabled = value;
       }
+
+      void clear_log();
   };
 }

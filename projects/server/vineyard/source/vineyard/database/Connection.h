@@ -28,8 +28,6 @@ namespace vineyard {
         sqlite3 *handle;
         bool logging = true;
 
-        void log(const string &message);
-
         static void create_static(Database &database);
         static void release_static();
 
@@ -50,6 +48,7 @@ namespace vineyard {
         void add_statement(const string &key, shared_ptr<Statement> &statement);
         void remove_statement(const string &key);
         shared_ptr<Statement> get_statement(const string &key);
+        void log(const string &message);
     };
   }
 }

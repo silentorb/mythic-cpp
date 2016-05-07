@@ -5,9 +5,9 @@ require(glow resourceful shading)
 
 add_resources(resources)
 
-include_directories(
-  ${MYTHIC_DEPENDENCIES}/libpng/include
-)
+#include_directories(
+#  ${MYTHIC_DEPENDENCIES}/libpng/include
+#)
 
 if(NOT IOS)
   link_external(libpng libpng16)

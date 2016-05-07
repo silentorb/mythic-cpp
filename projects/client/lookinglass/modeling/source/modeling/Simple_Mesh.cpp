@@ -15,7 +15,7 @@ namespace modeling {
 
   Simple_Mesh::~Simple_Mesh() {
     free();
-    delete data;
+//    delete data;
   }
 
   void Simple_Mesh::render(bool solid) {

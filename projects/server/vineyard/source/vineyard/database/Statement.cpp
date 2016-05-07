@@ -5,7 +5,7 @@ namespace vineyard {
   namespace database {
 
     Statement::Statement(const string &sql, Connection &connection, const string name) :
-      connection(connection), name(name) {
+      connection(connection), name(name), debug_sql(sql) {
       connection.check(sqlite3_prepare_v2(connection.get_handle(), sql.c_str(), sql.size(), &handle, nullptr),
                        "preparing statement");
     }
@@ -17,6 +17,7 @@ namespace vineyard {
 
     bool Statement::step() {
       int result = sqlite3_step(handle);
+      connection.log(debug_sql);
 
       if (result == SQLITE_DONE)
         return 0;
