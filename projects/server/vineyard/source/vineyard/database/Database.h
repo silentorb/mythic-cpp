@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vineyard/vineyard_export.h"
 #include <string>
 
 using namespace std;
@@ -15,7 +16,7 @@ namespace vineyard {
 
     class Connection;
 
-    class Database {
+    class VINEYARD_EXPORT Database {
         const string filename;
         bool logging = true;
 

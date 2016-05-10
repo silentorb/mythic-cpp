@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 #include <functional>
 #include <landscape/Trellis.h>
 #include <vineyard/seed_functions.h>
@@ -13,9 +13,9 @@ namespace vineyard {
 
     class Connection;
 
-    MYTHIC_EXPORT void query_trellis(Connection &connection, landscape::Trellis &trellis, Seed_Initializer &initializer,
+    VINEYARD_EXPORT void query_trellis(Connection &connection, landscape::Trellis &trellis, Seed_Initializer &initializer,
                                      Seed_Creator &creator);
 
-    MYTHIC_EXPORT int query_integer(Ground &ground, const string &sql);
+    VINEYARD_EXPORT int query_integer(Ground &ground, const string &sql);
   }
 }

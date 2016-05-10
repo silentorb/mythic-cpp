@@ -1,5 +1,5 @@
 #pragma once
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 
 namespace vineyard {
   class Ground;
@@ -10,7 +10,7 @@ namespace vineyard {
     class Connection;
   };
 
-  class MYTHIC_EXPORT Static_Connection {
+  class VINEYARD_EXPORT Static_Connection {
   public:
       Static_Connection(Ground & ground);
       ~Static_Connection();

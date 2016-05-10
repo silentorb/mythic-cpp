@@ -1,11 +1,11 @@
 #pragma once
 
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 
 namespace vineyard {
   class Ground;
 
-  class MYTHIC_EXPORT Transaction {
+  class VINEYARD_EXPORT Transaction {
       Ground &ground;
 
   public:

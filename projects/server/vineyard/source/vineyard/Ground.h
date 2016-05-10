@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 #include "seed_functions.h"
 #include <vector>
 #include <memory>
@@ -18,7 +18,7 @@ namespace vineyard {
   }
   class Seed;
 
-  class MYTHIC_EXPORT Ground {
+  class VINEYARD_EXPORT Ground {
       vector<unique_ptr<landscape::Trellis>> trellises;
       unique_ptr<database::Database> db;
       bool _file_existed = true;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 #include "Types.h"
 #include <string>
 
@@ -17,7 +17,7 @@ namespace landscape {
       unique_ptr
   };
 
-  class MYTHIC_EXPORT Property {
+  class VINEYARD_EXPORT Property {
       const string name;
       Trellis *trellis;
       Types type;

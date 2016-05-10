@@ -1,14 +1,14 @@
 #pragma once
 
 #include <landscape/Trellis.h>
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 #include "songbird/Singer.h"
 #include "Identity.h"
 
 namespace vineyard {
   class Ground;
 
-  class MYTHIC_EXPORT Seed {
+  class VINEYARD_EXPORT Seed {
 //      unique_ptr<char> data;
   protected:
       Ground *ground;

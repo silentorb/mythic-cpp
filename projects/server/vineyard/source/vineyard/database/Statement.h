@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vineyard/vineyard_export.h"
 #include <sqlite3.h>
 #include <string>
 #include <string>
@@ -10,7 +11,7 @@ namespace vineyard {
   namespace database {
     class Connection;
 
-    class Statement {
+    class VINEYARD_EXPORT Statement {
         sqlite3_stmt *handle;
         Connection &connection;
         const string name;

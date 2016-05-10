@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "vineyard/vineyard_export.h"
 #include "Property.h"
 #include <string>
 #include <vector>
@@ -9,6 +9,7 @@
 
 namespace vineyard {
   class Ground;
+
   class Seed;
 }
 
@@ -17,9 +18,9 @@ using namespace vineyard;
 
 namespace landscape {
 
-  typedef function<Seed*(int)> Seedery;
+  typedef function<Seed *(int)> Seedery;
 
-  class MYTHIC_EXPORT Trellis {
+  class VINEYARD_EXPORT Trellis {
       const string name;
       vector<Property> properties;
       int offset;
@@ -54,13 +55,13 @@ namespace landscape {
         return properties[index];
       }
 
-      int get_block_size()const {
+      int get_block_size() const {
         return offset;
       }
 
-      void finalize(Ground & ground);
+      void finalize(Ground &ground);
 
-      Seed* find_seed(int id) const {
+      Seed *find_seed(int id) const {
         return seedery(id);
       }
   };
