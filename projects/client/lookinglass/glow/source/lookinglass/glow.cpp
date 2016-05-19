@@ -6,6 +6,7 @@ namespace glow {
     bool blend = false;
     bool culling = false;
     bool depth_test = false;
+    bool depth_write = false;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -22,7 +23,14 @@ namespace glow {
 
     cache::depth_test = value;
     toggle(GL_DEPTH_TEST, value);
-//    glDepthMask(value);
+  }
+
+  void set_depth_write(bool value) {
+    if (cache::depth_write == value)
+      return;
+
+    cache::depth_write = value;
+    glDepthMask(value);
   }
 
   void set_culling(bool value) {

@@ -15,6 +15,8 @@ namespace bloom {
       stretch,
       parent_aligned,
       parent_perpendicular,
+      percent,
+      percent_perpendicular,
       vertical_units,
       horizontal_units,
       complex

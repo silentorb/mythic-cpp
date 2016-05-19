@@ -24,6 +24,9 @@ namespace bloom {
     auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());
 
     scene->get_viewport().set_bounds(position, dimensions);
+
+    garden.enable_3d(true);
     scene->render();
+    garden.enable_3d(false);
   }
 }

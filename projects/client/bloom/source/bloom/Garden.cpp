@@ -63,15 +63,22 @@ namespace bloom {
   }
 
   void Garden::render() {
+    auto dimensions = draw.get_dimensions();
+    converter.set_pixel_dimensions(dimensions);
+
     Axis_Values base_axis_values{
       converter.get_axis_values<Horizontal_Axis>(),
       converter.get_axis_values<Vertical_Axis>()
     };
 
     root->update_absolute_dimensions(base_axis_values);
-    draw.set_depth_test(false);
+    enable_3d(false);
     root->render();
-    draw.set_depth_test(true);
+    enable_3d(true);
+  }
+
+  void Garden::enable_3d(bool value) {
+    draw.set_depth(value);
   }
 
   Text_Flower *Garden::create_text(const string content, const string font) {

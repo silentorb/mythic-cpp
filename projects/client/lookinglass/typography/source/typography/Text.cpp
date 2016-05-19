@@ -211,6 +211,8 @@ namespace typography {
     glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
     glBindVertexArray(0);
     glow::check_error("rendering text");
+//    glEnable(GL_DEPTH_TEST);
+//    glDepthMask(true);
   }
 
   vec2 Text::get_dimensions() {

@@ -32,5 +32,6 @@ namespace glow {
   GLOW_EXPORT void set_blend(bool value);
   GLOW_EXPORT void set_culling(bool value);
   GLOW_EXPORT void set_depth_test(bool value);
+  GLOW_EXPORT void set_depth_write(bool value);
 
 }

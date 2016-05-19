@@ -49,6 +49,9 @@ namespace bloom {
       }
 
       void set_pixel_dimensions(const vec2 &value) {
+        if (pixel_dimensions == value)
+          return;
+
         pixel_dimensions = value;
         update_scale();
       }

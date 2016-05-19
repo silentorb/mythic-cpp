@@ -9,7 +9,7 @@ namespace typography {
   void Text_Effect::activate(const vec4 &color, const mat4 &transform) {
     Color_Effect::activate(color);
 
-    glEnable(GL_BLEND);
+    glow::set_blend(true);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 //    glm::mat4 projection = glm::ortho(0.0f, (float) viewport_dimensions.x, 0.0f, (float) viewport_dimensions.y);

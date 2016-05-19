@@ -123,11 +123,9 @@ namespace drawing {
 		glow::check_error("drew_square");
   }
 
-  void Draw::set_depth_test(bool value) {
-    if (value)
-      glEnable(GL_DEPTH_TEST);
-    else
-      glDisable(GL_DEPTH_TEST);
+  void Draw::set_depth(bool value) {
+    glow::set_depth_test(value);
+    glow::set_depth_write(value);
   }
 
   void Draw::render() {
