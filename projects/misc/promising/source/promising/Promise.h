@@ -45,7 +45,7 @@ namespace promising {
         _is_done = true;
       }
 
-      Promise &then(function<O()> action);
+      Promise &void_then(function<void()> action);
       Promise &then(function<Promise<O> &()> action);
       static Promise &defer(function<O()> action = []() { });
       static Promise &resolved(function<O()> action = []() { });
@@ -69,24 +69,30 @@ namespace promising {
           return Promise::resolved();
 
         int step = 0;
-//        auto &promise = resolved([&items, action, step]() {
         return update_sequence(items, action, step);
-//        });
-
-//        return promise;
       }
-//
-//      template<typename E>
-//      static Promise &update_sequence(vector<unique_ptr<E>> &items, function<Promise &(E *item)> action, int step) {
-//        return action(items[step].get())
-//          .then(static_cast<function<Promise &()>>([items, action, step]() -> Promise & {
-//            int next_step = step + 1;
-//            if (next_step >= items.size())
-//              return Promise::resolved();
-//
-//            return update_sequence(items, action, next_step);
-//          }));
-//      }
+
+      template<typename E>
+      static Promise &update_reference_sequence(vector<E> &items, function<Promise &(E &item, bool &)> action, int step) {
+        bool cancel = false;
+        return action(items[step], cancel)
+          .then(static_cast<function<Promise &()>>([&items, action, step, cancel]() -> Promise & {
+            int next_step = step + 1;
+            if (cancel || next_step >= items.size())
+              return Promise::resolved();
+
+            return update_reference_sequence(items, action, next_step);
+          }));
+      }
+
+      template<typename E>
+      static Promise &reference_sequence(vector<E> &items, function<Promise &(E &item, bool &)> action) {
+        if (items.size() == 0)
+          return Promise::resolved();
+
+        int step = 0;
+        return update_reference_sequence(items, action, step);
+      }
 
       template<typename E>
       static Promise &unique_sequence(const vector<unique_ptr<E>> &items, function<Promise &(E *item, bool &)> action) {
@@ -140,9 +146,9 @@ namespace promising {
 
       virtual void execute() override {
         auto &promise = action();
-        promise.then(static_cast<function<void()>>([&]() {
+        promise.void_then([&]() {
           this->resolve();
-        }));
+        });
       }
   };
 
@@ -163,7 +169,7 @@ namespace promising {
   }
 
   template<typename O>
-  Promise<O> &Promise<O>::then(function<O()> action) {
+  Promise<O> &Promise<O>::void_then(function<void()> action) {
     auto promise = new Promise_Returning_Value<O>(action);
     dependents.push_back(unique_ptr<Promise<O>>(promise));
     return *promise;
