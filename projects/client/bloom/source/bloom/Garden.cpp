@@ -8,18 +8,6 @@
 
 using namespace haft;
 
-//class Draw_Wrapper : public drawing::Element {
-//    Renderable renderable;
-//
-//public:
-//    Draw_Wrapper(const Renderable renderable) : renderable(renderable) { }
-//
-//    virtual void render() override {
-//      renderable();
-//    }
-//};
-int hello2 = 2;
-
 namespace bloom {
 
   namespace Events {
@@ -46,10 +34,7 @@ namespace bloom {
   Garden::~Garden() { }
 
   void Garden::update_input(haft::Input_State &input_state) {
-//    auto &client = engine.get_client();
-//    auto &input_state = client.get_current_input_state();
     if (input_state.just_pressed(*select_action)) {
-      std::cout << "pressed" << std::endl;
       auto &position = input_state.get_position();
 
       Flower &start = modal_stack.size() > 0
@@ -81,11 +66,6 @@ namespace bloom {
 
   Text_Flower *Garden::create_text(const string content, const string font) {
     return new Text_Flower(*this, draw.get_font(font), draw.get_text_effect(), content);
-  }
-
-  Flower &Garden::create_generic_flower() {
-    auto flower = new Flower(*this, root);
-    return *flower;
   }
 
   void Garden::add_modal(Flower &flower) {

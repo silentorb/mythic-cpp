@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef MANUAL_SYMBOL_EXPORTING
+#if defined (_MSC_VER)
 #ifdef BLOOM_LIB
 #define BLOOM_EXPORT __declspec(dllexport)
 #else

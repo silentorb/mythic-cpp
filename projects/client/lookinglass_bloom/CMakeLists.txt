@@ -1,4 +1,4 @@
 
 create_library(lookinglass_bloom)
 
-require(drawing lookinglass bloom promising)
+require(drawing lookinglass bloom promising songbird)

@@ -20,6 +20,13 @@ namespace bloom {
       return get_converter().get_pixel_dimensions();
   }
 
+  vec2 Box::get_parent_inner_dimensions() const {
+    auto parent_box = get_parent_box();
+    if (parent_box)
+      return vec2(parent_box->axis_cache_inner.x.length, parent_box->axis_cache_inner.y.length);
+    else
+      return get_converter().get_pixel_dimensions();
+  }
 //  vec2 Box::get_absolute_position() const {
 //
 //    auto parent_box = get_parent_box();
@@ -76,12 +83,10 @@ namespace bloom {
     const Measurement &length = Axis::get_length(*this);
     const Measurement &far = Axis::get_far(*this);
 
-    auto parent_dimensions = get_parent_dimensions();
+    auto parent_dimensions = get_parent_inner_dimensions();
     result.near = near.resolve<Axis>(parent_dimensions, converter);
     result.length = length.resolve<Axis>(parent_dimensions, converter);
     result.absolute_far = far.resolve<Axis>(parent_dimensions, converter);
-
-//    Axis_Value parent_values = this->get_parent_axis_values<Axis>();
 
     auto arrangement = get_parent_box()
                        ? get_parent_box()->get_arrangement()
@@ -97,9 +102,6 @@ namespace bloom {
     if (length.get_type() == Measurements::stretch) {
       result.length = parent_values.length;
     }
-//    else {
-//      result.length = length.get_value(parent_values.length);
-//    }
 
     if (near.get_type() == Measurements::stretch && far.get_type() != Measurements::stretch &&
         arrangement == Arrangement::canvas) {
@@ -175,10 +177,10 @@ namespace bloom {
     else if (arrangement == Arrangement::down) {
       auto current = axis_cache_inner;
 
-      auto parent_dimensions = get_parent_dimensions();
+      auto local_dimensions = get_absolute_dimensions();
       float margin = 0;
       float spacing_value = spacing.get()
-                            ? spacing->resolve<Vertical_Axis>(parent_dimensions, converter)
+                            ? spacing->resolve<Vertical_Axis>(local_dimensions, converter)
                             : 0;
 
       for (int i = 0; i < get_child_count(); ++i) {
@@ -188,7 +190,7 @@ namespace bloom {
 //        margin = glm::max(child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter),
 //                          spacing_value);
 
-        current.y.near += glm::max(child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter),
+        current.y.near += glm::max(child.position.far.get_y().resolve<Vertical_Axis>(local_dimensions, converter),
                                    spacing_value);
       }
     }

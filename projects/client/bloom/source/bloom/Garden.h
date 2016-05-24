@@ -47,8 +47,6 @@ namespace bloom {
         return draw;
       }
 
-      Flower &create_generic_flower();
-
       const Measurement_Converter &get_converter() const {
         return converter;
       }

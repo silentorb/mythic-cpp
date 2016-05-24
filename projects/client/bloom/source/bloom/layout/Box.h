@@ -181,6 +181,8 @@ namespace bloom {
       void set_spacing(const Measurement &spacing) {
         Box::spacing = unique_ptr<Measurement>(spacing.clone());
       }
+
+      vec2 get_parent_inner_dimensions() const;
   };
 
 }

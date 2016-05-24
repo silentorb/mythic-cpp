@@ -15,12 +15,14 @@ namespace typography {
   Text::Text(Font &font, Text_Effect &effect, const string &value) : font(font), effect(effect) {
     set_content(value);
     create_buffers();
-    changed = true;
+    appearance_changed = true;
+    needs_recalculating = true;
   }
 
   void Text::set_content(const string &value) {
     content = string_replace(value, "\r\n", "\n");
-    changed = true;
+    appearance_changed = true;
+    needs_recalculating = true;
   }
 
   void Text::create_buffers() {
@@ -35,6 +37,11 @@ namespace typography {
   }
 
   void Text::calculate() {
+    if (!needs_recalculating)
+      return;
+
+    needs_recalculating = false;
+
     auto without_spaces = string_replace(content, " ", "");
     auto &characters = font.get_characters();
     inserted_newlines.empty();
@@ -85,8 +92,8 @@ namespace typography {
       float character_width = character->size.x;
       x += character_width;
       if (x > max_width && last_space_index > 0) {
-        if (x > block_dimensions.x)
-          block_dimensions.x = x;
+        if (last_space_x > block_dimensions.x)
+          block_dimensions.x = last_space_x;
 
         inserted_newlines.push_back(last_space_index);
         y += line_step;
@@ -181,11 +188,11 @@ namespace typography {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     delete vertices;
     glow::check_error("Error preparing text.");
-    changed = false;
+    appearance_changed = false;
   }
 
   void Text::render() {
-    if (changed)
+    if (appearance_changed)
       prepare();
 
     if (element_count == 0)
@@ -211,16 +218,10 @@ namespace typography {
     glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
     glBindVertexArray(0);
     glow::check_error("rendering text");
-//    glEnable(GL_DEPTH_TEST);
-//    glDepthMask(true);
   }
 
   vec2 Text::get_dimensions() {
-//    if (changed)
-//      prepare();
-    if (changed)
-      calculate();
-
+    calculate();
     return block_dimensions * get_scale();
   }
 

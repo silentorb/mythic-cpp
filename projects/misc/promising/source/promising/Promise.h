@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
+#include "promising_export.h"
 #include <functional>
 #include <memory>
 #include <vector>
@@ -9,7 +10,7 @@ using namespace std;
 
 namespace promising {
 
-  class MYTHIC_EXPORT Promise_Interface : no_copy {
+  class PROMISING_EXPORT Promise_Interface : no_copy {
       static vector<unique_ptr<Promise_Interface>> promises;
 
   public:
@@ -23,7 +24,7 @@ namespace promising {
   };
 
   template<typename O>
-  class MYTHIC_EXPORT Promise : public Promise_Interface {
+  class Promise : public Promise_Interface {
 
   protected:
       bool _is_done = false;

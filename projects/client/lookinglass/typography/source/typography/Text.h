@@ -35,7 +35,8 @@ namespace typography {
       unsigned int vao;
       unsigned int vbo;
       Font &font;
-      bool changed;
+      bool appearance_changed;
+      bool needs_recalculating;
       ivec2 position = ivec2(0, 100);
       float size = 14;
       Text_Effect &effect;
@@ -65,19 +66,21 @@ namespace typography {
 
       void set_color(const vec4 value) {
         color = value;
-        changed = true;
+        appearance_changed = true;
       }
 
       void set_position(const ivec2 &value) {
         if (value != position) {
           position = value;
-          changed = true;
+          appearance_changed = true;
+          needs_recalculating = true;
         }
       }
 
       void set_size(float value) {
         size = value;
-        changed = true;
+        appearance_changed = true;
+        needs_recalculating = true;
       }
 
       vec2 get_dimensions();
@@ -93,7 +96,8 @@ namespace typography {
           return;
 
         Text::_max_width = max_width;
-        changed = true;
+        appearance_changed = true;
+        needs_recalculating = true;
       }
   };
 }
