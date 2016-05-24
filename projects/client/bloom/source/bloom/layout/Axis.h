@@ -7,7 +7,7 @@ namespace bloom {
 
   class Vertical_Axis;
 
-  class Horizontal_Axis  {
+  class Horizontal_Axis {
   public:
       static const Measurement &get_near(const Box &box) {
         return box.get_position().get_x();
@@ -29,6 +29,14 @@ namespace bloom {
         return value.y;
       }
 
+      static const Measurement &get_aligned(const Vector2 &value) {
+        return value.get_x();
+      }
+
+      static const Measurement &get_perpendicular(const Vector2 &value) {
+        return value.get_y();
+      }
+
       static const Axis_Value &get_cache(const Box &box) {
         return box.axis_cache.x;
       }
@@ -40,7 +48,7 @@ namespace bloom {
       using other = Vertical_Axis;
   };
 
-  class Vertical_Axis  {
+  class Vertical_Axis {
   public:
       static const Measurement &get_near(const Box &box) {
         return box.get_position().get_y();
@@ -60,6 +68,14 @@ namespace bloom {
 
       static const float get_perpendicular(const vec2 &value) {
         return value.x;
+      }
+
+      static const Measurement &get_aligned(const Vector2 &value) {
+        return value.get_y();
+      }
+
+      static const Measurement &get_perpendicular(const Vector2 &value) {
+        return value.get_x();
       }
 
       static const Axis_Value &get_cache(const Box &box) {

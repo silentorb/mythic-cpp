@@ -26,6 +26,7 @@ namespace bloom {
   class Text_Flower;
 
   class BLOOM_EXPORT Garden {
+      shared_ptr<Style> default_style;
       Flower *root;
       unique_ptr<haft::Action> select_action;
       drawing::Draw &draw;
@@ -80,5 +81,9 @@ namespace bloom {
       Flower *get_modal() const;
       void pop_modal();
       void enable_3d(bool value);
+
+      shared_ptr<Style> &get_default_style() {
+        return default_style;
+      }
   };
 }

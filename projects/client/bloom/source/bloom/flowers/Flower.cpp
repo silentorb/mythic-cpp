@@ -10,85 +10,36 @@ namespace bloom {
   Flower::Flower(Flower *parent) : Flower(Garden::get_instance(), parent) { }
 
   Flower::Flower(Garden &garden, Flower *parent) :
-    garden(garden), Box(garden.get_converter()) {
-    if (parent)
-      parent->add_child(this);
+    Flower(garden, garden.get_default_style(), parent) {
   }
 
   Flower::Flower(Garden &garden, shared_ptr<Style> &style, Flower *parent) :
-    Flower(garden, parent) { }
+    garden(garden), parent(parent), style(new Style(style)), Box(garden.get_converter()) {
+    if (parent)
+      parent->add_child(this);
+  }
 
   Flower::~Flower() {
     if (garden.get_modal() == this)
       garden.pop_modal();
   }
 
-//  bool Flower::emit(Events event) {
-//    bool has_events = false;
-//    shared_ptr<bool> local_is_deleted = is_deleted;
-//    for (auto &listener: listeners) {
-//      if (listener.type == event) {
-//        has_events = true;
-//
-//        listener.action(this);
-//        if (local_is_deleted)
-//          return true;
-//      }
-//    }
-//
-//    return has_events;
-//  }
-
-  const Bounds Flower::fit_to_children() {
-    throw runtime_error("Not implemented.");
-//    if (children.size() == 0)
-//      return Bounds(0, 0, 0, 0);
-//
-//    if (children.size() == 1)
-//      return children[0]->get_bounds();
-//
-//    float top, left, bottom, right;
-//    if (dimensions.x == 0 || dimensions.y) {
-//      top = 10000;
-//      left = 10000;
-//      bottom = 0;
-//      right = 0;
-//    }
-//    else {
-//      auto absolute_position = get_absolute_position();
-//      top = absolute_position.y;
-//      left = absolute_position.x;
-//      right = absolute_position.x + dimensions.x;
-//      bottom = absolute_position.y + dimensions.y;
-//    }
-//
-//    for (auto &child: children) {
-//      auto &bounds = child->get_bounds();
-//      if (bounds.bottom_right.x < left)
-//        left = bounds.bottom_right.x;
-//
-//      if (bounds.bottom_right.y < top)
-//        top = bounds.bottom_right.y;
-//
-//      if (bounds.bottom_right.x > right)
-//        right = bounds.bottom_right.x;
-//
-//      if (bounds.bottom_right.y > bottom)
-//        bottom = bounds.bottom_right.y;
-//    }
-//
-//    return Bounds(top, left, bottom, right);
-  }
-
-  const Bounds Flower::get_bounds() {
+  const Bounds Flower::get_outer_bounds() {
     return Bounds(
       vec2(axis_cache.x.near, axis_cache.y.near),
       vec2(axis_cache.x.length, axis_cache.y.length)
     );
   }
 
+  const Bounds Flower::get_inner_bounds() {
+    return Bounds(
+      vec2(axis_cache_inner.x.near, axis_cache_inner.y.near),
+      vec2(axis_cache_inner.x.length, axis_cache_inner.y.length)
+    );
+  }
+
   bool Flower::point_is_inside(const vec2 &point) {
-    auto bounds = get_bounds();
+    auto bounds = get_outer_bounds();
     auto top_left = converter.convert_to_pixels(bounds.get_position());
     auto bottom_right = converter.convert_to_pixels(bounds.get_corner());
 
@@ -121,16 +72,14 @@ namespace bloom {
   }
 
   void Flower::render() {
-    if (style) {
-      if (style->get_fill() != nullptr) {
-        auto &bounds = get_bounds();
-        style->get_fill()->render(garden.get_draw(), bounds);
-      }
+    if (style->get_fill()) {
+      auto &bounds = get_outer_bounds();
+      style->get_fill()->render(garden.get_draw(), bounds);
+    }
 
-      if (style->get_border() != nullptr) {
-        auto &bounds = get_bounds();
-        style->get_border()->render(garden.get_draw(), bounds);
-      }
+    if (style->get_border()) {
+      auto &bounds = get_outer_bounds();
+      style->get_border()->render(garden.get_draw(), bounds);
     }
 
     for (auto &child: children) {
@@ -166,7 +115,8 @@ namespace bloom {
     if (!style)
       style = shared_ptr<Style>(new Style());
 
-    style->set_padding(amount);
+    auto value = Simple_Measurement(amount);
+    style->set_padding(value);
   }
 
   Flower &Flower::create_generic_flower() {

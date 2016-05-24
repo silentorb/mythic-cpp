@@ -4,18 +4,32 @@
 #include "Fill.h"
 #include "Border.h"
 #include <memory>
+#include <bloom/layout/Box_Style.h>
+#include "bloom/layout/Measurement.h"
 
 using namespace std;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Style {
+  class MYTHIC_EXPORT Style : public Box_Style {
       unique_ptr<Border> border;
       unique_ptr<Fill> fill;
-      shared_ptr<Style> highlighed;
-      float padding = 0;// Eventually will be a box but most of the time and for now I just need it even.
+//      shared_ptr<Style> highlighed;
+      shared_ptr<Style> parent;
 
   public:
+
+      Style() { }
+
+      Style(const shared_ptr<Style> &parent) : parent(parent) {
+        set_parent_box(parent.get());
+      }
+      Style(Style *parent) : parent(parent) {
+        set_parent_box(parent);
+      }
+
+      virtual ~Style() override { }
+
       const Fill *get_fill() const {
         return fill.get();
       }
@@ -38,12 +52,12 @@ namespace bloom {
         border->set_color(color);
       }
 
-      float get_padding() const {
-        return padding;
-      }
-
-      void set_padding(float padding) {
-        Style::padding = padding;
-      }
+//      const Vector4 &get_padding() const {
+//        return box_style.get_padding();
+//      }
+//
+//      void set_padding(Measurement &measurement) {
+//        box_style.set_padding(measurement);
+//      }
   };
 }

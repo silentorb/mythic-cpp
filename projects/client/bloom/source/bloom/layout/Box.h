@@ -10,6 +10,7 @@
 #include "Axis_Value.h"
 #include <memory>
 #include "bloom/bloom_export.h"
+#include "Box_Style.h"
 
 using namespace std;
 using namespace glm;
@@ -46,6 +47,12 @@ namespace bloom {
       const Measurement_Converter &converter;
       Arrangement arrangement = Arrangement::canvas;
       Axis_Values axis_cache;
+      Axis_Values axis_cache_inner;
+      unique_ptr<Measurement> spacing;
+
+      template<typename Axis>
+      void apply_padding(Axis_Value &value,  const Vector4 & padding);
+      void apply_padding(Axis_Values &values);
 
   public:
       int debug_id = 0;
@@ -161,8 +168,18 @@ namespace bloom {
 //        return dimensions.get_x();
 //      }
 
-      const Axis_Values & get_cache()const {
+      const Axis_Values &get_cache() const {
         return axis_cache;
+      }
+
+      virtual Box_Style &get_box_style() = 0;
+
+      const Measurement *get_spacing() const {
+        return spacing.get();
+      }
+
+      void set_spacing(const Measurement &spacing) {
+        Box::spacing = unique_ptr<Measurement>(spacing.clone());
       }
   };
 

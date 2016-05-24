@@ -35,8 +35,12 @@ namespace bloom {
   Garden::Garden(drawing::Draw &draw) :
     draw(draw),
     select_action(new Action(1, "Select")),
-    root(new Flower(*this)),
-    converter(draw.get_dimensions()) {
+    default_style(new Style()),
+    converter(draw.get_dimensions())     {
+
+//    auto simple = Simple_Measurement();
+//    default_style->set_padding(simple);
+    root = new Flower(*this);
     draw.add_renderable([&]() {
       render();
     });
@@ -102,11 +106,11 @@ namespace bloom {
   Orientation Garden::get_orientation() const {
     auto &dimensions = draw.get_dimensions();
     return dimensions.x > dimensions.y
-                  ? Orientation::landscape
-                  : Orientation::portrait;
+           ? Orientation::landscape
+           : Orientation::portrait;
   }
 
-  Flower* Garden::get_modal() const {
+  Flower *Garden::get_modal() const {
     if (modal_stack.size() == 0)
       return nullptr;
 

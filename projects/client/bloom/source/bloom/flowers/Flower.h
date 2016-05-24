@@ -38,8 +38,6 @@ namespace bloom {
       bool visible = true;
       Flower *parent = nullptr;
 
-      const Bounds fit_to_children();
-
   public:
       Flower(Flower *parent = nullptr);
       Flower(Garden &garden, Flower *parent = nullptr);
@@ -48,7 +46,8 @@ namespace bloom {
       virtual ~Flower();
 
 //      virtual bool emit(Events event);
-      virtual const Bounds get_bounds();
+      virtual const Bounds get_outer_bounds();
+      virtual const Bounds get_inner_bounds();
       bool point_is_inside(const vec2 &point);
       bool check_activate(const vec2 &point);
 
@@ -118,10 +117,14 @@ namespace bloom {
       bool is_landscape() const;
       bool is_portrait() const;
 
-      float get_padding() const {
-        return style ? style->get_padding() : 0;
+      const Vector4 * get_padding() const {
+        return style->get_padding();
       }
 
       virtual void close();
+
+      virtual Box_Style &get_box_style() override {
+        return *style;
+      }
   };
 }

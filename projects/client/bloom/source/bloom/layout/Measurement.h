@@ -170,6 +170,11 @@ namespace bloom {
       const shared_ptr<Measurement> &get_y_pointer() const {
         return y;
       }
+
+      void set_values(Measurement &measurement) {
+        set_x(measurement);
+        set_y(measurement);
+      }
   };
 
   struct MYTHIC_EXPORT Vector4 {
@@ -179,5 +184,9 @@ namespace bloom {
       Vector4() { }
 
       Vector4(const Vector2 &near, const Vector2 &far) : near(near), far(far) { }
+      void set_values(Measurement &measurement) {
+        near.set_values(measurement);
+        far.set_values(measurement);
+      }
   };
 }

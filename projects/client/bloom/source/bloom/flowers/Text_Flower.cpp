@@ -37,36 +37,28 @@ namespace bloom {
 
   void Text_Flower::render() {
     Flower::render();
-    auto &bounds = get_bounds();
-    float padding = get_padding();
+    auto &bounds = get_inner_bounds();
 
-    text->set_position(ivec2((int) bounds.get_position().x + padding, (int) bounds.get_position().y + padding));
+    text->set_position(ivec2((int) bounds.get_position().x, (int) bounds.get_position().y));
     text->render();
   }
 
   void Text_Flower::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
-//    set_width(Simple_Measurement(40));
-//    axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
-//    axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
-    update_axis_cache(parent_values, margin);
-//    if (dimensions_changed) {
-//      dimensions_changed = false;
-      text->set_max_width(axis_cache.x.length - get_padding() * 2);
-      auto text_dimensions = text->get_dimensions() + get_padding() * 2;
 
-      auto temp_x = dimensions.get_x_pointer();
-      auto temp_y = dimensions.get_y_pointer();
-      dimensions.set_x(Simple_Measurement(text_dimensions.x));
-      dimensions.set_y(Simple_Measurement(text_dimensions.y));
-//      axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
-//      axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
     update_axis_cache(parent_values, margin);
-      dimensions.set_x(*temp_x);
-      dimensions.set_y(*temp_y);
-//    }
+
+//    text->set_max_width(axis_cache.x.length - get_padding() * 2);
+    text->set_max_width(axis_cache.x.length);
+//    auto text_dimensions = text->get_dimensions() + get_padding() * 2;
+    auto text_dimensions = text->get_dimensions();
+
+    auto temp_x = dimensions.get_x_pointer();
+    auto temp_y = dimensions.get_y_pointer();
+    dimensions.set_x(Simple_Measurement(text_dimensions.x));
+    dimensions.set_y(Simple_Measurement(text_dimensions.y));
+    update_axis_cache(parent_values, margin);
+    dimensions.set_x(*temp_x);
+    dimensions.set_y(*temp_y);
   }
 
-//  const Measurement &Text_Flower::get_estimated_width() const {
-//    return *estimated_width;
-//  }
 }

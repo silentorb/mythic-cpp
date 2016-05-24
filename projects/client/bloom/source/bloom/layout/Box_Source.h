@@ -134,28 +134,59 @@ namespace bloom {
   void Box::update_axis_cache(const Axis_Values &parent_values, const vec2 &margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
+    axis_cache_inner = axis_cache;
+    apply_padding(axis_cache_inner);
+  }
+
+  template<typename Axis>
+  void Box::apply_padding(Axis_Value &value, const Vector4 &padding) {
+    auto parent_dimensions = get_parent_dimensions();
+    const Measurement &near = Axis::get_aligned(padding.near);
+    const Measurement &far = Axis::get_aligned(padding.far);
+    auto padding_near = near.resolve<Axis>(parent_dimensions, converter);
+    auto padding_far = far.resolve<Axis>(parent_dimensions, converter);
+
+    value.near += padding_near;
+    value.absolute_far -= padding_far;
+    value.length -= padding_near + padding_far;
+  }
+
+  void Box::apply_padding(Axis_Values &values) {
+    auto padding = get_box_style().get_padding();
+    if (!padding)
+      return;
+
+    apply_padding<Horizontal_Axis>(values.x, *padding);
+    apply_padding<Vertical_Axis>(values.y, *padding);
   }
 
   void Box::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
 
+    axis_cache_inner = axis_cache;
+    apply_padding(axis_cache_inner);
+
     if (arrangement == Arrangement::canvas) {
       for (int i = 0; i < get_child_count(); ++i) {
-        get_child_box(i).update_absolute_dimensions(axis_cache);
+        get_child_box(i).update_absolute_dimensions(axis_cache_inner);
       }
     }
     else if (arrangement == Arrangement::down) {
-      auto current = axis_cache;
-//      current.y.length = 0;
-//      current.y.absolute_far = current.y.near;
-      int temp = get_child_count();
+      auto current = axis_cache_inner;
+
+      auto parent_dimensions = get_parent_dimensions();
+      float spacing_value = spacing.get()
+                     ? spacing->resolve<Vertical_Axis>(parent_dimensions, converter)
+                     : 0;
+
       for (int i = 0; i < get_child_count(); ++i) {
         auto &child = get_child_box(i);
         child.update_absolute_dimensions(current);
-//        auto offset = child.axis_cache.y.length;
-        current.y.near = child.axis_cache.y.absolute_far;
-//        current.y.absolute_far += offset;
+        current.y.near = child.axis_cache.y.absolute_far
+                         + child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter)
+                         + spacing_value;
+
       }
     }
   }
