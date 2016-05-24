@@ -176,17 +176,20 @@ namespace bloom {
       auto current = axis_cache_inner;
 
       auto parent_dimensions = get_parent_dimensions();
+      float margin = 0;
       float spacing_value = spacing.get()
-                     ? spacing->resolve<Vertical_Axis>(parent_dimensions, converter)
-                     : 0;
+                            ? spacing->resolve<Vertical_Axis>(parent_dimensions, converter)
+                            : 0;
 
       for (int i = 0; i < get_child_count(); ++i) {
         auto &child = get_child_box(i);
-        child.update_absolute_dimensions(current);
-        current.y.near = child.axis_cache.y.absolute_far
-                         + child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter)
-                         + spacing_value;
+        child.update_absolute_dimensions(current, vec2(0, margin));
+        current.y.near = child.axis_cache.y.absolute_far;
+//        margin = glm::max(child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter),
+//                          spacing_value);
 
+        current.y.near += glm::max(child.position.far.get_y().resolve<Vertical_Axis>(parent_dimensions, converter),
+                                   spacing_value);
       }
     }
   }

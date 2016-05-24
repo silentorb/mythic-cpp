@@ -2,8 +2,6 @@
 #include "Garden.h"
 #include "clienting/Client.h"
 #include "haft/Input_State.h"
-#include "drawing/Draw.h"
-#include "lookinglass/House.h"
 #include "lookinglass/Lookinglass_Resources.h"
 #include <iostream>
 #include <bloom/layout/Axis.h>
@@ -32,18 +30,16 @@ namespace bloom {
 
   Garden *Garden::instance = nullptr;
 
-  Garden::Garden(drawing::Draw &draw) :
+  Garden::Garden(Draw_Interface &draw) :
     draw(draw),
     select_action(new Action(1, "Select")),
     default_style(new Style()),
-    converter(draw.get_dimensions())     {
+    converter(draw.get_dimensions()) {
 
 //    auto simple = Simple_Measurement();
 //    default_style->set_padding(simple);
     root = new Flower(*this);
-    draw.add_renderable([&]() {
-      render();
-    });
+
     instance = this;
   }
 
@@ -66,7 +62,7 @@ namespace bloom {
     }
   }
 
-  void Garden::render() {
+  void Garden::update_layout() {
     auto dimensions = draw.get_dimensions();
     converter.set_pixel_dimensions(dimensions);
 
@@ -76,18 +72,15 @@ namespace bloom {
     };
 
     root->update_absolute_dimensions(base_axis_values);
-    enable_3d(false);
-    root->render();
-    enable_3d(true);
   }
 
-  void Garden::enable_3d(bool value) {
-    draw.set_depth(value);
+  void Garden::render() {
+    update_layout();
+    root->render();
   }
 
   Text_Flower *Garden::create_text(const string content, const string font) {
-    auto &resources = draw.get_house().get_resources();
-    return new Text_Flower(*this, resources.get_font(font), resources.get_text_effect(), content);
+    return new Text_Flower(*this, draw.get_font(font), draw.get_text_effect(), content);
   }
 
   Flower &Garden::create_generic_flower() {
@@ -97,10 +90,6 @@ namespace bloom {
 
   void Garden::add_modal(Flower &flower) {
     modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
-  }
-
-  lookinglass::House &Garden::get_house() const {
-    return draw.get_house();
   }
 
   Orientation Garden::get_orientation() const {

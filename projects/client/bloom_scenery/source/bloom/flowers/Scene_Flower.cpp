@@ -1,3 +1,4 @@
+#include <lookinglass/House.h>
 #include "Scene_Flower.h"
 #include "scenery/Scene.h"
 #include "perspective/Viewport.h"
@@ -12,7 +13,7 @@ namespace bloom {
   }
 
   Scene_Flower::Scene_Flower(Garden &garden, Flower *parent) :
-    Scene_Flower(garden, shared_ptr<scenery::Scene>(new scenery::Scene(garden.get_house())), parent) {
+    Scene_Flower(garden, shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance())), parent) {
 
   }
 
@@ -25,8 +26,8 @@ namespace bloom {
 
     scene->get_viewport().set_bounds(position, dimensions);
 
-    garden.enable_3d(true);
+    garden.get_draw().enable_3d(true);
     scene->render();
-    garden.enable_3d(false);
+    garden.get_draw().enable_3d(false);
   }
 }

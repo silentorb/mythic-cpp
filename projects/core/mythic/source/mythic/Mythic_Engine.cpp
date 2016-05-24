@@ -6,7 +6,6 @@
 #include "haft/Input_Manager.h"
 
 namespace mythic {
-//  std::map<string, std::unique_ptr<Myth_Info>> myth_registrations;
 
   Mythic_Engine::Mythic_Engine(Platform_Factory &factory,int width, int height) {
 
@@ -26,17 +25,9 @@ namespace mythic {
     delete client;
   }
 
-//  void Mythic_Engine::add_myth(Myth *myth) {
-//    myths[myth->get_name()] = unique_ptr<Myth>(myth);
-//  }
-
   void Mythic_Engine::add_renderable(lookinglass::Renderable &renderable) {
     client->get_house().add_renderable(renderable);
   }
-
-//  void Mythic_Engine::remove_renderable(lookinglass::Renderable &renderable) {
-//    client->get_house().remove_renderable(renderable);
-//  }
 
   void Mythic_Engine::update() {
     float delta = timer->update();
@@ -51,14 +42,10 @@ namespace mythic {
     while (!client->is_closing()) {
       update();
     }
-		int k = 0;
   }
 
   void Mythic_Engine::add_myth(Myth *myth) {
     myths[myth->get_name()] = unique_ptr<Myth>(myth);
   }
 
-//  void Mythic_Engine::register_myth(Myth_Info *info) {
-//    myth_registrations[info->get_name()] = std::unique_ptr<Myth_Info>(info);;
-//  }
 }

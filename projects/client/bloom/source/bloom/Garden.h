@@ -1,10 +1,10 @@
 #pragma once
 
-#include "dllexport.h"
 #include "bloom/flowers/Flower.h"
 #include "Modal.h"
 #include <stack>
 #include <string>
+#include "Draw_Interface.h"
 
 namespace haft {
   class Action;
@@ -12,12 +12,7 @@ namespace haft {
   class Input_State;
 }
 
-namespace lookinglass {
-  class House;
-}
 namespace drawing {
-  class Draw;
-
   class Element;
 }
 
@@ -29,14 +24,14 @@ namespace bloom {
       shared_ptr<Style> default_style;
       Flower *root;
       unique_ptr<haft::Action> select_action;
-      drawing::Draw &draw;
+      Draw_Interface &draw;
       Measurement_Converter converter;
       Flower *focused_flower;
       stack <unique_ptr<Modal>> modal_stack;
       static Garden *instance;
 
   public:
-      Garden(drawing::Draw &draw);
+      Garden(Draw_Interface &draw);
       ~Garden();
 
       void update_input(haft::Input_State &input_state);
@@ -48,7 +43,7 @@ namespace bloom {
       Text_Flower *create_text(const string content, const string font = "default");
       void render();
 
-      drawing::Draw &get_draw() const {
+      Draw_Interface &get_draw() const {
         return draw;
       }
 
@@ -71,7 +66,6 @@ namespace bloom {
       }
 
       void add_modal(Flower &flower);
-      lookinglass::House &get_house() const;
 
       static Garden &get_instance() {
         return *instance;
@@ -80,10 +74,11 @@ namespace bloom {
       Orientation get_orientation() const;
       Flower *get_modal() const;
       void pop_modal();
-      void enable_3d(bool value);
 
       shared_ptr<Style> &get_default_style() {
         return default_style;
       }
+
+      void update_layout();
   };
 }
