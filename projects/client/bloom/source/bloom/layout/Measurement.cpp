@@ -38,10 +38,10 @@ namespace bloom {
           return value * Axis::get_perpendicular(parent_dimensions) / UNIT_RESOLUTION;
 
         case Measurements::percent:
-          return 10 * value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
+          return value * Axis::get_aligned(parent_dimensions) / 100;
 
         case Measurements::percent_perpendicular:
-          return 10 * value * Axis::get_perpendicular(parent_dimensions) / UNIT_RESOLUTION;
+          return value * Axis::get_perpendicular(parent_dimensions) / 100;
 
         case Measurements::vertical_units:
           return value * converter.get_pixel_dimensions().y / UNIT_RESOLUTION;

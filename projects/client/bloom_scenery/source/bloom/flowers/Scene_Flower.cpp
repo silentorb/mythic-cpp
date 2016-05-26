@@ -9,7 +9,6 @@ namespace bloom {
   Scene_Flower::Scene_Flower(Garden &garden, shared_ptr<scenery::Scene> scene, Flower *parent) :
     scene(scene),
     Flower(garden, parent) {
-		debug_id = 32;
   }
 
   Scene_Flower::Scene_Flower(Garden &garden, Flower *parent) :
@@ -19,7 +18,7 @@ namespace bloom {
 
   void Scene_Flower::render() {
     Flower::render();
-    auto bounds = get_outer_bounds();
+    auto bounds = get_inner_bounds();
     auto pos = bounds.get_position();
     auto position = converter.convert_to_pixels(vec2(pos.x, converter.get_unit_dimensions().y - bounds.get_corner().y));
     auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());

@@ -99,5 +99,15 @@ namespace typography {
         appearance_changed = true;
         needs_recalculating = true;
       }
+
+      float get_line_height() const {
+        return line_height;
+      }
+
+      void set_line_height(float line_height) {
+        Text::line_height = line_height;
+        appearance_changed = true;
+        needs_recalculating = true;
+      }
   };
 }

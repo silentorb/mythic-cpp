@@ -122,7 +122,7 @@ namespace bloom {
     }
     else {
       result.near = parent_values.near + result.near;
-      if (margin > result.near)
+      if (margin > result.near && result.near > 0)
         result.near = margin;
 
       result.absolute_far = result.near + result.length;

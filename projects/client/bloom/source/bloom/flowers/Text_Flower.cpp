@@ -10,7 +10,7 @@ namespace bloom {
                            const string content) :
     Flower(garden),
     text(new typography::Text(font, effect, content)) {
-    set_border(vec4(1, 1, 0, 1));
+//    set_border(vec4(1, 1, 0, 1));
   }
 
   Text_Flower::Text_Flower(const string content, Flower *parent) :
@@ -36,6 +36,10 @@ namespace bloom {
     dimensions_changed = true;
   }
 
+  void Text_Flower::set_line_height(float value) {
+    text->set_line_height(value);
+  }
+
   void Text_Flower::render() {
     Flower::render();
     text->render();
@@ -46,7 +50,7 @@ namespace bloom {
     update_axis_cache(parent_values, margin);
 
 //    text->set_max_width(axis_cache.x.length - get_padding() * 2);
-    text->set_max_width(axis_cache_inner.x.length);
+    text->set_max_width(axis_cache_inner.x.length * 1.1);
 //    auto text_dimensions = text->get_dimensions() + get_padding() * 2;
     auto padding_length_y = axis_cache.y.length - axis_cache_inner.y.length;
     const float font_descender_hack = 1.1;

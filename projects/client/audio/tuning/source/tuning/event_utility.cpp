@@ -29,6 +29,8 @@ namespace tuning {
                + " - " + to_string(event.get_trigger_end()) + ")";
       }
     }
+
+    return "";
   }
 
   void write_events_to_file(Event_Data &source, const string &filename) {

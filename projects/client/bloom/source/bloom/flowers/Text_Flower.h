@@ -32,6 +32,7 @@ namespace bloom {
       void set_content(const string &content);
       void set_color(const vec4 value);
       void set_size(float value);
+      void set_line_height(float value);
 
       virtual void render() override;
       virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) override;
