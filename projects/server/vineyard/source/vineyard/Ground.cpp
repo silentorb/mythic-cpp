@@ -13,6 +13,7 @@ namespace vineyard {
   Ground::Ground(const string &filename, initializer_list<landscape::Trellis *> initializer) :
     db(new Database(filename)) {
 
+    sqlite3_config(SQLITE_CONFIG_SINGLETHREAD, 1);
     clear_log();
 
     for (auto trellis : initializer) {
