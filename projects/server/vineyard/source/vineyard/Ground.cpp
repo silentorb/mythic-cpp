@@ -38,6 +38,7 @@ namespace vineyard {
     for (auto &trellis: trellises) {
       db->create_table(*trellis, connection);
     }
+    initialized = true;
   }
 
   void Ground::clear_log() {

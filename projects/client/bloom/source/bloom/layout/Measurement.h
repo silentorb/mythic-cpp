@@ -13,6 +13,7 @@ namespace bloom {
   enum class Measurements {
       units,
       stretch,
+      shrink,
       parent_aligned,
       parent_perpendicular,
       percent,

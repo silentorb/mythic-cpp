@@ -29,6 +29,7 @@ namespace vineyard {
                                 Seed_Creator &creator);
 
       bool _writing_enabled = true;
+      bool initialized = false;
 
   public:
       Ground(const string &filename, initializer_list<landscape::Trellis *> initializer);
@@ -63,5 +64,9 @@ namespace vineyard {
       }
 
       void clear_log();
+
+      bool is_initialized() const {
+        return initialized;
+      }
   };
 }

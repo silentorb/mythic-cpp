@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 #include <stdexcept>
+#include <chrono>
 
 namespace randomly {
 
@@ -21,6 +22,13 @@ namespace randomly {
 
       void seed(unsigned int seed) {
         engine.seed(seed);
+      }
+
+      void seed() {
+        typedef std::chrono::high_resolution_clock dice_clock;
+        dice_clock::time_point beginning = dice_clock::now();
+        dice_clock::duration d = dice_clock::now() - beginning;
+        engine.seed(d.count());
       }
 
       float get_float() {
