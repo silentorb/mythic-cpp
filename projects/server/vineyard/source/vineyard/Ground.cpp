@@ -10,6 +10,8 @@
 namespace vineyard {
   using namespace database;
 
+  bool ground_logging = false;
+
   Ground::Ground(const string &filename, initializer_list<landscape::Trellis *> initializer) :
     db(new Database(filename)) {
 
@@ -72,4 +74,13 @@ namespace vineyard {
     database::Connection connection(*this);
     database::query_trellis(connection, trellis, initializer, creator);
   }
+
+  bool Ground::is_logging() {
+    return ground_logging;
+  }
+
+  void Ground::set_logging(bool logging) {
+    ground_logging = logging;
+  }
+
 }

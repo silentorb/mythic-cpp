@@ -13,6 +13,11 @@ namespace aura {
 
     chord_loop->set_on_loop([&](Conductor &conductor, float start, float end) {
       composer.next_chord();
+//      performer->clear_performances();
+      auto clips = composer.select_clips();
+      for(auto &clip : clips) {
+        performer->add_performance(clip->get_instrument(), clip->get_sequencer());
+      }
     });
   }
 

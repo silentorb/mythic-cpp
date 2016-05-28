@@ -31,6 +31,9 @@ namespace aura {
       float update(float delta, Conductor &conductor);
       void add_performance(Instrument &instrument, Sequencer &sequencer);
       Tempo_Loop &get_loop_with_beat_count(float beats);
+      void clear_performances() {
+        performances.empty();
+      }
   };
 
   struct Chord_Structure;

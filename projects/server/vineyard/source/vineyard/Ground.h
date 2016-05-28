@@ -68,5 +68,9 @@ namespace vineyard {
       bool is_initialized() const {
         return initialized;
       }
+
+      static bool is_logging();
+
+      static void set_logging(bool logging);
   };
 }

@@ -35,7 +35,7 @@ namespace vineyard {
     }
 
     void Connection::log(const string &message) {
-      if (logging) {
+      if (Ground::is_logging()) {
         ofstream log_file("db.log", ios::app);
         if (log_file.is_open()) {
           log_file << message << endl;

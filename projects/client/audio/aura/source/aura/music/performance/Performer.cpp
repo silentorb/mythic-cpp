@@ -38,7 +38,7 @@ namespace aura {
   }
 
   float Performer::update(float delta, Conductor &conductor) {
-    for(auto & loop: loops) {
+    for (auto &loop: loops) {
       loop->update(conductor);
     }
 
