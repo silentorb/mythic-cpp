@@ -104,4 +104,11 @@ namespace aura {
       perform(conductor, instrument, sequencer, start, end);
     });
   }
+
+  void Performer::clear_performances() {
+    performances.empty();
+    for (auto &loop:loops) {
+      loop->clear_handlers();
+    }
+  }
 }

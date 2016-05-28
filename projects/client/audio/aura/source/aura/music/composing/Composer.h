@@ -6,6 +6,7 @@
 #include <memory>
 #include <aura/sequencing/Chord_Structure.h>
 #include <aura/sequencing/Conductor.h>
+#include <map>
 
 namespace randomly {
   class Dice;
@@ -15,9 +16,15 @@ using namespace std;
 
 namespace aura {
 
+  struct MYTHIC_EXPORT Clip_Group_Pair {
+      int group_index;
+      shared_ptr<Instrument> instrument;
+      shared_ptr<Sequencer> sequencer;
+  };
+
   class MYTHIC_EXPORT Composer : no_copy {
       vector<unique_ptr<Chord_Structure>> chord_structures;
-      vector<unique_ptr<Clip_Group>> clip_groups;
+      map<int, unique_ptr<Clip_Group>> clip_groups;
       int current_structure_index = 0;
       shared_ptr<randomly::Dice> dice;
       int min_clips = 2;
@@ -33,7 +40,8 @@ namespace aura {
         return *chord_structures[current_structure_index];
       }
 
-      void add_clip(int index, Clip *clip);
+      void add_clip(int id, Clip *clip);
+      void add_clips(initializer_list<Clip_Group_Pair> initializer);
 
       void next_chord();
 
@@ -53,6 +61,6 @@ namespace aura {
         Composer::max_clips = max_clips;
       }
 
-      vector<Clip*> select_clips();
+      vector<Clip *> select_clips();
   };
 }

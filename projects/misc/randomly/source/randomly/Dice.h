@@ -13,7 +13,7 @@ namespace randomly {
 
   public:
       Dice() {
-        engine.seed(1);
+        seed();
       }
 
       Dice(unsigned int seed) {
@@ -50,6 +50,7 @@ namespace randomly {
       }
 
       int get_int(int max) {
+				Assert(max > 0);
         return engine.operator()() % max;
       }
 

@@ -35,5 +35,7 @@ namespace aura {
       Performer &get_performer() const {
         return *performer;
       }
+
+      void next_section();
   };
 }

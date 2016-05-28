@@ -11,19 +11,23 @@ namespace aura {
       perform_chord_structure(conductor, composer.get_current_chord_structure(), start, end);
     });
 
-    chord_loop->set_on_loop([&](Conductor &conductor, float start, float end) {
-      composer.next_chord();
-//      performer->clear_performances();
-      auto clips = composer.select_clips();
-      for(auto &clip : clips) {
-        performer->add_performance(clip->get_instrument(), clip->get_sequencer());
-      }
+    chord_loop->set_on_loop([this](Conductor &conductor, float start, float end) {
+      next_section();
     });
   }
 
-  void Producer::commence() {
-    conductor.commence();
+  void Producer::next_section() {
+    composer.next_chord();
+    performer->clear_performances();
+    auto clips = composer.select_clips();
+    for (auto &clip : clips) {
+      performer->add_performance(clip->get_instrument(), clip->get_sequencer());
+    }
+  }
 
+  void Producer::commence() {
+    next_section();
+    conductor.commence();
   }
 
   float Producer::update(float delta) {
@@ -31,7 +35,6 @@ namespace aura {
     auto value = performer->update(delta, conductor);
     return value;
   }
-
 
 
 }

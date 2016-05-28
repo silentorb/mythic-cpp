@@ -60,5 +60,9 @@ namespace aura {
       float get_beats() const {
         return beats;
       }
+
+      void clear_handlers(){
+        handlers.clear();
+      }
   };
 }
