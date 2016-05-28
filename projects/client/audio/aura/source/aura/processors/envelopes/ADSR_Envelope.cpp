@@ -6,7 +6,7 @@ namespace aura {
     switch (stage) {
       case ADSR_Stage::attack: {
         if (position < settings.attack_duration) {
-          auto mod = settings.attack_level * position / settings.attack_duration;
+          auto mod = attack_level * position / settings.attack_duration;
           if (mod > 1)
             mod = 1;
 
@@ -20,8 +20,8 @@ namespace aura {
       case ADSR_Stage::decay: {
         if (position < settings.attack_duration + settings.decay_duration) {
           auto offset = position - settings.attack_duration;
-          auto range = settings.attack_level - settings.sustain_level;
-          auto mod = settings.attack_level - range * offset / settings.decay_duration;
+          auto range = attack_level - sustain_level;
+          auto mod = attack_level - range * offset / settings.decay_duration;
           if (mod < 0)
             mod = 0;
           else if (mod > 1)
@@ -35,7 +35,7 @@ namespace aura {
       }
 
       case ADSR_Stage::sustain: {
-        return settings.sustain_level;
+        return sustain_level;
       }
 
       case ADSR_Stage::release: {

@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdexcept>
 #include <chrono>
+#include <iostream>
 
 namespace randomly {
 
@@ -28,6 +29,7 @@ namespace randomly {
         typedef std::chrono::high_resolution_clock dice_clock;
         dice_clock::time_point beginning = dice_clock::now();
         dice_clock::duration d = dice_clock::now() - beginning;
+        std::cout << "Random seed: " << d.count() << std::endl;
         engine.seed(d.count());
       }
 
@@ -46,6 +48,9 @@ namespace randomly {
       }
 
       int get_int(int min, int max) {
+        if (min == max)
+          return min;
+
         return engine.operator()() % (max - min) + min;
       }
 

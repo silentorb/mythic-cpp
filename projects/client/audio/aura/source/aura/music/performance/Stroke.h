@@ -41,6 +41,4 @@ namespace aura {
         return note;
       }
   };
-
-//  typedef std::function<Stroke *(const Note &note)> Instrument;
 }

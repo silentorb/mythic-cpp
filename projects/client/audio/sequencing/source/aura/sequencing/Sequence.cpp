@@ -10,13 +10,13 @@ namespace aura {
       beats = end;
   }
 
-  void Sequence::add_notes(initializer_list<Note> initializer) {
+  void Sequence::add_notes(initializer_list<const Note> initializer) {
     for (auto &note: initializer) {
       add_note(note);
     }
   }
 
-  void Sequence::add_notes(float offset, float note_length, initializer_list<Note> initializer) {
+  void Sequence::add_notes(float offset, float note_length, initializer_list<const Note> initializer) {
     for (auto &note: initializer) {
       add_note(Note(*note.get_pitch(), note.get_start() + offset, note_length));
     }

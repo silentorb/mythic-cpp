@@ -8,6 +8,7 @@ namespace aura {
 
   namespace generate {
 
+
     MYTHIC_EXPORT float sine(float position) {
       return sin(position * 2 * Pi);
     }

@@ -7,7 +7,6 @@
 namespace aura {
 
   class MYTHIC_EXPORT Instrument {
-//      typedef std::function<Stroke *(const Note &note)> Instrument;
   public:
       virtual Stroke *generate_stroke(const Note &note) = 0;
 

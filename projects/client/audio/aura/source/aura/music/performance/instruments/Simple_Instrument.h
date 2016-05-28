@@ -8,15 +8,19 @@
 #include "Instrument.h"
 
 namespace aura {
+  typedef std::function<Stroke *(const Note &note, Producer &producer, Note_Envelope *volume_envelope)> Instrument_Stroke_Generator;
 
   class MYTHIC_EXPORT Simple_Instrument : public Instrument {
-      Producer & producer;
+      Producer &producer;
       const Note &note;
       Note_Envelope_Generator &volume_envelope;
-      Loop_Function operation;
+//      Loop_Function operation;
+      Instrument_Stroke_Generator stroke_generator;
 
   public:
       Simple_Instrument(Producer &producer, Loop_Function operation, Note_Envelope_Generator &volume_envelope);
+      Simple_Instrument(Producer &producer, Instrument_Stroke_Generator stroke_generator,
+                        Note_Envelope_Generator &volume_envelope);
 
       virtual Stroke *generate_stroke(const Note &note) override;
   };

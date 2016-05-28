@@ -16,8 +16,8 @@ namespace aura {
     position = fmod(position + increment, 1.0);
     if (frequency < 1) {
 
-      if (position < old)
-        std::cout << "Looped" << std::endl;
+//      if (position < old)
+//        std::cout << "Looped" << std::endl;
     }
 
     return position;
