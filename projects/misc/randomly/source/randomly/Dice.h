@@ -11,6 +11,7 @@ namespace randomly {
 
   class MYTHIC_EXPORT Dice {
       std::mt19937 engine;
+      unsigned int _seed;
 
   public:
       Dice() {
@@ -18,19 +19,19 @@ namespace randomly {
       }
 
       Dice(unsigned int seed) {
+        _seed = seed;
         engine.seed(seed);
       }
 
       void seed(unsigned int seed) {
+        _seed = seed;
         engine.seed(seed);
       }
 
       void seed() {
-        typedef std::chrono::high_resolution_clock dice_clock;
-        dice_clock::time_point beginning = dice_clock::now();
-        dice_clock::duration d = dice_clock::now() - beginning;
-        std::cout << "Random seed: " << d.count() << std::endl;
-        engine.seed(d.count());
+        _seed = (unsigned int)time(NULL);
+        std::cout << "Random seed: " << _seed << std::endl;
+        engine.seed(_seed);
       }
 
       float get_float() {

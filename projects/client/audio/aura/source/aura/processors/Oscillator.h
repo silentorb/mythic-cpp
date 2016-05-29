@@ -12,11 +12,11 @@ namespace aura {
       Loop loop;
       Loop_Function operation;
       Engineer &engineer;
-      Shared_Generator frequency_generator;
+      Generator frequency_generator;
 
   public:
       Oscillator(Engineer &engineer, float frequency, Loop_Function operation);
-      Oscillator(Engineer &engineer, const Shared_Generator &frequency_generator, Loop_Function operation);
+      Oscillator(Engineer &engineer, const Generator frequency_generator, Loop_Function operation);
 
       float get_frequency() const {
         return loop.get_frequency();
@@ -26,7 +26,7 @@ namespace aura {
         loop.set_frequency(frequency);
       }
 
-      void set_frequency_generator(const Shared_Generator &frequency_generator) {
+      void set_frequency_generator(const Generator &frequency_generator) {
         Oscillator::frequency_generator = frequency_generator;
       }
 

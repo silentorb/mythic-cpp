@@ -9,13 +9,13 @@ namespace aura {
     loop(engineer.get_sample_rate(), frequency), engineer(engineer),
     operation(operation) { }
 
-  Oscillator::Oscillator(Engineer &engineer, const Shared_Generator &frequency_generator, Loop_Function operation) :
+  Oscillator::Oscillator(Engineer &engineer, const Generator frequency_generator, Loop_Function operation) :
     loop(engineer.get_sample_rate()), engineer(engineer),
-    operation(operation) { }
+    operation(operation), frequency_generator(frequency_generator) { }
 
   float Oscillator::operator()() {
-    if (frequency_generator.get())
-      loop.set_frequency((*frequency_generator)());
+    if (frequency_generator)
+      loop.set_frequency(frequency_generator());
 
     return operation(loop.next());
   }
