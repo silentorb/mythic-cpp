@@ -17,8 +17,8 @@ namespace substance {
 
   class MYTHIC_EXPORT Particle_Listener {
   public:
-      virtual void particle_added(Particle &particle) = 0;
-      virtual void particle_removed(Particle &particle) = 0;
+      virtual void particle_added(const Particle &particle) = 0;
+      virtual void particle_removed(const Particle &particle) = 0;
   };
 
   class MYTHIC_EXPORT Emitter: no_copy {

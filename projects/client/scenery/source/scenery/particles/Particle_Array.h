@@ -17,7 +17,7 @@ namespace scenery {
 
   class Particle_Effect;
 
-  class Pretty_Particle;
+  class Visible_Particle;
 
   struct Particle_Data {
       vec3 position;
@@ -27,7 +27,7 @@ namespace scenery {
 
   class MYTHIC_EXPORT Particle_Array : public scenery::Element {
       bool changed = true;
-      vector<unique_ptr<Pretty_Particle>> particles;
+      vector<unique_ptr<Visible_Particle>> particles;
       vector<Particle_Data> vertices;
       modeling::Vertex_Buffer* vertex_buffer;
       shared_ptr<Particle_Effect> effect;
@@ -35,11 +35,16 @@ namespace scenery {
 //      float* generate(int & vertex_count);
 
   public:
+      virtual void update(float delta) override;
       Particle_Array(shared_ptr<Particle_Effect> effect, Parent *parent = nullptr);
       ~Particle_Array();
 
       virtual void render() override;
-      void add_particle(Pretty_Particle *particle);
-      void remove_particle(Pretty_Particle *particle);
+      void add_particle(Visible_Particle *particle);
+      void remove_particle(Visible_Particle *particle);
+
+      const vector<unique_ptr<Visible_Particle>> &get_particles() const {
+        return particles;
+      }
   };
 }

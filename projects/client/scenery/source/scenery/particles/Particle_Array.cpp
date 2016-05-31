@@ -1,5 +1,5 @@
 #include "Particle_Array.h"
-#include "Pretty_Particle.h"
+#include "scenery/particles/visible/Visible_Particle.h"
 #include "modeling/Vertex_Buffer.h"
 #include <lookinglass/House.h>
 #include <lookinglass/Lookinglass_Resources.h>
@@ -42,8 +42,8 @@ namespace scenery {
     vertex_buffer->draw_points(particles.size());
   }
 
-  void Particle_Array::add_particle(Pretty_Particle *particle) {
-    particles.push_back(unique_ptr<Pretty_Particle>(particle));
+  void Particle_Array::add_particle(Visible_Particle *particle) {
+    particles.push_back(unique_ptr<Visible_Particle>(particle));
     vertices.push_back(
       {
         particle->get_position(),
@@ -52,7 +52,7 @@ namespace scenery {
       });
   }
 
-  void Particle_Array::remove_particle(Pretty_Particle *particle) {
+  void Particle_Array::remove_particle(Visible_Particle *particle) {
     for (int i = 0; i < particles.size(); ++i) {
       if (particles[i].get() == particle) {
         particles.erase(particles.begin() + i);
@@ -61,4 +61,12 @@ namespace scenery {
       }
     }
   }
+
+  void Particle_Array::update(float delta) {
+    Element::update(delta);
+    for (auto &particle: particles) {
+      particle->update(delta);
+    }
+  }
+
 }

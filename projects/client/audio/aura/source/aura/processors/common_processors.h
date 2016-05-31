@@ -1,5 +1,7 @@
 #pragma once
 
+#include "dllexport.h"
+
 namespace aura {
-  float convert_to_db(float value);
+  MYTHIC_EXPORT float convert_to_db(float value);
 }

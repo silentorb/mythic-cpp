@@ -24,9 +24,9 @@ namespace scenery {
 
       virtual void update(float delta) override;
 
-      virtual void particle_added(Particle &particle) override;
+      virtual void particle_added(const Particle &particle) override;
 
-      virtual void particle_removed(Particle &particle) override;
+      virtual void particle_removed(const Particle &particle) override;
 
       Emitter &get_emitter() {
         return *emitter;

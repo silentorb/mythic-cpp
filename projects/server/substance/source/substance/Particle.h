@@ -16,6 +16,10 @@ namespace substance {
 
   public:
 
+      Particle() { }
+
+      Particle(const vec3 &position) : position(position) { }
+
       const vec3 &get_position() const {
         return position;
       }

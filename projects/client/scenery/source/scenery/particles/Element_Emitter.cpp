@@ -26,12 +26,12 @@ namespace scenery {
     }
   }
 
-  void Element_Emitter::particle_added(Particle &particle) {
+  void Element_Emitter::particle_added(const Particle &particle) {
     auto child = new Particle_Element(particle, this);
     initializer(*child);
   }
 
-  void Element_Emitter::particle_removed(Particle &particle) {
+  void Element_Emitter::particle_removed(const Particle &particle) {
     for (int i = 0; i < children.size(); ++i) {
       auto child = static_cast<Particle_Element *>(children[i].get());
       if (&child->get_particle() == &particle) {

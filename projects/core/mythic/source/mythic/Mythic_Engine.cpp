@@ -36,6 +36,10 @@ namespace mythic {
     for (auto &myth: myths) {
       myth.second->update(delta);
     }
+
+    for (auto &myth: external_myths) {
+      myth->update(delta);
+    }
   }
 
   void Mythic_Engine::loop() {

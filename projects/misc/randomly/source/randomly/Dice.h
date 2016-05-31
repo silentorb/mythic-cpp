@@ -30,7 +30,6 @@ namespace randomly {
 
       void seed() {
         _seed = (unsigned int)time(NULL);
-        std::cout << "Random seed: " << _seed << std::endl;
         engine.seed(_seed);
       }
 

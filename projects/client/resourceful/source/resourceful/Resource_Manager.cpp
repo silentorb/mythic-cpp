@@ -3,7 +3,7 @@
 namespace resourceful {
 
   Resource_Manager::~Resource_Manager() {
-
+int k = 0;
   }
 
   void Resource_Manager::remove_resource(Resource *resource) {

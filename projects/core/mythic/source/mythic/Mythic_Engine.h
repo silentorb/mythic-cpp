@@ -8,6 +8,7 @@
 #include "Myth_Info.h"
 #include "Platform_Factory.h"
 #include <functional>
+#include <vector>
 
 namespace timing {
   class MYTHIC_EXPORT Quartz;
@@ -32,6 +33,7 @@ namespace mythic {
       timing::Quartz *timer;
       Client *client;
       std::map<string, unique_ptr<Myth>> myths;
+      vector<Myth *> external_myths;
       Mythic_Renderer *renderer;
 
   public:
@@ -46,6 +48,10 @@ namespace mythic {
         }
 
         return (T &) *myths[name];
+      }
+
+      void add_external_myth(Myth &myth) {
+        external_myths.push_back(&myth);
       }
 
       void add_renderable(lookinglass::Renderable &renderable);
