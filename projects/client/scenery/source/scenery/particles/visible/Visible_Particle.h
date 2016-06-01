@@ -39,7 +39,9 @@ namespace scenery {
         Visible_Particle::size = size;
       }
 
-      virtual const vec3 get_position() const = 0;
+      const vec3 get_position() {
+        return get_particle()->get_position();
+      }
 
       void update(float delta) {
         if (animator) {
@@ -47,6 +49,14 @@ namespace scenery {
         }
       }
 
+      float get_life() const {
+        return get_particle()->get_life();
+      }
+
       virtual const Particle *get_particle() const = 0;
+      void set_animator(Particle_Point_Delegate &animator) {
+        this->animator = &animator;
+      }
   };
+
 }

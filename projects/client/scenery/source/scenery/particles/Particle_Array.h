@@ -46,5 +46,9 @@ namespace scenery {
       const vector<unique_ptr<Visible_Particle>> &get_particles() const {
         return particles;
       }
+
+      void set_changed() {
+        changed = true;
+      }
   };
 }

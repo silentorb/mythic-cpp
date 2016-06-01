@@ -29,6 +29,9 @@ namespace modeling {
       glBindBuffer(GL_ARRAY_BUFFER, vbo);
       glow::check_error("binding vbo");
     }
+    else {
+      glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    }
 
     glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data, GL_STATIC_DRAW);
     glow::check_error("binding vbo buffer data");

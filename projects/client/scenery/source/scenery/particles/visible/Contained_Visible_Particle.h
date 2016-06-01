@@ -19,10 +19,6 @@ namespace scenery {
         seed.set_position(position);
       }
 
-      virtual const vec3 get_position() const override {
-        return seed.get_position();
-      }
-
       virtual const Particle *get_particle() const override {
         return &seed;
       }

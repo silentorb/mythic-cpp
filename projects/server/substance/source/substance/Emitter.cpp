@@ -20,11 +20,18 @@ namespace substance {
       }
     }
 
+    if (delta > 0.1) {
+      delta = 0.1;
+    }
     const float step = 1 / rate;
     accumulator += delta;
     if (accumulator >= step) {
       int quantity = accumulator / step;
+      if (quantity > 100) {
+        int k = 0;
+      }
       accumulator -= quantity * step;
+//      std::cout << quantity << std::endl;
       for (int i = 0; i < quantity; ++i) {
         auto particle = generator(delta);
         particle->modify_position(position);

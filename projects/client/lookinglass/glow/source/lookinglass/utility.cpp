@@ -27,7 +27,9 @@ namespace glow {
     ++step;
     GLenum error = glGetError();
 
-    if (error != GL_NO_ERROR)
-      throw std::runtime_error("OpenGL Error: " + get_error_info(error) + string(message));
+    if (error != GL_NO_ERROR) {
+      auto text = "OpenGL Error: " + get_error_info(error) + string(message);
+      throw std::runtime_error(text);
+    }
   }
 }

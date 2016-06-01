@@ -50,6 +50,7 @@ namespace scenery {
         particle->get_size(),
         particle->get_color()
       });
+    changed = true;
   }
 
   void Particle_Array::remove_particle(Visible_Particle *particle) {
@@ -60,12 +61,18 @@ namespace scenery {
         return;
       }
     }
+    changed = true;
   }
 
   void Particle_Array::update(float delta) {
     Element::update(delta);
+    int i = 0;
     for (auto &particle: particles) {
       particle->update(delta);
+      auto &vertex = vertices[i++];
+      vertex.color = particle->get_color();
+      vertex.position = particle->get_position();
+      vertex.scale = particle->get_size();
     }
   }
 
