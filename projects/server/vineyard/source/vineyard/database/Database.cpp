@@ -1,16 +1,21 @@
 #include "Database.h"
 #include "Connection.h"
 #include "landscape/Trellis.h"
+#include "Asynchronous_Queue.h"
 
 using namespace landscape;
 
 namespace vineyard {
   namespace database {
 
-    Database::Database(const string &filename) :
+    Database::Database(const string &filename, bool async) :
       filename(filename) {
-
+      if (async) {
+        async_queue = unique_ptr<Asynchronous_Queue>(new Asynchronous_Queue(*this));
+      }
     }
+
+    Database::~Database() { }
 
     void Database::create_table(const landscape::Trellis &trellis, Connection &connection) {
       string sql = "CREATE TABLE " + trellis.get_name() + " (\n";
@@ -18,8 +23,8 @@ namespace vineyard {
 
       auto first = true;
       for (auto &property : trellis.get_properties()) {
-				if (property.get_type() == Types::list)
-					continue;
+        if (property.get_type() == Types::list)
+          continue;
 
         if (!first)
           sql += ",\n";
@@ -40,5 +45,10 @@ namespace vineyard {
       Connection connection(this);
       connection.execute(sql);
     }
+
+    void Database::async(database::Data_Task task) {
+      async_queue->push(task);
+    }
+
   }
 }

@@ -1,4 +1,6 @@
 #include <vineyard/identity.h>
+#include <mutex>
+#include <thread>
 #include "Update.h"
 #include "Connection.h"
 #include "vineyard/Seed.h"
@@ -29,10 +31,21 @@ namespace vineyard {
           if (!seed)
             return "NULL";
 
-          auto id =seed->get_id();
-          if(!  id)
-            throw runtime_error("Seed::id cannot be 0.");
+          auto id = seed->get_id();
+          if (!id) {
+            throw runtime_error("Seed.id cannot be 0.");
+//            int i = 0;
+//            while(true) {
+//              id = seed->get_id();
+//              if (id)
+//                break;
+//
+//              this_thread::sleep_for(std::chrono::milliseconds(100));
+//              if (++i > 100)
+//                throw runtime_error("Seed.id cannot be 0.");
+//            }
 
+          }
           return to_string(id);
         }
 
@@ -134,24 +147,21 @@ namespace vineyard {
                    + " VALUES (" + values + ");";
 
       Statement *result = new Statement(sql, connection);
-      auto pointer = shared_ptr<Statement>(result);
-      connection.add_statement(key, pointer);
+//      auto pointer = shared_ptr<Statement>(result);
+//      connection.add_statement(key, pointer);
       return result;
     }
 
     void update_seed(Connection &connection, Seed &seed) {
-//      string field_names;
-//      string values;
       auto &trellis = seed.get_trellis();
       auto &properties = trellis.get_properties();
 
       auto statement = get_update_seed_statement(trellis, connection, seed.get_id() != 0);
+      auto statement_deleter = unique_ptr<Statement>(statement);
       for (int i = 0; i < properties.size(); ++i) {
         if (i > 0) {
           if (properties[i].get_type() == Types::list)
             continue;
-//          field_names += ", ";
-//          values += ", ";
         }
         else if (seed.get_id() == 0) {
           ++i;
@@ -159,29 +169,18 @@ namespace vineyard {
 
         auto &property = properties[i];
 
-//        field_names += property.get_name();
         auto value = seed.get_pointer(property);
         statement->bind(property.get_name(), get_sql_value(property, value));
         bind_property(property, value, *statement);
       }
 
-//      string sql = "REPLACE INTO " + trellis.get_name() + "(" + field_names + ")"
-//                   + " VALUES (" + values + ");";
-
-//      if (seed.get_id() == 0)
-//        sql += ";";
-//      else
-//        sql += "\n WHERE id = " + to_string(seed.get_id());
-
-//      connection.execute(sql);
       statement->step();
 
       if (seed.get_id() == 0) {
         auto id = sqlite3_last_insert_rowid(connection.get_handle());
+        Assert(id != 0);
         seed.set_id(id);
       }
-
-//      update_lists(connection, seed);
     }
 
     void update_lists(Connection &connection, Seed &seed) {
@@ -204,6 +203,13 @@ namespace vineyard {
     void remove_seed(database::Connection &connection, Seed &seed) {
       string sql = "DELETE FROM " + seed.get_trellis().get_name()
                    + " WHERE id = " + to_string(seed.get_id()) + ";";
+
+      connection.execute(sql);
+    }
+
+    void remove_seed(database::Connection &connection, const Trellis &trellis, int id) {
+      string sql = "DELETE FROM " + trellis.get_name()
+                   + " WHERE id = " + to_string(id) + ";";
 
       connection.execute(sql);
     }

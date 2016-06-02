@@ -3,7 +3,6 @@
 #include "vineyard/vineyard_export.h"
 #include <sqlite3.h>
 #include <string>
-#include <string>
 
 using namespace std;
 
@@ -28,6 +27,10 @@ namespace vineyard {
 
         sqlite3_stmt *get_handle() const {
           return handle;
+        }
+
+        const string &get_name() const {
+          return name;
         }
     };
   }

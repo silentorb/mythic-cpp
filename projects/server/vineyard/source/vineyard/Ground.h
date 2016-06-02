@@ -4,6 +4,7 @@
 #include "seed_functions.h"
 #include <vector>
 #include <memory>
+#include "vineyard/database/Data_Task.h"
 
 namespace landscape {
   class Trellis;
@@ -16,6 +17,7 @@ namespace vineyard {
   namespace database {
     class Database;
   }
+
   class Seed;
 
   class VINEYARD_EXPORT Ground {
@@ -26,13 +28,14 @@ namespace vineyard {
       void add_trellis(landscape::Trellis *trellis);
 //      map <landscape::Trellis*, Seedery> seedery;
       void query_trellis(landscape::Trellis &trellis, Seed_Initializer &initializer,
-                                Seed_Creator &creator);
+                         Seed_Creator &creator);
 
       bool _writing_enabled = true;
       bool initialized = false;
+      bool _async = false;
 
   public:
-      Ground(const string &filename, initializer_list<landscape::Trellis *> initializer);
+      Ground(const string &filename, initializer_list<landscape::Trellis *> initializer, bool async = false);
       ~Ground();
 
       void initialize();
@@ -72,5 +75,11 @@ namespace vineyard {
       static bool is_logging();
 
       static void set_logging(bool logging);
+
+      bool is_async() const {
+        return _async;
+      }
+
+      void async(database::Data_Task task);
   };
 }

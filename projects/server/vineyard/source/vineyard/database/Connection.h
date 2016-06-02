@@ -9,7 +9,7 @@ using namespace std;
 
 namespace vineyard {
 
-  class Static_Connection;
+//  class Static_Connection;
 
   class Transaction;
 
@@ -22,14 +22,15 @@ namespace vineyard {
     class Statement;
 
     class VINEYARD_EXPORT Connection {
-        friend class vineyard::Static_Connection;
+//        friend class vineyard::Static_Connection;
 
         friend class vineyard::Transaction;
 
         sqlite3 *handle;
+        Database &database;
 
         static void create_static(Database &database);
-        static void release_static();
+        static void release_static(Database &database);
 
     public:
         Connection(Database *database);
@@ -49,6 +50,10 @@ namespace vineyard {
         void remove_statement(const string &key);
         shared_ptr<Statement> get_statement(const string &key);
         void log(const string &message);
+
+        Database &get_database() const {
+          return database;
+        }
     };
   }
 }

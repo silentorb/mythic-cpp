@@ -10,12 +10,12 @@
 namespace vineyard {
   using namespace database;
 
-  bool ground_logging = false;
+  bool ground_logging = true;
 
-  Ground::Ground(const string &filename, initializer_list<landscape::Trellis *> initializer) :
-    db(new Database(filename)) {
+  Ground::Ground(const string &filename, initializer_list<landscape::Trellis *> initializer, bool async) :
+    db(new Database(filename, async)), _async(async) {
 
-    sqlite3_config(SQLITE_CONFIG_SINGLETHREAD, 1);
+//    sqlite3_config(SQLITE_CONFIG_SINGLETHREAD, 1);
     clear_log();
 
     for (auto trellis : initializer) {
@@ -30,6 +30,9 @@ namespace vineyard {
       _file_existed = false;
       initialize();
     }
+
+//    db->execute("PRAGMA journal_mode=WAL;");
+//    db->execute("PRAGMA synchronous=1;");
   }
 
   Ground::~Ground() { }
@@ -83,4 +86,7 @@ namespace vineyard {
     ground_logging = logging;
   }
 
+  void Ground::async(database::Data_Task task) {
+    db->async(task);
+  }
 }

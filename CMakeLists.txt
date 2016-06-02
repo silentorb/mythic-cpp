@@ -63,7 +63,9 @@ add_subdirectory(projects/core/mythic)
 
 add_subdirectory(projects/client/bloom)
 add_subdirectory(projects/client/bloom_scenery)
-add_subdirectory(projects/client/bloom/test)
+if (MINGW)
+  add_subdirectory(projects/client/bloom/test)
+endif ()
 add_subdirectory(projects/client/lookinglass_bloom)
 
 include(projects/lab/lab.cmake)

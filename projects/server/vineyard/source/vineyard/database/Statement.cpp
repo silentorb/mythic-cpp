@@ -16,17 +16,27 @@ namespace vineyard {
     }
 
     bool Statement::step() {
-      int result = sqlite3_step(handle);
-      connection.log(debug_sql);
+			int i = 0;
+			while (true) {
+				int result = sqlite3_step(handle);
+				connection.log(debug_sql);
 
-      if (result == SQLITE_DONE)
-        return 0;
+				if (result == SQLITE_DONE)
+					return 0;
 
-      if (result == SQLITE_ROW)
-        return 1;
+				if (result == SQLITE_ROW)
+					return 1;
 
-      auto message ="Error stepping through statement: " + to_string(result) + " " + sqlite3_errmsg(connection.get_handle());
-      throw runtime_error(message);
+				if (result == SQLITE_BUSY) {
+					if (i++ > 1000)
+						throw runtime_error("Timeout waiting to lock database.");
+
+					continue;
+				}
+
+				auto message = "Error stepping through statement: " + to_string(result) + " " + sqlite3_errmsg(connection.get_handle());
+				throw runtime_error(message);
+			}
     }
 
     void Statement::unbind() {

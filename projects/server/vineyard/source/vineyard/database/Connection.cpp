@@ -10,12 +10,10 @@
 namespace vineyard {
   namespace database {
 
-    sqlite3 *static_handle = nullptr;
-    map<string, shared_ptr<Statement>> statements;
-
-    Connection::Connection(Database *database) {
-      if (static_handle)
-        handle = static_handle;
+    Connection::Connection(Database *database) :
+      database(*database) {
+      if (database->static_handle)
+        handle = database->static_handle;
       else
         check(sqlite3_open(database->get_filename().c_str(), &handle), "opening database file");
     }
@@ -27,10 +25,10 @@ namespace vineyard {
     Connection::Connection(Ground &ground) : Connection(ground.get_database()) { }
 
     Connection::~Connection() {
-      if (handle == static_handle)
+      if (handle == database.static_handle)
         return;
 
-      statements.clear();
+      database.statements.clear();
       sqlite3_close(handle);
     }
 
@@ -59,35 +57,35 @@ namespace vineyard {
     }
 
     void Connection::create_static(Database &database) {
-      if (static_handle)
+      if (database.static_handle)
         throw runtime_error("Static candle already created.");
 
-      auto operation_result = sqlite3_open(database.get_filename().c_str(), &static_handle);
+      auto operation_result = sqlite3_open(database.get_filename().c_str(), &database.static_handle);
       if (operation_result != SQLITE_OK) {
         auto message =
-          "Error opening database file: " + to_string(operation_result) + " " + sqlite3_errmsg(static_handle);
+          "Error opening database file: " + to_string(operation_result) + " " + sqlite3_errmsg(database.static_handle);
         throw runtime_error(message);
       }
     }
 
-    void Connection::release_static() {
-      if (static_handle) {
-        sqlite3_close(static_handle);
-        static_handle = nullptr;
-        statements.clear();
+    void Connection::release_static(Database &database) {
+      if (database.static_handle) {
+        sqlite3_close(database.static_handle);
+        database.static_handle = nullptr;
+        database.statements.clear();
       }
     }
 
     void Connection::add_statement(const string &key, shared_ptr<Statement> &statement) {
-      statements[key] = statement;
+      database.statements[key] = statement;
     }
 
     void Connection::remove_statement(const string &key) {
-      statements.erase(key);
+      database.statements.erase(key);
     }
 
     shared_ptr<Statement> Connection::get_statement(const string &key) {
-      return statements[key];
+      return database.statements[key];
     }
 
   }

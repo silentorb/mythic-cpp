@@ -23,7 +23,7 @@ namespace vineyard {
       ~Seed();
       void load();
       void save();
-      void save_property(const landscape::Property &property, void *value);
+//      void save_property(const landscape::Property &property, void *value);
       void save_property(int index);
 
       template<typename T>

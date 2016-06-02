@@ -16,6 +16,6 @@ namespace vineyard {
   Transaction::~Transaction() {
     Connection connection(ground);
     connection.execute("END TRANSACTION;");
-    Connection::release_static();
+    Connection::release_static(ground.get_database());
   }
 }

@@ -19,5 +19,6 @@ namespace vineyard {
     void update_lists(Connection & connection, Seed &seed);
     void update_list(Connection & connection, Seed &seed, const Property &property);
     void remove_seed(Connection & connection, Seed & seed);
+    void remove_seed(Connection & connection, const Trellis &trellis, int id);
   }
 }
