@@ -31,6 +31,8 @@ namespace vineyard {
         unique_ptr<Asynchronous_Queue> async_queue;
 
     public:
+        // These fields can eventually be private.  They are only used in limited cases
+        // as friend fields.
         sqlite3 *static_handle = nullptr;
         map<string, shared_ptr<Statement>> statements;
 

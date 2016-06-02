@@ -19,6 +19,9 @@ namespace vineyard {
   }
 
   Seed::~Seed() {
+    if (deleted.get())
+      *deleted = true;
+
 //    for (auto &property : trellis.get_properties()) {
 //      if (property.get_type() == Types::string) {
 //        string *field = (string *) get_data() + property.get_offset();
@@ -68,18 +71,47 @@ namespace vineyard {
 
   }
 
+//  struct Seed_Update {
+//      const Trellis *trellis;
+//      Identity id;
+//      vector<char *> data;
+//
+//      Seed_Update(Seed &seed) :
+//        trellis(&seed.get_trellis()),
+//        id(seed.get_id()) {
+//        auto &last = trellis->get_properties().back();
+//        auto byte_size = last.get_offset() + last.get_info().size - sizeof(Seed);
+//        data.reserve(byte_size);
+//        memcpy(data.data(), (&seed) + 1, byte_size);
+//      }
+//
+//      void *get_pointer(const Property &property) {
+//        return data[property.get_offset() - 2];
+//      }
+//  };
+
   void Seed::save() {
     if (!ground->is_writing_enabled())
       return;
 
-//    update_property(ground.get_database(), trellis, property,);
     if (ground->is_async()) {
-      if (!initializing && !id) {
-        int k = 0;
-      }
 //                std::cout << "Push: " << trellis->get_name() << endl;
-      ground->async([this](vineyard::database::Database &db) {
-        std::cout << " Run: " << trellis->get_name() << endl;
+      if (id)
+        throw runtime_error("Seed should never need to be fully saved twice.");
+
+      if (!deleted.get())
+        deleted = make_shared<bool>(false);
+
+      auto local_deleted = deleted;
+
+      auto local_trellis = trellis;
+      ground->async([this, local_trellis, local_deleted](vineyard::database::Database &db) {
+        if (*local_deleted)
+          return;
+
+        if (id)
+          throw runtime_error("Seed should never need to be fully saved twice.");
+//        std::cout << " Run: " << trellis->get_name() << endl;
         database::Connection connection(ground->get_database());
         update_seed(connection, *this);
       });
@@ -90,13 +122,6 @@ namespace vineyard {
     }
   }
 
-//  void Seed::save_property(const landscape::Property &property, void *value) {
-//    if (initializing || !ground->is_writing_enabled())
-//      return;
-//
-//    update_property(ground->get_database(), *this, property, value);
-//  }
-
   void Seed::save_property(int index) {
     if (initializing || !ground->is_writing_enabled())
       return;
@@ -104,7 +129,7 @@ namespace vineyard {
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
       ground->async([this, &property](vineyard::database::Database &db) {
-        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
+//        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
         update_property(ground->get_database(), *this, property, get_pointer(property));
       });
     }
@@ -117,13 +142,17 @@ namespace vineyard {
     return ((char *) this) + property.get_offset();
   }
 
+  void *Seed::get_pointer(char *data, const Property &property) {
+    return data + property.get_offset();
+  }
+
   void Seed::remove() {
     if (!ground->is_writing_enabled())
       return;
 
     if (ground->is_async()) {
-      std::cout << " Delete: " << trellis->get_name() << endl;
-      auto& trellis = get_trellis();
+//      std::cout << " Delete: " << trellis->get_name() << endl;
+      auto &trellis = get_trellis();
       auto id = get_id();
       auto local_ground = ground;
       ground->async([&trellis, id, local_ground](vineyard::database::Database &db) {

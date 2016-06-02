@@ -5,7 +5,6 @@
 #include <thread>
 #include "Data_Task.h"
 #include <queue>
-#include <iostream>
 
 using namespace std;
 
@@ -21,22 +20,27 @@ namespace vineyard {
         mutex m;
         Database &db;
         unique_ptr<thread> t;
-        bool running = false;
+				enum State {
+					initializing, // No logic depends on the initializing value but it can be useful for debugging.
+					active,
+					closing,
+					closed
+				} state = State::initializing;
 
         void loop() {
-          running = true;
-          while (running) {
+					state = State::active;
+          while (state == State::active) {
             process();
             this_thread::sleep_for(std::chrono::milliseconds(10));
           }
-        }
+					state = State::closed;
+				}
 
         void process() {
           Data_Task task;
           while (tasks.size()) {
             {
               unique_lock<mutex>(m);
-//              std::cout << "Running task" <<endl;
               task = tasks.front();
               tasks.pop();
             }
@@ -60,13 +64,18 @@ namespace vineyard {
         }
 
         virtual ~Asynchronous_Queue() {
-          running = false;
-          t->join();
+					state = State::closing;
+
+          // I tried using t->join() here but that threw an exception in MSVC.
+          // My research is finding conflicting behavior on joining a detached thread
+          // and I suspect that resolution may be compiler-dependent.
+					while (state != State::closed) {
+						this_thread::sleep_for(std::chrono::milliseconds(10));
+					}
         }
 
         void push(Data_Task &task) {
           unique_lock<mutex>(m);
-//          std::cout << "Pushing task" <<endl;
           tasks.push(task);
         }
     };

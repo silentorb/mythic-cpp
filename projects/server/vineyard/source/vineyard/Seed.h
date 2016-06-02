@@ -9,11 +9,14 @@ namespace vineyard {
   class Ground;
 
   class VINEYARD_EXPORT Seed {
-//      unique_ptr<char> data;
   protected:
       Ground *ground;
       landscape::Trellis *trellis;
       bool initializing = true;
+      shared_ptr<bool> deleted;
+
+      // id needs to be the last field because functionality expects id to run straight into
+      // whatever class the seed is embedded into.
       Identity id = 0;
 
       void initialize_field(void *pointer, const landscape::Property &property);
@@ -47,6 +50,7 @@ namespace vineyard {
       }
 
       void *get_pointer(const landscape::Property &property);
+      static void *get_pointer(char *data, const landscape::Property &property);
 
       template<typename T>
       void set_value(int index, const T value) {

@@ -183,6 +183,34 @@ namespace vineyard {
       }
     }
 
+    Identity update_seed(Connection &connection, Trellis &trellis, int id, char *data) {
+      auto &properties = trellis.get_properties();
+
+      auto statement = get_update_seed_statement(trellis, connection, id != 0);
+      unique_ptr<Statement> statement_deleter(statement);
+      for (int i = 0; i < properties.size(); ++i) {
+        if (i > 0) {
+          if (properties[i].get_type() == Types::list)
+            continue;
+        }
+        else if (id == 0) {
+          ++i;
+        }
+
+        auto &property = properties[i];
+
+        auto value = Seed::get_pointer(data, property);
+        statement->bind(property.get_name(), get_sql_value(property, value));
+        bind_property(property, value, *statement);
+      }
+
+      statement->step();
+
+      return id
+             ? id
+             : sqlite3_last_insert_rowid(connection.get_handle());
+    }
+
     void update_lists(Connection &connection, Seed &seed) {
       for (auto &property: seed.get_trellis().get_properties()) {
         update_list(connection, seed, property);
