@@ -128,7 +128,15 @@ namespace vineyard {
 
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
-      ground->async([this, &property](vineyard::database::Database &db) {
+        if (!deleted.get())
+            deleted = make_shared<bool>(false);
+        
+        auto local_deleted = deleted;
+        
+      ground->async([this, &property, local_deleted](vineyard::database::Database &db) {
+          if (*local_deleted)
+              return;
+          
 //        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
         update_property(ground->get_database(), *this, property, get_pointer(property));
       });
