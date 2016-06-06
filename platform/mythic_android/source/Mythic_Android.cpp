@@ -7,6 +7,7 @@
 #include <iostream>
 #include "logger.h"
 #include "input/Android_Input.h"
+#include "audio/Android_Speaker.h"
 
 Mythic_Android::Mythic_Android(android_app *app) :
   app(app), initializer(nullptr), engine(nullptr) {
@@ -19,11 +20,11 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-Frame *Mythic_Android::create_frame() const {
+Frame *Mythic_Android::create_frame(int width, int height)  {
   return new Android_Frame(app);
 }
 
-shading::Shader_Loader *Mythic_Android::create_shader_loader() const {
+shading::Shader_Loader *Mythic_Android::create_shader_loader() {
   return new Android_Shader_Loader(app->activity->assetManager);
 }
 
@@ -179,4 +180,9 @@ void Mythic_Android::set_render(bool value) {
 
 Android_Frame &Mythic_Android::get_frame() const {
   return (Android_Frame &) engine->get_client().get_house().get_frame();
+}
+
+
+audio::Speaker *Mythic_Android::create_speaker() {
+  return new Android_Speaker();
 }

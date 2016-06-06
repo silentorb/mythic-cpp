@@ -1,12 +1,12 @@
 #pragma once
 
 #include<string>
-#include "lookinglass/shading/Shader_Loader.h"
+#include "shading/Shader_Loader.h"
 #include "../android_native_app_glue.h"
 
 using namespace std;
 
-class Android_Shader_Loader : public lookinglass::shading::Shader_Loader {
+class Android_Shader_Loader : public shading::Shader_Loader {
 
     AAssetManager *asset_manager;
 public:

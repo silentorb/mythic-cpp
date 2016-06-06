@@ -26,12 +26,12 @@ namespace typography {
   }
 
   void Font::load() {
-      
-      auto root = string(MYTHIC_RESOURCES_PATH);
+
+    auto root = string(MYTHIC_RESOURCES_PATH);
 //      ifstream input( root + "/images/deevee.png");
 //      auto good = input.good();
     auto path = root + filename;
-      auto error = FT_New_Face(library, path.c_str(), 0, &face);
+    auto error = FT_New_Face(library, path.c_str(), 0, &face);
     if (error)
       throw runtime_error("ERROR::FREETYPE: Failed to load font: " + path);
 
@@ -88,6 +88,11 @@ namespace typography {
       memory_offset += memory_margin; // margin between characters
       vertical_offset += bitmap.rows + 2;
     }
+
+    // For Android ES 2.0
+#ifndef GL_RED
+#define GL_RED GL_LUMINANCE
+#endif
 
     glTexImage2D(
       GL_TEXTURE_2D, 0, GL_RED,

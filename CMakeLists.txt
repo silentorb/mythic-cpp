@@ -1,7 +1,4 @@
 cmake_minimum_required(VERSION 3.3)
-if (ANDROID_NDK)
-  set(ANDROID 1)
-endif ()
 
 if (NOT ANDROID)
   enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.

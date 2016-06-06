@@ -12,12 +12,17 @@ namespace lookinglass {
 
   class MYTHIC_EXPORT Frame;
 
-  namespace shading {
-    class MYTHIC_EXPORT Shader_Loader;
-  }
 };
+
+namespace shading {
+  class MYTHIC_EXPORT Shader_Loader;
+}
+
 namespace clienting {
   class Client;
+}
+namespace audio {
+  class Speaker;
 }
 using namespace mythic;
 
@@ -42,12 +47,13 @@ private:
     Android_Frame & get_frame() const;
     Android_Input*android_input;
     void poll();
+
 public:
     Mythic_Android(android_app *app);
     ~Mythic_Android();
 
-    Frame *create_frame() const override;
-    shading::Shader_Loader *create_shader_loader() const override;
+    Frame *create_frame(int width, int height) override;
+    shading::Shader_Loader *create_shader_loader() override;
     haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     void run();
 
@@ -56,6 +62,12 @@ public:
 
     void set_initializer(Mythic_Initializer initializer) {
       this->initializer = initializer;
+    }
+
+    virtual audio::Speaker *create_speaker() override;
+
+    Mythic_Engine &get_engine() const {
+      return *engine.get();
     }
 };
 
