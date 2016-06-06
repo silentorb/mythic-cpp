@@ -17,7 +17,7 @@
 
 #include "utility.h"
 
-#ifdef MANUAL_SYMBOL_EXPORTING
+#ifdef _MSC_VER
 #ifdef GLOW_LIB
 #define GLOW_EXPORT __declspec(dllexport)
 #else

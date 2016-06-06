@@ -8,12 +8,11 @@ elseif (MINGW)
 endif ()
 
 if (ANDROID)
-  add_system_libraries(GLESv2)
   add_sources(android/android-gl.cpp)
+#  add_system_libraries(GLESv2)
+  target_link_libraries(glow -lGLESv2)
 else ()
-  target_link_libraries(glow
-    ${OPENGL_LIB}
-    )
+  target_link_libraries(glow ${OPENGL_LIB})
 endif ()
 
 add_definitions(-DGLOW_LIB)

@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.3)
-enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
+if (ANDROID_NDK)
+  set(ANDROID 1)
+endif ()
+
+if (NOT ANDROID)
+  enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
+endif ()
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(cmake-tools/scripts/generator-key.cmake)
 
@@ -72,7 +79,7 @@ include(projects/lab/lab.cmake)
 
 if (ANDROID)
   add_subdirectory(platform/mythic_android)
-  add_subdirectory(platform/workshop_android)
+#  add_subdirectory(platform/workshop_android)
 
 elseif (IOS)
   add_subdirectory(platform/mythic_ios)

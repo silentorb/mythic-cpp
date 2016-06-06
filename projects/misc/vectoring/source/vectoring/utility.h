@@ -4,9 +4,9 @@
 
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
-
 
 template<typename T>
 bool vector_contains(vector<T> items, T item) {
@@ -31,14 +31,3 @@ T vector_first(const vector<T> &items) {
     
     throw std::runtime_error("Could not find item in vector");
 }
-
-//template<typename T>
-//class Iterable {
-//    T &container;
-//
-//public:
-//    Iterable(T &container) : container(container) { }
-//
-//    T::iterator begin() { return container.begin(); }
-//   typename T::iterator end() { return container.end(); }
-//};
