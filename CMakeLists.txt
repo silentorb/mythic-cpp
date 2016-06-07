@@ -17,10 +17,10 @@ endif ()
 
 include(cmake-tools/cmake-tools.cmake)
 
-#print_info(STATUS)
-
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
-set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/dependencies/${GENERATOR_KEY})
+if (NOT ANDROID)
+  set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/dependencies/${GENERATOR_KEY})
+endif()
 
 if (MINGW)
   set(SDL_BIN ${MYTHIC_DEPENDENCIES}/sdl2/bin/SDL2.dll)
@@ -72,11 +72,13 @@ if (MINGW)
 endif ()
 add_subdirectory(projects/client/lookinglass_bloom)
 
-include(projects/lab/lab.cmake)
+if (MINGW OR MSCV)
+  include(projects/lab/lab.cmake)
+endif ()
 
 if (ANDROID)
   add_subdirectory(platform/mythic_android)
-#  add_subdirectory(platform/workshop_android)
+  #  add_subdirectory(platform/workshop_android)
 
 elseif (IOS)
   add_subdirectory(platform/mythic_ios)
@@ -90,5 +92,9 @@ endif ()
 unset(LOCAL_HEADER)
 set(LOCAL_FOOTER 1)
 include(local-config.cmake OPTIONAL)
+
+if (ANDROID)
+  set(JNI_PATH "jni/")
+endif ()
 
 finish_mythic()
