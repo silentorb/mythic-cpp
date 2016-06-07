@@ -39,6 +39,7 @@ namespace shading {
 
     bind_attributes();
     log_info("Program %d, Shaders: %d, %d", id, first.id, second.id);
+    log_info("Vertex code: %s", first.get_source_code().c_str());
     glAttachShader(id, first.id);
     glAttachShader(id, second.id);
 

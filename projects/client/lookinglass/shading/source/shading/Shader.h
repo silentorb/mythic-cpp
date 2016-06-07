@@ -26,5 +26,9 @@ namespace shading {
 
       virtual void free() override;
       virtual void load() override;
+
+      const string &get_source_code() const {
+        return source_code;
+      }
   };
 }

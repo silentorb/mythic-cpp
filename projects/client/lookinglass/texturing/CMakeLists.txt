@@ -5,11 +5,11 @@ require(glow resourceful shading)
 
 add_resources(resources)
 
-#include_directories(
-#  ${MYTHIC_DEPENDENCIES}/libpng/include
-#)
-
-if(NOT IOS)
-  link_external(libpng libpng16)
+if (NOT IOS)
+  if (ANDROID)
+    link_external(libpng)
+  else ()
+    link_external(libpng libpng16)
+  endif ()
   link_external(zlib)
-endif()
+endif ()

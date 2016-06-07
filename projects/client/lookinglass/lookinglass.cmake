@@ -1,6 +1,7 @@
 # Lookinglass Projects
 
 add(glow)
+add(glaze)
 add(shading)
 add(texturing)
 add(frame)

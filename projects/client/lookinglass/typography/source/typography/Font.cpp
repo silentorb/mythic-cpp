@@ -3,6 +3,11 @@
 #include <fstream>
 #include <resourceful/path.h>
 
+#if ANDROID
+#include <vector>
+extern void android_load_binary(std::vector<char> &buffer, const std::string &path);
+#endif
+
 namespace typography {
   const unsigned char first_char = 33;
   const unsigned char last_char = 126;
@@ -31,9 +36,23 @@ namespace typography {
 //      ifstream input( root + "/images/deevee.png");
 //      auto good = input.good();
     auto path = root + filename;
+
+#if ANDROID
+    {
+    vector<char> buffer;
+    android_load_binary(buffer, path);
+    auto error = FT_New_Memory_Face(library, (unsigned char*)buffer.data(), buffer.size(), 0, &face);
+    if (error)
+      throw runtime_error("ERROR::FREETYPE: Problem processing font: " + path + "(size=" + to_string(buffer.size()) + ")");
+
+    }
+#else
     auto error = FT_New_Face(library, path.c_str(), 0, &face);
     if (error)
       throw runtime_error("ERROR::FREETYPE: Failed to load font: " + path);
+
+#endif
+
 
     FT_Set_Pixel_Sizes(face, 0, 48);
 

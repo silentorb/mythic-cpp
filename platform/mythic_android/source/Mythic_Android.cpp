@@ -12,6 +12,7 @@
 Mythic_Android::Mythic_Android(android_app *app) :
   app(app), initializer(nullptr), engine(nullptr) {
   app->userData = this;
+  android_initialize_utility(app->activity->assetManager);
   client = nullptr;
 }
 

@@ -9,6 +9,11 @@ using namespace sculptor;
 using namespace sculptor::geometry;
 using namespace pugi;
 
+#if ANDROID
+#include <vector>
+extern void android_load_binary(std::vector<char> &buffer, const std::string &path);
+#endif
+
 namespace archaeology {
 
   struct Effect {
@@ -165,9 +170,20 @@ namespace archaeology {
     auto mesh = new Mesh();
     xml_document document;
 
+#if ANDROID
+    vector<char> buffer;
+    android_load_binary(buffer, filename);
+    xml_parse_result info = document.load_string((char*)buffer.data());
+    if (!info)
+      throw runtime_error(string("Error loading Collada file: ") + info.description());
+
+#else
+
     xml_parse_result info = document.load_file(filename.c_str());
     if (!info)
       throw runtime_error(string("Error loading Collada file: ") + info.description());
+
+#endif
 
     auto collada = document.first_child();
     auto materials = load_materials(collada);
