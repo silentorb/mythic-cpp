@@ -1,4 +1,5 @@
 #pragma once
+
 #include "dllexport.h"
 #include <functional>
 #include <string>
@@ -9,6 +10,10 @@ using namespace std;
 namespace glaze {
   namespace brushes {
 
-    typedef function<const string(const definition::Material &)> Brush;
+    struct Donut {
+        string vertex;
+        string fragment;
+    };
+    typedef function<const Donut(const definition::Material &)> Brush;
   }
 }
