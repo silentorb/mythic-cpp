@@ -14,9 +14,9 @@ namespace glaze {
 //      for (auto &input: material.get_inputs()) {
 //        vertex_code += "in " + input.get_type().get_name() + " " + input.get_name() + ";\n";
 //      }
-      vertex_code += declare_variables("in ", material.get_inputs());
-      vertex_code += "\n";
       vertex_code += declare_variables("uniform ", material.get_uniforms());
+      vertex_code += "\n";
+      vertex_code += declare_variables("in ", material.get_inputs());
       donut.vertex = vertex_code;
       return donut;
     }

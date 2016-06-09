@@ -13,13 +13,13 @@ using namespace modeling;
 
 namespace lookinglass {
 
-  Lookinglass_Resources::Lookinglass_Resources(Shader_Loader *shader_loader,
+  Lookinglass_Resources::Lookinglass_Resources(resourceful::File_Loader file_loader, shading::Shader_Processor shader_processor,
                                                perspective::Viewport & viewport) :
     general(new Resource_Manager("general")),
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
 
-    shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(shader_loader));
+    shader_manager = unique_ptr<Shader_Manager>(new Shader_Manager(file_loader, shader_processor));
     text_manager = unique_ptr<Text_Manager>(new Text_Manager(*shader_manager, viewport));
   }
 

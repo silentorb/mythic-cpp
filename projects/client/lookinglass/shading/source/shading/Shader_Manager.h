@@ -9,6 +9,7 @@
 #include "Code_Processor.h"
 #include "Vertex_Schema.h"
 #include <vector>
+#include <resourceful/File_Loader.h>
 
 namespace resourceful {
   class Resource_Manager;
@@ -22,21 +23,20 @@ namespace shading {
 
   class MYTHIC_EXPORT Shader_Manager {
   private:
-      unique_ptr<Shader_Loader> loader;
-      unique_ptr<Code_Processor> processor;
+      resourceful::File_Loader loader;
+      Shader_Processor processor;
       unique_ptr<resourceful::Resource_Manager> shaders;
       unique_ptr<resourceful::Resource_Manager> programs;
       vector<Program_Add_Listener *> program_added;
 
-      Code_Processor *create_processor();
+//      Code_Processor *create_processor();
 
-      string process(Shader_Type type, const string source) {
-        return processor->process(type, source);
+      string process(Shader_Type type, const string &source) {
+        return processor(type, source);
       }
 
-
   public:
-      Shader_Manager(Shader_Loader *loader);
+      Shader_Manager(resourceful::File_Loader loader, Shader_Processor processor);
       ~Shader_Manager();
       Shader &create_shader(Shader_Type type, string path);
       void register_program(Program *program);

@@ -2,17 +2,12 @@
 
 #include "dllexport.h"
 #include "resourceful/Resource.h"
+#include "Shader_Type.h"
 #include <string>
 
 using namespace std;
 
-
 namespace shading {
-
-  enum Shader_Type {
-      vertex = 0x8B31,
-      fragment = 0x8B30
-  };
 
   class MYTHIC_EXPORT Shader : public resourceful::Resource {
   private:

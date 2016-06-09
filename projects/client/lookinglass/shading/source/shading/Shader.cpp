@@ -26,7 +26,7 @@ namespace shading {
   }
 
   void Shader::load() {
-    id = glCreateShader(type);
+    id = glCreateShader(static_cast<unsigned int>(type));
     const char *code = source_code.c_str();
     glShaderSource(id, 1, &code, NULL);
     glow::check_error("Error loading shader code.");

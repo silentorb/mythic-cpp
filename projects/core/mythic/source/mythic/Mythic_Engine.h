@@ -6,7 +6,6 @@
 #include <map>
 #include <memory>
 #include "Myth_Info.h"
-#include "Platform_Factory.h"
 #include <functional>
 #include <vector>
 
@@ -26,7 +25,8 @@ using namespace std;
 
 namespace mythic {
 
-  class MYTHIC_EXPORT Mythic_Renderer;
+  class Mythic_Renderer;
+  class Platform_Factory;
 
   class MYTHIC_EXPORT Mythic_Engine : no_copy {
   private:

@@ -8,7 +8,7 @@ namespace glow {
   public:
       int major;
       int minor;
-      bool ES;
+      bool ES = false;
 
       Version();
       Version(int major, int minor);

@@ -3,6 +3,7 @@
 #include "dllexport.h"
 #include <vector>
 #include <memory>
+#include <shading/Shader_Loader.h>
 #include "glm/glm.hpp"
 
 using namespace std;
@@ -22,8 +23,6 @@ namespace typography {
 
 namespace shading {
   class Shader_Manager;
-
-  class Shader_Loader;
 }
 
 namespace texturing {
@@ -53,7 +52,7 @@ namespace lookinglass {
       unique_ptr<resourceful::Resource_Manager> general;
 
   public:
-      Lookinglass_Resources(shading::Shader_Loader *shader_loader, perspective::Viewport &viewport);
+      Lookinglass_Resources(function<const string(const string &)> file_loader, shading::Shader_Processor shader_processor, perspective::Viewport &viewport);
       ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;

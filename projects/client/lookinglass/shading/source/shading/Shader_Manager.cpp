@@ -9,23 +9,23 @@ namespace shading {
 
   Shader_Manager *instance = nullptr;
 
-  Shader_Manager::Shader_Manager(Shader_Loader *loader) :
+  Shader_Manager::Shader_Manager(File_Loader loader, Shader_Processor processor) :
     loader(loader),
     shaders(new Resource_Manager("shaders")),
     programs(new Resource_Manager("programs")),
-    processor(create_processor()) {
+    processor(processor) {
     instance = this;
 
   }
 
   Shader_Manager::~Shader_Manager() { }
 
-  Code_Processor *Shader_Manager::create_processor() {
-    if (glow::Capabilities::uniform_layout())
-      return new Code_Processor(*loader);
-
-    return new Ancient_Code_Processor(*loader);
-  }
+//  Code_Processor *Shader_Manager::create_processor() {
+//    if (glow::Capabilities::uniform_layout())
+//      return new Code_Processor(*loader);
+//
+//    return new Ancient_Code_Processor(*loader);
+//  }
 
   void Shader_Manager::register_program(Program *program) {
     for (auto &listener: program_added) {
@@ -34,7 +34,7 @@ namespace shading {
   }
 
   Shader &Shader_Manager::create_shader(Shader_Type type, string path) {
-    auto source = loader->load(path);
+    auto source = loader("shaders/" + path);
     auto code = process(type, source);
     auto shader = new Shader(type, code.c_str());
     shaders->add_resource(shader);

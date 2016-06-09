@@ -1,15 +1,39 @@
+#include <lookinglass/Lookinglass_House.h>
 #include "Mythic_Engine.h"
 #include "timing/Quartz.h"
 #include "clienting/Client.h"
 #include "lookinglass/House.h"
 #include "Mythic_Renderer.h"
 #include "haft/Input_Manager.h"
+#include "shading/Shader_Loader.h"
+#include "resourceful/File_Loader.h"
+#include "Platform_Factory.h"
 
 namespace mythic {
 
-  Mythic_Engine::Mythic_Engine(Platform_Factory &factory,int width, int height) {
+//  class Mythic_Shader_Loader : public shading::Shader_Loader {
+//      File_Loader file_loader;
+//      shading::Shader_Processor shader_processor;
+//
+//  public:
+//      Mythic_Shader_Loader(const File_Loader &file_loader,
+//                           shading::Shader_Processor shader_processor) :
+//        file_loader(file_loader), shader_processor(
+//        shader_processor) { }
+//
+//      virtual string load(const string source) override {
+//        auto code = file_loader("shaders/" + source);
+//        return shader_processor(code);
+//      }
+//
+//  };
 
-    auto house = new lookinglass::House(factory.create_frame(width, height), factory.create_shader_loader());
+  Mythic_Engine::Mythic_Engine(Platform_Factory &factory, int width, int height) {
+
+    auto house = new lookinglass::Lookinglass_House(factory.create_frame(width, height),
+                                        factory.create_file_loader(),
+                                        factory.create_shader_processor()
+    );
     client = new Client(house, factory.create_speaker());
 
     auto &input_manager = client->get_input_manager();

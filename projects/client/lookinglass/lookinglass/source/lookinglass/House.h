@@ -27,7 +27,6 @@ namespace glow {
 
 namespace lookinglass {
 
-
   namespace through {
     template<typename T>
     class Mist;
@@ -41,7 +40,7 @@ namespace lookinglass {
   class Lookinglass_Resources;
 
   class MYTHIC_EXPORT House {
-  private:
+  protected:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
@@ -49,12 +48,13 @@ namespace lookinglass {
       bool active;
       vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
-      void initialize();
       static House *instance;
+
+      void initialize();
+      House(Frame *frame);
 
   public:
 
-      House(Frame *frame, shading::Shader_Loader *shader_loader);
       ~House();
       void update();
       bool is_closing();
@@ -68,12 +68,6 @@ namespace lookinglass {
       Frame &get_frame() const {
         return *frame;
       }
-
-//      virtual void set_clear_color(float red, float green, float blue, float alpha) = 0;
-
-//      Shader_Manager &get_shader_manager() const {
-//        return *shader_manager;
-//      }
 
       Viewport &get_base_viewport() const {
         return *base_viewport;

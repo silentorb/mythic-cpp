@@ -26,8 +26,8 @@ namespace shading {
     return code;
   }
 
-  string Ancient_Code_Processor::process(Shader_Type type, const string source) {
-    auto included = process_includes(source, type);
-    return string("precision highp float;\n\n") + olden(included, type);
-  }
+//  string Ancient_Code_Processor::process(Shader_Type type, const string source) {
+//    auto included = process_includes(source, type);
+//    return string("precision highp float;\n\n") + olden(included, type);
+//  }
 }
