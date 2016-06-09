@@ -10,7 +10,6 @@ namespace scenery {
     lighting->count = 0;
 
     auto scene_definition = new Struct_Info(2, "Lighting", {
-//      new Field_Info("lights", Field_Type::array, new Field_Info("Light", Field_Type::structure)),
       new Field_Info("count", Field_Type::integer),
     });
     lighting_mist = unique_ptr<Mist<Lighting_Data>>(

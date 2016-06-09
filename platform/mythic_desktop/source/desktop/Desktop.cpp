@@ -5,6 +5,7 @@
 #include "logger.h"
 #include "clienting/Client.h"
 #include <desktop_audio/interface.h>
+#include <shading/shader_processing.h>
 #include "Desktop_File_Loader.h"
 
 using namespace lookinglass;
@@ -38,7 +39,10 @@ namespace desktop {
 
   mythic::Shader_Processor Desktop::create_shader_processor() {
     return [](shading::Shader_Type type, const string &source) {
-      return "#version 330\n" + source;
+      auto included = shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
+      return string("precision highp float;\n\n") + shading::olden(included, type);
+
+//      return "#version 430\n" + shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
     };
   }
 

@@ -5,7 +5,7 @@
 #include "lookinglass/House.h"
 #include "Mythic_Renderer.h"
 #include "haft/Input_Manager.h"
-#include "shading/Shader_Loader.h"
+#include "shading/Shader_Processor.h"
 #include "resourceful/File_Loader.h"
 #include "Platform_Factory.h"
 

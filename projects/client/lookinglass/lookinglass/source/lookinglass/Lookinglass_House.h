@@ -1,7 +1,7 @@
 #pragma once
 
 #include "House.h"
-#include <shading/Shader_Loader.h>
+#include <shading/Shader_Processor.h>
 #include <resourceful/File_Loader.h>
 
 namespace lookinglass {

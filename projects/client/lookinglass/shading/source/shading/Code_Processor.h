@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Shader.h"
-#include "Shader_Loader.h"
+#include "Shader_Processor.h"
 
 namespace shading {
 

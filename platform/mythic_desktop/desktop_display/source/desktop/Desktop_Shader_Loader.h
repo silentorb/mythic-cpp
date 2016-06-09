@@ -3,10 +3,10 @@
 #include "dllexport.h"
 
 #include <string>
-#include "shading/Shader_Loader.h"
+//#include "shading/Shader_Processor.h"
 
 using namespace std;
-using namespace shading;
+//using namespace shading;
 
 namespace desktop {
 //  class MYTHIC_EXPORT Desktop_Shader_Loader : public Shader_Loader {

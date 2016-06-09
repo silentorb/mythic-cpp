@@ -3,7 +3,7 @@
 #include "dllexport.h"
 #include <vector>
 #include <memory>
-#include <shading/Shader_Loader.h>
+#include <shading/Shader_Processor.h>
 #include "glm/glm.hpp"
 
 using namespace std;
