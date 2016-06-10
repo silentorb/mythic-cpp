@@ -59,7 +59,8 @@ void Mythic_Android::process_command(int32_t command) {
       break;
     case APP_CMD_TERM_WINDOW:
       log_info("Workbench APP_CMD_TERM_WINDOW.");
-      engine->get_client().free();
+      if (engine.get())
+        engine->get_client().free();
 //      get_frame().free();
       break;
 
@@ -70,7 +71,8 @@ void Mythic_Android::process_command(int32_t command) {
       break;
     case APP_CMD_LOST_FOCUS:
       log_info("Workbench APP_CMD_LOST_FOCUS.");
-      set_render(false);
+      if (engine.get())
+        set_render(false);
 
       break;
   }

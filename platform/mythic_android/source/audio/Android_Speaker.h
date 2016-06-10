@@ -15,9 +15,11 @@ class MYTHIC_EXPORT Android_Speaker : public audio::Speaker {
     void initialize_buffer();
     mutex buffer_mutex;
 
-    vector<Sample_Type> buffers[2];
-    vector<Sample_Type> *active_buffer;
-    vector<Sample_Type> *next_buffer;
+    vector<Sample_Type> buffers[3];
+//    vector<Sample_Type> *active_buffer;
+//    vector<Sample_Type> *next_buffer;
+//    vector<Sample_Type> *next_buffer;
+int buffer_index = 0;
 
     vector<float> float_buffer;
 //    vector<float> *active_buffer2;
@@ -29,5 +31,8 @@ public:
     virtual audio::Device_Settings start() override;
     virtual void stop() override;
 
-    void update_buffers(SLAndroidSimpleBufferQueueItf bq);
+    virtual ~Android_Speaker();
+
+    void update_buffers();
+    void free();
 };
