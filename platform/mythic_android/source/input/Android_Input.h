@@ -18,12 +18,12 @@ class Android_Input : public Input_Source {
     void check_negative_direction(double value, Trigger &trigger, Input_State &state);
     void check_positive_direction(double value, Trigger &trigger, Input_State &state);
 //    void initialize_keyboard();
-//    void initialize_mouse();
+    void initialize_mouse();
     void initialize_gamepad();
     void initialize_surface();
 
 //      Device *keyboard;
-//      Device *mouse;
+      Device *mouse;
     Device *gamepad;
     Device *surface;
 
@@ -33,6 +33,7 @@ class Android_Input : public Input_Source {
     bool motion_finished;
 public:
     Android_Input(Input_Configuration &config);
+    void single_click(int x, int y);
 
     Input_State *get_input_state() override;
     void process_input(AInputEvent *event);

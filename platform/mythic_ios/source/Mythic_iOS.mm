@@ -7,6 +7,8 @@
 #include "lookinglass/glow.h"
 #include "iOS_Input.h"
 #include "audio/Speaker.h"
+#include <shading/shader_processing.h>
+#include "Desktop_File_Loader.h"
 
 #import <AudioUnit/AudioUnit.h>
 
@@ -114,9 +116,9 @@ public:
   }
 };
 
-string iOS_Shader_Loader::load(string path) {
+const string iOS_File_Loader(const string &path) {
     NSString *formatted_path = [[[NSBundle mainBundle] resourcePath]
-                                stringByAppendingString:[NSString stringWithUTF8String:("/shaders/" + path + ".glsl").c_str()]];
+                                stringByAppendingString:[NSString stringWithUTF8String:(path).c_str()]];
 //    NSBundle * b =[NSBundle mainBundle];
 //    NSString *resource_path = [[NSBundle mainBundle] pathForResource:@"solid.fragment.glsl"  ofType:nil];
     NSError *error = nil;
@@ -241,4 +243,21 @@ audio::Speaker *Mythic_iOS::create_speaker() {
 
 void Mythic_iOS::update() {
     engine->update();
+}
+
+mythic::Shader_Processor Mythic_iOS::create_shader_processor() {
+  return [](shading::Shader_Type type, const string &source) {
+    auto included = shading::process_includes(source, type, resourceful::File_Loader(iOS_File_Loader));
+    return string("precision highp float;\n\n") + shading::olden(included, type);
+
+//      return "#version 430\n" + shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
+  };
+}
+
+mythic::File_Loader Mythic_iOS::create_file_loader() {
+  return iOS_File_Loader;
+}
+
+const string Mythic_iOS::get_storage_path() {
+  return string(get_library_path()) + "/";
 }

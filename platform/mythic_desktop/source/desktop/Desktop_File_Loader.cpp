@@ -7,7 +7,7 @@ namespace desktop {
 
   const string Desktop_File_Loader(const string &path) {
     ifstream file;
-    auto full_path = "resources/" + path + ".glsl";
+    auto full_path = "resources/" + path;
 
     file.open(full_path);
     if (!file.good())

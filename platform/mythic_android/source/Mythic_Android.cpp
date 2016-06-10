@@ -8,6 +8,10 @@
 #include "logger.h"
 #include "input/Android_Input.h"
 #include "audio/Android_Speaker.h"
+#include <shading/shader_processing.h>
+#include <sys/stat.h>
+#include <fstream>
+#include <sstream>
 
 Mythic_Android::Mythic_Android(android_app *app) :
   app(app), initializer(nullptr), engine(nullptr) {
@@ -21,13 +25,13 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-Frame *Mythic_Android::create_frame(int width, int height)  {
+Frame *Mythic_Android::create_frame(int width, int height) {
   return new Android_Frame(app);
 }
 
-shading::Shader_Loader *Mythic_Android::create_shader_loader() {
-  return new Android_Shader_Loader(app->activity->assetManager);
-}
+//shading::Shader_Loader *Mythic_Android::create_shader_loader() {
+//  return new Android_Shader_Loader(app->activity->assetManager);
+//}
 
 
 static void engine_handle_cmd(struct android_app *app, int32_t command) {
@@ -78,16 +82,41 @@ void Mythic_Android::start() {
     return;
 
   log_info("starting mythic engine.");
+  auto storage = get_storage_path();
+  if (!std::ifstream(storage)) {
+    log_info("Creating file folder (%s)", storage.c_str());
+    mkdir(storage.c_str(), 0770);
+  }
+
+  {
+    auto temp_path = storage + "frog.txt";
+    {
+      ofstream myfile;
+      myfile.open(temp_path);
+      myfile << "Written by a frog.\n";
+    }
+    {
+      ifstream file;
+      file.open(temp_path);
+      if (!file.good())
+        throw std::runtime_error(string("Could not open ") + temp_path);
+
+      stringstream stream;
+      stream << file.rdbuf();
+      log_info("Message: %s", stream.str().c_str());
+    }
+  }
   initialized = true;
   log_info("creating_client");
   engine = unique_ptr<Mythic_Engine>{new Mythic_Engine(*this)};
+
+  engine->get_client().load();
 
   if (initializer) {
     log_info("loading myths.");
     initializer(*engine);
   }
 
-//  engine->loop();
   log_info("mythic engine is running.");
 
 //  workshop_exiting = true;
@@ -162,7 +191,7 @@ void Mythic_Android::run() {
   catch (exception &e) {
     auto message = e.what();
     std::cout << message;
-    log_warning("%s", e.what());
+    log_error("Mythic Android - Critical Error: %s", e.what());
   }
 
   catch (...) {
@@ -186,4 +215,25 @@ Android_Frame &Mythic_Android::get_frame() const {
 
 audio::Speaker *Mythic_Android::create_speaker() {
   return new Android_Speaker();
+}
+
+mythic::Shader_Processor Mythic_Android::create_shader_processor() {
+  return [](shading::Shader_Type type, const string &source) {
+//    log_info("Loaded shader: %s", source);
+    auto included = shading::process_includes(source, type, mythic::File_Loader(android_load_string));
+//    log_info("Loaded shader includes: %s", source);
+    return string("precision highp float;\n\n") + shading::olden(included, type);
+
+//      return "#version 430\n" + shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
+  };
+}
+
+mythic::File_Loader Mythic_Android::create_file_loader() {
+  return android_load_string;
+}
+
+const string Mythic_Android::get_storage_path() {
+  ANativeActivity *activity = app->activity;
+  const char *internal_path = activity->internalDataPath;
+  return internal_path + string("/");
 }

@@ -8,13 +8,13 @@ const float gamepad_min_threshold = 0.25f;
 
 Android_Input::Android_Input(Input_Configuration &config) : Input_Source(config) {
 //    initialize_keyboard();
-//    initialize_mouse();
+  initialize_mouse();
   initialize_gamepad();
   initialize_surface();
-//  next_state = new Input_State();
   last_position = vec2();
   current_position = vec2();
   motion_finished = false;
+  next_state = new Input_State();
 }
 
 void Android_Input::initialize_surface() {
@@ -28,8 +28,19 @@ void Android_Input::initialize_surface() {
   config.add_device(surface);
 }
 
+void Android_Input::initialize_mouse() {
+  mouse = new Device("mouse", {
+    new Trigger("Left", 1),
+    new Trigger("Right", 2),
+    new Trigger("Middle", 3),
+  });
+  config.add_device(mouse);
+}
+
 Input_State *Android_Input::get_input_state() {
-  auto result = new Input_State();
+  auto result = next_state;
+  next_state = new Input_State();
+
 //  next_state = new Input_State();
   auto offset = current_position - last_position;
   if (offset.x != 0 || offset.y != 0) {
@@ -82,7 +93,8 @@ void Android_Input::process_input(AInputEvent *event) {
     }
     else if (action_type == AMOTION_EVENT_ACTION_UP) {
       current_position = get_event_position(event);
-//      log_info("AMOTION_EVENT_ACTION_UP %f, %f", current_position.x, current_position.y);
+      log_info("AMOTION_EVENT_ACTION_UP %f, %f", current_position.x, current_position.y);
+      single_click(current_position.x, current_position.y);
       motion_finished = true;
     }
   }
@@ -108,3 +120,11 @@ void Android_Input::check_positive_direction(double value, Trigger &trigger, Inp
   }
 }
 
+void Android_Input::single_click(int x, int y) {
+  auto &trigger = mouse->get_trigger(0);
+  auto action = trigger.get_action();
+  if (action)
+    next_state->add_event(*action);
+
+  next_state->set_position(glm::ivec2(x, y));
+}

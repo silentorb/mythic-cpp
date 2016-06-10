@@ -28,11 +28,12 @@ namespace mythic {
 //
 //  };
 
-  Mythic_Engine::Mythic_Engine(Platform_Factory &factory, int width, int height) {
+  Mythic_Engine::Mythic_Engine(Platform_Factory &factory, int width, int height) :
+    storage_path(factory.get_storage_path()) {
 
     auto house = new lookinglass::Lookinglass_House(factory.create_frame(width, height),
-                                        factory.create_file_loader(),
-                                        factory.create_shader_processor()
+                                                    factory.create_file_loader(),
+                                                    factory.create_shader_processor()
     );
     client = new Client(house, factory.create_speaker());
 

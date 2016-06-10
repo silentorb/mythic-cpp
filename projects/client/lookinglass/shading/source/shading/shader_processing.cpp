@@ -8,7 +8,7 @@ namespace shading {
 
   const string process_includes(const string &source, Shader_Type type, resourceful::File_Loader file_loader) {
     static boost::regex include_pattern{R"(#include\s*<([\w/]+)>)"};
-    auto action = [&](const boost::smatch &match) { return file_loader("shaders/" + (string) match[1]); };
+    auto action = [&](const boost::smatch &match) { return file_loader("shaders/" + (string) match[1] + ".glsl"); };
     return boost::regex_replace(source, include_pattern, action);
   }
 

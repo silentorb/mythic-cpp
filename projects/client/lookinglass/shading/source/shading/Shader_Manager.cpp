@@ -34,7 +34,7 @@ namespace shading {
   }
 
   Shader &Shader_Manager::create_shader(Shader_Type type, string path) {
-    auto source = loader("shaders/" + path);
+    auto source = loader("shaders/" + path + ".glsl");
     auto code = process(type, source);
     auto shader = new Shader(type, code.c_str());
     shaders->add_resource(shader);

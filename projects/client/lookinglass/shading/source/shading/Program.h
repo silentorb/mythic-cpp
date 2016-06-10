@@ -38,6 +38,10 @@ namespace shading {
       const Vertex_Schema &get_vertex_schema() const {
         return *vertex_schema;
       }
+
+      Shader &get_first() const {
+        return first;
+      }
   };
 
   class MYTHIC_EXPORT Program_Add_Listener {

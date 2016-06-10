@@ -13,6 +13,7 @@ namespace lookinglass {
         auto index = glGetUniformLocation(program.get_id(), name.c_str());
         if (index == -1) {
           log_info("failed to find %s in %d", name.c_str(), program.get_id());
+//          log_info("vertex code: %s", program.get_first().get_source_code().c_str());
           continue;
         }
 

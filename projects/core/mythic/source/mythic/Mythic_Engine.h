@@ -35,6 +35,7 @@ namespace mythic {
       std::map<string, unique_ptr<Myth>> myths;
       vector<Myth *> external_myths;
       Mythic_Renderer *renderer;
+      const string storage_path;
 
   public:
       Mythic_Engine(Platform_Factory &factory, int width = 0, int height = 0);
@@ -65,5 +66,9 @@ namespace mythic {
       }
 
       void add_myth(Myth *myth);
+
+      const string &get_storage_path() const {
+        return storage_path;
+      }
   };
 }

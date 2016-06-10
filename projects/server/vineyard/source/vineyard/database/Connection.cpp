@@ -6,6 +6,9 @@
 #include <fstream>
 #include "vineyard/Ground.h"
 #include <map>
+#if ANDROID
+#include "logger.h"
+#endif
 
 namespace vineyard {
   namespace database {
@@ -34,10 +37,14 @@ namespace vineyard {
 
     void Connection::log(const string &message) {
       if (Ground::is_logging()) {
+#if ANDROID
+        log_info("SQL| %s", message.c_str());
+#elif __MINGW32__
         ofstream log_file("db.log", ios::app);
         if (log_file.is_open()) {
           log_file << message << endl;
         }
+#endif
       }
     }
 

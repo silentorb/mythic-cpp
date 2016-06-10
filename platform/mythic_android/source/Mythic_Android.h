@@ -4,6 +4,7 @@
 #include "mythic/Platform_Factory.h"
 #include "android_native_app_glue.h"
 #include "mythic/Mythic_Engine.h"
+#include "logger.h"
 
 using namespace std;
 class Android_Frame;
@@ -53,7 +54,7 @@ public:
     ~Mythic_Android();
 
     Frame *create_frame(int width, int height) override;
-    shading::Shader_Loader *create_shader_loader() override;
+//    shading::Shader_Loader *create_shader_loader() override;
     haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     void run();
 
@@ -61,6 +62,7 @@ public:
     void process_input(AInputEvent *event);
 
     void set_initializer(Mythic_Initializer initializer) {
+      log_info("Setting mythic android initializer.");
       this->initializer = initializer;
     }
 
@@ -69,5 +71,10 @@ public:
     Mythic_Engine &get_engine() const {
       return *engine.get();
     }
+
+    virtual mythic::Shader_Processor create_shader_processor() override;
+    virtual mythic::File_Loader create_file_loader() override;
+    virtual const string get_storage_path() override;
+
 };
 

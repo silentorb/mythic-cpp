@@ -38,14 +38,12 @@ namespace typography {
     auto path = root + filename;
 
 #if ANDROID
-    {
     vector<char> buffer;
     android_load_binary(buffer, path);
     auto error = FT_New_Memory_Face(library, (unsigned char*)buffer.data(), buffer.size(), 0, &face);
     if (error)
       throw runtime_error("ERROR::FREETYPE: Problem processing font: " + path + "(size=" + to_string(buffer.size()) + ")");
 
-    }
 #else
     auto error = FT_New_Face(library, path.c_str(), 0, &face);
     if (error)

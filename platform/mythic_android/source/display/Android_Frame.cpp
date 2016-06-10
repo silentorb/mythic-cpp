@@ -18,6 +18,7 @@ void Android_Frame::initialize_window() {
     EGL_BLUE_SIZE, 8,
     EGL_GREEN_SIZE, 8,
     EGL_RED_SIZE, 8,
+    EGL_DEPTH_SIZE, 16,
     EGL_NONE
   };
   EGLint dummy, format;
@@ -52,12 +53,15 @@ void Android_Frame::initialize_window() {
   context = eglCreateContext(display, config, NULL, context_attributes);
 
   if (eglMakeCurrent(display, surface, surface, context) == EGL_FALSE) {
-    throw std::runtime_error("Unable to eglMakeCurrent");
+    log_info("eglMakeCurrent1");
+    glow::check_error("Unable to eglMakeCurrent");
+    log_info("ceglMakeCurrent2");
+//    throw std::runtime_error("Unable to eglMakeCurrent");
   }
 
   eglQuerySurface(display, surface, EGL_WIDTH, &width);
   eglQuerySurface(display, surface, EGL_HEIGHT, &height);
-
+  set_dimensions(width, height);
 }
 
 void Android_Frame::update_events() {
@@ -80,13 +84,13 @@ void Android_Frame::update_events() {
   }
 }
 
-int Android_Frame::get_width() {
-  return width;
-}
-
-int Android_Frame::get_height() {
-  return height;
-}
+//int Android_Frame::get_width() {
+//  return width;
+//}
+//
+//int Android_Frame::get_height() {
+//  return height;
+//}
 
 void Android_Frame::flip_buffer() {
   eglSwapBuffers(display, surface);

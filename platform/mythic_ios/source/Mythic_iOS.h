@@ -37,10 +37,11 @@ public:
     virtual void initialize_window();
 };
 
-class  iOS_Shader_Loader : public shading::Shader_Loader {
-public:
-    virtual string load(string path);
-};
+const string iOS_File_Loader(const string &path);
+//class  iOS_Shader_Loader : public shading::Shader_Loader {
+//public:
+//    virtual string load(string path);
+//};
 
 void initialize_mythic_engine(mythic::Mythic_Engine & engine);
 
@@ -51,9 +52,12 @@ class Mythic_iOS : public mythic::Platform_Factory {
 public:
     Mythic_iOS(EAGLContext* context);
     virtual lookinglass::Frame *create_frame(int width, int height) override;
-    virtual shading::Shader_Loader *create_shader_loader() override;
+//    virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     virtual audio::Speaker *create_speaker() override;
+    virtual mythic::Shader_Processor create_shader_processor() override;
+    virtual mythic::File_Loader create_file_loader() override;
+    virtual const string get_storage_path() override;
 
     void update();
 };

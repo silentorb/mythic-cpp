@@ -41,6 +41,7 @@ namespace mythic {
       virtual audio::Speaker *create_speaker() = 0;
       virtual Shader_Processor create_shader_processor()= 0;
       virtual File_Loader create_file_loader() = 0;
+      virtual const string get_storage_path() = 0;
   };
 
 

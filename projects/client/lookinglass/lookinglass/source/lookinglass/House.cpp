@@ -74,7 +74,7 @@ namespace lookinglass {
   }
 
   void House::load() {
-    frame->initialize_window();
+//    frame->initialize_window();
     initialize();
     resource_manager->load();
     set_active(true);

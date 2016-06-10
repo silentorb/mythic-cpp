@@ -18,6 +18,7 @@ namespace desktop {
       unique_ptr<Mythic_Engine> engine;
 
   public:
+      virtual const string get_storage_path() override;
       virtual mythic::Shader_Processor create_shader_processor() override;
       virtual mythic::File_Loader create_file_loader() override;
       virtual audio::Speaker *create_speaker() override;

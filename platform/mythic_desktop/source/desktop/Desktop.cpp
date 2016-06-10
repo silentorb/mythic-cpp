@@ -50,5 +50,9 @@ namespace desktop {
     return Desktop_File_Loader;
   }
 
+  const string Desktop::get_storage_path() {
+    return "";
+  }
+
 }
 

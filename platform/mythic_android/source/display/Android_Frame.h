@@ -18,8 +18,8 @@ public:
 
     Android_Frame(android_app *app);
     virtual void update_events();
-    virtual int get_width();
-    virtual int get_height();
+//    virtual int get_width();
+//    virtual int get_height();
     virtual void flip_buffer();
     void free();
     void initialize_window();

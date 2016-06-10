@@ -31,6 +31,7 @@ namespace vineyard {
       initialize();
     }
 
+//    db->execute("PRAGMA temp_store = memory;");
 //    db->execute("PRAGMA journal_mode=WAL;");
 //    db->execute("PRAGMA synchronous=1;");
   }
@@ -48,7 +49,9 @@ namespace vineyard {
   }
 
   void Ground::clear_log() {
+#if __MINGW32__
     ofstream log_file("db.log", ios::out);
+#endif
   }
 
   void Ground::add_trellis(landscape::Trellis *trellis) {
@@ -73,7 +76,7 @@ namespace vineyard {
   }
 
   void Ground::query_trellis(landscape::Trellis &trellis,
-                           Seed_Initializer &initializer, Seed_Creator &creator) {
+                             Seed_Initializer &initializer, Seed_Creator &creator) {
     database::Connection connection(*this);
     database::query_trellis(connection, trellis, initializer, creator);
   }
