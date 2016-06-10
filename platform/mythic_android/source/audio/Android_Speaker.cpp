@@ -17,12 +17,22 @@ static SLAndroidSimpleBufferQueueItf buffer_queue;
 static SLObjectItf player_object = NULL;
 static SLPlayItf buffer_play;
 
+#define SAWTOOTH_FRAMES 8000
+static short sawtoothBuffer[SAWTOOTH_FRAMES];
+static vector<short> sawtooth;
 audio::Device_Settings Android_Speaker::start() {
   device_settings = {
     44100,
     4096,
     1
   };
+  sawtooth.resize(SAWTOOTH_FRAMES);
+  unsigned i;
+  for (i = 0; i < SAWTOOTH_FRAMES; ++i) {
+    sawtoothBuffer[i] = 32768 - ((i % 100) * 660);
+    sawtooth[i] = 32768 - ((i % 100) * 660);
+  }
+
 
   initialize_sl_engine();
   initialize_buffer();
@@ -59,19 +69,23 @@ void Android_Speaker::initialize_sl_engine() {
   (void) result;
 
 }
-
+unsigned long istep;
 void Android_Speaker::update_buffers() {
   SLresult result;
 //  unique_lock<mutex>(buffer_mutex);
 //  log_info("Updating audio buffer %d.", buffer_index);
   auto next_buffer = &buffers[buffer_index];
-  update(float_buffer.data(), float_buffer.size() * sizeof(Sample_Type));
+  update(float_buffer.data(), float_buffer.size() * sizeof(float));
 
-  for (int i = 0; i < float_buffer.size(); ++i) {
+  for (int i = 0; i < next_buffer->size(); ++i) {
 //    next_buffer->data()[i] = (short) (float_buffer[i] * 32767);
-    (*next_buffer)[i] = (rand() % (2 * 32767)) - 32767;
+    next_buffer->data()[i] = (short) (float_buffer[i] * 32767 / 3);
+//    (*next_buffer)[i] = (rand() % (2 * 32767)) - 32767;
+//    (*next_buffer)[i] = 32768 - ((istep++ % 100) * 660);
   }
   result = (*buffer_queue)->Enqueue(buffer_queue, next_buffer->data(), next_buffer->size() * sizeof(Sample_Type));
+//  result = (*buffer_queue)->Enqueue(buffer_queue, sawtooth.data(), sawtooth.size() * sizeof(Sample_Type));
+
   assert(result == SL_RESULT_SUCCESS);
   (void) result;
 //  auto temp_buffer = active_buffer;
@@ -119,7 +133,7 @@ void Android_Speaker::initialize_buffer() {
   const SLboolean req[2] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
 
   result = (*engine_interface)->CreateAudioPlayer(engine_interface, &player_object, &audioSrc, &audioSnk,
-                                        2, ids, req);
+                                                  2, ids, req);
   assert(result == SL_RESULT_SUCCESS);
   (void) result;
 
