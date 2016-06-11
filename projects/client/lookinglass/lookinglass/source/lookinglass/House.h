@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "lookinglass/Frame.h"
+#include "framing/Frame.h"
 #include <vector>
 #include <memory>
 #include <functional>
@@ -44,14 +44,14 @@ namespace lookinglass {
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
-      unique_ptr<Frame> frame;
+      unique_ptr<framing::Frame> frame;
       bool active;
       vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
       static House *instance;
 
       void initialize();
-      House(Frame *frame);
+      House(framing::Frame *frame);
 
   public:
 
@@ -65,7 +65,7 @@ namespace lookinglass {
         return *glass;
       }
 
-      Frame &get_frame() const {
+      framing::Frame &get_frame() const {
         return *frame;
       }
 

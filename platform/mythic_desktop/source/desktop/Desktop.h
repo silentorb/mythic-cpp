@@ -24,7 +24,7 @@ namespace desktop {
       virtual audio::Speaker *create_speaker() override;
       Desktop(const char *title, int width, int height);
 
-      virtual Frame *create_frame(int width, int height) override;
+      virtual framing::Frame *create_frame(int width, int height) override;
 //      virtual shading::Shader_Loader *create_shader_loader() override;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
 

@@ -2,21 +2,21 @@
 
 #include <memory>
 #include "mythic/Platform_Factory.h"
-#include "android_native_app_glue.h"
+#include "Android_App.h"
 #include "mythic/Mythic_Engine.h"
 #include "logger.h"
 
 using namespace std;
 class Android_Frame;
 
-namespace lookinglass {
+namespace framing {
 
-  class MYTHIC_EXPORT Frame;
+  class Frame;
 
 };
 
 namespace shading {
-  class MYTHIC_EXPORT Shader_Loader;
+  class Shader_Loader;
 }
 
 namespace clienting {
@@ -35,7 +35,7 @@ typedef void (*Mythic_Initializer)(Mythic_Engine &engine);
 class Mythic_Android : public Platform_Factory {
 private:
 
-    android_app *app;
+    Android_App *app;
     void start();
     Mythic_Initializer initializer;
     unique_ptr<Mythic_Engine> engine;
@@ -50,11 +50,10 @@ private:
     void poll();
 
 public:
-    Mythic_Android(android_app *app);
+    Mythic_Android(Android_App *app);
     ~Mythic_Android();
 
-    Frame *create_frame(int width, int height) override;
-//    shading::Shader_Loader *create_shader_loader() override;
+    framing::Frame *create_frame(int width, int height) override;
     haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     void run();
 

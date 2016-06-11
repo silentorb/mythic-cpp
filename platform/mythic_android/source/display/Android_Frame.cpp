@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include "logger.h"
 
-Android_Frame::Android_Frame(android_app *app)
+Android_Frame::Android_Frame(Android_App *app)
   : app(app), window(app->window) {
 
   initialize_window();
@@ -62,6 +62,7 @@ void Android_Frame::initialize_window() {
   eglQuerySurface(display, surface, EGL_WIDTH, &width);
   eglQuerySurface(display, surface, EGL_HEIGHT, &height);
   set_dimensions(width, height);
+  log_info("Screen dimensions: %d, %d", width, height);
 }
 
 void Android_Frame::update_events() {
@@ -83,14 +84,6 @@ void Android_Frame::update_events() {
     }
   }
 }
-
-//int Android_Frame::get_width() {
-//  return width;
-//}
-//
-//int Android_Frame::get_height() {
-//  return height;
-//}
 
 void Android_Frame::flip_buffer() {
   eglSwapBuffers(display, surface);

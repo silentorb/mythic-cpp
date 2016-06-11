@@ -10,7 +10,7 @@
 
 namespace lookinglass {
 
-  Lookinglass_House::Lookinglass_House(Frame *frame, resourceful::File_Loader file_loader,
+  Lookinglass_House::Lookinglass_House(framing::Frame *frame, resourceful::File_Loader file_loader,
                                        shading::Shader_Processor shader_processor) :
     House(frame) {
     if (!frame) {

@@ -1,22 +1,22 @@
 #pragma once
 
-#include "lookinglass/Frame.h"
+#include "framing/Frame.h"
 #include <EGL/egl.h>
 #include "android_native_app_glue.h"
 
-class Android_Frame : public lookinglass::Frame {
+class Android_Frame : public framing::Frame {
 private:
     ANativeWindow *window;
     EGLDisplay display;
     EGLSurface surface;
     EGLContext context;
     EGLint width, height;
-    android_app *app;
+    Android_App *app;
 
     void load_gl_functions();
 public:
 
-    Android_Frame(android_app *app);
+    Android_Frame(Android_App *app);
     virtual void update_events();
 //    virtual int get_width();
 //    virtual int get_height();

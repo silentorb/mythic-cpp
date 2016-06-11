@@ -13,7 +13,7 @@
 #include <fstream>
 #include <sstream>
 
-Mythic_Android::Mythic_Android(android_app *app) :
+Mythic_Android::Mythic_Android(Android_App *app) :
   app(app), initializer(nullptr), engine(nullptr) {
   app->userData = this;
   android_initialize_utility(app->activity->assetManager);
@@ -25,7 +25,7 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-Frame *Mythic_Android::create_frame(int width, int height) {
+framing::Frame *Mythic_Android::create_frame(int width, int height) {
   return new Android_Frame(app);
 }
 
@@ -34,7 +34,7 @@ Frame *Mythic_Android::create_frame(int width, int height) {
 //}
 
 
-static void engine_handle_cmd(struct android_app *app, int32_t command) {
+static void engine_handle_cmd(struct Android_App *app, int32_t command) {
   auto mythic = (Mythic_Android *) app->userData;
   mythic->process_command(command);
 }
@@ -125,7 +125,7 @@ void Mythic_Android::start() {
 //  workshop_exiting = true;
 }
 
-int32_t on_input(android_app *app, AInputEvent *event) {
+int32_t on_input(Android_App *app, AInputEvent *event) {
 
   log_info("Input pressed.");
   auto mythic = (Mythic_Android *) app->userData;

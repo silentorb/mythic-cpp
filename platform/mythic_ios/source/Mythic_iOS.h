@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #include "mythic/Platform_Factory.h"
-#include "lookinglass/Frame.h"
+#include "framing/Frame.h"
 #include "shading/Shader_Loader.h"
 #include <memory>
 
@@ -21,7 +21,7 @@ namespace mythic {
     class Platform_Factory;
 }
 
-class iOS_Frame : public Frame {
+class iOS_Frame : public framing::Frame {
 
 private:
     EAGLContext* context;
@@ -51,7 +51,7 @@ class Mythic_iOS : public mythic::Platform_Factory {
 
 public:
     Mythic_iOS(EAGLContext* context);
-    virtual lookinglass::Frame *create_frame(int width, int height) override;
+    virtual framing::Frame *create_frame(int width, int height) override;
 //    virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     virtual audio::Speaker *create_speaker() override;

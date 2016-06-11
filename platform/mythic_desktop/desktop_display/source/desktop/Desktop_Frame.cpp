@@ -6,7 +6,7 @@
 
 namespace desktop {
   Desktop_Frame::Desktop_Frame(const char *title, int width, int height) {
-    fullscreen = false;
+    set_fullscreen(false);
     create_window(title, width, height);
     create_gl_context();
   }
@@ -14,7 +14,7 @@ namespace desktop {
   void Desktop_Frame::create_window(const char *title, int width, int height) {
     set_dimensions(width, height);
     SDL_Init(SDL_INIT_VIDEO);   // Initialize SDL2
-    int fullscreen_flag = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
+    int fullscreen_flag = is_fullscreen() ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
     sdl_window = SDL_CreateWindow(
       title,
       SDL_WINDOWPOS_UNDEFINED,           //    initial x position

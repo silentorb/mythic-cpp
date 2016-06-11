@@ -224,7 +224,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
     }
 }
 
-Frame *Mythic_iOS::create_frame(int width, int height) {
+framing::Frame *Mythic_iOS::create_frame(int width, int height) {
     return new iOS_Frame(context, 0, 0);
 }
 

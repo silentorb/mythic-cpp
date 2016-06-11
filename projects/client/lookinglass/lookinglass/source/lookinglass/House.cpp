@@ -17,7 +17,7 @@ namespace lookinglass {
 
   House *House::instance = nullptr;
 
-  House::House(Frame *frame) :
+  House::House(framing::Frame *frame) :
     frame(frame) {
     instance = this;
   }
