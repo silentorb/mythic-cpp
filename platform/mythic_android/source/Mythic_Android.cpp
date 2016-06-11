@@ -84,6 +84,7 @@ void Mythic_Android::start() {
     return;
 
   log_info("starting mythic engine.");
+//  activity->setVolumeControlStream();
   auto storage = get_storage_path();
   if (!std::ifstream(storage)) {
     log_info("Creating file folder (%s)", storage.c_str());
@@ -129,6 +130,7 @@ int32_t on_input(android_app *app, AInputEvent *event) {
   log_info("Input pressed.");
   auto mythic = (Mythic_Android *) app->userData;
   mythic->process_input(event);
+  return 0;
 }
 
 void Mythic_Android::process_input(AInputEvent *event) {
