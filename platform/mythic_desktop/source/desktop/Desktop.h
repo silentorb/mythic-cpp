@@ -10,6 +10,10 @@ using namespace std;
 using namespace lookinglass;
 using namespace mythic;
 
+namespace framing {
+  class Platform_Frame;
+}
+
 namespace desktop {
 
   class MYTHIC_EXPORT Desktop : public Platform_Factory {
@@ -24,7 +28,7 @@ namespace desktop {
       virtual audio::Speaker *create_speaker() override;
       Desktop(const char *title, int width, int height);
 
-      virtual framing::Mutable_Frame *create_frame(int width, int height) override;
+      virtual framing::Platform_Frame *create_frame(int width, int height) override;
 //      virtual shading::Shader_Loader *create_shader_loader() override;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
 

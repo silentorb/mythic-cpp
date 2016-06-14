@@ -37,6 +37,8 @@ namespace bloom {
       bool visible = true;
       Flower *parent = nullptr;
 
+      virtual bool clips_children() override;
+
       virtual void modify_inner() override { }
 
   public:
@@ -85,6 +87,7 @@ namespace bloom {
       void set_border(vec4 color);
       void set_fill(vec4 color);
       void set_padding(float amount);
+      void set_padding(float horizontal, float vertical);
       Flower &create_generic_flower();
 
       virtual Box *get_parent_box() const override {

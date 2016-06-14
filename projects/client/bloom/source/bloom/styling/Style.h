@@ -74,7 +74,7 @@ namespace bloom {
         return overflow;
       }
 
-      void set_overflow_x(Overflow overflow) {
+      void set_overflow(Overflow overflow) {
         Style::overflow = overflow;
       }
 

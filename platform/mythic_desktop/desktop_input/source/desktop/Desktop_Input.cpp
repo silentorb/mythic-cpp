@@ -81,10 +81,12 @@ namespace desktop {
 
     for (int i = 1; i <= 3; i++) {
       if (buttons & i) {
-        if (previous_buttons & i)
+        if (previous_buttons & i) {
           state.add_gesture(Gesture_Type::move, point);
-        else
+        }
+        else {
           state.add_gesture(Gesture_Type::down, point);
+        }
       }
       else if (previous_buttons & i == 1) {
         state.add_gesture(Gesture_Type::up, point);

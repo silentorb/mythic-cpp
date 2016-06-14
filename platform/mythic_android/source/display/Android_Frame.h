@@ -17,6 +17,9 @@ private:
 public:
 
     Android_Frame(Android_App *app);
+
+    virtual ~Android_Frame() { }
+
     virtual void update_events();
 //    virtual int get_width();
 //    virtual int get_height();

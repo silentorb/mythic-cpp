@@ -1,4 +1,5 @@
 #include <bloom/Garden.h>
+#include <bloom/flowers/Scrollable.h>
 #include "gtest/gtest.h"
 #include "glm/glm.hpp"
 #include "mocks/Mock_Draw_Interface.h"
@@ -28,19 +29,37 @@ TEST(Box_Test, test_test) {
   EXPECT_EQ(60, third->get_cache().y.near);
 }
 
-TEST(Box_Test, scrolling) {
-  Mock_Draw_Interface draw;
-  Garden garden(draw);
-  auto list = new Flower(&garden.get_root());
+Scrollable *create_scrollable_list(Garden &garden) {
+  auto list = new Scrollable(&garden.get_root());
   list->set_arrangement(Arrangement::down);
   list->set_spacing(Simple_Measurement(0));
   list->set_height(30);
+  list->set_top(0);
   auto first = create_row(list);
   auto second = create_row(list);
   auto third = create_row(list);
+  return list;
+}
+
+TEST(Box_Test, scrolling1) {
+  Mock_Draw_Interface draw;
+  Garden garden(draw);
+  auto list = create_scrollable_list(garden);
 
   garden.update_layout();
 
   EXPECT_EQ(30, list->get_cache().y.length);
-  EXPECT_EQ(60, list->get_content_height());
+  EXPECT_EQ(90, list->get_content_height());
+}
+
+TEST(Box_Test, scrolling2) {
+  Mock_Draw_Interface draw;
+  Garden garden(draw);
+  auto list = create_scrollable_list(garden);
+
+  list->set_offset({0, -20});
+  garden.update_layout();
+
+  EXPECT_EQ(30, list->get_cache().y.length);
+  EXPECT_EQ(90, list->get_content_height());
 }

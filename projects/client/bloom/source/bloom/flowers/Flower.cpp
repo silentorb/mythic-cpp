@@ -39,9 +39,15 @@ namespace bloom {
   }
 
   bool Flower::point_is_inside(const vec2 &point) {
-    auto bounds = get_outer_bounds();
+    Bounds bounds = get_outer_bounds();
+    vec2 corner_offset;
+
+    if (clip_bounds.get()) {
+      if (clip_bounds->y.absolute_far < bounds.get_corner().y)
+        corner_offset.y = clip_bounds->y.absolute_far - bounds.get_corner().y;
+    }
     auto top_left = converter.convert_to_pixels(bounds.get_position());
-    auto bottom_right = converter.convert_to_pixels(bounds.get_corner());
+    auto bottom_right = converter.convert_to_pixels(bounds.get_corner() + corner_offset);
 
     auto result = point.x > top_left.x
                   && point.y > top_left.y
@@ -56,7 +62,7 @@ namespace bloom {
       return false;
 
     for (auto &child: children) {
-      if (child->check_event(event_type,point)) {
+      if (child->check_event(event_type, point)) {
         return true;
       }
     }
@@ -83,8 +89,10 @@ namespace bloom {
     if (style.get() && style->get_overflow() == Overflow::hidden) {
       overflow_is_hidden = true;
       auto &bounds = get_outer_bounds();
-      garden.get_draw().enable_scissor_box(bounds.get_position().x, bounds.get_position().y,
-                                           bounds.get_dimensions().x, bounds.get_dimensions().y
+      auto position = converter.convert_to_pixels(bounds.get_position());
+      auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());
+      garden.get_draw().enable_scissor_box(position.x, converter.get_pixel_dimensions().y - position.y - dimensions.y,
+                                           dimensions.x, dimensions.y
       );
     }
 
@@ -134,6 +142,15 @@ namespace bloom {
     style->set_padding(value);
   }
 
+  void Flower::set_padding(float horizontal, float vertical) {
+    if (!style)
+      style = shared_ptr<Style>(new Style());
+
+    auto horizontal_measurement = Simple_Measurement(horizontal);
+    auto vertical_measurement = Simple_Measurement(vertical);
+    style->set_padding(horizontal_measurement, vertical_measurement);
+  }
+
   Flower &Flower::create_generic_flower() {
     auto flower = new Flower(garden, this);
     return *flower;
@@ -174,6 +191,10 @@ namespace bloom {
     sing(Events::close, this);
     if (!local_is_deleted)
       remove();
+  }
+
+  bool Flower::clips_children() {
+    return style.get() && style->get_overflow() == Overflow::hidden;
   }
 
 }

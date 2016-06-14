@@ -31,5 +31,13 @@ namespace bloom {
 
         padding->set_values(measurement);
       }
+
+      void set_padding(Measurement &horizontal, Measurement &vertical) {
+        if (!padding.get())
+          padding = unique_ptr<Vector4>(new Vector4());
+
+        padding->set_x_values(horizontal);
+        padding->set_y_values(vertical);
+      }
   };
 }

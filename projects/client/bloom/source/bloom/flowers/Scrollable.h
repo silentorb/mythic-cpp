@@ -6,6 +6,8 @@ namespace bloom {
 
   class BLOOM_EXPORT Scrollable : public Flower {
       vec2 offset;
+      vec2 scroll_force;
+      vec2 velocity;
 
   protected:
       virtual void modify_inner() override;

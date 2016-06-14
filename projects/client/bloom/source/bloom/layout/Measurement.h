@@ -194,5 +194,15 @@ namespace bloom {
         near.set_values(measurement);
         far.set_values(measurement);
       }
+
+      void set_x_values(Measurement &measurement) {
+        near.set_x(measurement);
+        far.set_x(measurement);
+      }
+
+      void set_y_values(Measurement &measurement) {
+        near.set_y(measurement);
+        far.set_y(measurement);
+      }
   };
 }

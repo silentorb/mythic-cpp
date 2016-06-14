@@ -94,4 +94,5 @@ namespace desktop {
   void Desktop_Frame::initialize_window() {
 
   }
+
 }

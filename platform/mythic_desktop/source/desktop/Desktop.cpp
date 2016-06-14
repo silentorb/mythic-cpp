@@ -17,7 +17,7 @@ namespace desktop {
     engine->get_client().load();
   }
 
-  framing::Mutable_Frame *Desktop::create_frame(int width, int height) {
+  framing::Platform_Frame *Desktop::create_frame(int width, int height) {
     return new Desktop_Frame(title, width, height);
   }
 

@@ -8,6 +8,7 @@ struct Axis_Value {
 struct Axis_Values {
     Axis_Value x;
     Axis_Value y;
+
 };
 
 //struct Axis_Values_Parent : public Axis_Values {

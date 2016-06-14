@@ -41,6 +41,8 @@ namespace bloom {
 
       friend class Vertical_Axis;
 
+      void calculate_content_height();
+
   protected:
       Vector4 position;
       Vector2 dimensions;
@@ -48,15 +50,17 @@ namespace bloom {
       Arrangement arrangement = Arrangement::canvas;
       Axis_Values axis_cache;
       Axis_Values axis_cache_inner;
+      shared_ptr<Axis_Values> clip_bounds;
       unique_ptr<Measurement> spacing;
       float content_height;
 
       template<typename Axis>
       void apply_padding(Axis_Value &value,  const Vector4 & padding);
       void apply_padding(Axis_Values &values);
+      void set_children_clipping(shared_ptr<Axis_Values> &bounds);
 
       virtual void modify_inner() = 0;
-
+      virtual bool clips_children() = 0;
   public:
       int debug_id = 0;
 

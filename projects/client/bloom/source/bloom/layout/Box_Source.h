@@ -195,12 +195,41 @@ namespace bloom {
       }
     }
 
-    content_height = 0;
+    // Code does not currently support toggling child clipping
+    if (clips_children()) {
+      auto values = new Axis_Values();
+      values->x = axis_cache.x;
+      values->y = axis_cache.y;
+      auto bounds = shared_ptr<Axis_Values>(values);
+      set_children_clipping(bounds);
+    }
+    else {
+
+    }
+
+    calculate_content_height();
+  }
+
+  void Box::set_children_clipping(shared_ptr<Axis_Values> &bounds) {
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);
-      auto possible_height = child.get_cache().y.absolute_far - get_cache().y.near;
-      if (possible_height > content_height)
-        content_height = possible_height;
+      child.clip_bounds = bounds;
+      child.set_children_clipping(bounds);
     }
+  }
+
+  void Box::calculate_content_height() {
+    float min = 0;
+    float max = 0;
+    for (int i = 0; i < get_child_count(); ++i) {
+      auto &child = get_child_box(i);
+      if (child.get_cache().y.absolute_far > max)
+        max = child.get_cache().y.absolute_far;
+
+      if (child.get_cache().y.near < min)
+        min = child.get_cache().y.near;
+    }
+
+    content_height = max - min;
   }
 }
