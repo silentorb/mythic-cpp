@@ -1,9 +1,10 @@
 #pragma once
 
 #include "bloom/flowers/Flower.h"
-#include "Modal.h"
+#include "bloom/garden/Modal.h"
 #include <stack>
 #include <string>
+#include <bloom/garden/Garden_Input.h>
 #include "Draw_Interface.h"
 
 namespace haft {
@@ -14,6 +15,10 @@ namespace haft {
 
 namespace drawing {
   class Element;
+}
+
+namespace framing {
+  class Mutable_Frame;
 }
 
 namespace bloom {
@@ -29,6 +34,8 @@ namespace bloom {
       Flower *focused_flower;
       stack <unique_ptr<Modal>> modal_stack;
       static Garden *instance;
+      float text_scale = 1;
+      Garden_Input garden_input;
 
   public:
       Garden(Draw_Interface &draw);
@@ -78,5 +85,18 @@ namespace bloom {
       }
 
       void update_layout();
+      const framing::Frame_Info &get_frame() const;
+
+      const float &get_text_scale() const {
+        return text_scale;
+      }
+
+      void set_text_scale(float text_scale) {
+        Garden::text_scale = text_scale;
+      }
+
+      const Garden_Input &get_input() const {
+        return garden_input;
+      }
   };
 }

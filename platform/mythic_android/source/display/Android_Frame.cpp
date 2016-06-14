@@ -62,7 +62,11 @@ void Android_Frame::initialize_window() {
   eglQuerySurface(display, surface, EGL_WIDTH, &width);
   eglQuerySurface(display, surface, EGL_HEIGHT, &height);
   set_dimensions(width, height);
-  log_info("Screen dimensions: %d, %d", width, height);
+  set_dpi(android_get_dpi());
+
+  log_info("pixels: %d, %d", width, height);
+  log_info("dpi: %d -- %d", get_dpi().x, get_dpi().y);
+
 }
 
 void Android_Frame::update_events() {

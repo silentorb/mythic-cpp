@@ -5,6 +5,7 @@
 #include "Device_Settings.h"
 #include "Signal_Source.h"
 #include <vector>
+#include <mutex>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ namespace audio {
       Device_Settings device_settings;
       Signal_Source source = nullptr;
       void speaker_update_buffer(float *data, int length);
+			mutex m;
 
   public:
 

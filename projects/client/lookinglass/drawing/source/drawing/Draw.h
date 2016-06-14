@@ -30,7 +30,9 @@ namespace shading {
 namespace texturing {
   struct Texture;
 }
-
+namespace framing {
+  class Frame_Info;
+}
 using namespace std;
 using namespace glm;
 
@@ -92,6 +94,7 @@ namespace drawing {
       void set_depth(bool value);
       void render();
       void add_renderable(lookinglass::Renderable renderable);
+      const framing::Frame_Info &get_frame() const;
   };
 }
 

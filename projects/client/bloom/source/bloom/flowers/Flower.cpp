@@ -51,19 +51,19 @@ namespace bloom {
     return result;
   }
 
-  bool Flower::check_activate(const vec2 &point) {
+  bool Flower::check_event(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point) {
     if (!visible)
       return false;
 
     for (auto &child: children) {
-      if (child->check_activate(point)) {
+      if (child->check_event(event_type,point)) {
         return true;
       }
     }
 
     if (point_is_inside(point)) {
-      if (has_listeners(Events::activate)) {
-        sing(Events::activate, this);
+      if (has_listeners(event_type)) {
+        sing(event_type, this);
         return true;
       }
     }
@@ -77,15 +77,30 @@ namespace bloom {
       style->get_fill()->render(garden.get_draw(), bounds);
     }
 
-    if (style->get_border()) {
+    // This functionality does not currently support having hidden overflow children inside hidden overflow parents.
+    // I can add it later when the need arises.
+    bool overflow_is_hidden = false;
+    if (style.get() && style->get_overflow() == Overflow::hidden) {
+      overflow_is_hidden = true;
       auto &bounds = get_outer_bounds();
-      style->get_border()->render(garden.get_draw(), bounds);
+      garden.get_draw().enable_scissor_box(bounds.get_position().x, bounds.get_position().y,
+                                           bounds.get_dimensions().x, bounds.get_dimensions().y
+      );
     }
 
     for (auto &child: children) {
       if (child->is_visible()) {
         child->render();
       }
+    }
+
+    if (overflow_is_hidden) {
+      garden.get_draw().disable_scissor_box();
+    }
+
+    if (style->get_border()) {
+      auto &bounds = get_outer_bounds();
+      style->get_border()->render(garden.get_draw(), bounds);
     }
   }
 

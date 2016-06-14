@@ -7,10 +7,11 @@
 #include "shading/Shader_Manager.h"
 #include "lookinglass/Renderable_List.h"
 #include "typography/Text_Effect.h"
+#include "framing/Platform_Frame.h"
 
 namespace lookinglass {
 
-  Lookinglass_House::Lookinglass_House(framing::Frame *frame, resourceful::File_Loader file_loader,
+  Lookinglass_House::Lookinglass_House(framing::Platform_Frame *frame, resourceful::File_Loader file_loader,
                                        shading::Shader_Processor shader_processor) :
     House(frame) {
     if (!frame) {

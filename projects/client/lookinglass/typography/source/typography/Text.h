@@ -109,5 +109,9 @@ namespace typography {
         appearance_changed = true;
         needs_recalculating = true;
       }
+
+      float get_size() const {
+        return size;
+      }
   };
 }

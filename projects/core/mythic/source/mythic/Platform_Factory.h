@@ -22,7 +22,7 @@ namespace shading {
 }
 
 namespace framing {
-  class Frame;
+  class Platform_Frame;
 };
 
 namespace mythic {
@@ -33,7 +33,7 @@ namespace mythic {
   class MYTHIC_EXPORT Platform_Factory {
 
   public:
-      virtual framing::Frame *create_frame(int width, int height) = 0;
+      virtual framing::Platform_Frame *create_frame(int width, int height) = 0;
 //      virtual shading::Shader_Loader *create_shader_processor() = 0;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) = 0;
       virtual audio::Speaker *create_speaker() = 0;

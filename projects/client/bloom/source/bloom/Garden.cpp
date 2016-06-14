@@ -5,6 +5,7 @@
 #include "lookinglass/Lookinglass_Resources.h"
 #include <iostream>
 #include <bloom/layout/Axis.h>
+#include "framing/Frame_Info.h"
 
 using namespace haft;
 
@@ -12,6 +13,7 @@ namespace bloom {
 
   namespace Events {
     const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
+    const songbird::Song<Flower_Delegate> drag = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
   };
@@ -22,7 +24,7 @@ namespace bloom {
     draw(draw),
     select_action(new Action(1, "Select")),
     default_style(new Style()),
-    converter(draw.get_dimensions()) {
+    converter(draw.get_frame().get_dimensions()) {
 
 //    auto simple = Simple_Measurement();
 //    default_style->set_padding(simple);
@@ -34,21 +36,32 @@ namespace bloom {
   Garden::~Garden() { }
 
   void Garden::update_input(haft::Input_State &input_state) {
-    if (input_state.just_pressed(*select_action)) {
+    auto input_result = garden_input.update_input(input_state);
+    if (input_result.mouse_click) {
       auto &position = input_state.get_position();
 
       Flower &start = modal_stack.size() > 0
                       ? *modal_stack.top()->root
                       : *root;
 
-      if (start.check_activate(vec2(position.x, position.y))) {
-        input_state.set_handled(*select_action);
+      if (start.check_event(Events::activate, vec2(position.x, position.y))) {
+//        input_state.set_handled(*select_action);
+      }
+    }
+    if (input_result.dragging) {
+      auto &position = garden_input.get_drag_start();
+      Flower &start = modal_stack.size() > 0
+                      ? *modal_stack.top()->root
+                      : *root;
+
+      if (start.check_event(Events::drag, vec2(position.x, position.y))) {
+//        input_state.set_handled(*select_action);
       }
     }
   }
 
   void Garden::update_layout() {
-    auto dimensions = draw.get_dimensions();
+    auto dimensions = draw.get_frame().get_dimensions();
     converter.set_pixel_dimensions(dimensions);
 
     Axis_Values base_axis_values{
@@ -73,7 +86,7 @@ namespace bloom {
   }
 
   Orientation Garden::get_orientation() const {
-    auto &dimensions = draw.get_dimensions();
+    auto &dimensions = get_frame().get_dimensions();
     return dimensions.x > dimensions.y
            ? Orientation::landscape
            : Orientation::portrait;
@@ -89,4 +102,9 @@ namespace bloom {
   void Garden::pop_modal() {
     modal_stack.pop();
   }
+
+  const framing::Frame_Info &Garden::get_frame() const {
+    return draw.get_frame();
+  }
+
 }

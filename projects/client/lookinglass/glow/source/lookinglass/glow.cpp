@@ -7,6 +7,7 @@ namespace glow {
     bool culling = false;
     bool depth_test = false;
     bool depth_write = false;
+    bool scissor_box = false;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -48,5 +49,22 @@ namespace glow {
     cache::blend = value;
     toggle(GL_BLEND, value);
   }
+
+  void enable_scissor_box(float left, float top, float width, float height) {
+    if (!cache::scissor_box)
+      glEnable(GL_SCISSOR_TEST);
+
+    cache::scissor_box = true;
+    glScissor(left, top, width, height);
+  }
+
+  void disable_scissor_box() {
+    if (!cache::scissor_box)
+      return;
+
+    cache::scissor_box = false;
+    glDisable(GL_SCISSOR_TEST);
+  }
+
 }
 

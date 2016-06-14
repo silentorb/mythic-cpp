@@ -53,7 +53,7 @@ add_subdirectory(projects/client/resourceful)
 include(projects/client/lookinglass/lookinglass.cmake)
 add_subdirectory(projects/server/substance)
 add_subdirectory(projects/client/scenery)
-add_subdirectory(projects/client/scenery/test)
+#add_subdirectory(projects/client/scenery/test)
 add_subdirectory(projects/client/haft)
 add_subdirectory(projects/client/audio/audio_player)
 add_subdirectory(projects/client/audio/sequencing)
@@ -74,7 +74,7 @@ endif ()
 add_subdirectory(projects/client/lookinglass_bloom)
 
 if (MINGW OR MSCV)
-  include(projects/lab/lab.cmake)
+#  include(projects/lab/lab.cmake)
 endif ()
 
 if (ANDROID)
@@ -86,7 +86,7 @@ elseif (IOS)
 
 else ()
   add_subdirectory(platform/mythic_desktop)
-  add_subdirectory(platform/workshop)
+#  add_subdirectory(platform/workshop)
 
 endif ()
 

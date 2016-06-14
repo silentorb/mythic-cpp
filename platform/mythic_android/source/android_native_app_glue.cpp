@@ -432,7 +432,6 @@ void ANativeActivity_onCreate(ANativeActivity *activity, void *savedState, size_
 
   android_device_dpi.x = env->CallFloatMethod(activity->clazz, get_xdpi);
   android_device_dpi.y = env->CallFloatMethod(activity->clazz, get_ydpi);
-  LOGV("dpi: %d -- %d", android_device_dpi.x, android_device_dpi.y);
 
 //  jmethodID getSystemService = env->GetMethodID(java_class, "getSystemService", "(I)V");
 

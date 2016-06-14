@@ -6,6 +6,7 @@
 #include <fstream>
 #include "vineyard/Ground.h"
 #include <map>
+
 #if ANDROID
 #include "logger.h"
 #endif
@@ -15,10 +16,12 @@ namespace vineyard {
 
     Connection::Connection(Database *database) :
       database(*database) {
+      database->increment_connections();
       if (database->static_handle)
         handle = database->static_handle;
       else
         check(sqlite3_open(database->get_filename().c_str(), &handle), "opening database file");
+
     }
 
     Connection::Connection(std::unique_ptr<Database> &database) : Connection(database.get()) { }
@@ -28,11 +31,12 @@ namespace vineyard {
     Connection::Connection(Ground &ground) : Connection(ground.get_database()) { }
 
     Connection::~Connection() {
-      if (handle == database.static_handle)
-        return;
+      if (handle != database.static_handle) {
+        database.statements.clear();
+        sqlite3_close(handle);
+      }
 
-      database.statements.clear();
-      sqlite3_close(handle);
+      database.decrement_connections();
     }
 
     void Connection::log(const string &message) {

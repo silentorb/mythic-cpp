@@ -11,15 +11,16 @@ using namespace std;
 namespace bloom {
 
   enum class Measurements {
-      units,
+      units, // Deprecated
       stretch,
       shrink,
-      parent_aligned,
-      parent_perpendicular,
+      parent_aligned, // Deprecated
+      parent_perpendicular, // Deprecated
       percent,
       percent_perpendicular,
       vertical_units,
       horizontal_units,
+      pixels,
       complex
   };
 
@@ -154,6 +155,10 @@ namespace bloom {
 
       void set_y(const Measurement &value) {
         y = shared_ptr<Measurement>(value.clone());
+      }
+
+      void set_y(int value) {
+        y = shared_ptr<Measurement>(new Simple_Measurement(value));
       }
 
       const Measurement &get_x() const {

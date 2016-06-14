@@ -69,6 +69,10 @@ namespace desktop {
         case SDL_WINDOWEVENT:
           switch (event.window.event) {
             case SDL_WINDOWEVENT_SIZE_CHANGED:
+              std::cout << "Window Dimensions: " <<
+              std::to_string(event.window.data1) << ", " <<
+              std::to_string(event.window.data2) << std::endl;
+
               set_dimensions(
                 event.window.data1,
                 event.window.data2

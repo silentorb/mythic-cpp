@@ -33,5 +33,6 @@ namespace glow {
   GLOW_EXPORT void set_culling(bool value);
   GLOW_EXPORT void set_depth_test(bool value);
   GLOW_EXPORT void set_depth_write(bool value);
-
+  GLOW_EXPORT void enable_scissor_box(float left, float top, float width, float height);
+  GLOW_EXPORT void disable_scissor_box();
 }

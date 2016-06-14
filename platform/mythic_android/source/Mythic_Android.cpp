@@ -25,14 +25,13 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-framing::Frame *Mythic_Android::create_frame(int width, int height) {
+framing::Mutable_Frame *Mythic_Android::create_frame(int width, int height) {
   return new Android_Frame(app);
 }
 
 //shading::Shader_Loader *Mythic_Android::create_shader_loader() {
 //  return new Android_Shader_Loader(app->activity->assetManager);
 //}
-
 
 static void engine_handle_cmd(struct Android_App *app, int32_t command) {
   auto mythic = (Mythic_Android *) app->userData;

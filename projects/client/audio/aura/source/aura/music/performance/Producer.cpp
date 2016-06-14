@@ -1,5 +1,6 @@
 #include "Producer.h"
 #include "Performer.h"
+#include <iostream>
 
 namespace aura {
 
@@ -16,6 +17,11 @@ namespace aura {
     });
   }
 
+  Producer::~Producer() {
+    std::cout << "Deleting Producer.";
+  }
+
+
   void Producer::next_section() {
     composer.next_chord();
     performer->clear_performances();
@@ -31,6 +37,9 @@ namespace aura {
   }
 
   float Producer::update(float delta) {
+    if (!chord_loop.get())
+      return 0;
+
     chord_loop->update(conductor);
     auto value = performer->update(delta, conductor);
     return value;

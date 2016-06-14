@@ -49,10 +49,13 @@ namespace bloom {
       Axis_Values axis_cache;
       Axis_Values axis_cache_inner;
       unique_ptr<Measurement> spacing;
+      float content_height;
 
       template<typename Axis>
       void apply_padding(Axis_Value &value,  const Vector4 & padding);
       void apply_padding(Axis_Values &values);
+
+      virtual void modify_inner() = 0;
 
   public:
       int debug_id = 0;
@@ -183,6 +186,10 @@ namespace bloom {
       }
 
       vec2 get_parent_inner_dimensions() const;
+
+      float get_content_height() const {
+        return content_height;
+      }
   };
 
 }

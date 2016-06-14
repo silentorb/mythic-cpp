@@ -74,10 +74,24 @@ namespace desktop {
     for (int i = 0; i <= 2; i++) {
       auto &trigger = mouse->get_trigger(i);
       if (trigger.get_action()) {
-        if (trigger.get_id() < 4 && (buttons & trigger.get_id()) != 0)
+        if (trigger.get_id() < 4 && buttons & trigger.get_id())
           state.add_event(*trigger.get_action());
       }
     }
+
+    for (int i = 1; i <= 3; i++) {
+      if (buttons & i) {
+        if (previous_buttons & i)
+          state.add_gesture(Gesture_Type::move, point);
+        else
+          state.add_gesture(Gesture_Type::down, point);
+      }
+      else if (previous_buttons & i == 1) {
+        state.add_gesture(Gesture_Type::up, point);
+      }
+    }
+
+    previous_buttons = buttons;
   }
 
   void Desktop_Input::update_gamepad(Input_State &state) {

@@ -19,9 +19,9 @@ namespace haft {
     current_state->set_previous(previous_state.get());
     previous_state->set_previous(nullptr);
 
-    for (auto &interpreter: gesture_interpreters) {
-      interpreter->interpret(*current_state, *current_state);
-    }
+//    for (auto &interpreter: gesture_interpreters) {
+//      interpreter->interpret(*current_state, *current_state);
+//    }
   }
 
   void Input_Manager::add_input_source(Input_Source *new_source) {

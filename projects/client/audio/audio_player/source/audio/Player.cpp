@@ -15,30 +15,17 @@ namespace audio {
   }
 
   Player::~Player() {
-    speaker->stop();
+		unique_lock<mutex>(m);
+		speaker->stop();
   }
 
   void Player::play(Waveform &waveform) {
     sounds.push_back({waveform, 0});
   }
 
-//  void Player::update(float delta) {
-//    last_delta = delta;
-//  }
-
   void Player::speaker_update_buffer(float *data, int data_length) {
-    source(data, data_length);
-
-//    float *buffer = (float *) data;
-//    int length = (data_length / sizeof(float));
-//    for (int i = 0; i < length; ++i) {
-//      buffer[i] = (float) sin(current * 2 * Pi);
-//      if (device_settings.channel_count == 2)
-//        buffer[++i] = (float) sin(current);
-//
-////      current += 0.05f;
-//      current = fmod(current + 1000.0f / device_settings.sample_rate, 1.0);
-//    }
+		unique_lock<mutex>(m);
+		source(data, data_length);
 
   }
 }

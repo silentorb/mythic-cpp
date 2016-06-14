@@ -1,5 +1,6 @@
 #include "Lookinglass_Bloom.h"
 #include <bloom/Garden.h>
+#include <lookinglass/glow.h>
 #include "lookinglass/Lookinglass_Resources.h"
 #include "lookinglass/House.h"
 
@@ -15,8 +16,8 @@ void Lookinglass_Bloom::enable_3d(bool value) {
   draw.set_depth(value);
 }
 
-const glm::ivec2 Lookinglass_Bloom::get_dimensions() const {
-  return draw.get_dimensions();
+const framing::Frame_Info &Lookinglass_Bloom::get_frame() const {
+  return draw.get_frame();
 }
 
 void Lookinglass_Bloom::draw_square(float left, float top, float width, float height, const glm::vec4 &color,
@@ -35,5 +36,10 @@ typography::Text_Effect &Lookinglass_Bloom::get_text_effect() const {
   return resources.get_text_effect();
 }
 
+void Lookinglass_Bloom::enable_scissor_box(float left, float top, float width, float height) {
+  glow::enable_scissor_box(left, top, width, height);
+}
 
-
+void Lookinglass_Bloom::disable_scissor_box() {
+  glow::disable_scissor_box();
+}

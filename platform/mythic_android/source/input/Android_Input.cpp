@@ -19,6 +19,7 @@ Android_Input::Android_Input(Input_Configuration &config) : Input_Source(config)
 
 void Android_Input::initialize_surface() {
   surface = new Device("surface", {
+    new Trigger("swipe", Surface_Trigger::swipe),
     new Trigger("swipe_left", Surface_Trigger::swipe_left),
     new Trigger("swipe_right", Surface_Trigger::swipe_right),
     new Trigger("swipe_up", Surface_Trigger::swipe_down),

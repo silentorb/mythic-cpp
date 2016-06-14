@@ -1,6 +1,5 @@
 #pragma once
 
-#include "dllexport.h"
 #include <vector>
 #include <memory>
 #include <glm/glm.hpp>
@@ -27,7 +26,7 @@ namespace bloom {
       landscape
   };
 
-  class MYTHIC_EXPORT Flower : public Box, public songbird::Singer {
+  class BLOOM_EXPORT Flower : public Box, public songbird::Singer {
 
       vector<unique_ptr<Flower>> children;
       shared_ptr<Style> style;
@@ -37,6 +36,8 @@ namespace bloom {
       vec2 position;
       bool visible = true;
       Flower *parent = nullptr;
+
+      virtual void modify_inner() override { }
 
   public:
       Flower(Flower *parent = nullptr);
@@ -49,7 +50,7 @@ namespace bloom {
       virtual const Bounds get_outer_bounds();
       virtual const Bounds get_inner_bounds();
       bool point_is_inside(const vec2 &point);
-      bool check_activate(const vec2 &point);
+      bool check_event(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point);
 
       virtual void render();
 
@@ -117,7 +118,7 @@ namespace bloom {
       bool is_landscape() const;
       bool is_portrait() const;
 
-      const Vector4 * get_padding() const {
+      const Vector4 *get_padding() const {
         return style->get_padding();
       }
 
@@ -126,5 +127,10 @@ namespace bloom {
       virtual Box_Style &get_box_style() override {
         return *style;
       }
+
+      shared_ptr<Style> &get_style() {
+        return style;
+      }
+
   };
 }

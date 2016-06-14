@@ -6,7 +6,7 @@
 #include "Gesture.h"
 #include "Event_Consumer.h"
 #include "Gesture_Container.h"
-#include <glm/glm.hpp>
+#include <glm/vec2.hpp>
 #include <algorithm>
 
 using namespace std;
@@ -14,8 +14,8 @@ using namespace glm;
 
 namespace haft {
 
-  class Input_State : public Event_Consumer, public Gesture_Container, no_copy {
-      vector<unique_ptr<Gesture>> gestures;
+  class Input_State : public Event_Consumer, no_copy {
+      vector<Gesture> gestures;
       vector<unique_ptr<Event>> events;
       ivec2 position;
       Input_State *previous;
@@ -32,17 +32,13 @@ namespace haft {
         events.push_back(unique_ptr<Event>(new Event(action, value)));
       }
 
-      Gesture &get_gesture(int index) const {
-        return *gestures[index];
-      }
-
-      void add_gesture(Gesture *gesture) {
-        gestures.push_back(unique_ptr<Gesture>(gesture));
-      }
-
-      int get_gesture_count() const {
-        return gestures.size();
-      }
+//      Gesture &get_gesture(int index) const {
+//        return *gestures[index];
+//      }
+//
+//      void add_gesture(Gesture *gesture) {
+//        gestures.push_back(unique_ptr<Gesture>(gesture));
+//      }
 
       Event *get_event(const Action &action) const {
         for (auto &event: events) {
@@ -86,25 +82,24 @@ namespace haft {
         get_event(action)->set_handled(true);
       }
 
-//      void remove_event(const Action &action) {
-//        for (auto &event: events) {
-//          if (&event->get_action() == &action) {
-//            int offset = std::find_if(events.begin(), events.end(), [&](unique_ptr<Event> const &item) {
-//              return item.get() == event.get();
-//            }) - events.begin();
-//
-//            events.erase(events.begin() + offset);
-//            return;
-//          }
-//        }
-//      }
-
       void clear_events() {
         events.clear();
       }
 
       int get_event_count() const {
         return events.size();
+      }
+
+      const vector<Gesture> &get_gestures() const {
+        return gestures;
+      }
+
+      void add_gesture(const Gesture gesture) {
+        gestures.push_back(gesture);
+      }
+
+      void add_gesture(Gesture_Type action, ivec2 position) {
+        gestures.push_back({action, position});
       }
   };
 }

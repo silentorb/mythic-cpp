@@ -10,6 +10,7 @@
 #include "shading/Shader_Manager.h"
 #include "lookinglass/Renderable_List.h"
 #include "typography/Text_Effect.h"
+#include "framing/Platform_Frame.h"
 
 using namespace resourceful;
 
@@ -17,7 +18,7 @@ namespace lookinglass {
 
   House *House::instance = nullptr;
 
-  House::House(framing::Frame *frame) :
+  House::House(framing::Platform_Frame *frame) :
     frame(frame) {
     instance = this;
   }
@@ -43,7 +44,7 @@ namespace lookinglass {
   }
 
   bool House::is_closing() {
-    return frame->closing;
+    return frame->is_closing();
   }
 
   void House::add_renderable(Renderable renderable) {
@@ -56,6 +57,10 @@ namespace lookinglass {
 
   Lookinglass_Resources &House::get_resources() const {
     return *resource_manager;
+  }
+
+  framing::Frame_Info &House::get_frame() const{
+    return *frame;
   }
 
   void House::initialize() {

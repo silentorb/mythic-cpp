@@ -1,10 +1,10 @@
 #pragma once
 
 #include "dllexport.h"
-#include "framing/Frame.h"
 #include <vector>
 #include <memory>
 #include <functional>
+#include <glm/vec2.hpp>
 
 namespace shading {
   class Shader_Loader;
@@ -23,6 +23,10 @@ using namespace perspective;
 using namespace std;
 namespace glow {
   class Capabilities;
+}
+namespace framing {
+  class Platform_Frame;
+  class Frame_Info;
 }
 
 namespace lookinglass {
@@ -44,14 +48,14 @@ namespace lookinglass {
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<Viewport> base_viewport;
       unique_ptr<Glass> glass;
-      unique_ptr<framing::Frame> frame;
+      unique_ptr<framing::Platform_Frame> frame;
       bool active;
       vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
       static House *instance;
 
       void initialize();
-      House(framing::Frame *frame);
+      House(framing::Platform_Frame *frame);
 
   public:
 
@@ -65,9 +69,7 @@ namespace lookinglass {
         return *glass;
       }
 
-      framing::Frame &get_frame() const {
-        return *frame;
-      }
+      framing::Frame_Info &get_frame() const;
 
       Viewport &get_base_viewport() const {
         return *base_viewport;

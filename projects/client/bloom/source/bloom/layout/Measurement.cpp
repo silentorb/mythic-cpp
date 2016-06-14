@@ -31,6 +31,9 @@ namespace bloom {
       auto value = static_cast<const Simple_Measurement *>(this)->get_value();
 
       switch (get_type()) {
+        case Measurements::pixels:
+          return value * UNIT_RESOLUTION / Axis::get_aligned(converter.get_pixel_dimensions());
+
         case Measurements::parent_aligned:
           return value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
 
@@ -44,7 +47,7 @@ namespace bloom {
           return value * Axis::get_perpendicular(parent_dimensions) / 100;
 
         case Measurements::vertical_units:
-          return value * converter.get_pixel_dimensions().y / UNIT_RESOLUTION;
+          return value * converter.get_pixel_dimensions().y / 100;
 
         default:
           return value;

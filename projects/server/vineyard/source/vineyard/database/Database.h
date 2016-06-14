@@ -25,10 +25,21 @@ namespace vineyard {
     class Asynchronous_Queue;
 
     class VINEYARD_EXPORT Database {
+        friend class vineyard::database::Connection;
+
         const string filename;
         bool logging = true;
         mutex m;
         unique_ptr<Asynchronous_Queue> async_queue;
+        int connection_count = 0;
+
+        void increment_connections() {
+          ++connection_count;
+        }
+
+        void decrement_connections() {
+          --connection_count;
+        }
 
     public:
         // These fields can eventually be private.  They are only used in limited cases

@@ -11,7 +11,7 @@ class Android_Frame;
 
 namespace framing {
 
-  class Frame;
+  class Mutable_Frame;
 
 };
 
@@ -53,7 +53,7 @@ public:
     Mythic_Android(Android_App *app);
     ~Mythic_Android();
 
-    framing::Frame *create_frame(int width, int height) override;
+    framing::Mutable_Frame *create_frame(int width, int height) override;
     haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     void run();
 

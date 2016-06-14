@@ -74,7 +74,6 @@ namespace bloom {
     return current_length;
   }
 
-
   template<typename Axis>
   Axis_Value Box::calculate_axis(const Axis_Value &parent_values, float margin) const {
     Axis_Value result;
@@ -168,15 +167,16 @@ namespace bloom {
 
     axis_cache_inner = axis_cache;
     apply_padding(axis_cache_inner);
+    modify_inner();
 
     if (arrangement == Arrangement::canvas) {
       for (int i = 0; i < get_child_count(); ++i) {
-        get_child_box(i).update_absolute_dimensions(axis_cache_inner);
+        auto &child = get_child_box(i);
+        child.update_absolute_dimensions(axis_cache_inner);
       }
     }
     else if (arrangement == Arrangement::down) {
       auto current = axis_cache_inner;
-
       auto local_dimensions = get_absolute_dimensions();
       float margin = 0;
       float spacing_value = spacing.get()
@@ -193,6 +193,13 @@ namespace bloom {
         current.y.near += glm::max(child.position.far.get_y().resolve<Vertical_Axis>(local_dimensions, converter),
                                    spacing_value);
       }
+    }
+
+    content_height = 0;
+    for (int i = 0; i < get_child_count(); ++i) {
+      auto &child = get_child_box(i);
+      if (child.get_cache().y.absolute_far > content_height)
+        content_height = child.get_cache().y.absolute_far;
     }
   }
 }

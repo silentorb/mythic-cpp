@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Database.h"
 #include "Connection.h"
 #include "landscape/Trellis.h"
@@ -15,7 +16,12 @@ namespace vineyard {
       }
     }
 
-    Database::~Database() { }
+    Database::~Database() {
+      std::cout << "Closing database." << std::endl;
+      while(connection_count > 0) {
+        this_thread::sleep_for(std::chrono::milliseconds(10));
+      }
+    }
 
     void Database::create_table(const landscape::Trellis &trellis, Connection &connection) {
       string sql = "CREATE TABLE " + trellis.get_name() + " (\n";

@@ -137,4 +137,9 @@ namespace drawing {
   void Draw::add_renderable(lookinglass::Renderable renderable) {
     renderables.push_back(renderable);
   }
+
+  const framing::Frame_Info &Draw::get_frame() const {
+    return house.get_frame();
+  }
+
 }

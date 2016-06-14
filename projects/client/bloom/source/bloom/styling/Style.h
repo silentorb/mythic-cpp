@@ -9,6 +9,12 @@
 
 using namespace std;
 
+enum class Overflow : int {
+    inherit,
+    visible,
+    hidden
+};
+
 namespace bloom {
 
   class MYTHIC_EXPORT Style : public Box_Style {
@@ -16,6 +22,8 @@ namespace bloom {
       unique_ptr<Fill> fill;
 //      shared_ptr<Style> highlighed;
       shared_ptr<Style> parent;
+      Overflow overflow;
+//      Overflow overflow_y;
 
   public:
 
@@ -59,5 +67,16 @@ namespace bloom {
 //      void set_padding(Measurement &measurement) {
 //        box_style.set_padding(measurement);
 //      }
+      Overflow get_overflow() const {
+        if (overflow == Overflow::inherit && parent.get())
+          return parent->get_overflow();
+
+        return overflow;
+      }
+
+      void set_overflow_x(Overflow overflow) {
+        Style::overflow = overflow;
+      }
+
   };
 }

@@ -3,6 +3,8 @@
 #include "lookinglass/House.h"
 #include "lookinglass/Lookinglass_Resources.h"
 #include "bloom/layout/Axis.h"
+#include "bloom/Garden.h"
+#include "framing/Frame_Info.h"
 
 namespace bloom {
 
@@ -10,7 +12,8 @@ namespace bloom {
                            const string content) :
     Flower(garden),
     text(new typography::Text(font, effect, content)) {
-//    set_border(vec4(1, 1, 0, 1));
+    size = text->get_size();
+    set_size(size);
   }
 
   Text_Flower::Text_Flower(const string content, Flower *parent) :
@@ -18,6 +21,7 @@ namespace bloom {
     auto &resources = lookinglass::House::get_instance().get_resources();
     text = unique_ptr<typography::Text>(
       new typography::Text(resources.get_font("default"), resources.get_text_effect(), content));
+    set_size(text->get_size());
   }
 
   Text_Flower::~Text_Flower() { }
@@ -32,7 +36,8 @@ namespace bloom {
   }
 
   void Text_Flower::set_size(float value) {
-    text->set_size(value);
+    size = value;
+    text->set_size(value * garden.get_text_scale() * 800 / garden.get_frame().get_dimensions().y);
     dimensions_changed = true;
   }
 
@@ -46,6 +51,7 @@ namespace bloom {
   }
 
   void Text_Flower::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
+    set_size(size); // Update text size in case screen dimensions changed.
 
     update_axis_cache(parent_values, margin);
 

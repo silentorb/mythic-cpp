@@ -1,7 +1,7 @@
 # Lookinglass Projects
 
 add(glow)
-add(glaze)
+#add(glaze)
 add(shading)
 add(texturing)
 add(frame)
@@ -16,4 +16,4 @@ add(lookinglass)
 add(drawing)
 #add(svg)
 
-add(glaze/test)
+#add(glaze/test)

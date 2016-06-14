@@ -1,6 +1,5 @@
 #pragma once
 
-#include "dllexport.h"
 #include <string>
 #include "Flower.h"
 
@@ -18,10 +17,11 @@ namespace drawing {
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Text_Flower : public Flower {
+  class BLOOM_EXPORT Text_Flower : public Flower {
       unique_ptr<typography::Text> text;
 //      unique_ptr<Measurement> estimated_width;
       bool dimensions_changed = true;
+      float size;
 
   public:
       Text_Flower(Garden &garden, typography::Font &font, typography::Text_Effect &effect,
