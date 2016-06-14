@@ -198,8 +198,9 @@ namespace bloom {
     content_height = 0;
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);
-      if (child.get_cache().y.absolute_far > content_height)
-        content_height = child.get_cache().y.absolute_far;
+      auto possible_height = child.get_cache().y.absolute_far - get_cache().y.near;
+      if (possible_height > content_height)
+        content_height = possible_height;
     }
   }
 }
