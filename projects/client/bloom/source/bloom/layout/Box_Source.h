@@ -195,6 +195,16 @@ namespace bloom {
       }
     }
 
+    if (dimensions.get_y().get_type() == Measurements::stretch) {
+      for (int i = 0; i < get_child_count(); ++i) {
+        auto &child = get_child_box(i);
+        if (child.get_cache().y.absolute_far > axis_cache.y.absolute_far) {
+          axis_cache.y.absolute_far = child.get_cache().y.absolute_far;
+          axis_cache.y.length = axis_cache.y.absolute_far - axis_cache.y.near;
+        }
+      }
+    }
+
     // Code does not currently support toggling child clipping
     if (clips_children()) {
       auto values = new Axis_Values();
@@ -219,17 +229,13 @@ namespace bloom {
   }
 
   void Box::calculate_content_height() {
-    float min = 0;
     float max = 0;
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);
       if (child.get_cache().y.absolute_far > max)
         max = child.get_cache().y.absolute_far;
-
-      if (child.get_cache().y.near < min)
-        min = child.get_cache().y.near;
     }
 
-    content_height = max - min;
+    content_height = max - axis_cache_inner.y.near;
   }
 }

@@ -36,7 +36,7 @@ namespace bloom {
       }
     }
     else if (velocity.y != 0) {
-      velocity.y *= 0.8f;
+      velocity.y *= 0.7f;
       if (glm::abs(velocity.y) < 0.1) {
         velocity.y = 0;
       }

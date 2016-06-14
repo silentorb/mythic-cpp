@@ -1,7 +1,7 @@
 #pragma once
 
-#include <framing/Mutable_Frame.h>
 #include "dllexport.h"
+#include <framing/Mutable_Frame.h>
 #include "framing/Platform_Frame.h"
 
 struct SDL_Window;

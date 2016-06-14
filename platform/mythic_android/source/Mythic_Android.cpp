@@ -25,7 +25,7 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-framing::Mutable_Frame *Mythic_Android::create_frame(int width, int height) {
+framing::Platform_Frame *Mythic_Android::create_frame(int width, int height) {
   return new Android_Frame(app);
 }
 
@@ -211,9 +211,9 @@ void Mythic_Android::set_render(bool value) {
   engine->get_client().get_house().set_active(value);
 }
 
-Android_Frame &Mythic_Android::get_frame() const {
-  return (Android_Frame &) engine->get_client().get_house().get_frame();
-}
+//Android_Frame &Mythic_Android::get_frame() const {
+//  return (Android_Frame &) engine->get_client().get_house().get_frame();
+//}
 
 
 audio::Speaker *Mythic_Android::create_speaker() {

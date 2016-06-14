@@ -87,14 +87,17 @@ void Android_Input::process_input(AInputEvent *event) {
       last_position = current_position = get_event_position(event);
 //      log_info("AMOTION_EVENT_ACTION_DOWN %f, %f", last_position.x, last_position.y);
       motion_finished = false;
+      next_state->add_gesture(Gesture_Type::down, current_position);
     }
     else if (action_type == AMOTION_EVENT_ACTION_MOVE) {
       current_position = get_event_position(event);
+      next_state->add_gesture(Gesture_Type::move, current_position);
 //      log_info("AMOTION_EVENT_ACTION_MOVE %f, %f", current_position.x, current_position.y);
     }
     else if (action_type == AMOTION_EVENT_ACTION_UP) {
       current_position = get_event_position(event);
       log_info("AMOTION_EVENT_ACTION_UP %f, %f", current_position.x, current_position.y);
+      next_state->add_gesture(Gesture_Type::up, current_position);
       single_click(current_position.x, current_position.y);
       motion_finished = true;
     }
