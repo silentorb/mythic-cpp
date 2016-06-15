@@ -149,6 +149,11 @@ namespace bloom {
         Box::arrangement = arrangement;
       }
 
+      void set_arrangement(Arrangement arrangement, float spacing) {
+        Box::arrangement = arrangement;
+        set_spacing(Simple_Measurement(spacing));
+      }
+
       template<typename T>
       void set_width(T value) {
         dimensions.set_x(value);

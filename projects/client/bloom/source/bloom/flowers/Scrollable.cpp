@@ -45,7 +45,7 @@ namespace bloom {
     offset += velocity;
 
     auto range = content_height - axis_cache_inner.y.length;
-    if (offset.y < -range) {
+    if (offset.y < 0 && offset.y < -range) {
       offset.y = -range;
       velocity.y = 0;
     }

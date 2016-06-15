@@ -63,3 +63,19 @@ TEST(Box_Test, scrolling2) {
   EXPECT_EQ(30, list->get_cache().y.length);
   EXPECT_EQ(90, list->get_content_height());
 }
+
+TEST(Box_Test, list_align_bottom) {
+  Mock_Draw_Interface draw;
+  Garden garden(draw);
+  auto list = new Flower(&garden.get_root());
+  list->set_arrangement(Arrangement::down);
+  list->set_bottom(10);
+  auto first = create_row(list);
+  auto second = create_row(list);
+
+  garden.update_layout();
+
+  EXPECT_EQ(1000 - 40 - 10, list->get_cache().y.near);
+  EXPECT_EQ(1000 - 40 - 10, first->get_cache().y.near);
+  EXPECT_EQ(1000 - 20 - 10, second->get_cache().y.near);
+}

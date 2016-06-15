@@ -74,6 +74,7 @@ namespace bloom {
     return current_length;
   }
 
+  // This is the main meat-and-potatoes function for figuring out where objects are placed.
   template<typename Axis>
   Axis_Value Box::calculate_axis(const Axis_Value &parent_values, float margin) const {
     Axis_Value result;
@@ -92,9 +93,16 @@ namespace bloom {
                        : Arrangement::canvas;
 
     if (arrangement == Arrangement::down && Axis::get_index() == 1) {
-      result.near = parent_values.near + result.near;
-      result.length = get_content_length<Axis>(result.length, result.near);
-      result.absolute_far = result.near + result.length;
+      if (far.get_type() != Measurements::stretch) {
+        result.absolute_far = parent_values.absolute_far - result.absolute_far;
+        result.length = get_content_length<Axis>(result.length, result.near);
+        result.near = parent_values.near + result.near;
+      }
+      else {
+        result.near = parent_values.near + result.near;
+        result.length = get_content_length<Axis>(result.length, result.near);
+        result.absolute_far = result.near + result.length;
+      }
       return result;
     }
 
@@ -237,5 +245,8 @@ namespace bloom {
     }
 
     content_height = max - axis_cache_inner.y.near;
+    auto padding = get_box_style().get_padding();
+    if (padding)
+      content_height += padding->far.get_y().resolve<Vertical_Axis>(get_parent_dimensions(), converter);
   }
 }
