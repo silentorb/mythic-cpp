@@ -5,28 +5,23 @@
 namespace bloom {
   namespace flowers {
 
-//    template<typename Axis>
-//    float Box::calculate_content_length() {
-//      auto length = 0;
-//      auto this_dimensions = get_dimensions();
-//      Axis_Value local_bounds;
-//      for (auto &child: children) {
-//        child->resolve_relative_bounds<Axis>(Axis::get(measurement_bounds), this_dimensions, local_bounds);
-//        length += local_bounds.far;
-//      }
-//
-//      return length;
-//    }
-
     template<typename Axis>
     void Box::fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds,
-                             float content_length) {
+                             const Parent_Dimensions &parent_dimensions, float content_length) {
 
       assert(measurements.near.get_type() == Measurements::stretch ||
              measurements.far.get_type() == Measurements::stretch);
 
       if (measurements.far.get_type() == Measurements::stretch) {
-        relative_bounds.far = relative_bounds.near + content_length;
+        if (measurements.near.get_type() == Measurements::stretch &&
+            measurements.length.get_type() == Measurements::stretch) {
+
+          relative_bounds.near = (Axis::get(parent_dimensions).length - content_length) / 2;
+          relative_bounds.far = relative_bounds.near + content_length;
+        }
+        else {
+          relative_bounds.far = relative_bounds.near + content_length;
+        }
       }
       else {
         relative_bounds.near = relative_bounds.far - content_length;
@@ -64,10 +59,18 @@ namespace bloom {
 
       if (measurements.near.get_type() == Measurements::stretch) {
         if (measurements.far.get_type() == Measurements::stretch) {
-          auto parent_length = Axis::get(parent_dimensions).length;
           auto length = resolve_value<Axis>(measurements.length, parent_dimensions);
-          relative_bounds.near = relative_bounds.far =
-            (parent_length - length) / 2;
+          if (Axis::get(parent_dimensions).stretches) {
+            relative_bounds.far = length;
+          }
+          else {
+            auto parent_length = Axis::get(parent_dimensions).length;
+            relative_bounds.near = (parent_length - length) / 2;
+            relative_bounds.far = relative_bounds.near + length;
+          }
+          if (measurements.length.get_type() == Measurements::stretch) {
+            return Fit_To_Content::yes;
+          }
         }
         else {
           relative_bounds.near = Axis::get(parent_dimensions).length
@@ -97,19 +100,29 @@ namespace bloom {
 
       vec2 content_length;
 
-      auto this_dimensions = get_dimensions();
-      for (auto &child: children) {
-        auto &child_bounds = child->update_relative(this_dimensions);
-        content_length.x += child_bounds.x.far;
-        content_length.y += child_bounds.y.far;
-      }
+      Parent_Dimensions this_dimensions = {
+        {absolute_bounds.x.far - absolute_bounds.x.near,
+          fit_x == Fit_To_Content::yes,
+        },
+        {absolute_bounds.y.far - absolute_bounds.y.near,
+          fit_y == Fit_To_Content::yes,
+        }
+      };
 
-      if (fit_x == Box::Fit_To_Content::yes) {
-        fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, content_length.x);
-      }
+      if (children.size() > 0) {
+        for (auto &child: children) {
+          auto &child_bounds = child->update_relative(this_dimensions);
+          content_length.x += child_bounds.x.far;
+          content_length.y += child_bounds.y.far;
+        }
 
-      if (fit_y == Box::Fit_To_Content::yes) {
-        fit_to_content<Vertical_Axis>(measurement_bounds.y, relative_bounds.y, content_length.y);
+        if (fit_x == Box::Fit_To_Content::yes) {
+          fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, parent_bounds, content_length.x);
+        }
+
+        if (fit_y == Box::Fit_To_Content::yes) {
+          fit_to_content<Vertical_Axis>(measurement_bounds.y, relative_bounds.y, parent_bounds, content_length.y);
+        }
       }
 
       return relative_bounds;
@@ -120,7 +133,7 @@ namespace bloom {
       absolute_bounds.y = relative_bounds.y + parent_position.y;
 
       for (auto &child: children) {
-        child->update_relative({absolute_bounds.x.near, absolute_bounds.y.near});
+        child->update_absolute({absolute_bounds.x.near, absolute_bounds.y.near});
       }
     }
 

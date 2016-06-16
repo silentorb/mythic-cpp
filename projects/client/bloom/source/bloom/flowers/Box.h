@@ -31,16 +31,9 @@ namespace bloom {
         template<typename Axis>
         float resolve_value(const Measurement &measurement, const Parent_Dimensions &parent_dimensions);
 
-//        template<typename Axis, typename Side>
-//        static float resolve_side_value(const Axis_Measurement &measurements, const Parent_Dimensions &parent_dimensions);
-
-//        template <typename Axis>
-//        void update_bounds(const Parent_Bounds &parent_bounds);
-
-//        template<typename Axis>
-//        float calculate_content_length();
         template<typename Axis>
-        void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds, float content_length);
+        void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds,
+                            const Parent_Dimensions &parent_dimensions, float content_length);
 
     protected:
         template<typename Axis>
@@ -53,7 +46,7 @@ namespace bloom {
 
         virtual ~Box() { }
 
-        virtual Axis_Values& update_relative(const Parent_Dimensions &parent_bounds) override;
+        virtual Axis_Values &update_relative(const Parent_Dimensions &parent_bounds) override;
 
         virtual const Axis_Values &get_absolute_bounds() {
           return absolute_bounds;
@@ -93,10 +86,6 @@ namespace bloom {
         }
 
         virtual void update_absolute(const glm::vec2 &parent_position) override;
-
-//        virtual const Axis_Values &get_relative_bounds() override {
-//          return relative_bounds;
-//        }
 
     };
   }
