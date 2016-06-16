@@ -7,7 +7,7 @@
 #include <vector>
 #include <memory>
 #include <glm/vec2.hpp>
-#include "Axis_Value.h"
+#include "Axis_Value_Old.h"
 #include <memory>
 #include "bloom/bloom_export.h"
 #include "Box_Style.h"
@@ -48,16 +48,16 @@ namespace bloom {
       Vector2 dimensions;
       const Measurement_Converter &converter;
       Arrangement arrangement = Arrangement::canvas;
-      Axis_Values axis_cache;
-      Axis_Values axis_cache_inner;
-      shared_ptr<Axis_Values> clip_bounds;
-      Measurement spacing = {Measurements::pixels, 0};
+      Axis_Values_Old axis_cache;
+      Axis_Values_Old axis_cache_inner;
+      shared_ptr<Axis_Values_Old> clip_bounds;
+      Measurement spacing = {Measurements::pixel, 0};
       float content_height;
 
       template<typename Axis>
-      void apply_padding(Axis_Value &value,  const Vector4 & padding);
-      void apply_padding(Axis_Values &values);
-      void set_children_clipping(shared_ptr<Axis_Values> &bounds);
+      void apply_padding(Axis_Value_Old &value,  const Vector4 & padding);
+      void apply_padding(Axis_Values_Old &values);
+      void set_children_clipping(shared_ptr<Axis_Values_Old> &bounds);
 
       virtual void modify_inner() = 0;
       virtual bool clips_children() = 0;
@@ -162,9 +162,9 @@ namespace bloom {
       vec2 get_parent_dimensions() const;
 
       template<typename Axis>
-      Axis_Value calculate_axis(const Axis_Value &parent_values, float margin) const;
-      void update_axis_cache(const Axis_Values &parent_values, const vec2 &margin);
-      virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin = vec2(0));
+      Axis_Value_Old calculate_axis(const Axis_Value_Old &parent_values, float margin) const;
+      void update_axis_cache(const Axis_Values_Old &parent_values, const vec2 &margin);
+      virtual void update_absolute_dimensions(const Axis_Values_Old &parent_values, const vec2 margin = vec2(0));
       virtual int get_child_count() const = 0;
       virtual Box_Old &get_child_box(int index) const = 0;
 
@@ -172,7 +172,7 @@ namespace bloom {
 //        return dimensions.get_x();
 //      }
 
-      const Axis_Values &get_cache() const {
+      const Axis_Values_Old &get_cache() const {
         return axis_cache;
       }
 

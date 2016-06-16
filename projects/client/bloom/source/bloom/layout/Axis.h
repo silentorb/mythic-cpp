@@ -2,6 +2,7 @@
 
 #include "Measurement.h"
 #include "Box_Old.h"
+#include "Parent_Dimensions.h"
 
 namespace bloom {
 
@@ -37,12 +38,16 @@ namespace bloom {
         return value.get_y();
       }
 
-      static const Axis_Value &get_cache(const Box_Old &box) {
+      static const Axis_Value_Old &get_cache(const Box_Old &box) {
         return box.axis_cache.x;
       }
 
       static const int get_index() {
         return 0;
+      }
+
+      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
+        return parent_dimensions.x;
       }
 
       using other = Vertical_Axis;
@@ -78,12 +83,16 @@ namespace bloom {
         return value.get_x();
       }
 
-      static const Axis_Value &get_cache(const Box_Old &box) {
+      static const Axis_Value_Old &get_cache(const Box_Old &box) {
         return box.axis_cache.y;
       }
 
       static const int get_index() {
         return 1;
+      }
+
+      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
+        return parent_dimensions.y;
       }
 
       using other = Horizontal_Axis;

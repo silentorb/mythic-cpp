@@ -1,11 +1,11 @@
-#include <bloom/flowers/Button.h>
+#include <bloom/flowers/Button_Old.h>
 #include "Modal.h"
 
 namespace bloom {
 
   void get_buttons(Flower_Old *flower, vector<Flower_Old *> &buttons) {
     for (auto &child : flower->get_children()) {
-      if (dynamic_cast<Button *>(child.get())) {
+      if (dynamic_cast<Button_Old *>(child.get())) {
         buttons.push_back(child.get());
       }
 

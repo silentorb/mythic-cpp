@@ -1,23 +1,12 @@
 #pragma once
 
-#include "Flower_Old.h"
-#include <string>
-
-using namespace std;
+#include "Box.h"
 
 namespace bloom {
+  namespace flowers {
 
-  class Text_Flower;
+    class BLOOM_EXPORT Button: public Box {
 
-  class MYTHIC_EXPORT Button : public Flower_Old {
-
-  protected:
-      Text_Flower *text;
-
-  public:
-      Button(string text_content, Flower_Old *parent);
-      void set_text(string content);
-
-      void set_font_size(int size);
   };
+  }
 }

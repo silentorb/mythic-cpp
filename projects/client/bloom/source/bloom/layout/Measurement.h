@@ -11,7 +11,7 @@ using namespace std;
 namespace bloom {
 
   enum class Measurements {
-      units, // Deprecated
+      pixel,
       stretch,
       shrink,
 //      parent_aligned, // Deprecated
@@ -19,8 +19,8 @@ namespace bloom {
         percent,
       percent_perpendicular,
       vertical_units,
+      units, // Deprecated
       horizontal_units,
-      pixels,
 //      complex
   };
 
@@ -54,7 +54,7 @@ namespace bloom {
 
       Measurement(const Measurements type, float value) : type(type), value(value) { }
 
-      Measurement(float value) : value(value), type(Measurements::units) { }
+      Measurement(float value) : value(value), type(Measurements::pixel) { }
 
       template<typename Axis>
       float resolve(const glm::vec2 &parent_dimensions,
@@ -216,5 +216,16 @@ namespace bloom {
         near.set_y(measurement);
         far.set_y(measurement);
       }
+  };
+
+  struct Axis_Measurement {
+      Measurement near;
+      Measurement length;
+      Measurement far;
+  };
+
+  struct Axis_Measurements {
+      Axis_Measurement x;
+      Axis_Measurement y;
   };
 }

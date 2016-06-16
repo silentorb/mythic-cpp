@@ -35,7 +35,7 @@ namespace bloom {
       void set_line_height(float value);
 
       virtual void render() override;
-      virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) override;
+      virtual void update_absolute_dimensions(const Axis_Values_Old &parent_values, const vec2 margin) override;
 
 
   };

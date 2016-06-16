@@ -3,26 +3,27 @@
 namespace bloom {
   namespace flowers {
 
-    void Parent::update_layout() {
-      for(auto &child : children) {
-        child->render();
-      }
-    }
+//    void Parent::update_layout(Axis_Measurements &parent_measurements, Axis_Values &parent_bounds) {
+//      for (auto &child : children) {
+//        child->update_layout(parent_measurements, parent_bounds);
+//      }
+//    }
 
     void Parent::update(float delta) {
-      for(auto &child : children) {
-        child->render();
+      for (auto &child : children) {
+        child->update(delta);
       }
     }
 
     void Parent::render() {
-      for(auto &child : children) {
+      for (auto &child : children) {
         child->render();
       }
     }
 
-    Flower *Parent::get_parent() const {
-      return parent;
+    void Parent::add_child(Child *child) {
+      children.push_back(unique_ptr<Child>(child));
+      child->parent = this;
     }
 
   }

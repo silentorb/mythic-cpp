@@ -64,7 +64,7 @@ namespace bloom {
     auto dimensions = draw.get_frame().get_dimensions();
     converter.set_pixel_dimensions(dimensions);
 
-    Axis_Values base_axis_values{
+    Axis_Values_Old base_axis_values{
       converter.get_axis_values<Horizontal_Axis>(),
       converter.get_axis_values<Vertical_Axis>()
     };

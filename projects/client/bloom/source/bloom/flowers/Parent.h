@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Flower.h"
+#include "Child.h"
 #include <memory>
 #include <vector>
 
@@ -9,19 +10,17 @@ using namespace std;
 namespace bloom {
   namespace flowers {
     class BLOOM_EXPORT Parent : public virtual Flower {
-        Flower *parent = nullptr;
-
     protected:
-        vector<unique_ptr<Flower>> children;
+        vector<unique_ptr<Child>> children;
 
     public:
-        virtual void update_layout() override;
+//        virtual void update_layout(Axis_Measurements &parent_measurements, Axis_Values &parent_bounds) override;
         virtual void update(float delta) override;
         virtual void render() override;
-        virtual Flower *get_parent() const override;
 
-    public:
+        void add_child(Child *child);
 
     };
+
   }
 }

@@ -3,7 +3,7 @@
 #include "dllexport.h"
 #include "Measurement.h"
 #include "glm/vec2.hpp"
-#include "Axis_Value.h"
+#include "Axis_Value_Old.h"
 
 using namespace glm;
 
@@ -60,8 +60,8 @@ namespace bloom {
       }
 
       template<typename Axis>
-      Axis_Value get_axis_values() {
-        Axis_Value result;
+      Axis_Value_Old get_axis_values() {
+        Axis_Value_Old result;
         result.near = 0;
         result.length = result.absolute_far = Axis::get_aligned(get_unit_dimensions());
         return result;

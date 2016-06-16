@@ -50,7 +50,7 @@ namespace bloom {
     text->render();
   }
 
-  void Text_Flower::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
+  void Text_Flower::update_absolute_dimensions(const Axis_Values_Old &parent_values, const vec2 margin) {
     set_size(size); // Update text size in case screen dimensions changed.
 
     update_axis_cache(parent_values, margin);

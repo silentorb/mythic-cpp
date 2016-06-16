@@ -76,8 +76,8 @@ namespace bloom {
 
   // This is the main meat-and-potatoes function for figuring out where objects are placed.
   template<typename Axis>
-  Axis_Value Box_Old::calculate_axis(const Axis_Value &parent_values, float margin) const {
-    Axis_Value result;
+  Axis_Value_Old Box_Old::calculate_axis(const Axis_Value_Old &parent_values, float margin) const {
+    Axis_Value_Old result;
 
     const Measurement &near = Axis::get_near(*this);
     const Measurement &length = Axis::get_length(*this);
@@ -140,7 +140,7 @@ namespace bloom {
     return result;
   }
 
-  void Box_Old::update_axis_cache(const Axis_Values &parent_values, const vec2 &margin) {
+  void Box_Old::update_axis_cache(const Axis_Values_Old &parent_values, const vec2 &margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
     axis_cache_inner = axis_cache;
@@ -148,7 +148,7 @@ namespace bloom {
   }
 
   template<typename Axis>
-  void Box_Old::apply_padding(Axis_Value &value, const Vector4 &padding) {
+  void Box_Old::apply_padding(Axis_Value_Old &value, const Vector4 &padding) {
     auto parent_dimensions = get_parent_dimensions();
     const Measurement &near = Axis::get_aligned(padding.near);
     const Measurement &far = Axis::get_aligned(padding.far);
@@ -160,7 +160,7 @@ namespace bloom {
     value.length -= padding_near + padding_far;
   }
 
-  void Box_Old::apply_padding(Axis_Values &values) {
+  void Box_Old::apply_padding(Axis_Values_Old &values) {
     auto padding = get_box_style().get_padding();
     if (!padding)
       return;
@@ -169,7 +169,7 @@ namespace bloom {
     apply_padding<Vertical_Axis>(values.y, *padding);
   }
 
-  void Box_Old::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
+  void Box_Old::update_absolute_dimensions(const Axis_Values_Old &parent_values, const vec2 margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
 
@@ -213,10 +213,10 @@ namespace bloom {
 
     // Code does not currently support toggling child clipping
     if (clips_children()) {
-      auto values = new Axis_Values();
+      auto values = new Axis_Values_Old();
       values->x = axis_cache.x;
       values->y = axis_cache.y;
-      auto bounds = shared_ptr<Axis_Values>(values);
+      auto bounds = shared_ptr<Axis_Values_Old>(values);
       set_children_clipping(bounds);
     }
     else {
@@ -226,7 +226,7 @@ namespace bloom {
     calculate_content_height();
   }
 
-  void Box_Old::set_children_clipping(shared_ptr<Axis_Values> &bounds) {
+  void Box_Old::set_children_clipping(shared_ptr<Axis_Values_Old> &bounds) {
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);
       child.clip_bounds = bounds;

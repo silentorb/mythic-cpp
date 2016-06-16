@@ -31,7 +31,7 @@ namespace bloom {
       auto value = static_cast<const Measurement *>(this)->get_value();
 
       switch (get_type()) {
-        case Measurements::pixels:
+        case Measurements::pixel:
           return value * UNIT_RESOLUTION / Axis::get_aligned(converter.get_pixel_dimensions());
 
 //        case Measurements::parent_aligned:
