@@ -3,7 +3,7 @@
 namespace bloom {
 
   struct Parent_Dimension {
-      float near;
+//      float near;
       float length;
       bool stretches;
   };

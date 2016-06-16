@@ -9,6 +9,10 @@ namespace bloom {
 
     class BLOOM_EXPORT Box : public Parent, public virtual Child {
 
+        enum class Fit_To_Content {
+            no,
+            yes
+        };
         Axis_Measurements measurement_bounds = {
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
@@ -25,26 +29,35 @@ namespace bloom {
         };
 
         template<typename Axis>
-        static float resolve_value(const Measurement &measurement, const Parent_Dimensions &parent_dimensions);
+        float resolve_value(const Measurement &measurement, const Parent_Dimensions &parent_dimensions);
 
 //        template<typename Axis, typename Side>
 //        static float resolve_side_value(const Axis_Measurement &measurements, const Parent_Dimensions &parent_dimensions);
 
-        template<typename Axis>
-        static void resolve_relative_bounds(const Axis_Measurement &measurements,
-                                            const Parent_Dimensions &parent_dimensions,
-                                            Axis_Value &relative_bounds);
-
 //        template <typename Axis>
 //        void update_bounds(const Parent_Bounds &parent_bounds);
 
+//        template<typename Axis>
+//        float calculate_content_length();
+        template<typename Axis>
+        void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds, float content_length);
+
+    protected:
+        template<typename Axis>
+        Fit_To_Content resolve_relative_bounds(const Axis_Measurement &measurements,
+                                               const Parent_Dimensions &parent_dimensions,
+                                               Axis_Value &relative_bounds);
     public:
-//        virtual void update_layout(Axis_Measurements &parent_measurements, Axis_Values &parent_bounds) override;
 
         Box(Parent *parent) : Child(parent) { }
 
-        virtual void update_layout(const Parent_Dimensions &parent_bounds) override;
-        virtual const Axis_Values &get_absolute_bounds() override;
+        virtual ~Box() { }
+
+        virtual Axis_Values& update_relative(const Parent_Dimensions &parent_bounds) override;
+
+        virtual const Axis_Values &get_absolute_bounds() {
+          return absolute_bounds;
+        }
 
         void set_left(const Measurement measurement) {
           measurement_bounds.x.near = measurement;
@@ -72,14 +85,19 @@ namespace bloom {
 
         inline Parent_Dimensions get_dimensions() const {
           return {
-            {absolute_bounds.x.near, absolute_bounds.x.far - absolute_bounds.x.near,
+            {absolute_bounds.x.far - absolute_bounds.x.near,
               measurement_bounds.x.length.get_type() == Measurements::stretch},
-            {absolute_bounds.y.near, absolute_bounds.y.far - absolute_bounds.y.near,
+            {absolute_bounds.y.far - absolute_bounds.y.near,
               measurement_bounds.y.length.get_type() == Measurements::stretch},
           };
         }
 
-        virtual ~Box() { }
+        virtual void update_absolute(const glm::vec2 &parent_position) override;
+
+//        virtual const Axis_Values &get_relative_bounds() override {
+//          return relative_bounds;
+//        }
+
     };
   }
 }
