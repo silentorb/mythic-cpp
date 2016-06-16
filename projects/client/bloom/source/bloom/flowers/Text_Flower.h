@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Flower.h"
+#include "Flower_Old.h"
 
 namespace typography {
   class Text;
@@ -17,7 +17,7 @@ namespace drawing {
 
 namespace bloom {
 
-  class BLOOM_EXPORT Text_Flower : public Flower {
+  class BLOOM_EXPORT Text_Flower : public Flower_Old {
       unique_ptr<typography::Text> text;
 //      unique_ptr<Measurement> estimated_width;
       bool dimensions_changed = true;
@@ -26,7 +26,7 @@ namespace bloom {
   public:
       Text_Flower(Garden &garden, typography::Font &font, typography::Text_Effect &effect,
                   const string content = "");
-      Text_Flower(const string content, Flower *parent);
+      Text_Flower(const string content, Flower_Old *parent);
       ~Text_Flower();
 
       void set_content(const string &content);

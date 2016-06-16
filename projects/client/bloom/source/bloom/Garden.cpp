@@ -26,9 +26,9 @@ namespace bloom {
     default_style(new Style()),
     converter(draw.get_frame().get_dimensions()) {
 
-//    auto simple = Simple_Measurement();
+//    auto simple = Measurement();
 //    default_style->set_padding(simple);
-    root = new Flower(*this);
+    root = new Flower_Old(*this);
 
     instance = this;
   }
@@ -40,7 +40,7 @@ namespace bloom {
     if (input_result.mouse_click) {
       auto &position = input_state.get_position();
 
-      Flower &start = modal_stack.size() > 0
+      Flower_Old &start = modal_stack.size() > 0
                       ? *modal_stack.top()->root
                       : *root;
 
@@ -50,7 +50,7 @@ namespace bloom {
     }
     if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();
-      Flower &start = modal_stack.size() > 0
+      Flower_Old &start = modal_stack.size() > 0
                       ? *modal_stack.top()->root
                       : *root;
 
@@ -81,7 +81,7 @@ namespace bloom {
     return new Text_Flower(*this, draw.get_font(font), draw.get_text_effect(), content);
   }
 
-  void Garden::add_modal(Flower &flower) {
+  void Garden::add_modal(Flower_Old &flower) {
     modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
   }
 
@@ -92,7 +92,7 @@ namespace bloom {
            : Orientation::portrait;
   }
 
-  Flower *Garden::get_modal() const {
+  Flower_Old *Garden::get_modal() const {
     if (modal_stack.size() == 0)
       return nullptr;
 

@@ -4,8 +4,8 @@
 
 namespace bloom {
 
-  Button::Button(string text_content, Flower *parent) :
-    Flower(parent) {
+  Button::Button(string text_content, Flower_Old *parent) :
+    Flower_Old(parent) {
 
     text = garden.create_text(text_content);
       text->set_color(vec4(vec3(0), 1));
@@ -15,8 +15,8 @@ namespace bloom {
 
     set_border(vec4(vec3(0.3), 1));
     set_fill(vec4(vec3(0.8), 1));
-		auto t = Simple_Measurement(100);
-    set_dimensions(Simple_Measurement(500), Simple_Measurement(60));
+		auto t = Measurement(100);
+    set_dimensions(Measurement(500), Measurement(60));
   }
 
   void Button::set_text(string content) {

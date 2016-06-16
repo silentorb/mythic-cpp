@@ -3,7 +3,7 @@
 
 namespace bloom {
 
-  void get_buttons(Flower *flower, vector<Flower *> &buttons) {
+  void get_buttons(Flower_Old *flower, vector<Flower_Old *> &buttons) {
     for (auto &child : flower->get_children()) {
       if (dynamic_cast<Button *>(child.get())) {
         buttons.push_back(child.get());
@@ -13,7 +13,7 @@ namespace bloom {
     }
   }
 
-  Modal::Modal(Flower *root) :
+  Modal::Modal(Flower_Old *root) :
     root(root) {
 
     get_buttons(root, buttons);

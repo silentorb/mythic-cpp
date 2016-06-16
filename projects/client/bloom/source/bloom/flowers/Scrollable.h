@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Flower.h"
+#include "Flower_Old.h"
 
 namespace bloom {
 
-  class BLOOM_EXPORT Scrollable : public Flower {
+  class BLOOM_EXPORT Scrollable : public Flower_Old {
       vec2 offset;
       vec2 scroll_force;
       vec2 velocity;
@@ -13,7 +13,7 @@ namespace bloom {
       virtual void modify_inner() override;
 
   public:
-      Scrollable(Flower *parent = nullptr);
+      Scrollable(Flower_Old *parent = nullptr);
 
       const vec2 &get_offset() const {
         return offset;

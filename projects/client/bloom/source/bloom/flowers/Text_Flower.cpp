@@ -10,14 +10,14 @@ namespace bloom {
 
   Text_Flower::Text_Flower(Garden &garden, typography::Font &font, typography::Text_Effect &effect,
                            const string content) :
-    Flower(garden),
+    Flower_Old(garden),
     text(new typography::Text(font, effect, content)) {
     size = text->get_size();
     set_size(size);
   }
 
-  Text_Flower::Text_Flower(const string content, Flower *parent) :
-    Flower(parent) {
+  Text_Flower::Text_Flower(const string content, Flower_Old *parent) :
+    Flower_Old(parent) {
     auto &resources = lookinglass::House::get_instance().get_resources();
     text = unique_ptr<typography::Text>(
       new typography::Text(resources.get_font("default"), resources.get_text_effect(), content));
@@ -46,7 +46,7 @@ namespace bloom {
   }
 
   void Text_Flower::render() {
-    Flower::render();
+    Flower_Old::render();
     text->render();
   }
 
@@ -62,18 +62,18 @@ namespace bloom {
     const float font_descender_hack = 1.1;
     auto text_dimensions = text->get_dimensions() + padding_length_y * font_descender_hack;
 
-    auto temp_x = dimensions.get_x_pointer();
-    auto temp_y = dimensions.get_y_pointer();
+    auto temp_x = dimensions.get_x();
+    auto temp_y = dimensions.get_y();
 
     if (dimensions.get_x().get_type() == Measurements::stretch)
-      dimensions.set_x(Simple_Measurement(text_dimensions.x));
+      dimensions.set_x(Measurement(text_dimensions.x));
 
 //    if (dimensions.get_y().get_type() != Measurements::stretch)
-    dimensions.set_y(Simple_Measurement(text_dimensions.y));
+    dimensions.set_y(Measurement(text_dimensions.y));
 
     update_axis_cache(parent_values, margin);
-    dimensions.set_x(*temp_x);
-    dimensions.set_y(*temp_y);
+    dimensions.set_x(temp_x);
+    dimensions.set_y(temp_y);
 
     auto &bounds = get_inner_bounds();
     text->set_position(ivec2((int) bounds.get_position().x, (int) bounds.get_position().y));

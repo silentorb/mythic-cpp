@@ -8,9 +8,9 @@ using namespace std;
 
 
 namespace bloom {
-  class Flower;
+  class Flower_Old;
 
-  typedef function<void(Flower *flower)> Flower_Delegate;
+  typedef function<void(Flower_Old *flower)> Flower_Delegate;
 
   namespace Events {
     BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> activate;

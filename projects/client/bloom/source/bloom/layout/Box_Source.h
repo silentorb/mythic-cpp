@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Box.h"
+#include "Box_Old.h"
 #include "Axis.h"
 
 namespace bloom {
 
-  Box::Box(const Measurement_Converter &converter) :
+  Box_Old::Box_Old(const Measurement_Converter &converter) :
     converter(converter)
 //    position(Vector2(Measurement(Measurement()), Measurement(0)), Vector2()) { }
   { }
 
-  Box::~Box() { }
+  Box_Old::~Box_Old() { }
 
-  vec2 Box::get_parent_dimensions() const {
+  vec2 Box_Old::get_parent_dimensions() const {
     auto parent_box = get_parent_box();
     if (parent_box)
       return parent_box->get_absolute_dimensions();
@@ -20,7 +20,7 @@ namespace bloom {
       return get_converter().get_pixel_dimensions();
   }
 
-  vec2 Box::get_parent_inner_dimensions() const {
+  vec2 Box_Old::get_parent_inner_dimensions() const {
     auto parent_box = get_parent_box();
     if (parent_box)
       return vec2(parent_box->axis_cache_inner.x.length, parent_box->axis_cache_inner.y.length);
@@ -37,12 +37,12 @@ namespace bloom {
 //    return position.near.get_vec2();
 //  }
 
-  vec2 Box::get_absolute_dimensions() const {
+  vec2 Box_Old::get_absolute_dimensions() const {
     return vec2(axis_cache.x.length, axis_cache.y.length);
   }
 
   template<typename Axis>
-  float get_absolute_dimension(const Box &box) {
+  float get_absolute_dimension(const Box_Old &box) {
     const Measurement &length = Axis::get_length(box);
     if (length.get_type() == Measurements::stretch) {
       if (box.get_parent_box()) {
@@ -58,7 +58,7 @@ namespace bloom {
   }
 
   template<typename Axis>
-  float Box::get_content_length(float initial_length, float near) const {
+  float Box_Old::get_content_length(float initial_length, float near) const {
     if (initial_length != 0)
       return initial_length;
 
@@ -76,7 +76,7 @@ namespace bloom {
 
   // This is the main meat-and-potatoes function for figuring out where objects are placed.
   template<typename Axis>
-  Axis_Value Box::calculate_axis(const Axis_Value &parent_values, float margin) const {
+  Axis_Value Box_Old::calculate_axis(const Axis_Value &parent_values, float margin) const {
     Axis_Value result;
 
     const Measurement &near = Axis::get_near(*this);
@@ -140,7 +140,7 @@ namespace bloom {
     return result;
   }
 
-  void Box::update_axis_cache(const Axis_Values &parent_values, const vec2 &margin) {
+  void Box_Old::update_axis_cache(const Axis_Values &parent_values, const vec2 &margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
     axis_cache_inner = axis_cache;
@@ -148,7 +148,7 @@ namespace bloom {
   }
 
   template<typename Axis>
-  void Box::apply_padding(Axis_Value &value, const Vector4 &padding) {
+  void Box_Old::apply_padding(Axis_Value &value, const Vector4 &padding) {
     auto parent_dimensions = get_parent_dimensions();
     const Measurement &near = Axis::get_aligned(padding.near);
     const Measurement &far = Axis::get_aligned(padding.far);
@@ -160,7 +160,7 @@ namespace bloom {
     value.length -= padding_near + padding_far;
   }
 
-  void Box::apply_padding(Axis_Values &values) {
+  void Box_Old::apply_padding(Axis_Values &values) {
     auto padding = get_box_style().get_padding();
     if (!padding)
       return;
@@ -169,7 +169,7 @@ namespace bloom {
     apply_padding<Vertical_Axis>(values.y, *padding);
   }
 
-  void Box::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
+  void Box_Old::update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin) {
     axis_cache.x = this->calculate_axis<Horizontal_Axis>(parent_values.x, margin.x);
     axis_cache.y = this->calculate_axis<Vertical_Axis>(parent_values.y, margin.y);
 
@@ -187,9 +187,7 @@ namespace bloom {
       auto current = axis_cache_inner;
       auto local_dimensions = get_absolute_dimensions();
       float margin = 0;
-      float spacing_value = spacing.get()
-                            ? spacing->resolve<Vertical_Axis>(local_dimensions, converter)
-                            : 0;
+      float spacing_value = spacing.resolve<Vertical_Axis>(local_dimensions, converter);
 
       for (int i = 0; i < get_child_count(); ++i) {
         auto &child = get_child_box(i);
@@ -228,7 +226,7 @@ namespace bloom {
     calculate_content_height();
   }
 
-  void Box::set_children_clipping(shared_ptr<Axis_Values> &bounds) {
+  void Box_Old::set_children_clipping(shared_ptr<Axis_Values> &bounds) {
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);
       child.clip_bounds = bounds;
@@ -236,7 +234,7 @@ namespace bloom {
     }
   }
 
-  void Box::calculate_content_height() {
+  void Box_Old::calculate_content_height() {
     float max = 0;
     for (int i = 0; i < get_child_count(); ++i) {
       auto &child = get_child_box(i);

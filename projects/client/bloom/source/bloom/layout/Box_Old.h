@@ -36,7 +36,7 @@ namespace bloom {
       left,
   };
 
-  class BLOOM_EXPORT Box : no_copy {
+  class BLOOM_EXPORT Box_Old : no_copy {
       friend class Horizontal_Axis;
 
       friend class Vertical_Axis;
@@ -51,7 +51,7 @@ namespace bloom {
       Axis_Values axis_cache;
       Axis_Values axis_cache_inner;
       shared_ptr<Axis_Values> clip_bounds;
-      unique_ptr<Measurement> spacing;
+      Measurement spacing = {Measurements::pixels, 0};
       float content_height;
 
       template<typename Axis>
@@ -64,8 +64,8 @@ namespace bloom {
   public:
       int debug_id = 0;
 
-      Box(const Measurement_Converter &converter);
-      ~Box();
+      Box_Old(const Measurement_Converter &converter);
+      ~Box_Old();
 
       const Vector2 &get_position() const {
         return position.near;
@@ -87,7 +87,7 @@ namespace bloom {
       }
 
       void set_dimensions(const Vector2 &dimensions) {
-        Box::dimensions = dimensions;
+        Box_Old::dimensions = dimensions;
       }
 
       void set_dimensions(const Measurement &width, const Measurement &height) {
@@ -102,7 +102,7 @@ namespace bloom {
         position.far = corner;
       }
 
-      virtual Box *get_parent_box() const = 0;
+      virtual Box_Old *get_parent_box() const = 0;
 
       const Measurement_Converter &get_converter() const {
         return converter;
@@ -116,16 +116,12 @@ namespace bloom {
         position.near.set_x(value);
       }
 
-      void set_left(const Simple_Measurement &value) {
-        position.near.set_x(value);
-      }
-
       void set_top(float value) {
-        position.near.set_y(Simple_Measurement(value));
+        position.near.set_y(Measurement(value));
       }
 
       void set_top(int value) {
-        position.near.set_y(Simple_Measurement(value));
+        position.near.set_y(Measurement(value));
       }
 
       template<typename T>
@@ -137,21 +133,17 @@ namespace bloom {
         position.far.set_y(value);
       }
 
-      void set_bottom(const Simple_Measurement &value) {
-        position.far.set_y(value);
-      }
-
       Arrangement get_arrangement() const {
         return arrangement;
       }
 
       void set_arrangement(Arrangement arrangement) {
-        Box::arrangement = arrangement;
+        Box_Old::arrangement = arrangement;
       }
 
       void set_arrangement(Arrangement arrangement, float spacing) {
-        Box::arrangement = arrangement;
-        set_spacing(Simple_Measurement(spacing));
+        Box_Old::arrangement = arrangement;
+        set_spacing(Measurement(spacing));
       }
 
       template<typename T>
@@ -174,7 +166,7 @@ namespace bloom {
       void update_axis_cache(const Axis_Values &parent_values, const vec2 &margin);
       virtual void update_absolute_dimensions(const Axis_Values &parent_values, const vec2 margin = vec2(0));
       virtual int get_child_count() const = 0;
-      virtual Box &get_child_box(int index) const = 0;
+      virtual Box_Old &get_child_box(int index) const = 0;
 
 //      virtual const Measurement &get_estimated_width() const {
 //        return dimensions.get_x();
@@ -186,12 +178,12 @@ namespace bloom {
 
       virtual Box_Style &get_box_style() = 0;
 
-      const Measurement *get_spacing() const {
-        return spacing.get();
+      const Measurement get_spacing() const {
+        return spacing;
       }
 
       void set_spacing(const Measurement &spacing) {
-        Box::spacing = unique_ptr<Measurement>(spacing.clone());
+        Box_Old::spacing = spacing;
       }
 
       vec2 get_parent_inner_dimensions() const;

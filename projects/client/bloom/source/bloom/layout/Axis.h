@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Measurement.h"
-#include "Box.h"
+#include "Box_Old.h"
 
 namespace bloom {
 
@@ -9,15 +9,15 @@ namespace bloom {
 
   class Horizontal_Axis {
   public:
-      static const Measurement &get_near(const Box &box) {
+      static const Measurement &get_near(const Box_Old &box) {
         return box.get_position().get_x();
       }
 
-      static const Measurement &get_length(const Box &box) {
+      static const Measurement &get_length(const Box_Old &box) {
         return box.get_dimensions().get_x();
       }
 
-      static const Measurement &get_far(const Box &box) {
+      static const Measurement &get_far(const Box_Old &box) {
         return box.get_corner().get_x();
       }
 
@@ -37,7 +37,7 @@ namespace bloom {
         return value.get_y();
       }
 
-      static const Axis_Value &get_cache(const Box &box) {
+      static const Axis_Value &get_cache(const Box_Old &box) {
         return box.axis_cache.x;
       }
 
@@ -50,15 +50,15 @@ namespace bloom {
 
   class Vertical_Axis {
   public:
-      static const Measurement &get_near(const Box &box) {
+      static const Measurement &get_near(const Box_Old &box) {
         return box.get_position().get_y();
       }
 
-      static const Measurement &get_length(const Box &box) {
+      static const Measurement &get_length(const Box_Old &box) {
         return box.get_dimensions().get_y();
       }
 
-      static const Measurement &get_far(const Box &box) {
+      static const Measurement &get_far(const Box_Old &box) {
         return box.get_corner().get_y();
       }
 
@@ -78,7 +78,7 @@ namespace bloom {
         return value.get_x();
       }
 
-      static const Axis_Value &get_cache(const Box &box) {
+      static const Axis_Value &get_cache(const Box_Old &box) {
         return box.axis_cache.y;
       }
 

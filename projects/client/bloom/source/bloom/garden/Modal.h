@@ -1,14 +1,14 @@
 #pragma once
 
-#include <bloom/flowers/Flower.h>
+#include <bloom/flowers/Flower_Old.h>
 
 namespace bloom {
 
   struct Modal {
-      Flower *root;
-      vector<Flower *> buttons;
+      Flower_Old *root;
+      vector<Flower_Old *> buttons;
 
-      Modal(Flower *root);
+      Modal(Flower_Old *root);
   };
 
 }
