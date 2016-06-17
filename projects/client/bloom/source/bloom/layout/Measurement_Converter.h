@@ -16,8 +16,8 @@ namespace bloom {
 
       void update_scale() {
         auto shortest = pixel_dimensions.x < pixel_dimensions.y
-                       ? pixel_dimensions.x
-                       : pixel_dimensions.y;
+                        ? pixel_dimensions.x
+                        : pixel_dimensions.y;
 
         scale = shortest / UNIT_RESOLUTION;
 
@@ -40,6 +40,17 @@ namespace bloom {
         return vec2(
           position.x * scale,
           position.y * scale
+        );
+      }
+
+      inline float convert_to_units(float value) const {
+        return value / scale;
+      }
+
+      vec2 convert_to_units(const vec2 &position) const {
+        return vec2(
+          position.x / scale,
+          position.y / scale
         );
       }
 

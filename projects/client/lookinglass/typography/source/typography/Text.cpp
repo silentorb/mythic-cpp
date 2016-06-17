@@ -91,7 +91,7 @@ namespace typography {
       auto character = characters.at(c);
       float character_width = character->size.x;
       x += character_width;
-      if (x > max_width && last_space_index > 0) {
+      if (_max_width && x > max_width && last_space_index > 0) {
         if (last_space_x > block_dimensions.x)
           block_dimensions.x = last_space_x;
 

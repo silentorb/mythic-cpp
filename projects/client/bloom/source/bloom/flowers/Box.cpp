@@ -93,7 +93,7 @@ namespace bloom {
       return Fit_To_Content::no;
     }
 
-    Axis_Values &Box::update_relative(const Parent_Dimensions &parent_bounds) {
+    glm::vec2 Box::update_relative(const Parent_Dimensions &parent_bounds) {
 
       auto fit_x = resolve_relative_bounds<Horizontal_Axis>(measurement_bounds.x, parent_bounds, relative_bounds.x);
       auto fit_y = resolve_relative_bounds<Vertical_Axis>(measurement_bounds.y, parent_bounds, relative_bounds.y);
@@ -101,19 +101,22 @@ namespace bloom {
       vec2 content_length;
 
       Parent_Dimensions this_dimensions = {
-        {absolute_bounds.x.far - absolute_bounds.x.near,
+        {relative_bounds.x.far - relative_bounds.x.near,
           fit_x == Fit_To_Content::yes,
         },
-        {absolute_bounds.y.far - absolute_bounds.y.near,
+        {relative_bounds.y.far - relative_bounds.y.near,
           fit_y == Fit_To_Content::yes,
         }
       };
 
       if (children.size() > 0) {
         for (auto &child: children) {
-          auto &child_bounds = child->update_relative(this_dimensions);
-          content_length.x += child_bounds.x.far;
-          content_length.y += child_bounds.y.far;
+          auto child_bounds = child->update_relative(this_dimensions);
+          if (content_length.x < child_bounds.x)
+            content_length.x = child_bounds.x;
+
+          if (content_length.y < child_bounds.y)
+            content_length.y = child_bounds.y;
         }
 
         if (fit_x == Box::Fit_To_Content::yes) {
@@ -125,7 +128,7 @@ namespace bloom {
         }
       }
 
-      return relative_bounds;
+      return {relative_bounds.x.far, relative_bounds.y.far};
     }
 
     void Box::update_absolute(const glm::vec2 &parent_position) {

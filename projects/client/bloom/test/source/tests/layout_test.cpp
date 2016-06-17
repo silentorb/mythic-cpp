@@ -79,7 +79,7 @@ TEST(Layout_Test, percentage_perpendicular_measurements) {
   box.update_absolute(root_position);
   auto &bounds = box.get_absolute_bounds();
   EXPECT_EQ(25, bounds.y.near);
-  EXPECT_EQ(25, bounds.y.far);
+  EXPECT_EQ(75, bounds.y.far);
 }
 
 TEST(Layout_Test, children) {

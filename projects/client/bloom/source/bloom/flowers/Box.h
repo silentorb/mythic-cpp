@@ -46,7 +46,7 @@ namespace bloom {
 
         virtual ~Box() { }
 
-        virtual Axis_Values &update_relative(const Parent_Dimensions &parent_bounds) override;
+        virtual glm::vec2 update_relative(const Parent_Dimensions &parent_bounds) override;
 
         virtual const Axis_Values &get_absolute_bounds() {
           return absolute_bounds;
