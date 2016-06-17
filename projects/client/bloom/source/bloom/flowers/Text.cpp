@@ -9,7 +9,7 @@
 namespace bloom {
   namespace flowers {
 
-    Text::Text(const string content, Parent *parent) : Child(parent) {
+    Text::Text(const string &content, Parent *parent) : Child(parent) {
       auto &resources = lookinglass::House::get_instance().get_resources();
       text = unique_ptr<typography::Text>(
         new typography::Text(resources.get_font("default"), resources.get_text_effect(), content));

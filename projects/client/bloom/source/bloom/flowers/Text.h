@@ -33,7 +33,7 @@ namespace bloom {
     public:
 //        virtual void update_layout(Axis_Measurements & parent_measurements, Axis_Values &parent_bounds) override;
         virtual void render() override;
-        Text(const string content, Parent *parent);
+        Text(const string &content, Parent *parent);
         virtual ~Text();
 
         void set_content(const string &content);

@@ -4,8 +4,12 @@
 #include <functional>
 #include "bloom/bloom_export.h"
 
-using namespace std;
+namespace songbird {
+  template <typename T>
+  class Song;
+}
 
+using namespace std;
 
 namespace bloom {
   class Flower_Old;

@@ -98,26 +98,17 @@ namespace bloom {
       auto fit_x = resolve_relative_bounds<Horizontal_Axis>(measurement_bounds.x, parent_bounds, relative_bounds.x);
       auto fit_y = resolve_relative_bounds<Vertical_Axis>(measurement_bounds.y, parent_bounds, relative_bounds.y);
 
-      vec2 content_length;
-
-      Parent_Dimensions this_dimensions = {
-        {relative_bounds.x.far - relative_bounds.x.near,
-          fit_x == Fit_To_Content::yes,
-        },
-        {relative_bounds.y.far - relative_bounds.y.near,
-          fit_y == Fit_To_Content::yes,
-        }
-      };
-
       if (children.size() > 0) {
-        for (auto &child: children) {
-          auto child_bounds = child->update_relative(this_dimensions);
-          if (content_length.x < child_bounds.x)
-            content_length.x = child_bounds.x;
+        Parent_Dimensions this_dimensions = {
+          {relative_bounds.x.far - relative_bounds.x.near,
+            fit_x == Fit_To_Content::yes,
+          },
+          {relative_bounds.y.far - relative_bounds.y.near,
+            fit_y == Fit_To_Content::yes,
+          }
+        };
 
-          if (content_length.y < child_bounds.y)
-            content_length.y = child_bounds.y;
-        }
+        auto content_length = process_children(children, this_dimensions);
 
         if (fit_x == Box::Fit_To_Content::yes) {
           fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, parent_bounds, content_length.x);
@@ -138,6 +129,20 @@ namespace bloom {
       for (auto &child: children) {
         child->update_absolute({absolute_bounds.x.near, absolute_bounds.y.near});
       }
+    }
+
+    glm::vec2 process_children(vector<unique_ptr<Child>> &children, const Parent_Dimensions &parent_dimensions) {
+      vec2 content_length;
+      for (auto &child: children) {
+        auto child_bounds = child->update_relative(parent_dimensions);
+        if (content_length.x < child_bounds.x)
+          content_length.x = child_bounds.x;
+
+        if (content_length.y < child_bounds.y)
+          content_length.y = child_bounds.y;
+      }
+
+      return content_length;
     }
 
   }

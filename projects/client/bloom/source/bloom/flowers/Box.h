@@ -7,7 +7,7 @@ namespace bloom {
 
   namespace flowers {
 
-    class BLOOM_EXPORT Box : public Parent, public virtual Child {
+    class BLOOM_EXPORT Box : public Parent, public Child {
 
         enum class Fit_To_Content {
             no,
@@ -88,5 +88,7 @@ namespace bloom {
         virtual void update_absolute(const glm::vec2 &parent_position) override;
 
     };
+
+    glm::vec2 process_children(vector<unique_ptr<Child>> &children, const Parent_Dimensions& parent_dimensions);
   }
 }
