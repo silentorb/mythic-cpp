@@ -32,7 +32,7 @@ namespace bloom {
 
       switch (get_type()) {
         case Measurements::pixel:
-          return value * UNIT_RESOLUTION / Axis::get_aligned(converter.get_pixel_dimensions());
+          return value * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
 
 //        case Measurements::parent_aligned:
 //          return value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
@@ -41,7 +41,7 @@ namespace bloom {
 //          return value * Axis::get_perpendicular(parent_dimensions) / UNIT_RESOLUTION;
 
         case Measurements::percent:
-          return value * Axis::get_aligned(parent_dimensions) / 100;
+          return value * Axis::get(parent_dimensions) / 100;
 
         case Measurements::percent_perpendicular:
           return value * Axis::get_perpendicular(parent_dimensions) / 100;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Child.h"
+#include "Flower.h"
 #include <string>
 #include <glm/vec4.hpp>
 
@@ -15,7 +15,7 @@ namespace typography {
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Text : public Child {
+    class BLOOM_EXPORT Text : public Flower {
         float size;
         bool dimensions_changed = true;
         unique_ptr<typography::Text> text;
@@ -33,7 +33,7 @@ namespace bloom {
     public:
 //        virtual void update_layout(Axis_Measurements & parent_measurements, Axis_Values &parent_bounds) override;
         virtual void render() override;
-        Text(const string &content, Parent *parent);
+        Text(const string &content, Flower *parent);
         virtual ~Text();
 
         void set_content(const string &content);
@@ -41,9 +41,9 @@ namespace bloom {
         void set_size(float value);
         void set_line_height(float value);
 
-        virtual glm::vec2 update_relative(const Parent_Dimensions &parent_dimensions) override;
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
 
-        virtual void update_absolute(const glm::vec2 &parent_position) override;
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
 
         virtual void update(float delta) override { }
 

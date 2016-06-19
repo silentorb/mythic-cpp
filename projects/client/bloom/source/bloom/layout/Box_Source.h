@@ -150,8 +150,8 @@ namespace bloom {
   template<typename Axis>
   void Box_Old::apply_padding(Axis_Value_Old &value, const Vector4 &padding) {
     auto parent_dimensions = get_parent_dimensions();
-    const Measurement &near = Axis::get_aligned(padding.near);
-    const Measurement &far = Axis::get_aligned(padding.far);
+    const Measurement &near = Axis::get(padding.near);
+    const Measurement &far = Axis::get(padding.far);
     auto padding_near = near.resolve<Axis>(parent_dimensions, converter);
     auto padding_far = far.resolve<Axis>(parent_dimensions, converter);
 

@@ -3,6 +3,7 @@
 #include "Parent.h"
 
 namespace bloom {
+
   namespace flowers {
 
     enum class Arrangement {
@@ -12,17 +13,20 @@ namespace bloom {
         left,
     };
 
-    class BLOOM_EXPORT List : public Parent, public Child {
+    class BLOOM_EXPORT List : public Parent {
         Arrangement arrangement = Arrangement::down;
         Measurement spacing = {Measurements::pixel, 0};
+        glm::vec2 resolved_spacing;
 
     public:
-        List(Parent *parent) : Child(parent) { }
+        List(Parent *parent) : Parent(parent) { }
+        List(Parent *parent, Arrangement arrangement, const Measurement spacing) :
+          Parent(parent), arrangement(arrangement), spacing(spacing) { }
 
         virtual ~List() override { }
 
-        virtual glm::vec2 update_relative(const Parent_Dimensions &parent_dimensions) override;
-        virtual void update_absolute(const glm::vec2 &parent_position) override;
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_position) override;
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual const Axis_Values &get_absolute_bounds() override;
 
         Arrangement get_arrangement() const {

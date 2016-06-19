@@ -23,7 +23,7 @@ namespace bloom {
         return box.get_corner().get_x();
       }
 
-      static const float get_aligned(const vec2 &value) {
+      static const float get(const vec2 &value) {
         return value.x;
       }
 
@@ -31,7 +31,7 @@ namespace bloom {
         return value.y;
       }
 
-      static const Measurement &get_aligned(const Vector2 &value) {
+      static const Measurement &get(const Vector2 &value) {
         return value.get_x();
       }
 
@@ -47,9 +47,9 @@ namespace bloom {
         return 0;
       }
 
-      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
-        return parent_dimensions.x;
-      }
+//      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
+//        return parent_dimensions.x;
+//      }
 
       static Axis_Value &get(Axis_Values & values) {
         return values.x;
@@ -76,7 +76,7 @@ namespace bloom {
         return box.get_corner().get_y();
       }
 
-      static const float get_aligned(const vec2 &value) {
+      static const float get(const vec2 &value) {
         return value.y;
       }
 
@@ -84,7 +84,7 @@ namespace bloom {
         return value.x;
       }
 
-      static const Measurement &get_aligned(const Vector2 &value) {
+      static const Measurement &get(const Vector2 &value) {
         return value.get_y();
       }
 
@@ -100,9 +100,9 @@ namespace bloom {
         return 1;
       }
 
-      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
-        return parent_dimensions.y;
-      }
+//      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
+//        return parent_dimensions.y;
+//      }
 
       static Axis_Value &get(Axis_Values & values) {
         return values.y;

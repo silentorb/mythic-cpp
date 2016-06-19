@@ -9,7 +9,7 @@
 namespace bloom {
   namespace flowers {
 
-    Text::Text(const string &content, Parent *parent) : Child(parent) {
+    Text::Text(const string &content, Flower *parent) : Flower(parent) {
       auto &resources = lookinglass::House::get_instance().get_resources();
       text = unique_ptr<typography::Text>(
         new typography::Text(resources.get_font("default"), resources.get_text_effect(), content));
@@ -44,26 +44,26 @@ namespace bloom {
       text->render();
     }
 
-    glm::vec2 Text::update_relative(const Parent_Dimensions &parent_dimensions) {
+    glm::vec2 Text::update_dimensions(const vec2 &parent_dimensions) {
       const float font_descender_hack = 1.1;
       auto &converter = Garden::get_instance().get_converter();
       auto text_dimensions = converter.convert_to_pixels(text->get_dimensions() + font_descender_hack);
       vec2 result;
       result.y = text_dimensions.y;
 
-      if (parent_dimensions.x.stretches) {
+      if (result.x > text_dimensions.x) {
         result.x = text_dimensions.x;
       }
       else {
-        auto length = converter.convert_to_units(parent_dimensions.x.length);
+        auto length = converter.convert_to_units(parent_dimensions.x);
         text->set_max_width(length * font_descender_hack);
-        result.x = parent_dimensions.x.length;
+        result.x = parent_dimensions.x;
       }
 
       return result;
     }
 
-    void Text::update_absolute(const glm::vec2 &parent_position) {
+    void Text::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
       auto &converter = Garden::get_instance().get_converter();
       auto unit_position = converter.convert_to_units(parent_position);
       text->set_position(ivec2((int) unit_position.x, (int) unit_position.y));

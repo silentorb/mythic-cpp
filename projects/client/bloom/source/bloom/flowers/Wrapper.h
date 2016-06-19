@@ -11,6 +11,7 @@ namespace bloom {
         unique_ptr<Flower> flower;
 
     public:
+        virtual bool check_event_new(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point) override;
 
         Wrapper(Flower_Old *parent, Flower *flower) : Flower_Old(parent), flower(flower) { }
 

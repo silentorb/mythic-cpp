@@ -52,7 +52,8 @@ namespace bloom {
       virtual const Bounds get_outer_bounds();
       virtual const Bounds get_inner_bounds();
       bool point_is_inside(const vec2 &point);
-      bool check_event(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point);
+      virtual bool check_event(const songbird::Song<Flower_Delegate_Old> &event_type, const vec2 &point);
+      virtual bool check_event_new(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point);
 
       virtual void render();
 
@@ -60,8 +61,8 @@ namespace bloom {
 //        listeners.push_back({event, action});
 //      }
 
-      void click(Flower_Delegate action) {
-        listen(Events::activate, action);
+      void click(Flower_Delegate_Old action) {
+        listen(Events::activate_old, action);
       }
 
       void add_child(Flower_Old *child) {

@@ -7,7 +7,7 @@ namespace bloom {
 
   namespace flowers {
 
-    class BLOOM_EXPORT Box : public Parent, public Child {
+    class BLOOM_EXPORT Box : public Parent {
 
         enum class Fit_To_Content {
             no,
@@ -29,24 +29,19 @@ namespace bloom {
         };
 
         template<typename Axis>
-        float resolve_value(const Measurement &measurement, const Parent_Dimensions &parent_dimensions);
-
-        template<typename Axis>
         void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds,
-                            const Parent_Dimensions &parent_dimensions, float content_length);
+                            const glm::vec2 &parent_dimensions, float content_length);
 
     protected:
         template<typename Axis>
         Fit_To_Content resolve_relative_bounds(const Axis_Measurement &measurements,
-                                               const Parent_Dimensions &parent_dimensions,
+                                               const glm::vec2 &parent_dimensions,
                                                Axis_Value &relative_bounds);
     public:
 
-        Box(Parent *parent) : Child(parent) { }
+        Box(Parent *parent) : Parent(parent) { }
 
         virtual ~Box() { }
-
-        virtual glm::vec2 update_relative(const Parent_Dimensions &parent_bounds) override;
 
         virtual const Axis_Values &get_absolute_bounds() {
           return absolute_bounds;
@@ -85,10 +80,37 @@ namespace bloom {
           };
         }
 
-        virtual void update_absolute(const glm::vec2 &parent_position) override;
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_position) override;
+
+        virtual bool get_relative_bounds(Axis_Values &result) override {
+          result = relative_bounds;
+          return true;
+        }
 
     };
 
-    glm::vec2 process_children(vector<unique_ptr<Child>> &children, const Parent_Dimensions& parent_dimensions);
+    glm::vec2 process_children(vector<unique_ptr<Flower>> &children, const glm::vec2& parent_dimensions);
+
+    template<typename Axis>
+    float resolve_measurement(const Measurement &measurement, const glm::vec2 &parent_dimensions) {
+      switch (measurement.get_type()) {
+        case Measurements::pixel:
+          return measurement.get_value();
+
+        case Measurements::percent:
+          return measurement.get_value() * Axis::get(parent_dimensions) / 100;
+
+        case Measurements::percent_perpendicular:
+          return measurement.get_value() * Axis::other::get(parent_dimensions) / 100;
+
+        case Measurements::stretch:
+          return 0;
+
+        default:
+          throw runtime_error("Not implemented.");
+      }
+    }
+
   }
 }

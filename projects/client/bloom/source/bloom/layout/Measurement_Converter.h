@@ -74,7 +74,7 @@ namespace bloom {
       Axis_Value_Old get_axis_values() {
         Axis_Value_Old result;
         result.near = 0;
-        result.length = result.absolute_far = Axis::get_aligned(get_unit_dimensions());
+        result.length = result.absolute_far = Axis::get(get_unit_dimensions());
         return result;
       }
 

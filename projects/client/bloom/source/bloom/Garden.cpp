@@ -11,13 +11,6 @@ using namespace haft;
 
 namespace bloom {
 
-  namespace Events {
-    const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> drag = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
-  };
-
   Garden *Garden::instance = nullptr;
 
   Garden::Garden(Draw_Interface &draw) :
@@ -44,9 +37,10 @@ namespace bloom {
                       ? *modal_stack.top()->root
                       : *root;
 
-      if (start.check_event(Events::activate, vec2(position.x, position.y))) {
+      if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
 //        input_state.set_handled(*select_action);
       }
+      start.check_event_new(Events::activate, vec2(position.x, position.y));
     }
     if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();
@@ -54,7 +48,7 @@ namespace bloom {
                       ? *modal_stack.top()->root
                       : *root;
 
-      if (start.check_event(Events::drag, vec2(position.x, position.y))) {
+      if (start.check_event(Events::drag_old, vec2(position.x, position.y))) {
 //        input_state.set_handled(*select_action);
       }
     }

@@ -6,7 +6,7 @@
 namespace bloom {
 
   Scrollable::Scrollable(Flower_Old *parent) : Flower_Old(parent) {
-    listen(Events::drag, Flower_Delegate([this](Flower_Old *flower) {
+    listen(Events::drag_old, Flower_Delegate_Old([this](Flower_Old *flower) {
       if (content_height <= axis_cache_inner.y.length)
         return;
 
