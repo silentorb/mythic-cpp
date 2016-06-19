@@ -2,6 +2,8 @@
 #include "Box.h"
 #include "bloom/layout/Axis.h"
 
+using namespace glm;
+
 namespace bloom {
   namespace flowers {
 
@@ -27,6 +29,22 @@ namespace bloom {
         relative_bounds.near = relative_bounds.far - content_length;
       }
 
+    }
+
+    template<typename Axis>
+    float Box::resolve_length(const Axis_Measurement &measurements, const glm::vec2 &parent_dimensions) {
+      if (measurements.length.get_type() != Measurements::stretch)
+        return resolve_measurement<Axis>(measurements.length, parent_dimensions);
+
+      auto length = Axis::get(parent_dimensions);
+
+      if (measurements.near.get_type() != Measurements::stretch)
+        length -= resolve_measurement<Axis>(measurements.near, parent_dimensions);
+
+      if (measurements.far.get_type() != Measurements::stretch)
+        length -= resolve_measurement<Axis>(measurements.far, parent_dimensions);
+
+      return length;
     }
 
     template<typename Axis>
@@ -76,45 +94,64 @@ namespace bloom {
     }
 
     glm::vec2 Box::update_dimensions(const glm::vec2 &parent_bounds) {
-
-      auto fit_x = resolve_relative_bounds<Horizontal_Axis>(measurement_bounds.x, parent_bounds, relative_bounds.x);
-      auto fit_y = resolve_relative_bounds<Vertical_Axis>(measurement_bounds.y, parent_bounds, relative_bounds.y);
+      auto &length = absolute_bounds.dimensions;
+      length.x = resolve_length<Horizontal_Axis>(measurement_bounds.x, parent_bounds);
+      length.y = resolve_length<Vertical_Axis>(measurement_bounds.y, parent_bounds);
 
       if (children.size() > 0) {
-        glm::vec2 this_dimensions = {
-          {relative_bounds.x.far - relative_bounds.x.near},
-          {relative_bounds.y.far - relative_bounds.y.near}
-        };
+        auto content_length = process_children(children, length);
 
-        auto content_length = process_children(children, this_dimensions);
-
-        if (fit_x == Box::Fit_To_Content::yes) {
-          fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, parent_bounds, content_length.x);
+        if (measurement_bounds.x.length.get_type() == Measurements::stretch) {
+//          fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, parent_bounds, content_length.x);
+          length.x = content_length.x;
         }
 
-        if (fit_y == Box::Fit_To_Content::yes) {
-          fit_to_content<Vertical_Axis>(measurement_bounds.y, relative_bounds.y, parent_bounds, content_length.y);
+        if (measurement_bounds.y.length.get_type() == Measurements::stretch) {
+//          fit_to_content<Vertical_Axis>(measurement_bounds.y, relative_bounds.y, parent_bounds, content_length.y);
+          length.y = content_length.y;
         }
 
-        if (fit_x == Box::Fit_To_Content::yes || fit_y == Box::Fit_To_Content::yes)
-          process_children(children, this_dimensions);
+//        if (fit_x == Box::Fit_To_Content::yes || fit_y == Box::Fit_To_Content::yes)
+//          process_children(children, this_dimensions);
       }
 
-      return {relative_bounds.x.far, relative_bounds.y.far};
+      return length;
+    }
+
+    template<typename Axis>
+    float Box::resolve_relative_position(const glm::vec2 &parent_dimensions) {
+      Axis_Measurement &measurements = Axis::get(measurement_bounds);
+      auto local_length = Axis::get(absolute_bounds.dimensions);
+
+      if (measurements.near.get_type() == Measurements::stretch &&
+          measurements.far.get_type() == Measurements::stretch) {
+        auto parent_length = Axis::get(parent_dimensions);
+        return (parent_length - local_length) / 2;
+      }
+      else if (measurements.near.get_type() == Measurements::stretch) {
+        auto parent_length = Axis::get(parent_dimensions);
+        auto far = resolve_measurement<Axis>(measurements.far, parent_dimensions);
+        return parent_length - local_length - far;
+      }
+//      else if (measurements.far.get_type() == Measurements::stretch) {
+////        relative.near = resolve_measurement<Axis>(measurements.near, parent_dimensions);
+////        relative.far = local_length + relative.far;
+//      }
+      else {
+        return resolve_measurement<Axis>(measurements.near, parent_dimensions);
+//        relative.near = resolve_measurement<Axis>(measurements.near, parent_dimensions);
+//        relative.far = resolve_measurement<Axis>(measurements.far, parent_dimensions);
+      }
     }
 
     void Box::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
-      resolve_relative_bounds<Horizontal_Axis>(measurement_bounds.x, parent_dimensions, relative_bounds.x);
-      resolve_relative_bounds<Vertical_Axis>(measurement_bounds.y, parent_dimensions, relative_bounds.y);
+      relative_position.x = resolve_relative_position<Horizontal_Axis>(parent_dimensions);
+      relative_position.y = resolve_relative_position<Vertical_Axis>(parent_dimensions);
 
-      absolute_bounds.x = relative_bounds.x + parent_position.x;
-      absolute_bounds.y = relative_bounds.y + parent_position.y;
+      absolute_bounds.position = relative_position + parent_position;
 
       for (auto &child: children) {
-        child->update_position({absolute_bounds.x.near, absolute_bounds.y.near}, {
-          {relative_bounds.x.far - relative_bounds.x.near},
-          {relative_bounds.y.far - relative_bounds.y.near}
-        });
+        child->update_position(absolute_bounds.position, absolute_bounds.dimensions);
       }
     }
 

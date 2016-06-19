@@ -24,13 +24,13 @@ namespace bloom {
 //      dimensions.set_x(get_converter().convert_to_units(flower_bounds.x.far - flower_bounds.x.near));
 //      dimensions.set_y(get_converter().convert_to_units(flower_bounds.y.far - flower_bounds.y.near));
 
-      axis_cache.x.near = converter.convert_to_units(flower_bounds.x.near);
-      axis_cache.x.absolute_far = converter.convert_to_units(flower_bounds.x.far);
-      axis_cache.x.length = axis_cache.x.absolute_far - axis_cache.x.near;
+      axis_cache.x.near = converter.convert_to_units(flower_bounds.position.x);
+      axis_cache.x.length = converter.convert_to_units(flower_bounds.dimensions.x);
+      axis_cache.x.absolute_far = axis_cache.x.near + axis_cache.x.length;
 
-      axis_cache.y.near = converter.convert_to_units(flower_bounds.y.near);
-      axis_cache.y.absolute_far = converter.convert_to_units(flower_bounds.y.far);
-      axis_cache.y.length = axis_cache.y.absolute_far - axis_cache.y.near;
+      axis_cache.y.near = converter.convert_to_units(flower_bounds.position.y);
+      axis_cache.y.length = converter.convert_to_units(flower_bounds.dimensions.y);
+      axis_cache.y.absolute_far = axis_cache.y.near + axis_cache.y.length;
 
     }
 

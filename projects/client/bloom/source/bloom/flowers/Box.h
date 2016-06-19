@@ -23,14 +23,23 @@ namespace bloom {
           {0, 0}
         };
 
-        Axis_Values relative_bounds = {
-          {0, 0},
-          {0, 0}
-        };
+//        Axis_Values relative_bounds = {
+//          {0, 0},
+//          {0, 0}
+//        };
+
+        glm::vec2 relative_position;
 
         template<typename Axis>
         void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds,
                             const glm::vec2 &parent_dimensions, float content_length);
+
+        template<typename Axis>
+        float resolve_length(const Axis_Measurement &measurements,
+                             const glm::vec2 &parent_dimensions);
+
+        template<typename Axis>
+        float resolve_relative_position(const glm::vec2 &parent_dimensions);
 
     protected:
         template<typename Axis>
@@ -71,26 +80,18 @@ namespace bloom {
           measurement_bounds.y.length = measurement;
         }
 
-        inline Parent_Dimensions get_dimensions() const {
-          return {
-            {absolute_bounds.x.far - absolute_bounds.x.near,
-              measurement_bounds.x.length.get_type() == Measurements::stretch},
-            {absolute_bounds.y.far - absolute_bounds.y.near,
-              measurement_bounds.y.length.get_type() == Measurements::stretch},
-          };
-        }
-
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_position) override;
 
-        virtual bool get_relative_bounds(Axis_Values &result) override {
-          result = relative_bounds;
+        virtual bool get_relative_bounds(glm::vec2 &position, glm::vec2 &dimensions) override {
+          position = relative_position;
+          dimensions = absolute_bounds.dimensions;
           return true;
         }
 
     };
 
-    glm::vec2 process_children(vector<unique_ptr<Flower>> &children, const glm::vec2& parent_dimensions);
+    glm::vec2 process_children(vector<unique_ptr<Flower>> &children, const glm::vec2 &parent_dimensions);
 
     template<typename Axis>
     float resolve_measurement(const Measurement &measurement, const glm::vec2 &parent_dimensions) {

@@ -51,9 +51,9 @@ namespace bloom {
 //        return parent_dimensions.x;
 //      }
 
-      static Axis_Value &get(Axis_Values & values) {
-        return values.x;
-      }
+//      static Axis_Value &get(Axis_Values & values) {
+//        return values.x;
+//      }
 
       static Axis_Measurement &get(Axis_Measurements & measurements) {
         return measurements.x;
@@ -104,12 +104,12 @@ namespace bloom {
 //        return parent_dimensions.y;
 //      }
 
-      static Axis_Value &get(Axis_Values & values) {
-        return values.y;
-      }
+//      static Axis_Value &get(Axis_Values & values) {
+//        return values.y;
+//      }
 
       static Axis_Measurement &get(Axis_Measurements & measurements) {
-        return measurements.x;
+        return measurements.y;
       }
 
       using other = Horizontal_Axis;

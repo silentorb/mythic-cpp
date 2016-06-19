@@ -60,10 +60,10 @@ namespace bloom {
 //      auto top_left = converter.convert_to_pixels({bounds.x.near, bounds.y.near});
 //      auto bottom_right = converter.convert_to_pixels(vec2(bounds.x.far, bounds.y.far) + corner_offset);
 
-      auto result = point.x > bounds.x.near
-                    && point.y > bounds.y.near
-                    && point.x < bounds.x.far
-                    && point.y < bounds.y.far;
+      auto result = point.x > bounds.position.x
+                    && point.y > bounds.position.y
+                    && point.x < bounds.position.x + bounds.dimensions.x
+                    && point.y < bounds.position.y + bounds.dimensions.y;
 
       return result;
     }

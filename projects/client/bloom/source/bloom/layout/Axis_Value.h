@@ -1,4 +1,5 @@
 #pragma once
+#include <glm/vec2.hpp>
 
 namespace bloom {
 
@@ -11,8 +12,8 @@ namespace bloom {
   };
 
   struct Axis_Values {
-      Axis_Value x;
-      Axis_Value y;
+      glm::vec2 position;
+      glm::vec2 dimensions;
   };
 
 }

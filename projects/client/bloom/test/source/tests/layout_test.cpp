@@ -16,15 +16,15 @@ TEST(Layout_Test, simple_pixel_measurements) {
 
   {
     auto &bounds = box.get_absolute_bounds();
-    EXPECT_EQ(0, bounds.x.near);
+    EXPECT_EQ(0, bounds.position.x);
   }
 
   {
     box.update_dimensions(root_bounds);
     box.update_position(root_position, root_bounds);
     auto &bounds = box.get_absolute_bounds();
-    EXPECT_EQ(0, bounds.x.near);
-    EXPECT_EQ(800, bounds.x.far);
+    EXPECT_EQ(0, bounds.position.x);
+    EXPECT_EQ(800, bounds.position.x + bounds.dimensions.x);
   }
 
   box.set_left(10);
@@ -35,9 +35,9 @@ TEST(Layout_Test, simple_pixel_measurements) {
     box.update_dimensions(root_bounds);
     box.update_position(root_position, root_bounds);
     auto &bounds = box.get_absolute_bounds();
-    EXPECT_EQ(10, bounds.x.near);
-    EXPECT_EQ(20, bounds.y.near);
-    EXPECT_EQ(110, bounds.x.far);
+    EXPECT_EQ(10, bounds.position.x);
+    EXPECT_EQ(20, bounds.position.y);
+    EXPECT_EQ(110, bounds.position.x + bounds.dimensions.x);
   }
 
 }
@@ -60,10 +60,10 @@ TEST(Layout_Test, percentage_measurements) {
   box.update_dimensions(root_bounds);
   box.update_position(root_position, root_bounds);
   auto &bounds = box.get_absolute_bounds();
-  EXPECT_EQ(60, bounds.x.near);
-  EXPECT_EQ(20, bounds.x.far);
-  EXPECT_EQ(50, bounds.y.near);
-  EXPECT_EQ(70, bounds.y.far);
+  EXPECT_EQ(60, bounds.position.x);
+  EXPECT_EQ(120, bounds.dimensions.x);
+  EXPECT_EQ(50, bounds.position.y);
+  EXPECT_EQ(100, bounds.dimensions.y);
 }
 
 TEST(Layout_Test, percentage_perpendicular_measurements) {
@@ -80,8 +80,8 @@ TEST(Layout_Test, percentage_perpendicular_measurements) {
   box.update_dimensions(root_bounds);
   box.update_position(root_position, root_bounds);
   auto &bounds = box.get_absolute_bounds();
-  EXPECT_EQ(25, bounds.y.near);
-  EXPECT_EQ(75, bounds.y.far);
+  EXPECT_EQ(25, bounds.position.y);
+  EXPECT_EQ(75, bounds.position.y + bounds.dimensions.y);
 }
 
 TEST(Layout_Test, children) {
@@ -102,13 +102,12 @@ TEST(Layout_Test, children) {
   box.update_position(root_position, root_bounds);
 
   auto &child_bounds = child.get_absolute_bounds();
-  EXPECT_EQ(30, child_bounds.x.near);
+  EXPECT_EQ(30, child_bounds.position.x);
 
   auto &box_bounds = box.get_absolute_bounds();
-  EXPECT_EQ(20, box_bounds.x.near);
-  EXPECT_EQ(50, box_bounds.x.far);
+  EXPECT_EQ(20, box_bounds.position.x);
+  EXPECT_EQ(20, box_bounds.dimensions.x);
 }
-
 
 TEST(Layout_Test, all_stretch) {
   flowers::Box box(nullptr);
@@ -126,12 +125,12 @@ TEST(Layout_Test, all_stretch) {
   box.update_position(root_position, root_bounds);
 
   auto &child_bounds = child.get_absolute_bounds();
-  EXPECT_EQ(60, child_bounds.x.near);
-  EXPECT_EQ(140, child_bounds.x.far);
+  EXPECT_EQ(60, child_bounds.position.x);
+  EXPECT_EQ(80, child_bounds.dimensions.x);
 
   auto &box_bounds = box.get_absolute_bounds();
-  EXPECT_EQ(60, box_bounds.x.near);
-  EXPECT_EQ(140, box_bounds.x.far);
+  EXPECT_EQ(60, box_bounds.position.x);
+  EXPECT_EQ(80, box_bounds.dimensions.x);
 }
 
 TEST(Layout_Test, list) {
@@ -146,8 +145,10 @@ TEST(Layout_Test, list) {
     100
   };
 
+  first.set_top(0);
   first.set_width(20);
   first.set_height(10);
+  second.set_top(0);
   second.set_width(20);
   second.set_height(10);
 
@@ -155,18 +156,26 @@ TEST(Layout_Test, list) {
   box.update_position(root_position, root_bounds);
 
   {
+    auto &bounds = box.get_absolute_bounds();
+    EXPECT_EQ(40, bounds.position.x);
+    EXPECT_EQ(20, bounds.dimensions.x);
+    EXPECT_EQ(35, bounds.position.y);
+    EXPECT_EQ(30, bounds.dimensions.y);
+  }
+
+  {
     auto &bounds = first.get_absolute_bounds();
-    EXPECT_EQ(40, bounds.x.near);
-    EXPECT_EQ(60, bounds.x.far);
-    EXPECT_EQ(35, bounds.y.near);
-    EXPECT_EQ(45, bounds.y.far);
+    EXPECT_EQ(40, bounds.position.x);
+    EXPECT_EQ(20, bounds.dimensions.x);
+    EXPECT_EQ(35, bounds.position.y);
+    EXPECT_EQ(10, bounds.dimensions.y);
   }
 
   {
     auto &bounds = second.get_absolute_bounds();
-    EXPECT_EQ(40, bounds.x.near);
-    EXPECT_EQ(60, bounds.x.far);
-    EXPECT_EQ(55, bounds.y.near);
-    EXPECT_EQ(65, bounds.y.far);
+    EXPECT_EQ(40, bounds.position.x);
+    EXPECT_EQ(20, bounds.dimensions.x);
+    EXPECT_EQ(55, bounds.position.y);
+    EXPECT_EQ(10, bounds.dimensions.y);
   }
 }

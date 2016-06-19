@@ -39,12 +39,13 @@ namespace bloom {
 
     void List::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
       auto position = parent_position;
-      Axis_Values child_bounds;
+      vec2 child_position;
+      vec2 child_dimensions;
 
       for (auto &child : children) {
         child->update_position(position, parent_dimensions);
-        if (child->get_relative_bounds(child_bounds)) {
-          position.y += child_bounds.y.far + resolved_spacing.y;
+        if (child->get_relative_bounds(child_position, child_dimensions)) {
+          position.y += child_position.y + child_dimensions.y + resolved_spacing.y;
         }
       }
     }

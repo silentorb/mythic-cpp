@@ -31,7 +31,7 @@ namespace bloom {
           return false;
         }
 
-        virtual bool get_relative_bounds(Axis_Values &result) {
+        virtual bool get_relative_bounds(glm::vec2 &position, glm::vec2 &dimensions) {
           return false;
         };
 
