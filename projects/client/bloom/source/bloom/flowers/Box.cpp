@@ -93,10 +93,28 @@ namespace bloom {
       return Fit_To_Content::no;
     }
 
+    template<typename Axis>
+    float Box::resolve_margins(const glm::vec2 &parent_dimensions) {
+      Axis_Measurement &measurements = Axis::get(measurement_bounds);
+//      if (measurements.length.get_type() == Measurements::stretch)
+//        return 0; // Margins were already factored into the initial length;
+
+      auto result = 0;
+      if (measurements.near.get_type() != Measurements::stretch)
+        result += resolve_measurement<Axis>(measurements.near, parent_dimensions);
+
+      if (measurements.far.get_type() != Measurements::stretch)
+        result += resolve_measurement<Axis>(measurements.far, parent_dimensions);
+
+      return result;
+    }
+
     glm::vec2 Box::update_dimensions(const glm::vec2 &parent_bounds) {
       auto &length = absolute_bounds.dimensions;
       length.x = resolve_length<Horizontal_Axis>(measurement_bounds.x, parent_bounds);
       length.y = resolve_length<Vertical_Axis>(measurement_bounds.y, parent_bounds);
+
+      vec2 full_length = length;
 
       if (children.size() > 0) {
         auto content_length = process_children(children, length);
@@ -104,18 +122,20 @@ namespace bloom {
         if (measurement_bounds.x.length.get_type() == Measurements::stretch) {
 //          fit_to_content<Horizontal_Axis>(measurement_bounds.x, relative_bounds.x, parent_bounds, content_length.x);
           length.x = content_length.x;
+          full_length.x = length.x + resolve_margins<Horizontal_Axis>(parent_bounds);
         }
 
         if (measurement_bounds.y.length.get_type() == Measurements::stretch) {
 //          fit_to_content<Vertical_Axis>(measurement_bounds.y, relative_bounds.y, parent_bounds, content_length.y);
           length.y = content_length.y;
+          full_length.y = length.y + resolve_margins<Vertical_Axis>(parent_bounds);
         }
 
 //        if (fit_x == Box::Fit_To_Content::yes || fit_y == Box::Fit_To_Content::yes)
 //          process_children(children, this_dimensions);
       }
 
-      return length;
+      return full_length;
     }
 
     template<typename Axis>
@@ -159,11 +179,13 @@ namespace bloom {
       vec2 content_length;
       for (auto &child: children) {
         auto child_bounds = child->update_dimensions(parent_dimensions);
-        if (content_length.x < child_bounds.x)
-          content_length.x = child_bounds.x;
+        if (child->affects_parent_dimensions()) {
+          if (content_length.x < child_bounds.x)
+            content_length.x = child_bounds.x;
 
-        if (content_length.y < child_bounds.y)
-          content_length.y = child_bounds.y;
+          if (content_length.y < child_bounds.y)
+            content_length.y = child_bounds.y;
+        }
       }
 
       return content_length;

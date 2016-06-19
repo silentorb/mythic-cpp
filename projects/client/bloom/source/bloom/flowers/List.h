@@ -29,6 +29,10 @@ namespace bloom {
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual const Axis_Values &get_absolute_bounds() override;
 
+        virtual bool affects_parent_dimensions() const override {
+          return true;
+        }
+
         Arrangement get_arrangement() const {
           return arrangement;
         }

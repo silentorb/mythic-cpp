@@ -41,6 +41,9 @@ namespace bloom {
         template<typename Axis>
         float resolve_relative_position(const glm::vec2 &parent_dimensions);
 
+        template<typename Axis>
+        float resolve_margins(const glm::vec2 &parent_dimensions);
+
     protected:
         template<typename Axis>
         Fit_To_Content resolve_relative_bounds(const Axis_Measurement &measurements,
@@ -51,6 +54,10 @@ namespace bloom {
         Box(Parent *parent) : Parent(parent) { }
 
         virtual ~Box() { }
+
+        virtual bool affects_parent_dimensions() const override {
+          return true;
+        }
 
         virtual const Axis_Values &get_absolute_bounds() {
           return absolute_bounds;

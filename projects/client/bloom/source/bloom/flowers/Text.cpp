@@ -51,7 +51,7 @@ namespace bloom {
       vec2 result;
       result.y = text_dimensions.y;
 
-      if (result.x > text_dimensions.x) {
+      if (text_dimensions.x < parent_dimensions.x) {
         result.x = text_dimensions.x;
       }
       else {

@@ -43,9 +43,14 @@ namespace bloom {
       vec2 child_dimensions;
 
       for (auto &child : children) {
-        child->update_position(position, parent_dimensions);
         if (child->get_relative_bounds(child_position, child_dimensions)) {
+          // Restrict child bounds to normal size of the child so it does not try to center itself against
+          // the size of the whole list.  (List children should be oblivous to the length of the list flower.)
+          child->update_position(position, child_dimensions);
           position.y += child_position.y + child_dimensions.y + resolved_spacing.y;
+        }
+        else {
+          child->update_position(position, parent_dimensions);
         }
       }
     }

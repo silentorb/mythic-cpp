@@ -145,10 +145,8 @@ TEST(Layout_Test, list) {
     100
   };
 
-  first.set_top(0);
   first.set_width(20);
   first.set_height(10);
-  second.set_top(0);
   second.set_width(20);
   second.set_height(10);
 
@@ -179,3 +177,32 @@ TEST(Layout_Test, list) {
     EXPECT_EQ(10, bounds.dimensions.y);
   }
 }
+
+
+TEST(Layout_Test, padding) {
+  flowers::Box box(nullptr);
+  auto &padding = *new flowers::Box(&box);
+  auto &text = *new flowers::Box(&padding);
+
+  vec2 root_position(0, 0);
+  vec2 root_bounds = {
+    200,
+    200
+  };
+
+  padding.set_top(10);
+  padding.set_bottom(10);
+
+  text.set_height(20);
+  box.set_top(10);
+
+  box.update_dimensions(root_bounds);
+  box.update_position(root_position, root_bounds);
+
+  auto &child_bounds = text.get_absolute_bounds();
+
+  auto &box_bounds = box.get_absolute_bounds();
+  EXPECT_EQ(40, box_bounds.dimensions.y);
+  EXPECT_EQ(10, box_bounds.position.y);
+}
+

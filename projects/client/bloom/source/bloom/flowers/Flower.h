@@ -21,11 +21,21 @@ namespace bloom {
     public:
         Flower(Flower *parent);
         virtual ~Flower() = 0;
-        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) = 0;
-        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) = 0;
-        virtual void update(float delta) = 0;
-        virtual void render() = 0;
-        virtual const Axis_Values &get_absolute_bounds() = 0;
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) {
+          return parent_dimensions;
+        }
+
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) { }
+
+        virtual void update(float delta) { }
+
+        virtual void render() { }
+
+        virtual const Axis_Values &get_absolute_bounds() {
+          return parent->get_absolute_bounds();
+        }
+
+        virtual bool affects_parent_dimensions() const { return false; }
 
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
           return false;
