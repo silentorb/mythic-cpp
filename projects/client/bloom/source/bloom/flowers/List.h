@@ -17,10 +17,11 @@ namespace bloom {
         Arrangement arrangement = Arrangement::down;
         Measurement spacing = {Measurements::pixel, 0};
         glm::vec2 resolved_spacing;
+        bool space_outside = false;
 
     public:
-        List(Parent *parent) : Parent(parent) { }
-        List(Parent *parent, Arrangement arrangement, const Measurement spacing) :
+        List(Flower *parent) : Parent(parent) { }
+        List(Arrangement arrangement, const Measurement spacing, Flower *parent) :
           Parent(parent), arrangement(arrangement), spacing(spacing) { }
 
         virtual ~List() override { }
@@ -47,6 +48,14 @@ namespace bloom {
 
         void set_spacing(const Measurement &spacing) {
           List::spacing = spacing;
+        }
+
+        bool get_space_outside() const {
+          return space_outside;
+        }
+
+        void set_space_outside(bool space_outside) {
+          List::space_outside = space_outside;
         }
     };
   }

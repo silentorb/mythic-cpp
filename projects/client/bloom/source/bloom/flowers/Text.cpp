@@ -32,7 +32,11 @@ namespace bloom {
     void Text::set_size(float value) {
       size = value;
       auto &garden = Garden::get_instance();
-      text->set_size(value * garden.get_text_scale() * 800 / garden.get_frame().get_dimensions().y);
+      auto mod = garden.get_text_scale() * 600 /
+                 garden.get_frame().get_dimensions().y;
+      text->set_size(value * mod);
+
+      screen_dimensions = garden.get_frame().get_dimensions();
       dimensions_changed = true;
     }
 
@@ -45,6 +49,10 @@ namespace bloom {
     }
 
     glm::vec2 Text::update_dimensions(const vec2 &parent_dimensions) {
+      auto &garden = Garden::get_instance();
+      if (screen_dimensions != garden.get_frame().get_dimensions()) {
+        set_size(size);
+      }
       const float font_descender_hack = 1.1;
       auto &converter = Garden::get_instance().get_converter();
       auto text_dimensions = converter.convert_to_pixels(text->get_dimensions() + font_descender_hack);

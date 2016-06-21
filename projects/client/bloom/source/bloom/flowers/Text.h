@@ -19,6 +19,7 @@ namespace bloom {
         float size;
         bool dimensions_changed = true;
         unique_ptr<typography::Text> text;
+        glm::ivec2 screen_dimensions;
 
 //        Axis_Values absolute_bounds = {
 //          {0, 0},

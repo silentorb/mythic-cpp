@@ -13,5 +13,9 @@ namespace bloom {
       children.push_back(unique_ptr<Flower>(child));
     }
 
+    void Flower::insert(Flower *child, int index) {
+      child->parent = this;
+      children.insert(children.begin() + index, unique_ptr<Flower>(child));
+    }
   }
 }

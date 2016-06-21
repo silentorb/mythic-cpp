@@ -19,8 +19,9 @@ namespace bloom {
         Flower *parent;
 
     public:
-        Flower(Flower *parent);
+        Flower(Flower *parent = nullptr);
         virtual ~Flower() = 0;
+
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) {
           return parent_dimensions;
         }
@@ -46,7 +47,16 @@ namespace bloom {
         };
 
         void add_child(Flower *child);
+        void insert(Flower *child, int index);
 
+        void remove() {
+          for (int i = 0; i < parent->children.size(); ++i) {
+            if (parent->children[i].get() == this) {
+              parent->children.erase(parent->children.begin() + i);
+              break;
+            }
+          }
+        }
     };
 
     inline Flower::~Flower() { }

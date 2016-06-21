@@ -8,6 +8,7 @@ namespace glow {
     bool depth_test = false;
     bool depth_write = false;
     bool scissor_box = false;
+    float line_width = 1;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -64,6 +65,14 @@ namespace glow {
 
     cache::scissor_box = false;
     glDisable(GL_SCISSOR_TEST);
+  }
+
+  void set_line_thickness(float value) {
+    if (cache::line_width == value)
+      return;
+
+    cache::line_width = value;
+    glLineWidth(value);
   }
 
 }

@@ -135,7 +135,7 @@ TEST(Layout_Test, all_stretch) {
 
 TEST(Layout_Test, list) {
   flowers::Box box(nullptr);
-  auto &list = *new flowers::List(&box, flowers::Arrangement::down, 10);
+  auto &list = *new flowers::List(flowers::Arrangement::down, 10, &box);
   auto &first = *new flowers::Box(&list);
   auto &second = *new flowers::Box(&list);
 
@@ -206,3 +206,31 @@ TEST(Layout_Test, padding) {
   EXPECT_EQ(10, box_bounds.position.y);
 }
 
+
+//TEST(Layout_Test, child_to_parent_to_child_resolution) {
+//  flowers::Box box(nullptr);
+//  auto &scaling = *new flowers::Box(&box);
+//  auto &fixed = *new flowers::Box(&scaling);
+//
+//  vec2 root_position(0, 0);
+//  vec2 root_bounds = {200, 200};
+//
+//  scaling.set_height({Measurements:: percent,100});
+//
+//  fixed.set_height(55);
+//  box.set_top(0);
+//
+//  box.update_dimensions(root_bounds);
+//  box.update_position(root_position, root_bounds);
+//
+//  {
+//    auto &bounds = box.get_absolute_bounds();
+//    EXPECT_EQ(55, bounds.dimensions.y);
+//  }
+//
+//  {
+//    auto &bounds = scaling.get_absolute_bounds();
+//    EXPECT_EQ(55, bounds.dimensions.y);
+//  }
+//}
+//

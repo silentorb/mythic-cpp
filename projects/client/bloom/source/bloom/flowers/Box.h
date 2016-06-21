@@ -9,10 +9,6 @@ namespace bloom {
 
     class BLOOM_EXPORT Box : public Parent {
 
-        enum class Fit_To_Content {
-            no,
-            yes
-        };
         Axis_Measurements measurement_bounds = {
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
@@ -23,16 +19,7 @@ namespace bloom {
           {0, 0}
         };
 
-//        Axis_Values relative_bounds = {
-//          {0, 0},
-//          {0, 0}
-//        };
-
         glm::vec2 relative_position;
-
-        template<typename Axis>
-        void fit_to_content(const Axis_Measurement &measurements, Axis_Value &relative_bounds,
-                            const glm::vec2 &parent_dimensions, float content_length);
 
         template<typename Axis>
         float resolve_length(const Axis_Measurement &measurements,
@@ -44,14 +31,8 @@ namespace bloom {
         template<typename Axis>
         float resolve_margins(const glm::vec2 &parent_dimensions);
 
-    protected:
-        template<typename Axis>
-        Fit_To_Content resolve_relative_bounds(const Axis_Measurement &measurements,
-                                               const glm::vec2 &parent_dimensions,
-                                               Axis_Value &relative_bounds);
     public:
-
-        Box(Parent *parent) : Parent(parent) { }
+        Box(Flower *parent) : Parent(parent) { }
 
         virtual ~Box() { }
 
@@ -85,6 +66,23 @@ namespace bloom {
 
         void set_height(const Measurement measurement) {
           measurement_bounds.y.length = measurement;
+        }
+
+        void set_position(const Measurement &left, const Measurement &top) {
+          measurement_bounds.x.near = left;
+          measurement_bounds.y.near = top;
+        }
+
+        void set_dimensions(const Measurement &width, const Measurement &height) {
+          measurement_bounds.x.length = width;
+          measurement_bounds.y.length = height;
+        }
+
+        void set_margins(const Measurement &value) {
+          measurement_bounds.x.near = value;
+          measurement_bounds.y.near = value;
+          measurement_bounds.x.far = value;
+          measurement_bounds.y.far = value;
         }
 
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;

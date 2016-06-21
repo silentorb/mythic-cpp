@@ -94,7 +94,9 @@ namespace drawing {
   void Draw::draw_square(float left, float top, float width, float height, const vec4 &color, bool solid) {
     flat_program->activate();
 
-    glDisable(GL_DEPTH_TEST);
+    glow::set_depth_test(false);
+    glow::set_depth_write(false);
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -119,7 +121,6 @@ namespace drawing {
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 
     solid_mesh->render(solid);
-    glEnable(GL_DEPTH_TEST);
 		glow::check_error("drew_square");
   }
 
