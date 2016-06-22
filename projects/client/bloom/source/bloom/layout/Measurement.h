@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdexcept>
 #include <memory>
+#include "bloom/bloom_export.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ namespace bloom {
 
   class Measurement_Converter;
 
-  class MYTHIC_EXPORT Measurement {
+  class BLOOM_EXPORT Measurement {
       Measurements type;
       float value;
 
@@ -65,7 +66,7 @@ namespace bloom {
       }
   };
 
-//  class MYTHIC_EXPORT Stretch_Measurement : public Measurement {
+//  class BLOOM_EXPORT Stretch_Measurement : public Measurement {
 //  protected:
 //      virtual Measurement *clone() const override {
 //        return new Stretch_Measurement();
@@ -76,7 +77,7 @@ namespace bloom {
 //      Stretch_Measurement() : Measurement(Measurements::stretch) { }
 //  };
 
-//  class MYTHIC_EXPORT Measurement : public Measurement {
+//  class BLOOM_EXPORT Measurement : public Measurement {
 //
 //  protected:
 //      virtual Measurement *clone() const override {
@@ -102,7 +103,7 @@ namespace bloom {
 //      }
 //  };
 
-//  class MYTHIC_EXPORT Complex_Measurement : public Measurement {
+//  class BLOOM_EXPORT Complex_Measurement : public Measurement {
 //      vector<shared_ptr<Measurement>> measurements;
 //
 //  protected:
@@ -137,7 +138,7 @@ namespace bloom {
 //      }
 //  };
 
-  class MYTHIC_EXPORT Vector2 {
+  class BLOOM_EXPORT Vector2 {
       Measurement x;
       Measurement y;
 
@@ -194,7 +195,7 @@ namespace bloom {
       }
   };
 
-  struct MYTHIC_EXPORT Vector4 {
+  struct BLOOM_EXPORT Vector4 {
       Vector2 near;
       Vector2 far;
 

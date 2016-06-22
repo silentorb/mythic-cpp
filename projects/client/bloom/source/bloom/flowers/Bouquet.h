@@ -4,7 +4,7 @@
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Bouquet : public Flower_Old {
+  class BLOOM_EXPORT Bouquet : public Flower_Old {
       Flower_Old *default_focus = nullptr;
 
   public:

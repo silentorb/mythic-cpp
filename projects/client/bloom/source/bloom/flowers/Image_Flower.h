@@ -11,7 +11,7 @@ using namespace std;
 
 namespace bloom {
 
-//  class MYTHIC_EXPORT Image_Flower : public Flower {
+//  class BLOOM_EXPORT Image_Flower : public Flower {
 //      unique_ptr<drawing::Sprite> sprite;
 //
 //  public:

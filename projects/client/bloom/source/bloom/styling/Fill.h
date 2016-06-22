@@ -11,7 +11,7 @@ using namespace glm;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Fill {
+  class BLOOM_EXPORT Fill {
       vec4 color;
 
   public:

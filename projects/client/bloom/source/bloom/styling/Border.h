@@ -11,7 +11,7 @@ using namespace glm;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Border {
+  class BLOOM_EXPORT Border {
       vec4 color;
 
   public:

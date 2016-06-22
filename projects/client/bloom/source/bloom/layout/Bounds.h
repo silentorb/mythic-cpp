@@ -2,12 +2,13 @@
 
 #include "dllexport.h"
 #include <glm/vec2.hpp>
+#include "bloom/bloom_export.h"
 
 using namespace glm;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Bounds {
+  class BLOOM_EXPORT Bounds {
 //      vec2 top_left;
 //      vec2 bottom_right;
 //

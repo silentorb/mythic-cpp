@@ -9,7 +9,7 @@ namespace bloom {
 
   class Text_Flower;
 
-  class MYTHIC_EXPORT Button_Old : public Flower_Old {
+  class BLOOM_EXPORT Button_Old : public Flower_Old {
 
   protected:
       Text_Flower *text;

@@ -17,7 +17,7 @@ enum class Overflow : int {
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Style : public Box_Style {
+  class BLOOM_EXPORT Style : public Box_Style {
       unique_ptr<Border> border;
       unique_ptr<Fill> fill;
 //      shared_ptr<Style> highlighed;

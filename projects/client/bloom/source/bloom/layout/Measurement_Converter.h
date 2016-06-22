@@ -9,7 +9,7 @@ using namespace glm;
 
 namespace bloom {
 
-  class MYTHIC_EXPORT Measurement_Converter {
+  class BLOOM_EXPORT Measurement_Converter {
       vec2 pixel_dimensions;
       vec2 unit_dimensions;
       float scale;
