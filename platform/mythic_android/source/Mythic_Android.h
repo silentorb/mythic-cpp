@@ -10,9 +10,7 @@ using namespace std;
 class Android_Frame;
 
 namespace framing {
-
   class Platform_Frame;
-
 };
 
 namespace shading {
