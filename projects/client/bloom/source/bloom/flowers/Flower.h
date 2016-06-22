@@ -57,6 +57,12 @@ namespace bloom {
             }
           }
         }
+
+        Flower *get_parent() const {
+          return parent;
+        }
+
+        void clear();
     };
 
     inline Flower::~Flower() { }

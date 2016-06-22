@@ -17,5 +17,10 @@ namespace bloom {
       child->parent = this;
       children.insert(children.begin() + index, unique_ptr<Flower>(child));
     }
+
+    void Flower::clear() {
+      children.clear();
+    }
+
   }
 }

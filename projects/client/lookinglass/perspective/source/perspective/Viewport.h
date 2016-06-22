@@ -83,5 +83,9 @@ namespace perspective {
       }
 
       vec2 get_unit_scaling() const;
+
+      const ivec2 &get_position() const {
+        return position;
+      }
   };
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
+#include "Graphic_Options.h"
 #include <vector>
 #include <memory>
 #include <functional>
@@ -47,6 +48,7 @@ namespace lookinglass {
   protected:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<Viewport> base_viewport;
+      Viewport *active_viewport = nullptr;
       unique_ptr<Glass> glass;
       unique_ptr<framing::Platform_Frame> frame;
       bool active;
@@ -56,6 +58,7 @@ namespace lookinglass {
 
       void initialize();
       House(framing::Platform_Frame *frame);
+      Graphic_Options options;
 
   public:
 
@@ -97,5 +100,6 @@ namespace lookinglass {
       }
 
       static House &get_instance();
+
   };
 }

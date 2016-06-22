@@ -33,8 +33,9 @@ namespace lookinglass {
     frame->update_events();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    base_viewport->set_dimensions(frame->get_dimensions());
-    base_viewport->update_device();
+    auto viewport = Viewport::get_active_viewport();
+    viewport->set_dimensions(frame->get_dimensions());
+    viewport->update_device();
 
     for (auto &renderable : renderables) {
       renderable();

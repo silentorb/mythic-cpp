@@ -41,7 +41,7 @@ namespace typography {
       float size = 14;
       Text_Effect &effect;
       int element_count;
-      float line_height = 1.4;
+      float line_height = 2;
       string content;
       vec4 color = vec4(0.9, 0.9, 0.9, 1);
       vec2 block_dimensions;
