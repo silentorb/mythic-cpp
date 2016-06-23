@@ -10,6 +10,10 @@
 
 void input_single_tap(int x, int y);
 
+void input_touch_down(int x, int y);
+void input_touch_move(int x, int y);
+void input_touch_up(int x, int y);
+
 @interface Mythic_ViewController : UIViewController
 
 @end

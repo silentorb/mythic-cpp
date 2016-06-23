@@ -101,5 +101,9 @@ namespace haft {
       void add_gesture(Gesture_Type action, ivec2 position) {
         gestures.push_back({action, position});
       }
+      
+      const vector<unique_ptr<Event>>& get_events() const {
+          return events;
+      }
   };
 }

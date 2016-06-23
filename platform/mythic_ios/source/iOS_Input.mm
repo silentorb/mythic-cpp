@@ -137,16 +137,36 @@ const float gamepad_min_threshold = 0.25f;
   }
 
 extern "C" {
-void input_single_tap(int x, int y) {
-    iOS_Input::instance->single_click(x, y);
-}
+    
+    void input_single_tap(int x, int y) {
+        iOS_Input::instance->single_click(x, y);
+    }
+    
+    void input_touch_down(int x, int y) {
+        iOS_Input::instance->on_gesture(x, y, haft::Gesture_Type::down);
+    }
+    
+    void input_touch_move(int x, int y) {
+        iOS_Input::instance->on_gesture(x, y, haft::Gesture_Type::move);
+    }
+    
+    void input_touch_up(int x, int y) {
+        iOS_Input::instance->on_gesture(x, y, haft::Gesture_Type::up);
+    }
+    
 }
 
 void iOS_Input::single_click(int x, int y) {
     auto &trigger = mouse->get_trigger(0);
     auto action = trigger.get_action();
-    if (action)
+    if (action) {
         next_state->add_event(*action);
-    
+        next_state->add_gesture(Gesture_Type::up, {x, y});
+    }
+    next_state->set_position(ivec2(x, y));
+}
+
+void iOS_Input::on_gesture(int x, int y, haft::Gesture_Type gesture_type) {
+    next_state->add_gesture(gesture_type, {x, y});
     next_state->set_position(ivec2(x, y));
 }

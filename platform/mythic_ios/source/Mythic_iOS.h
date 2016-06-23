@@ -4,12 +4,11 @@
 
 #import <UIKit/UIKit.h>
 #include "mythic/Platform_Factory.h"
-#include "shading/Shader_Loader.h"
+#include <framing/Mutable_Frame.h>
+#include <framing/Platform_Frame.h>
 #include <memory>
 
 using namespace std;
-
-using namespace lookinglass;
 
 namespace clienting {
     class Client;
@@ -24,7 +23,7 @@ namespace framing {
   class Platform_Frame;
 };
 
-class iOS_Frame : public framing::Platform_Frame {
+class iOS_Frame : public framing::Mutable_Frame, public framing::Platform_Frame {
 
 private:
     EAGLContext* context;

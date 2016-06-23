@@ -25,9 +25,11 @@ class iOS_Input : public Input_Source {
     Device *keyboard;
     Device *mouse;
     Device *gamepad;
+    
 public:
     iOS_Input(Input_Configuration &config);
     void single_click(int x, int y);
     static iOS_Input *instance;
     virtual Input_State *get_input_state() override;
+    void on_gesture(int x, int y, haft::Gesture_Type gesture_type);
 };

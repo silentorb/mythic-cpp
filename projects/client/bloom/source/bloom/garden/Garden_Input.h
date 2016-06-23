@@ -19,6 +19,7 @@ namespace bloom {
       glm::vec2 last_position;
       glm::vec2 position;
       bool dragging = false;
+      bool is_down = false;
       void check_dragging(glm::vec2 position);
 
   public:

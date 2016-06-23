@@ -3,7 +3,7 @@
 #include <EGL/egl.h>
 #include "android_native_app_glue.h"
 #include <framing/Mutable_Frame.h>
-#include "framing/Platform_Frame.h"
+#include <framing/Platform_Frame.h>
 
 class Android_Frame : public framing::Mutable_Frame, public framing::Platform_Frame {
 private:

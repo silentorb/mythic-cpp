@@ -3,16 +3,12 @@
 #include "lookinglass/House.h"
 #include "clienting/Client.h"
 #include "mythic/Mythic_Engine.h"
-#include "laboratory/Lab.h"
 #include "lookinglass/glow.h"
 #include "iOS_Input.h"
 #include "audio/Speaker.h"
 #include <shading/shader_processing.h>
-#include "Desktop_File_Loader.h"
 
 #import <AudioUnit/AudioUnit.h>
-
-using namespace laboratory;
 
 const char * get_resource_path() {
     return [[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/"] UTF8String];
@@ -117,7 +113,7 @@ public:
 };
 
 const string iOS_File_Loader(const string &path) {
-    NSString *formatted_path = [[[NSBundle mainBundle] resourcePath]
+    NSString *formatted_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/"]
                                 stringByAppendingString:[NSString stringWithUTF8String:(path).c_str()]];
 //    NSBundle * b =[NSBundle mainBundle];
 //    NSString *resource_path = [[NSBundle mainBundle] pathForResource:@"solid.fragment.glsl"  ofType:nil];
@@ -204,7 +200,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
 
     try {
 
-     engine=unique_ptr<Mythic_Engine>{new Mythic_Engine(*this)};
+        engine=unique_ptr<mythic::Mythic_Engine>{new mythic::Mythic_Engine(*this)};
 
     engine->get_client().load();
 
@@ -230,10 +226,6 @@ framing::Platform_Frame *Mythic_iOS::create_frame(int width, int height) {
 
 haft::Input_Source *Mythic_iOS::create_input_source(haft::Input_Configuration & config) {
     return new iOS_Input(config);
-}
-
-shading::Shader_Loader *Mythic_iOS::create_shader_loader() {
-    return new iOS_Shader_Loader();
 }
 
 audio::Speaker *Mythic_iOS::create_speaker() {
