@@ -5,8 +5,8 @@
 #if _MSC_VER
 #include <glad/glad.h>
 #elif __APPLE__
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
+#include <OpenGLES/ES3/gl.h>
+#include <OpenGLES/ES3/glext.h>
 #elif __ANDROID__
 #include "android-gl.h"
 #else

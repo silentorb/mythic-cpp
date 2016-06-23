@@ -24,6 +24,7 @@ namespace bloom {
 //          std::cout << "down: " << to_string(gesture.position.x) << ", " << to_string(gesture.position.y) << std::endl;
           dragging = false;
           drag_start = gesture.position;
+            is_down = true;
           break;
         }
         case Gesture_Type::move: {
@@ -35,6 +36,7 @@ namespace bloom {
         case Gesture_Type::up: {
 //          std::cout << "up:   " << to_string(gesture.position.x) << ", " << to_string(gesture.position.y) << endl;
           check_dragging(gesture.position);
+            is_down = false;
           if (dragging) {
             dragging = false;
             result.dragging = true;
@@ -51,7 +53,7 @@ namespace bloom {
   }
 
   void Garden_Input::check_dragging(glm::vec2 position) {
-    if (dragging)
+    if (dragging || !is_down)
       return;
 
     float length = glm::distance(drag_start, position);
