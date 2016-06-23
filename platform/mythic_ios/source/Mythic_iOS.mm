@@ -132,62 +132,27 @@ const string iOS_File_Loader(const string &path) {
 
 iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
     :context(context), width(width), height(height) {
-          CGRect screenBounds = [[UIScreen mainScreen] bounds];
-          CGFloat screenScale = [[UIScreen mainScreen] scale];
-//        screenScale = 1;
-          CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screen_scale = [[UIScreen mainScreen] scale];
+    CGSize pixels = CGSizeMake(screenBounds.size.width * screen_scale, screenBounds.size.height * screen_scale);
   set_dimensions(pixels.width, pixels.height);
+}
+
+float iOS_Frame::get_pixel_scale() const {
+  return [[UIScreen mainScreen] scale];
 }
 
 void iOS_Frame::create_window(const char *title, int width, int height) {
 
 }
 
-//void iOS_Frame::create_gl_context() {
-//
-//    glFrontFace(GL_CW);
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//}
-
 void  iOS_Frame::update_events() {
-//    SDL_Event event;
-//    if (SDL_PollEvent(&event)) {
-//        if (event.type == SDL_QUIT) {
-//            std::cout << "Exiting program." << std::endl;
-//            closing = true;
-//            return;
-//        }
-//    }
 }
 
-//int iOS_Frame::get_width() {
-//  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//  CGFloat screenScale = [[UIScreen mainScreen] scale];
-//  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-//    return pixels.width;
-//}
-//
-//int iOS_Frame::get_height() {
-//  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//  CGFloat screenScale = [[UIScreen mainScreen] scale];
-//  CGSize pixels = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-//    return pixels.height;
-//}
 
 void iOS_Frame::flip_buffer() {
-//    SDL_GL_SwapWindow(sdl_window);
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
-
-// void iOS_Frame::set_clear_color(float red, float green, float blue, float alpha) {
-//     glClearColor(red, green, blue, alpha);
-// }
-//
-// void iOS_Frame::clear() {
-//     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-// }
-
 void iOS_Frame::free() {
 
 }

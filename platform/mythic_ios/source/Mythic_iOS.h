@@ -37,6 +37,7 @@ public:
     virtual void flip_buffer();
     virtual void free();
     virtual void initialize_window();
+    virtual float get_pixel_scale() const override;
 };
 
 const string iOS_File_Loader(const string &path);

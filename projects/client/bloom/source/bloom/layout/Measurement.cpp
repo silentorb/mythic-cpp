@@ -7,12 +7,6 @@ namespace bloom {
 
   float Measurement::pixel_scale = 1;
 
-//  Measurement::Measurement(Measurements type) : type(type), value(0) {
-//    static unsigned long counter = 0;
-//    debug_index = counter++;
-//    int k = 0;
-//  }
-
   template<typename Axis>
   float Measurement::resolve(const vec2 &parent_dimensions,
                              const Measurement_Converter &converter) const {
@@ -20,14 +14,7 @@ namespace bloom {
     if (get_type() == Measurements::stretch) {
       return 0;
     }
-//    else if (get_type() == Measurements::complex) {
-//      auto complex_measurement = static_cast<const Complex_Measurement *>(this);
-//      auto result = 0;
-//      for (auto &measurement: complex_measurement->get_measurements()) {
-//        result += measurement->resolve<Axis>(parent_dimensions, converter);
-//      }
-//      return result;
-//    }
+
     else {
 
       auto value = static_cast<const Measurement *>(this)->get_value();
@@ -35,12 +22,6 @@ namespace bloom {
       switch (get_type()) {
         case Measurements::pixel:
           return value * Measurement::pixel_scale * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
-
-//        case Measurements::parent_aligned:
-//          return value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
-
-//        case Measurements::parent_perpendicular:
-//          return value * Axis::get_perpendicular(parent_dimensions) / UNIT_RESOLUTION;
 
         case Measurements::percent:
           return value * Axis::get(parent_dimensions) / 100;

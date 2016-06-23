@@ -13,27 +13,14 @@ namespace bloom {
       if (get_type() == Measurements::stretch) {
         return 0;
       }
-  //    else if (get_type() == Measurements::complex) {
-  //      auto complex_measurement = static_cast<const Complex_Measurement *>(this);
-  //      auto result = 0;
-  //      for (auto &measurement: complex_measurement->get_measurements()) {
-  //        result += measurement->resolve<Axis>(parent_dimensions, converter);
-  //      }
-  //      return result;
-  //    }
+
       else {
 
         auto value = static_cast<const Measurement *>(this)->get_value();
 
         switch (get_type()) {
           case Measurements::pixel:
-            return value * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
-
-  //        case Measurements::parent_aligned:
-  //          return value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
-
-  //        case Measurements::parent_perpendicular:
-  //          return value * Axis::get_perpendicular(parent_dimensions) / UNIT_RESOLUTION;
+            return value * Measurement::pixel_scale * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
 
           case Measurements::percent:
             return value * Axis::get(parent_dimensions) / 100;

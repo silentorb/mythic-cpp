@@ -37,7 +37,7 @@ namespace bloom {
 
   void Text_Flower::set_size(float value) {
     size = value;
-    text->set_size(value * garden.get_text_scale() * 800 / garden.get_frame().get_dimensions().y);
+    text->set_size(value * garden.get_text_scale() * Measurement::pixel_scale * 800 / garden.get_frame().get_dimensions().y);
     dimensions_changed = true;
   }
 

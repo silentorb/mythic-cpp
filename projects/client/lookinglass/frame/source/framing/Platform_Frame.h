@@ -16,5 +16,8 @@ namespace framing {
         return closing;
       }
 
+      virtual float get_pixel_scale() const override {
+        return 1;
+      };
   };
 }

@@ -18,7 +18,7 @@ namespace bloom {
     select_action(new Action(1, "Select")),
     default_style(new Style()),
     converter(draw.get_frame().get_dimensions()) {
-
+    Measurement::pixel_scale = draw.get_frame().get_pixel_scale();
 //    auto simple = Measurement();
 //    default_style->set_padding(simple);
     root = new Flower_Old(*this);

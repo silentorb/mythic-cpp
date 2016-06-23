@@ -34,7 +34,7 @@ namespace bloom {
       auto &garden = Garden::get_instance();
       auto mod = garden.get_text_scale() * 600 /
                  garden.get_frame().get_dimensions().y;
-      text->set_size(value * mod);
+      text->set_size(value * mod * Measurement::pixel_scale);
 
       screen_dimensions = garden.get_frame().get_dimensions();
       dimensions_changed = true;
