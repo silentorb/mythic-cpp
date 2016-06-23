@@ -64,6 +64,8 @@ namespace bloom {
       float get_value() const {
         return value;
       }
+
+      static float pixel_scale;
   };
 
 //  class BLOOM_EXPORT Stretch_Measurement : public Measurement {

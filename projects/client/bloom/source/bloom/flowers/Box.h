@@ -102,7 +102,7 @@ namespace bloom {
     float resolve_measurement(const Measurement &measurement, const glm::vec2 &parent_dimensions) {
       switch (measurement.get_type()) {
         case Measurements::pixel:
-          return measurement.get_value();
+          return measurement.get_value() * Measurement::pixel_scale;
 
         case Measurements::percent:
           return measurement.get_value() * Axis::get(parent_dimensions) / 100;

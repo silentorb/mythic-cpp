@@ -5,6 +5,8 @@ using namespace glm;
 
 namespace bloom {
 
+  float Measurement::pixel_scale = 1;
+
 //  Measurement::Measurement(Measurements type) : type(type), value(0) {
 //    static unsigned long counter = 0;
 //    debug_index = counter++;
@@ -32,7 +34,7 @@ namespace bloom {
 
       switch (get_type()) {
         case Measurements::pixel:
-          return value * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
+          return value * Measurement::pixel_scale * UNIT_RESOLUTION / Axis::get(converter.get_pixel_dimensions());
 
 //        case Measurements::parent_aligned:
 //          return value * Axis::get_aligned(parent_dimensions) / UNIT_RESOLUTION;
