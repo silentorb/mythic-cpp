@@ -4,9 +4,11 @@
 namespace scenery {
 
   void Group::render() {
-    for (auto &element: children) {
-      if (element->is_visible())
-        element->render();
+    if (is_visible()) {
+      for (auto &element: children) {
+        if (element->is_visible())
+          element->render();
+      }
     }
   }
 
@@ -42,24 +44,15 @@ namespace scenery {
     return Element::get_absolute_orientation();
   }
 
-  void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
-    int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Element> const &item) {
-      return item.get() == element.get();
-    }) - children.begin();
-
-    element->set_parent(nullptr);
-    destination.add_child(std::move(children[offset]));
-    children.erase(children.begin() + offset);
-  }
-
   void Group::move_child(Element &element, Parent &destination) {
-    int offset = std::find_if(children.begin(), children.end(), [&](unique_ptr<Element> const &item) {
-      return item.get() == &element;
-    }) - children.begin();
-
-    element.set_parent(nullptr);
-    destination.add_child(std::move(children[offset]));
-    children.erase(children.begin() + offset);
+    for (int i = 0; i < children.size(); ++i) {
+      if (children[i].get() == &element) {
+        element.set_parent(nullptr, false);
+        destination.add_child(std::move(children[i]));
+        children.erase(children.begin() + i);
+        break;
+      }
+    }
   }
 
   void Group::remove_child(Element &element) {

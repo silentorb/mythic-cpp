@@ -17,7 +17,7 @@ namespace breeze {
 
   promising::Promise<void> &Animation_Manager::delay(float duration) {
     auto animation = new Delay(duration);
-    animations.push_back(unique_ptr<Animation_Interface>(animation));
+    animations.push_back(unique_ptr<Animation>(animation));
     return animation->get_promise();
   }
 

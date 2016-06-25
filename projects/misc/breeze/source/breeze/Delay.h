@@ -1,12 +1,12 @@
 #pragma once
 
 #include "dllexport.h"
-#include "Animation.h"
+#include "Timed_Animation.h"
 //#include <iostream>
 
 namespace breeze {
 
-  class MYTHIC_EXPORT Delay : public Animation_Interface {
+  class MYTHIC_EXPORT Delay : public Animation {
       float remainder;
       Empty_Promise &promise;
 

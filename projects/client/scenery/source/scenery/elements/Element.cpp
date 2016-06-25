@@ -29,4 +29,34 @@ namespace scenery {
   }
 
   void Element::update(float delta) { }
+
+  void Element::get_absolute_position_and_orientation(vec3 &out_position, quat &out_orientation) {
+    auto transform = get_transform();
+    out_position = vec3(transform[3]);
+    out_orientation = quat(transform);
+  }
+
+  void Element::move_to_absolute() {
+    get_absolute_position_and_orientation(position, orientation);
+  }
+
+  void Element::set_parent(Parent *new_parent, bool update_others) {
+    if (parent == new_parent)
+      return;
+
+    if (!update_others) {
+      parent = new_parent;
+      return;
+    }
+
+    if (parent && new_parent) {
+      this->parent->move_child(*this, *new_parent);
+    }
+    else if (new_parent) {
+      parent->add_child(*this);
+    }
+    else {
+      remove();
+    }
+  }
 }

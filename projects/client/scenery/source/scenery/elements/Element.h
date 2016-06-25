@@ -42,20 +42,21 @@ namespace scenery {
         this->position = vec3(x, y, z);
       }
 
+      void modify_position(const vec3 &value) {
+        position += value;
+      }
+
       virtual void render();
 
       Parent *get_parent() const {
         return parent;
       }
 
-      void set_parent(Parent *parent, bool update_other = true) {
-        this->parent = parent;
-        if (parent && update_other)
-          parent->add_child(*this);
-      }
+      void set_parent(Parent * new_parent, bool update_others = true);
 
       void remove() {
         parent->remove_child(*this);
+        parent = nullptr;
       }
 
       const quat &get_orientation() const {
@@ -98,5 +99,9 @@ namespace scenery {
       }
 
       virtual void update(float delta);
+
+      void get_absolute_position_and_orientation(vec3 & out_position, quat & out_orientation);
+
+      void move_to_absolute();
   };
 }

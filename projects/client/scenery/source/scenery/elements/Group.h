@@ -23,7 +23,6 @@ namespace scenery {
       virtual mat4 get_transform() override;
       virtual mat4 get_absolute_orientation() override;
 
-      virtual void move_child(unique_ptr<Element> &element, Parent &destination) override;
       virtual void move_child(Element &element, Parent &destination) override;
 
       Element &get_child(int index) const {
