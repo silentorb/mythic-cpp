@@ -18,9 +18,15 @@ namespace perspective {
       float angle = glm::radians(45.0f);
 
   public:
+
+      Camera() { }
+
+      Camera(const vec3 &position, const quat &orientation, float angle) : position(position), orientation(orientation),
+                                                                           angle(angle) { }
+
       virtual mat4 get_view_matrix();
 
-      const vec3 &get_position() const override {
+      vec3 &get_position() override {
         return position;
       }
 
@@ -28,7 +34,7 @@ namespace perspective {
         Camera::position = position;
       }
 
-      const quat &get_orientation() const override {
+      quat &get_orientation() override {
         return orientation;
       }
 
@@ -36,7 +42,7 @@ namespace perspective {
         Camera::orientation = orientation;
       }
 
-      float get_angle() const {
+      float& get_angle() {
         return angle;
       }
 

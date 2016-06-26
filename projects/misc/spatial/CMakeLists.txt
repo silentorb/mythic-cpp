@@ -1,2 +1,3 @@
+create_library(spatial)
 
-set(spatial_DIR ${CMAKE_CURRENT_LIST_DIR} PARENT_SCOPE)
+#set(spatial_DIR ${CMAKE_CURRENT_LIST_DIR} PARENT_SCOPE)

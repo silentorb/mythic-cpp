@@ -1,0 +1,12 @@
+#include "utility.h"
+#include "angle.h"
+
+namespace spatial {
+
+  quat look_at_yaw_pitch(const vec3 &direction) {
+    auto yaw = z_angle(direction.y, direction.x);
+    auto pitch = z_angle(direction.z, direction.y);
+    return quat(vec3(0, 0, yaw));
+  }
+
+}

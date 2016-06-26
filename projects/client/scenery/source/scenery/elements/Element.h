@@ -59,7 +59,7 @@ namespace scenery {
         parent = nullptr;
       }
 
-      const quat &get_orientation() const {
+      quat &get_orientation() {
         return orientation;
       }
 

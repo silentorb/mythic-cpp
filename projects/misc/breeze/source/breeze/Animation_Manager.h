@@ -3,7 +3,7 @@
 #include "dllexport.h"
 #include "Timed_Animation.h"
 #include "Indefinite_Animation.h"
-#include "Incremental_Animation.h"
+#include "3D_Animation.h"
 #include <vector>
 #include <memory>
 #include <promising/Promise.h>
@@ -20,7 +20,7 @@ namespace breeze {
       void update(float delta);
 
       template<typename T>
-      promising::Promise<void> &animate(float duration, T &target, T final_value) {
+      promising::Promise<void> &animate(T &target, T final_value, float duration) {
         auto animation = new Timed_Animation<T>(duration, final_value, target);
         animations.push_back(unique_ptr<Animation>(animation));
         return animation->get_promise();
@@ -32,8 +32,20 @@ namespace breeze {
         return animation->get_promise();
       }
 
-      promising::Promise<void> &animate_position(glm::vec3 &target, glm::vec3 final_value, float speed) {
-        auto animation = new Position_Animation(target, final_value, speed);
+      promising::Promise<void> &animate_position_incremental(glm::vec3 &target, glm::vec3 final_value, float speed) {
+        auto animation = new Position_Animation_Incremental(target, final_value, speed);
+        animations.push_back(unique_ptr<Animation>(animation));
+        return animation->get_promise();
+      }
+
+      promising::Promise<void> &animate_position_over_time(glm::vec3 &target, glm::vec3 final_value, float speed) {
+        auto animation = new Position_Animation_Over_Time(target, final_value, speed);
+        animations.push_back(unique_ptr<Animation>(animation));
+        return animation->get_promise();
+      }
+
+      promising::Promise<void> &slerp(glm::quat &target, glm::quat destination, float speed) {
+        auto animation = new Slerp_Animation(target, destination, speed);
         animations.push_back(unique_ptr<Animation>(animation));
         return animation->get_promise();
       }

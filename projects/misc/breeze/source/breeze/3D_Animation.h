@@ -11,7 +11,7 @@ namespace breeze {
 
   typedef std::function<bool(float)> Animation_Update;
 
-  class Position_Animation : public Animation {
+  class Position_Animation_Incremental : public Animation {
       promising::Empty_Promise &promise;
       glm::vec3 start;
       glm::vec3 destination;
@@ -20,13 +20,13 @@ namespace breeze {
       float total_distance;
 
   public:
-      Position_Animation(glm::vec3 &target, glm::vec3 destination, float speed) :
+      Position_Animation_Incremental(glm::vec3 &target, glm::vec3 destination, float speed) :
         speed(speed), destination(destination), target(target),
         promise(promising::Promise<void>::defer()) {
         total_distance = glm::distance(start, destination);
       }
 
-      virtual ~Position_Animation() override { }
+      virtual ~Position_Animation_Incremental() override { }
 
       virtual bool update(float delta) override {
         auto angle = glm::normalize(destination - target);
@@ -37,6 +37,74 @@ namespace breeze {
           return true;
         }
 
+        return false;
+      }
+
+      promising::Empty_Promise &get_promise() const {
+        return promise;
+      }
+  };
+
+  class Position_Animation_Over_Time : public Animation {
+      promising::Empty_Promise &promise;
+      float counter = 0;
+      glm::vec3 start;
+      glm::vec3 gap;
+      glm::vec3 &target;
+      float speed;
+
+  public:
+      Position_Animation_Over_Time(glm::vec3 &target, glm::vec3 destination, float speed) :
+        start(target),
+        speed(speed), gap(destination - target), target(target),
+        promise(promising::Promise<void>::defer()) {
+      }
+
+      virtual ~Position_Animation_Over_Time() override { }
+
+      virtual bool update(float delta) override {
+        counter += delta * speed;
+        if (counter >= 1) {
+          target = start + gap;
+          promise.resolve();
+          return true;
+        }
+
+        target = start + gap * counter;
+        return false;
+      }
+
+      promising::Empty_Promise &get_promise() const {
+        return promise;
+      }
+  };
+
+  class Slerp_Animation : public Animation {
+      promising::Empty_Promise &promise;
+      glm::quat start;
+      glm::quat destination;
+      glm::quat &target;
+      float speed;
+      float progress = 0;
+
+  public:
+      Slerp_Animation(glm::quat &target, glm::quat destination, float speed) :
+        start(target), speed(speed), destination(destination), target(target),
+        promise(promising::Promise<void>::defer()) {
+
+      }
+
+      virtual ~Slerp_Animation() override { }
+
+      virtual bool update(float delta) override {
+        progress += delta * speed;
+        if (progress >= 1) {
+          target = destination;
+          promise.resolve();
+          return true;
+        }
+
+        target = glm::slerp(start, destination, progress);
         return false;
       }
 
