@@ -7,5 +7,6 @@ using namespace glm;
 
 namespace spatial {
 
-  quat look_at_yaw_pitch(const vec3 &direction);
+  vec3 look_at_yaw_pitch(const vec3 &direction);
+//  quat look_at_yaw_pitch(const vec3 &direction);
 }

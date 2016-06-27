@@ -5,7 +5,7 @@
 namespace perspective {
 
   mat4 Camera::get_view_matrix() {
-    auto forward = orientation * vec3(0, 1, 0);
+    auto forward = orientation * vec3(1, 0, 0);
     auto look_at = position + forward;
     return glm::lookAt(position, look_at, vec3(0, 0, 1));
   }
