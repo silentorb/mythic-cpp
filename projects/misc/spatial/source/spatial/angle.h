@@ -1,5 +1,7 @@
 #pragma once
 
+#include "dllexport.h"
+
 namespace spatial {
-  float z_angle(float y, float x);
+  MYTHIC_EXPORT float z_angle(float y, float x);
 }

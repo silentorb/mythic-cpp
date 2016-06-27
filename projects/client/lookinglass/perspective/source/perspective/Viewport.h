@@ -52,9 +52,8 @@ namespace perspective {
 //          return *camera;
 //        }
 
-      void set_camera(Camera &camera) {
-        this->camera = &camera;
-
+      void set_camera(Camera *camera) {
+        this->camera = camera;
       }
 
       int get_width() const {

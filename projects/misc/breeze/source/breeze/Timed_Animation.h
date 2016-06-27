@@ -4,10 +4,29 @@
 #include "dllexport.h"
 #include "Animation_Delegate.h"
 #include "Animation.h"
+#include "curves.h"
 
 using namespace promising;
 
 namespace breeze {
+
+  class MYTHIC_EXPORT Base_Timed_Animation : public Animation {
+  protected:
+      const float duration;
+      const Curve_Delegate curve;
+      float counter = 0;
+      Empty_Promise &promise;
+
+  public:
+      Base_Timed_Animation(const float duration, const Curve_Delegate &curve) :
+        duration(duration), curve(curve), promise(promising::Promise<void>::defer()) { }
+
+      virtual ~Base_Timed_Animation() { }
+
+      promising::Empty_Promise &get_promise() const {
+        return promise;
+      }
+  };
 
   template<typename T>
   class MYTHIC_EXPORT Timed_Animation : public Animation {

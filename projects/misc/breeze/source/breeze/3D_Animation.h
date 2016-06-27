@@ -45,37 +45,29 @@ namespace breeze {
       }
   };
 
-  class Position_Animation_Over_Time : public Animation {
-      promising::Empty_Promise &promise;
-      float counter = 0;
+  class Position_Animation_Over_Time : public Base_Timed_Animation {
       glm::vec3 start;
       glm::vec3 gap;
       glm::vec3 &target;
-      float speed;
 
   public:
-      Position_Animation_Over_Time(glm::vec3 &target, glm::vec3 destination, float speed) :
-        start(target),
-        speed(speed), gap(destination - target), target(target),
-        promise(promising::Promise<void>::defer()) {
+      Position_Animation_Over_Time(glm::vec3 &target, glm::vec3 destination, float duration, Curve_Delegate curve) :
+        Base_Timed_Animation(duration, curve),
+        start(target), gap(destination - target), target(target) {
       }
 
       virtual ~Position_Animation_Over_Time() override { }
 
       virtual bool update(float delta) override {
-        counter += delta * speed;
+        counter += delta * duration;
         if (counter >= 1) {
           target = start + gap;
           promise.resolve();
           return true;
         }
 
-        target = start + gap * counter;
+        target = start + gap * curve(counter);
         return false;
-      }
-
-      promising::Empty_Promise &get_promise() const {
-        return promise;
       }
   };
 

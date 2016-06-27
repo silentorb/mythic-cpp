@@ -38,8 +38,9 @@ namespace breeze {
         return animation->get_promise();
       }
 
-      promising::Promise<void> &animate_position_over_time(glm::vec3 &target, glm::vec3 final_value, float speed) {
-        auto animation = new Position_Animation_Over_Time(target, final_value, speed);
+      promising::Promise<void> &animate_position_over_time(glm::vec3 &target, glm::vec3 final_value,
+                                                           float speed, Curve_Delegate curve) {
+        auto animation = new Position_Animation_Over_Time(target, final_value, speed, curve);
         animations.push_back(unique_ptr<Animation>(animation));
         return animation->get_promise();
       }
