@@ -37,10 +37,10 @@ namespace sculptor {
     }
 
     Mesh *sphere(int vertical_count, int horizontal_count, float radius, float degrees) {
-      auto points = new vec3[vertical_count];
-      operations::circle_vertices(points, vertical_count, radius, M_PI);
-      operations::transform(points, glm::eulerAngleX((float) M_PI_2), vertical_count);
-      return operations::lathe(points, vertical_count, horizontal_count, degrees);
+      vector<vec3> points(vertical_count);
+      operations::circle_vertices(points.data(), vertical_count, radius, M_PI);
+      operations::transform(points.data(), glm::eulerAngleX((float) M_PI_2), vertical_count);
+      return operations::lathe(points.data(), vertical_count, horizontal_count, degrees);
     }
   }
 }

@@ -23,14 +23,14 @@ namespace lookinglass {
 #else
     auto version = glow::Version();
 #endif
-    Capabilities::initialize(version);
+    capabilities = unique_ptr<glow::Capabilities>(new Capabilities(version));
 
     auto &dimensions = frame->get_dimensions();
 
     auto scene_definition = new Struct_Info(1, "", {
-      new Field_Info("view", Field_Type::matrix),
-      new Field_Info("projection", Field_Type::matrix),
-      new Field_Info("camera_direction", Field_Type::vector3)
+      {"view", Field_Type::matrix},
+      {"projection", Field_Type::matrix},
+      {"camera_direction", Field_Type::vector3}
     });
     viewport_mist = unique_ptr<Mist<Viewport_Data>>(
       through::create_mist<Viewport_Data>(scene_definition));

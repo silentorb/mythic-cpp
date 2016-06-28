@@ -26,7 +26,7 @@ namespace shading {
         return id;
       }
 
-      virtual void free() override;
+      virtual void release() override;
       virtual void load() override;
 
       const string &get_name() const {

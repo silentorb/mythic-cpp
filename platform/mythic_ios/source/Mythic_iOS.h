@@ -35,7 +35,7 @@ public:
     iOS_Frame(EAGLContext* context, int width, int height);
     virtual void update_events();
     virtual void flip_buffer();
-    virtual void free();
+    virtual void release();
     virtual void initialize_window();
     virtual float get_pixel_scale() const override;
 };

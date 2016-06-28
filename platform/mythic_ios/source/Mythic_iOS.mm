@@ -153,7 +153,7 @@ void  iOS_Frame::update_events() {
 void iOS_Frame::flip_buffer() {
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
-void iOS_Frame::free() {
+void iOS_Frame::release() {
 
 }
 

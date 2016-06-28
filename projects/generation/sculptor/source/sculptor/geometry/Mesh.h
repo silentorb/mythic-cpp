@@ -14,6 +14,7 @@ namespace sculptor {
 
     public:
         Mesh();
+        ~Mesh();
         vector<Vertex *> vertices;
         vector<Polygon *> polygons;
         vector<Edge *> edges;

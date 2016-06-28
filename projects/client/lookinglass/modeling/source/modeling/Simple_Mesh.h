@@ -28,6 +28,6 @@ namespace modeling {
       void load(float *data, int vertex_count);
 
       virtual void load() override;
-      virtual void free() override;
+      virtual void release() override;
   };
 }

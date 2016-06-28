@@ -21,7 +21,7 @@ namespace desktop {
 
       virtual void update_events();
       virtual void flip_buffer();
-      virtual void free() override;
+      virtual void release() override;
       virtual void initialize_window() override;
   };
 }

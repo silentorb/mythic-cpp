@@ -19,6 +19,10 @@ namespace typography {
     needs_recalculating = true;
   }
 
+  Text::~Text() {
+
+  }
+
   void Text::set_content(const string &value) {
     content = string_replace(value, "\r\n", "\n");
     appearance_changed = true;
@@ -88,7 +92,7 @@ namespace typography {
         x += letter_space;
       }
 
-      auto character = characters.at(c);
+      auto& character = characters.at(c);
       float character_width = character->size.x;
       x += character_width;
       if (_max_width && x > max_width && last_space_index > 0) {
@@ -161,7 +165,7 @@ namespace typography {
       if (following_visible_character)
         left += 6;
 
-      auto character = characters.at(c);
+      auto &character = characters.at(c);
       float width = character->size.x;
       float height = character->size.y;
       auto x = left;

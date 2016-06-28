@@ -59,7 +59,7 @@ namespace modeling {
 
       Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true, bool has_opacity = false);
 
-      ~Mesh_Data();
+      virtual ~Mesh_Data();
 
       const unsigned int &get_ebo() const {
         return ebo;
@@ -89,7 +89,7 @@ namespace modeling {
 //        return indices.get();
 //      }
 
-      virtual void free() override;
+      virtual void release() override;
       virtual void load() override;
 
       bool supports_lines() const {

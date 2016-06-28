@@ -57,7 +57,7 @@ namespace lookinglass {
 
       shading::Shader_Manager &get_shader_manager() const;
 
-      void free();
+      void release();
       void load();
 
       void add_mesh(modeling::Mesh_Data *data);

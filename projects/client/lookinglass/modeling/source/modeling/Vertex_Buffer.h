@@ -29,7 +29,7 @@ namespace modeling {
       virtual void load() override;
       void load(int vertex_count, float *data);
 
-      virtual void free() override;
+      virtual void release() override;
 
       void activate();
 

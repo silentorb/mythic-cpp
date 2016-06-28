@@ -27,7 +27,7 @@ namespace bloom {
 
   class BLOOM_EXPORT Garden {
       shared_ptr<Style> default_style;
-      Flower_Old *root;
+      unique_ptr<Flower_Old> root;
       unique_ptr<haft::Action> select_action;
       Draw_Interface &draw;
       Measurement_Converter converter;

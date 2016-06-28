@@ -76,9 +76,9 @@ namespace shading {
 //    );
 //  }
 
-  void Shader_Manager::free() {
-    shaders->free();
-    programs->free();
+  void Shader_Manager::release() {
+    shaders->release();
+    programs->release();
   }
 
   void Shader_Manager::load() {

@@ -36,9 +36,9 @@ namespace lookinglass {
     shader_manager->load();
   }
 
-  void Lookinglass_Resources::free() {
-    mesh_manager->free();
-    shader_manager->free();
+  void Lookinglass_Resources::release() {
+    mesh_manager->release();
+    shader_manager->release();
   }
 
   void Lookinglass_Resources::add_texture(texturing::Texture *texture) {

@@ -23,7 +23,7 @@ namespace vineyard {
 
   public:
       Seed(Ground *ground, landscape::Trellis *trellis);
-      ~Seed();
+      virtual ~Seed();
       void load();
       void save();
 //      void save_property(const landscape::Property &property, void *value);

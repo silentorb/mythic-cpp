@@ -10,7 +10,7 @@ namespace modeling {
   }
 
   Vertex_Buffer::~Vertex_Buffer() {
-    free();
+    release();
 
   }
 
@@ -41,7 +41,7 @@ namespace modeling {
     }
   }
 
-  void Vertex_Buffer::free() {
+  void Vertex_Buffer::release() {
     if (!vao)
       return;
 

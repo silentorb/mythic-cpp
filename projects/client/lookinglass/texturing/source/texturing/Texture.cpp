@@ -53,7 +53,7 @@ namespace texturing {
     delete data;
   }
 
-  void Texture::free() {
+  void Texture::release() {
     if (!id)
       return;
 

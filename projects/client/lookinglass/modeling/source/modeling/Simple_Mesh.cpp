@@ -14,7 +14,7 @@ namespace modeling {
   }
 
   Simple_Mesh::~Simple_Mesh() {
-    free();
+    release();
 //    delete data;
   }
 
@@ -49,7 +49,7 @@ namespace modeling {
     glow::check_error("Error storing mesh data.");
   }
 
-  void Simple_Mesh::free() {
+  void Simple_Mesh::release() {
     if (!vao)
       return;
 

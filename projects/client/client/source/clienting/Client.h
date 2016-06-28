@@ -57,7 +57,7 @@ namespace clienting {
         _is_closing = true;
       }
 
-      void free();
+      void release();
       void load();
 
       audio:: Player & get_audio_player()const {

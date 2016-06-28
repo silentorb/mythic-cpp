@@ -9,6 +9,20 @@ namespace sculptor {
 
     }
 
+    Mesh::~Mesh() {
+      for (auto polygon : polygons) {
+        delete polygon;
+      }
+
+      for (auto vertex : vertices) {
+        delete vertex;
+      }
+
+      for (auto edge: edges) {
+        delete edge;
+      }
+    }
+
     Vertex *Mesh::add_vertex(Vertex *vertex) {
       vertices.push_back(vertex);
       vertex->set_mesh(this);
@@ -94,7 +108,7 @@ namespace sculptor {
     }
 
     int Mesh::get_vertex_index(Vertex &vertex) const {
-      return (int)(std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin());
+      return (int) (std::find(vertices.begin(), vertices.end(), &vertex) - vertices.begin());
     }
   }
 }

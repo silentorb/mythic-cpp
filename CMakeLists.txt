@@ -15,6 +15,10 @@ if (NOT MINGW)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif ()
 
+macro(on_create_target)
+  include_directories(${CMAKE_SOURCE_DIR}/projects/misc/commoner/source) # for dllexport
+endmacro()
+
 include(cmake-tools/cmake-tools.cmake)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)

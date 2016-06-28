@@ -67,7 +67,7 @@ namespace shading {
         program_added.push_back(&listener);
       }
 
-      void free();
+      void release();
       void load();
 
       Program &get_program(const string name) const;

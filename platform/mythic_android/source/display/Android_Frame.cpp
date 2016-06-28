@@ -99,7 +99,7 @@ void Android_Frame::load_gl_functions() {
   glBindVertexArray = (PFNGLBINDVERTEXARRAYOESPROC) dlsym(library, "glBindVertexArrayOES");
 }
 
-void Android_Frame::free() {
+void Android_Frame::release() {
   if (display != EGL_NO_DISPLAY) {
     eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
     if (context != EGL_NO_CONTEXT) {

@@ -71,7 +71,7 @@ namespace shading {
     }
   }
 
-  void Program::free() {
+  void Program::release() {
     if (!id)
       return;
 

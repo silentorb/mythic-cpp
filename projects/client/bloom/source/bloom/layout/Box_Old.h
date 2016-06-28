@@ -65,7 +65,7 @@ namespace bloom {
       int debug_id = 0;
 
       Box_Old(const Measurement_Converter &converter);
-      ~Box_Old();
+      virtual ~Box_Old();
 
       const Vector2 &get_position() const {
         return position.near;

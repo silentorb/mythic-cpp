@@ -11,7 +11,7 @@ namespace modeling {
   }
 
   Mesh_Data::~Mesh_Data() {
-    free();
+    release();
   }
 
   int get_polygon_index_count(int point_count) {
@@ -71,8 +71,8 @@ namespace modeling {
     vertex_buffer.load(vertex_count, data.vertices.get());
   }
 
-  void Mesh_Data::free() {
-    vertex_buffer.free();
+  void Mesh_Data::release() {
+    vertex_buffer.release();
 
     if (ebo) {
       glDeleteBuffers(1, &ebo);

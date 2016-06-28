@@ -86,10 +86,10 @@ namespace lookinglass {
     set_active(true);
   }
 
-  void House::free() {
-    viewport_mist->free();
-    resource_manager->free();
-    frame->free();
+  void House::release() {
+    viewport_mist->release();
+    resource_manager->release();
+    frame->release();
     set_active(false);
   }
 

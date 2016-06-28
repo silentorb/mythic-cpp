@@ -1,6 +1,20 @@
 #include "glow.h"
+#include <crtdbg.h>
 
 namespace glow {
+
+  bool initialize_desktop() {
+#if _MSC_VER
+    if (!gladLoadGL()) {
+      return false;
+    }
+#else
+    if (ogl_LoadFunctions() == ogl_LOAD_FAILED) {
+      return false;
+    }
+#endif
+    return true;
+  }
 
   namespace cache {
     bool blend = false;
@@ -12,6 +26,7 @@ namespace glow {
   }
 
   void toggle(GLenum setting, bool value) {
+//		throw runtime_error("temp");
     if (value)
       glEnable(setting);
     else

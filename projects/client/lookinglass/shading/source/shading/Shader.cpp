@@ -14,10 +14,10 @@ namespace shading {
   }
 
   Shader::~Shader() {
-    free();
+    release();
   }
 
-  void Shader::free() {
+  void Shader::release() {
     if (!id)
       return;
 

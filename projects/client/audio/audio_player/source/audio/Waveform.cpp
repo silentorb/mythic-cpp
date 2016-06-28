@@ -11,7 +11,7 @@ namespace audio {
 
   }
 
-  void Waveform::free() {
+  void Waveform::release() {
 
   }
 

@@ -2,6 +2,7 @@
 #include "lookinglass/glow.h"
 #include <fstream>
 #include <resourceful/path.h>
+#include <vector>
 
 #if ANDROID
 #include <vector>
@@ -19,14 +20,10 @@ namespace typography {
   }
 
   Font::~Font() {
-    free();
+    release();
   }
 
-  void Font::free() {
-    for (auto &character: characters) {
-      delete character.second;
-    }
-
+  void Font::release() {
     characters.empty();
   }
 
@@ -63,8 +60,9 @@ namespace typography {
     dimensions = determine_texture_dimensions();
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
-    auto buffer = new unsigned char[dimensions.x * dimensions.y];
-    memset(buffer, 0, dimensions.x * dimensions.y);
+    std::vector<unsigned char> buffer;
+    buffer.resize(dimensions.x * dimensions.y);
+    memset(buffer.data(), 0, dimensions.x * dimensions.y);
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction
 
@@ -88,17 +86,17 @@ namespace typography {
       auto glyph = face->glyph;
       auto bitmap = face->glyph->bitmap;
 
-      characters[(char) c] = new Character(
+      characters[(char) c] = std::unique_ptr<Character>(new Character(
         glm::ivec2(bitmap.width, bitmap.rows),
         glm::ivec2(glyph->bitmap_left, glyph->bitmap_top),
         glyph->advance.x,
         vertical_offset / dimensions.y,
         (float) bitmap.rows / dimensions.y
-      );
+      ));
 
       memory_offset++;
       for (int i = 0; i < bitmap.rows; i++) {
-        memcpy(buffer + memory_offset, bitmap.buffer + i * bitmap.width, bitmap.width);
+        memcpy(buffer.data() + memory_offset, bitmap.buffer + i * bitmap.width, bitmap.width);
         memory_offset += dimensions.x;
       }
       memory_offset--;
@@ -115,7 +113,7 @@ namespace typography {
       GL_TEXTURE_2D, 0, GL_RED,
       dimensions.x,
       dimensions.y,
-      0, GL_RED, GL_UNSIGNED_BYTE, buffer);
+      0, GL_RED, GL_UNSIGNED_BYTE, buffer.data());
 
     glow::check_error("Loading texture.");
   }

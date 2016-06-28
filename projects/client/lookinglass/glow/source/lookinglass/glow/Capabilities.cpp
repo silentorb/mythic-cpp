@@ -4,10 +4,11 @@
 
 namespace glow {
 
-  std::unique_ptr<Capabilities> capabilities;
+  Capabilities *capabilities;
 
   Capabilities::Capabilities(Version version)
     : version(version) {
+    capabilities = this;
 
 #ifdef glMultiDrawArrays
     _multidraw = glMultiDrawArrays != nullptr;
@@ -19,8 +20,8 @@ namespace glow {
     _uniform_layout = version.major > 3;
   }
 
-  void Capabilities::initialize(Version version) {
-    capabilities = unique_ptr<Capabilities>(new Capabilities(version));
+  Capabilities::~Capabilities() {
+    capabilities = nullptr;
   }
 
   Version &Capabilities::get_version() {

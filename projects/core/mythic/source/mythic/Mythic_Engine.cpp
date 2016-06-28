@@ -35,19 +35,17 @@ namespace mythic {
                                                     factory.create_file_loader(),
                                                     factory.create_shader_processor()
     );
-    client = new Client(house, factory.create_speaker());
+    client.reset(new Client(house, factory.create_speaker()));
 
     auto &input_manager = client->get_input_manager();
     auto input_source = factory.create_input_source(input_manager.get_config());
     input_manager.add_input_source(input_source);
 
-    timer = new timing::Quartz();
-    renderer = new Mythic_Renderer();
+    timer.reset(new timing::Quartz());
+    renderer.reset(new Mythic_Renderer());
   }
 
   Mythic_Engine::~Mythic_Engine() {
-    delete timer;
-    delete client;
   }
 
   void Mythic_Engine::add_renderable(lookinglass::Renderable &renderable) {

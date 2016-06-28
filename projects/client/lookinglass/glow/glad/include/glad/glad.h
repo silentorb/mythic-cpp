@@ -2048,7 +2048,7 @@ GLAPI PFNGLGETBOOLEANVPROC glad_glGetBooleanv;
 typedef void (APIENTRYP PFNGLGETDOUBLEVPROC)(GLenum pname, GLdouble* data);
 GLAPI PFNGLGETDOUBLEVPROC glad_glGetDoublev;
 #define glGetDoublev glad_glGetDoublev
-typedef GLenum (APIENTRYP PFNGLGETERRORPROC)();
+typedef GLenum (__stdcall * PFNGLGETERRORPROC)();
 GLAPI PFNGLGETERRORPROC glad_glGetError;
 #define glGetError glad_glGetError
 typedef void (APIENTRYP PFNGLGETFLOATVPROC)(GLenum pname, GLfloat* data);

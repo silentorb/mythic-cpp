@@ -28,7 +28,7 @@ namespace texturing {
       Texture(Texture_Generator_Old *generator);
       Texture(const string filename);
 
-      virtual void free() override;
+      virtual void release() override;
       virtual void load() override;
 
       void activate();

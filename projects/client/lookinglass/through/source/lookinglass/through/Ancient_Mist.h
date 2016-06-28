@@ -44,6 +44,7 @@ namespace lookinglass {
 //        void operator=(Ancient_Mist const &) = delete;
 
     public:
+        virtual ~Ancient_Mist() { }
 
         virtual void initialize(Struct_Info *info) override {
           this->info = unique_ptr<Struct_Info>(info);
@@ -71,7 +72,7 @@ namespace lookinglass {
           }
         }
 
-        virtual void free() override {
+        virtual void release() override {
           maps.clear();
         }
     };

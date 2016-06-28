@@ -21,7 +21,7 @@ namespace bloom {
     Measurement::pixel_scale = draw.get_frame().get_pixel_scale();
 //    auto simple = Measurement();
 //    default_style->set_padding(simple);
-    root = new Flower_Old(*this);
+    root = unique_ptr<Flower_Old>(new Flower_Old(*this));
 
     instance = this;
   }

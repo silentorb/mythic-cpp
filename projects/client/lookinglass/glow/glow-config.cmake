@@ -5,6 +5,7 @@ include_directories(
 
 if (MSVC)
   include_directories(${CMAKE_CURRENT_LIST_DIR}/glad/include)
+#  include_directories(${CMAKE_CURRENT_LIST_DIR}/glloader)
 
 elseif (MINGW)
   include_directories(${CMAKE_CURRENT_LIST_DIR}/glloader)

@@ -3,7 +3,14 @@
 
 namespace bloom {
   namespace flowers {
+		int _k = 0;
 
+		Wrapper::Wrapper(Flower_Old *parent, Flower *flower) : Flower_Old(parent), flower(flower) { 
+			++_k; 
+		}
+		Wrapper::~Wrapper() {
+			--_k;
+		}
 
     void Wrapper::render() {
       Flower_Old::render();

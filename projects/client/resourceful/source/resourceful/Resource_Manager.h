@@ -24,9 +24,9 @@ namespace resourceful {
 //      void free() override;
 //      void load() override;
 
-      void free() {
+      void release() {
         for (auto &resource: resources) {
-          resource->free();
+          resource->release();
         }
       }
 

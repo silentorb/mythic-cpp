@@ -38,9 +38,9 @@ namespace vineyard {
 
         void process() {
           Data_Task task;
-          while (tasks.size()) {
+					unique_lock<mutex>(m);
+					while (tasks.size()) {
             {
-              unique_lock<mutex>(m);
               task = tasks.front();
               tasks.pop();
             }

@@ -3,6 +3,7 @@ create_library(glow)
 
 if (MSVC)
   add_sources(glad/src/glad.c)
+#  add_sources(glloader/gl_core_4_4.c)
 elseif (MINGW)
   add_sources(glloader/gl_core_4_4.c)
 endif ()

@@ -27,8 +27,8 @@ namespace clienting {
     return input_manager->get_current_state();
   }
 
-  void Client::free() {
-    house->free();
+  void Client::release() {
+    house->release();
   }
 
   void Client::load() {

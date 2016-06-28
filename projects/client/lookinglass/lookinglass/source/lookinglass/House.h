@@ -27,6 +27,7 @@ namespace glow {
 }
 namespace framing {
   class Platform_Frame;
+
   class Frame_Info;
 }
 
@@ -59,6 +60,7 @@ namespace lookinglass {
       void initialize();
       House(framing::Platform_Frame *frame);
       Graphic_Options options;
+      unique_ptr<glow::Capabilities> capabilities;
 
   public:
 
@@ -86,7 +88,7 @@ namespace lookinglass {
         active = value;
       }
 
-      void free();
+      void release();
       void load();
 
       Lookinglass_Resources &get_resources() const;

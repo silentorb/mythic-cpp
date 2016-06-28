@@ -25,6 +25,6 @@ public:
 //    virtual int get_width();
 //    virtual int get_height();
     virtual void flip_buffer();
-    void free();
+    void release();
     void initialize_window();
 };

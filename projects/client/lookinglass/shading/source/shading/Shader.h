@@ -19,7 +19,7 @@ namespace shading {
       Shader(Shader_Type type, string code);
       ~Shader();
 
-      virtual void free() override;
+      virtual void release() override;
       virtual void load() override;
 
       const string &get_source_code() const {

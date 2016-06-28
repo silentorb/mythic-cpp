@@ -4,9 +4,10 @@
 #include "resourceful/Resource.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include "glm/glm.hpp"
 #include <string>
 #include <map>
+#include <memory>
+#include <glm/vec2.hpp>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ namespace typography {
         : size(size), bearing(bearing), advance(advance), offset(offset), height(height) { }
   };
 
-  class MYTHIC_EXPORT Font : public resourceful::Resource {
+  class MYTHIC_EXPORT Font : public resourceful::Resource, no_copy {
       FT_Face face;
       string filename;
       const FT_Library &library;
@@ -32,14 +33,14 @@ namespace typography {
       glm::ivec2 dimensions;
       string name;
 
-      std::map<char, Character *> characters;
+      std::map<char, std::unique_ptr<Character>> characters;
       void generate_texture();
       glm::ivec2 determine_texture_dimensions();
 
   public:
       Font(const string name,const string filename, const FT_Library &library);
       ~Font();
-      virtual void free() override;
+      virtual void release() override;
       virtual void load() override;
 
       const string &get_name() const {
@@ -50,7 +51,7 @@ namespace typography {
         return dimensions;
       }
 
-      const map<char, Character *> &get_characters() const {
+      const map<char, std:: unique_ptr<Character>> &get_characters() const {
         return characters;
       }
 

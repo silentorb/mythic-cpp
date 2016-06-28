@@ -29,12 +29,11 @@ namespace mythic {
   class Platform_Factory;
 
   class MYTHIC_EXPORT Mythic_Engine : no_copy {
-  private:
-      timing::Quartz *timer;
-      Client *client;
+      unique_ptr<timing::Quartz> timer;
+      unique_ptr<Client> client;
       std::map<string, unique_ptr<Myth>> myths;
       vector<Myth *> external_myths;
-      Mythic_Renderer *renderer;
+      unique_ptr<Mythic_Renderer> renderer;
       const string storage_path;
 
   public:

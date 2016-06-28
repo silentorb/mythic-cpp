@@ -10,7 +10,7 @@ namespace audio {
 
     class MYTHIC_EXPORT Waveform: resourceful::Resource {
         virtual void load() override;
-        virtual void free() override;
+        virtual void release() override;
         unique_ptr<char> buffer;
         const string filename;
 

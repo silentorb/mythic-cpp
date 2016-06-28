@@ -22,9 +22,9 @@ namespace songbird {
       // Being a shared variable allows this variable to persist in local variables
       //  after the Singer is deleted.
 
-      void set_singer_deleted() {
-        *_is_deleted = true;
-      }
+//      void set_singer_deleted() {
+//        *_is_deleted = true;
+//      }
 
       const shared_ptr<bool> &get_is_deleted() const {
         return _is_deleted;
@@ -37,7 +37,9 @@ namespace songbird {
   public:
       Singer() : _is_deleted(new bool(false)) { }
 
-      virtual ~Singer() { }
+      virtual ~Singer() {
+        *_is_deleted = true;
+      }
 
       template<typename T>
       Listener_Channel<T> &listen(const Song<T> &song, T dance) {

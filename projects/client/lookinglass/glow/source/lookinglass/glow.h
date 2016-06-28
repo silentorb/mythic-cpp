@@ -3,7 +3,10 @@
 #include "dllexport.h"
 
 #if _MSC_VER
+#define APIENTRY __stdcall
 #include <glad/glad.h>
+//#include <gl_core_4_4.h>
+
 #elif __APPLE__
 #include <OpenGLES/ES3/gl.h>
 #include <OpenGLES/ES3/glext.h>
@@ -28,6 +31,8 @@
 #endif
 
 namespace glow {
+
+  GLOW_EXPORT bool initialize_desktop();
 
   GLOW_EXPORT void set_blend(bool value);
   GLOW_EXPORT void set_culling(bool value);

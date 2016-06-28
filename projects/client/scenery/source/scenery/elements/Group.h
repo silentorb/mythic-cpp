@@ -16,6 +16,8 @@ namespace scenery {
   public:
       Group(Parent *parent = nullptr) : Element(parent) { }
 
+      virtual ~Group() { }
+
       virtual void render() override;
       virtual void add_child(unique_ptr<Element> element) override;
       virtual void add_child(Element &element) override;

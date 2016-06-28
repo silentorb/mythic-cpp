@@ -24,6 +24,8 @@ namespace perspective {
       Camera(const vec3 &position, const quat &orientation, float angle) : position(position), orientation(orientation),
                                                                            angle(angle) { }
 
+      virtual ~Camera() { }
+
       virtual mat4 get_view_matrix();
 
       vec3 &get_position() override {

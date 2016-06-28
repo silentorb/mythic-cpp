@@ -40,17 +40,10 @@ namespace desktop {
     }
 
     //    glbinding::Binding::initialize(false);
-#if _MSC_VER
-    if (!gladLoadGL()) {
+    if (!glow::initialize_desktop()) {
       SDL_GL_DeleteContext(gl_context);
       throw std::runtime_error("Could not load OpenGL functions.");
     }
-#else
-    if (ogl_LoadFunctions() == ogl_LOAD_FAILED) {
-      SDL_GL_DeleteContext(gl_context);
-      throw std::runtime_error("Could not load OpenGL functions.");
-    }
-#endif
 //		glFrontFace(GL_CW);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   }
@@ -87,7 +80,7 @@ namespace desktop {
     SDL_GL_SwapWindow(sdl_window);
   }
 
-  void Desktop_Frame::free() {
+  void Desktop_Frame::release() {
 
   }
 

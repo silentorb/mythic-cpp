@@ -73,7 +73,6 @@ namespace bloom {
       void remove_child(Flower_Old *child);
 
       void prune() {
-        set_singer_deleted();
         parent->remove_child(this);
       }
 

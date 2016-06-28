@@ -160,12 +160,12 @@ namespace vineyard {
 
     if (ground->is_async()) {
 //      std::cout << " Delete: " << trellis->get_name() << endl;
-      auto &trellis = get_trellis();
+      auto trellis = &get_trellis();
       auto id = get_id();
       auto local_ground = ground;
-      ground->async([&trellis, id, local_ground](vineyard::database::Database &db) {
+      ground->async([trellis, id, local_ground](vineyard::database::Database &db) {
         database::Connection connection(*local_ground);
-        remove_seed(connection, trellis, id);
+        remove_seed(connection, *trellis, id);
       });
     }
     else {

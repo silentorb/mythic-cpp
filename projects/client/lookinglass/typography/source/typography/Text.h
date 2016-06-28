@@ -55,6 +55,7 @@ namespace typography {
   public:
 
       Text(Font &font, Text_Effect &effect, const string &content);
+      virtual ~Text();
 
       const string &get_content() const {
         return content;
