@@ -22,6 +22,7 @@ namespace vineyard {
   namespace database {
 
     class Connection;
+
     class Asynchronous_Queue;
 
     class VINEYARD_EXPORT Database {
@@ -30,6 +31,7 @@ namespace vineyard {
         const string filename;
         bool logging = true;
         mutex m;
+        mutex static_lock;
         unique_ptr<Asynchronous_Queue> async_queue;
         int connection_count = 0;
 
@@ -41,12 +43,10 @@ namespace vineyard {
           --connection_count;
         }
 
-    public:
-        // These fields can eventually be private.  They are only used in limited cases
-        // as friend fields.
         sqlite3 *static_handle = nullptr;
         map<string, shared_ptr<Statement>> statements;
 
+    public:
         Database(const string &filename, bool async = false);
 
         virtual ~Database();
@@ -63,6 +63,9 @@ namespace vineyard {
         }
 
         void async(database::Data_Task task);
+        void create_static();
+        void release_static();
+
     };
   }
 }

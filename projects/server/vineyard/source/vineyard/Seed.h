@@ -1,6 +1,7 @@
 #pragma once
 
 #include <landscape/Trellis.h>
+#include <mutex>
 #include "vineyard/vineyard_export.h"
 #include "songbird/Singer.h"
 #include "Identity.h"
@@ -13,7 +14,7 @@ namespace vineyard {
       Ground *ground;
       landscape::Trellis *trellis;
       bool initializing = true;
-      shared_ptr<bool> deleted;
+      mutex update_lock;
 
       // id needs to be the last field because functionality expects id to run straight into
       // whatever class the seed is embedded into.

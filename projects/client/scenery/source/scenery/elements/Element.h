@@ -56,7 +56,6 @@ namespace scenery {
 
       void remove() {
         parent->remove_child(*this);
-        parent = nullptr;
       }
 
       quat &get_orientation() {

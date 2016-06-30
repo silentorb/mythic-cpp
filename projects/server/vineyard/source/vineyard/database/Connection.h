@@ -26,8 +26,9 @@ namespace vineyard {
 
         friend class vineyard::Transaction;
 
-        sqlite3 *handle;
+        sqlite3 *handle = nullptr;
         Database &database;
+        bool is_static = false;
 
         static void create_static(Database &database);
         static void release_static(Database &database);

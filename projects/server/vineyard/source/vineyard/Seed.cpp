@@ -19,9 +19,6 @@ namespace vineyard {
   }
 
   Seed::~Seed() {
-    if (deleted.get())
-      *deleted = true;
-
 //    for (auto &property : trellis.get_properties()) {
 //      if (property.get_type() == Types::string) {
 //        string *field = (string *) get_data() + property.get_offset();
@@ -45,26 +42,7 @@ namespace vineyard {
   }
 
   void Seed::initialize_field(void *pointer, const Property &property) {
-//    switch (property.get_type()) {
-//
-//      case Types::string: {
-//        auto temp = (string **) pointer;
-//        *temp = new string();
-//        break;
-//      }
-//
-//      case Types::integer:
-//        *(int *) pointer = 0;
-//        break;
-//
-//      case Types::longer:
-//      case Types::reference:
-//        *(vineyard::Identity *) pointer = 0;
-//        break;
-//
-////      default:
-////        throw runtime_error("Not implemented.");
-//    }
+
   }
 
   void Seed::load() {
@@ -99,16 +77,11 @@ namespace vineyard {
       if (id)
         throw runtime_error("Seed should never need to be fully saved twice.");
 
-      if (!deleted.get())
-        deleted = make_shared<bool>(false);
-
-      auto local_deleted = deleted;
+      unique_lock<mutex>(update_lock);
 
       auto local_trellis = trellis;
-      ground->async([this, local_trellis, local_deleted](vineyard::database::Database &db) {
-        if (*local_deleted)
-          return;
-
+      ground->async([this, local_trellis](vineyard::database::Database &db) {
+        unique_lock<mutex>(update_lock);
         if (id)
           throw runtime_error("Seed should never need to be fully saved twice.");
 //        std::cout << " Run: " << trellis->get_name() << endl;
@@ -128,15 +101,10 @@ namespace vineyard {
 
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
-        if (!deleted.get())
-            deleted = make_shared<bool>(false);
-        
-        auto local_deleted = deleted;
-        
-      ground->async([this, &property, local_deleted](vineyard::database::Database &db) {
-          if (*local_deleted)
-              return;
-          
+      unique_lock<mutex>(update_lock);
+      ground->async([this, &property](vineyard::database::Database &db) {
+        unique_lock<mutex>(update_lock);
+
 //        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
         update_property(ground->get_database(), *this, property, get_pointer(property));
       });
@@ -158,12 +126,15 @@ namespace vineyard {
     if (!ground->is_writing_enabled())
       return;
 
+    unique_lock<mutex>(update_lock);
+
     if (ground->is_async()) {
 //      std::cout << " Delete: " << trellis->get_name() << endl;
       auto trellis = &get_trellis();
       auto id = get_id();
       auto local_ground = ground;
       ground->async([trellis, id, local_ground](vineyard::database::Database &db) {
+        unique_lock<mutex>(update_lock);
         database::Connection connection(*local_ground);
         remove_seed(connection, *trellis, id);
       });

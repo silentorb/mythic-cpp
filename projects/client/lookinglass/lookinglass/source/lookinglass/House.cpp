@@ -23,8 +23,7 @@ namespace lookinglass {
     instance = this;
   }
 
-  House::~House() {
-  }
+  House::~House() { }
 
   void House::update() {
     if (!active)

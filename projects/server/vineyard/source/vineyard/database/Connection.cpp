@@ -17,11 +17,14 @@ namespace vineyard {
     Connection::Connection(Database *database) :
       database(*database) {
       database->increment_connections();
-      if (database->static_handle)
+      if (database->static_handle) {
+        is_static = true;
         handle = database->static_handle;
-      else
+      }
+      else {
         check(sqlite3_open(database->get_filename().c_str(), &handle), "opening database file");
-
+      }
+//      std::cout << "  this: " << (void *) this << " handle: " << (void *) handle << std::endl;
     }
 
     Connection::Connection(std::unique_ptr<Database> &database) : Connection(database.get()) { }
@@ -31,7 +34,8 @@ namespace vineyard {
     Connection::Connection(Ground &ground) : Connection(ground.get_database()) { }
 
     Connection::~Connection() {
-      if (handle != database.static_handle) {
+      if (!is_static) {
+//        std::cout << "- this: " << (void *) this << " handle: " << (void *) handle << std::endl;
         database.statements.clear();
         sqlite3_close(handle);
       }
@@ -68,23 +72,11 @@ namespace vineyard {
     }
 
     void Connection::create_static(Database &database) {
-      if (database.static_handle)
-        throw runtime_error("Static candle already created.");
-
-      auto operation_result = sqlite3_open(database.get_filename().c_str(), &database.static_handle);
-      if (operation_result != SQLITE_OK) {
-        auto message =
-          "Error opening database file: " + to_string(operation_result) + " " + sqlite3_errmsg(database.static_handle);
-        throw runtime_error(message);
-      }
+      database.create_static();
     }
 
     void Connection::release_static(Database &database) {
-      if (database.static_handle) {
-        sqlite3_close(database.static_handle);
-        database.static_handle = nullptr;
-        database.statements.clear();
-      }
+      database.release_static();
     }
 
     void Connection::add_statement(const string &key, shared_ptr<Statement> &statement) {

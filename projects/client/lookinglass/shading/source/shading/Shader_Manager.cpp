@@ -18,7 +18,10 @@ namespace shading {
 
   }
 
-  Shader_Manager::~Shader_Manager() { }
+  Shader_Manager::~Shader_Manager() {
+    // So children of this object do not unlisten to this after this is deleted. (Complications of destructor order).
+    program_added.clear();
+  }
 
 //  Code_Processor *Shader_Manager::create_processor() {
 //    if (glow::Capabilities::uniform_layout())
