@@ -36,6 +36,8 @@ namespace scenery {
 
       virtual void update(float delta) override;
 
-
+       vector<unique_ptr<Element>> &get_children()  {
+        return children;
+      }
   };
 }

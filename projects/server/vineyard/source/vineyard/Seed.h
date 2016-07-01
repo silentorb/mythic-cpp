@@ -14,6 +14,7 @@ namespace vineyard {
       Ground *ground;
       landscape::Trellis *trellis;
       bool initializing = true;
+      bool is_deleted = false;
       mutex update_lock;
 
       // id needs to be the last field because functionality expects id to run straight into
@@ -23,6 +24,7 @@ namespace vineyard {
       void initialize_field(void *pointer, const landscape::Property &property);
 
   public:
+      Seed(int id);
       Seed(Ground *ground, landscape::Trellis *trellis);
       virtual ~Seed();
       void load();

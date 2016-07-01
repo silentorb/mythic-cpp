@@ -18,6 +18,11 @@ namespace vineyard {
 //    }
   }
 
+  Seed::Seed(int id) :
+    id(id), ground(nullptr) {
+
+  }
+
   Seed::~Seed() {
 //    for (auto &property : trellis.get_properties()) {
 //      if (property.get_type() == Types::string) {
@@ -26,7 +31,8 @@ namespace vineyard {
 //      }
 //    }
 
-    remove();
+    if (ground)
+      remove();
   }
 
   void Seed::finalize() {
@@ -68,6 +74,14 @@ namespace vineyard {
 //      }
 //  };
 
+  void *Seed::get_pointer(const Property &property) {
+    return ((char *) this) + property.get_offset();
+  }
+
+  void *Seed::get_pointer(char *data, const Property &property) {
+    return data + property.get_offset();
+  }
+
   void Seed::save() {
     if (!ground->is_writing_enabled())
       return;
@@ -77,11 +91,16 @@ namespace vineyard {
       if (id)
         throw runtime_error("Seed should never need to be fully saved twice.");
 
-      unique_lock<mutex>(update_lock);
+//      unique_lock<mutex>(update_lock);
+      if (is_deleted)
+        return;
 
       auto local_trellis = trellis;
       ground->async([this, local_trellis](vineyard::database::Database &db) {
-        unique_lock<mutex>(update_lock);
+//        unique_lock<mutex>(update_lock);
+        if (is_deleted)
+          return;
+
         if (id)
           throw runtime_error("Seed should never need to be fully saved twice.");
 //        std::cout << " Run: " << trellis->get_name() << endl;
@@ -102,8 +121,13 @@ namespace vineyard {
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
       unique_lock<mutex>(update_lock);
+      if (is_deleted)
+        return;
+
       ground->async([this, &property](vineyard::database::Database &db) {
         unique_lock<mutex>(update_lock);
+        if (is_deleted)
+          return;
 
 //        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
         update_property(ground->get_database(), *this, property, get_pointer(property));
@@ -114,19 +138,12 @@ namespace vineyard {
     }
   }
 
-  void *Seed::get_pointer(const Property &property) {
-    return ((char *) this) + property.get_offset();
-  }
-
-  void *Seed::get_pointer(char *data, const Property &property) {
-    return data + property.get_offset();
-  }
-
   void Seed::remove() {
     if (!ground->is_writing_enabled())
       return;
 
     unique_lock<mutex>(update_lock);
+    is_deleted = true;
 
     if (ground->is_async()) {
 //      std::cout << " Delete: " << trellis->get_name() << endl;
@@ -134,6 +151,8 @@ namespace vineyard {
       auto id = get_id();
       auto local_ground = ground;
       ground->async([trellis, id, local_ground](vineyard::database::Database &db) {
+        // Not sure a mutex is needed here but it might be and helps future proof
+        // later code changes that could make it more needed.
         unique_lock<mutex>(update_lock);
         database::Connection connection(*local_ground);
         remove_seed(connection, *trellis, id);

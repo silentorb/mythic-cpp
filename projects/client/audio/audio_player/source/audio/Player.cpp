@@ -25,7 +25,8 @@ namespace audio {
 
   void Player::speaker_update_buffer(float *data, int data_length) {
 		unique_lock<mutex>(m);
-		source(data, data_length);
+    if (source)
+		  source(data, data_length);
 
   }
 }

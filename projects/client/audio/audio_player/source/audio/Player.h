@@ -23,7 +23,7 @@ namespace audio {
       Device_Settings device_settings;
       Signal_Source source = nullptr;
       void speaker_update_buffer(float *data, int length);
-			mutex m;
+      mutex m;
 
   public:
 
@@ -34,6 +34,10 @@ namespace audio {
 
       void set_source(Signal_Source source) {
         this->source = source;
+      }
+
+      void delete_source() {
+        source = nullptr;
       }
 
       const Device_Settings &get_device_settings() const {
