@@ -1,5 +1,6 @@
 #include <vineyard/database/Connection.h>
 #include <iostream>
+#include <thread>
 #include "Seed.h"
 #include "Ground.h"
 #include "database/Update.h"
@@ -33,8 +34,18 @@ namespace vineyard {
 //      }
 //    }
 
-    if (ground)
+    if (ground) {
+      int step = 0;
+      while (!id) {
+#if _DEBUG
+        if (step == 200) {
+          throw runtime_error("Deleting unsaved seed.");
+        }
+#endif
+        this_thread::sleep_for(std::chrono::milliseconds(10));
+      }
       remove();
+    }
   }
 
   void Seed::finalize() {
@@ -65,6 +76,25 @@ namespace vineyard {
     return data + property.get_offset();
   }
 
+//  struct Seed_Update {
+//      const Trellis *trellis;
+//      Identity id;
+//      vector<char *> data;
+//
+//      Seed_Update(Seed &seed) :
+//        trellis(&seed.get_trellis()),
+//        id(seed.get_id()) {
+//        auto &last = trellis->get_properties().back();
+//        auto byte_size = last.get_offset() + last.get_info().size - sizeof(Seed);
+//        data.reserve(byte_size);
+//        memcpy(data.data(), (&seed) + 1, byte_size);
+//      }
+//
+//      void *get_pointer(const Property &property) {
+//        return data[property.get_offset() - 2];
+//      }
+//  };
+
   void Seed::save() {
     if (!ground->is_writing_enabled())
       return;
@@ -77,8 +107,8 @@ namespace vineyard {
       if (*is_deleted)
         return;
 
-			auto local_is_deleted = is_deleted;
-			auto local_trellis = trellis;
+      auto local_is_deleted = is_deleted;
+      auto local_trellis = trellis;
       ground->async([this, local_trellis, local_is_deleted](vineyard::database::Database &db) {
 //        unique_lock<mutex>(update_lock);
         if (*local_is_deleted)
@@ -103,17 +133,12 @@ namespace vineyard {
 
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
-      if (*is_deleted)
-        return;
-
-      auto local_is_deleted = is_deleted;
-      ground->async([this, &property, local_is_deleted](vineyard::database::Database &db) {
-        unique_lock<mutex>(update_lock);
-        if (*local_is_deleted)
-          return;
-
-//        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
-        update_property(ground->get_database(), *this, property, get_pointer(property));
+      auto value = database::get_sql_value(property, get_pointer(property));
+      auto local_id = get_id();
+      auto &db = ground->get_database();
+			Assert(property.get_trellis().get_name().size() > 0);
+      ground->async([&db, local_id, &property, value](vineyard::database::Database &db) {
+        update_property(db, local_id, property, value);
       });
     }
     else {

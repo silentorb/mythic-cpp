@@ -15,6 +15,7 @@ namespace vineyard {
 
     const string get_sql_value(const Property &property, void *value);
     void update_property(Database &db, Seed &seed, const Property &property, void *value);
+    void update_property(Database &db, Identity id, const Property &property, const string & sql_value);
     void update_seed(Connection &connection, Seed &seed);
     Identity update_seed(Connection &connection, Trellis &trellis, int id, char *data);
     void update_lists(Connection &connection, Seed &seed);

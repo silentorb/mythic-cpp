@@ -110,6 +110,16 @@ namespace vineyard {
       connection.execute(sql);
     }
 
+    void update_property(Database &db, Identity id, const Property &property, const string &sql_value) {
+      string sql = "UPDATE " + property.get_trellis().get_name()
+                   + " SET " + property.get_name() + " = " + sql_value
+                   + "\n WHERE id = " + to_string(id)
+                   + ";";
+
+      Connection connection(db);
+      connection.execute(sql);
+    }
+
     Statement *get_update_seed_statement(const Trellis &trellis, Connection &connection, bool with_id) {
       auto key = with_id
                  ? "update.id." + trellis.get_name()

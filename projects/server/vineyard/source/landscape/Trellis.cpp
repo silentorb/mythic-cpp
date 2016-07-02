@@ -8,7 +8,9 @@ namespace landscape {
     name(name), seedery(seedery) {
 
     properties.push_back(Property("id", Types::longer));
-    int i = 0;
+		properties[0].set_trellis(*this);
+
+    int i = 1;
     for (auto &property : initializer) {
       properties.push_back(property);
       properties[i++].set_trellis(*this);

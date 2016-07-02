@@ -83,7 +83,7 @@ namespace songbird {
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
             [local_is_deleted, &song, a](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
-              if (channel && channel->id == static_cast<const void *>(&song)) {
+              if (has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
                 auto particular_listener = static_cast<Channel<T> *>(channel);
                 auto &result = particular_listener->dance(a);
                 if (*local_is_deleted)
@@ -102,7 +102,7 @@ namespace songbird {
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
             [local_is_deleted, &song, a, b](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
-              if (channel && channel->id == static_cast<const void *>(&song)) {
+              if (has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
                 auto particular_listener = static_cast<Channel<T> *>(channel);
                 auto &result = particular_listener->dance(a, b);
                 if (*local_is_deleted)
@@ -121,7 +121,7 @@ namespace songbird {
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
             [local_is_deleted, &song, a, b, c](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
-              if (channel->id == static_cast<const void *>(&song)) {
+              if (has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
                 auto particular_listener = static_cast<Channel<T> *>(channel);
                 auto &result = particular_listener->dance(a, b, c);
                 if (*local_is_deleted)
@@ -138,7 +138,7 @@ namespace songbird {
       void sing(const Song<T> &song) {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         for (auto &channel: channels) {
-          if (channel && channel->id == static_cast<const void *>(&song)) {
+          if has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
             auto particular_listener = static_cast<Channel<T> *>(channel.get());
             particular_listener->dance();
             if (*local_is_deleted)
@@ -156,6 +156,18 @@ namespace songbird {
 
         return false;
       };
+
+			bool has_channel(void *pointer) {
+				if (!pointer)
+					return false;
+
+				for (auto &channel : channels) {
+					if (channel.get() == pointer)
+						return true;
+				}
+
+				return false;
+			};
 
       void remove(Channel_Interface &channel) {
         for (int i = 0; i < channels.size(); ++i) {
