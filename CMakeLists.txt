@@ -17,6 +17,9 @@ endif ()
 
 macro(on_create_target)
   include_directories(${CMAKE_SOURCE_DIR}/projects/misc/commoner/source) # for dllexport
+  if (COMMAND on_create_target_local)
+    on_create_target_local()
+  endif ()
 endmacro()
 
 include(cmake-tools/cmake-tools.cmake)

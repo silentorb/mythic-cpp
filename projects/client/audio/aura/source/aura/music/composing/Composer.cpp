@@ -4,8 +4,8 @@
 
 namespace aura {
 
-  Composer::Composer() :
-    dice(new randomly::Dice()) {
+  Composer::Composer(shared_ptr<randomly::Dice> dice) :
+    dice(dice) {
   }
 
   void Composer::add_chord_structure(Chord_Structure *structure) {

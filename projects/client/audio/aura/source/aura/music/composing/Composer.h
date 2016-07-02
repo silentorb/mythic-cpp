@@ -31,7 +31,7 @@ namespace aura {
       int max_clips = 6;
 
   public:
-      Composer();
+      Composer(shared_ptr<randomly::Dice> dice);
 
       void add_chord_structure(Chord_Structure *structure);
       void add_chord_structures(initializer_list<Chord_Structure *> structures);

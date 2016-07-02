@@ -35,15 +35,15 @@ namespace vineyard {
 //    }
 
     if (ground) {
-      int step = 0;
-      while (!id) {
-#if _DEBUG
-        if (step == 200) {
-          throw runtime_error("Deleting unsaved seed.");
-        }
-#endif
-        this_thread::sleep_for(std::chrono::milliseconds(10));
-      }
+//      int step = 0;
+//      while (!id) {
+//#if _DEBUG
+//        if (++step == 200) {
+//          throw runtime_error("Deleting unsaved seed.");
+//        }
+//#endif
+//        this_thread::sleep_for(std::chrono::milliseconds(10));
+//      }
       remove();
     }
   }
