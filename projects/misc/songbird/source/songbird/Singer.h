@@ -4,7 +4,7 @@
 #include "Song.h"
 #include <functional>
 #include <vector>
-#include "Listener_Channel.h"
+#include "Channel.h"
 #include <memory>
 #include "promising/Promise.h"
 
@@ -17,15 +17,18 @@ namespace songbird {
   class MYTHIC_EXPORT Singer {
       vector<unique_ptr<Channel_Interface>> channels;
       shared_ptr<bool> _is_deleted;
+      int channel_count = 0;
+
+      inline int get_available_listener_index() {
+        for (int i = 0; i < channels.size(); ++i) {
+          if (channels[i].get() == nullptr)
+            return i;
+        }
+
+        throw runtime_error("No empty slot.  Something got out of sync.");
+      }
 
   protected:
-      // Being a shared variable allows this variable to persist in local variables
-      //  after the Singer is deleted.
-
-//      void set_singer_deleted() {
-//        *_is_deleted = true;
-//      }
-
       const shared_ptr<bool> &get_is_deleted() const {
         return _is_deleted;
       }
@@ -42,22 +45,33 @@ namespace songbird {
       }
 
       template<typename T>
-      Listener_Channel<T> &listen(const Song<T> &song, T dance) {
-        auto channel = new Listener_Channel<T>;
+      Channel<T> &listen(const Song<T> &song, T dance) {
+        auto channel = new Channel<T>;
         channel->id = static_cast<const void *>(&song);
         channel->dance = dance;
-        channels.push_back(unique_ptr<Channel_Interface>(channel));
+        if (channel_count == channels.size()) {
+          channels.push_back(unique_ptr<Channel_Interface>(channel));
+        }
+        else {
+          int index = get_available_listener_index();
+          channels[index] = unique_ptr<Channel_Interface>(channel);
+        }
+        ++channel_count;
         return *channel;
       }
 
       template<typename T, typename A>
       void sing(const Song<T> &song, A a) {
         shared_ptr<bool> local_is_deleted = _is_deleted;
-        for (auto &channel: channels) {
+        for (int i = channels.size() - 1; i >= 0; --i) {
+          if (channels[i].get() == nullptr)
+            continue;
+
+          auto &channel = channels[i];
           if (channel->id == static_cast<const void *>(&song)) {
-            auto particular_listener = static_cast<Listener_Channel<T> *>(channel.get());
+            auto particular_listener = static_cast<Channel<T> *>(channel.get());
             particular_listener->dance(a);
-            if (local_is_deleted)
+            if (*local_is_deleted)
               return;
           }
         }
@@ -68,20 +82,18 @@ namespace songbird {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
-            [&, a](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
-            if (channel->id == static_cast<const void *>(&song)) {
-              auto particular_listener = static_cast<Listener_Channel<T> *>(channel);
-              auto &result = particular_listener->dance(a);
-              if (local_is_deleted)
-                cancel = true;
-//              return result;
-//                throw new runtime_error("Not implemented. (Not sure how...)");
+            [local_is_deleted, &song, a](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
+              if (channel && channel->id == static_cast<const void *>(&song)) {
+                auto particular_listener = static_cast<Channel<T> *>(channel);
+                auto &result = particular_listener->dance(a);
+                if (*local_is_deleted)
+                  cancel = true;
 
-              return result;
-            }
+                return result;
+              }
 //
-            return promising::Promise<R>::resolved();
-          }));
+              return promising::Promise<R>::resolved();
+            }));
       }
 
       template<typename R, typename A, typename B, typename T>
@@ -89,20 +101,18 @@ namespace songbird {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
-            [&, a, b](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
-            if (channel->id == static_cast<const void *>(&song)) {
-              auto particular_listener = static_cast<Listener_Channel<T> *>(channel);
-              auto &result = particular_listener->dance(a, b);
-              if (local_is_deleted)
-                cancel = true;
-//              return result;
-//                throw new runtime_error("Not implemented. (Not sure how...)");
+            [local_is_deleted, &song, a, b](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
+              if (channel && channel->id == static_cast<const void *>(&song)) {
+                auto particular_listener = static_cast<Channel<T> *>(channel);
+                auto &result = particular_listener->dance(a, b);
+                if (*local_is_deleted)
+                  cancel = true;
 
-              return result;
-            }
+                return result;
+              }
 //
-            return promising::Promise<R>::resolved();
-          }));
+              return promising::Promise<R>::resolved();
+            }));
       }
 
       template<typename R, typename A, typename B, typename C, typename T>
@@ -110,14 +120,12 @@ namespace songbird {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
-            [&, a, b, c](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
+            [local_is_deleted, &song, a, b, c](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
               if (channel->id == static_cast<const void *>(&song)) {
-                auto particular_listener = static_cast<Listener_Channel<T> *>(channel);
+                auto particular_listener = static_cast<Channel<T> *>(channel);
                 auto &result = particular_listener->dance(a, b, c);
-                if (local_is_deleted)
+                if (*local_is_deleted)
                   cancel = true;
-//              return result;
-//                throw new runtime_error("Not implemented. (Not sure how...)");
 
                 return result;
               }
@@ -130,10 +138,10 @@ namespace songbird {
       void sing(const Song<T> &song) {
         shared_ptr<bool> local_is_deleted = _is_deleted;
         for (auto &channel: channels) {
-          if (channel->id == static_cast<const void *>(&song)) {
-            auto particular_listener = static_cast<Listener_Channel<T> *>(channel.get());
+          if (channel && channel->id == static_cast<const void *>(&song)) {
+            auto particular_listener = static_cast<Channel<T> *>(channel.get());
             particular_listener->dance();
-            if (local_is_deleted)
+            if (*local_is_deleted)
               return;
           }
         }
@@ -152,7 +160,8 @@ namespace songbird {
       void remove(Channel_Interface &channel) {
         for (int i = 0; i < channels.size(); ++i) {
           if (channels[i].get() == &channel) {
-            channels.erase(channels.begin() + i);
+            channels[i].reset();
+            break;
           }
         }
       }

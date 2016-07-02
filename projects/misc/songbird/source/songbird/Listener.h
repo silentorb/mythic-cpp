@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "Listener_Channel.h"
+#include "Channel.h"
 #include "Singer.h"
 #include <vector>
 
@@ -26,10 +26,8 @@ namespace songbird {
       }
 
       virtual ~Listener() {
-        //for (auto connection:connections) {
 				for (int i = connections.size() - 1; i >= 0; --i) {
 					connections[i].singer->remove(*connections[i].channel);
-          //connection.singer->remove(*connection.channel);
         }
       }
 

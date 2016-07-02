@@ -31,7 +31,7 @@ namespace vineyard {
 					state = State::active;
           while (state == State::active) {
             process();
-            this_thread::sleep_for(std::chrono::milliseconds(10));
+            this_thread::sleep_for(std::chrono::milliseconds(20));
           }
 					state = State::closed;
 				}

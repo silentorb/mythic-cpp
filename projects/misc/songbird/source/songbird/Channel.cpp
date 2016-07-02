@@ -1,4 +1,4 @@
-#include "Listener_Channel.h"
+#include "Channel.h"
 #include "Listener.h"
 
 namespace songbird {

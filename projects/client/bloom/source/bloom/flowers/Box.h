@@ -32,7 +32,7 @@ namespace bloom {
         float resolve_margins(const glm::vec2 &parent_dimensions);
 
     public:
-        Box(Flower *parent) : Parent(parent) { }
+        Box(Flower *parent = nullptr) : Parent(parent) { }
 
         virtual ~Box() { }
 

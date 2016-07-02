@@ -19,12 +19,12 @@ namespace songbird {
   };
 
   template<typename T>
-  struct MYTHIC_EXPORT Listener_Channel : public Channel_Interface {
+  struct MYTHIC_EXPORT Channel : public Channel_Interface {
       T dance;
 
-      Listener_Channel(Listener_Channel<T> &&listener) : Channel_Interface(listener) { }
-      Listener_Channel() { }
+      Channel(Channel<T> &&listener) : Channel_Interface(listener) { }
+      Channel() { }
 
-      virtual ~Listener_Channel() override { }
+      virtual ~Channel() override { }
   };
 }

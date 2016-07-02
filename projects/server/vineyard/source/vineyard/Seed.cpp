@@ -9,7 +9,7 @@ using namespace landscape;
 namespace vineyard {
 
   Seed::Seed(Ground *ground, Trellis *trellis) :
-    ground(ground), trellis(trellis) {
+    ground(ground), trellis(trellis), is_deleted(new bool(false)) {
 //    auto buffer = new char[trellis.get_block_size()];
 //    data = unique_ptr<char>(buffer);
 
@@ -19,11 +19,13 @@ namespace vineyard {
   }
 
   Seed::Seed(int id) :
-    id(id), ground(nullptr) {
+    id(id), is_deleted(new bool(false)) {
 
   }
 
   Seed::~Seed() {
+    *is_deleted = true;
+
 //    for (auto &property : trellis.get_properties()) {
 //      if (property.get_type() == Types::string) {
 //        string *field = (string *) get_data() + property.get_offset();
@@ -55,25 +57,6 @@ namespace vineyard {
 
   }
 
-//  struct Seed_Update {
-//      const Trellis *trellis;
-//      Identity id;
-//      vector<char *> data;
-//
-//      Seed_Update(Seed &seed) :
-//        trellis(&seed.get_trellis()),
-//        id(seed.get_id()) {
-//        auto &last = trellis->get_properties().back();
-//        auto byte_size = last.get_offset() + last.get_info().size - sizeof(Seed);
-//        data.reserve(byte_size);
-//        memcpy(data.data(), (&seed) + 1, byte_size);
-//      }
-//
-//      void *get_pointer(const Property &property) {
-//        return data[property.get_offset() - 2];
-//      }
-//  };
-
   void *Seed::get_pointer(const Property &property) {
     return ((char *) this) + property.get_offset();
   }
@@ -91,14 +74,14 @@ namespace vineyard {
       if (id)
         throw runtime_error("Seed should never need to be fully saved twice.");
 
-//      unique_lock<mutex>(update_lock);
-      if (is_deleted)
+      if (*is_deleted)
         return;
 
-      auto local_trellis = trellis;
-      ground->async([this, local_trellis](vineyard::database::Database &db) {
+			auto local_is_deleted = is_deleted;
+			auto local_trellis = trellis;
+      ground->async([this, local_trellis, local_is_deleted](vineyard::database::Database &db) {
 //        unique_lock<mutex>(update_lock);
-        if (is_deleted)
+        if (*local_is_deleted)
           return;
 
         if (id)
@@ -120,13 +103,13 @@ namespace vineyard {
 
     auto &property = trellis->get_property(index);
     if (ground->is_async()) {
-      unique_lock<mutex>(update_lock);
-      if (is_deleted)
+      if (*is_deleted)
         return;
 
-      ground->async([this, &property](vineyard::database::Database &db) {
+      auto local_is_deleted = is_deleted;
+      ground->async([this, &property, local_is_deleted](vineyard::database::Database &db) {
         unique_lock<mutex>(update_lock);
-        if (is_deleted)
+        if (*local_is_deleted)
           return;
 
 //        std::cout << " Update: " << trellis->get_name() << "." << property.get_name() << endl;
@@ -139,11 +122,8 @@ namespace vineyard {
   }
 
   void Seed::remove() {
-    if (!ground->is_writing_enabled())
+    if (!ground->is_writing_enabled() || !id)
       return;
-
-    unique_lock<mutex>(update_lock);
-    is_deleted = true;
 
     if (ground->is_async()) {
 //      std::cout << " Delete: " << trellis->get_name() << endl;

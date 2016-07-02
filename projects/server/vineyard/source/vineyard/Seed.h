@@ -11,10 +11,10 @@ namespace vineyard {
 
   class VINEYARD_EXPORT Seed {
   protected:
-      Ground *ground;
-      landscape::Trellis *trellis;
+      Ground *ground = nullptr;
+      landscape::Trellis *trellis = nullptr;
       bool initializing = true;
-      bool is_deleted = false;
+      shared_ptr<bool> is_deleted;
       mutex update_lock;
 
       // id needs to be the last field because functionality expects id to run straight into
@@ -34,7 +34,8 @@ namespace vineyard {
 
       template<typename T>
       void save(T index) {
-        save_property(static_cast<int>(index));
+        if (ground)
+          save_property(static_cast<int>(index));
       }
 
       template<typename T>
