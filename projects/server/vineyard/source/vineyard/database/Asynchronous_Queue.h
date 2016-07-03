@@ -76,6 +76,9 @@ namespace vineyard {
 
         void push(Data_Task &task) {
           unique_lock<mutex>(m);
+					if (!task)
+						throw runtime_error("Database task is empty.");
+
           tasks.push(task);
         }
     };

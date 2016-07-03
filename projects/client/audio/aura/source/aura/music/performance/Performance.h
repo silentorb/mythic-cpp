@@ -9,9 +9,11 @@ namespace aura {
   class MYTHIC_EXPORT Performance {
       Instrument &instrument;
       Sequencer &sequencer;
+      int group_id;
 
   public:
-      Performance(Instrument &instrument, Sequencer &sequencer) : instrument(instrument), sequencer(sequencer) { }
+      Performance(Instrument &instrument, Sequencer &sequencer, int group_id)
+        : instrument(instrument), sequencer(sequencer), group_id(group_id) { }
 
       Instrument &get_instrument() const {
         return instrument;
@@ -19,6 +21,10 @@ namespace aura {
 
       Sequencer &get_sequencer() const {
         return sequencer;
+      }
+
+      int get_group_id() const {
+        return group_id;
       }
   };
 }

@@ -14,6 +14,7 @@ namespace aura {
 
     chord_loop->set_on_loop([this](Conductor &conductor, float start, float end) {
       next_section();
+      conductor.set_chord(this->composer.get_current_chord_structure().get_chords()[0], 0, start, end);
     });
   }
 
@@ -27,7 +28,7 @@ namespace aura {
     performer->clear_performances();
     auto clips = composer.select_clips();
     for (auto &clip : clips) {
-      performer->add_performance(clip->get_instrument(), clip->get_sequencer());
+      performer->add_performance(clip->get_instrument(), clip->get_sequencer(), clip->get_group_id());
     }
   }
 

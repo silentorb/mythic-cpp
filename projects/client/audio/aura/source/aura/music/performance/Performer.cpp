@@ -12,10 +12,12 @@ namespace aura {
     strokes.push_back(unique_ptr<Stroke>(stroke));
   }
 
-  void Performer::perform(Conductor &conductor, Instrument &instrument, Sequencer &sequencer,
+  void Performer::perform(Conductor &conductor, Performance &performance,
                           float start, float end) {
     if (end == start)
       return;
+
+    auto &sequencer = performance.get_sequencer();
 
     start *= sequencer.get_beats();
     end *= sequencer.get_beats();
@@ -28,11 +30,10 @@ namespace aura {
                        : note.get_start() >= start || offset < end;
 
       if (is_inside) {
-//        std::cout << "Added note " << note.get_start() << " " << note.get_pitch()->name << std::endl;
-        add_stroke(instrument.generate_stroke(note));
+        add_stroke(performance.get_instrument().generate_stroke(note));
         auto recorder = conductor.get_recorder();
         if (recorder)
-          recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end));
+          recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end, performance.get_group_id()));
       }
     }
   }
@@ -52,7 +53,7 @@ namespace aura {
         auto recorder = conductor.get_recorder();
         if (recorder)
           recorder->add_event(
-            new Note_Event(Event_Type::note_end, stroke->get_note(), stroke->get_duration(), stroke->get_progress()));
+            new Note_Event(Event_Type::note_end, stroke->get_note(), stroke->get_duration(), stroke->get_progress(), -1));
 
         strokes.erase(strokes.begin() + i);
       }
@@ -97,11 +98,12 @@ namespace aura {
     return *loop;
   }
 
-  void Performer::add_performance(Instrument &instrument, Sequencer &sequencer) {
-    performances.push_back(Performance(instrument, sequencer));
+  void Performer::add_performance(Instrument &instrument, Sequencer &sequencer, int group_id) {
+    performances.push_back(Performance(instrument, sequencer, group_id));
+    auto &performance = performances[performances.size() - 1];
     auto &loop = get_loop_with_beat_count(sequencer.get_beats());
-    loop.listen([&](Conductor &conductor, float start, float end) {
-      perform(conductor, instrument, sequencer, start, end);
+    loop.listen([&, group_id, performance](Conductor &conductor, float start, float end) mutable {
+      perform(conductor, performance, start, end);
     });
   }
 

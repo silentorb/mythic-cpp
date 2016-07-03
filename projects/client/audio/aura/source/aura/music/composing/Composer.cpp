@@ -24,17 +24,11 @@ namespace aura {
   }
 
   void Composer::add_clip(int id, Clip *clip) {
-//    if (index >= clip_groups.size()) {
-//      int amount = index + 1 - clip_groups.size();
-//      for (int i = 0; i < amount; ++i) {
-//        clip_groups.push_back(unique_ptr<Clip_Group>(new Clip_Group()));
-//      }
-//    }
-
     if (!clip_groups.count(id))
       clip_groups[id] = unique_ptr<Clip_Group>(new Clip_Group());
 
     clip_groups[id]->add_clip(clip);
+    clip->set_group_id(id);
   }
 
   void Composer::add_clips(initializer_list<Clip_Group_Pair> initializer) {

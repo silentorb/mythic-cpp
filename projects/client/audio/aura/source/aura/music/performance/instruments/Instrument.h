@@ -10,5 +10,6 @@ namespace aura {
   public:
       virtual Stroke *generate_stroke(const Note &note) = 0;
 
+      virtual ~Instrument() { }
   };
 }

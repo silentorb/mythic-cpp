@@ -35,15 +35,15 @@ namespace vineyard {
 //    }
 
     if (ground) {
-//      int step = 0;
-//      while (!id) {
+      int step = 0;
+      while (is_saving) {
 //#if _DEBUG
-//        if (++step == 200) {
-//          throw runtime_error("Deleting unsaved seed.");
-//        }
+        if (++step == 200) {
+          throw runtime_error("Deleting unsaved seed.");
+        }
 //#endif
-//        this_thread::sleep_for(std::chrono::milliseconds(10));
-//      }
+        this_thread::sleep_for(std::chrono::milliseconds(10));
+      }
       remove();
     }
   }
@@ -109,17 +109,23 @@ namespace vineyard {
 
       auto local_is_deleted = is_deleted;
       auto local_trellis = trellis;
+			is_saving = true;
       ground->async([this, local_trellis, local_is_deleted](vineyard::database::Database &db) {
 //        unique_lock<mutex>(update_lock);
-        if (*local_is_deleted)
-          return;
+				if (*local_is_deleted) {
+					is_saving = false;
+					return;
+				}
 
-        if (id)
-          throw runtime_error("Seed should never need to be fully saved twice.");
+				if (id) {
+					is_saving = false;
+					throw runtime_error("Seed should never need to be fully saved twice.");
+				}
 //        std::cout << " Run: " << trellis->get_name() << endl;
         database::Connection connection(ground->get_database());
         update_seed(connection, *this);
-      });
+				is_saving = false;
+			});
     }
     else {
       database::Connection connection(ground->get_database());

@@ -12,6 +12,7 @@ namespace aura {
   class MYTHIC_EXPORT Clip : no_copy {
       shared_ptr<Instrument> instrument;
       shared_ptr<Sequencer> sequencer;
+      int group_id = -1;
 
   public:
 
@@ -24,6 +25,14 @@ namespace aura {
 
       Sequencer &get_sequencer() {
         return *sequencer;
+      }
+
+      int get_group_id() const {
+        return group_id;
+      }
+
+      void set_group_id(int value) {
+        group_id = value;
       }
   };
 }

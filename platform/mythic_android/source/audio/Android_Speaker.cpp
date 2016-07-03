@@ -79,7 +79,7 @@ void Android_Speaker::update_buffers() {
 
   for (int i = 0; i < next_buffer->size(); ++i) {
 //    next_buffer->data()[i] = (short) (float_buffer[i] * 32767);
-    next_buffer->data()[i] = (short) (float_buffer[i] * 32767 / 3);
+    next_buffer->data()[i] = (short) (float_buffer[i] * 32767);
 //    (*next_buffer)[i] = (rand() % (2 * 32767)) - 32767;
 //    (*next_buffer)[i] = 32768 - ((istep++ % 100) * 660);
   }

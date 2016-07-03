@@ -19,6 +19,9 @@ namespace aura {
 
   public:
       Stroke(const Note &note);
+
+      virtual ~Stroke() { }
+
       virtual float update(float beat_delta) = 0;
 
       double get_duration() const {

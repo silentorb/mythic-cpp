@@ -16,6 +16,7 @@ namespace vineyard {
       bool initializing = true;
       shared_ptr<bool> is_deleted;
       mutex update_lock;
+			bool is_saving = false;
 
       // id needs to be the last field because functionality expects id to run straight into
       // whatever class the seed is embedded into.

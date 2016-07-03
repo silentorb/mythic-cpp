@@ -9,9 +9,9 @@ namespace aura {
 
   }
 
-  Note::Note(float frequency, float start, float duration) :
-    frequency(frequency), start(start), duration(duration), pitch(nullptr), id(current_id++) {
-
-  }
+//  Note::Note(float frequency, float start, float duration) :
+//    frequency(frequency), start(start), duration(duration), pitch(nullptr), id(current_id++) {
+//
+//  }
 
 }

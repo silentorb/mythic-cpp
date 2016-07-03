@@ -11,5 +11,5 @@ namespace aura {
   typedef std::function<Generator(const Note &)> Instrumental_Generator;
 //  typedef std::shared_ptr<Note_Shared_Generator> Instrumental_Generator;
 
-  Instrumental_Generator Literal(float value);
+  MYTHIC_EXPORT Instrumental_Generator Literal(float value);
 }

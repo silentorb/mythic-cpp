@@ -14,7 +14,7 @@ namespace aura {
 
   public:
       Note(const Pitch &pitch, float start, float duration = 1);
-      Note(float frequency, float start, float duration = 1);
+//      Note(float frequency, float start, float duration = 1);
 
       const float &get_start() const {
         return start;

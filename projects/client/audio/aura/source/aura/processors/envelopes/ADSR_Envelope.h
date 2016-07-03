@@ -40,6 +40,8 @@ namespace aura {
         sustain_level= convert_to_db(settings.sustain_level);
       }
 
+      virtual ~ADSR_Envelope() { }
+
       virtual float get_value(double position) override;
   };
 
@@ -52,6 +54,8 @@ namespace aura {
                     double release_duration = 0) :
         settings(attack_duration, attack_level, decay_duration, sustain_level, release_duration) { }
 
+
+      virtual ~ADSR_Envelope_Generator() { }
 
       virtual Note_Envelope *generate_envelope() override {
         return new ADSR_Envelope(settings);

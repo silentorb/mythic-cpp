@@ -34,5 +34,7 @@ namespace aura {
 
       Simple_Instrument_Stroke(const Note &note, Oscillator *oscillator, Note_Envelope *volume_envelope) :
         Stroke(note), oscillator(oscillator), volume_envelope(volume_envelope) { }
+
+      virtual ~Simple_Instrument_Stroke() { }
   };
 }

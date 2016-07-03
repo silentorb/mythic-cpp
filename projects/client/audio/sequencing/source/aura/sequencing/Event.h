@@ -48,10 +48,11 @@ namespace aura {
 
   class MYTHIC_EXPORT Note_Event : public Event {
       aura::Note note;
+      int group_id;
 
   public:
-      Note_Event(Event_Type type, const aura::Note &note, double trigger_start, double trigger_end) :
-        Event(type, trigger_start, trigger_end), note(note) { }
+      Note_Event(Event_Type type, const aura::Note &note, double trigger_start, double trigger_end, int group_id) :
+        Event(type, trigger_start, trigger_end), note(note), group_id(group_id) { }
 
       const Note &get_note() const {
         return note;
@@ -59,6 +60,10 @@ namespace aura {
 
       virtual float get_relative_start() const override {
         return note.get_start();
+      }
+
+      int get_group_id()const {
+        return group_id;
       }
   };
 
