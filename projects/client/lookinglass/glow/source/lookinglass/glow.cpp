@@ -1,5 +1,4 @@
 #include "glow.h"
-#include <crtdbg.h>
 
 namespace glow {
 
@@ -8,6 +7,8 @@ namespace glow {
     if (!gladLoadGL()) {
       return false;
     }
+      #elif __APPLE__
+      #elif __ANDROID__
 #else
     if (ogl_LoadFunctions() == ogl_LOAD_FAILED) {
       return false;
