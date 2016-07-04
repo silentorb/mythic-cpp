@@ -21,6 +21,10 @@ namespace vineyard {
       while(connection_count > 0) {
         this_thread::sleep_for(std::chrono::milliseconds(10));
       }
+
+			if (static_handle) {
+				release_static();
+			}
     }
 
     void Database::create_table(const landscape::Trellis &trellis, Connection &connection) {
@@ -73,7 +77,6 @@ namespace vineyard {
     void Database::release_static() {
       unique_lock<mutex>(static_lock);
       if (static_handle) {
-        static_handle = nullptr;
         std::cout << "- " << static_handle << std::endl;
         int steps = 0;
         while(connection_count > 0) {
@@ -83,7 +86,7 @@ namespace vineyard {
         }
         std::cout << "Connections closed" << std::endl;
         sqlite3_close(static_handle);
-        static_handle = nullptr;
+				static_handle = nullptr;
         statements.clear();
       }
     }
