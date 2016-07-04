@@ -4,7 +4,7 @@ add_subdirectory(desktop_input)
 
 create_library(desktop)
 
-require(mythic desktop_display desktop_input shading haft client logger audio_player resourceful shading)
+require(mythic desktop_display desktop_input shading shader_processing haft client logger audio_player resourceful shading)
 
 include_directories(
     ${MYTHIC_DEPENDENCIES}/sdl2/include

@@ -1,9 +1,9 @@
 #include "Ancient_Code_Processor.h"
 #include <functional>
-#include "textual/regex_additions.h"
-#include <boost/regex.hpp>
+//#include "textual/regex_additions.h"
+//#include <boost/regex.hpp>
 
-using namespace textual;
+//using namespace textual;
 
 namespace shading {
 

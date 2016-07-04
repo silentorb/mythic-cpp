@@ -3,6 +3,7 @@
 add(glow)
 #add(glaze)
 add(shading)
+add(shader_processing)
 add(texturing)
 add(frame)
 add(through)

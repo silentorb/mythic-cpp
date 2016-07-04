@@ -4,7 +4,7 @@
 #include <functional>
 #include <string>
 #include <resourceful/File_Loader.h>
-#include "Shader_Type.h"
+#include "shading/Shader_Type.h"
 
 namespace shading {
 
