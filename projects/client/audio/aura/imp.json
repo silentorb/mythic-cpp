@@ -2,5 +2,7 @@
   "name": "traveler",
   "target": "cpp",
   "output": "output",
-  "inputs": "imp"
+  "inputs": [
+    "imp"
+  ]
 }
