@@ -10,36 +10,6 @@
 #import "OpenGL_View.h"
 #import "UIKit/UIGestureRecognizerSubclass.h"
 
-//@interface Custom_Gesture_Recognizer : UIGestureRecognizer {
-//    Mythic_ViewController *controller;
-//}
-//@end
-//
-//@implementation Custom_Gesture_Recognizer
-//
-//-(id)initWithController:(Mythic_ViewController *)view_controller
-//{
-//    self = [super init];
-//    if (self) {
-//        self->controller = view_controller;
-//    }
-//    return self;
-//}
-//
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//[controller touch
-//}
-//
-//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-//    
-//}
-//
-//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-//    
-//}
-//
-//@end
-
 @interface Mythic_ViewController ()
 
 @end
@@ -102,24 +72,13 @@
      }
      [super touchesEnded:touches withEvent:event];
  }
- 
-//- (void)touch_down:(Custom_Gesture_Recognizer *)recognizer {
-//    CGPoint location = [recognizer locationInView:self.view];
-//    input_touch_down(location.x * self.view.contentScaleFactor, location.y * self.view.contentScaleFactor);
-//}
-//
-//- (void)touch_move:(Custom_Gesture_Recognizer *)recognizer {
-//    CGPoint location = [recognizer locationInView:self.view];
-//    input_touch_move(location.x * self.view.contentScaleFactor, location.y * self.view.contentScaleFactor);
-//}
-//
-//- (void)touch_up:(Custom_Gesture_Recognizer *)recognizer {
-//    CGPoint location = [recognizer locationInView:self.view];
-//    input_touch_up(location.x * self.view.contentScaleFactor, location.y * self.view.contentScaleFactor);
-//}
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
 }
 
 @end
