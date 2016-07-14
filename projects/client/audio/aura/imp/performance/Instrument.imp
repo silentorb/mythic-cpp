@@ -1,0 +1,15 @@
+
+aura {
+
+    Stroke {
+
+    }
+
+    Note {
+
+    }
+
+    Instrument {
+        generate_stroke(note:Note):Stroke
+    }
+}
