@@ -1,7 +1,7 @@
 {
-  "name": "traveler",
+  "name": "aura",
   "target": "cpp",
-  "output": "output",
+  "output": "generated",
   "inputs": [
     "imp"
   ]

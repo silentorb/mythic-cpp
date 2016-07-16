@@ -1,0 +1,7 @@
+
+aura.music.performance {
+
+    Instrument {
+        generate_stroke(note:const non_nullable aura.sequencing.Note): pointer Stroke
+    }
+}

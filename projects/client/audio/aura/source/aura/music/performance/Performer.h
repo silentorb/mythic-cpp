@@ -1,20 +1,23 @@
 #pragma once
 
 #include "dllexport.h"
-#include "Stroke.h"
+#include "aura/music/performance/Stroke.h"
 #include <vector>
 #include <memory>
 #include <aura/engineer/Buffer.h>
 #include <aura/sequencing/Conductor.h>
-#include "aura/music/performance/instruments/Instrument.h"
-#include "aura/music/performance/instruments/Instrument.h"
+#include "aura/music/performance/Instrument.h"
 #include "Performance.h"
 #include "Tempo_Loop.h"
 
 using namespace std;
 
 namespace aura {
-  class Instrument;
+  namespace music {
+    namespace performance {
+      class Instrument;
+    }
+  }
 
   class Sequencer;
 

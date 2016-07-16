@@ -5,55 +5,59 @@
 #include "Time_Signature.h"
 
 namespace aura {
-  class Event_Recorder;
+  namespace sequencing {
 
-  class MYTHIC_EXPORT Conductor {
-      Chord_Instance chord;
-      float tempo = 120;
-      float seconds_tempo = tempo / 60;
-      Time_Signature time_signature;
-      Event_Recorder *recorder = nullptr;
+    class Event_Recorder;
 
-  public:
-      Conductor(const Chord_Instance &chord) :
-        chord(chord), time_signature(4, 4) { }
+    class MYTHIC_EXPORT Conductor {
+        Chord_Instance chord;
+        float tempo = 120;
+        float seconds_tempo = tempo / 60;
+        Time_Signature time_signature;
+        Event_Recorder *recorder = nullptr;
 
-      Conductor() : Conductor(Chord(Key::C)) { }
+    public:
+        Conductor(const Chord_Instance &chord) :
+          chord(chord), time_signature(4, 4) { }
 
-      void commence();
+        Conductor() : Conductor(Chord(Key::C)) { }
 
-      const Chord_Instance &get_chord() const {
-        return chord;
-      }
+        void commence();
 
-      void set_chord(const Chord_Instance chord, float offset = 0, float start = 0, float end = 0);
+        const Chord_Instance &get_chord() const {
+          return chord;
+        }
 
-      float get_tempo() const {
-        return tempo;
-      }
+        void set_chord(const Chord_Instance chord, float offset = 0, float start = 0, float end = 0);
 
-      float get_seconds_tempo() const {
-        return seconds_tempo;
-      }
-      void set_tempo(float value) {
-        tempo = value;
-        seconds_tempo = value / 60;
-      }
+        float get_tempo() const {
+          return tempo;
+        }
 
-      const Time_Signature &get_time_signature() const {
-        return time_signature;
-      }
+        float get_seconds_tempo() const {
+          return seconds_tempo;
+        }
 
-      void set_time_signature(const Time_Signature &_time_signature) {
-        Conductor::time_signature = _time_signature;
-      }
+        void set_tempo(float value) {
+          tempo = value;
+          seconds_tempo = value / 60;
+        }
 
-      Event_Recorder *get_recorder() const {
-        return recorder;
-      }
+        const Time_Signature &get_time_signature() const {
+          return time_signature;
+        }
 
-      void set_recorder(Event_Recorder *recorder) {
-        Conductor::recorder = recorder;
-      }
-  };
+        void set_time_signature(const Time_Signature &_time_signature) {
+          Conductor::time_signature = _time_signature;
+        }
+
+        Event_Recorder *get_recorder() const {
+          return recorder;
+        }
+
+        void set_recorder(Event_Recorder *recorder) {
+          Conductor::recorder = recorder;
+        }
+    };
+  }
 }

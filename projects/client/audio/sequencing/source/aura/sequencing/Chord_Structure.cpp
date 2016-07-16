@@ -1,6 +1,7 @@
 #include "Chord_Structure.h"
 
 namespace aura {
+  namespace sequencing {
 
   Chord_Structure::Chord_Structure(initializer_list<Chord_Instance> initializer) : chords(initializer) {
     for (auto &chord: chords) {
@@ -16,4 +17,4 @@ namespace aura {
   }
 
 
-}
+}}

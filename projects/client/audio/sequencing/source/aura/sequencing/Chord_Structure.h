@@ -7,6 +7,7 @@
 using namespace std;
 
 namespace aura {
+  namespace sequencing {
 
   class MYTHIC_EXPORT Chord_Structure {
       vector<Chord_Instance> chords;
@@ -28,4 +29,4 @@ namespace aura {
             return measures;
       }
   };
-}
+}}

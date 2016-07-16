@@ -5,7 +5,7 @@
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/envelopes/Note_Envelope_Generator.h>
 #include "dllexport.h"
-#include "Instrument.h"
+#include "aura/music/performance/Instrument.h"
 
 namespace aura {
   typedef std::function<Stroke *(const Note &note, Producer &producer, Note_Envelope *volume_envelope)> Instrument_Stroke_Generator;

@@ -3,6 +3,7 @@
 #include "sequencing_export.h"
 
 namespace aura {
+  namespace sequencing {
 
   enum class Key : int {
       A = 0,
@@ -25,4 +26,4 @@ namespace aura {
   };
 
   SEQUENCING_EXPORT const char *get_keyname(Key key);
-}
+}}

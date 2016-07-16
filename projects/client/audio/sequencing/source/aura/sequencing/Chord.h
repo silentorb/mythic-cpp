@@ -4,6 +4,7 @@
 #include "Key.h"
 
 namespace aura {
+  namespace sequencing {
 
   enum Chord_Type {
       major,
@@ -45,4 +46,4 @@ namespace aura {
     const Chord c_major = {Key::C};
     const Chord c_minor = {Key::C, Chord_Type::minor};
   }
-}
+}}

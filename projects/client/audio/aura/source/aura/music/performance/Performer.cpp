@@ -6,6 +6,8 @@
 #include <string>
 #include <aura/sequencing/Event_Recorder.h>
 
+using namespace aura::sequencing;
+
 namespace aura {
 
   void Performer::add_stroke(Stroke *stroke) {

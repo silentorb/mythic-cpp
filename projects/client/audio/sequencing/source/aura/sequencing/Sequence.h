@@ -8,7 +8,8 @@
 using namespace std;
 
 namespace aura {
-  class Performer;
+  namespace sequencing {
+    class Performer;
 
   class MYTHIC_EXPORT Sequence : public Sequencer {
       vector<Note> notes;
@@ -53,4 +54,4 @@ namespace aura {
 
 
   };
-}
+}}

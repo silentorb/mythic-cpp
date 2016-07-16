@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllexport.h"
-#include "Stroke.h"
+#include "aura/music/performance/Stroke.h"
 #include <functional>
 
 //namespace aura {

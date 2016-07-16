@@ -1,6 +1,7 @@
 #include "Chord.h"
 
 namespace aura {
+  namespace sequencing {
 
 
   const char *keynames[] = {
@@ -22,4 +23,4 @@ namespace aura {
     int index = static_cast<int>(key);
     return keynames[index];
   }
-}
+}}

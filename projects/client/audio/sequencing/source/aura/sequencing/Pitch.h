@@ -4,6 +4,7 @@
 #include "dllexport.h"
 
 namespace aura {
+  namespace sequencing {
 
   struct Pitch {
       const int index;
@@ -106,4 +107,4 @@ namespace aura {
 
   const int PITCH_COUNT = 89;
   SEQUENCING_EXPORT extern const Pitch Pitches[PITCH_COUNT];
-}
+}}

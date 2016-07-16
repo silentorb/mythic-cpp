@@ -1,11 +1,13 @@
 #pragma once
 
 #include <aura/sequencing/Sequencer.h>
-#include <aura/music/performance/instruments/Instrument.h>
+#include <aura/music/performance/Instrument.h>
 #include "dllexport.h"
 #include <memory>
 
 using namespace std;
+using namespace aura::music::performance;
+using namespace aura::sequencing;
 
 namespace aura {
 

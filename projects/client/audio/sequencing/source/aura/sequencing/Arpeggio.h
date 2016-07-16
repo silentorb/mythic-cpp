@@ -4,6 +4,7 @@
 #include "Sequence.h"
 
 namespace aura {
+  namespace sequencing {
 
   typedef vector<Pitch> Arpeggio;
 
@@ -18,4 +19,4 @@ namespace aura {
 //      Arpeggio(initializer_list<Pitch> initializer);
 //
 //  };
-}
+}}

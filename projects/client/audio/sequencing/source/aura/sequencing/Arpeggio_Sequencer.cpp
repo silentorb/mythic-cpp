@@ -2,6 +2,7 @@
 #include "Transposing_Sequencer.h"
 
 namespace aura {
+  namespace sequencing {
 
 //  const Pitch &Arpeggio_Sequencer::transpose(Pitch &pitch, const Chord_Instance &chord) {
 //    const int baseline =  static_cast<int>(Key::C);
@@ -21,11 +22,11 @@ namespace aura {
 //    return Pitches[index];
 //  }
 
-  const Note &Arpeggio_Sequencer::get_note(int index, Conductor &conductor)  {
-    auto &pitch = transpose(arpeggio->at(index), conductor.get_chord());
-    return_note = Note(pitch, index * beats_per_note, beats_per_note);
-    return return_note;
+    const Note &Arpeggio_Sequencer::get_note(int index, Conductor &conductor) {
+      auto &pitch = transpose(arpeggio->at(index), conductor.get_chord());
+      return_note = Note(pitch, index * beats_per_note, beats_per_note);
+      return return_note;
+    }
+
   }
-
-
 }

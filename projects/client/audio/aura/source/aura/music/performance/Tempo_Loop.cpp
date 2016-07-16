@@ -1,5 +1,6 @@
 #include "Tempo_Loop.h"
 #include "aura/sequencing/Conductor.h"
+using namespace aura::sequencing;
 
 namespace aura {
 

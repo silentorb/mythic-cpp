@@ -8,9 +8,11 @@
 using namespace std;
 
 namespace aura {
-  class Conductor;
+  namespace sequencing {
+    class Conductor;
+  }
 
-  typedef function<void(Conductor &, float, float)> Range_Handler;
+  typedef function<void(sequencing::Conductor &, float, float)> Range_Handler;
 
   class MYTHIC_EXPORT Tempo_Loop {
       Loop loop;
@@ -33,9 +35,9 @@ namespace aura {
         handlers.push_back(handler);
       }
 
-      void update(Conductor &conductor);
+      void update(sequencing::Conductor &conductor);
 
-      void trigger(Conductor &conductor, double start, double end) {
+      void trigger(sequencing::Conductor &conductor, double start, double end) {
         for (auto &handler: handlers) {
           handler(conductor, start, end);
         }

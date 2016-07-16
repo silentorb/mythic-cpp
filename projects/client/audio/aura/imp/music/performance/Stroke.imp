@@ -1,0 +1,39 @@
+aura.music.performance {
+
+    Stroke {
+        private duration:double
+        private frequency: float
+        private note: aura.sequencing.Note
+
+        protected progress: double = 0
+
+        constructor(note: const non_nullable aura.sequencing.Note){
+            duration = note.get_duration()
+            frequency = note.get_frequency()
+            this.note = note
+        }
+
+        update(beat_delta: float): float
+
+        get_duration() {
+            return duration
+        }
+
+        get_frequency() {
+            return frequency
+        }
+
+        get_progress(){
+            return progress
+        }
+
+        is_finished(): bool {
+            return progress >= duration
+        }
+
+        get_note(){
+            return note
+        }
+    }
+}
+

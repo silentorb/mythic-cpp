@@ -1,6 +1,7 @@
 #include "Arpeggio.h"
 
 namespace aura {
+  namespace sequencing {
 
   void create_arpeggio(Sequence &sequence, initializer_list<Pitch> initializer, float scale) {
     float offset = 0;
@@ -20,4 +21,4 @@ namespace aura {
 //    notes(initializer) {
 //
 //  }
-}
+}}
