@@ -26,9 +26,9 @@ namespace desktop {
       virtual mythic::Shader_Processor create_shader_processor() override;
       virtual mythic::File_Loader create_file_loader() override;
       virtual audio::Speaker *create_speaker() override;
-      Desktop(const char *title, int width, int height);
+      Desktop(const char *title, const lookinglass::Graphic_Options &graphic_options);
 
-      virtual framing::Platform_Frame *create_frame(int width, int height) override;
+      virtual framing::Platform_Frame *create_frame(const lookinglass::Graphic_Options &graphic_options) override;
 //      virtual shading::Shader_Loader *create_shader_loader() override;
       virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
 

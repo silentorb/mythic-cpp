@@ -12,6 +12,7 @@ using namespace std;
 namespace sculptor {
   namespace operations {
 
+    MYTHIC_EXPORT vec3 calculate_normal(Vertex *vertex);
     MYTHIC_EXPORT void flatten_normals(Mesh &mesh);
     MYTHIC_EXPORT void smooth_normals(Mesh &mesh);
 
@@ -30,7 +31,7 @@ namespace sculptor {
     MYTHIC_EXPORT void mirror(Selection &selection, bool fill);
     MYTHIC_EXPORT void fill_gap(Selection &first, Selection &second);
 
-   MYTHIC_EXPORT void bevel(Selection &selection, const mat4 &offset);
+    MYTHIC_EXPORT void bevel(Selection &selection, const mat4 &offset);
 
-    }
+  }
 }

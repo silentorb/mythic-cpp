@@ -11,8 +11,11 @@ namespace sculptor {
 
     vec3 calculate_normal(Vertex *vertex) {
       auto vector = vec3();
-      for (auto edge: vertex->edges) {
-        vector += vertex->get_position() - edge->get_other_vertex(vertex)->get_position();
+//      for (auto edge: vertex->edges) {
+//        vector += vertex->get_position() - edge->get_other_vertex(vertex)->get_position();
+//      }
+      for (auto polygon: vertex->polygons) {
+        vector += polygon->calculate_normal();
       }
       return glm::normalize(vector);
     }
@@ -28,7 +31,7 @@ namespace sculptor {
       for (auto &polygon: mesh.polygons) {
         vector<vec3> normals(polygon->vertices.size());
         for (int i = 0; i < polygon->vertices.size(); ++i) {
-          normals[i] = calculate_normal(polygon->vertices[i]);
+          normals[i] = operations::calculate_normal(polygon->vertices[i]);
         }
         polygon->set_data("normal", (float *) normals.data(), 3, 3);
       }

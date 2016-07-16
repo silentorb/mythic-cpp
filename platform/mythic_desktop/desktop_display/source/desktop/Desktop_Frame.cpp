@@ -3,24 +3,31 @@
 #include <stdexcept>
 #include "SDL2/SDL.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/Graphic_Options.h"
 
 namespace desktop {
-  Desktop_Frame::Desktop_Frame(const char *title, int width, int height) {
+  Desktop_Frame::Desktop_Frame(const char *title, const lookinglass::Graphic_Options &graphic_options) {
     set_fullscreen(false);
-    create_window(title, width, height);
+    create_window(title, graphic_options);
     create_gl_context();
   }
 
-  void Desktop_Frame::create_window(const char *title, int width, int height) {
-    set_dimensions(width, height);
+  void Desktop_Frame::create_window(const char *title, const lookinglass::Graphic_Options &graphic_options) {
+    set_dimensions(graphic_options.get_width(), graphic_options.get_height());
     SDL_Init(SDL_INIT_VIDEO);   // Initialize SDL2
     int fullscreen_flag = is_fullscreen() ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
+
+    if(graphic_options.get_multisampling()) {
+      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, graphic_options.get_multisampling());
+    }
+
     sdl_window = SDL_CreateWindow(
       title,
       SDL_WINDOWPOS_UNDEFINED,           //    initial x position
       SDL_WINDOWPOS_UNDEFINED,           //    initial y position
-      width,
-      height,
+      graphic_options.get_width(),
+      graphic_options.get_height(),
       SDL_WINDOW_OPENGL | fullscreen_flag | SDL_WINDOW_SHOWN
     );
 

@@ -10,15 +10,17 @@
 #include <vector>
 
 namespace timing {
-  class MYTHIC_EXPORT Quartz;
+  class Quartz;
 }
 
 namespace clienting {
-  class MYTHIC_EXPORT Client;
+  class Client;
 }
 
 namespace lookinglass {
   typedef function<void()> Renderable;
+
+  class Graphic_Options;
 }
 using namespace clienting;
 using namespace std;
@@ -26,6 +28,7 @@ using namespace std;
 namespace mythic {
 
   class Mythic_Renderer;
+
   class Platform_Factory;
 
   class MYTHIC_EXPORT Mythic_Engine : no_copy {
@@ -37,7 +40,7 @@ namespace mythic {
       const string storage_path;
 
   public:
-      Mythic_Engine(Platform_Factory &factory, int width = 0, int height = 0);
+      Mythic_Engine(Platform_Factory &factory, const lookinglass::Graphic_Options &graphic_options);
       ~Mythic_Engine();
 
       template<typename T>

@@ -12,8 +12,8 @@
 namespace lookinglass {
 
   Lookinglass_House::Lookinglass_House(framing::Platform_Frame *frame, resourceful::File_Loader file_loader,
-                                       shading::Shader_Processor shader_processor) :
-    House(frame) {
+                                       shading::Shader_Processor shader_processor, const Graphic_Options &options) :
+    House(frame, options) {
     if (!frame) {
       throw std::runtime_error("Frame (Window) was null.");
     }

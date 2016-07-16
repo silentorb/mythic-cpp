@@ -18,8 +18,9 @@ namespace lookinglass {
 
   House *House::instance = nullptr;
 
-  House::House(framing::Platform_Frame *frame) :
-    frame(frame) {
+  House::House(framing::Platform_Frame *frame, const Graphic_Options &options) :
+    frame(frame),
+    options(options) {
     instance = this;
   }
 
@@ -59,7 +60,7 @@ namespace lookinglass {
     return *resource_manager;
   }
 
-  framing::Frame_Info &House::get_frame() const{
+  framing::Frame_Info &House::get_frame() const {
     return *frame;
   }
 

@@ -58,7 +58,7 @@ namespace lookinglass {
       static House *instance;
 
       void initialize();
-      House(framing::Platform_Frame *frame);
+      House(framing::Platform_Frame *frame, const Graphic_Options & options);
       Graphic_Options options;
       unique_ptr<glow::Capabilities> capabilities;
 

@@ -12,13 +12,13 @@ using namespace lookinglass;
 
 namespace desktop {
 
-  Desktop::Desktop(const char *title, int width, int height) : title(title) {
-    engine = unique_ptr<Mythic_Engine>(new Mythic_Engine(*this, width, height));
+  Desktop::Desktop(const char *title, const lookinglass:: Graphic_Options & graphic_options) : title(title) {
+    engine = unique_ptr<Mythic_Engine>(new Mythic_Engine(*this, graphic_options));
     engine->get_client().load();
   }
 
-  framing::Platform_Frame *Desktop::create_frame(int width, int height) {
-    return new Desktop_Frame(title, width, height);
+  framing::Platform_Frame *Desktop::create_frame(const lookinglass::Graphic_Options &graphic_options) {
+    return new Desktop_Frame(title, graphic_options);
   }
 
 //  shading::Shader_Loader *Desktop::create_shader_loader() {
