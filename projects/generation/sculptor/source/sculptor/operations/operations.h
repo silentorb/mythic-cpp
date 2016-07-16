@@ -13,6 +13,7 @@ namespace sculptor {
   namespace operations {
 
     MYTHIC_EXPORT void flatten_normals(Mesh &mesh);
+    MYTHIC_EXPORT void smooth_normals(Mesh &mesh);
 
     MYTHIC_EXPORT void set_mesh_data(geometry::Mesh &mesh, const string &attribute_name, float *values, int count);
 

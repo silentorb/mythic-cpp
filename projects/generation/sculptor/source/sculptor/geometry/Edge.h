@@ -51,6 +51,8 @@ namespace sculptor {
         void set_mesh(Mesh *mesh) {
           Edge::mesh = mesh;
         }
+
+        Vertex *get_other_vertex(Vertex *vertex);
     };
   }
 }

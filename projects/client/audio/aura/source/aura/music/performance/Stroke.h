@@ -5,9 +5,12 @@
 #include <functional>
 #include <aura/sequencing/Note.h>
 
-namespace aura {
+using namespace aura::sequencing;
 
-  class Conductor;
+namespace aura {
+  namespace sequencing {
+    class Conductor;
+  }
 
   class MYTHIC_EXPORT Stroke {
       double duration;

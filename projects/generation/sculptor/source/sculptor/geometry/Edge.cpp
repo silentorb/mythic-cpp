@@ -18,7 +18,7 @@ namespace sculptor {
       auto vertex = vertices[i];
       for (auto polygon: vertex->polygons) {
         if ((polygons.size() == 0 || polygons[0] != polygon)
-          && vector_contains(vertices[1 - i]->polygons, polygon)) {
+            && vector_contains(vertices[1 - i]->polygons, polygon)) {
 //          && !vector_contains(polygons, polygon)) {
           polygons.push_back(polygon);
           if (polygons.size() == 2)
@@ -49,4 +49,15 @@ namespace sculptor {
       points[1] = temp;
     }
   }
+
+  Vertex *Edge::get_other_vertex(Vertex *vertex) {
+    if (vertex == vertices[0])
+      return vertices[1];
+
+    if (vertex == vertices[1])
+      return vertices[0];
+
+    throw runtime_error("vertex does not exist in edge.");
+  }
+
 }

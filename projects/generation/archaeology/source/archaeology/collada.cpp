@@ -102,7 +102,7 @@ namespace archaeology {
       }
 
       auto polygon = new Polygon(polygon_vertices);
-      polygon->set_data("color", (float *) &material.color, 4);
+      polygon->set_data("color", (float *) &material.color, 0, 4);
 //					polygon->flip();
       mesh->add_polygon(polygon);
     }

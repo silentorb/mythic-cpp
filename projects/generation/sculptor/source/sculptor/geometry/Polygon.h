@@ -46,7 +46,7 @@ namespace sculptor {
         vec3 calculate_normal() const;
 //        void add_normal(const vec3 normal);
 
-        void set_data(const string &name, float *data, int count);
+        void set_data(const string &name, float *data, int step, int count);
 
         float *get_data(const string &name) {
           if (!data.count(name))
@@ -74,7 +74,7 @@ namespace sculptor {
 
         vec3 get_center() const;
 
-        const vector<int> get_indices(const Selection & selection) const;
+        const vector<int> get_indices(const Selection &selection) const;
 
         void flip();
     };

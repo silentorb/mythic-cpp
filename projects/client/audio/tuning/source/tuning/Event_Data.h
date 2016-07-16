@@ -12,14 +12,14 @@ using namespace aura;
 namespace tuning {
 
   class MYTHIC_EXPORT Event_Data : no_copy {
-      vector<unique_ptr<Event>> events;
+      vector<unique_ptr<aura::sequencing::Event>> events;
 
   public:
-      void add_event(Event *event) {
-        events.push_back(unique_ptr<Event>(event));
+      void add_event(aura::sequencing::Event *event) {
+        events.push_back(unique_ptr<aura::sequencing::Event>(event));
       }
 
-      const vector<unique_ptr<Event>> &get_events() const {
+      const vector<unique_ptr<aura::sequencing::Event>> &get_events() const {
         return events;
       }
   };

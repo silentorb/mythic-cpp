@@ -19,7 +19,9 @@ namespace aura {
     }
   }
 
-  class Sequencer;
+  namespace sequencing {
+    class Sequencer;
+  }
 
   class MYTHIC_EXPORT Performer : no_copy {
       vector<unique_ptr<Stroke>> strokes;
@@ -37,7 +39,10 @@ namespace aura {
       void clear_performances();
   };
 
-  struct Chord_Structure;
+  namespace sequencing {
+    struct Chord_Structure;
+  }
+
   MYTHIC_EXPORT void perform_chord_structure(Conductor &conductor, Chord_Structure &chord_structure, float start,
                                              float end);
 }

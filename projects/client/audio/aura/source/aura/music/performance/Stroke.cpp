@@ -1,4 +1,4 @@
-/*
+
 #include "Stroke.h"
 #include "aura/sequencing/Note.h"
 #include "aura/sequencing/Conductor.h"
@@ -16,4 +16,4 @@ namespace aura {
 ////    progress += delta;
 //    return 0;
 //  }
-}*/
+}

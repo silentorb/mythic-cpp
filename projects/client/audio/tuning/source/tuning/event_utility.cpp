@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 
+using namespace aura::sequencing;
+
 namespace tuning {
 
   const string get_event_message(Event &event) {

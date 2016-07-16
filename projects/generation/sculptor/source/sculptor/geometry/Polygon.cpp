@@ -98,7 +98,7 @@ namespace sculptor {
 //      normals.push_back(normal);
 //    }
 
-    void Polygon::set_data(const string &name, float *values, int count) {
+    void Polygon::set_data(const string &name, float *values, int step, int count) {
       data.insert(Vertex_Data::value_type(name, vector<float>(vertices.size() * count)));
 //      data[name].assign(values, values + count);
       float *entry = data[name].data();
@@ -106,6 +106,7 @@ namespace sculptor {
         for (int j = 0; j < count; ++j) {
           *entry++ = values[j];
         }
+        values += step;
       }
     }
 

@@ -9,16 +9,34 @@ namespace sculptor {
 
   namespace operations {
 
+    vec3 calculate_normal(Vertex *vertex) {
+      auto vector = vec3();
+      for (auto edge: vertex->edges) {
+        vector += vertex->get_position() - edge->get_other_vertex(vertex)->get_position();
+      }
+      return glm::normalize(vector);
+    }
+
     void flatten_normals(Mesh &mesh) {
       for (auto &polygon: mesh.polygons) {
         auto normal = polygon->calculate_normal();
-        polygon->set_data("normal", (float *) &normal, 3);
+        polygon->set_data("normal", (float *) &normal, 0, 3);
+      }
+    }
+
+    void smooth_normals(Mesh &mesh) {
+      for (auto &polygon: mesh.polygons) {
+        vector<vec3> normals(polygon->vertices.size());
+        for (int i = 0; i < polygon->vertices.size(); ++i) {
+          normals[i] = calculate_normal(polygon->vertices[i]);
+        }
+        polygon->set_data("normal", (float *) normals.data(), 3, 3);
       }
     }
 
     void set_mesh_data(Mesh &mesh, const string &attribute_name, float *values, int count) {
       for (auto &polygon: mesh.polygons) {
-        polygon->set_data(attribute_name, values, count);
+        polygon->set_data(attribute_name, values, 0, count);
       }
     }
 
