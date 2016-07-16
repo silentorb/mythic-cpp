@@ -9,9 +9,9 @@ using namespace glm;
 namespace sculptor {
   namespace create {
 
-    Mesh *square(vec2 size, float z) {
+    Basic_Mesh *square(vec2 size, float z) {
       auto half = size * 0.5f;
-      auto mesh = new Mesh();
+      auto mesh = new Basic_Mesh();
       Polygon *polygon = mesh->add_polygon(
 //        vec3(-half.x, half.y, half.z),
 //        vec3(half.x, half.y, half.z),
@@ -28,7 +28,7 @@ namespace sculptor {
       return mesh;
     }
 
-    Mesh *box(vec3 size) {
+    Basic_Mesh *box(vec3 size) {
       auto half = size * 0.5f;
       auto mesh = square(vec2(size.x, size.y), half.z);
       auto transform = glm::translate(vec3(0, 0, -size.z));
@@ -36,7 +36,7 @@ namespace sculptor {
       return mesh;
     }
 
-    Mesh *sphere(int vertical_count, int horizontal_count, float radius, float degrees) {
+    Basic_Mesh *sphere(int vertical_count, int horizontal_count, float radius, float degrees) {
       vector<vec3> points(vertical_count);
       operations::circle_vertices(points.data(), vertical_count, radius, M_PI);
       operations::transform(points.data(), glm::eulerAngleX((float) M_PI_2), vertical_count);

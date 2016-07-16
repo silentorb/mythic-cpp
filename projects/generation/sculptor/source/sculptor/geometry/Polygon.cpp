@@ -13,6 +13,7 @@ namespace sculptor {
     }
 
     Polygon::Polygon(const Selection &selection) {
+      vertices.reserve(selection.size());
       for (int i = 0; i < selection.size(); ++i) {
         add_vertex(selection[i]);
       }
@@ -41,6 +42,9 @@ namespace sculptor {
     }
 
     void Polygon::initialize() {
+    }
+
+    void Polygon::initialize_edges() {
       for (int i = 0; i < vertices.size(); ++i) {
         auto next = (i + 1) % vertices.size();
         auto existing = vertices[i]->get_edge(vertices[next]);
@@ -64,21 +68,21 @@ namespace sculptor {
     }
 
     void Polygon::remove() {
-      for (int i = (int)vertices.size() - 1; i >= 0; --i) {
+      for (int i = (int) vertices.size() - 1; i >= 0; --i) {
         auto vertex = vertices[i];
         vector_remove(vertex->polygons, this);
       }
 
       vertices.empty();
 
-      for (int i = (int)edges.size() - 1; i >= 0; --i) {
+      for (int i = (int) edges.size() - 1; i >= 0; --i) {
         auto edge = edges[i];
         vector_remove(edge->polygons, this);
       }
 
       edges.empty();
 
-      for(auto mesh : meshes) {
+      for (auto mesh : meshes) {
         vector_remove(mesh->polygons, this);
       }
     }
@@ -98,13 +102,18 @@ namespace sculptor {
 //      normals.push_back(normal);
 //    }
 
-    void Polygon::set_data(const string &name, float *values, int step, int count) {
-      data.insert(Vertex_Data::value_type(name, vector<float>(vertices.size() * count)));
-//      data[name].assign(values, values + count);
-      float *entry = data[name].data();
+    void Polygon::set_data(int id, float *values, int step, int count) {
+      auto entry = get_entry(id);
+      if (!entry) {
+        data.push_back(Vertex_Data());
+        entry = &data[data.size() - 1];
+        entry->id = id;
+      }
+      entry->values.reserve(vertices.size() * count);
+      float *entry_data = entry->values.data();
       for (int i = 0; i < vertices.size(); ++i) {
         for (int j = 0; j < count; ++j) {
-          *entry++ = values[j];
+          *entry_data++ = values[j];
         }
         values += step;
       }
@@ -119,10 +128,10 @@ namespace sculptor {
       return result / (float) vertices.size();
     }
 
-    const vector<int> Polygon::get_indices(const Selection & selection) const {
+    const vector<int> Polygon::get_indices(const Selection &selection) const {
       vector<int> result(vertices.size());
       for (int i = 0; i < vertices.size(); ++i) {
-        result[i] = selecting::get_vertex_index(selection,*vertices[i]);
+        result[i] = selecting::get_vertex_index(selection, *vertices[i]);
       }
 
       return result;
@@ -132,4 +141,12 @@ namespace sculptor {
       std::reverse(vertices.begin(), vertices.end());
     }
   }
+
+  vector<Edge *> Polygon::get_edges() {
+    if (edges.size() == 0)
+      initialize_edges();
+
+    return edges;
+  }
+
 }

@@ -4,6 +4,7 @@
 #include <memory.h>
 #include <iostream>
 #include <textual/string_additions.h>
+#include <sstream>
 
 using namespace sculptor;
 using namespace sculptor::geometry;
@@ -66,43 +67,59 @@ namespace archaeology {
     return materials;
   }
 
-  string next_value(const string &input, int &index) {
-    string result;
+  template <typename R, typename F>
+  R next_value(const string &input, int &index, F f) {
+    char buffer[20];
+    int buffer_index = 0;
+//    string result;
     for (int i = 0; i < 20; ++i) {
-      if (index >= input.size())
-        return result.c_str();
+      if (index >= input.size()) {
+        buffer[buffer_index] = 0;
+        return (R) f(buffer);
+      }
 
       auto character = input[index++];
-      if (character == ' ')
-        return result;
+      if (character == ' ') {
+        buffer[buffer_index] = 0;
+        return (R) f(buffer);
+      }
 
-      result += character;
-      int k = 0;
+      buffer[buffer_index++] = character;
+//      result += character;
     }
 
     throw runtime_error("Invalid mesh data string.");
   }
 
-  void foo(Mesh *mesh, Material &material, Selection &vertices, const string &count_string,
+  void foo(Basic_Mesh *mesh, Material &material, Selection &vertices, const string &count_string,
            const string &index_string) {
 
 //    auto counts = textual::split(count_string, ' ');
-    vector<string> indices;
-    textual::split(index_string, ' ', indices);
+//    vector<string> indices;
+//    textual::split(index_string, ' ', indices);
+    stringstream stream(index_string);
+    string item;
+
+//    while () {
+//      elements.push_back(item);
+//    }
 
     int step = 0;
     int count_index = 0, index_index = 0;
     while (count_string.size() > count_index) {
       Selection polygon_vertices;
-      int count = atoi(next_value(count_string, count_index).c_str());
+      int count = next_value<int>(count_string, count_index, atoi);
       for (int i = 0; i < count; ++i) {
-        int index = atoi(indices[step].c_str());
+        getline(stream, item, ' ');
+        int index = atoi(item.c_str());
+        getline(stream, item, ' ');
+//        int index = atoi(indices[step].c_str());
         step += 2;
         polygon_vertices.push_back(vertices[index]);
       }
 
       auto polygon = new Polygon(polygon_vertices);
-      polygon->set_data("color", (float *) &material.color, 0, 4);
+      polygon->set_data(Vertex_Data::color, (float *) &material.color, 0, 4);
 //					polygon->flip();
       mesh->add_polygon(polygon);
     }
@@ -126,23 +143,25 @@ namespace archaeology {
      */
   }
 
-  void load_geometry(xml_node &collada, Mesh *mesh, map<const string, Material> &materials) {
+  void load_geometry(xml_node &collada, Basic_Mesh *mesh, map<const string, Material> &materials) {
     auto library = collada.child("library_geometries");
     for (auto geometry: library.children("geometry")) {
       for (auto mesh_element : geometry.children("mesh")) {
         auto source = mesh_element.child("source");
         auto float_array = source.child("float_array");
         string floats = float_array.first_child().value();
-        auto values = textual::split(floats, ' ');
+//        auto values = textual::split(floats, ' ');
         Selection vertices;
         int float_index = 0;
         while (floats.size() > float_index) {
           vec3 temp;
-          temp.x = (float) atof(next_value(floats, float_index).c_str());
-          temp.y = (float) atof(next_value(floats, float_index).c_str());
-          temp.z = (float) atof(next_value(floats, float_index).c_str());
+          temp.x = next_value<float>(floats, float_index, atof);
+          temp.y = next_value<float>(floats, float_index, atof);
+          temp.z = next_value<float>(floats, float_index, atof);
 
-          vertices.push_back(mesh->add_vertex(temp));
+          auto vertex =mesh->add_vertex(temp);
+          vertex->reserve_polygons(4);
+          vertices.push_back(vertex);
         }
 //        for (int i = 0; i < values.size(); i += 3) {
 //          vertices.push_back(mesh->add_vertex(vec3(
@@ -166,8 +185,8 @@ namespace archaeology {
 
   }
 
-  unique_ptr<Mesh> load_collada_file(const string filename) {
-    auto mesh = new Mesh();
+  unique_ptr<Basic_Mesh> load_collada_file(const string filename) {
+    auto mesh = new Basic_Mesh();
     xml_document document;
 
 #if ANDROID
@@ -188,6 +207,6 @@ namespace archaeology {
     auto collada = document.first_child();
     auto materials = load_materials(collada);
     load_geometry(collada, mesh, materials);
-    return unique_ptr<Mesh>(mesh);
+    return unique_ptr<Basic_Mesh>(mesh);
   }
 }

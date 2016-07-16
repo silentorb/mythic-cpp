@@ -20,26 +20,26 @@ namespace sculptor {
       return glm::normalize(vector);
     }
 
-    void flatten_normals(Mesh &mesh) {
+    void flatten_normals(Basic_Mesh &mesh) {
       for (auto &polygon: mesh.polygons) {
         auto normal = polygon->calculate_normal();
-        polygon->set_data("normal", (float *) &normal, 0, 3);
+        polygon->set_data(Vertex_Data::normal, (float *) &normal, 0, 3);
       }
     }
 
-    void smooth_normals(Mesh &mesh) {
+    void smooth_normals(Basic_Mesh &mesh) {
       for (auto &polygon: mesh.polygons) {
         vector<vec3> normals(polygon->vertices.size());
         for (int i = 0; i < polygon->vertices.size(); ++i) {
           normals[i] = operations::calculate_normal(polygon->vertices[i]);
         }
-        polygon->set_data("normal", (float *) normals.data(), 3, 3);
+        polygon->set_data(Vertex_Data::normal, (float *) normals.data(), 3, 3);
       }
     }
 
-    void set_mesh_data(Mesh &mesh, const string &attribute_name, float *values, int count) {
+    void set_mesh_data(Basic_Mesh &mesh, int id, float *values, int count) {
       for (auto &polygon: mesh.polygons) {
-        polygon->set_data(attribute_name, values, 0, count);
+        polygon->set_data(id, values, 0, count);
       }
     }
 
@@ -66,8 +66,8 @@ namespace sculptor {
       return result;
     }
 
-    Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees) {
-      auto mesh = new Mesh();
+    Basic_Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees) {
+      auto mesh = new Basic_Mesh();
       mesh->add_vertices(vertices, vertical_count);
       auto &first = mesh->get_vertex(0);
       auto &last = mesh->get_vertex(mesh->get_vertex_count() - 1);
@@ -143,7 +143,7 @@ namespace sculptor {
     }
 
     void mirror(Selection &selection, bool fill) {
-      Mesh *mesh = selecting::get_mesh(selection);
+      Basic_Mesh *mesh = selecting::get_mesh(selection);
       auto other = selecting::clone(selection, glm::scale(vec3(-1, 1, 1)));
 
       auto polygons = selecting::get_polygons(other);

@@ -3,7 +3,7 @@
 namespace modeling {
   namespace mesh_export {
 
-    int get_vertex_count(Mesh &mesh) {
+    int get_vertex_count(Basic_Mesh &mesh) {
       int result = 0;
       for (auto polygon: mesh.polygons) {
         result += polygon->vertices.size();
@@ -11,7 +11,17 @@ namespace modeling {
       return result;
     }
 
-    void output(Mesh &mesh, Vertex_Schema &vertex_schema, Mesh_Export &result) {
+    int get_attribute_id(const string &name) {
+      if (name == "normal")
+        return Vertex_Data::normal;
+
+      if (name == "color")
+        return Vertex_Data::color;
+
+      throw runtime_error("Unknown vertex attribute name: " + name);
+    }
+
+    void output(Basic_Mesh &mesh, Vertex_Schema &vertex_schema, Mesh_Export &result) {
       auto vertex_count = get_vertex_count(mesh);
       auto vertices = new float[vertex_count * vertex_schema.get_vertex_size()];
       auto offsets = new int[mesh.polygons.size()];
@@ -30,7 +40,7 @@ namespace modeling {
           value += 3;
           for (int i = 1; i < vertex_schema.get_attribute_count(); ++i) {
             auto &attribute = vertex_schema.get_attribute(i);
-            float *data = polygon->get_data(attribute.get_name(), j);
+            float *data = polygon->get_data(attribute.get_id(), j);
             if (!data) {
               value += attribute.get_count();
               continue;
@@ -68,7 +78,7 @@ namespace modeling {
 //      result.counts = counts;
     }
 
-    Mesh_Data *output(Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
+    Mesh_Data *output(Basic_Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
       Mesh_Export cache;
       output(mesh, vertex_schema, cache);
 

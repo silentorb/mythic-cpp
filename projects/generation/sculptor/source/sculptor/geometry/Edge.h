@@ -12,7 +12,7 @@ namespace sculptor {
     public:
         Edge(Vertex *first, Vertex *second);
 //        vector<Mesh *> meshes;
-        Mesh *mesh = nullptr;
+        Basic_Mesh *mesh = nullptr;
         Vertex *vertices[2];
         vector<Polygon *> polygons;
         bool contains(Vertex *vertex);
@@ -44,11 +44,11 @@ namespace sculptor {
           }
         }
 
-        Mesh *get_mesh() const {
+        Basic_Mesh *get_mesh() const {
           return mesh;
         }
 
-        void set_mesh(Mesh *mesh) {
+        void set_mesh(Basic_Mesh *mesh) {
           Edge::mesh = mesh;
         }
 

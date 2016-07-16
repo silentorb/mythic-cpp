@@ -7,7 +7,7 @@
 namespace sculptor {
 
   namespace selecting {
-    Mesh *const get_mesh(const Selection &selection) {
+    Basic_Mesh *const get_mesh(const Selection &selection) {
       if (selection.size() == 0)
         return nullptr;
 

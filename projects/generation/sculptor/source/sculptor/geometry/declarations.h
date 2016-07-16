@@ -13,7 +13,7 @@ using namespace glm;
 namespace sculptor {
   namespace geometry {
 
-    class Mesh;
+    class Basic_Mesh;
 
     class Vertex;
 
@@ -21,7 +21,7 @@ namespace sculptor {
 
     class Edge;
 
-    typedef shared_ptr<Mesh> Mesh_Pointer;
+    typedef shared_ptr<Basic_Mesh> Mesh_Pointer;
     typedef shared_ptr<Vertex> Vertex_Pointer;
     typedef shared_ptr<Polygon> Polygon_Pointer;
     typedef shared_ptr<Edge> Edge_Pointer;

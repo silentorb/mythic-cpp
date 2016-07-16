@@ -23,7 +23,7 @@ namespace shading {
 
   Vertex_Schema::Vertex_Schema(initializer_list<int> attributes_initializer) {
     for (auto a : attributes_initializer) {
-      attributes.push_back(Vertex_Attribute("", a));
+      attributes.push_back(Vertex_Attribute(0, "", a));
     }
     field_count = get_sum(attributes);
     vertex_size = field_count * sizeof(float);

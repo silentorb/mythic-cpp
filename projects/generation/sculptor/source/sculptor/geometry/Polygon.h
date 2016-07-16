@@ -9,21 +9,35 @@
 namespace sculptor {
   namespace geometry {
 
-    typedef map<const string, vector<float>> Vertex_Data;
+//    typedef map<const string, vector<float>> Vertex_Data;
+    struct Vertex_Data {
+        int id;
+        vector<float> values;
+
+        enum common_ids {
+            position = 1,
+            normal,
+            uv,
+            color
+        };
+    };
 
     class MYTHIC_EXPORT Polygon {
     private:
         void initialize();
         void add_vertex(Vertex *vertex);
-        Vertex_Data data;
+        vector<Vertex_Data> data;
         vec3 normal;
+        vector<Edge *> edges;
+
+        void initialize_edges();
 
     public:
-        vector<Mesh *> meshes;
+        vector<Basic_Mesh *> meshes;
         vector<Vertex *> vertices;
-        vector<Edge *> edges;
 //        vector<vec3> normals;
 //        vector<vec2> uvs;
+        vector<Edge *> get_edges();
 
 //        template<typename Iterator>
 //        Polygon(Iterator vertices);
@@ -46,22 +60,31 @@ namespace sculptor {
         vec3 calculate_normal() const;
 //        void add_normal(const vec3 normal);
 
-        void set_data(const string &name, float *data, int step, int count);
+        void set_data(int id, float *data, int step, int count);
 
-        float *get_data(const string &name) {
-          if (!data.count(name))
-            return nullptr;
-
-          return data[name].data();
+        float *get_data(int id) {
+          for (auto &entry: data) {
+            if (entry.id == id)
+              return entry.values.data();
+          }
+          return nullptr;
         }
 
-        float *get_data(const string &name, int index) {
-          if (!data.count(name))
+        Vertex_Data *get_entry(int id) {
+          for (auto &entry: data) {
+            if (entry.id == id)
+              return &entry;
+          }
+          return nullptr;
+        }
+
+        float *get_data(int id, int index) {
+          auto entry = get_entry(id);
+          if (!entry)
             return nullptr;
 
-          float *values = data[name].data();
-          auto step = data[name].size() / vertices.size();
-          return values + index * step;
+          auto step = entry->values.size() / vertices.size();
+          return entry->values.data() + index * step;
         }
 
         const vec3 &get_normal() const {

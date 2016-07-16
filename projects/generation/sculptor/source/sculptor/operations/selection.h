@@ -9,14 +9,14 @@ using namespace std;
 
 namespace sculptor {
   namespace geometry {
-    class Mesh;
+    class Basic_Mesh;
   }
   using namespace geometry;
 
   typedef vector<Vertex *> Selection;
 
   namespace selecting {
-    Mesh *const get_mesh(const Selection &selection);
+    Basic_Mesh *const get_mesh(const Selection &selection);
     MYTHIC_EXPORT Selection clone(const Selection &selection, const mat4 offset);
     const vector<Polygon *> get_polygons(const Selection &selection);
     bool contains_polygon(const Selection &selection, const Polygon &polygon);

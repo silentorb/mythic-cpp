@@ -1,3 +1,4 @@
+#include <sculptor/geometry.h>
 #include "Billboard.h"
 
 using namespace modeling;
@@ -23,16 +24,16 @@ namespace scenery {
       billboard_data::vertex_schema = unique_ptr<Vertex_Schema>(
         new Vertex_Schema(
           {
-            Vertex_Attribute("position", 3),
-            Vertex_Attribute("uv", 2)
+            Vertex_Attribute(sculptor::geometry::Vertex_Data::position, "position", 3),
+            Vertex_Attribute(sculptor::geometry::Vertex_Data::uv, "uv", 2)
           }));
 
 //      new Mesh_Data(1, 4, (float *) &billboard_data::vertices, &billboard_data::offsets,
 //                    &billboard_data::counts, *billboard_data::vertex_schema)
       billboard_data::billboard_mesh = unique_ptr<Mesh_Data>(
-        new Mesh_Data([&] (Mesh_Export & result) {
+        new Mesh_Data([&](Mesh_Export &result) {
           result.initialize(1, 4, (float *) &billboard_data::vertices, &billboard_data::offsets,
-                    &billboard_data::counts);
+                            &billboard_data::counts);
         }, *billboard_data::vertex_schema)
       );
     }

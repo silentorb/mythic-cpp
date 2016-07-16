@@ -1,20 +1,17 @@
 #pragma once
 
 #include "dllexport.h"
-
 #include "declarations.h"
-//#include "Polygon.h"
 #include "sculptor/operations/selection.h"
 
 namespace sculptor {
   namespace geometry {
 
-    class MYTHIC_EXPORT Mesh {
-    private:
+    class MYTHIC_EXPORT Basic_Mesh {
 
     public:
-        Mesh();
-        ~Mesh();
+        Basic_Mesh();
+        ~Basic_Mesh();
         vector<Vertex *> vertices;
         vector<Polygon *> polygons;
         vector<Edge *> edges;
@@ -30,9 +27,14 @@ namespace sculptor {
         Polygon *add_polygon(vec3 first, vec3 second, vec3 third);
 //        Polygon *add_polygon(vec3 first, vec3 second, vec3 third, vec3 fourth);
 
-        const vector<Edge *> &get_edges() const {
+        const vector<Edge *> &get_edges() {
+          if (edges.size() == 0 && polygons.size() > 0)
+            populate_edges();
+
           return edges;
         }
+
+        void populate_edges();
 
         vec3 get_center() const;
 
