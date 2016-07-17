@@ -57,13 +57,6 @@ namespace sculptor {
       }
     }
 
-
-//    template<typename Iterator>
-//    Polygon *Mesh::add_polygon(Iterator vertices) {
-//      auto polygon = new Polygon(vertices);
-//      add_polygon(polygon);
-//    }
-
     Polygon *Basic_Mesh::add_polygon(std::initializer_list<Vertex *> vertices) {
       auto polygon = new Polygon(vertices);
       add_polygon(polygon);

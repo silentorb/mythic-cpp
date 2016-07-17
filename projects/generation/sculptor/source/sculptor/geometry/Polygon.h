@@ -9,7 +9,6 @@
 namespace sculptor {
   namespace geometry {
 
-//    typedef map<const string, vector<float>> Vertex_Data;
     struct Vertex_Data {
         int id;
         vector<float> values;
@@ -35,30 +34,17 @@ namespace sculptor {
     public:
         vector<Basic_Mesh *> meshes;
         vector<Vertex *> vertices;
-//        vector<vec3> normals;
-//        vector<vec2> uvs;
         vector<Edge *> get_edges();
 
-//        template<typename Iterator>
-//        Polygon(Iterator vertices);
         Polygon(initializer_list<Vertex *>);
         Polygon(const Selection &selection);
         Polygon(Vertex *first, Vertex *second, Vertex *third, Vertex *fourth);
         Polygon(Vertex *first, Vertex *second, Vertex *third);
         ~Polygon();
 
-//        Polygon(initializer_list<Vertex *> source) {
-//          for (Vertex *vertex : source) {
-//            add_vertex(vertex);
-//          }
-//
-//          initialize();
-//        }
-
         void remove();
 
         vec3 calculate_normal() const;
-//        void add_normal(const vec3 normal);
 
         void set_data(int id, float *data, int step, int count);
 

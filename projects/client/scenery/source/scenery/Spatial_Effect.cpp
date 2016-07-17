@@ -1,6 +1,7 @@
 #include <shading/utility.h>
 #include <lookinglass/glow.h>
 #include "Spatial_Effect.h"
+#include "modeling/Mesh_Data.h"
 
 namespace scenery {
   Spatial_Effect::Spatial_Effect(Program &program) :
@@ -34,4 +35,11 @@ namespace scenery {
     activate(transform, has_opacity, opacity);
     normal_property.set(normal_transform);
   }
+
+  void Spatial_Effect::render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
+                              float opacity) {
+    activate(transform, normal_transform, has_opacity, opacity);
+    mesh_data->draw(get_draw_method());
+  }
+
 }

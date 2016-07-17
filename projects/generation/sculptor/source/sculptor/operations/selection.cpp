@@ -52,7 +52,7 @@ namespace sculptor {
       vector<Edge *> polygons;
       auto mesh = get_mesh(selection);
 
-      for (auto edge: mesh->edges) {
+      for (auto edge: mesh->get_edges()) {
         if (contains_edge(selection, *edge)) {
           polygons.push_back(edge);
         }
@@ -75,7 +75,7 @@ namespace sculptor {
       vector<Edge *> polygons;
       auto mesh = get_mesh(selection);
 
-      for (auto edge: mesh->edges) {
+      for (auto edge: mesh->get_edges()) {
         if (contains_edge(selection, *edge) && edge_polygon_count(selection, *edge) == 1) {
           polygons.push_back(edge);
         }

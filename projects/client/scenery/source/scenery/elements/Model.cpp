@@ -6,7 +6,7 @@
 
 namespace scenery {
 
-  Model::Model(Mesh_Data* mesh_data, Spatial_Effect *effect, Parent * parent)
+  Model::Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent)
     : mesh_data(mesh_data), effect(effect), Element(parent) {
 
   }
@@ -14,10 +14,9 @@ namespace scenery {
   void Model::render() {
     auto transform = get_transform();
     auto normal_transform = get_absolute_orientation();
-    if(texture)
+    if (texture)
       texture->activate();
 
-    effect->activate(transform, normal_transform, opacity != 1 || mesh_data->has_opacity(), opacity);
-    mesh_data->draw(effect->get_draw_method());
+    effect->render(mesh_data, transform, normal_transform, opacity != 1 || mesh_data->has_opacity(), opacity);
   }
 }

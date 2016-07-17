@@ -56,12 +56,6 @@ namespace sculptor {
           edges.push_back(new Edge(vertices[i], vertices[next]));
         }
       }
-
-      if (vertices.size() <= 4) {
-        for (int i = 0; i < vertices.size(); ++i) {
-
-        }
-      }
     }
 
     Polygon::~Polygon() {
@@ -97,10 +91,6 @@ namespace sculptor {
       // to have the cross product face in the right direction.
       return glm::normalize(glm::cross(third - second, first - second));
     }
-
-//    void Polygon::add_normal(const vec3 normal) {
-//      normals.push_back(normal);
-//    }
 
     void Polygon::set_data(int id, float *values, int step, int count) {
       auto entry = get_entry(id);

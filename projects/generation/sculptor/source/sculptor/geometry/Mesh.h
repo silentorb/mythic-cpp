@@ -8,13 +8,13 @@ namespace sculptor {
   namespace geometry {
 
     class MYTHIC_EXPORT Basic_Mesh {
+        vector<Edge *> edges;
 
     public:
         Basic_Mesh();
         ~Basic_Mesh();
         vector<Vertex *> vertices;
         vector<Polygon *> polygons;
-        vector<Edge *> edges;
 
         Vertex *add_vertex(Vertex *vertex);
         Vertex *add_vertex(vec3 vertex);

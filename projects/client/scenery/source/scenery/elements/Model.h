@@ -23,7 +23,7 @@ namespace scenery {
   private:
       Mesh_Data *mesh_data;
       Spatial_Effect *effect;
-      texturing:: Texture*texture = nullptr;
+      texturing::Texture *texture = nullptr;
       float opacity = 1;
 
   public:
