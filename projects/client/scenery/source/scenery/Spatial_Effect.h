@@ -22,11 +22,14 @@ namespace scenery {
   private:
       Draw_Method draw_method;
       float opacity = 1;
+//      void activate(mat4 &transform, bool has_opacity, float opacity);
+
+  protected:
+      Vector4_Property color_property;
       Matrix_Property model_property;
       Matrix_Property normal_property;
-      Vector4_Property color_property;
 
-      void activate(mat4 &transform, bool has_opacity, float opacity);
+      void update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity, float opacity);
 
   public:
       Spatial_Effect(Program &program);

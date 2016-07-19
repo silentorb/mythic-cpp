@@ -39,6 +39,7 @@ namespace vineyard {
         database.statements.clear();
         sqlite3_close(handle);
       }
+			handle = nullptr;
 
       database.decrement_connections();
     }

@@ -28,8 +28,6 @@ namespace scenery {
             Vertex_Attribute(sculptor::geometry::Vertex_Data::uv, "uv", 2)
           }));
 
-//      new Mesh_Data(1, 4, (float *) &billboard_data::vertices, &billboard_data::offsets,
-//                    &billboard_data::counts, *billboard_data::vertex_schema)
       billboard_data::billboard_mesh = unique_ptr<Mesh_Data>(
         new Mesh_Data([&](Mesh_Export &result) {
           result.initialize(1, 4, (float *) &billboard_data::vertices, &billboard_data::offsets,

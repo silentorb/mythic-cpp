@@ -23,22 +23,24 @@ namespace scenery {
     color_property.set(1, 1, 1, opacity);
   }
 
-  void Spatial_Effect::activate(mat4 &transform, bool has_opacity, float opacity) {
+  void Spatial_Effect::activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, float opacity) {
     Effect::activate();
+    update_shader_properties(transform, normal_transform, has_opacity, opacity);
+  }
+
+  void Spatial_Effect::update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity,
+                                                float opacity) {
     set_opacity(opacity);
     shading::set_opacity_support(has_opacity || this->opacity != 1);
     glow::set_depth_test(true);
     model_property.set(transform);
-  }
-
-  void Spatial_Effect::activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, float opacity) {
-    activate(transform, has_opacity, opacity);
     normal_property.set(normal_transform);
   }
 
   void Spatial_Effect::render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
                               float opacity) {
-    activate(transform, normal_transform, has_opacity, opacity);
+    Effect::activate();
+    update_shader_properties(transform, normal_transform, has_opacity, opacity);
     mesh_data->draw(get_draw_method());
   }
 

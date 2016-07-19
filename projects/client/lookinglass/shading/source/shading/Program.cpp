@@ -25,6 +25,17 @@ namespace shading {
 		Shader_Manager::get_instance().register_program(this);
 	}
 
+  Program::Program(const string& name, Shader &first, Shader &second, const Vertex_Schema &vertex_schema) :
+    id(0), name(name),
+    first(first),
+    second(second), vertex_schema(&vertex_schema) {
+    for (auto& attribute: vertex_schema.get_attributes()) {
+      attribute_names.push_back(attribute.get_name());
+    }
+    load();
+    Shader_Manager::get_instance().register_program(this);
+  }
+
   Program::~Program() {
       Shader_Manager::get_instance().unregister_program(*this);
     glDeleteProgram(id);

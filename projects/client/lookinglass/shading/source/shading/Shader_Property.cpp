@@ -38,6 +38,12 @@ namespace shading {
     }
   }
 
+  void Vector4_Property::set(glm::vec4 value) {
+    if (property.get_uniform_index() != -1) {
+      glUniform4f(property.get_uniform_index(), value.x, value.y, value.z, value.w);
+    }
+  }
+
   Float_Property::Float_Property(const string &name, Program *program) :
     property(Shader_Property(name, *program)) { }
 

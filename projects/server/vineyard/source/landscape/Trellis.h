@@ -6,6 +6,7 @@
 #include <vector>
 #include <stdexcept>
 #include <functional>
+#include <vineyard/identity.h>
 
 namespace vineyard {
   class Ground;
@@ -25,10 +26,10 @@ namespace landscape {
       vector<Property> properties;
       int offset;
       Seedery seedery;
+      Identity _next_id = 1;
 
   public:
       Trellis(const string &name, initializer_list<Property> initializer, Seedery seedery);
-
 
       const string &get_name() const {
         return name;
@@ -63,6 +64,18 @@ namespace landscape {
 
       Seed *find_seed(int id) const {
         return seedery(id);
+      }
+
+      void reset_next_id() {
+        _next_id = 1;
+      }
+
+      void set_next_id(Identity value) {
+        _next_id = value;
+      }
+
+      Identity next_id() {
+        return _next_id++;
       }
   };
 }

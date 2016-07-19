@@ -30,6 +30,13 @@ namespace vineyard {
       _file_existed = false;
       initialize();
     }
+    else {
+      for (auto &trellis: trellises) {
+        auto id = query_identity(*this, "SELECT id FROM " + trellis->get_name() + " ORDER BY id DESC LIMIT 1;");
+        trellis->set_next_id(id + 1);
+      }
+
+    }
 
 //    db->execute("PRAGMA temp_store = memory;");
 //    db->execute("PRAGMA journal_mode=WAL;");
@@ -62,6 +69,7 @@ namespace vineyard {
 //    string sql;
     for (auto &trellis: trellises) {
       db->execute("DROP TABLE IF EXISTS " + trellis->get_name() + ";");
+      trellis->reset_next_id();
 //      sql += "DROP TABLE IF EXISTS " + trellis->get_name() + ";\n";
     }
   }

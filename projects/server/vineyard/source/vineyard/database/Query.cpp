@@ -123,5 +123,14 @@ namespace vineyard {
     }
 
 
+    Identity query_identity(Ground &ground, const string &sql) {
+      Connection connection(ground);
+      {
+        Statement statement(sql, connection);
+        statement.step();
+        return sqlite3_column_int64(statement.get_handle(), 0);
+      }
+    }
+
   }
 }

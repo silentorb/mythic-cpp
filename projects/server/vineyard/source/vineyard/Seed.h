@@ -111,20 +111,15 @@ namespace vineyard {
       }
   };
 
-  class Struct_Seed : public Seed {
-  public:
-      Struct_Seed() :
-        Seed(nullptr, nullptr) { }
-
-      void set_ground_and_trellis(Ground *ground, landscape::Trellis *trellis) {
-        this->ground = ground;
-        this->trellis = trellis;
-      }
-
-  };
-//  class Seed_With_Identity {
-//      Seed seed;
+//  class Struct_Seed : public Seed {
 //  public:
-//      Identity id;
+//      Struct_Seed() :
+//        Seed(nullptr, nullptr) { }
+//
+//      void set_ground_and_trellis(Ground *ground, landscape::Trellis *trellis) {
+//        this->ground = ground;
+//        this->trellis = trellis;
+//      }
+//
 //  };
 }

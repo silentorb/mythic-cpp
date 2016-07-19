@@ -52,6 +52,15 @@ namespace shading {
     return *program;
   }
 
+  Program &Shader_Manager::create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
+                                          const Vertex_Schema &vertex_schema) {
+    auto program = new Program(name, vertex_shader, fragment_shader, vertex_schema);
+    programs->add_resource(program);
+    register_program(program);
+    return *program;
+  }
+
+
 //  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader,
 //                                          Vertex_Schema &vertex_schema) {
 //    auto program = new Program(name, vertex_shader, fragment_shader, vertex_schema);
@@ -68,6 +77,17 @@ namespace shading {
       names
     );
   }
+
+  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
+                                                     const Vertex_Schema &vertex_schema) {
+    return create_program(
+      name,
+      create_shader(Shader_Type::vertex, vertex),
+      create_shader(Shader_Type::fragment, fragment),
+      vertex_schema
+    );
+  }
+
 
 //  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
 //                                                     Vertex_Schema &vertex_schema) {

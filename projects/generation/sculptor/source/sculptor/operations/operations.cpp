@@ -11,10 +11,7 @@ namespace sculptor {
 
     vec3 calculate_normal(Vertex *vertex) {
       auto vector = vec3();
-//      for (auto edge: vertex->edges) {
-//        vector += vertex->get_position() - edge->get_other_vertex(vertex)->get_position();
-//      }
-      for (auto polygon: vertex->polygons) {
+      for (auto polygon : vertex->polygons) {
         vector += polygon->calculate_normal();
       }
       return glm::normalize(vector);

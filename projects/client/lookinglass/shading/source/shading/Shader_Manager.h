@@ -42,10 +42,17 @@ namespace shading {
       void register_program(Program *program);
       Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
                               initializer_list<string> names);
+
+      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
+                              const Vertex_Schema &vertex_schema);
+
 //      Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
 //                              Vertex_Schema & vertex_schema);
       Program &create_program_from_files(const string name, const string vertex, const string fragment,
                                          initializer_list<string> names);
+
+      Program &create_program_from_files(const string name, const string vertex, const string fragment,
+                                         const Vertex_Schema &vertex_schema);
 
 //      Program &create_program_from_files(const string name, const string vertex, const string fragment,
 //                                         Vertex_Schema & vertex_schema);

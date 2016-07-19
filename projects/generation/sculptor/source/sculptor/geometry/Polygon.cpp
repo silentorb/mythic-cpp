@@ -92,17 +92,17 @@ namespace sculptor {
       return glm::normalize(glm::cross(third - second, first - second));
     }
 
-    void Polygon::set_data(int id, float *values, int step, int count) {
+    void Polygon::set_data(int id, float *values, int step, int struct_size) {
       auto entry = get_entry(id);
       if (!entry) {
         data.push_back(Vertex_Data());
         entry = &data[data.size() - 1];
         entry->id = id;
       }
-      entry->values.reserve(vertices.size() * count);
+      entry->values.resize(vertices.size() * struct_size);
       float *entry_data = entry->values.data();
       for (int i = 0; i < vertices.size(); ++i) {
-        for (int j = 0; j < count; ++j) {
+        for (int j = 0; j < struct_size; ++j) {
           *entry_data++ = values[j];
         }
         values += step;

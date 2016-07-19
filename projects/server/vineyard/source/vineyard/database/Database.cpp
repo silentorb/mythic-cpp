@@ -77,7 +77,9 @@ namespace vineyard {
     void Database::release_static() {
       unique_lock<mutex>(static_lock);
       if (static_handle) {
-        std::cout << "- " << static_handle << std::endl;
+				auto local_static_handle = static_handle;
+				static_handle = nullptr;
+        std::cout << "- " << local_static_handle << std::endl;
         int steps = 0;
         while(connection_count > 0) {
           this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -85,8 +87,7 @@ namespace vineyard {
             throw runtime_error("Static Connection was not closed");
         }
         std::cout << "Connections closed" << std::endl;
-        sqlite3_close(static_handle);
-				static_handle = nullptr;
+        sqlite3_close(local_static_handle);
         statements.clear();
       }
     }

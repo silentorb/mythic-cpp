@@ -1,5 +1,4 @@
 #include "Mythic_Renderer.h"
-#include "vectoring/utility.h"
 
 namespace mythic {
 

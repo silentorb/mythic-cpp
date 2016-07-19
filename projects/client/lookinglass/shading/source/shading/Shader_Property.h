@@ -4,6 +4,7 @@
 #include "Program.h"
 #include <string>
 #include <glm/detail/type_mat.hpp>
+#include <glm/vec4.hpp>
 
 using namespace std;
 using namespace glm;
@@ -36,6 +37,7 @@ namespace shading {
   public:
       Vector4_Property(const string & name, Program & program);
       void set(float x, float y, float z, float w);
+      void set(glm::vec4 value);
   };
 
   class MYTHIC_EXPORT Float_Property {

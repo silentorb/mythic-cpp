@@ -53,6 +53,7 @@ namespace scenery {
       this->parent->move_child(*this, *new_parent);
     }
     else if (new_parent) {
+      parent = new_parent;
       parent->add_child(*this);
     }
     else {

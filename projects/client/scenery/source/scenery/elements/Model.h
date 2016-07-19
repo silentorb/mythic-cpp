@@ -30,7 +30,7 @@ namespace scenery {
       Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent = nullptr);
       virtual void render() override;
 
-      float get_opacity() const {
+      float &get_opacity() {
         return opacity;
       }
 
@@ -44,6 +44,10 @@ namespace scenery {
 
       void set_texture(texturing::Texture *texture) {
         Model::texture = texture;
+      }
+
+      void set_effect(Spatial_Effect &effect) {
+        this->effect = &effect;
       }
   };
 }

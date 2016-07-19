@@ -18,6 +18,7 @@ namespace shading {
 
   public:
       Program(const string name, Shader &first, Shader &second, initializer_list<string> names);
+      Program(const string &name, Shader &first, Shader &second, const Vertex_Schema &vertex_schema);
       Program(const string &name, const string &first, const string &second, const Vertex_Schema &vertex_schema);
       ~Program();
       virtual void activate();

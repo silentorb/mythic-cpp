@@ -180,17 +180,70 @@ namespace vineyard {
         auto &property = properties[i];
 
         auto value = seed.get_pointer(property);
-        statement->bind(property.get_name(), get_sql_value(property, value));
+//        statement->bind(property.get_name(), get_sql_value(property, value));
         bind_property(property, value, *statement);
       }
 
       statement->step();
 
-      if (seed.get_id() == 0) {
-        auto id = sqlite3_last_insert_rowid(connection.get_handle());
-        Assert(id != 0);
-        seed.set_id(id);
+//      if (seed.get_id() == 0) {
+//        auto id = sqlite3_last_insert_rowid(connection.get_handle());
+//        Assert(id != 0);
+//        seed.set_id(id);
+//      }
+    }
+
+    void enumerate_values(Seed &seed, vector<string> &values) {
+      auto &trellis = seed.get_trellis();
+      auto &properties = trellis.get_properties();
+      values.reserve(properties.size());
+
+      for (int i = 0; i < properties.size(); ++i) {
+        if (i > 0) {
+          if (properties[i].get_type() == Types::list)
+            continue;
+        }
+        else if (seed.get_id() == 0) {
+          ++i;
+        }
+
+        auto &property = properties[i];
+        auto value = seed.get_pointer(property);
+        values.push_back(property.get_type() == Types::string
+                         ? *(string *) value
+                         : get_sql_value(property, value)
+        );
       }
+    }
+
+    void update_seed(Connection &connection, Trellis &trellis, int seed_id, const vector<string> &values) {
+      auto &properties = trellis.get_properties();
+
+      auto statement = get_update_seed_statement(trellis, connection, seed_id != 0);
+      auto statement_deleter = unique_ptr<Statement>(statement);
+      int step = 0;
+      for (int i = 0; i < properties.size(); ++i) {
+        if (i > 0) {
+          if (properties[i].get_type() == Types::list)
+            continue;
+        }
+        else if (seed_id == 0) {
+          ++i;
+        }
+
+        auto &property = properties[i];
+        statement->bind(property.get_name(), values[step++]);
+//        bind_property(property, values[step++], *statement);
+      }
+
+      statement->step();
+//      if (seed_id == 0) {
+//        auto id = sqlite3_last_insert_rowid(connection.get_handle());
+//        Assert(id != 0);
+//        return id;
+//      }
+//
+//      return seed_id;
     }
 
     Identity update_seed(Connection &connection, Trellis &trellis, int id, char *data) {

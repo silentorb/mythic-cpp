@@ -34,9 +34,8 @@ namespace modeling {
 
       for (auto polygon: mesh.polygons) {
         for (int j = 0; j < polygon->vertices.size(); ++j) {
-          auto source = polygon->vertices[j];
-          vec3 *position = (vec3 *) value;
-          *position = source->get_position();
+          auto vertex = polygon->vertices[j];
+          *((vec3 *) value) = vertex->get_position();
           value += 3;
           for (int i = 1; i < vertex_schema.get_attribute_count(); ++i) {
             auto &attribute = vertex_schema.get_attribute(i);

@@ -96,36 +96,39 @@ namespace vineyard {
 //  };
 
   void Seed::save() {
+    if (id == 0)
+      id = trellis->next_id();
+
     if (!ground->is_writing_enabled())
       return;
 
     if (ground->is_async()) {
 //                std::cout << "Push: " << trellis->get_name() << endl;
-      if (id)
-        throw runtime_error("Seed should never need to be fully saved twice.");
-
       if (*is_deleted)
         return;
 
       auto local_is_deleted = is_deleted;
       auto local_trellis = trellis;
-			is_saving = true;
-      ground->async([this, local_trellis, local_is_deleted](vineyard::database::Database &db) {
+      is_saving = true;
+      vector<string> values;
+      database::enumerate_values(*this, values);
+      int seed_id = id;
+      ground->async([this, local_trellis, local_is_deleted, values, seed_id](vineyard::database::Database &db) {
 //        unique_lock<mutex>(update_lock);
-				if (*local_is_deleted) {
-					is_saving = false;
-					return;
-				}
+        if (*local_is_deleted) {
+          is_saving = false;
+          return;
+        }
 
-				if (id) {
-					is_saving = false;
-					throw runtime_error("Seed should never need to be fully saved twice.");
-				}
+//        if (id) {
+//          is_saving = false;
+//          throw runtime_error("Seed should never need to be fully saved twice.");
+//        }
 //        std::cout << " Run: " << trellis->get_name() << endl;
         database::Connection connection(ground->get_database());
-        update_seed(connection, *this);
-				is_saving = false;
-			});
+        update_seed(connection, *local_trellis, seed_id, values);
+        is_saving = false;
+      });
     }
     else {
       database::Connection connection(ground->get_database());
@@ -142,7 +145,7 @@ namespace vineyard {
       auto value = database::get_sql_value(property, get_pointer(property));
       auto local_id = get_id();
       auto &db = ground->get_database();
-			Assert(property.get_trellis().get_name().size() > 0);
+      Assert(property.get_trellis().get_name().size() > 0);
       ground->async([&db, local_id, &property, value](vineyard::database::Database &db) {
         update_property(db, local_id, property, value);
       });

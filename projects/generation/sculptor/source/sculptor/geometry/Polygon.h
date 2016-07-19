@@ -46,7 +46,7 @@ namespace sculptor {
 
         vec3 calculate_normal() const;
 
-        void set_data(int id, float *data, int step, int count);
+        void set_data(int id, float *data, int step, int struct_size);
 
         float *get_data(int id) {
           for (auto &entry: data) {
@@ -66,7 +66,7 @@ namespace sculptor {
 
         float *get_data(int id, int index) {
           auto entry = get_entry(id);
-          if (!entry)
+          if (!entry || entry->values.size() == 0)
             return nullptr;
 
           auto step = entry->values.size() / vertices.size();

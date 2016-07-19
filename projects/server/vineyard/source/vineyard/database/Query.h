@@ -17,5 +17,6 @@ namespace vineyard {
                                      Seed_Creator &creator);
 
     VINEYARD_EXPORT int query_integer(Ground &ground, const string &sql);
+    VINEYARD_EXPORT Identity query_identity(Ground &ground, const string &sql);
   }
 }
