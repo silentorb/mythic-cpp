@@ -2,6 +2,7 @@
 #include "utility.h"
 #include "glow.h"
 #include <sstream>
+#include "glow_gl.h"
 
 namespace glow {
 

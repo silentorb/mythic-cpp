@@ -11,6 +11,7 @@
 #include "lookinglass/Renderable_List.h"
 #include "typography/Text_Effect.h"
 #include "framing/Platform_Frame.h"
+#include "lookinglass/glow_gl.h"
 
 using namespace resourceful;
 

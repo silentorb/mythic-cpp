@@ -1,6 +1,7 @@
 #include "Effect.h"
 #include "shading/Program.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace shading {
 

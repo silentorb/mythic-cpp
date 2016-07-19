@@ -2,6 +2,7 @@
 #include "lookinglass/glow.h"
 #include <regex>
 #include <string>
+#include "lookinglass/glow_gl.h"
 
 using namespace std;
 

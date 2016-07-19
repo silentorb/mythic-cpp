@@ -2,6 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "lookinglass/glow.h"
 #include "lookinglass/through/Mist.h"
+#include "lookinglass/glow_gl.h"
 
 namespace perspective {
   Viewport *active_viewport = NULL;

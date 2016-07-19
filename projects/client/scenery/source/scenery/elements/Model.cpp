@@ -3,6 +3,7 @@
 #include <lookinglass/Glass.h>
 #include <lookinglass/glow.h>
 #include "texturing/Texture.h"
+#include <scenery/Spatial_Effect.h>
 
 namespace scenery {
 

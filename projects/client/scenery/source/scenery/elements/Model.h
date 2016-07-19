@@ -3,7 +3,6 @@
 #include "dllexport.h"
 
 #include <memory>
-#include <scenery/Spatial_Effect.h>
 #include "Element.h"
 #include "glm/glm.hpp"
 #include "modeling/Mesh_Data.h"
@@ -11,6 +10,9 @@
 
 namespace texturing {
   class Texture;
+}
+namespace scenery {
+  class Spatial_Effect;
 }
 using namespace std;
 using namespace glm;

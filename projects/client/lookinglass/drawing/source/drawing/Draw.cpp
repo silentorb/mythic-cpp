@@ -11,6 +11,7 @@
 #include "lookinglass/glow.h"
 #include "perspective/Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "lookinglass/glow_gl.h"
 
 using namespace modeling;
 using namespace texturing;
@@ -96,9 +97,8 @@ namespace drawing {
 
     glow::set_depth_test(false);
     glow::set_depth_write(false);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glow::set_blend(true);
+    glow::set_blend_function(glow::Blend_Factor::source_alpha, glow::Blend_Factor::one_minus_source_alpha);
 
     auto &viewport = house.get_base_viewport();
     vec2 scaling = viewport.get_unit_scaling();
@@ -121,7 +121,7 @@ namespace drawing {
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 
     solid_mesh->render(solid);
-		glow::check_error("drew_square");
+    glow::check_error("drew_square");
   }
 
   void Draw::set_depth(bool value) {
@@ -130,7 +130,7 @@ namespace drawing {
   }
 
   void Draw::render() {
-    for(auto & renderable: renderables){
+    for (auto &renderable: renderables) {
       renderable();
     }
   }

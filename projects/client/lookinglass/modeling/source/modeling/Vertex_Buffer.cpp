@@ -1,6 +1,7 @@
 #include <lookinglass/utility.h>
 #include "Vertex_Buffer.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace modeling {
 

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <resourceful/path.h>
 #include <vector>
+#include "lookinglass/glow_gl.h"
 
 #if ANDROID
 #include <vector>

@@ -4,6 +4,7 @@
 #include "typography/Font.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "Text_Effect.h"
+#include "lookinglass/glow_gl.h"
 
 using namespace textual;
 using namespace lookinglass;

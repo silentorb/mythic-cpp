@@ -1,5 +1,6 @@
 #include "Data_Buffer.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace lookinglass {
   namespace through {

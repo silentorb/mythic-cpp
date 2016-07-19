@@ -1,5 +1,6 @@
 #include "Vertex_Schema.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace shading {
 

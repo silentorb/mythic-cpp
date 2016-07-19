@@ -3,6 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include "logger.h"
+#include "lookinglass/glow_gl.h"
 
 using namespace std;
 

@@ -1,6 +1,7 @@
 #include "Ancient_Mist.h"
 #include "lookinglass/glow.h"
 #include "logger.h"
+#include "lookinglass/glow_gl.h"
 
 namespace lookinglass {
   namespace through {

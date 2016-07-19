@@ -15,20 +15,12 @@ namespace shading {
     programs(new Resource_Manager("programs")),
     processor(processor) {
     instance = this;
-
   }
 
   Shader_Manager::~Shader_Manager() {
     // So children of this object do not unlisten to this after this is deleted. (Complications of destructor order).
     program_added.clear();
   }
-
-//  Code_Processor *Shader_Manager::create_processor() {
-//    if (glow::Capabilities::uniform_layout())
-//      return new Code_Processor(*loader);
-//
-//    return new Ancient_Code_Processor(*loader);
-//  }
 
   void Shader_Manager::register_program(Program *program) {
     for (auto &listener: program_added) {
@@ -60,14 +52,6 @@ namespace shading {
     return *program;
   }
 
-
-//  Program &Shader_Manager::create_program(const string name, Shader &vertex_shader, Shader &fragment_shader,
-//                                          Vertex_Schema &vertex_schema) {
-//    auto program = new Program(name, vertex_shader, fragment_shader, vertex_schema);
-//    register_program(program);
-//    return *program;
-//  }
-
   Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
                                                      initializer_list<string> names) {
     return create_program(
@@ -87,17 +71,6 @@ namespace shading {
       vertex_schema
     );
   }
-
-
-//  Program &Shader_Manager::create_program_from_files(const string name, const string vertex, const string fragment,
-//                                                     Vertex_Schema &vertex_schema) {
-//    return create_program(
-//      name,
-//      create_shader(Shader_Type::vertex, vertex),
-//      create_shader(Shader_Type::fragment, fragment),
-//      vertex_schema
-//    );
-//  }
 
   void Shader_Manager::release() {
     shaders->release();
@@ -144,7 +117,6 @@ namespace shading {
 
     programs->remove_resource(&program);
   }
-
 
   void Shader_Manager::unregister_program(Program &program) {
     for (auto &listener: program_added) {

@@ -2,6 +2,7 @@
 #include "glm/glm.hpp"
 #include "lookinglass/glow.h"
 #include <stdexcept>
+#include "lookinglass/glow_gl.h"
 
 using namespace glm;
 

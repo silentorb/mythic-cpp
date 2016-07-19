@@ -1,5 +1,6 @@
 #include "Shader_Property.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace shading {
 

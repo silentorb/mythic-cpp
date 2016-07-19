@@ -9,7 +9,8 @@ namespace scenery {
     glow::set_blend(true);
     glow::set_depth_test(false);
 //    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glow::set_blend_function(glow::Blend_Factor::source_alpha, glow::Blend_Factor::one);
+//      glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   }

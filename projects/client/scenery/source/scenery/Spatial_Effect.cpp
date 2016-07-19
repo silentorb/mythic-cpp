@@ -30,8 +30,13 @@ namespace scenery {
 
   void Spatial_Effect::update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity,
                                                 float opacity) {
+
+    auto opacity_support = has_opacity || this->opacity != 1;
     set_opacity(opacity);
-    shading::set_opacity_support(has_opacity || this->opacity != 1);
+    shading::set_opacity_support(opacity_support);
+    if (opacity_support) {
+      glow::set_blend_function(blend_function);
+    }
     glow::set_depth_test(true);
     model_property.set(transform);
     normal_property.set(normal_transform);

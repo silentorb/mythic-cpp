@@ -1,6 +1,7 @@
 #include "Scene_Manager.h"
 #include "lookinglass/through/create_mist.h"
 #include <lookinglass/House.h>
+#include "lookinglass/glow_gl.h"
 
 namespace scenery {
 

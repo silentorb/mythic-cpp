@@ -2,6 +2,7 @@
 #include "Mesh_Data.h"
 #include "lookinglass/glow.h"
 #include "Vertex_Buffer.h"
+#include "lookinglass/glow_gl.h"
 
 namespace modeling {
   Mesh_Data::Mesh_Data(Mesh_Data_Generator generator,

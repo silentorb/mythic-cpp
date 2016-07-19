@@ -4,6 +4,7 @@
 #include "SDL2/SDL.h"
 #include "lookinglass/glow.h"
 #include "lookinglass/Graphic_Options.h"
+#include "lookinglass/glow_gl.h"
 
 namespace desktop {
   Desktop_Frame::Desktop_Frame(const char *title, const lookinglass::Graphic_Options &graphic_options) {

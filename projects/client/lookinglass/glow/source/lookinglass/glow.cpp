@@ -1,4 +1,5 @@
 #include "glow.h"
+#include "glow_gl.h"
 
 namespace glow {
 
@@ -7,8 +8,8 @@ namespace glow {
     if (!gladLoadGL()) {
       return false;
     }
-      #elif __APPLE__
-      #elif __ANDROID__
+#elif __APPLE__
+#elif __ANDROID__
 #else
     if (ogl_LoadFunctions() == ogl_LOAD_FAILED) {
       return false;
@@ -24,6 +25,8 @@ namespace glow {
     bool depth_write = false;
     bool scissor_box = false;
     float line_width = 1;
+    Blend_Factor source = Blend_Factor::one;
+    Blend_Factor destination = Blend_Factor::zero;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -90,6 +93,16 @@ namespace glow {
     cache::line_width = value;
     glLineWidth(value);
   }
+
+  void set_blend_function(Blend_Factor source, Blend_Factor destination) {
+    if (cache::source == source && cache::destination == destination)
+      return;
+
+    cache::source = source;
+    cache::destination = destination;
+    glBlendFunc(static_cast<GLenum>(cache::source), static_cast<GLenum>(cache::destination));
+  }
+
 
 }
 

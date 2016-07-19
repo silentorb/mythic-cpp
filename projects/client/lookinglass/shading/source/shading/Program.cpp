@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include "logger.h"
 #include "Shader_Manager.h"
+#include "lookinglass/glow_gl.h"
 
 namespace shading {
 

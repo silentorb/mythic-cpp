@@ -1,6 +1,7 @@
 #include "Simple_Mesh.h"
 #include "shading/Vertex_Schema.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 
 namespace modeling {
   Simple_Mesh::Simple_Mesh(float *data, int vertex_count, const Vertex_Schema &vertex_schema)

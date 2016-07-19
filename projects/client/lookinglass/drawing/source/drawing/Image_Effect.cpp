@@ -4,6 +4,7 @@
 #include "shading/Program.h"
 #include <modeling/Simple_Mesh.h>
 #include "perspective/Viewport.h"
+#include "lookinglass/glow_gl.h"
 
 using namespace perspective;
 

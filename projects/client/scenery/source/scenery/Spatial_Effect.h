@@ -5,10 +5,14 @@
 #include "shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "modeling/Draw_Method.h"
+#include "lookinglass/glow.h"
 
 namespace modeling {
   class Mesh_Data;
 }
+//namespace glow {
+//  struct Blend_Function;
+//}
 
 using namespace shading;
 using namespace glm;
@@ -22,6 +26,7 @@ namespace scenery {
   private:
       Draw_Method draw_method;
       float opacity = 1;
+      glow::Blend_Function blend_function;
 //      void activate(mat4 &transform, bool has_opacity, float opacity);
 
   protected:
@@ -42,5 +47,9 @@ namespace scenery {
       void set_opacity(float value);
       virtual void render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
                           float opacity);
+
+      void set_blend_function(const glow::Blend_Function value) {
+        this->blend_function = value;
+      }
   };
 }
