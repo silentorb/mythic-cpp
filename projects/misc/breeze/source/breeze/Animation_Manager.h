@@ -45,8 +45,8 @@ namespace breeze {
         return animation->get_promise();
       }
 
-      promising::Promise<void> &slerp(glm::quat &target, glm::quat destination, float speed) {
-        auto animation = new Slerp_Animation(target, destination, speed);
+      promising::Promise<void> &slerp(glm::quat &target, glm::quat destination, float duration) {
+        auto animation = new Slerp_Animation(target, destination, duration);
         animations.push_back(unique_ptr<Animation>(animation));
         return animation->get_promise();
       }

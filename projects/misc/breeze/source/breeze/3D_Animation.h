@@ -76,12 +76,12 @@ namespace breeze {
       glm::quat start;
       glm::quat destination;
       glm::quat &target;
-      float speed;
+      float duration;
       float progress = 0;
 
   public:
-      Slerp_Animation(glm::quat &target, glm::quat destination, float speed) :
-        start(target), speed(speed), destination(destination), target(target),
+      Slerp_Animation(glm::quat &target, glm::quat destination, float duration) :
+        start(target), duration(duration), destination(destination), target(target),
         promise(promising::Promise<void>::defer()) {
 
       }
@@ -89,7 +89,7 @@ namespace breeze {
       virtual ~Slerp_Animation() override { }
 
       virtual bool update(float delta) override {
-        progress += delta * speed;
+        progress += delta * duration;
         if (progress >= 1) {
           target = destination;
           promise.resolve();
