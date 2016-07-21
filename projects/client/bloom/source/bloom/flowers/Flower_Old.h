@@ -27,7 +27,6 @@ namespace bloom {
   };
 
   class BLOOM_EXPORT Flower_Old : public Box_Old, public songbird::Singer {
-
       vector<unique_ptr<Flower_Old>> children;
       shared_ptr<Style> style;
 
@@ -56,7 +55,7 @@ namespace bloom {
       virtual bool check_event_new(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point);
 
       virtual void render();
-
+      virtual void update(float delta);
 //      void listen(Events event, Flower_Delegate action) {
 //        listeners.push_back({event, action});
 //      }

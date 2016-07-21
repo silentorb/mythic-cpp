@@ -22,5 +22,16 @@ namespace bloom {
       children.clear();
     }
 
+    void Flower::update(float delta) {
+      for (auto &child : children) {
+        child->update(delta);
+      }
+    }
+
+    void Flower::render() {
+      for (auto &child : children) {
+        child->render();
+      }
+    }
   }
 }

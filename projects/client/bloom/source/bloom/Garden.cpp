@@ -34,8 +34,8 @@ namespace bloom {
       auto &position = input_state.get_position();
 
       Flower_Old &start = modal_stack.size() > 0
-                      ? *modal_stack.top()->root
-                      : *root;
+                          ? *modal_stack.top()->root
+                          : *root;
 
       if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
 //        input_state.set_handled(*select_action);
@@ -45,8 +45,8 @@ namespace bloom {
     if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();
       Flower_Old &start = modal_stack.size() > 0
-                      ? *modal_stack.top()->root
-                      : *root;
+                          ? *modal_stack.top()->root
+                          : *root;
 
       if (start.check_event(Events::drag_old, vec2(position.x, position.y))) {
 //        input_state.set_handled(*select_action);
@@ -99,6 +99,10 @@ namespace bloom {
 
   const framing::Frame_Info &Garden::get_frame() const {
     return draw.get_frame();
+  }
+
+  void Garden::update(float delta) {
+    root->update(delta);
   }
 
 }

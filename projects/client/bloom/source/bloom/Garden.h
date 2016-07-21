@@ -42,6 +42,7 @@ namespace bloom {
       ~Garden();
 
       void update_input(haft::Input_State &input_state);
+      void update(float delta);
 
       Flower_Old &get_root() const {
         return *root;

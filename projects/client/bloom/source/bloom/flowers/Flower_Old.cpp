@@ -210,4 +210,10 @@ namespace bloom {
     return style.get() && style->get_overflow() == Overflow::hidden;
   }
 
+  void Flower_Old::update(float delta) {
+    for (auto &child: children) {
+      child->update(delta);
+    }
+  }
+
 }

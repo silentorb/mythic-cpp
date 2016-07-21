@@ -28,9 +28,9 @@ namespace bloom {
 
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) { }
 
-        virtual void update(float delta) { }
+        virtual void update(float delta);
 
-        virtual void render() { }
+        virtual void render();
 
         virtual const Axis_Values &get_absolute_bounds() {
           return parent->get_absolute_bounds();

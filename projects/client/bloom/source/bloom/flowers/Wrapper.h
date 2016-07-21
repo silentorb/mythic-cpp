@@ -10,7 +10,8 @@ namespace bloom {
         unique_ptr<Flower> flower;
 
     public:
-			Wrapper(Flower_Old *parent, Flower *flower);
+				virtual void update(float delta) override;
+				Wrapper(Flower_Old *parent, Flower *flower);
 			virtual ~Wrapper();
 
         virtual bool check_event_new(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point) override;

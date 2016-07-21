@@ -45,5 +45,10 @@ namespace bloom {
       return flower->check_event(event_type, point);
     }
 
+    void Wrapper::update(float delta) {
+      Flower_Old::update(delta);
+      flower->update(delta);
+    }
+
   }
 }

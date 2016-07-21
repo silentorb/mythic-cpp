@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.3)
 
+get_filename_component(PARENT_DIR ${CMAKE_SOURCE_DIR} DIRECTORY)
+
 if (NOT ANDROID)
   enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
 endif ()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-include(cmake-tools/scripts/generator-key.cmake)
+include(../../cmake-tools/scripts/generator-key.cmake)
 
 set(LOCAL_HEADER 1)
 include(local-config.cmake OPTIONAL)
@@ -35,11 +37,11 @@ macro(on_enumerate_target_sources)
   endif ()
 endmacro()
 
-include(cmake-tools/cmake-tools.cmake)
+include(../../cmake-tools/cmake-tools.cmake)
 
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 if (NOT ANDROID)
-  set(MYTHIC_DEPENDENCIES ${CMAKE_SOURCE_DIR}/dependencies/${GENERATOR_KEY})
+  set(MYTHIC_DEPENDENCIES ${PARENT_DIR}/dependencies/${GENERATOR_KEY})
 endif ()
 
 if (MINGW)
