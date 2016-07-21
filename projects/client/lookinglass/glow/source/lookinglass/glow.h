@@ -14,7 +14,7 @@
 
 namespace glow {
 
-  enum GLOW_EXPORT class Blend_Factor {
+  enum class Blend_Factor {
       zero = 0,
       one = 1,
       source_color = 0x0300,

@@ -22,22 +22,26 @@ using namespace sculptor::geometry;
 namespace scenery {
 
   class MYTHIC_EXPORT Model : public Element {
-  private:
+  protected:
       Mesh_Data *mesh_data;
       Spatial_Effect *effect;
       texturing::Texture *texture = nullptr;
-      float opacity = 1;
+      vec4 color = vec4(1);
 
   public:
       Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent = nullptr);
       virtual void render() override;
 
       float &get_opacity() {
-        return opacity;
+        return color.w;
       }
 
       void set_opacity(float opacity) {
-        Model::opacity = opacity;
+        color.w = opacity;
+      }
+
+      void set_color(vec4 value) {
+        color = value;
       }
 
       texturing::Texture *get_texture() const {

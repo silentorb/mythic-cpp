@@ -17,6 +17,8 @@ extern void android_load_binary(std::vector<char> &buffer, const std::string &pa
 
 namespace archaeology {
 
+  typedef function<void(sculptor::geometry::Polygon *, xml_node &)> Polygon_Delegate;
+
   struct Effect {
       vec4 color;
   };
@@ -67,7 +69,7 @@ namespace archaeology {
     return materials;
   }
 
-  template <typename R, typename F>
+  template<typename R, typename F>
   R next_value(const string &input, int &index, F f) {
     char buffer[20];
     int buffer_index = 0;
@@ -91,18 +93,13 @@ namespace archaeology {
     throw runtime_error("Invalid mesh data string.");
   }
 
-  void foo(Basic_Mesh *mesh, Material &material, Selection &vertices, const string &count_string,
-           const string &index_string) {
+  void foo(Polygon_Delegate action, Selection &vertices, xml_node &polygon_list) {
+    auto vcount = polygon_list.child("vcount");
+    string count_string = vcount.first_child().value();
+    auto index_string = polygon_list.child("p").first_child().value();
 
-//    auto counts = textual::split(count_string, ' ');
-//    vector<string> indices;
-//    textual::split(index_string, ' ', indices);
     stringstream stream(index_string);
     string item;
-
-//    while () {
-//      elements.push_back(item);
-//    }
 
     int step = 0;
     int count_index = 0, index_index = 0;
@@ -113,100 +110,94 @@ namespace archaeology {
         getline(stream, item, ' ');
         int index = atoi(item.c_str());
         getline(stream, item, ' ');
-//        int index = atoi(indices[step].c_str());
         step += 2;
         polygon_vertices.push_back(vertices[index]);
       }
 
       auto polygon = new Polygon(polygon_vertices);
-      polygon->set_data(Vertex_Data::color, (float *) &material.color, 0, 4);
-//					polygon->flip();
-      mesh->add_polygon(polygon);
+      action(polygon, polygon_list);
     }
 
-    /*
-    int step = 0;
-    for (auto count_string : counts) {
-      Selection polygon_vertices;
-      int count = atoi(count_string.c_str());
-      for (int i = 0; i < count; ++i) {
-        int index = atoi(indices[step].c_str());
-        step += 2;
-        polygon_vertices.push_back(vertices[index]);
+  }
+
+  void load_geometry2(xml_node &geometry, Basic_Mesh *mesh, Polygon_Delegate action) {
+    for (auto mesh_element : geometry.children("mesh")) {
+      auto source = mesh_element.child("source");
+      auto float_array = source.child("float_array");
+      string floats = float_array.first_child().value();
+      Selection vertices;
+      int float_index = 0;
+      while (floats.size() > float_index) {
+        vec3 temp;
+        temp.x = next_value<float>(floats, float_index, atof);
+        temp.y = next_value<float>(floats, float_index, atof);
+        temp.z = next_value<float>(floats, float_index, atof);
+
+        auto vertex = mesh->add_vertex(temp);
+        vertex->reserve_polygons(4);
+        vertices.push_back(vertex);
       }
 
-      auto polygon = new Polygon(polygon_vertices);
-      polygon->set_data("color", (float *) &material.color, 4);
-//					polygon->flip();
-      mesh->add_polygon(polygon);
+      for (auto polygon_list : mesh_element.children("polylist")) {
+        foo(action, vertices, polygon_list);
+      }
     }
-     */
+  }
+
+  void load_many_models(xml_node &collada, Mesh_Delegate delegate) {
+    auto library = collada.child("library_geometries");
+    for (auto geometry : library.children("geometry")) {
+      auto mesh = new Basic_Mesh();
+      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
+        mesh->add_polygon(polygon);
+      });
+      delegate(geometry.attribute("name").value(), mesh);
+    }
   }
 
   void load_geometry(xml_node &collada, Basic_Mesh *mesh, map<const string, Material> &materials) {
     auto library = collada.child("library_geometries");
-    for (auto geometry: library.children("geometry")) {
-      for (auto mesh_element : geometry.children("mesh")) {
-        auto source = mesh_element.child("source");
-        auto float_array = source.child("float_array");
-        string floats = float_array.first_child().value();
-//        auto values = textual::split(floats, ' ');
-        Selection vertices;
-        int float_index = 0;
-        while (floats.size() > float_index) {
-          vec3 temp;
-          temp.x = next_value<float>(floats, float_index, atof);
-          temp.y = next_value<float>(floats, float_index, atof);
-          temp.z = next_value<float>(floats, float_index, atof);
-
-          auto vertex =mesh->add_vertex(temp);
-          vertex->reserve_polygons(4);
-          vertices.push_back(vertex);
-        }
-//        for (int i = 0; i < values.size(); i += 3) {
-//          vertices.push_back(mesh->add_vertex(vec3(
-//            (float) atof(values[i].c_str()),
-//            (float) atof(values[i + 1].c_str()),
-//            (float) atof(values[i + 2].c_str())
-//          )));
-//        }
-
-        for (auto polygon_list : mesh_element.children("polylist")) {
-          auto vcount = polygon_list.child("vcount");
-          auto count_string = vcount.first_child().value();
-          auto material_id = polygon_list.attribute("material").value();
-          auto &material = materials[material_id];
-          auto index_string = polygon_list.child("p").first_child().value();
-
-          foo(mesh, material, vertices, count_string, index_string);
-        }
-      }
+    for (auto geometry : library.children("geometry")) {
+      load_geometry2(geometry, mesh, [mesh, &materials](Polygon *polygon, xml_node &polygon_list) {
+        auto material_id = polygon_list.attribute("material").value();
+        auto material = &materials[material_id];
+        polygon->set_data(Vertex_Data::color, (float *) &material->color, 0, 4);
+        mesh->add_polygon(polygon);
+      });
     }
 
   }
 
-  unique_ptr<Basic_Mesh> load_collada_file(const string filename) {
-    auto mesh = new Basic_Mesh();
-    xml_document document;
-
+  void open_file(xml_document &document, const string &filename) {
 #if ANDROID
     vector<char> buffer;
     android_load_binary(buffer, filename);
     xml_parse_result info = document.load_string((char*)buffer.data());
     if (!info)
       throw runtime_error(string("Error loading Collada file: ") + info.description());
-
 #else
-
     xml_parse_result info = document.load_file(filename.c_str());
     if (!info)
       throw runtime_error(string("Error loading Collada file: ") + info.description());
-
 #endif
 
+  }
+
+  unique_ptr<Basic_Mesh> load_collada_file(const string filename) {
+    auto mesh = new Basic_Mesh();
+    xml_document document;
+    open_file(document, filename);
     auto collada = document.first_child();
     auto materials = load_materials(collada);
     load_geometry(collada, mesh, materials);
     return unique_ptr<Basic_Mesh>(mesh);
+  }
+
+
+  void load_collada_file(const string filename, Mesh_Delegate delegate) {
+    xml_document document;
+    open_file(document, filename);
+    auto collada = document.first_child();
+    load_many_models(collada, delegate);
   }
 }

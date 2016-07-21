@@ -12,27 +12,35 @@ namespace scenery {
     color_property("color_filter", program) {
 
     Effect::activate();
-    color_property.set(1, 1, 1, opacity);
+    color_property.set(color);
   }
 
   void Spatial_Effect::set_opacity(float value) {
-    if (opacity == value || value == OPACITY_NOT_SET)
+    if (color.w == value || value == OPACITY_NOT_SET)
       return;
 
-    opacity = value;
-    color_property.set(1, 1, 1, opacity);
+    color.w = value;
+    color_property.set(color);
   }
 
-  void Spatial_Effect::activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, float opacity) {
+  void Spatial_Effect::set_color(vec4 value) {
+    if (color == value || value.w == OPACITY_NOT_SET)
+      return;
+
+    color = value;
+    color_property.set(color);
+  }
+
+  void Spatial_Effect::activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, vec4 &color) {
     Effect::activate();
-    update_shader_properties(transform, normal_transform, has_opacity, opacity);
+    update_shader_properties(transform, normal_transform, has_opacity, color);
   }
 
   void Spatial_Effect::update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity,
-                                                float opacity) {
+                                                vec4 &color) {
 
-    auto opacity_support = has_opacity || this->opacity != 1;
-    set_opacity(opacity);
+    auto opacity_support = has_opacity || this->color.w != 1;
+    set_color(color);
     shading::set_opacity_support(opacity_support);
     if (opacity_support) {
       glow::set_blend_function(blend_function);
@@ -43,9 +51,9 @@ namespace scenery {
   }
 
   void Spatial_Effect::render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
-                              float opacity) {
+                              vec4 &color) {
     Effect::activate();
-    update_shader_properties(transform, normal_transform, has_opacity, opacity);
+    update_shader_properties(transform, normal_transform, has_opacity, color);
     mesh_data->draw(get_draw_method());
   }
 

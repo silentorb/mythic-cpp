@@ -7,11 +7,11 @@
       <sourceFolder url="file://$MODULE_DIR$/games/spacegame/projects" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cregex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wc_regex_traits.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/instances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_traits_defaults.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/usinstances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/icu.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/winstances.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/fileiter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wide_posix_api.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/w32_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_debug.cpp" isTestSource="false" />
@@ -19,10 +19,10 @@
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_raw_buffer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/posix_api.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/fileiter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/winstances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/static_mutex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/c_regex_traits.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/instances.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wc_regex_traits.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

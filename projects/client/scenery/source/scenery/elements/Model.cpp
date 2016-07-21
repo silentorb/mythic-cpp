@@ -18,6 +18,6 @@ namespace scenery {
     if (texture)
       texture->activate();
 
-    effect->render(mesh_data, transform, normal_transform, opacity != 1 || mesh_data->has_opacity(), opacity);
+    effect->render(mesh_data, transform, normal_transform, color.w != 1 || mesh_data->has_opacity(), color);
   }
 }
