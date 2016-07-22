@@ -23,14 +23,16 @@ namespace clienting {
 namespace audio {
   class Speaker;
 }
+namespace lookinglass {
+class Graphic_Opions;
+};
 using namespace mythic;
 
-using namespace lookinglass;
 class Android_Input;
 
 typedef void (*Mythic_Initializer)(Mythic_Engine &engine);
 
-class Mythic_Android : public Platform_Factory {
+class Mythic_Android : public mythic::Platform_Factory {
 private:
 
     Android_App *app;
@@ -46,12 +48,13 @@ private:
 //    Android_Frame & get_frame() const;
     Android_Input*android_input;
     void poll();
+    unique_ptr<lookinglass::Graphic_Options> graphic_options;
 
 public:
-    Mythic_Android(Android_App *app);
+    Mythic_Android(Android_App *app, lookinglass::Graphic_Options &graphic_options);
     ~Mythic_Android();
 
-    framing::Platform_Frame *create_frame(int width, int height) override;
+    framing::Platform_Frame *create_frame(const lookinglass::Graphic_Options &graphic_options) override;
     haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     void run();
 

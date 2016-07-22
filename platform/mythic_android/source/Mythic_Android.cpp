@@ -12,9 +12,10 @@
 #include <sys/stat.h>
 #include <fstream>
 #include <sstream>
+#include "lookinglass/Graphic_Options.h"
 
-Mythic_Android::Mythic_Android(Android_App *app) :
-  app(app), initializer(nullptr), engine(nullptr) {
+Mythic_Android::Mythic_Android(Android_App *app, lookinglass::Graphic_Options &graphic_options) :
+  app(app), initializer(nullptr), engine(nullptr), graphic_options(new lookinglass:: Graphic_Options(graphic_options)) {
   app->userData = this;
   android_initialize_utility(app->activity->assetManager);
   client = nullptr;
@@ -25,7 +26,7 @@ Mythic_Android::~Mythic_Android() {
     delete client;
 }
 
-framing::Platform_Frame *Mythic_Android::create_frame(int width, int height) {
+framing::Platform_Frame *Mythic_Android::create_frame(const lookinglass::Graphic_Options &graphic_options) {
   return new Android_Frame(app);
 }
 
@@ -59,7 +60,7 @@ void Mythic_Android::process_command(int32_t command) {
     case APP_CMD_TERM_WINDOW:
       log_info("Workbench APP_CMD_TERM_WINDOW.");
       if (engine.get())
-        engine->get_client().free();
+        engine->get_client().release();
 //      get_frame().free();
       break;
 
@@ -110,7 +111,7 @@ void Mythic_Android::start() {
   }
   initialized = true;
   log_info("creating_client");
-  engine = unique_ptr<Mythic_Engine>{new Mythic_Engine(*this)};
+  engine = unique_ptr<Mythic_Engine>{new Mythic_Engine(*this, *graphic_options)};
 
   engine->get_client().load();
 
