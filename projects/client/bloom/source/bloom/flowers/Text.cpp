@@ -49,6 +49,9 @@ namespace bloom {
     }
 
     glm::vec2 Text::update_dimensions(const vec2 &parent_dimensions) {
+      if (text->get_content() == "Shield") {
+        int k = 0;
+      }
       auto &garden = Garden::get_instance();
       if (screen_dimensions != garden.get_frame().get_dimensions()) {
         set_size(size);

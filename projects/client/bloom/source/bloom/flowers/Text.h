@@ -42,6 +42,10 @@ namespace bloom {
         void set_size(float value);
         void set_line_height(float value);
 
+        float get_size()const {
+          return size;
+        }
+
         virtual bool affects_parent_dimensions() const override {
           return true;
         }

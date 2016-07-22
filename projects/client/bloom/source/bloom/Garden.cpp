@@ -38,9 +38,11 @@ namespace bloom {
                           : *root;
 
       if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
-//        input_state.set_handled(*select_action);
+        input_state.clear_gestures();
       }
-      start.check_event_new(Events::activate, vec2(position.x, position.y));
+      if (start.check_event_new(Events::activate, vec2(position.x, position.y))) {
+        input_state.clear_gestures();
+      }
     }
     if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();

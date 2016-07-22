@@ -9,6 +9,9 @@ namespace bloom {
 
     template<typename Axis>
     float Box::resolve_length(const Axis_Measurement &measurements, const glm::vec2 &parent_dimensions) {
+      if (measurements.length.get_type() == Measurements::shrink)
+        return 0;
+
       if (measurements.length.get_type() != Measurements::stretch)
         return resolve_measurement<Axis>(measurements.length, parent_dimensions);
 
@@ -63,6 +66,8 @@ namespace bloom {
       length.y = resolve_length<Vertical_Axis>(measurement_bounds.y, parent_bounds);
 
       vec2 full_length = length;
+      if (length.y == 0)
+        int k = 0;
 
       int iterations = 0;
       if (children.size() > 0) {
@@ -71,12 +76,17 @@ namespace bloom {
           changed = false;
           auto content_length = process_children(children, length);
 
+          if (iterations > 8) {
+            int k = 0;
+          }
+
           if (iterations++ > 10) {
             assert(false);
             break;
           }
 
-          if (measurement_bounds.x.length.get_type() == Measurements::stretch) {
+          if (measurement_bounds.x.length.get_type() == Measurements::stretch
+              || measurement_bounds.x.length.get_type() == Measurements::shrink) {
             if (length.x != content_length.x) {
               length.x = content_length.x;
               changed = true;
@@ -84,7 +94,8 @@ namespace bloom {
             full_length.x = length.x + resolve_margins<Horizontal_Axis>(parent_bounds);
           }
 
-          if (measurement_bounds.y.length.get_type() == Measurements::stretch) {
+          if (measurement_bounds.y.length.get_type() == Measurements::stretch
+              || measurement_bounds.y.length.get_type() == Measurements::shrink) {
             if (length.y != content_length.y) {
               length.y = content_length.y;
               changed = true;

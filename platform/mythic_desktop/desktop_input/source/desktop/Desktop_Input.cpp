@@ -74,8 +74,11 @@ namespace desktop {
     for (int i = 0; i <= 2; i++) {
       auto &trigger = mouse->get_trigger(i);
       if (trigger.get_action()) {
-        if (trigger.get_id() < 4 && buttons & trigger.get_id())
+        if (trigger.get_id() < 4
+            && !(buttons & trigger.get_id())
+            && previous_buttons & trigger.get_id()) {
           state.add_event(*trigger.get_action());
+        }
       }
     }
 

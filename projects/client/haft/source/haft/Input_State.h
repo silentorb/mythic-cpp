@@ -22,7 +22,7 @@ namespace haft {
 
   public:
 
-      Input_State() { }
+      Input_State() {}
 
       void add_event(Event *event) override {
         events.push_back(unique_ptr<Event>(event));
@@ -101,9 +101,21 @@ namespace haft {
       void add_gesture(Gesture_Type action, ivec2 position) {
         gestures.push_back({action, position});
       }
-      
-      const vector<unique_ptr<Event>>& get_events() const {
-          return events;
+
+      const vector<unique_ptr<Event>> &get_events() const {
+        return events;
+      }
+
+      void clear_gestures() {
+        gestures.clear();
+      }
+
+      bool has_gesture(Gesture_Type action) {
+        for (auto &gesture: gestures) {
+          if (gesture.action == action)
+            return true;
+        }
+        return false;
       }
   };
 }

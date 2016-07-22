@@ -96,6 +96,11 @@ namespace bloom {
       style->get_fill()->render(garden.get_draw(), bounds);
     }
 
+    if (style->get_border()) {
+      auto &bounds = get_outer_bounds();
+      style->get_border()->render(garden.get_draw(), bounds);
+    }
+
     // This functionality does not currently support having hidden overflow children inside hidden overflow parents.
     // I can add it later when the need arises.
     bool overflow_is_hidden = false;
@@ -104,6 +109,11 @@ namespace bloom {
       auto &bounds = get_outer_bounds();
       auto position = converter.convert_to_pixels(bounds.get_position());
       auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());
+
+      // A hack for now since vertical scrolling is the only part of this currently being used.
+      dimensions.x += position.x;
+      position.x = 0;
+
       garden.get_draw().enable_scissor_box(position.x, converter.get_pixel_dimensions().y - position.y - dimensions.y,
                                            dimensions.x, dimensions.y
       );
@@ -119,10 +129,6 @@ namespace bloom {
       garden.get_draw().disable_scissor_box();
     }
 
-    if (style->get_border()) {
-      auto &bounds = get_outer_bounds();
-      style->get_border()->render(garden.get_draw(), bounds);
-    }
   }
 
   void Flower_Old::remove_child(Flower_Old *child) {
