@@ -7,7 +7,7 @@ namespace bloom {
 
   Scrollable::Scrollable(Flower_Old *parent) : Flower_Old(parent) {
     listen(Events::drag_old, Flower_Delegate_Old([this](Flower_Old *flower) {
-      if (content_height <= axis_cache_inner.y.length)
+      if (!allow_user_scrolling || content_height <= axis_cache_inner.y.length)
         return;
 
       auto &input = garden.get_input();
@@ -44,7 +44,7 @@ namespace bloom {
     scroll_force = vec2();
     offset += velocity;
 
-    auto range = content_height - axis_cache_inner.y.length;
+    auto range = get_range();
     if (offset.y < 0 && offset.y < -range) {
       offset.y = -range;
       velocity.y = 0;
@@ -58,4 +58,7 @@ namespace bloom {
     axis_cache_inner.y.near += offset.y;
   }
 
+  float Scrollable::get_range() {
+    return content_height - axis_cache_inner.y.length;
+  }
 }
