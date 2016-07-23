@@ -14,21 +14,24 @@ namespace breeze {
       Delay(float duration) : remainder(duration), promise(promising::Promise<void>::defer()) { }
 
       virtual bool update(float delta) override {
-//        cout << remainder << " - " << delta << " = " << remainder - delta << endl;
         remainder -= delta;
         if (remainder <= 0) {
-          promise.resolve();
           return true;
         }
-//        else {
-//          int k = 1;
-//        }
 
         return false;
       }
 
       Empty_Promise &get_promise() const {
         return promise;
+      }
+
+      virtual void on_finish() override {
+        promise.resolve();
+      }
+
+      virtual void *get_target() const override {
+        return nullptr;
       }
   };
 }
