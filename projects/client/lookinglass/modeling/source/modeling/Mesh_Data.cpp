@@ -102,10 +102,11 @@ namespace modeling {
       }
       else {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, get_ebo());
+          glow::check_error("drawing mesh");
         glDrawElements(GL_TRIANGLES, get_index_count(), GL_UNSIGNED_SHORT, nullptr);
       }
     }
 
-    glow::check_error("drawing mesh");
+    glow::check_error("drawing mesh2");
   }
 }

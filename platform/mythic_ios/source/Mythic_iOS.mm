@@ -131,8 +131,8 @@ const string iOS_File_Loader(const string &path) {
     return std::string([content UTF8String]);
 }
 
-iOS_Frame::iOS_Frame(EAGLContext* context, int width, int height)
-    :context(context), width(width), height(height) {
+iOS_Frame::iOS_Frame(EAGLContext* context, OpenGL_View* view, int width, int height)
+    :context(context), width(width), height(height), view(view) {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screen_scale = [[UIScreen mainScreen] scale];
     CGSize pixels = CGSizeMake(screenBounds.size.width * screen_scale, screenBounds.size.height * screen_scale);
@@ -152,7 +152,22 @@ void  iOS_Frame::update_events() {
 
 
 void iOS_Frame::flip_buffer() {
-    [context presentRenderbuffer:GL_RENDERBUFFER];
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        int multisample = 0;
+        if (multisample) {
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, view->framebuffer);
+        glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, view->sample_framebuffer);
+        glResolveMultisampleFramebufferAPPLE();
+//        const GLenum discards[]  = {GL_COLOR_ATTACHMENT0,GL_DEPTH_ATTACHMENT};
+//        glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE,2,discards);
+            glBindRenderbuffer(GL_RENDERBUFFER, view->color_buffer);
+            [context presentRenderbuffer:GL_RENDERBUFFER];
+            glBindFramebuffer(GL_FRAMEBUFFER, view->sample_framebuffer);
+        }
+        else {
+            [context presentRenderbuffer:GL_RENDERBUFFER];
+        }
+    }
 }
 void iOS_Frame::release() {
 
@@ -162,7 +177,8 @@ void iOS_Frame::initialize_window() {
 
 }
 
-Mythic_iOS::Mythic_iOS(EAGLContext* context, const lookinglass::Graphic_Options &graphic_options):context(context) {
+Mythic_iOS::Mythic_iOS(EAGLContext* context, OpenGL_View* view, const lookinglass::Graphic_Options &graphic_options):
+context(context), view(view) {
 
     try {
 
@@ -187,7 +203,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context, const lookinglass::Graphic_Options 
 }
 
 framing::Platform_Frame *Mythic_iOS::create_frame(const lookinglass::Graphic_Options &graphic_options) {
-    return new iOS_Frame(context, 0, 0);
+    return new iOS_Frame(context, view, 0, 0);
 }
 
 haft::Input_Source *Mythic_iOS::create_input_source(haft::Input_Configuration & config) {

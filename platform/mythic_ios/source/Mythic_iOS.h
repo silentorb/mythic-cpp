@@ -7,6 +7,7 @@
 #include <framing/Mutable_Frame.h>
 #include <framing/Platform_Frame.h>
 #include <memory>
+#include "OpenGL_View.h"
 
 using namespace std;
 
@@ -27,12 +28,13 @@ class iOS_Frame : public framing::Mutable_Frame, public framing::Platform_Frame 
 
 private:
     EAGLContext* context;
+    OpenGL_View* view;
     int width, height;
     void create_window(const char *title, int width, int height);
     void create_gl_context();
 
 public:
-    iOS_Frame(EAGLContext* context, int width, int height);
+    iOS_Frame(EAGLContext* context, OpenGL_View* view, int width, int height);
     virtual void update_events();
     virtual void flip_buffer();
     virtual void release();
@@ -51,9 +53,10 @@ void initialize_mythic_engine(mythic::Mythic_Engine & engine);
 class Mythic_iOS : public mythic::Platform_Factory {
     EAGLContext* context;
     unique_ptr<mythic::Mythic_Engine> engine;
-
+OpenGL_View* view;
+    
 public:
-    Mythic_iOS(EAGLContext* context, const lookinglass::Graphic_Options &graphic_options);
+    Mythic_iOS(EAGLContext* context, OpenGL_View* view, const lookinglass::Graphic_Options &graphic_options);
     virtual framing::Platform_Frame *create_frame(const lookinglass::Graphic_Options &graphic_options) override;
 //    virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;

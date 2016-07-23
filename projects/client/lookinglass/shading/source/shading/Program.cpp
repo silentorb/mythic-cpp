@@ -71,8 +71,14 @@ namespace shading {
     glValidateProgram(id);
     GLint validated = 1;
     glGetProgramiv(id, GL_VALIDATE_STATUS, &validated);
-    if (validated == GL_FALSE)
-      throw std::runtime_error("Shader program unable to run in current state.");
+      if (validated == GL_FALSE) {
+          GLint message_length;
+          glGetProgramiv(id, GL_INFO_LOG_LENGTH, &message_length);
+          GLchar *message = new GLchar[message_length + 1];
+          glGetProgramInfoLog(id, 255, &message_length, message);
+          throw std::runtime_error(std::string("Shader program unable to run in current state.  ") + message);
+//      throw std::runtime_error("Shader program unable to run in current state.");
+      }
   }
 
   void Program::activate() {

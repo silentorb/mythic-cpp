@@ -27,7 +27,7 @@
 
 - (void)initialize_mythic {
     lookinglass::Graphic_Options graphic_options(0, 0);
-    mythic = new Mythic_iOS(_context, graphic_options);
+    mythic = new Mythic_iOS(_context, self, graphic_options);
     gamepad_manager = [[Gamepad_Manager alloc] init];
     input_view = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -52,25 +52,45 @@
 }
 
 - (void)setup_render_buffer {
-    GLuint _colorRenderBuffer = 0,_depthRenderBuffer = 0;
-    glGenRenderbuffers(1, &_colorRenderBuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
-    [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eagl_layer];
-    GLint w;
-    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &w);
-    
-    glGenRenderbuffers(1, &_depthRenderBuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16,
-                          self.frame.size.width * self.contentScaleFactor,
-                          self.frame.size.height * self.contentScaleFactor);
-    glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
-    
-    GLuint framebuffer;
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderBuffer);
+    int multisample = 4;
+    
+    color_buffer = 0;
+    GLuint _depthRenderBuffer = 0;
+    glGenRenderbuffers(1, &color_buffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
+    [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eagl_layer];
+    int width = self.frame.size.width * self.contentScaleFactor;
+    int height = self.frame.size.height * self.contentScaleFactor;
+    GLint w;
+    
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &w);
+
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
+    glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
+   
+    glGenRenderbuffers(1, &_depthRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
+
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, color_buffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+    
+    if (multisample) {
+        GLuint sampleColorRenderbuffer, sampleDepthRenderbuffer;
+        glGenFramebuffers(1, &sample_framebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, sample_framebuffer);
+        
+        glGenRenderbuffers(1, &sampleColorRenderbuffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, sampleColorRenderbuffer);
+        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_RGBA8_OES, width, height);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, sampleColorRenderbuffer);
+        
+        glGenRenderbuffers(1, &sampleDepthRenderbuffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
+        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, width, height);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
+    }
 }
 
 - (void)setup_frame_buffer {

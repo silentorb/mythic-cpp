@@ -15,6 +15,10 @@
     CAEAGLLayer* _eagl_layer;
     EAGLContext* _context;
     GLuint _color_render_buffer;
+    
+@public
+    GLuint framebuffer;
+    GLuint sample_framebuffer, color_buffer;
 }
 
 @end
