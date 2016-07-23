@@ -53,8 +53,8 @@ class Mythic_iOS : public mythic::Platform_Factory {
     unique_ptr<mythic::Mythic_Engine> engine;
 
 public:
-    Mythic_iOS(EAGLContext* context);
-    virtual framing::Platform_Frame *create_frame(int width, int height) override;
+    Mythic_iOS(EAGLContext* context, const lookinglass::Graphic_Options &graphic_options);
+    virtual framing::Platform_Frame *create_frame(const lookinglass::Graphic_Options &graphic_options) override;
 //    virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     virtual audio::Speaker *create_speaker() override;

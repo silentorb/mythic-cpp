@@ -9,6 +9,7 @@
 #import "OpenGL_View.h"
 #import "Mythic_iOS.h"
 #import "Gamepad_Manager.h"
+#include "lookinglass/Graphic_Options.h"
 
 @interface OpenGL_View() {    
     Mythic_iOS *mythic;
@@ -25,7 +26,8 @@
 }
 
 - (void)initialize_mythic {
-    mythic = new Mythic_iOS(_context);
+    lookinglass::Graphic_Options graphic_options(0, 0);
+    mythic = new Mythic_iOS(_context, graphic_options);
     gamepad_manager = [[Gamepad_Manager alloc] init];
     input_view = [[UIView alloc] initWithFrame:CGRectZero];
 }

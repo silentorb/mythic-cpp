@@ -12,6 +12,11 @@ Created by Christopher W. Johnson
     cd ../build/msvc
     cmake -G "Visual Studio 14 2015" ../../mythic
 
+### Compiling for iOS
+
+  cd ../build
+    cmake -DCMAKE_TOOLCHAIN_FILE=../../cmake-tools/toolchains/ios.cmake -G Xcode ../mythic
+
 ### Compiling for Android
 
 This involves 3 commands:
@@ -24,4 +29,3 @@ This involves 3 commands:
     Start-Process cmake -ArgumentList "cmake -G ""MinGW Makefiles"" -DANDROID_NDK=E:\Programs\crystax-ndk-10.3.1 -DCMAKE_BUILD_TYPE=Debug -DANDROID_ABI=armeabi-v7a ../../mythic" -NoNewWindow
     ./build
     ./debug
-

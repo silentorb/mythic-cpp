@@ -4,6 +4,7 @@
 #include "clienting/Client.h"
 #include "mythic/Mythic_Engine.h"
 #include "lookinglass/glow.h"
+#include "lookinglass/glow_gl.h"
 #include "iOS_Input.h"
 #include "audio/Speaker.h"
 #include <shading/shader_processing.h>
@@ -161,11 +162,11 @@ void iOS_Frame::initialize_window() {
 
 }
 
-Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
+Mythic_iOS::Mythic_iOS(EAGLContext* context, const lookinglass::Graphic_Options &graphic_options):context(context) {
 
     try {
 
-        engine=unique_ptr<mythic::Mythic_Engine>{new mythic::Mythic_Engine(*this)};
+        engine=unique_ptr<mythic::Mythic_Engine>{new mythic::Mythic_Engine(*this, graphic_options)};
 
     engine->get_client().load();
 
@@ -185,7 +186,7 @@ Mythic_iOS::Mythic_iOS(EAGLContext* context):context(context) {
     }
 }
 
-framing::Platform_Frame *Mythic_iOS::create_frame(int width, int height) {
+framing::Platform_Frame *Mythic_iOS::create_frame(const lookinglass::Graphic_Options &graphic_options) {
     return new iOS_Frame(context, 0, 0);
 }
 
