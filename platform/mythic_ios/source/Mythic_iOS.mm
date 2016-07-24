@@ -153,7 +153,7 @@ void  iOS_Frame::update_events() {
 
 void iOS_Frame::flip_buffer() {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        int multisample = 0;
+        int multisample = 4;
         if (multisample) {
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, view->framebuffer);
         glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, view->sample_framebuffer);

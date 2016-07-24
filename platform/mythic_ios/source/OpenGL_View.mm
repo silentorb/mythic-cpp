@@ -52,27 +52,24 @@
 }
 
 - (void)setup_render_buffer {
-    glGenFramebuffers(1, &framebuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
     int multisample = 4;
     
     color_buffer = 0;
     GLuint _depthRenderBuffer = 0;
+    int width = self.frame.size.width * self.contentScaleFactor;
+    int height = self.frame.size.height * self.contentScaleFactor;
+    
     glGenRenderbuffers(1, &color_buffer);
     glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
     [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eagl_layer];
-    int width = self.frame.size.width * self.contentScaleFactor;
-    int height = self.frame.size.height * self.contentScaleFactor;
-    GLint w;
     
-    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &w);
-
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
-    glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
-   
     glGenRenderbuffers(1, &_depthRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
-
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
+    
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, color_buffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
     
@@ -90,6 +87,9 @@
         glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
         glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, width, height);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
+    }
+    else {
+        glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
     }
 }
 

@@ -1,13 +1,31 @@
 #include "Statement.h"
 #include "Connection.h"
+#include <thread>
 
 namespace vineyard {
   namespace database {
 
     Statement::Statement(const string &sql, Connection &connection, const string name) :
       connection(connection), name(name), debug_sql(sql) {
-      connection.check(sqlite3_prepare_v2(connection.get_handle(), sql.c_str(), sql.size(), &handle, nullptr),
-                       "preparing statement");
+          int step = 0;
+          while (true) {
+              auto operation_result = sqlite3_prepare_v2(connection.get_handle(), sql.c_str(), sql.size(), &handle, nullptr);
+              if (operation_result != SQLITE_OK) {
+                  if (operation_result == SQLITE_BUSY && step++ < 10) {
+                      this_thread::sleep_for(std::chrono::milliseconds(20));
+                  }
+                  else {
+                  auto message = "Error creating statement: " + to_string(operation_result) + " " + sqlite3_errmsg(connection.get_handle());
+//                  log(message);
+                  throw runtime_error(message);
+                  }
+              }
+              else {
+                  break;
+              }
+              
+          }
+
     }
 
     Statement::~Statement() {
