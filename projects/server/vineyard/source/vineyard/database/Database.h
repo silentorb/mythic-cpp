@@ -25,6 +25,13 @@ namespace vineyard {
 
     class Asynchronous_Queue;
 
+    namespace Wait_Flags {
+      enum values {
+          connections = 1,
+          queue = 2
+      };
+    };
+
     class VINEYARD_EXPORT Database {
         friend class vineyard::database::Connection;
 
@@ -65,6 +72,7 @@ namespace vineyard {
         void async(database::Data_Task task);
         void create_static();
         void release_static();
+        void wait(int conditions, int millisecond_timeout = 1000);
 
     };
   }

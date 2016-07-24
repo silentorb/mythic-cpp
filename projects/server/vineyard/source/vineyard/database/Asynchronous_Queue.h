@@ -81,6 +81,10 @@ namespace vineyard {
 
           tasks.push(task);
         }
+
+        size_t size() {
+          return tasks.size();
+        }
     };
   }
 }

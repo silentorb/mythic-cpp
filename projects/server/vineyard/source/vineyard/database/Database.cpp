@@ -18,13 +18,13 @@ namespace vineyard {
 
     Database::~Database() {
       std::cout << "Closing database." << std::endl;
-      while(connection_count > 0) {
+      while (connection_count > 0) {
         this_thread::sleep_for(std::chrono::milliseconds(10));
       }
 
-			if (static_handle) {
-				release_static();
-			}
+      if (static_handle) {
+        release_static();
+      }
     }
 
     void Database::create_table(const landscape::Trellis &trellis, Connection &connection) {
@@ -77,20 +77,28 @@ namespace vineyard {
     void Database::release_static() {
       unique_lock<mutex>(static_lock);
       if (static_handle) {
-				auto local_static_handle = static_handle;
-				static_handle = nullptr;
+        auto local_static_handle = static_handle;
+        static_handle = nullptr;
         std::cout << "- " << local_static_handle << std::endl;
         int steps = 0;
-        while(connection_count > 0) {
-          this_thread::sleep_for(std::chrono::milliseconds(10));
-          if (steps++ > 2000)
-            throw runtime_error("Static Connection was not closed");
-        }
+        wait(Wait_Flags::connections, 20000);
         std::cout << "Connections closed" << std::endl;
         sqlite3_close(local_static_handle);
         statements.clear();
       }
     }
 
+    void Database::wait(int conditions, int millisecond_timeout) {
+      int elapsed_time = 0;
+      int step = 20;
+      while (
+        (!(conditions & Wait_Flags::connections) || connection_count > 0)
+        && (!(conditions & Wait_Flags::queue) || async_queue->size() > 0)) {
+        this_thread::sleep_for(std::chrono::milliseconds(step));
+        elapsed_time += step;
+        if (elapsed_time > millisecond_timeout)
+          throw runtime_error("Static Connection was not closed");
+      }
+    }
   }
 }
