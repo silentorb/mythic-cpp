@@ -11,12 +11,7 @@ namespace vineyard {
 
   Seed::Seed(Ground *ground, Trellis *trellis) :
     ground(ground), trellis(trellis), is_deleted(new bool(false)) {
-//    auto buffer = new char[trellis.get_block_size()];
-//    data = unique_ptr<char>(buffer);
 
-//    for (auto &property : trellis.get_properties()) {
-//      initialize_field(buffer + property.get_offset(), property);
-//    }
   }
 
   Seed::Seed(int id) :

@@ -80,6 +80,10 @@ namespace vineyard {
         return _async;
       }
 
+      void set_async(bool value) {
+        _async = value;
+      }
+
       void async(database::Data_Task task);
   };
 }
