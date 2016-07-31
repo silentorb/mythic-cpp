@@ -144,11 +144,20 @@ namespace archaeology {
     }
   }
 
-  void load_many_models(xml_node &collada, Mesh_Delegate delegate) {
+  void load_many_models(xml_node &collada, Mesh_Delegate delegate, bool loading_materials) {
     auto library = collada.child("library_geometries");
+    auto materials = loading_materials ? load_materials(collada) : map<const string, Material>();
     for (auto geometry : library.children("geometry")) {
       auto mesh = new Basic_Mesh();
-      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
+//      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
+//        mesh->add_polygon(polygon);
+//      });
+      load_geometry2(geometry, mesh, [mesh, &materials](Polygon *polygon, xml_node &polygon_list) {
+        if (materials.size()) {
+          auto material_id = polygon_list.attribute("material").value();
+          auto material = &materials[material_id];
+          polygon->set_data(Vertex_Data::color, (float *) &material->color, 0, 4);
+        }
         mesh->add_polygon(polygon);
       });
       delegate(geometry.attribute("name").value(), mesh);
@@ -194,10 +203,10 @@ namespace archaeology {
   }
 
 
-  void load_collada_file(const string filename, Mesh_Delegate delegate) {
+  void load_collada_file(const string filename, Mesh_Delegate delegate, bool load_materials) {
     xml_document document;
     open_file(document, filename);
     auto collada = document.first_child();
-    load_many_models(collada, delegate);
+    load_many_models(collada, delegate, load_materials);
   }
 }

@@ -25,7 +25,7 @@ namespace desktop {
       Device *keyboard;
       Device *mouse;
       Device *gamepad;
-      Uint32 previous_buttons;
+      Uint32 previous_buttons = 0;
 
   public:
       Desktop_Input(Input_Configuration &config);
