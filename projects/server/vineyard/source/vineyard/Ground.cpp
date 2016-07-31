@@ -43,7 +43,7 @@ namespace vineyard {
 //    db->execute("PRAGMA synchronous=1;");
   }
 
-  Ground::~Ground() { }
+  Ground::~Ground() {}
 
   void Ground::initialize() {
     db->wait(Wait_Flags::queue | Wait_Flags::connections, 5000);
@@ -100,5 +100,11 @@ namespace vineyard {
 
   void Ground::async(database::Data_Task task) {
     db->async(task);
+  }
+
+  void Ground::set_async(bool value) {
+    _async = value;
+    if (value)
+      db->initialize_queue();
   }
 }

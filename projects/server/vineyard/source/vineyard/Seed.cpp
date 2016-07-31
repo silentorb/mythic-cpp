@@ -132,10 +132,13 @@ namespace vineyard {
   }
 
   void Seed::save_property(int index) {
+    save_property(trellis->get_property(index));
+  }
+
+  void Seed::save_property(const Property &property) {
     if (initializing || !ground->is_writing_enabled())
       return;
 
-    auto &property = trellis->get_property(index);
     if (ground->is_async()) {
       auto value = database::get_sql_value(property, get_pointer(property));
       auto local_id = get_id();

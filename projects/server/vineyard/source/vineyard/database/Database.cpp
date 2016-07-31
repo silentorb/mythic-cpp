@@ -9,9 +9,14 @@ using namespace landscape;
 namespace vineyard {
   namespace database {
 
-    Database::Database(const string &filename, bool async) :
+    Database::Database(const string &filename, bool is_async) :
       filename(filename) {
-      if (async) {
+      if (is_async)
+        initialize_queue();
+    }
+
+    void Database::initialize_queue() {
+      if (!async_queue.get()) {
         async_queue = unique_ptr<Asynchronous_Queue>(new Asynchronous_Queue(*this));
       }
     }
