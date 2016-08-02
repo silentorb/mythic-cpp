@@ -33,16 +33,21 @@ namespace archaeology {
     for (auto effect_element: library.children("effect")) {
       auto profile = effect_element.child("profile_COMMON");
       auto technique = profile.child("technique");
-      auto diffuse = technique.first_child().child("diffuse");
+      auto phong = technique.first_child();
+      auto diffuse = phong.child("diffuse");
       auto color = diffuse.child("color");
       auto color_string = color.first_child().value();
       auto values = textual::split(color_string, ' ');
-      Effect effect{
-        vec4((float) atof(values[0].c_str()),
-             (float) atof(values[1].c_str()),
-             (float) atof(values[2].c_str()),
-             (float) atof(values[3].c_str()))
-      };
+      auto color_value = vec4((float) atof(values[0].c_str()),
+                              (float) atof(values[1].c_str()),
+                              (float) atof(values[2].c_str()),
+                              (float) atof(values[3].c_str()));
+
+      auto transparency = phong.child("transparency");
+      if (transparency) {
+        color_value.w = atof(transparency.child("float").first_child().value());
+      }
+      Effect effect{color_value};
 
       auto id = effect_element.attribute("id").value();
       effects.emplace(std::make_pair(id, effect));
