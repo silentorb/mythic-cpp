@@ -7,14 +7,16 @@ namespace promising {
   }
 
   Asynchronous_Queue::~Asynchronous_Queue() {
-    state = State::closing;
+		if (state == State::active) {
+			state = State::closing;
 
-    // I tried using t->join() here but that threw an exception in MSVC.
-    // My research is finding conflicting behavior on joining a detached thread
-    // and I suspect that resolution may be compiler-dependent.
-    while (state != State::closed) {
-      this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
+			// I tried using t->join() here but that threw an exception in MSVC.
+			// My research is finding conflicting behavior on joining a detached thread
+			// and I suspect that resolution may be compiler-dependent.
+			while (state != State::closed) {
+				this_thread::sleep_for(std::chrono::milliseconds(10));
+			}
+		}
   }
 
   void Asynchronous_Queue::loop() {

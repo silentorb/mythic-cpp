@@ -8,7 +8,7 @@
 namespace vineyard {
 
   template<typename T>
-  class VINEYARD_EXPORT Member {
+  class Member {
       Seed *seed;
       const landscape::Property *property;
 

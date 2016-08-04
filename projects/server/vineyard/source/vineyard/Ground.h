@@ -58,6 +58,12 @@ namespace vineyard {
         query_trellis(trellis, initializer, creator);
       }
 
+      template<typename T>
+      void query_trellis2(landscape::Trellis &trellis, Seed_Initializer initializer) {
+        Seed_Creator creator = [this, &trellis]() { return new T(this, &trellis); };
+        query_trellis(trellis, initializer, creator);
+      }
+
       bool is_writing_enabled() const {
         return _writing_enabled;
       }
