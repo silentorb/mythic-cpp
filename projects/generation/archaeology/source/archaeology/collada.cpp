@@ -33,16 +33,21 @@ namespace archaeology {
     for (auto effect_element: library.children("effect")) {
       auto profile = effect_element.child("profile_COMMON");
       auto technique = profile.child("technique");
-      auto diffuse = technique.first_child().child("diffuse");
+      auto phong = technique.first_child();
+      auto diffuse = phong.child("diffuse");
       auto color = diffuse.child("color");
       auto color_string = color.first_child().value();
       auto values = textual::split(color_string, ' ');
-      Effect effect{
-        vec4((float) atof(values[0].c_str()),
-             (float) atof(values[1].c_str()),
-             (float) atof(values[2].c_str()),
-             (float) atof(values[3].c_str()))
-      };
+      auto color_value = vec4((float) atof(values[0].c_str()),
+                              (float) atof(values[1].c_str()),
+                              (float) atof(values[2].c_str()),
+                              (float) atof(values[3].c_str()));
+
+      auto transparency = phong.child("transparency");
+      if (transparency) {
+        color_value.w = atof(transparency.child("float").first_child().value());
+      }
+      Effect effect{color_value};
 
       auto id = effect_element.attribute("id").value();
       effects.emplace(std::make_pair(id, effect));
@@ -144,11 +149,20 @@ namespace archaeology {
     }
   }
 
-  void load_many_models(xml_node &collada, Mesh_Delegate delegate) {
+  void load_many_models(xml_node &collada, Mesh_Delegate delegate, bool loading_materials) {
     auto library = collada.child("library_geometries");
+    auto materials = loading_materials ? load_materials(collada) : map<const string, Material>();
     for (auto geometry : library.children("geometry")) {
       auto mesh = unique_ptr<Basic_Mesh>(new Basic_Mesh());
-      load_geometry2(geometry, mesh.get(), [&mesh](Polygon *polygon, xml_node &polygon_list) {
+//      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
+//        mesh->add_polygon(polygon);
+//      });
+      load_geometry2(geometry, mesh.get(), [delegate, &mesh, &materials](Polygon *polygon, xml_node &polygon_list) {
+        if (materials.size()) {
+          auto material_id = polygon_list.attribute("material").value();
+          auto material = &materials[material_id];
+          polygon->set_data(Vertex_Data::color, (float *) &material->color, 0, 4);
+        }
         mesh->add_polygon(polygon);
       });
       delegate(geometry.attribute("name").value(), mesh);
@@ -194,10 +208,10 @@ namespace archaeology {
   }
 
 
-  void load_collada_file(const string filename, Mesh_Delegate delegate) {
+  void load_collada_file(const string filename, Mesh_Delegate delegate, bool load_materials) {
     xml_document document;
     open_file(document, filename);
     auto collada = document.first_child();
-    load_many_models(collada, delegate);
+    load_many_models(collada, delegate, load_materials);
   }
 }

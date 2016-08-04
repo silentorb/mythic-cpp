@@ -11,12 +11,7 @@ namespace vineyard {
 
   Seed::Seed(Ground *ground, Trellis *trellis) :
     ground(ground), trellis(trellis), is_deleted(new bool(false)) {
-//    auto buffer = new char[trellis.get_block_size()];
-//    data = unique_ptr<char>(buffer);
 
-//    for (auto &property : trellis.get_properties()) {
-//      initialize_field(buffer + property.get_offset(), property);
-//    }
   }
 
   Seed::Seed(int id) :
@@ -137,10 +132,13 @@ namespace vineyard {
   }
 
   void Seed::save_property(int index) {
+    save_property(trellis->get_property(index));
+  }
+
+  void Seed::save_property(const Property &property) {
     if (initializing || !ground->is_writing_enabled())
       return;
 
-    auto &property = trellis->get_property(index);
     if (ground->is_async()) {
       auto value = database::get_sql_value(property, get_pointer(property));
       auto local_id = get_id();

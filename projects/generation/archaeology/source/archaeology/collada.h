@@ -17,5 +17,5 @@ using namespace std;
 namespace archaeology {
   typedef function<void(const string name, unique_ptr<sculptor::geometry::Basic_Mesh> &mesh)> Mesh_Delegate;
   MYTHIC_EXPORT unique_ptr<sculptor::geometry::Basic_Mesh> load_collada_file(const string filename);
-  MYTHIC_EXPORT void load_collada_file(const string filename, Mesh_Delegate delegate);
+  MYTHIC_EXPORT void load_collada_file(const string filename, Mesh_Delegate delegate, bool load_materials = true);
 }

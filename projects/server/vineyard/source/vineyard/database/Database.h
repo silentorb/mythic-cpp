@@ -73,6 +73,7 @@ namespace vineyard {
         void create_static();
         void release_static();
         void wait(int conditions, int millisecond_timeout = 1000);
+        void initialize_queue();
 
     };
   }

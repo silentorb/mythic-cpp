@@ -29,7 +29,7 @@ namespace landscape {
       Identity _next_id = 1;
 
   public:
-      Trellis(const string &name, initializer_list<Property> initializer, Seedery seedery);
+      Trellis(const string &name, initializer_list<Property> initializer, Seedery seedery = nullptr);
 
       const string &get_name() const {
         return name;

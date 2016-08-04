@@ -81,5 +81,6 @@ namespace vineyard {
       }
 
       void async(database::Task task);
+      void set_async(bool value);
   };
 }

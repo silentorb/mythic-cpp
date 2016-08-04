@@ -16,7 +16,7 @@ namespace vineyard {
       bool initializing = true;
       shared_ptr<bool> is_deleted;
       mutex update_lock;
-			bool is_saving = false;
+      bool is_saving = false;
 
       // id needs to be the last field because functionality expects id to run straight into
       // whatever class the seed is embedded into.
@@ -32,6 +32,7 @@ namespace vineyard {
       void save();
 //      void save_property(const landscape::Property &property, void *value);
       void save_property(int index);
+      void save_property(const landscape::Property &property);
 
       template<typename T>
       void save(T index) {
@@ -111,15 +112,4 @@ namespace vineyard {
       }
   };
 
-//  class Struct_Seed : public Seed {
-//  public:
-//      Struct_Seed() :
-//        Seed(nullptr, nullptr) { }
-//
-//      void set_ground_and_trellis(Ground *ground, landscape::Trellis *trellis) {
-//        this->ground = ground;
-//        this->trellis = trellis;
-//      }
-//
-//  };
 }
