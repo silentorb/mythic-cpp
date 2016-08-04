@@ -9,7 +9,8 @@ namespace scenery {
 
   Model::Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent)
     : mesh_data(mesh_data), effect(effect), Element(parent) {
-
+    if (mesh_data->get_ebo() == 0)
+      throw runtime_error("Model mesh is not initialized.");
   }
 
   void Model::render() {

@@ -3,7 +3,7 @@
 namespace modeling {
   namespace mesh_export {
 
-    int get_vertex_count(Basic_Mesh &mesh) {
+    int get_vertex_count(const Basic_Mesh &mesh) {
       int result = 0;
       for (auto polygon: mesh.polygons) {
         result += polygon->vertices.size();
@@ -21,7 +21,7 @@ namespace modeling {
       throw runtime_error("Unknown vertex attribute name: " + name);
     }
 
-    void output(Basic_Mesh &mesh, Vertex_Schema &vertex_schema, Mesh_Export &result) {
+    void output(const Basic_Mesh &mesh, Vertex_Schema &vertex_schema, Mesh_Export &result) {
       auto vertex_count = get_vertex_count(mesh);
       auto vertices = new float[vertex_count * vertex_schema.get_vertex_size()];
       auto offsets = new int[mesh.polygons.size()];
@@ -77,7 +77,7 @@ namespace modeling {
 //      result.counts = counts;
     }
 
-    Mesh_Data *output(Basic_Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
+    Mesh_Data *output(const Basic_Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
       Mesh_Export cache;
       output(mesh, vertex_schema, cache);
 

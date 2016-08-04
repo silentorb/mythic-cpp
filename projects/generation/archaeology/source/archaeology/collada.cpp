@@ -147,8 +147,8 @@ namespace archaeology {
   void load_many_models(xml_node &collada, Mesh_Delegate delegate) {
     auto library = collada.child("library_geometries");
     for (auto geometry : library.children("geometry")) {
-      auto mesh = new Basic_Mesh();
-      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
+      auto mesh = unique_ptr<Basic_Mesh>(new Basic_Mesh());
+      load_geometry2(geometry, mesh.get(), [&mesh](Polygon *polygon, xml_node &polygon_list) {
         mesh->add_polygon(polygon);
       });
       delegate(geometry.attribute("name").value(), mesh);

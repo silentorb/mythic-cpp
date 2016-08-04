@@ -56,7 +56,7 @@ namespace vineyard {
       connection.execute(sql);
     }
 
-    void Database::async(database::Data_Task task) {
+    void Database::async(database::Task task) {
       async_queue->push(task);
     }
 

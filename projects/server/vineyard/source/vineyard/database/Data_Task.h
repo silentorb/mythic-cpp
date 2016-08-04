@@ -6,6 +6,6 @@ namespace vineyard {
 
     class Database;
 
-    typedef std::function<void(Database &)> Data_Task;
+    typedef std::function<void(Database &)> Task;
   }
 }

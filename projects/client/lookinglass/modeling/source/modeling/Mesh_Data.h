@@ -54,6 +54,7 @@ namespace modeling {
       int index_count;
       bool _has_opacity;
       Vertex_Buffer vertex_buffer;
+      string name;
 
   public:
 
@@ -109,6 +110,14 @@ namespace modeling {
       }
 
       void draw(Draw_Method draw_method);
+
+      const string &get_name() const {
+        return name;
+      }
+
+      void set_name(const string &name) {
+        Mesh_Data::name = name;
+      }
   };
 
 }

@@ -30,12 +30,12 @@ namespace modeling {
 
     auto result = new unsigned short[index_count];
     auto indices = result;
-    auto offset = 0;
+    unsigned short offset = 0;
     {
       for (int i = 0; i < data.polygon_count; ++i) {
         auto original_count = data.counts.get()[i];
         int polygon_index_count = get_polygon_index_count(original_count);
-        for (int j = 0; j < original_count - 2; ++j) {
+        for (unsigned short j = 0; j < original_count - 2; ++j) {
           *indices++ = offset;
           *indices++ = offset + j + 1;
           *indices++ = offset + j + 2;
@@ -61,6 +61,9 @@ namespace modeling {
       indices = shared_ptr<unsigned short>(
         convert_to_indices(index_count, data, vertex_buffer.get_vertex_schema().get_vertex_size()));
       glGenBuffers(1, &ebo);
+      if (!ebo)
+        throw runtime_error("Unable to create mesh buffer.");
+
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * index_count, indices.get(), GL_STATIC_DRAW);
     }

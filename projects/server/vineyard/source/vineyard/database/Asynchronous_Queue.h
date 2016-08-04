@@ -13,10 +13,10 @@ namespace vineyard {
 
     class Database;
 
-    typedef function<void(Database &)> Data_Task;
+    typedef function<void(Database &)> Task;
 
     class VINEYARD_EXPORT Asynchronous_Queue {
-        queue<Data_Task> tasks;
+        queue<Task> tasks;
         mutex m;
         Database &db;
         unique_ptr<thread> t;
@@ -37,7 +37,7 @@ namespace vineyard {
 				}
 
         void process() {
-          Data_Task task;
+          Task task;
 					unique_lock<mutex>(m);
 					while (tasks.size()) {
             {
@@ -74,7 +74,7 @@ namespace vineyard {
 					}
         }
 
-        void push(Data_Task &task) {
+        void push(Task &task) {
           unique_lock<mutex>(m);
 					if (!task)
 						throw runtime_error("Database task is empty.");

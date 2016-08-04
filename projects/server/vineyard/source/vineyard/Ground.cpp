@@ -98,7 +98,7 @@ namespace vineyard {
     ground_logging = logging;
   }
 
-  void Ground::async(database::Data_Task task) {
+  void Ground::async(database::Task task) {
     db->async(task);
   }
 }
