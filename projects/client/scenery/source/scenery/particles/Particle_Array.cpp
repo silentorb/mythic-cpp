@@ -12,7 +12,7 @@ namespace scenery {
 
   Particle_Array::Particle_Array(shared_ptr<Particle_Effect> effect, Parent *parent) :
     effect(effect),
-    Element(parent) {
+    Spatial(parent) {
 
     vertex_buffer = new Vertex_Buffer(effect->get_vertex_schema(), [&](int &vertex_count) {
       vertex_count = particles.size();

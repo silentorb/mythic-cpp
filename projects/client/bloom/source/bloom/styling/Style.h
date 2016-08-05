@@ -38,7 +38,7 @@ namespace bloom {
 
       virtual ~Style() override { }
 
-      const Fill *get_fill() const {
+      Fill *get_fill() {
         return fill.get();
       }
 

@@ -1,15 +1,17 @@
 #include "Group.h"
+#include "Spatial_Source.h"
 #include <algorithm>
 
 namespace scenery {
 
   void Group::render() {
-    if (is_visible()) {
-      for (auto &element: children) {
-        if (element->is_visible())
-          element->render();
-      }
+//    if (is_visible()) {
+//    auto base_transform = get_transform();
+    for (auto &element: children) {
+//        if (element->is_visible())
+      element->render();
     }
+//    }
   }
 
   void Group::add_child(unique_ptr<Element> element) {
@@ -22,7 +24,7 @@ namespace scenery {
     }
   }
 
-  void Group::add_child(Element& element) {
+  void Group::add_child(Element &element) {
     if (element.get_parent() && element.get_parent() != this) {
       element.get_parent()->move_child(element, *this);
     }
@@ -32,17 +34,9 @@ namespace scenery {
     }
   }
 
-  bool Group::has_transform() {
-    return true;
-  }
-
-  mat4 Group::get_transform() {
-    return Element::get_transform();
-  }
-
-  mat4 Group::get_absolute_orientation() {
-    return Element::get_absolute_orientation();
-  }
+//  bool Group::has_transform() {
+//    return true;
+//  }
 
   void Group::move_child(Element &element, Parent &destination) {
     for (int i = 0; i < children.size(); ++i) {
@@ -70,7 +64,11 @@ namespace scenery {
   void Group::update(float delta) {
     for (auto &element: children) {
 //      if (element->is_visible())
-        element->update(delta);
+      element->update(delta);
     }
+  }
+
+  void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
+    move_child(*element, destination);
   }
 }

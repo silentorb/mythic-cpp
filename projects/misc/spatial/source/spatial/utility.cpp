@@ -8,6 +8,9 @@ namespace spatial {
 //    auto pitch = z_angle(direction.z, direction.y);
 //    return quat(vec3(pitch, 0, yaw));
 //  }
+  vec3 look_at_yaw(const vec3 &source, const vec3 &target) {
+    return look_at_yaw(target - source);
+  }
 
   vec3 look_at_yaw(const vec3 &direction) {
     auto yaw = z_angle(direction.y, direction.x);

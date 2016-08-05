@@ -8,14 +8,18 @@
 namespace scenery {
 
   Model::Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent)
-    : mesh_data(mesh_data), effect(effect), Element(parent) {
+    : mesh_data(mesh_data), effect(effect), Simple_Element(parent) {
     if (mesh_data->get_ebo() == 0)
       throw runtime_error("Model mesh is not initialized.");
   }
 
   void Model::render() {
-    auto transform = get_transform();
-    auto normal_transform = get_absolute_orientation();
+    render(parent->get_spatial());
+  }
+
+  void Model::render(Spatial_Source &spatial) {
+    auto &transform = spatial.get_transform();
+    auto &normal_transform = spatial.get_absolute_orientation();
     if (texture)
       texture->activate();
 

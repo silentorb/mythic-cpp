@@ -3,8 +3,7 @@
 #include "dllexport.h"
 
 #include <memory>
-#include "Element.h"
-#include "glm/glm.hpp"
+#include "Simple_Element.h"
 #include "modeling/Mesh_Data.h"
 #include "sculptor/geometry/Mesh.h"
 
@@ -21,7 +20,7 @@ using namespace sculptor::geometry;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Model : public Element {
+  class MYTHIC_EXPORT Model : public Simple_Element {
   protected:
       Mesh_Data *mesh_data;
       Spatial_Effect *effect;
@@ -34,6 +33,7 @@ namespace scenery {
       virtual ~Model() {}
 
       virtual void render() override;
+      void render(Spatial_Source &spatial);
 
       float &get_opacity() {
         return color.w;
@@ -57,6 +57,18 @@ namespace scenery {
 
       void set_effect(Spatial_Effect &effect) {
         this->effect = &effect;
+      }
+
+      Mesh_Data *get_mesh_data() const {
+        return mesh_data;
+      }
+
+      Spatial_Effect *get_effect() const {
+        return effect;
+      }
+
+      const vec4 &get_color() const {
+        return color;
       }
   };
 }

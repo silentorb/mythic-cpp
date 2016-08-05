@@ -81,7 +81,8 @@ namespace bloom {
           }
 
           if (iterations++ > 10) {
-            assert(false);
+            return full_length;
+            Assert(false);
             break;
           }
 

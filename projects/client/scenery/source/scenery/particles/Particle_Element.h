@@ -12,7 +12,7 @@ namespace scenery {
       const Particle &particle;
 
   public:
-      Particle_Element(const Particle &particle, Parent *parent) : particle(particle), scenery::Group(parent) { }
+      Particle_Element(const Particle &particle, Parent *parent) : particle(particle), scenery::Group(parent) {}
 
       const Particle &get_particle() const {
         return particle;
@@ -24,7 +24,7 @@ namespace scenery {
 //				//set_position(particle.get_position());
 //      }
 
-      virtual mat4 get_transform() override;
+//      virtual mat4 get_transform() override;
 
 
       float get_life() const {

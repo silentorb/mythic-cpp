@@ -20,6 +20,8 @@ namespace flowers {
       const scenery::Scene &get_scene() const {
         return *scene;
       }
+
+      void set_camera_angle(float degrees);
   };
 }
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scenery/elements/Element.h"
+#include "scenery/elements/Spatial.h"
 #include "Particle_Effect.h"
 #include <vector>
 #include <memory>
@@ -25,7 +25,7 @@ namespace scenery {
       vec4 color;
   };
 
-  class MYTHIC_EXPORT Particle_Array : public scenery::Element {
+  class MYTHIC_EXPORT Particle_Array : public scenery::Spatial {
       bool changed = true;
       vector<unique_ptr<Visible_Particle>> particles;
       vector<Particle_Data> vertices;

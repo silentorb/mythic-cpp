@@ -21,7 +21,7 @@ namespace scenery {
     emitter->set_position(absolute_position);
     emitter->update(delta);
     for (auto &element: children) {
-      auto particle_element = static_cast<Particle_Element *>(element.get());
+      auto particle_element = dynamic_cast<Particle_Element *>(element.get());
       animator(*particle_element);
     }
   }
@@ -33,7 +33,7 @@ namespace scenery {
 
   void Element_Emitter::particle_removed(const Particle &particle) {
     for (int i = 0; i < children.size(); ++i) {
-      auto child = static_cast<Particle_Element *>(children[i].get());
+      auto child = dynamic_cast<Particle_Element *>(children[i].get());
       if (&child->get_particle() == &particle) {
         child->remove();
         return;

@@ -20,5 +20,9 @@ namespace bloom {
       void set_color(vec4 color) {
         this->color = color;
       }
+
+      vec4 &get_color() {
+        return color;
+      }
   };
 }

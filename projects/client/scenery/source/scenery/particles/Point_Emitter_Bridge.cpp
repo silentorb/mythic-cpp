@@ -10,7 +10,7 @@ namespace scenery {
     Particle_Point_Delegate animator, Parent *parent) :
     target_array(target_array),
     emitter(new Emitter(generator, this)), visible_generator(visible_generator), animator(animator),
-    scenery::Element(parent) {
+    scenery::Spatial(parent) {
 
   }
 

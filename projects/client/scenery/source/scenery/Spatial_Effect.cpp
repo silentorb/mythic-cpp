@@ -36,8 +36,8 @@ namespace scenery {
     update_shader_properties(transform, normal_transform, has_opacity, color);
   }
 
-  void Spatial_Effect::update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity,
-                                                vec4 &color) {
+  void Spatial_Effect::update_shader_properties(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
+                                                const vec4 &color) {
 
     auto opacity_support = has_opacity || this->color.w != 1;
     set_color(color);
@@ -50,8 +50,8 @@ namespace scenery {
     normal_property.set(normal_transform);
   }
 
-  void Spatial_Effect::render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
-                              vec4 &color) {
+  void Spatial_Effect::render(Mesh_Data *mesh_data, const mat4 &transform, const mat4 &normal_transform,
+                              bool has_opacity, const vec4 &color) {
     Effect::activate();
     update_shader_properties(transform, normal_transform, has_opacity, color);
     mesh_data->draw(get_draw_method());

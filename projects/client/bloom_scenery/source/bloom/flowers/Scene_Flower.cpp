@@ -35,4 +35,8 @@ namespace bloom {
       garden.get_draw().enable_3d(false);
     }
   }
+
+  void flowers::Scene_Flower::set_camera_angle(float degrees) {
+    scene->get_camera().set_angle(glm::radians(degrees));
+  }
 }

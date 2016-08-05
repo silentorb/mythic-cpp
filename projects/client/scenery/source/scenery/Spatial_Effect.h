@@ -34,7 +34,8 @@ namespace scenery {
       Matrix_Property model_property;
       Matrix_Property normal_property;
 
-      void update_shader_properties(mat4 &transform, mat4 &normal_transform, bool has_opacity, vec4 &color);
+      void update_shader_properties(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
+                                    const vec4 &color);
 
   public:
       Spatial_Effect(Program &program);
@@ -46,8 +47,9 @@ namespace scenery {
 
       void set_opacity(float value);
       void set_color(vec4 value);
-      virtual void render(modeling::Mesh_Data *mesh_data, mat4 &transform, mat4 &normal_transform, bool has_opacity,
-                          vec4 &color);
+      virtual void render(Mesh_Data *mesh_data, const mat4 &transform, const mat4 &normal_transform,
+                          bool has_opacity,
+                          const vec4 &color);
 
       void set_blend_function(const glow::Blend_Function value) {
         this->blend_function = value;
