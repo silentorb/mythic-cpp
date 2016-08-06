@@ -25,7 +25,7 @@ namespace scenery {
       virtual void add_child(unique_ptr<Element> element) override;
       virtual void add_child(Element &element) override;
 //      virtual bool has_transform() override;
-
+      virtual void add_child(Element *element) override;
       virtual void move_child(Element &element, Parent &destination) override;
 
       Element &get_child(int index) const {

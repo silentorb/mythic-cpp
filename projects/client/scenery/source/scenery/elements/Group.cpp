@@ -71,4 +71,8 @@ namespace scenery {
   void Group::move_child(unique_ptr<Element> &element, Parent &destination) {
     move_child(*element, destination);
   }
+
+  void Group::add_child(Element *element) {
+    add_child(*element);
+  }
 }
