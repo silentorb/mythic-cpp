@@ -4,7 +4,9 @@ namespace aura {
   namespace graphing {
 
     void Node::add_property(Property &property) {
+      property.offset = data_size;
       properties.push_back(&property);
+      data_size += property.get_size();
     }
 
     Property &Node::get_first_output() const {
