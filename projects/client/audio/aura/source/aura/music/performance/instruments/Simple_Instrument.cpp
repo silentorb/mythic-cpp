@@ -8,7 +8,7 @@ namespace aura {
 
   public:
       Default_Generator(Loop_Function operation) :
-        operation(operation) { }
+        operation(operation) {}
 
       Stroke *operator()(const Note &note, Producer &producer, Note_Envelope *volume_envelope) {
         auto oscillator = new Oscillator(producer.get_engineer(), note.get_frequency(), operation);
@@ -18,17 +18,14 @@ namespace aura {
 
   Simple_Instrument::Simple_Instrument(Producer &producer, Loop_Function operation,
                                        Note_Envelope_Generator &volume_envelope) :
-    producer(producer), note(note),
-    volume_envelope(volume_envelope) {
+    producer(producer), volume_envelope(volume_envelope) {
 
     stroke_generator = Default_Generator(operation);
   }
 
   Simple_Instrument::Simple_Instrument(Producer &producer, Instrument_Stroke_Generator stroke_generator,
                                        Note_Envelope_Generator &volume_envelope) :
-    producer(producer), note(note),
-    volume_envelope(volume_envelope),
-    stroke_generator(stroke_generator) {
+    producer(producer), volume_envelope(volume_envelope), stroke_generator(stroke_generator) {
 
   }
 

@@ -12,7 +12,6 @@ namespace aura {
 
   class MYTHIC_EXPORT Simple_Instrument : public Instrument {
       Producer &producer;
-      const Note &note;
       Note_Envelope_Generator &volume_envelope;
 //      Loop_Function operation;
       Instrument_Stroke_Generator stroke_generator;

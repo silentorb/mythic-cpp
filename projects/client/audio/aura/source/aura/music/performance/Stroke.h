@@ -23,7 +23,7 @@ namespace aura {
   public:
       Stroke(const Note &note);
 
-      virtual ~Stroke() { }
+      virtual ~Stroke() {}
 
       virtual float update(float beat_delta) = 0;
 
@@ -37,6 +37,10 @@ namespace aura {
 
       const double get_progress() const {
         return progress;
+      }
+
+      const double get_progress_percentage() const {
+        return progress / duration;
       }
 
       bool is_finished() const {

@@ -14,6 +14,13 @@ namespace aura {
     strokes.push_back(unique_ptr<Stroke>(stroke));
   }
 
+  inline bool is_inside(const Note &note, float start, float end){
+    auto offset = note.get_start();
+    return end > start
+                     ? note.get_start() >= start && offset < end
+                     : note.get_start() >= start || offset < end;
+  }
+
   void Performer::perform(Conductor &conductor, Performance &performance,
                           float start, float end) {
     if (end == start)
@@ -26,12 +33,7 @@ namespace aura {
 
     for (int i = 0; i < sequencer.size(); ++i) {
       auto &note = sequencer.get_note(i, conductor);
-      auto offset = note.get_start();
-      auto is_inside = end > start
-                       ? note.get_start() >= start && offset < end
-                       : note.get_start() >= start || offset < end;
-
-      if (is_inside) {
+      if (is_inside(note,start, end)) {
         add_stroke(performance.get_instrument().generate_stroke(note));
         auto recorder = conductor.get_recorder();
         if (recorder)

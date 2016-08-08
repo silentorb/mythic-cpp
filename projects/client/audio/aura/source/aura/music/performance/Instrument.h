@@ -13,7 +13,6 @@ namespace aura {
   namespace music {
     namespace performance {
       class AURA_EXPORT Instrument {
-        
 
         public:
           virtual Stroke* generate_stroke(const aura::sequencing::Note& note) = 0;
