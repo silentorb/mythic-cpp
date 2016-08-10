@@ -26,4 +26,8 @@ namespace promising {
   void Promise_Interface::clear() {
     promises.clear();
   }
+
+  int Promise_Interface::get_size() {
+    return promises.size();
+  }
 }

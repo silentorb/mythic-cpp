@@ -13,27 +13,26 @@ namespace aura {
 
   class MYTHIC_EXPORT Loop {
       double position = 0;
-      float frequency;
+//      float frequency;
       double increment;
       const int sample_rate;
 
   public:
       Loop(const int sample_rate, double frequency = default_frequency) :
-        frequency(frequency),
+//        frequency(frequency),
         increment(frequency / sample_rate), sample_rate(sample_rate) { }
 
       Loop(Engineer &conductor, double frequency = default_frequency);
 
       float next();
-      float next(int cycles);
+//      float next(int cycles);
       float next(bool & looped);
 
       float get_frequency() const {
-        return frequency;
+        return (float)increment * sample_rate;
       }
 
-      void set_frequency(float value) {
-        frequency = value;
+      void set_frequency(float frequency) {
         increment = frequency / sample_rate;
       }
 

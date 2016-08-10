@@ -10,14 +10,15 @@ using namespace std;
 namespace aura {
   namespace graphing {
 
-    class Node {
+    class AURA_EXPORT Node : no_copy {
         friend class Property;
 
         vector<Property *> properties;
         void add_property(Property &property);
-        size_t data_size;
+        size_t data_size = 0;
 
     public:
+
         virtual ~Node() {}
 
         Property &get_first_output() const;
@@ -30,7 +31,7 @@ namespace aura {
           return properties;
         }
 
-        virtual void update(const Stroke &stroke, void *data) = 0;
+        virtual void update(const Stroke &stroke, void *raw_data) = 0;
 
         int get_data_size() const {
           return data_size;
@@ -40,6 +41,13 @@ namespace aura {
         void connect(Output<T> &output, Input<T> &input) {
           input.set_other_property(&output);
         }
+
+        template<typename T>
+        operator Output<T> &() {
+          return static_cast<Output<T> &>(get_first_output());
+        }
+
+        void finalize();
     };
   }
 }

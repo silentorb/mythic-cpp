@@ -22,7 +22,6 @@ namespace aura {
     std::cout << "Deleting Producer.";
   }
 
-
   void Producer::next_section() {
     composer.next_chord();
     performer->clear_performances();

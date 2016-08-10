@@ -6,32 +6,29 @@
 namespace aura {
 
   Loop::Loop(Engineer &conductor, double frequency) :
-    frequency(frequency),
+//    frequency(frequency),
     sample_rate(conductor.get_sample_rate()) {
     increment = frequency / sample_rate;
   }
 
   float Loop::next() {
     auto old = position;
-    position = fmod(position + increment, 1.0);
-    if (frequency < 1) {
+    position += increment;
+    if (position > 1)
+      position = fmod(position + increment, 1.0);
 
-//      if (position < old)
-//        std::cout << "Looped" << std::endl;
-    }
-
-    return position;
+    return (float) position;
   }
 
-  float Loop::next(int cycles) {
-//    position = fmod(position + increment * cycles, 1.0);
-    position += increment * cycles;
-    if (position > 1) {
-      position = fmod(position, 1.0);
-
-    }
-    return position;
-  }
+//  float Loop::next(int cycles) {
+////    position = fmod(position + increment * cycles, 1.0);
+//    position += increment * cycles;
+//    if (position > 1) {
+//      position = fmod(position, 1.0);
+//
+//    }
+//    return position;
+//  }
 
   float Loop::next(bool &looped) {
 //    position = fmod(position + increment * cycles, 1.0);
@@ -54,6 +51,6 @@ namespace aura {
 ////        std::cout << "Looped" << std::endl;
 //    }
 
-    return position;
+    return (float) position;
   }
 }

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "aura_export.h"
+#include <cstdlib>
+#include <stdexcept>
+#include <functional>
 
 namespace aura {
   namespace graphing {
@@ -11,24 +14,33 @@ namespace aura {
         friend class Node;
 
         size_t offset;
-        Node &node;
+
+    protected:
+        void initialize_node(Node &node);
 
     public:
-        Property(Node *parent);
-
-        enum class Direction {
+        enum class Type {
             output,
             input,
+            constant,
+            internal
         };
 
-        virtual Direction get_direction() const = 0;
-        virtual Node *get_other_node() const = 0;
-        virtual Property *get_other_property() const = 0;
+        virtual Type get_type() const = 0;
         virtual size_t get_size() const = 0;
-        virtual void assign(void *data, void *other_data, Property &other_property) = 0;
 
         size_t get_offset() const {
           return offset;
+        }
+
+    };
+
+    class Node_Property : public Property {
+        Node &node;
+
+    public:
+        Node_Property(Node &node) : node(node) {
+          initialize_node(node);
         }
 
         Node &get_node() const {
@@ -36,63 +48,129 @@ namespace aura {
         }
     };
 
-    template<typename T>
-    class AURA_EXPORT Input : public Property {
-        Property *other_property = nullptr;
+    class Output_Base : public Node_Property {
+    public:
+        Output_Base(Node &node) : Node_Property(node) {}
+
+    };
+
+    class Input_Base : public Node_Property {
+    protected:
+        Output_Base *other_property = nullptr;
 
     public:
-        Input(Node *parent) : Property(parent) {}
+        Input_Base(Node &node) : Node_Property(node) {}
 
-        virtual Direction get_direction() const override {
-          return Direction::input;
+        virtual Type get_type() const override {
+          return Type::input;
         }
 
-        virtual Node *get_other_node() const override {
+        virtual Output_Base *get_other_property() const {
+          return other_property;
+        }
+
+        void set_other_property(Output_Base *property) {
+          other_property = property;
+        }
+
+        virtual Node *get_other_node() const {
           return other_property
                  ? &other_property->get_node()
                  : nullptr;
         }
 
-        void set_other_property(Property * property){
-          other_property = property;
-        }
+        virtual void assign(void *data, const void *other_data, const Property &other_property)= 0;
 
-        virtual size_t get_size() const override {
-          return sizeof(T);
-        }
-
-        virtual void assign(void *data, void *other_data, Property &other_property) override {
-          *(T *) (data + get_offset()) = *(T *) (other_data + other_property.get_offset());
-        }
-
-        virtual Property *get_other_property() const override {
-          return other_property;
-        }
     };
 
     template<typename T>
-    class AURA_EXPORT Output : public Property {
-    public:
-        Output(Node *parent) : Property(parent) {}
+    class AURA_EXPORT Input : public Input_Base {
 
-        virtual Direction get_direction() const override {
-          return Direction::output;
+    public:
+        Input(Node *parent) : Input_Base(*parent) {}
+
+        virtual size_t get_size() const override {
+          return sizeof(T);
         }
 
-        virtual Node *get_other_node() const override {
-          return nullptr;
+        void assign(void *data, const void *other_data, const Property &other_property) {
+          *(T *) ((char *) data + get_offset()) = *(T *) ((char *) other_data + other_property.get_offset());
+        }
+
+    };
+
+    template<typename T>
+    class AURA_EXPORT Output : public Output_Base {
+
+    public:
+        Output(Node *parent) : Output_Base(*parent) {
         }
 
         virtual size_t get_size() const override {
           return sizeof(T);
         }
 
-        virtual void assign(void *data, void *other_data, Property &other_property) override;
-
-        virtual Property *get_other_property() const override {
-          return nullptr;
+        virtual Type get_type() const override {
+          return Type::output;
         }
     };
 
+    class Constant_Output_Base : public Output_Base {
+    public:
+        Constant_Output_Base(Node *parent) : Output_Base(*parent) {}
+
+        virtual void assign_constant(void *data)= 0;
+    };
+
+    template<typename T>
+    class AURA_EXPORT Constant_Output : public Constant_Output_Base {
+        T value;
+
+    public:
+        Constant_Output(T value, Node *parent) : value(value), Output_Base(parent) {}
+
+        virtual void assign_constant(void *data) override {
+          *(T *) data = value;
+        }
+
+        virtual size_t get_size() const override {
+          return sizeof(T);
+        }
+
+        virtual Type get_type() const override {
+          return Type::constant;
+        }
+    };
+
+    class Internal_Base : public Node_Property {
+    public:
+        Internal_Base(Node *parent) : Node_Property(*parent) {}
+
+        virtual void initialize_data(void *data)= 0;
+
+    };
+
+    template<typename T>
+    class AURA_EXPORT Internal : public Internal_Base {
+        std::function<void(void *)> initializer;
+
+    public:
+        Internal(Node *parent, std::function<void(void *)> initializer) :
+          Internal_Base(parent), initializer(initializer) {}
+
+        virtual Type get_type() const override {
+          return Property::Type::internal;
+        }
+
+        virtual size_t get_size() const override {
+          return sizeof(T);
+        }
+
+    private:
+        virtual void initialize_data(void *data) override {
+//          T *value = new(data) T();
+          initializer(data);
+        }
+    };
   }
 }

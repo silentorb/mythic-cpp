@@ -19,6 +19,7 @@ namespace promising {
       static void update_queue();
       static void clear();
       virtual bool update() = 0;
+      static int get_size();
 
       virtual ~Promise_Interface() { }
   };

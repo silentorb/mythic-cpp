@@ -20,11 +20,11 @@ namespace aura {
 
 
     float sine(float position) {
-      return sin(position * 2 * Pi);
+      return (float)sin(position * 2 * Pi);
     }
 
     float saw(float position) {
-      return fabs(fmod(position, 2) - 1);
+      return (float)fabs(fmod(position, 2) - 1);
     }
 
 //    MYTHIC_EXPORT float triangle(float position) {

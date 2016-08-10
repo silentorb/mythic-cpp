@@ -14,6 +14,8 @@ namespace promising {
       std::queue<Task> tasks;
       std::mutex m;
       std::unique_ptr<std::thread> t;
+      bool on_main_thread = true;
+
       enum State {
           initializing, // No logic depends on the initializing value but it can be useful for debugging.
           active,

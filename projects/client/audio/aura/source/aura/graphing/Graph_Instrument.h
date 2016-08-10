@@ -14,7 +14,7 @@ namespace aura {
 
     struct Input_Info {
         Node_Info *node_info;
-        Property *property;
+        Input_Base *property;
     };
 
     struct Node_Info {
@@ -25,18 +25,31 @@ namespace aura {
         vector<Input_Info> inputs;
     };
 
-    class AURA_EXPORT Graph_Instrument : public Instrument {
+    struct Constant_Info {
+        float value;
+        Input_Info input;
+    };
+
+    struct Internal_Info {
+        Node_Info *node_info;
+        Internal_Base *property;
+    };
+
+    class AURA_EXPORT Graph_Instrument : public Instrument, no_copy {
         Producer &producer;
         Note_Envelope_Generator &volume_envelope;
         vector<unique_ptr<Node>> nodes;
         vector<Node_Info> node_info;
+        vector<Constant_Info> constants;
+        vector<Internal_Info> internal_objects;
         size_t data_byte_size = 0;
 
-        void include_node(Node *node);
-        bool contains_node(Node *node);
+        void include_node(Node *node, int &constant_count, int &internal_objects_count);
+        bool contains_node(const Node *node);
         void finalize();
         Node_Info *get_node_info(Node *node);
         void initialize_node_info(Node_Info &info, Node *node, int offset);
+        void initialize_input(Input_Base *input_property, Node_Info &info, int &input_count);
 
     public:
         Graph_Instrument(Producer &producer, Node *node, Note_Envelope_Generator &volume_envelope);
@@ -50,13 +63,21 @@ namespace aura {
         const vector<Node_Info> &get_node_info() const {
           return node_info;
         }
+
+        const vector<Constant_Info> &get_constants() const {
+          return constants;
+        }
+
+        const vector<Internal_Info> &get_internal_objects() const {
+          return internal_objects;
+        }
     };
 
     class Graph_Stroke : public Stroke {
         unique_ptr<Note_Envelope> volume_envelope;
         const vector<Node_Info> node_info;
         vector<char> data;
-        vector<bool> up_to_date;
+        vector<unsigned char> up_to_date;
         float *output_value;
 
         void update_node(const Node_Info &info);
