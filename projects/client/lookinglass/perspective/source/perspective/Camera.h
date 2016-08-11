@@ -51,6 +51,10 @@ namespace perspective {
       void set_angle(float angle) {
         this->angle = angle;
       }
+
+      void set_degrees(float angle) {
+        this->angle = glm::radians(angle);
+      }
   };
 
 }

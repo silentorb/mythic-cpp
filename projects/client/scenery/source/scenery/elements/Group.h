@@ -11,7 +11,7 @@ using namespace std;
 namespace scenery {
 
   class MYTHIC_EXPORT Group : public virtual Parent, public Spatial {
-      bool visible;
+      bool visible = true;
 
   protected:
       vector<unique_ptr<Element>> children;

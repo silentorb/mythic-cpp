@@ -34,6 +34,10 @@ namespace vineyard {
       void save_property(int index);
       void save_property(const landscape::Property &property);
 
+      Ground *get_ground() const {
+        return ground;
+      }
+
       template<typename T>
       void save(T index) {
         if (ground)

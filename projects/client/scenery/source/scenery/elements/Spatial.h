@@ -61,6 +61,10 @@ namespace scenery {
         this->scale = vec3(value);
       }
 
+      vec3 get_absolute_position() {
+        return vec3(get_transform()[3]);
+      }
+
       virtual mat4 &get_absolute_orientation();
       virtual mat4 &get_transform();
 

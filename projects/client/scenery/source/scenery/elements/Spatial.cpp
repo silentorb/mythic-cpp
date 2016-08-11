@@ -16,9 +16,10 @@ namespace scenery {
   }
 
   mat4 &Spatial::get_transform() {
-    transform = glm::translate(position)
-                            * glm::scale(scale)
-                            * glm::mat4_cast(orientation);
+    transform =
+      glm::translate(position)
+      * glm::scale(scale)
+      * glm::mat4_cast(orientation);
 
     if (parent)
       transform = parent->get_spatial().get_transform() * transform;

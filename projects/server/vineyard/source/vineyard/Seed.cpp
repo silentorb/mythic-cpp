@@ -33,17 +33,20 @@ namespace vineyard {
       int step = 0;
       while (is_saving) {
 //#if _DEBUG
-        if (++step == 200) {
+        if (++step == 300) {
           throw runtime_error("Deleting unsaved seed.");
         }
 //#endif
-        this_thread::sleep_for(std::chrono::milliseconds(10));
+        this_thread::sleep_for(std::chrono::milliseconds(20));
       }
       remove();
     }
   }
 
   void Seed::finalize() {
+    if (!ground)
+      return;
+
     if (!initializing)
       throw runtime_error("Seed cannot be finalized twice.");
 
@@ -154,6 +157,9 @@ namespace vineyard {
   }
 
   void Seed::remove() {
+    if (!ground)
+      return;
+
     if (!ground->is_writing_enabled() || !id)
       return;
 
