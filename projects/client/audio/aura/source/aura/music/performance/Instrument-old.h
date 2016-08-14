@@ -2,7 +2,7 @@
 
 #include <aura/music/performance/Stroke.h>
 #include <aura/sequencing/Note.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 namespace aura {
 

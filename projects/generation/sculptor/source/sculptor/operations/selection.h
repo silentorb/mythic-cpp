@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "sculptor/geometry/declarations.h"
 #include "sculptor/geometry/Vertex.h"
 #include <vector>

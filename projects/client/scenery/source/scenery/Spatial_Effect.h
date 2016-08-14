@@ -1,7 +1,7 @@
 #pragma once
 
 #include <shading/Shader_Property.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "modeling/Draw_Method.h"

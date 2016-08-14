@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "resourceful/Resource.h"
 #include "Shader_Type.h"
 #include <string>

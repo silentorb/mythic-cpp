@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "aura/music/performance/Stroke.h"
 #include <functional>
 

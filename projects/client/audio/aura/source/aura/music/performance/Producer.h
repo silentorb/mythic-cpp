@@ -2,7 +2,7 @@
 
 #include <aura/sequencing/Conductor.h>
 #include <aura/music/composing/Composer.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Tempo_Loop.h"
 #include "Performer.h"
 

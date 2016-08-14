@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "audio/Speaker.h"
 #include <SDL2/SDL_audio.h>
 

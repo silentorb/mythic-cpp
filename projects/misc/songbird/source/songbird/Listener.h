@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Channel.h"
 #include "Singer.h"
 #include <vector>

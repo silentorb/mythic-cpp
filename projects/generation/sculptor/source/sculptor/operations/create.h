@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math/utility.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 #include "sculptor/geometry.h"
 

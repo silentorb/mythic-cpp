@@ -2,7 +2,7 @@
 
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/common_processors.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Note_Envelope_Generator.h"
 
 namespace aura {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <aura/engineer/Buffer.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <functional>
 #include <aura/sequencing/Note.h>
 

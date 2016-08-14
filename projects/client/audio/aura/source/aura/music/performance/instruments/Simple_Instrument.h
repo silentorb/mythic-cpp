@@ -4,7 +4,7 @@
 #include <aura/processors/Oscillator.h>
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/envelopes/Note_Envelope_Generator.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "aura/music/performance/Instrument.h"
 
 namespace aura {

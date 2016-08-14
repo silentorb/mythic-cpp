@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Spatial.h"
 #include "Spatial_Source.h"
 #include <vector>

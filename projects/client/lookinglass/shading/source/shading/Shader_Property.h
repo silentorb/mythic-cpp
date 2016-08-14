@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Program.h"
 #include <string>
 #include <glm/detail/type_mat.hpp>

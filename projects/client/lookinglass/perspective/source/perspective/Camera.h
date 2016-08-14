@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 #include "glm/gtc/quaternion.hpp"
 #include "glm/vec3.hpp"
@@ -19,12 +19,12 @@ namespace perspective {
 
   public:
 
-      Camera() { }
+      Camera() {}
 
       Camera(const vec3 &position, const quat &orientation, float angle) : position(position), orientation(orientation),
-                                                                           angle(angle) { }
+                                                                           angle(angle) {}
 
-      virtual ~Camera() { }
+      virtual ~Camera() {}
 
       virtual mat4 get_view_matrix();
 
@@ -44,7 +44,13 @@ namespace perspective {
         Camera::orientation = orientation;
       }
 
-      float& get_angle() {
+      void set_all(const vec3 &position, const quat &orientation, float degrees) {
+        set_position(position);
+        set_orientation(orientation);
+        set_degrees(degrees);
+      }
+
+      float &get_angle() {
         return angle;
       }
 

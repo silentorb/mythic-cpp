@@ -2,7 +2,7 @@
 
 #include <aura/sequencing/Sequencer.h>
 #include <aura/music/performance/Instrument.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <memory>
 
 using namespace std;

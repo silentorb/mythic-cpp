@@ -18,7 +18,9 @@ namespace bloom {
     glm::vec2 List::update_dimensions(const glm::vec2 &parent_dimensions) {
       if (arrangement != Arrangement::down && arrangement != Arrangement::right)
         throw runtime_error("Not implemented");
-
+if(debug_id == 200){
+  int K = 0;
+}
       vec2 content_length;
       bool first = true;
 
@@ -73,17 +75,23 @@ namespace bloom {
         if (child->get_relative_bounds(child_position, child_dimensions)) {
           // Restrict child bounds to normal size of the child so it does not try to center itself against
           // the size of the whole list.  (List children should be oblivous to the length of the list flower.)
-          child->update_position(position, child_dimensions);
-
           if (arrangement == Arrangement::down) {
-            position.y += child_position.y + child_dimensions.y + resolved_spacing.y;
+            child_dimensions.x = parent_dimensions.x;
           }
           else {
-            position.x += child_position.x + child_dimensions.x + resolved_spacing.x;
+            child_dimensions.y = parent_dimensions.y;
           }
+          child->update_position(position, child_dimensions);
         }
         else {
           child->update_position(position, parent_dimensions);
+        }
+
+        if (arrangement == Arrangement::down) {
+          position.y += child_position.y + child_dimensions.y + resolved_spacing.y;
+        }
+        else {
+          position.x += child_position.x + child_dimensions.x + resolved_spacing.x;
         }
       }
     }

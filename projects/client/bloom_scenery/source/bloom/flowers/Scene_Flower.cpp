@@ -9,7 +9,7 @@ namespace bloom {
 
     Scene_Flower::Scene_Flower(shared_ptr<scenery::Scene> scene, flowers::Flower *parent) :
       scene(scene),
-      flowers::Box(parent) {
+      flowers::Flower(parent) {
     }
 
     Scene_Flower::Scene_Flower(flowers:: Flower *parent) :

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "glm/vec4.hpp"
 #include "scenery/particles/Point_Emitter_Bridge.h"
 #include <substance/Particle.h>

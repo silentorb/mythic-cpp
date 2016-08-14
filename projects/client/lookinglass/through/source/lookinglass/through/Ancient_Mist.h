@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Mist.h"
 #include "Doorway.h"
 #include "Struct_Info.h"

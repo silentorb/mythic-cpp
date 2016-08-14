@@ -1,9 +1,16 @@
 #include "Flower.h"
 
+//#ifdef COMMON_DEBUG
+//unsigned long current_debug_id = 0;
+//#endif
+
 namespace bloom {
   namespace flowers {
 
     Flower::Flower(Flower *parent) {
+//#ifdef COMMON_DEBUG
+//      debug_id = ++current_debug_id;
+//#endif
       if (parent)
         parent->add_child(this);
     }

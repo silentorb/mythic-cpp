@@ -2,7 +2,7 @@
 
 #include <perspective/Camera.h>
 #include <lookinglass/House.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "clienting/Client.h"
 #include <memory>
 #include <perspective/Viewport.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <memory>
 #include <vector>
 #include <scenery/elements/Light.h>

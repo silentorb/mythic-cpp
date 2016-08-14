@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL_gamecontroller.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 namespace desktop {
 

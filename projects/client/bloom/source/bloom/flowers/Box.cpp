@@ -66,7 +66,7 @@ namespace bloom {
       length.y = resolve_length<Vertical_Axis>(measurement_bounds.y, parent_bounds);
 
       vec2 full_length = length;
-      if (length.y == 0)
+      if (debug_id == 300)
         int k = 0;
 
       int iterations = 0;
@@ -74,7 +74,10 @@ namespace bloom {
         bool changed;
         do {
           changed = false;
-          auto content_length = process_children(children, length);
+          if (measurement_bounds.x.length.get_type() == Measurements::shrink) {
+            int k = 0;
+          }
+            auto content_length = process_children(children, length);
 
           if (iterations > 8) {
             int k = 0;
@@ -86,8 +89,7 @@ namespace bloom {
             break;
           }
 
-          if (measurement_bounds.x.length.get_type() == Measurements::stretch
-              || measurement_bounds.x.length.get_type() == Measurements::shrink) {
+          if (measurement_bounds.x.length.get_type() == Measurements::shrink) {
             if (length.x != content_length.x) {
               length.x = content_length.x;
               changed = true;
@@ -95,8 +97,7 @@ namespace bloom {
             full_length.x = length.x + resolve_margins<Horizontal_Axis>(parent_bounds);
           }
 
-          if (measurement_bounds.y.length.get_type() == Measurements::stretch
-              || measurement_bounds.y.length.get_type() == Measurements::shrink) {
+          if (measurement_bounds.y.length.get_type() == Measurements::shrink) {
             if (length.y != content_length.y) {
               length.y = content_length.y;
               changed = true;
@@ -112,6 +113,9 @@ namespace bloom {
     }
 
     void Box::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+//      if (debug_id == 100) {
+//        int k = 0;
+//      }
       relative_position.x = resolve_relative_position<Horizontal_Axis>(parent_dimensions);
       relative_position.y = resolve_relative_position<Vertical_Axis>(parent_dimensions);
 

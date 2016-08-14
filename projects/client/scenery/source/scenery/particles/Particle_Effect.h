@@ -3,7 +3,7 @@
 #include <shading/Shader_Property.h>
 #include "shading/Program.h"
 #include "glm/mat4x4.hpp"
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 using namespace shading;
 

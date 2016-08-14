@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/vec2.hpp>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <vector>
 #include <stdexcept>
 #include <memory>
@@ -31,7 +31,7 @@ namespace bloom {
 
   class BLOOM_EXPORT Measurement {
       Measurements type;
-      float value;
+      float value = 0;
 
   protected:
 
@@ -53,7 +53,7 @@ namespace bloom {
 
 //      Measurement(const Measurement &m) : Measurement(m.get_type()) { }
 
-      Measurement(const Measurements type, float value) : type(type), value(value) { }
+      Measurement(const Measurements type, float value = 0) : type(type), value(value) { }
 
       Measurement(float value) : value(value), type(Measurements::pixel) { }
 

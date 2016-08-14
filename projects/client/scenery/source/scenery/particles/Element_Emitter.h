@@ -1,7 +1,7 @@
 #pragma once
 
 #include <substance/Emitter.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "scenery/elements/Group.h"
 #include "Particle_Element.h"
 #include "Particle_Array.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Timed_Animation.h"
 #include "Indefinite_Animation.h"
 #include "3D_Animation.h"

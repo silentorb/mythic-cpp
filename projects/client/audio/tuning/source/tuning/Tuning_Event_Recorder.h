@@ -1,7 +1,7 @@
 #pragma once
 
 #include <aura/sequencing/Event_Recorder.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "aura/sequencing/Event.h"
 
 namespace tuning {

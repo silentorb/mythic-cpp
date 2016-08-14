@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Sprite.h"
 #include <vector>
 #include "lookinglass/Renderable.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "shading/effects/Effect.h"
 #include "glm/fwd.hpp"
 

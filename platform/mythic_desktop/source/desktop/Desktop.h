@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 #include <memory>
 #include <mythic/Mythic_Engine.h>

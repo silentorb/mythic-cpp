@@ -1,7 +1,7 @@
 #pragma once
 
 #include <substance/Particle.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "scenery/elements/Group.h"
 
 using namespace substance;

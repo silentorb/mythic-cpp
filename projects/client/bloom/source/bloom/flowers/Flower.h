@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "bloom/bloom_export.h"
 #include "Events.h"
 #include <memory>
@@ -8,6 +8,7 @@
 #include <bloom/layout/Axis_Value.h>
 #include <bloom/layout/Measurement.h>
 #include <bloom/layout/Parent_Dimensions.h>
+#include <commoner/debug-macro.h>
 
 using namespace std;
 
@@ -22,11 +23,15 @@ namespace bloom {
         Flower(Flower *parent = nullptr);
         virtual ~Flower() = 0;
 
+//#ifdef COMMON_DEBUG
+        unsigned long debug_id = 0;
+//#endif
+
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) {
           return parent_dimensions;
         }
 
-        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) { }
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {}
 
         virtual void update(float delta);
 
@@ -65,6 +70,6 @@ namespace bloom {
         void clear();
     };
 
-    inline Flower::~Flower() { }
+    inline Flower::~Flower() {}
   }
 }

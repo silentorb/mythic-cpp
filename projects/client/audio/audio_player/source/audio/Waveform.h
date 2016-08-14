@@ -1,5 +1,5 @@
 #pragma once
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <memory>
 #include "resourceful/Resource.h"
 #include <string>

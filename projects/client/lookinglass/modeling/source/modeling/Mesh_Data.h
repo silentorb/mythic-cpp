@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <memory>
 #include "shading/Vertex_Schema.h"
 #include "resourceful/Resource.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "modeling/Mesh_Data.h"
 
 namespace scenery {

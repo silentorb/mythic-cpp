@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Font.h"
 #include "resourceful/Resource_Manager.h"
 #include "Text_Effect.h"

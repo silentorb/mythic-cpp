@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "sculptor/geometry/Mesh.h"
 #include "selection.h"
 #include <string>

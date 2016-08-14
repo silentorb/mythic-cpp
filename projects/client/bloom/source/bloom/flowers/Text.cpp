@@ -49,7 +49,7 @@ namespace bloom {
     }
 
     glm::vec2 Text::update_dimensions(const vec2 &parent_dimensions) {
-      if (text->get_content() == "Shield") {
+      if (text->get_content() == "Victory!") {
         int k = 0;
       }
       auto &garden = Garden::get_instance();
@@ -62,7 +62,7 @@ namespace bloom {
       vec2 result;
       result.y = text_dimensions.y;
 
-      if (text_dimensions.x < parent_dimensions.x) {
+      if (text_dimensions.x < parent_dimensions.x || parent_dimensions.x == 0) {
         result.x = text_dimensions.x;
       }
       else {

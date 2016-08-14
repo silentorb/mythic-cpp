@@ -8,7 +8,7 @@ namespace scenery {
 
 namespace bloom {
 namespace flowers {
-  class MYTHIC_EXPORT Scene_Flower : public flowers::Box {
+  class MYTHIC_EXPORT Scene_Flower : public flowers::Flower {
       shared_ptr<scenery::Scene> scene;
 
   public:

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 
 namespace breeze {
   typedef std::function<float(float)> Curve_Delegate;

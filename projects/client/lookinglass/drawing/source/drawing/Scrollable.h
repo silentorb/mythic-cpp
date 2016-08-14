@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Group.h"
 #include "Image_Effect.h"
 #include "Draw.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include "Sound.h"
 #include "Device_Settings.h"
 #include "Signal_Source.h"

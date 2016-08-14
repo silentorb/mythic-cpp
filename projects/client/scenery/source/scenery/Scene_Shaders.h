@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 #include <shading/Shader_Manager.h>
 #include "shading/Program.h"
 

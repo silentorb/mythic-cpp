@@ -2,7 +2,7 @@
 
 #include <aura/sequencing/Sequencer.h>
 #include <aura/music/performance/Instrument.h>
-#include "dllexport.h"
+#include "commoner/dllexport.h"
 using namespace aura::music::performance;
 using namespace aura::sequencing;
 
