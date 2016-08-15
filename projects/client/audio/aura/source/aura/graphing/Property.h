@@ -127,7 +127,7 @@ namespace aura {
         T value;
 
     public:
-        Constant_Output(T value, Node *parent) : value(value), Output_Base(parent) {}
+        Constant_Output(T value, Node *parent) : value(value), Constant_Output_Base(parent) {}
 
         virtual void assign_constant(void *data) override {
           *(T *) data = value;
