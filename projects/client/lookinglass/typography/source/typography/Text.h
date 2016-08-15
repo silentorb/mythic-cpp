@@ -66,6 +66,9 @@ namespace typography {
       void render();
 
       void set_color(const vec4 value) {
+        if (color == value)
+          return;
+
         color = value;
         appearance_changed = true;
       }
