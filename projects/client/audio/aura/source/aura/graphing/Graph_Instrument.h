@@ -37,7 +37,6 @@ namespace aura {
 
     class AURA_EXPORT Graph_Instrument : public Instrument, no_copy {
         Producer &producer;
-        Note_Envelope_Generator &volume_envelope;
         vector<unique_ptr<Node>> nodes;
         vector<Node_Info> node_info;
         vector<Constant_Info> constants;
@@ -52,7 +51,7 @@ namespace aura {
         void initialize_input(Input_Base *input_property, Node_Info &info, int &input_count);
 
     public:
-        Graph_Instrument(Producer &producer, Node *node, Note_Envelope_Generator &volume_envelope);
+        Graph_Instrument(Producer &producer, Node *node);
         virtual ~Graph_Instrument();
         virtual Stroke *generate_stroke(const Note &note) override;
 
@@ -74,11 +73,15 @@ namespace aura {
     };
 
     class Graph_Stroke : public Stroke {
-        unique_ptr<Note_Envelope> volume_envelope;
         const vector<Node_Info> node_info;
-        vector<char> data;
         vector<unsigned char> up_to_date;
         float *output_value;
+
+        // Data was an std:vector but since this is such a cpu intensive
+        // class the vector was very slow without compiler optimizations.
+        // While this is probably not any faster in release builds, old school allocation is way faster
+        // for debug builds without much added complexity.
+        char* data;
 
         void update_node(const Node_Info &info);
 
@@ -87,19 +90,17 @@ namespace aura {
         }
 
         void set_fresh(const Node_Info &info) {
-          up_to_date[info.index] = true;
+          up_to_date[info.index] = 1;
         }
 
         char *get_data(const Node_Info &info) const {
-          return (char *) data.data() + info.offset;
+          return (char *) data + info.offset;
         }
 
     public:
+        Graph_Stroke(const Note &note, const Graph_Instrument &instrument, Producer &producer);
+        virtual ~Graph_Stroke();
         virtual float update(float beat_delta) override;
-
-        Graph_Stroke(const Note &note, const Graph_Instrument &instrument, Note_Envelope *volume_envelope);
-
-        virtual ~Graph_Stroke() {}
     };
   }
 }

@@ -6,9 +6,12 @@
 #include <functional>
 
 namespace aura {
+  class Producer;
+
   namespace graphing {
 
     class Node;
+
 
     class AURA_EXPORT Property {
         friend class Node;
@@ -54,7 +57,7 @@ namespace aura {
 
     };
 
-    class Input_Base : public Node_Property {
+    class AURA_EXPORT Input_Base : public Node_Property {
     protected:
         Output_Base *other_property = nullptr;
 
@@ -72,6 +75,8 @@ namespace aura {
         void set_other_property(Output_Base *property) {
           other_property = property;
         }
+
+        void set_other_property(Node *other_node);
 
         virtual Node *get_other_node() const {
           return other_property
@@ -146,16 +151,16 @@ namespace aura {
     public:
         Internal_Base(Node *parent) : Node_Property(*parent) {}
 
-        virtual void initialize_data(void *data)= 0;
+        virtual void initialize_data(void *data, Producer &producer) = 0;
 
     };
 
     template<typename T>
     class AURA_EXPORT Internal : public Internal_Base {
-        std::function<void(void *)> initializer;
+        std::function<void(void *, Producer &)> initializer;
 
     public:
-        Internal(Node *parent, std::function<void(void *)> initializer) :
+        Internal(Node *parent, std::function<void(void *, Producer &)> initializer) :
           Internal_Base(parent), initializer(initializer) {}
 
         virtual Type get_type() const override {
@@ -167,9 +172,9 @@ namespace aura {
         }
 
     private:
-        virtual void initialize_data(void *data) override {
+        virtual void initialize_data(void *data, Producer &producer) override {
 //          T *value = new(data) T();
-          initializer(data);
+          initializer(data, producer);
         }
     };
   }

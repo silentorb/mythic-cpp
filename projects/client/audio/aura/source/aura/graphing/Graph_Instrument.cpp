@@ -12,8 +12,8 @@ namespace aura {
       return result;
     }
 
-    Graph_Instrument::Graph_Instrument(Producer &producer, Node *node, Note_Envelope_Generator &volume_envelope) :
-      producer(producer), volume_envelope(volume_envelope) {
+    Graph_Instrument::Graph_Instrument(Producer &producer, Node *node) :
+      producer(producer) {
       int constant_count = 0;
       int internal_objects_count = 0;
       include_node(node, constant_count, internal_objects_count);
@@ -124,23 +124,25 @@ namespace aura {
     }
 
     Stroke *Graph_Instrument::generate_stroke(const Note &note) {
-      return new Graph_Stroke(note, *this, volume_envelope.generate_envelope());
+      return new Graph_Stroke(note, *this, producer);
     }
 
     Graph_Instrument::~Graph_Instrument() {
 
     }
 
-    Graph_Stroke::Graph_Stroke(const Note &note, const Graph_Instrument &instrument, Note_Envelope *volume_envelope) :
-      Stroke(note), node_info(instrument.get_node_info()), volume_envelope(volume_envelope) {
-      data.resize(instrument.get_data_size());
+    Graph_Stroke::Graph_Stroke(const Note &note, const Graph_Instrument &instrument, Producer &producer) :
+      Stroke(note), node_info(instrument.get_node_info()) {
+      data = new char[instrument.get_data_size()];
       up_to_date.resize(node_info.size());
 
       // Initialize constants
 
       // Initialize internal class objects
       for (auto &internal:instrument.get_internal_objects()) {
-        internal.property->initialize_data(get_data(*internal.node_info) + internal.property->get_offset());
+        internal.property->initialize_data(
+          get_data(*internal.node_info) + internal.property->get_offset(),
+          producer);
       }
 
       // Initialize output_value
@@ -149,23 +151,26 @@ namespace aura {
       output_value = (float *) (root_data + first_output.get_offset());
     }
 
+    Graph_Stroke::~Graph_Stroke() {
+      delete data;
+    }
+
     void Graph_Stroke::update_node(const Node_Info &info) {
 //      if (is_fresh(info))
 //        return;
 //
 //      set_fresh(info);
 
-      auto data = get_data(info);
-//      for (auto &input:info.inputs) {
+      auto node_data = data + info.offset;
       for (int i = 0; i < info.inputs.size(); ++i) {
         auto &input = info.inputs[i];
         auto &input_node = *input.node_info;
         update_node(input_node);
-        auto a = get_data(input_node);
-        auto b = input.property->get_other_property();
-        input.property->assign(data, a, *b);
+        input.property->assign(
+          node_data, get_data(input_node),
+          *input.property->get_other_property());
       }
-      info.node->update(*this, data);
+      info.node->update(*this, node_data);
     }
 
     float Graph_Stroke::update(float beat_delta) {
@@ -176,7 +181,7 @@ namespace aura {
 
       update_node(node_info[0]);
       float value = *output_value;
-      return value * volume_envelope->get_value(progress);
+      return value;
     }
   }
 }

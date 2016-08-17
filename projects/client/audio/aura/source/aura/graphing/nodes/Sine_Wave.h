@@ -28,9 +28,11 @@ namespace aura {
 
           }
 
-          Sine_Wave(Output<float> &position_source): Sine_Wave() {
-            position.set_other_property(&position_source);
+          Sine_Wave(Node *position_source) : Sine_Wave() {
+            position.set_other_property(position_source);
           }
+
+//          Sine_Wave(const Engineer &engineer, Node *frequency_source);
 
           virtual void update(const Stroke &stroke, void *raw_data) override {
             auto &data = *(Sine_Wave_Data *) raw_data;

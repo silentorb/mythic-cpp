@@ -19,7 +19,7 @@ namespace aura {
           Input<float> frequency;
           Output<float> output;
 
-          Loop_Node(const Engineer &engineer, Output<float> &frequency_source);
+          Loop_Node(Node *frequency_source);
           virtual ~Loop_Node();
 
           virtual void update(const Stroke &stroke, void *raw_data) override {
