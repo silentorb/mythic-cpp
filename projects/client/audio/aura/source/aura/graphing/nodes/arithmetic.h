@@ -1,8 +1,6 @@
 #pragma once
 
 #include "aura/graphing/Node.h"
-#include <aura/graphing/nodes/Add.h>
-#include <aura/graphing/nodes/Multiply.h>
 
 namespace aura {
   namespace graphing {

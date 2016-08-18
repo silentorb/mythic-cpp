@@ -10,6 +10,8 @@
 namespace aura {
   class Producer;
 
+  class Stroke;
+
   namespace graphing {
 
     class Node;
@@ -46,7 +48,7 @@ namespace aura {
           return offset;
         }
 
-       const std:: weak_ptr<Node_Instance> &get_node() const {
+        const std::weak_ptr<Node_Instance> &get_node() const {
           return node;
         }
     };
@@ -152,16 +154,16 @@ namespace aura {
 
     class Internal_Base : public Property {
     public:
-        virtual void initialize_data(void *data, Producer &producer) = 0;
+        virtual void initialize_data(void *data, Producer &producer, const Stroke &) = 0;
 
     };
 
     template<typename T>
     class AURA_EXPORT Internal : public Internal_Base {
-        std::function<void(void *, Producer &)> initializer;
+        std::function<void(void *, Producer &, const Stroke &)> initializer;
 
     public:
-        Internal(std::function<void(void *, Producer &)> initializer) :
+        Internal(std::function<void(void *, Producer &, const Stroke &)> initializer) :
           initializer(initializer) {}
 
         virtual ~Internal() {}
@@ -175,9 +177,9 @@ namespace aura {
         }
 
     private:
-        virtual void initialize_data(void *data, Producer &producer) override {
+        virtual void initialize_data(void *data, Producer &producer, const Stroke &stroke) override {
 //          T *value = new(data) T();
-          initializer(data, producer);
+          initializer(data, producer, stroke);
         }
     };
   }

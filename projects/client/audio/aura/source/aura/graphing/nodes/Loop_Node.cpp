@@ -16,7 +16,7 @@ namespace aura {
         return Node(
           NODE_ID("Loop")
           {
-            new Internal<Loop>([](void *data, Producer &producer) {
+            new Internal<Loop>([](void *data, Producer &producer, const Stroke & stroke) {
               new(data) Loop(producer.get_engineer().get_sample_rate());
             }),
             new Input<float>(frequency_source),

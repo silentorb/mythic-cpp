@@ -57,7 +57,7 @@ namespace aura {
         auto recorder = conductor.get_recorder();
         if (recorder) {
           recorder->add_event(new Note_Event(Event_Type::note_end, stroke->get_note(),
-                                             stroke->get_duration(), stroke->get_progress(), -1)
+                                             stroke->get_duration(), stroke->get_position(), -1)
           );
         }
         strokes.erase(strokes.begin() + i);

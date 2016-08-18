@@ -35,11 +35,11 @@ namespace aura {
         return frequency;
       }
 
-      const double get_progress() const {
+      const double get_position() const {
         return progress;
       }
 
-      const double get_progress_percentage() const {
+      const double get_percentage() const {
         return progress / duration;
       }
 

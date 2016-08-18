@@ -144,7 +144,7 @@ namespace aura {
       for (auto &internal:instrument.get_internal_objects()) {
         internal.property->initialize_data(
           get_data(*internal.node_info) + internal.property->get_offset(),
-          producer);
+          producer, *this);
       }
 
       for (auto &constant: instrument.get_constants()) {
