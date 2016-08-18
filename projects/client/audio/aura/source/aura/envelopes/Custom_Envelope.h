@@ -8,23 +8,32 @@ namespace aura {
   namespace envelopes {
 
     struct AURA_EXPORT Point {
-        enum class Type {
+        enum class Position {
             percentage,
             absolute,
             relative,
         };
+        enum class Curve {
+            linear,
+            hold
+        };
         double position;
         float level;
-        Type type;
+        Position type;
+        Curve curve;
 
     public:
-        Point(Type type, double position, float level) :
-          type(type), position(position), level(level) {}
+        Point(Position type, double position, float level) :
+          type(type), position(position), level(level), curve(Curve::linear) {}
+
+        Point(Position type, double position) :
+          type(type), position(position), level(level), curve(Curve::hold) {}
     };
 
-    struct Custom_Envelope_Instance {
+    struct AURA_EXPORT Custom_Envelope_Instance {
         double last_point_position = 0;
-        double current_range;
+        double transition_modifier;
+        float height_offset = 0;
         int next_point = 0;
     };
 
@@ -32,7 +41,13 @@ namespace aura {
         std::vector<Point> points;
 
     public:
-        Custom_Envelope(const std::vector<Point> &points) : points(points) {}
+        Custom_Envelope(std::initializer_list<Point> &points_initializer) : points(points_initializer) {
+          for (int i = 0; i < points.size(); ++i) {
+            auto& point = points [i];
+            if(point.curve == Point:: Curve:: hold)
+              point.level = points [i - 1].level;
+          }
+        }
 
         const std::vector<Point> &get_points() const {
           return points;

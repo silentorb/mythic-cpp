@@ -30,6 +30,9 @@ namespace aura {
           });
       }
 
+      Node Envelope_Node(initializer_list<envelopes::Point> points) {
+        return Envelope_Node(std::shared_ptr<envelopes::Custom_Envelope>(new envelopes::Custom_Envelope(points)));
+      }
     }
   }
 }

@@ -159,7 +159,7 @@ namespace aura {
     };
 
     template<typename T>
-    class AURA_EXPORT Internal : public Internal_Base {
+    class Internal : public Internal_Base {
         std::function<void(void *, Producer &, const Stroke &)> initializer;
 
     public:
