@@ -21,7 +21,7 @@ namespace aura {
         int offset;
         int size;
         int index;
-        Node *node;
+        Node_Instance *node;
         vector<Input_Info> inputs;
     };
 
@@ -37,21 +37,21 @@ namespace aura {
 
     class AURA_EXPORT Graph_Instrument : public Instrument, no_copy {
         Producer &producer;
-        vector<unique_ptr<Node>> nodes;
+        vector<Node> nodes;
         vector<Node_Info> node_info;
         vector<Constant_Info> constants;
         vector<Internal_Info> internal_objects;
         size_t data_byte_size = 0;
 
-        void include_node(Node *node, int &constant_count, int &internal_objects_count);
-        bool contains_node(const Node *node);
+        void include_node(const Node &node, int &constant_count, int &internal_objects_count);
+        bool contains_node(const Node &node);
         void finalize();
-        Node_Info *get_node_info(Node *node);
-        void initialize_node_info(Node_Info &info, Node *node, int offset);
+        Node_Info *get_node_info(Node_Instance *node);
+        void initialize_node_info(Node_Info &info, const Node &node, int offset);
         void initialize_input(Input_Base *input_property, Node_Info &info, int &input_count);
 
     public:
-        Graph_Instrument(Producer &producer, Node *node);
+        Graph_Instrument(Producer &producer, const Node &node);
         virtual ~Graph_Instrument();
         virtual Stroke *generate_stroke(const Note &note) override;
 

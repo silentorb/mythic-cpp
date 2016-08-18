@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <functional>
+#include <commoner/no_copy.h>
+#include <memory>
 
 namespace aura {
   class Producer;
@@ -12,14 +14,18 @@ namespace aura {
 
     class Node;
 
+    class Node_Instance;
 
-    class AURA_EXPORT Property {
+    class AURA_EXPORT Property : no_copy {
         friend class Node;
 
+        friend class Node_Instance;
+
+        std::weak_ptr<Node_Instance> node;
         size_t offset;
 
     protected:
-        void initialize_node(Node &node);
+//        void initialize_node(Node &node);
 
     public:
         enum class Type {
@@ -29,6 +35,10 @@ namespace aura {
             internal
         };
 
+        virtual ~Property() {
+          int k = 0;
+        }
+
         virtual Type get_type() const = 0;
         virtual size_t get_size() const = 0;
 
@@ -36,39 +46,31 @@ namespace aura {
           return offset;
         }
 
-    };
-
-    class Node_Property : public Property {
-        Node &node;
-
-    public:
-        Node_Property(Node &node) : node(node) {
-          initialize_node(node);
-        }
-
-        Node &get_node() const {
+       const std:: weak_ptr<Node_Instance> &get_node() const {
           return node;
         }
     };
 
-    class Output_Base : public Node_Property {
+    class Output_Base : public Property {
     public:
-        Output_Base(Node &node) : Node_Property(node) {}
 
     };
 
-    class AURA_EXPORT Input_Base : public Node_Property {
+    class Node_Instance;
+
+    class AURA_EXPORT Input_Base : public Property {
     protected:
-        Output_Base *other_property = nullptr;
+        const Output_Base *other_property = nullptr;
+        std::shared_ptr<Node_Instance> other_node_instance = nullptr;
 
     public:
-        Input_Base(Node &node) : Node_Property(node) {}
+        virtual ~Input_Base() {}
 
         virtual Type get_type() const override {
           return Type::input;
         }
 
-        virtual Output_Base *get_other_property() const {
+        virtual const Output_Base *get_other_property() const {
           return other_property;
         }
 
@@ -76,12 +78,13 @@ namespace aura {
           other_property = property;
         }
 
-        void set_other_property(Node *other_node);
+//        void set_other_property(const std::shared_ptr<Node_Instance> &other_node);
+        void set_other_property(const Node &other_node);
 
-        virtual Node *get_other_node() const {
+        virtual const std::weak_ptr<Node_Instance> get_other_node() const {
           return other_property
-                 ? &other_property->get_node()
-                 : nullptr;
+                 ? other_property->get_node()
+                 : std::weak_ptr<Node_Instance>();
         }
 
         virtual void assign(void *data, const void *other_data, const Property &other_property)= 0;
@@ -90,9 +93,11 @@ namespace aura {
 
     template<typename T>
     class AURA_EXPORT Input : public Input_Base {
-
     public:
-        Input(Node *parent) : Input_Base(*parent) {}
+        Input(const Node &source) {
+          set_other_property(source);
+
+        }
 
         virtual size_t get_size() const override {
           return sizeof(T);
@@ -108,9 +113,6 @@ namespace aura {
     class AURA_EXPORT Output : public Output_Base {
 
     public:
-        Output(Node *parent) : Output_Base(*parent) {
-        }
-
         virtual size_t get_size() const override {
           return sizeof(T);
         }
@@ -122,9 +124,8 @@ namespace aura {
 
     class Constant_Output_Base : public Output_Base {
     public:
-        Constant_Output_Base(Node *parent) : Output_Base(*parent) {}
 
-        virtual void assign_constant(void *data)= 0;
+        virtual void assign_constant(void *data) const = 0;
     };
 
     template<typename T>
@@ -132,9 +133,11 @@ namespace aura {
         T value;
 
     public:
-        Constant_Output(T value, Node *parent) : value(value), Constant_Output_Base(parent) {}
+        Constant_Output(T value) : value(value) {}
 
-        virtual void assign_constant(void *data) override {
+        virtual ~Constant_Output() {}
+
+        virtual void assign_constant(void *data) const override {
           *(T *) data = value;
         }
 
@@ -147,10 +150,8 @@ namespace aura {
         }
     };
 
-    class Internal_Base : public Node_Property {
+    class Internal_Base : public Property {
     public:
-        Internal_Base(Node *parent) : Node_Property(*parent) {}
-
         virtual void initialize_data(void *data, Producer &producer) = 0;
 
     };
@@ -160,8 +161,10 @@ namespace aura {
         std::function<void(void *, Producer &)> initializer;
 
     public:
-        Internal(Node *parent, std::function<void(void *, Producer &)> initializer) :
-          Internal_Base(parent), initializer(initializer) {}
+        Internal(std::function<void(void *, Producer &)> initializer) :
+          initializer(initializer) {}
+
+        virtual ~Internal() {}
 
         virtual Type get_type() const override {
           return Property::Type::internal;

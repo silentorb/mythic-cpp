@@ -4,9 +4,27 @@
 namespace aura {
   namespace graphing {
     namespace nodes {
-      Sine_Wave::Sine_Wave(const Engineer &engineer, Node *frequency_source) :
-        Sine_Wave() {
-        position.set_other_property(new Loop_Node(engineer, frequency_source));
+
+      struct Sine_Wave_Data {
+          float position;
+          float output;
+      };
+
+      Node Sine_Wave_With_Position_Source(const Node &position_source) {
+        return Node(
+          NODE_ID("Sine_Wave")
+          {
+            new Input<float>(position_source),
+            new Output<float>,
+          },
+          [](const Stroke &stroke, void *raw_data) {
+            auto &data = *(Sine_Wave_Data *) raw_data;
+            data.output = sin(data.position * 2 * Pi);
+          });
+      }
+
+      Node Sine_Wave(const Node &frequency) {
+        return Sine_Wave_With_Position_Source(Loop_Node(frequency));
       }
     }
   }

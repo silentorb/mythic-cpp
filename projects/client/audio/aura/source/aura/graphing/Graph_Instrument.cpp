@@ -3,16 +3,20 @@
 namespace aura {
   namespace graphing {
 
-    size_t get_input_count(const Node *node) {
+    size_t get_input_count(const Node &node) {
       size_t result = 0;
-      for (auto property: node->get_properties()) {
-        if (property->get_type() == Property::Type::input)
-          ++result;
+      for (auto &property: node.get_properties()) {
+        if (property->get_type() == Property::Type::input) {
+          auto pointer = static_cast <Input_Base *>(property.get());
+          auto other_property = pointer->get_other_property();
+          if (pointer->get_other_property()->get_type() != Property::Type::constant)
+            ++result;
+        }
       }
       return result;
     }
 
-    Graph_Instrument::Graph_Instrument(Producer &producer, Node *node) :
+    Graph_Instrument::Graph_Instrument(Producer &producer, const Node &node) :
       producer(producer) {
       int constant_count = 0;
       int internal_objects_count = 0;
@@ -22,22 +26,20 @@ namespace aura {
       finalize();
     }
 
-    void Graph_Instrument::include_node(Node *node, int &constant_count, int &internal_objects_count) {
+    void Graph_Instrument::include_node(const Node &node, int &constant_count, int &internal_objects_count) {
       if (contains_node(node))
         return;
 
-      node->finalize();
+      nodes.push_back(node);
 
-      nodes.push_back(unique_ptr<Node>(node));
-
-      for (auto property: node->get_properties()) {
+      for (auto &property: node.get_properties()) {
         if (property->get_type() == Property::Type::constant) {
           ++constant_count;
         }
         else if (property->get_type() == Property::Type::input) {
-          auto other_node = static_cast<Input_Base *>(property)->get_other_node();
-          if (other_node) {
-            include_node(other_node, constant_count, internal_objects_count);
+          auto other_node = static_cast<Input_Base *>(property.get())->get_other_node();
+          if (!other_node.expired()) {
+            include_node(Node(other_node.lock()), constant_count, internal_objects_count);
           }
         }
         else if (property->get_type() == Property::Type::internal) {
@@ -48,7 +50,7 @@ namespace aura {
 
     void Graph_Instrument::initialize_input(Input_Base *input_property, Node_Info &info, int &input_count) {
       if (input_property->get_other_property()->get_type() == Property::Type::constant) {
-        auto constant = static_cast<Constant_Output_Base *>(input_property->get_other_property());
+        auto constant = static_cast<const Constant_Output_Base *>(input_property->get_other_property());
         Constant_Info constant_info;
         constant_info.input = {
           &info,
@@ -56,40 +58,40 @@ namespace aura {
         };
         constant->assign_constant(&constant_info.value);
         constants.push_back(constant_info);
-        delete constant;
+//        delete constant;
       }
       else {
-        auto other_node = input_property->get_other_node();
-        if (other_node) {
+        auto &other_node = input_property->get_other_node();
+        if (!other_node.expired()) {
           auto &input = info.inputs[input_count++];
-          input.node_info = get_node_info(other_node);
+          input.node_info = get_node_info(other_node.lock().get());
           input.property = input_property;
         }
       }
     }
 
-    void Graph_Instrument::initialize_node_info(Node_Info &info, Node *node, int offset) {
-      info.size = node->get_data_size();
+    void Graph_Instrument::initialize_node_info(Node_Info &info, const Node &node, int offset) {
+      info.size = node.get_data_size();
       info.offset = offset;
 //      info.node = node; // Already done during an earlier pass.
       info.inputs.resize(get_input_count(node));
       int input_count = 0;
-      for (auto property: node->get_properties()) {
+      for (auto &property: node.get_properties()) {
         if (property->get_type() == Property::Type::input) {
-          initialize_input(static_cast <Input_Base *>(property), info, input_count);
+          initialize_input(static_cast <Input_Base *>(property.get()), info, input_count);
         }
         else {
           if (property->get_type() == Property::Type::internal) {
             Internal_Info internal_info;
             internal_info.node_info = &info;
-            internal_info.property = static_cast<Internal_Base *>(property);
+            internal_info.property = static_cast<Internal_Base *>(property.get());
             internal_objects.push_back(internal_info);
           }
         }
       }
     }
 
-    Node_Info *Graph_Instrument::get_node_info(Node *node) {
+    Node_Info *Graph_Instrument::get_node_info(Node_Instance *node) {
       for (int i = 0; i < node_info.size(); ++i) {
         if (node_info[i].node == node)
           return &node_info[i];
@@ -103,21 +105,21 @@ namespace aura {
       for (int i = 0; i < nodes.size(); ++i) {
         auto &node = nodes[i];
         auto &info = node_info[i];
-        info.node = node.get();
+        info.node = node.get_instance().get();
         info.index = i;
       }
 
       for (int i = 0; i < nodes.size(); ++i) {
         auto &node = nodes[i];
         auto &info = node_info[i];
-        initialize_node_info(info, node.get(), data_byte_size);
+        initialize_node_info(info, node, data_byte_size);
         data_byte_size += info.size;
       }
     }
 
-    bool Graph_Instrument::contains_node(const Node *node) {
+    bool Graph_Instrument::contains_node(const Node &node) {
       for (auto &possible: nodes) {
-        if (possible.get() == node)
+        if (&possible == &node)
           return true;
       }
       return false;
@@ -145,6 +147,11 @@ namespace aura {
           producer);
       }
 
+      for (auto &constant: instrument.get_constants()) {
+        auto node_data = data + constant.input.node_info->offset;
+        auto field_data = node_data + constant.input.property->get_offset();
+        *(float *) field_data = constant.value;
+      }
       // Initialize output_value
       auto root_data = get_data(node_info[0]);
       auto &first_output = node_info[0].node->get_first_output();
@@ -170,7 +177,7 @@ namespace aura {
           node_data, get_data(input_node),
           *input.property->get_other_property());
       }
-      info.node->update(*this, node_data);
+      info.node->get_update()(*this, node_data);
     }
 
     float Graph_Stroke::update(float beat_delta) {

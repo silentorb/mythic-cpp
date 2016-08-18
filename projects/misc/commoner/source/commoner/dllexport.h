@@ -14,22 +14,4 @@
 #define MYTHIC_EXPORT
 #endif
 
-class no_copy {
-public:
-    no_copy(no_copy const &) = delete;
-    no_copy &operator=(no_copy const &) = delete;
-
-    no_copy() { }
-
-    no_copy(no_copy &&) { }
-};
-
-class no_copy_minimal {
-public:
-    no_copy_minimal &operator=(no_copy const &) = delete;
-};
-
-inline void Assert(bool expression) {
-  if (!expression)
-    throw "";
-}
+#include "no_copy.h"
