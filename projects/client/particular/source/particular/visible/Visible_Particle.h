@@ -2,7 +2,7 @@
 
 #include "commoner/dllexport.h"
 #include "glm/vec4.hpp"
-#include "scenery/particles/Point_Emitter_Bridge.h"
+#include "particular/Point_Emitter_Bridge.h"
 #include <substance/Particle.h>
 
 using namespace glm;

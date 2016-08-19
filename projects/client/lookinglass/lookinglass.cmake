@@ -12,6 +12,8 @@ add(modeling)
 add(glass)
 add(typography)
 add(lookinglass)
+add(scenery)
+add(luminous)
 
 #Extensions
 add(drawing)

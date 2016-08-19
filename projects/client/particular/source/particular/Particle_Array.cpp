@@ -1,5 +1,5 @@
 #include "Particle_Array.h"
-#include "scenery/particles/visible/Visible_Particle.h"
+#include "particular/visible/Visible_Particle.h"
 #include "modeling/Vertex_Buffer.h"
 #include <lookinglass/House.h>
 #include <lookinglass/Lookinglass_Resources.h>

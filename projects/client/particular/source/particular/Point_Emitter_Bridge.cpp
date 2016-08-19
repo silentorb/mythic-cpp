@@ -1,6 +1,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Point_Emitter_Bridge.h"
-#include "visible/Visible_Particle.h"
+#include "particular/visible/Visible_Particle.h"
 
 namespace scenery {
 

@@ -3,8 +3,8 @@
 #include <substance/Emitter.h>
 #include "commoner/dllexport.h"
 #include "scenery/elements/Group.h"
-#include "scenery/particles/Particle_Element.h"
-#include "scenery/particles/Particle_Array.h"
+#include "particular/Particle_Element.h"
+#include "particular/Particle_Array.h"
 
 using namespace substance;
 
