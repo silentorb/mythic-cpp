@@ -4,12 +4,12 @@ namespace bloom {
   namespace flowers {
     void Single_Parent::add_child(Flower *child) {
       this->child = unique_ptr<Flower>(child);
-			child->set_parent(this);
+      child->set_parent(this);
     }
 
     void Single_Parent::insert(Flower *child, int index) {
       add_child(child);
-			child->set_parent(this);
+      child->set_parent(this);
     }
 
     void Single_Parent::remove_child(Flower *child) {
@@ -31,6 +31,13 @@ namespace bloom {
       return child
              ? child->check_event(event_type, point)
              : false;
+    }
+
+    bool Single_Parent::affects_parent_dimensions() const {
+      return child
+             ? child->affects_parent_dimensions()
+             : false;
+
     }
   }
 }
