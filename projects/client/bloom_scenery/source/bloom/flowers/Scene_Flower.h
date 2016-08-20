@@ -1,6 +1,6 @@
 #pragma once
 
-#include <bloom/flowers/Box.h>
+#include <bloom/flowers/Common_Flower.h>
 
 namespace scenery {
   class Scene;
@@ -8,12 +8,13 @@ namespace scenery {
 
 namespace bloom {
 namespace flowers {
-  class MYTHIC_EXPORT Scene_Flower : public flowers::Flower {
+
+  class MYTHIC_EXPORT Scene_Flower : public flowers::Common_Flower {
       shared_ptr<scenery::Scene> scene;
 
   public:
-      Scene_Flower(shared_ptr<scenery::Scene> scene, flowers::Flower *parent);
-      Scene_Flower(flowers::Flower *parent);
+      Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent);
+      Scene_Flower(Parent *parent);
 
       virtual void render() override;
 

@@ -1,5 +1,5 @@
 #include <bloom/Garden.h>
-#include <bloom/old/Scrollable.h>
+#include <bloom/old/Scrollable_Old.h>
 #include "gtest/gtest.h"
 #include "glm/glm.hpp"
 #include "mocks/Mock_Draw_Interface.h"
@@ -29,8 +29,8 @@ TEST(Box_Test, test_test) {
   EXPECT_EQ(60, third->get_cache().y.near);
 }
 
-Scrollable *create_scrollable_list(Garden &garden) {
-  auto list = new Scrollable(&garden.get_root());
+Scrollable_Old *create_scrollable_list(Garden &garden) {
+  auto list = new Scrollable_Old(&garden.get_root());
   list->set_arrangement(Arrangement::down);
   list->set_spacing(Measurement(0));
   list->set_height(30);

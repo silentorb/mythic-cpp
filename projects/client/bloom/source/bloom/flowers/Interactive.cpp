@@ -8,8 +8,9 @@ namespace bloom {
   namespace flowers {
 
     Interactive::Interactive(Parent *parent) :
-      Flower(parent),
+
       singer(new songbird::Singer()) {
+      Parent_Implementation:: initialize_child(this, parent);
     }
 
     Interactive::~Interactive() {}

@@ -1,28 +1,34 @@
-#include <iostream>
 #include "Scrollable.h"
-#include "bloom/garden/Garden_Input.h"
-#include "bloom/Garden.h"
+#include "Interactive.h"
+#include <songbird/Singer.h>
+#include <bloom/Garden.h>
 
 namespace bloom {
+  namespace flowers {
 
-  Scrollable::Scrollable(Flower_Old *parent) : Flower_Old(parent) {
-    listen(Events::drag_old, Flower_Delegate_Old([this](Flower_Old *flower) {
-      if (!allow_user_scrolling || content_height <= axis_cache_inner.y.length)
+    Scrollable::Scrollable() {
+      auto interactive = new Interactive(this);
+      interactive->get_singer().listen(Events::drag, Flower_Delegate([this](Flower *flower) {
+        on_drag();
+      }));
+    }
+
+    void Scrollable::on_drag() {
+      if (!allow_user_scrolling || content_length <= boundary_length)
         return;
 
-      auto &input = garden.get_input();
+      auto &input = Garden::get_instance().get_input();
       scroll_force.y += input.get_position().y - input.get_last_position().y;
 
-//      std::cout << "content_height: " << to_string(content_height) << std::endl;
+//      std::cout << "content_length: " << to_string(content_length) << std::endl;
 //      std::cout << "down: " << to_string(input.get_last_position().y) << ", " << to_string(input.get_position().y) <<
 //      std::endl;
 
-    }));
+    }
 
-  }
-
+/*
   void Scrollable::modify_inner() {
-    Flower_Old::modify_inner();
+    Flower::modify_inner();
 
     if (scroll_force.y != 0) {
       if ((scroll_force.y < 0) == (velocity.y < 0)) {
@@ -57,8 +63,18 @@ namespace bloom {
     axis_cache_inner.x.near += offset.x;
     axis_cache_inner.y.near += offset.y;
   }
+*/
 
-  float Scrollable::get_range() {
-    return content_height - axis_cache_inner.y.length;
+    float Scrollable::get_range() {
+      return content_length - boundary_length;
+    }
+
+    vec2 Scrollable::update_dimensions(const glm::vec2 &parent_dimensions) {
+      return Common_Flower::update_dimensions(parent_dimensions);
+    }
+
+    void Scrollable::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+      Common_Flower::update_position(parent_position, parent_dimensions);
+    }
   }
 }

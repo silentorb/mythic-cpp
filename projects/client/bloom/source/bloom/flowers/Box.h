@@ -1,13 +1,13 @@
 #pragma once
 
 #include <bloom/layout/Measurement.h>
-#include "Parent.h"
+#include "Parent_Implementation.h"
 
 namespace bloom {
 
   namespace flowers {
 
-    class BLOOM_EXPORT Box : public Parent {
+    class BLOOM_EXPORT Box : public Parent_Implementation {
 
         Axis_Measurements measurement_bounds = {
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
@@ -32,7 +32,7 @@ namespace bloom {
         float resolve_margins(const glm::vec2 &parent_dimensions);
 
     public:
-        Box(Flower *parent = nullptr) : Parent(parent) { }
+        Box(Parent *parent = nullptr) : Parent_Implementation(parent) { }
 
         virtual ~Box() { }
 

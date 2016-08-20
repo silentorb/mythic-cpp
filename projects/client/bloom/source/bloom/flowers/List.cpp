@@ -18,9 +18,7 @@ namespace bloom {
     glm::vec2 List::update_dimensions(const glm::vec2 &parent_dimensions) {
       if (arrangement != Arrangement::down && arrangement != Arrangement::right)
         throw runtime_error("Not implemented");
-if(debug_id == 200){
-  int K = 0;
-}
+
       vec2 content_length;
       bool first = true;
 
@@ -31,7 +29,6 @@ if(debug_id == 200){
       else {
         resolved_spacing.x = resolve_measurement<Horizontal_Axis>(spacing, parent_dimensions);
       }
-
 
       for (auto &child: children) {
         auto dimensions = parent_dimensions;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Parent.h"
+#include "Parent_Implementation.h"
 
 namespace bloom {
 
@@ -13,16 +13,16 @@ namespace bloom {
         left,
     };
 
-    class BLOOM_EXPORT List : public Parent {
+    class BLOOM_EXPORT List : public Parent_Implementation {
         Arrangement arrangement = Arrangement::down;
         Measurement spacing = {Measurements::pixel, 0};
         glm::vec2 resolved_spacing;
         bool space_outside = false;
 
     public:
-        List(Flower *parent) : Parent(parent) { }
-        List(Arrangement arrangement, const Measurement spacing, Flower *parent) :
-          Parent(parent), arrangement(arrangement), spacing(spacing) { }
+        List(Parent *parent) : Parent_Implementation(parent) { }
+        List(Arrangement arrangement, const Measurement spacing, Parent *parent) :
+          Parent_Implementation(parent), arrangement(arrangement), spacing(spacing) { }
 
         virtual ~List() override { }
 

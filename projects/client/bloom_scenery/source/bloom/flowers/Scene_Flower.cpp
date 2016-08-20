@@ -1,4 +1,5 @@
 #include <lookinglass/House.h>
+#include <bloom/flowers/Parent_Implementation.h>
 #include "Scene_Flower.h"
 #include "scenery/Scene.h"
 #include "perspective/Viewport.h"
@@ -7,12 +8,12 @@
 namespace bloom {
   namespace flowers {
 
-    Scene_Flower::Scene_Flower(shared_ptr<scenery::Scene> scene, flowers::Flower *parent) :
-      scene(scene),
-      flowers::Flower(parent) {
+    Scene_Flower::Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent) :
+      scene(scene){
+      flowers:: Parent_Implementation::initialize_child(this, parent);
     }
 
-    Scene_Flower::Scene_Flower(flowers:: Flower *parent) :
+    Scene_Flower::Scene_Flower(Parent *parent) :
       Scene_Flower(shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance())), parent) {
 
     }

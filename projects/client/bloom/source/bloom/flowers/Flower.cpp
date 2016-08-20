@@ -7,38 +7,24 @@
 namespace bloom {
   namespace flowers {
 
-    Flower::Flower(Flower *parent) {
+    Flower::Flower() {
 //#ifdef COMMON_DEBUG
 //      debug_id = ++current_debug_id;
 //#endif
-      if (parent)
-        parent->add_child(this);
+//      if (parent)
+//        parent->add_child(this);
     }
+//
+//    void Flower::add_child(Flower *child) {
+//      child->parent = this;
+//      children.push_back(unique_ptr<Flower>(child));
+//    }
+//
+//    void Flower::insert(Flower *child, int index) {
+//      child->parent = this;
+//      children.insert(children.begin() + index, unique_ptr<Flower>(child));
+//    }
 
-    void Flower::add_child(Flower *child) {
-      child->parent = this;
-      children.push_back(unique_ptr<Flower>(child));
-    }
 
-    void Flower::insert(Flower *child, int index) {
-      child->parent = this;
-      children.insert(children.begin() + index, unique_ptr<Flower>(child));
-    }
-
-    void Flower::clear() {
-      children.clear();
-    }
-
-    void Flower::update(float delta) {
-      for (auto &child : children) {
-        child->update(delta);
-      }
-    }
-
-    void Flower::render() {
-      for (auto &child : children) {
-        child->render();
-      }
-    }
   }
 }

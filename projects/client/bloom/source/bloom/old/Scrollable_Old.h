@@ -4,7 +4,7 @@
 
 namespace bloom {
 
-  class BLOOM_EXPORT Scrollable : public Flower_Old {
+  class BLOOM_EXPORT Scrollable_Old : public Flower_Old {
       vec2 offset;
       vec2 scroll_force;
       vec2 velocity;
@@ -14,14 +14,14 @@ namespace bloom {
       virtual void modify_inner() override;
 
   public:
-      Scrollable(Flower_Old *parent = nullptr);
+      Scrollable_Old(Flower_Old *parent = nullptr);
 
       vec2 &get_offset() {
         return offset;
       }
 
       void set_offset(const vec2 &offset) {
-        Scrollable::offset = offset;
+        Scrollable_Old::offset = offset;
       }
 
       void set_allow_user_scrolling(bool value) {

@@ -1,12 +1,12 @@
 #pragma once
 
 #include <songbird/Listener.h>
-#include "Flower.h"
+#include "Common_Flower.h"
 
 namespace bloom {
   namespace flowers {
   
-    class Listener_Flower : public Flower {
+    class Listener_Flower : public Common_Flower {
         songbird::Listener listener;
 
     public:

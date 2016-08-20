@@ -5,11 +5,13 @@
 #include "lookinglass/Lookinglass_Resources.h"
 #include "bloom/Garden.h"
 #include "framing/Frame_Info.h"
+#include "Parent_Implementation.h"
 
 namespace bloom {
   namespace flowers {
 
-    Text::Text(const string &content, Flower *parent) : Flower(parent) {
+    Text::Text(const string &content, Parent *parent) {
+      Parent_Implementation:: initialize_child(this, parent);
       auto &resources = lookinglass::House::get_instance().get_resources();
       text = unique_ptr<typography::Text>(
         new typography::Text(resources.get_font("default"), resources.get_text_effect(), content));

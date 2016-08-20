@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Flower.h"
+#include "Common_Flower.h"
 #include "Events.h"
-#include "Parent.h"
+#include "Parent_Implementation.h"
 
 namespace songbird {
   class Singer;
@@ -11,7 +11,7 @@ namespace songbird {
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Interactive : public Flower {
+    class BLOOM_EXPORT Interactive : public Common_Flower {
         unique_ptr<songbird::Singer> singer;
 
     public:

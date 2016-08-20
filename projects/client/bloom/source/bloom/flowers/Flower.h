@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "bloom/bloom_export.h"
 #include "Events.h"
 #include <memory>
@@ -14,60 +13,29 @@ using namespace std;
 
 namespace bloom {
   namespace flowers {
-    class BLOOM_EXPORT Flower : no_copy {
-    protected:
-        vector<unique_ptr<Flower>> children;
-        Flower *parent;
+
+    class Parent;
+
+    class BLOOM_EXPORT Flower {
 
     public:
-        Flower(Flower *parent = nullptr);
+        Flower();
         virtual ~Flower() = 0;
 
 //#ifdef COMMON_DEBUG
-        unsigned long debug_id = 0;
 //#endif
 
-        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) {
-          return parent_dimensions;
-        }
-
-        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {}
-
-        virtual void update(float delta);
-
-        virtual void render();
-
-        virtual const Axis_Values &get_absolute_bounds() const {
-          return parent->get_absolute_bounds();
-        }
-
-        virtual bool affects_parent_dimensions() const { return false; }
-
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
-          return false;
-        }
-
-        virtual bool get_relative_bounds(glm::vec2 &position, glm::vec2 &dimensions) {
-          return false;
-        };
-
-        void add_child(Flower *child);
-        void insert(Flower *child, int index);
-
-        void remove() {
-          for (int i = 0; i < parent->children.size(); ++i) {
-            if (parent->children[i].get() == this) {
-              parent->children.erase(parent->children.begin() + i);
-              break;
-            }
-          }
-        }
-
-        Flower *get_parent() const {
-          return parent;
-        }
-
-        void clear();
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) = 0;
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) = 0;
+        virtual void update(float delta)= 0;
+        virtual void render() = 0;
+        virtual const Axis_Values &get_absolute_bounds() const = 0;
+        virtual bool affects_parent_dimensions() const = 0;
+        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) = 0;
+        virtual bool get_relative_bounds(glm::vec2 &position, glm::vec2 &dimensions) = 0;
+        virtual void remove() = 0;
+        virtual Flower *get_parent() const = 0;
+        virtual void set_parent(Parent *parent) = 0;
     };
 
     inline Flower::~Flower() {}

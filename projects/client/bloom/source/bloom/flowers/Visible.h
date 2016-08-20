@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Parent.h"
+#include "Single_Parent.h"
 
 namespace bloom {
   namespace flowers {
-    class BLOOM_EXPORT Visible : public Parent {
+    class BLOOM_EXPORT Visible : public Single_Parent {
         bool visible = true;
 
     public:
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
 
-        Visible(Flower *parent) : Parent(parent) {}
+        Visible() : Single_Parent() {}
 
         virtual void update(float delta) override;
         virtual void render() override;
