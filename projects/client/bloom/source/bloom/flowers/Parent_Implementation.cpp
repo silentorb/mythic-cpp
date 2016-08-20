@@ -24,11 +24,17 @@ namespace bloom {
     }
 
     void Parent_Implementation::add_child(Flower *child) {
+      if (child == this)
+        throw runtime_error("Attempt to add parent to itself.");
+
       child->set_parent(this);
       children.push_back(unique_ptr<Flower>(child));
     }
 
     void Parent_Implementation::insert(Flower *child, int index) {
+      if (child == this)
+        throw runtime_error("Attempt to add parent to itself.");
+
       child->set_parent(this);
       children.insert(children.begin() + index, unique_ptr<Flower>(child));
     }

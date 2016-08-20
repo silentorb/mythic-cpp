@@ -15,7 +15,7 @@ namespace bloom {
 
     Scene_Flower::Scene_Flower(Parent *parent) :
       Scene_Flower(shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance())), parent) {
-
+			int k = 0;
     }
 
     void Scene_Flower::render() {

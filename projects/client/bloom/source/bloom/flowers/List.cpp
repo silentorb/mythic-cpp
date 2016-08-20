@@ -1,6 +1,6 @@
 #include <bloom/layout/Axis.h>
 #include "List.h"
-#include "Box_Group.h"
+#include "Box.h"
 
 using namespace glm;
 

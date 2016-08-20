@@ -92,5 +92,26 @@ namespace bloom {
           return true;
         }
     };
+
+    template<typename Axis>
+    float resolve_measurement(const Measurement &measurement, const glm::vec2 &parent_dimensions) {
+      switch (measurement.get_type()) {
+        case Measurements::pixel:
+          return measurement.get_value() * Measurement::pixel_scale;
+
+        case Measurements::percent:
+          return measurement.get_value() * Axis::get(parent_dimensions) / 100;
+
+        case Measurements::percent_perpendicular:
+          return measurement.get_value() * Axis::other::get(parent_dimensions) / 100;
+
+        case Measurements::stretch:
+          return 0;
+
+        default:
+          throw runtime_error("Not implemented.");
+      }
+    }
+
   }
 }
