@@ -56,7 +56,7 @@ namespace bloom {
 
         virtual void update(float delta) override { }
 
-        virtual const Axis_Values &get_absolute_bounds() override {
+        virtual const Axis_Values &get_absolute_bounds() const override {
           throw runtime_error("Not supported.");
         }
 

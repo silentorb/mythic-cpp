@@ -6,8 +6,7 @@ namespace aura {
   namespace graphing {
     namespace nodes {
 
-      Node Seconds_Tempo(const Producer &producer);
-
+      AURA_EXPORT Node Seconds_Tempo(const Producer &producer);
     }
   }
 }

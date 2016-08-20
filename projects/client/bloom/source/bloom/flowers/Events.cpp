@@ -13,7 +13,9 @@ namespace bloom {
   namespace Events {
     const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> drag = songbird::Song<Flower_Delegate>();
+    const songbird::Song<Flower_Delegate> down = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
     const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
+    const songbird::Song<Flower_Delegate> changed = songbird::Song<Flower_Delegate>();
   };
 }

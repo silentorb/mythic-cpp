@@ -8,7 +8,7 @@
 #include <songbird/Singer.h>
 #include "bloom/layout/Bounds.h"
 #include "bloom/layout/Measurement.h"
-#include "Events.h"
+#include "bloom/flowers/Events.h"
 
 using namespace std;
 using namespace glm;

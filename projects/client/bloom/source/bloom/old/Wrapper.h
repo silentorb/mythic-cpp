@@ -1,8 +1,8 @@
 #pragma once
 
 #include "bloom/bloom_export.h"
-#include "Flower.h"
-#include "Flower_Old.h"
+#include "bloom/flowers/Flower.h"
+#include "bloom/old/Flower_Old.h"
 
 namespace bloom {
   namespace flowers {

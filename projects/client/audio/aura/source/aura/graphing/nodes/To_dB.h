@@ -28,10 +28,6 @@ namespace aura {
       Node To_dB() {
         return To_dB(Node::create_empty());
       }
-
-      float to_db(float value) {
-        return std::pow(value, 2);
-      }
     }
   }
 }

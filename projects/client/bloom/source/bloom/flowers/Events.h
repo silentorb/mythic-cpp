@@ -33,7 +33,9 @@ namespace bloom {
   namespace Events {
     BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> activate;
     BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> drag;
+    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> down;
     BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> close;
     BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> cancel;
+    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> changed;
   };
 }

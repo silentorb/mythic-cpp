@@ -40,7 +40,7 @@ namespace bloom {
           return true;
         }
 
-        virtual const Axis_Values &get_absolute_bounds() {
+        virtual const Axis_Values &get_absolute_bounds() const override{
           return absolute_bounds;
         }
 

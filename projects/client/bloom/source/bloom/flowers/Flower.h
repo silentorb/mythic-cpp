@@ -37,7 +37,7 @@ namespace bloom {
 
         virtual void render();
 
-        virtual const Axis_Values &get_absolute_bounds() {
+        virtual const Axis_Values &get_absolute_bounds() const {
           return parent->get_absolute_bounds();
         }
 

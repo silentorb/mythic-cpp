@@ -11,7 +11,7 @@ namespace bloom {
 
   Input_Result Garden_Input::update_input(Input_State &input_state) {
     Input_Result result{
-      false, false
+      false, false, false
     };
     last_position = position;
 
@@ -24,7 +24,8 @@ namespace bloom {
 //          std::cout << "down: " << to_string(gesture.position.x) << ", " << to_string(gesture.position.y) << std::endl;
           dragging = false;
           drag_start = gesture.position;
-            is_down = true;
+          is_down = true;
+          result.start_down = true;
           break;
         }
         case Gesture_Type::move: {
@@ -36,7 +37,7 @@ namespace bloom {
         case Gesture_Type::up: {
 //          std::cout << "up:   " << to_string(gesture.position.x) << ", " << to_string(gesture.position.y) << endl;
           check_dragging(gesture.position);
-            is_down = false;
+          is_down = false;
           if (dragging) {
             dragging = false;
             result.dragging = true;

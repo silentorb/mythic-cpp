@@ -12,6 +12,7 @@ namespace bloom {
   struct Input_Result {
       bool mouse_click;
       bool dragging;
+      bool start_down;
   };
 
   class BLOOM_EXPORT Garden_Input {

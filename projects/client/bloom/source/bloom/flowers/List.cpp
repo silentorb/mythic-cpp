@@ -32,8 +32,16 @@ if(debug_id == 200){
         resolved_spacing.x = resolve_measurement<Horizontal_Axis>(spacing, parent_dimensions);
       }
 
+
       for (auto &child: children) {
-        auto child_bounds = child->update_dimensions(parent_dimensions);
+        auto dimensions = parent_dimensions;
+        if (arrangement == Arrangement::down) {
+          dimensions.y -= content_length.y;
+        }
+        else {
+          dimensions.x -= content_length.x;
+        }
+        auto child_bounds = child->update_dimensions(dimensions);
 
         if (arrangement == Arrangement::down) {
           if (content_length.x < child_bounds.x)
@@ -96,7 +104,7 @@ if(debug_id == 200){
       }
     }
 
-    const Axis_Values &List::get_absolute_bounds() {
+    const Axis_Values &List::get_absolute_bounds() const {
       throw runtime_error("Not supported.");
 
     }

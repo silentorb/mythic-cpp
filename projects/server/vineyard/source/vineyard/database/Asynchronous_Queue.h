@@ -70,7 +70,7 @@ namespace vineyard {
           // My research is finding conflicting behavior on joining a detached thread
           // and I suspect that resolution may be compiler-dependent.
 					while (state != State::closed) {
-						this_thread::sleep_for(std::chrono::milliseconds(10));
+						this_thread::sleep_for(std::chrono::milliseconds(100));
 					}
         }
 
