@@ -1,11 +1,13 @@
 #pragma once
 
-#include "Single_Parent.h"
+#include <bloom/layout/Measurement.h>
+#include "Parent_Implementation.h"
 
 namespace bloom {
+
   namespace flowers {
 
-    class BLOOM_EXPORT Box : public Single_Parent {
+    class BLOOM_EXPORT Box_Group : public Parent_Implementation {
 
         Axis_Measurements measurement_bounds = {
           {{Measurements::stretch, 0}, {Measurements::stretch, 0}, {Measurements::stretch, 0}},
@@ -30,9 +32,9 @@ namespace bloom {
         float resolve_margins(const glm::vec2 &parent_dimensions);
 
     public:
-        Box() {}
+        Box_Group(Parent *parent = nullptr) : Parent_Implementation(parent) { }
 
-        virtual ~Box() { }
+        virtual ~Box_Group() { }
 
         virtual bool affects_parent_dimensions() const override {
           return true;
@@ -91,6 +93,30 @@ namespace bloom {
           dimensions = absolute_bounds.dimensions;
           return true;
         }
+
     };
+
+    glm::vec2 process_children(vector<unique_ptr<Flower>> &children, const glm::vec2 &parent_dimensions);
+
+    template<typename Axis>
+    float resolve_measurement(const Measurement &measurement, const glm::vec2 &parent_dimensions) {
+      switch (measurement.get_type()) {
+        case Measurements::pixel:
+          return measurement.get_value() * Measurement::pixel_scale;
+
+        case Measurements::percent:
+          return measurement.get_value() * Axis::get(parent_dimensions) / 100;
+
+        case Measurements::percent_perpendicular:
+          return measurement.get_value() * Axis::other::get(parent_dimensions) / 100;
+
+        case Measurements::stretch:
+          return 0;
+
+        default:
+          throw runtime_error("Not implemented.");
+      }
+    }
+
   }
 }

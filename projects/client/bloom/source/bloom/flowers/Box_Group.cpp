@@ -1,6 +1,6 @@
-#include <bloom/layout/Axis.h>
-#include "Box.h"
+#include <bloom/layout/near_and_far.h>
 #include "Box_Group.h"
+#include "bloom/layout/Axis.h"
 
 using namespace glm;
 
@@ -8,7 +8,7 @@ namespace bloom {
   namespace flowers {
 
     template<typename Axis>
-    float Box::resolve_length(const Axis_Measurement &measurements, const glm::vec2 &parent_dimensions) {
+    float Box_Group::resolve_length(const Axis_Measurement &measurements, const glm::vec2 &parent_dimensions) {
       if (measurements.length.get_type() == Measurements::shrink)
         return 0;
 
@@ -27,7 +27,7 @@ namespace bloom {
     }
 
     template<typename Axis>
-    float Box::resolve_margins(const glm::vec2 &parent_dimensions) {
+    float Box_Group::resolve_margins(const glm::vec2 &parent_dimensions) {
       Axis_Measurement &measurements = Axis::get(measurement_bounds);
 
       auto result = 0;
@@ -41,7 +41,7 @@ namespace bloom {
     }
 
     template<typename Axis>
-    float Box::resolve_relative_position(const glm::vec2 &parent_dimensions) {
+    float Box_Group::resolve_relative_position(const glm::vec2 &parent_dimensions) {
       Axis_Measurement &measurements = Axis::get(measurement_bounds);
       auto local_length = Axis::get(absolute_bounds.dimensions);
 
@@ -60,7 +60,7 @@ namespace bloom {
       }
     }
 
-    glm::vec2 Box::update_dimensions(const glm::vec2 &parent_bounds) {
+    glm::vec2 Box_Group::update_dimensions(const glm::vec2 &parent_bounds) {
       auto &length = absolute_bounds.dimensions;
       length.x = resolve_length<Horizontal_Axis>(measurement_bounds.x, parent_bounds);
       length.y = resolve_length<Vertical_Axis>(measurement_bounds.y, parent_bounds);
@@ -70,16 +70,14 @@ namespace bloom {
         int k = 0;
 
       int iterations = 0;
-      if (child) {
+      if (children.size() > 0) {
         bool changed;
         do {
           changed = false;
           if (measurement_bounds.x.length.get_type() == Measurements::shrink) {
             int k = 0;
           }
-          vec2 content_length = child->affects_parent_dimensions()
-                                ? content_length = child->update_dimensions(length)
-                                : vec2();
+            auto content_length = process_children(children, length);
 
           if (iterations > 8) {
             int k = 0;
@@ -107,13 +105,14 @@ namespace bloom {
             full_length.y = length.y + resolve_margins<Vertical_Axis>(parent_bounds);
           }
 
-        } while (changed);
+        }
+        while (changed);
       }
 
       return full_length;
     }
 
-    void Box::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+    void Box_Group::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
 //      if (debug_id == 100) {
 //        int k = 0;
 //      }
@@ -122,9 +121,26 @@ namespace bloom {
 
       absolute_bounds.position = relative_position + parent_position;
 
-      if (child) {
+      for (auto &child: children) {
         child->update_position(absolute_bounds.position, absolute_bounds.dimensions);
       }
     }
+
+    glm::vec2 process_children(vector<unique_ptr<Flower>> &children, const glm::vec2 &parent_dimensions) {
+      vec2 content_length;
+      for (auto &child: children) {
+        auto child_bounds = child->update_dimensions(parent_dimensions);
+        if (child->affects_parent_dimensions()) {
+          if (content_length.x < child_bounds.x)
+            content_length.x = child_bounds.x;
+
+          if (content_length.y < child_bounds.y)
+            content_length.y = child_bounds.y;
+        }
+      }
+
+      return content_length;
+    }
+
   }
 }

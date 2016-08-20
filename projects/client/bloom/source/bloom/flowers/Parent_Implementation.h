@@ -19,7 +19,7 @@ namespace bloom {
 
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
 
-        Parent_Implementation(Parent *parent) {
+        Parent_Implementation(Parent *parent = nullptr) {
           Parent_Implementation::initialize_child(this, parent);
         }
 

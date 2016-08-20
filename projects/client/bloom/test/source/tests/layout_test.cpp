@@ -1,4 +1,4 @@
-#include <bloom/flowers/Box.h>
+#include <bloom/flowers/Box_Group.h>
 #include <bloom/flowers/List.h>
 #include "gtest/gtest.h"
 
@@ -6,7 +6,7 @@ using namespace bloom;
 using namespace glm;
 
 TEST(Layout_Test, simple_pixel_measurements) {
-  flowers::Box box(nullptr);
+  flowers::Box_Group box(nullptr);
 
   vec2 root_position(0, 10);
   vec2 root_bounds = {
@@ -43,7 +43,7 @@ TEST(Layout_Test, simple_pixel_measurements) {
 }
 
 TEST(Layout_Test, percentage_measurements) {
-  flowers::Box box(nullptr);
+  flowers::Box_Group box(nullptr);
 
   vec2 root_position(0, 10);
   vec2 root_bounds = {
@@ -67,7 +67,7 @@ TEST(Layout_Test, percentage_measurements) {
 }
 
 TEST(Layout_Test, percentage_perpendicular_measurements) {
-  flowers::Box box(nullptr);
+  flowers::Box_Group box(nullptr);
 
   vec2 root_position(0, 0);
   vec2 root_bounds = {
@@ -85,8 +85,8 @@ TEST(Layout_Test, percentage_perpendicular_measurements) {
 }
 
 TEST(Layout_Test, children) {
-  flowers::Box box(nullptr);
-  auto &child = *new flowers::Box(&box);
+  flowers::Box_Group box(nullptr);
+  auto &child = *new flowers::Box_Group(&box);
 
   vec2 root_position(10, 0);
   vec2 root_bounds = {
@@ -110,8 +110,8 @@ TEST(Layout_Test, children) {
 }
 
 TEST(Layout_Test, all_stretch) {
-  flowers::Box box(nullptr);
-  auto &child = *new flowers::Box(&box);
+  flowers::Box_Group box(nullptr);
+  auto &child = *new flowers::Box_Group(&box);
 
   vec2 root_position(0, 0);
   vec2 root_bounds = {
@@ -134,10 +134,10 @@ TEST(Layout_Test, all_stretch) {
 }
 
 TEST(Layout_Test, list) {
-  flowers::Box box(nullptr);
+  flowers::Box_Group box(nullptr);
   auto &list = *new flowers::List(flowers::Arrangement::down, 10, &box);
-  auto &first = *new flowers::Box(&list);
-  auto &second = *new flowers::Box(&list);
+  auto &first = *new flowers::Box_Group(&list);
+  auto &second = *new flowers::Box_Group(&list);
 
   vec2 root_position(0, 0);
   vec2 root_bounds = {
@@ -180,9 +180,9 @@ TEST(Layout_Test, list) {
 
 
 TEST(Layout_Test, padding) {
-  flowers::Box box(nullptr);
-  auto &padding = *new flowers::Box(&box);
-  auto &text = *new flowers::Box(&padding);
+  flowers::Box_Group box(nullptr);
+  auto &padding = *new flowers::Box_Group(&box);
+  auto &text = *new flowers::Box_Group(&padding);
 
   vec2 root_position(0, 0);
   vec2 root_bounds = {
