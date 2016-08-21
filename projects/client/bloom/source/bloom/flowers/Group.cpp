@@ -23,3 +23,12 @@ void bloom::flowers::Group::update_position(const glm::vec2 &parent_position, co
     child->update_position(parent_position, parent_dimensions);
   }
 }
+
+bool bloom::flowers::Group::affects_parent_dimensions() const {
+  for (auto &child: children) {
+    if (child->affects_parent_dimensions())
+      return true;
+  }
+
+  return false;
+}
