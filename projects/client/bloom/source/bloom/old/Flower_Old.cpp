@@ -20,8 +20,8 @@ namespace bloom {
   }
 
   Flower_Old::~Flower_Old() {
-    if (garden.get_modal() == this)
-      garden.pop_modal();
+//    if (garden.get_modal() == this)
+//      garden.pop_modal();
   }
 
   const Bounds Flower_Old::get_outer_bounds() {

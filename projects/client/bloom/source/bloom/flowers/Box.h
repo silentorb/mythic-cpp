@@ -32,13 +32,13 @@ namespace bloom {
     public:
         Box() {}
 
-        virtual ~Box() { }
+        virtual ~Box() {}
 
         virtual bool affects_parent_dimensions() const override {
           return true;
         }
 
-        virtual const Axis_Values &get_absolute_bounds() const override{
+        virtual const Axis_Values &get_absolute_bounds() const override {
           return absolute_bounds;
         }
 
@@ -81,6 +81,13 @@ namespace bloom {
           measurement_bounds.y.near = value;
           measurement_bounds.x.far = value;
           measurement_bounds.y.far = value;
+        }
+
+        void set_margins(const Measurement &horizontal, const Measurement &vertical) {
+          measurement_bounds.x.near = horizontal;
+          measurement_bounds.y.near = vertical;
+          measurement_bounds.x.far = horizontal;
+          measurement_bounds.y.far = vertical;
         }
 
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;

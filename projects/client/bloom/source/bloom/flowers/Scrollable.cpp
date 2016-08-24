@@ -3,6 +3,8 @@
 #include <songbird/Singer.h>
 #include <bloom/Garden.h>
 
+using namespace glm;
+
 namespace bloom {
   namespace flowers {
 
@@ -26,9 +28,8 @@ namespace bloom {
 
     }
 
-/*
+
   void Scrollable::modify_inner() {
-    Flower::modify_inner();
 
     if (scroll_force.y != 0) {
       if ((scroll_force.y < 0) == (velocity.y < 0)) {
@@ -59,22 +60,27 @@ namespace bloom {
       offset.y = 0;
       velocity.y = 0;
     }
-
-    axis_cache_inner.x.near += offset.x;
-    axis_cache_inner.y.near += offset.y;
   }
-*/
+
 
     float Scrollable::get_range() {
       return content_length - boundary_length;
     }
 
+    glm::ivec2 Scrollable::get_content_dimensions(const glm::vec2 &parent_dimensions) {
+      return ivec2(get_absolute_bounds().dimensions.x, content_length);
+    }
+
     vec2 Scrollable::update_dimensions(const glm::vec2 &parent_dimensions) {
-      return Common_Flower::update_dimensions(parent_dimensions);
+      return Single_Parent::update_dimensions(ivec2(get_absolute_bounds().dimensions.x, 0));
     }
 
     void Scrollable::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
-      Common_Flower::update_position(parent_position, parent_dimensions);
+      Single_Parent::update_position(parent_position, get_content_dimensions(parent_dimensions));
+    }
+
+    void Scrollable::update(float delta) {
+      modify_inner();
     }
   }
 }

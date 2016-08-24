@@ -14,8 +14,14 @@ namespace bloom {
   }
 
   Modal::Modal(Flower_Old *root) :
-    root(root) {
+    old_root(root) {
 
     get_buttons(root, buttons);
+  }
+
+  Modal::Modal(flowers:: Flower *root) :
+    root(root) {
+
+//    get_buttons(root, buttons);
   }
 }

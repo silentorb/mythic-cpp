@@ -39,6 +39,10 @@ namespace bloom {
              : false;
 
     }
+
+    void Single_Parent::clear() {
+      child.reset();
+    }
   }
 }
 

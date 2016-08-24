@@ -10,6 +10,7 @@ namespace bloom {
         virtual void add_child(Flower *child) = 0;
         virtual void insert(Flower *child, int index) = 0;
         virtual void remove_child(Flower *child) = 0;
+        virtual void clear() = 0;
     };
 
   }

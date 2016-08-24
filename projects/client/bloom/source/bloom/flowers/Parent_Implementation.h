@@ -27,7 +27,7 @@ namespace bloom {
         virtual void render() override;
         virtual void add_child(Flower *child) override;
         virtual void insert(Flower *child, int index) override;
-        void clear();
+        virtual void clear() override;
 
         static void initialize_child(Flower *child, Parent *parent);
         virtual void remove_child(Flower *child) override;

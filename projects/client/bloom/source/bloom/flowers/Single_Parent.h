@@ -18,6 +18,7 @@ namespace bloom {
         virtual void render() override;
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
         virtual bool affects_parent_dimensions() const override;
+        virtual void clear() override;
     };
   }
 }

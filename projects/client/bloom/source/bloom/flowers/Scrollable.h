@@ -16,8 +16,8 @@ namespace bloom {
 
         void on_drag();
 
-//    protected:
-//        virtual void modify_inner() override;
+        void modify_inner();
+        glm::ivec2 get_content_dimensions(const glm::vec2 &parent_dimensions);
 
     public:
         Scrollable();
@@ -37,6 +37,7 @@ namespace bloom {
         float get_range();
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
+        virtual void update(float delta) override;
     };
   }
 }

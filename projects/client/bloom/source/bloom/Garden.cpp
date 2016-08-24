@@ -5,7 +5,9 @@
 #include "lookinglass/Lookinglass_Resources.h"
 #include <iostream>
 #include <bloom/layout/Axis.h>
+#include <bloom/flowers/Group.h>
 #include "framing/Frame_Info.h"
+#include "flowers/Flower.h"
 
 using namespace haft;
 
@@ -21,7 +23,7 @@ namespace bloom {
     Measurement::pixel_scale = draw.get_frame().get_pixel_scale();
 //    auto simple = Measurement();
 //    default_style->set_padding(simple);
-    root = unique_ptr<Flower_Old>(new Flower_Old(*this));
+    root = unique_ptr<flowers::Group>(new flowers::Group());
 
     instance = this;
   }
@@ -30,31 +32,31 @@ namespace bloom {
 
   void Garden::update_input(haft::Input_State &input_state) {
     auto input_result = garden_input.update_input(input_state);
-    Flower_Old &start = modal_stack.size() > 0
-                        ? *modal_stack.top()->root
-                        : *root;
+    flowers::Flower &start = modal_stack.size() > 0
+                             ? *modal_stack.top()->root
+                             : *root;
     if (input_result.mouse_click) {
       auto &position = input_state.get_position();
 
-      if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
-        input_state.clear_gestures();
-      }
-      if (start.check_event_new(Events::activate, vec2(position.x, position.y))) {
+//      if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
+//        input_state.clear_gestures();
+//      }
+      if (start.check_event(Events::activate, vec2(position.x, position.y))) {
         input_state.clear_gestures();
       }
     }
 
     if (input_result.start_down) {
-      start.check_event_new(Events::down, garden_input.get_position());
+      start.check_event(Events::down, garden_input.get_position());
     }
     else if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();
 
-      if (start.check_event(Events::drag_old, vec2(position.x, position.y))) {
-//        input_state.set_handled(*select_action);
-      }
+//      if (start.check_event(Events::drag_old, vec2(position.x, position.y))) {
+////        input_state.set_handled(*select_action);
+//      }
 
-      start.check_event_new(Events::drag, vec2(position.x, position.y));
+      start.check_event(Events::drag, vec2(position.x, position.y));
     }
   }
 
@@ -67,7 +69,9 @@ namespace bloom {
       converter.get_axis_values<Vertical_Axis>()
     };
 
-    root->update_absolute_dimensions(base_axis_values);
+    auto pixel_dimensions = converter.convert_to_pixels({base_axis_values.x.length, base_axis_values.y.length});
+    root->update_dimensions(pixel_dimensions);
+		root->update_position(ivec2(), pixel_dimensions);
   }
 
   void Garden::render() {
@@ -83,6 +87,10 @@ namespace bloom {
     modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
   }
 
+  void Garden::add_modal(flowers::Flower &flower) {
+    modal_stack.push(unique_ptr<Modal>(new Modal(&flower)));
+  }
+
   Orientation Garden::get_orientation() const {
     auto &dimensions = get_frame().get_dimensions();
     return dimensions.x > dimensions.y
@@ -90,7 +98,7 @@ namespace bloom {
            : Orientation::portrait;
   }
 
-  Flower_Old *Garden::get_modal() const {
+  flowers::Flower *Garden::get_modal() const {
     if (modal_stack.size() == 0)
       return nullptr;
 
