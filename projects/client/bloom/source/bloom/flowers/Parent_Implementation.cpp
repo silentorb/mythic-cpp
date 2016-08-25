@@ -3,6 +3,10 @@
 namespace bloom {
   namespace flowers {
 
+    Parent_Implementation::~Parent_Implementation() {
+
+    }
+
     void Parent_Implementation::update(float delta) {
       for (auto &child : children) {
         child->update(delta);

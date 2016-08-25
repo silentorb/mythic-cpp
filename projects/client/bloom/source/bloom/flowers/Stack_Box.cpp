@@ -8,19 +8,19 @@ using namespace glm;
 namespace bloom {
   namespace flowers {
 
-    Stack_Box::Stack_Box() {
+//    Stack_Box::Stack_Box() {
+//
+//    }
+//
+//    Stack_Box::Stack_Box(Parent *first) {
+//      set_bottom(first);
+//    }
 
-    }
-
-    Stack_Box::Stack_Box(Parent *first) {
-      set_bottom(first);
-    }
-
-    void Stack_Box::set_bottom(Parent *first) {
+    void Stack_Box::set_stack_bottom(Parent *first) {
       Single_Parent::add_child(first);
     }
 
-    void Stack_Box::set_top(Parent *top) {
+    void Stack_Box::set_stack_top(Parent *top) {
       this->top = top;
     }
 

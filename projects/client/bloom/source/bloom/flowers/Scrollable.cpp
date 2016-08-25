@@ -72,7 +72,7 @@ namespace bloom {
     }
 
     vec2 Scrollable::update_dimensions(const glm::vec2 &parent_dimensions) {
-      return Single_Parent::update_dimensions(ivec2(get_absolute_bounds().dimensions.x, 0));
+      return Single_Parent::update_dimensions(ivec2(parent_dimensions.x, 0));
     }
 
     void Scrollable::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {

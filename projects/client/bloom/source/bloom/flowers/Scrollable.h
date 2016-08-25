@@ -21,6 +21,7 @@ namespace bloom {
 
     public:
         Scrollable();
+        virtual ~Scrollable() {}
 
         glm::vec2 &get_offset() {
           return offset;

@@ -15,7 +15,7 @@ namespace bloom {
         vector<unique_ptr<Flower>> children;
 
     public:
-        virtual ~Parent_Implementation() {}
+        virtual ~Parent_Implementation();
 
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
 

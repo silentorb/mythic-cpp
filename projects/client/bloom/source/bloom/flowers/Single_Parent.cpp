@@ -17,6 +17,19 @@ namespace bloom {
         this->child.reset();
     }
 
+    glm::vec2 Single_Parent::update_dimensions(const glm::vec2 &parent_dimensions) {
+      return child
+             ? child->update_dimensions(parent_dimensions)
+             : Common_Flower::update_dimensions(parent_dimensions);
+    }
+
+    void Single_Parent::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+
+      return child
+             ? child->update_position(parent_position, parent_dimensions)
+             : Common_Flower::update_position(parent_position, parent_dimensions);
+    }
+
     void Single_Parent::update(float delta) {
       if (child)
         child->update(delta);
@@ -43,6 +56,7 @@ namespace bloom {
     void Single_Parent::clear() {
       child.reset();
     }
+
   }
 }
 

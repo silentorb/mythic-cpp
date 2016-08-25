@@ -9,7 +9,7 @@ namespace bloom {
 
     class BLOOM_EXPORT Common_Flower : no_copy, public virtual Flower {
     protected:
-        Parent *parent;
+        Parent *parent = nullptr;
 
     public:
         unsigned long debug_id = 0;

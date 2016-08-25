@@ -12,8 +12,8 @@ namespace bloom {
     Box_Group::Box_Group(Parent *parent) {
       Parent_Implementation::initialize_child(this, parent);
       auto group = new Group();
-      set_bottom(group);
-      set_top(group);
+      set_stack_bottom(group);
+      set_stack_top(group);
     }
 
   }

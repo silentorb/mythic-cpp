@@ -10,12 +10,12 @@ namespace bloom {
         Parent *top;
 
     protected:
-        void set_bottom(Parent *first);
-        void set_top(Parent *top);
+        void set_stack_bottom(Parent *first);
+        void set_stack_top(Parent *top);
 
     public:
-        Stack_Box();
-        Stack_Box(Parent*first);
+//        Stack_Box();
+//        Stack_Box(Parent*first);
         virtual ~Stack_Box() {}
 
         virtual void clear() override;

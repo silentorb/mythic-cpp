@@ -11,6 +11,7 @@ namespace bloom {
         std::unique_ptr<Flower> child;
 
     public:
+        virtual ~Single_Parent() {}
         virtual void add_child(Flower *child) override;
         virtual void insert(Flower *child, int index) override;
         virtual void remove_child(Flower *child) override;
@@ -19,6 +20,8 @@ namespace bloom {
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
         virtual bool affects_parent_dimensions() const override;
         virtual void clear() override;
+        virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
+        virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
     };
   }
 }
