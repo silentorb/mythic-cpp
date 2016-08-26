@@ -23,7 +23,6 @@ namespace scenery {
   const float OPACITY_NOT_SET = -1;
 
   class MYTHIC_EXPORT Spatial_Effect : protected Effect {
-  private:
       Draw_Method draw_method;
       vec4 color = vec4(1);
       glow::Blend_Function blend_function;
@@ -47,6 +46,10 @@ namespace scenery {
 
       void set_opacity(float value);
       void set_color(vec4 value);
+      vec4 get_color() const {
+        return color;
+      }
+
       virtual void render(Mesh_Data *mesh_data, const mat4 &transform, const mat4 &normal_transform,
                           bool has_opacity,
                           const vec4 &color);

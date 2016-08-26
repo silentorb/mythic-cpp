@@ -22,6 +22,9 @@ namespace bloom {
       if (measurements.far.get_type() != Measurements::stretch)
         length -= resolve_measurement<Axis>(measurements.far, parent_dimensions);
 
+			if (length < 0)
+				return 0;
+
       return length;
     }
 
@@ -76,9 +79,9 @@ namespace bloom {
           if (measurement_bounds.x.length.get_type() == Measurements::shrink) {
             int k = 0;
           }
-          vec2 content_length = child->affects_parent_dimensions()
-                                ? content_length = child->update_dimensions(length)
-                                : vec2();
+					vec2 content_length = child->update_dimensions(length); // child->affects_parent_dimensions()
+//                                ? child->update_dimensions(length)
+//                                : vec2();
 
           if (iterations > 8) {
             int k = 0;

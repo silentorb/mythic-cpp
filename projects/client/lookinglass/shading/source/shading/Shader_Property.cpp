@@ -45,6 +45,9 @@ namespace shading {
     }
   }
 
+  Float_Property::Float_Property(const string &name, Program &program) :
+    property(Shader_Property(name, program)) { }
+
   Float_Property::Float_Property(const string &name, Program *program) :
     property(Shader_Property(name, *program)) { }
 

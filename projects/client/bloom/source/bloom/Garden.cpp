@@ -46,8 +46,11 @@ namespace bloom {
       }
     }
 
-    if (input_result.start_down) {
-      start.check_event(Events::down, garden_input.get_position());
+    if (input_result.down) {
+      start.check_event(Events::mouse_down, garden_input.get_position());
+    }
+    else if (input_result.up) {
+      start.check_event(Events::mouse_down, garden_input.get_position());
     }
     else if (input_result.dragging) {
       auto &position = garden_input.get_drag_start();
@@ -71,7 +74,7 @@ namespace bloom {
 
     auto pixel_dimensions = converter.convert_to_pixels({base_axis_values.x.length, base_axis_values.y.length});
     root->update_dimensions(pixel_dimensions);
-		root->update_position(ivec2(), pixel_dimensions);
+    root->update_position(ivec2(), pixel_dimensions);
   }
 
   void Garden::render() {

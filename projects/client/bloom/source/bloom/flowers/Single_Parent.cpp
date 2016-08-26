@@ -3,6 +3,9 @@
 namespace bloom {
   namespace flowers {
     void Single_Parent::add_child(Flower *child) {
+      if (this->child != nullptr)
+        throw runtime_error("child already set for Single_Parent.");
+
       this->child = unique_ptr<Flower>(child);
       child->set_parent(this);
     }

@@ -43,6 +43,7 @@ namespace shading {
   class MYTHIC_EXPORT Float_Property {
       Shader_Property property;
   public:
+      Float_Property(const string & name, Program & program);
       Float_Property(const string & name, Program * program);
       void set(float value);
   };

@@ -33,9 +33,11 @@ namespace bloom {
       for (auto &child: children) {
         auto dimensions = parent_dimensions;
         if (arrangement == Arrangement::down) {
-          dimensions.y -= content_length.y;
+					if (dimensions.y != 0)
+						dimensions.y -= content_length.y;
         }
         else {
+					if (dimensions.x != 0)
           dimensions.x -= content_length.x;
         }
         auto child_bounds = child->update_dimensions(dimensions);
