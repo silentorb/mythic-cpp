@@ -21,12 +21,13 @@ namespace texturing {
       int width, height;
       unique_ptr<Texture_Generator_Old> generator_old;
       Texture_Generator generator;
+      char multisamples = 0;
 
   public:
-      Texture(int width, int height, Texture_Generator_Old *generator);
-      Texture(int width, int height, Texture_Generator generator);
-      Texture(Texture_Generator_Old *generator);
-      Texture(const string filename);
+//      Texture(int width, int height, Texture_Generator_Old *generator);
+      Texture(int width, int height, Texture_Generator generator, char multisamples = 0);
+//      Texture(Texture_Generator_Old *generator);
+//      Texture(const string filename);
 
       virtual void release() override;
       virtual void load() override;
@@ -41,8 +42,8 @@ namespace texturing {
         return height;
       }
 
-//      int get_id()const {
-//        return id;
-//      }
+      unsigned int get_id() const {
+        return id;
+      }
   };
 }

@@ -14,7 +14,7 @@ namespace scenery {
     effect(effect),
     Spatial(parent) {
 
-    vertex_buffer = new Vertex_Buffer(effect->get_vertex_schema(), [&](int &vertex_count) {
+    vertex_buffer = new Vertex_Buffer(effect->get_program().get_vertex_schema(), [&](int &vertex_count) {
       vertex_count = particles.size();
       return (float *) vertices.data();
     });

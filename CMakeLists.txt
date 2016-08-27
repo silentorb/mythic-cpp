@@ -90,6 +90,8 @@ add_subdirectory(projects/core/mythic)
 
 add_subdirectory(projects/client/bloom)
 add_subdirectory(projects/client/bloom_scenery)
+add_subdirectory(projects/client/bloom_texturing)
+
 if (MINGW)
   add_subdirectory(projects/client/bloom/test)
 endif ()

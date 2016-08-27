@@ -4,7 +4,7 @@
 namespace scenery {
 
   void Particle_Effect::activate() {
-    Program::activate();
+    Effect::activate();
     model_property.set(glm::mat4(1));
     glow::set_blend(true);
     glow::set_depth_test(false);

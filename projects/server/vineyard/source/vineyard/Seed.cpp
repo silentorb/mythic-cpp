@@ -4,6 +4,7 @@
 #include "Seed.h"
 #include "Ground.h"
 #include "database/Update.h"
+#include <commoner/assert.h>
 
 using namespace landscape;
 

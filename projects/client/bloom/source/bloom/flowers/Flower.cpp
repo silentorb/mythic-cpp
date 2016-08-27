@@ -1,14 +1,10 @@
 #include "Flower.h"
 
-//#ifdef COMMON_DEBUG
-//unsigned long current_debug_id = 0;
-//#endif
-
 namespace bloom {
   namespace flowers {
 
     Flower::Flower() {
-//#ifdef COMMON_DEBUG
+//#ifdef COMMONER_DEBUG
 //      debug_id = ++current_debug_id;
 //#endif
 //      if (parent)

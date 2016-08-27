@@ -22,16 +22,16 @@ namespace scenery {
 
   const float OPACITY_NOT_SET = -1;
 
-  class MYTHIC_EXPORT Spatial_Effect : protected Effect {
+  class MYTHIC_EXPORT Spatial_Effect : public Effect {
       Draw_Method draw_method;
       vec4 color = vec4(1);
       glow::Blend_Function blend_function;
 //      void activate(mat4 &transform, bool has_opacity, float opacity);
 
   protected:
-      Vector4_Property color_property;
-      Matrix_Property model_property;
-      Matrix_Property normal_property;
+      Vector4_Property &color_property;
+      Matrix_Property &model_property;
+      Matrix_Property &normal_property;
 
       void update_shader_properties(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
                                     const vec4 &color);

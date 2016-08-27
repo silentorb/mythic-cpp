@@ -1,6 +1,7 @@
 #pragma once
 
 #include "commoner/dllexport.h"
+#include <commoner/assert.h>
 #include <random>
 #include <vector>
 #include <stdexcept>

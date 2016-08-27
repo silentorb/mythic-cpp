@@ -1,27 +1,33 @@
 #pragma once
 
 #include "commoner/dllexport.h"
-
 #include "Shader.h"
 #include "resourceful/Resource.h"
 #include "Vertex_Schema.h"
 #include <vector>
+#include <memory>
 
 namespace shading {
 
-  class MYTHIC_EXPORT Program : public resourceful::Resource {
+  class Shader_Property;
+
+  class MYTHIC_EXPORT Program : public resourceful::Resource, no_copy {
       unsigned int id;
-      const string name;
+      const std::string name;
       Shader &first, &second;
-      vector<string> attribute_names;
+      vector<std::string> attribute_names;
       const Vertex_Schema *vertex_schema;
+      std::vector<unique_ptr<Shader_Property>> properties;
+
+      Shader_Property &add_property(Shader_Property *property);
 
   public:
-      Program(const string name, Shader &first, Shader &second, initializer_list<string> names);
-      Program(const string &name, Shader &first, Shader &second, const Vertex_Schema &vertex_schema);
-      Program(const string &name, const string &first, const string &second, const Vertex_Schema &vertex_schema);
+      Program(const std::string name, Shader &first, Shader &second, initializer_list<std::string> names);
+      Program(const std::string &name, Shader &first, Shader &second, const Vertex_Schema &vertex_schema);
+      Program(const std::string &name, const std::string &first, const std::string &second,
+              const Vertex_Schema &vertex_schema);
       ~Program();
-      virtual void activate();
+      void activate();
 
       int get_id() const {
         return id;
@@ -30,7 +36,7 @@ namespace shading {
       virtual void release() override;
       virtual void load() override;
 
-      const string &get_name() const {
+      const std::string &get_name() const {
         return name;
       }
 
@@ -43,6 +49,19 @@ namespace shading {
       Shader &get_first() const {
         return first;
       }
+
+      Shader_Property *get_property(const std::string &name);
+
+      template<typename T>
+      T &create_property(const std::string &name) {
+        auto property = get_property(name);
+        if (property)
+          static_cast<T &>(*property);
+
+        return static_cast<T &>(add_property(new T(name, *this)));
+      }
+
+      bool is_active() const;
   };
 
   class MYTHIC_EXPORT Program_Add_Listener {

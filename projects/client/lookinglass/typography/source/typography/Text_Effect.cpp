@@ -13,11 +13,6 @@ namespace typography {
     glow::set_blend(true);
     glow::set_blend_function(glow::Blend_Factor::source_alpha, glow::Blend_Factor::one_minus_source_alpha);
 
-//    glm::mat4 projection = glm::ortho(0.0f, (float) viewport_dimensions.x, 0.0f, (float) viewport_dimensions.y);
-//
-//    auto projection_index = glGetUniformLocation(program->get_id(), "projection");
-//    glUniformMatrix4fv(projection_index, 1, GL_FALSE, (GLfloat *) &projection);
-
     auto transform_index = glGetUniformLocation(program->get_id(), "transform");
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat * ) & transform);
 

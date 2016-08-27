@@ -22,7 +22,7 @@ namespace bloom {
         Flower();
         virtual ~Flower() = 0;
 
-//#ifdef COMMON_DEBUG
+//#ifdef COMMONER_DEBUG
 //#endif
 
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) = 0;

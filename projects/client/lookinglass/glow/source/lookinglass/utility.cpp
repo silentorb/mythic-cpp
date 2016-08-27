@@ -23,15 +23,17 @@ namespace glow {
     return os.str();
   }
 
+#if COMMONER_DEBUG
   void check_error(const char *message) {
-    static unsigned long step = 0;
-    ++step;
-		return;
-    GLenum error = glGetError();
+      static unsigned long step = 0;
+      ++step;
+      return;
+      GLenum error = glGetError();
 
-    if (error != GL_NO_ERROR) {
-      auto text = "OpenGL Error: " + get_error_info(error) + string(message);
-      throw std::runtime_error(text);
+      if (error != GL_NO_ERROR) {
+        auto text = "OpenGL Error: " + get_error_info(error) + string(message);
+        throw std::runtime_error(text);
+      }
     }
-  }
+#endif
 }

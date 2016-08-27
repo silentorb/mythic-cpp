@@ -7,11 +7,11 @@ namespace scenery {
   Spatial_Effect::Spatial_Effect(Program &program) :
     Effect(program),
     draw_method(Draw_Method::triangles),
-    model_property("model", &program),
-    normal_property("normal_transform", &program),
-    color_property("color_filter", program) {
+    model_property(program.create_property<shading::Matrix_Property>("model")),
+    normal_property(program.create_property<shading::Matrix_Property>("normal_transform")),
+    color_property(program.create_property<shading::Vector4_Property>("color_filter")) {
 
-    Effect::activate();
+//    Effect::activate();
     color_property.set(color);
   }
 
@@ -39,7 +39,7 @@ namespace scenery {
   void Spatial_Effect::update_shader_properties(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
                                                 const vec4 &color) {
 
-    auto opacity_support = has_opacity || this->color.w != 1;
+    auto opacity_support = has_opacity || color.w != 1;
     set_color(color);
     shading::set_opacity_support(opacity_support);
     if (opacity_support) {

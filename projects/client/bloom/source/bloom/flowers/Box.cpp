@@ -1,5 +1,6 @@
 #include <bloom/layout/Axis.h>
 #include "Box.h"
+#include <commoner/assert.h>
 
 using namespace glm;
 
