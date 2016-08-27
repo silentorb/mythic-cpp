@@ -9,7 +9,7 @@
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
-#include "lookinglass/glow.h"
+#include "glow.h"
 #include <stdlib.h>
 #include "scenery/Scene_Shaders.h"
 #include "typography/Text.h"

@@ -14,22 +14,22 @@
     <file url="file://$PROJECT_DIR$/games/spacegame/projects/space_client/resources/shaders/space/particle.vertex.glsl" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/games/spacegame/projects/space_client/resources/shaders/space/solid.fragment.glsl" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/games/spacegame/projects/space_client/resources/shaders/space/stars.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/drawing/resources/shaders/drawing/flat.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/drawing/resources/shaders/drawing/flat.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/glaze/test/shaders/colored.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/glaze/test/shaders/colored.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/colored.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/colored.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/direct.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/includes/scene.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/shaded.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/shaded.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/solid.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/solid.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/textured.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/resources/shaders/scenery/textured.vertex.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/test/shaders/colored.fragment.glsl" charset="US-ASCII" />
-    <file url="file://$PROJECT_DIR$/projects/client/lookinglass/scenery/test/shaders/colored.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/drawing/resources/shaders/drawing/flat.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/drawing/resources/shaders/drawing/flat.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/glaze/test/shaders/colored.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/glaze/test/shaders/colored.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/colored.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/colored.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/direct.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/includes/scene.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/shaded.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/shaded.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/solid.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/solid.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/textured.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/resources/shaders/scenery/textured.vertex.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/test/shaders/colored.fragment.glsl" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/projects/client/visual/scenery/test/shaders/colored.vertex.glsl" charset="US-ASCII" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

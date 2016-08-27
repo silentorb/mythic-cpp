@@ -29,3 +29,10 @@ This involves 3 commands:
     Start-Process cmake -ArgumentList "cmake -G ""MinGW Makefiles"" -DANDROID_NDK=E:\Programs\crystax-ndk-10.3.1 -DCMAKE_BUILD_TYPE=Debug -DANDROID_ABI=armeabi-v7a ../../mythic" -NoNewWindow
     ./build
     ./debug
+
+### Generating Graph Viz
+
+    cmake -DGRAPHVIZ=1 -G "Visual Studio 14 2015" ../../mythic
+    e:/Programs/graphviz/bin/dot -O -T pdf mythic.dot
+
+     

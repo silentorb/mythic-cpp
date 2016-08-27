@@ -6,7 +6,7 @@
 #include "haft/Input_Manager.h"
 #include "Actions.h"
 #include "lookinglass/Lookinglass_Resources.h"
-#include "lookinglass/glow.h"
+#include "glow.h"
 #include "typography/Text.h"
 #include "clienting/Client.h"
 #include "lookinglass/House.h"

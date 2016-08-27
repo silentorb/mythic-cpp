@@ -6,50 +6,50 @@
       <sourceFolder url="file://$MODULE_DIR$/platform" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/projects" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cregex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/instances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_traits_defaults.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/icu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/usinstances.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/posix_api.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/c_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/fileiter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wide_posix_api.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/w32_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_debug.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cpp_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex_raw_buffer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/cregex.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/posix_api.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/regex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/winstances.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/static_mutex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/c_regex_traits.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/external/boost_regex/source/wc_regex_traits.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/googletest/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/rapidjson/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/zlib/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sqlite/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/googletest/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/pugixml/include" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/googletest/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/rapidjson/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/zlib/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sqlite/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/googletest/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/pugixml/include" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />

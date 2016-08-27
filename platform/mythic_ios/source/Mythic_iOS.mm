@@ -3,8 +3,8 @@
 #include "lookinglass/House.h"
 #include "clienting/Client.h"
 #include "mythic/Mythic_Engine.h"
-#include "lookinglass/glow.h"
-#include "lookinglass/glow_gl.h"
+#include "glow.h"
+#include "glow_gl.h"
 #include "iOS_Input.h"
 #include "audio/Speaker.h"
 #include <shading/shader_processing.h>

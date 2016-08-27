@@ -1,6 +1,6 @@
 #include "Android_Frame.h"
-#include "lookinglass/glow.h"
-#include "lookinglass/glow_gl.h"
+#include "glow.h"
+#include "glow_gl.h"
 #include <dlfcn.h>
 #include <stdexcept>
 #include "logger.h"

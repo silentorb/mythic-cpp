@@ -1,7 +1,7 @@
 
 create_library(desktop_input)
 
-require(haft logger)
+require(haft logger math)
 link_external(sdl2 SDL2)
 
 #include_directories(
