@@ -1,13 +1,13 @@
 #include "Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "glow.h"
-#include "lookinglass/through/Mist.h"
+#include "through/Mist.h"
 #include "glow_gl.h"
 
 namespace perspective {
   Viewport *active_viewport = NULL;
 
-  Viewport::Viewport(lookinglass::through::Mist <Viewport_Data> &mist, int width, int height, int left, int top) :
+  Viewport::Viewport(through::Mist <Viewport_Data> &mist, int width, int height, int left, int top) :
     mist(mist),
     dimensions(ivec2(width, height)),
     position(left, top),
@@ -70,12 +70,18 @@ namespace perspective {
 
   }
 
+  bool Viewport::is_active() const {
+    return active_viewport == this;
+  }
+
   void Viewport::set_bounds(const ivec2 &new_position, const ivec2 &new_dimensions) {
     dimensions = new_dimensions;
     position = new_position;
 
     set_projection();
-    glViewport(position.x, position.y, dimensions.x, dimensions.y);
+    if (is_active()) {
+      glViewport(position.x, position.y, dimensions.x, dimensions.y);
+    }
 //		glow::check_error("changing viewport bounds");
 
     for (auto &listener: listeners) {
@@ -97,5 +103,15 @@ namespace perspective {
     return dimensions.x < dimensions.y
            ? vec2(1, (float) dimensions.x / dimensions.y)
            : vec2((float) dimensions.y / dimensions.x, 1);
+  }
+
+  void Viewport::set_position(const glm::ivec2 &value) {
+    if (position == value)
+      return;
+
+    position = value;
+    if (is_active()) {
+      glViewport(position.x, position.y, dimensions.x, dimensions.y);
+    }
   }
 }

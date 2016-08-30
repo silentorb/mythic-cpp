@@ -17,3 +17,5 @@ else ()
 endif ()
 
 add_definitions(-DGLOW_LIB)
+
+require(math)

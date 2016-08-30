@@ -14,7 +14,7 @@ namespace bloom {
     }
 
     Scene_Flower::Scene_Flower(Parent *parent) :
-      Scene_Flower(shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance())), parent) {
+      Scene_Flower(shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance().get_viewport_mist())), parent) {
 			int k = 0;
     }
 
@@ -28,7 +28,7 @@ namespace bloom {
       auto & converter = Garden:: get_instance().get_converter();
       auto pos = bounds.position;
       pos.y = converter.get_pixel_dimensions().y - pos.y - bounds.dimensions.y;
-      scene->get_viewport().set_bounds(pos, bounds.dimensions);
+      scene->get_viewport().set_bounds(ivec2(pos) + Viewport::get_active_viewport()->get_position(), bounds.dimensions);
 
       auto &garden = Garden::get_instance();
       garden.get_draw().enable_3d(true);

@@ -1,11 +1,10 @@
 #include "Scene_Manager.h"
-#include "lookinglass/through/create_mist.h"
-#include <lookinglass/House.h>
+#include "through/create_mist.h"
 #include "glow_gl.h"
 
 namespace scenery {
 
-  Scene_Manager::Scene_Manager(lookinglass::House &house) :
+  Scene_Manager::Scene_Manager() :
     lighting(new Lighting_Data()) {
 
     lighting->count = 0;

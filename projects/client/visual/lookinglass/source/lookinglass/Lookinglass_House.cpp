@@ -2,12 +2,14 @@
 #include "glow.h"
 #include "glow/Capabilities.h"
 #include "perspective/Viewport.h"
-#include "lookinglass/through/create_mist.h"
+#include "through/create_mist.h"
 #include "Lookinglass_Resources.h"
 #include "shading/Shader_Manager.h"
 #include "lookinglass/Renderable_List.h"
 #include "typography/Text_Effect.h"
 #include "framing/Platform_Frame.h"
+
+using namespace through;
 
 namespace lookinglass {
 

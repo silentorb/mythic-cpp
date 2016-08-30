@@ -1,11 +1,12 @@
 #include "Lookinglass_House.h"
 #include <lookinglass/Renderable.h>
 #include <vectoring/utility.h>
+#include <resourceful/Resource_Handler.h>
 #include "House.h"
 #include "glow.h"
 #include "glow/Capabilities.h"
 #include "perspective/Viewport.h"
-#include "lookinglass/through/create_mist.h"
+#include "through/create_mist.h"
 #include "Lookinglass_Resources.h"
 #include "shading/Shader_Manager.h"
 #include "lookinglass/Renderable_List.h"
@@ -21,11 +22,12 @@ namespace lookinglass {
 
   House::House(framing::Platform_Frame *frame, const Graphic_Options &options) :
     frame(frame),
-    options(options) {
+    options(options),
+    resource_handler(new Resource_Handler()) {
     instance = this;
   }
 
-  House::~House() { }
+  House::~House() {}
 
   void House::update() {
     if (!active)
@@ -104,5 +106,9 @@ namespace lookinglass {
 
   House &House::get_instance() {
     return *instance;
+  }
+
+  void House::watch_resource(const std::shared_ptr<resourceful::Resource> &resource) {
+    resource_handler->add_resource(resource);
   }
 }

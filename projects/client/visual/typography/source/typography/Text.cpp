@@ -7,7 +7,6 @@
 #include "glow_gl.h"
 
 using namespace textual;
-using namespace lookinglass;
 
 namespace typography {
 
@@ -222,6 +221,7 @@ namespace typography {
 
     glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
     glBindVertexArray(0);
+//    glBindTexture(GL_TEXTURE_2D, 0);
     glow::check_error("rendering text");
   }
 

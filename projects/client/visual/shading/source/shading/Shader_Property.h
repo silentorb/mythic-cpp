@@ -4,6 +4,7 @@
 #include "Program.h"
 #include <string>
 #include <glm/mat4x4.hpp>
+#include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
 
 using namespace glm;
@@ -86,6 +87,18 @@ namespace shading {
   class Vector4_Property : public Shader_Property_Template<vec4, Vector4_Property_Functions> {
   public:
       Vector4_Property(const std::string &name, Program &program) : Shader_Property_Template(name, program) {}
+//      void set(float x, float y, float z, float w) {
+//        Shader_Property_Template::set(vec4(x, y, z, w));
+//      }
+  };
+
+  struct MYTHIC_EXPORT Vector2_Property_Functions {
+      static void update(unsigned int index, const vec2 &value);
+  };
+
+  class Vector2_Property : public Shader_Property_Template<glm::vec2, Vector2_Property_Functions> {
+  public:
+      Vector2_Property(const std::string &name, Program &program) : Shader_Property_Template(name, program) {}
 //      void set(float x, float y, float z, float w) {
 //        Shader_Property_Template::set(vec4(x, y, z, w));
 //      }

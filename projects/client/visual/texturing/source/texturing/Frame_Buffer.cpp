@@ -2,6 +2,7 @@
 #include <glow_gl.h>
 #include <glow.h>
 #include <resourceful/Resource_Handler.h>
+#include <glm/vec4.hpp>
 
 using namespace resourceful;
 using namespace std;
@@ -50,9 +51,57 @@ namespace texturing {
 //    dimensions = value;
 ////    texture->set_dimensions(value);
 //  }
+  void Frame_Buffer::check_complete() {
+    auto complete = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (complete != GL_FRAMEBUFFER_COMPLETE) {
+      string name;
+      switch (complete) {
+        case GL_FRAMEBUFFER_UNDEFINED:
+          name = "GL_FRAMEBUFFER_UNDEFINED";
+          break;
+
+        case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+          name = "GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT";
+          break;
+
+        case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+          name = "GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT";
+          break;
+
+        case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER :
+          name = "GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER";
+          break;
+
+        case GL_FRAMEBUFFER_UNSUPPORTED:
+          name = "GL_FRAMEBUFFER_UNSUPPORTED";
+          break;
+
+        case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
+          name = "GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER";
+          break;
+
+        case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:
+          name = "GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS";
+          break;
+
+        default:
+          name = to_string(complete);
+      }
+      throw runtime_error("Framebuffer is incomplete: " + name);
+    }
+  }
 
   void Frame_Buffer::attach_texture(texturing::Texture *texture) {
-    glFramebufferTexture(GL_DRAW_BUFFER, GL_COLOR_ATTACHMENT0, texture->get_id(), 0);
+    glFramebufferTexture2D(
+      GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, (GLenum) texture->get_mode(), texture->get_id(), 0);
+//    glFramebufferTexture(GL_DRAW_BUFFER, GL_COLOR_ATTACHMENT0, texture->get_id(), 0);
+//    auto color = glm::vec4(0);
+//    glClearBufferiv(GL_FRAMEBUFFER, id, (GLint*)&color);
+    auto clear_color = glow::get_clear_color();
+    glow::set_clear_color(vec4(0));
+    glClear(GL_COLOR_BUFFER_BIT);
+    glow::set_clear_color(clear_color);
+    check_complete();
   }
 
 }

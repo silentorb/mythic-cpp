@@ -1,22 +1,23 @@
 #include "Scene.h"
 #include "perspective/Viewport.h"
-#include "lookinglass/House.h"
+
+using namespace perspective;
 
 namespace scenery {
 
-  Scene::Scene(lookinglass::House &house) :
+  Scene::Scene(through::Mist<Viewport_Data> &viewport_mist) :
     camera(new Camera()),
-    house(house),
     root(new Group(nullptr)) {
-    viewport = unique_ptr<Viewport>(new Viewport(house.get_viewport_mist(),0,0));
+    viewport = unique_ptr<Viewport>(new Viewport(viewport_mist, 0, 0));
     viewport->set_camera(camera.get());
   }
 
-  Scene::~Scene() { }
+  Scene::~Scene() {}
 
   void Scene::render() {
+    auto previous_viewport = Viewport::get_active_viewport();
     viewport->activate();
     root->render();
-    house.get_base_viewport().activate();
+    previous_viewport->activate();
   }
 }

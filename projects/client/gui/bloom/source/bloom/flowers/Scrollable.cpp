@@ -72,7 +72,7 @@ namespace bloom {
     void Scrollable::stop_velocity() {
       velocity.y = 0;
       if (mode == Mode::gliding)
-        mode = Mode::stationary;
+        mode = Mode::rebounding;
     }
 
     void Scrollable::update_glide(float delta) {

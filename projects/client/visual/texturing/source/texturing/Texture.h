@@ -20,7 +20,7 @@ namespace texturing {
   class MYTHIC_EXPORT Texture : public resourceful::Resource {
       unsigned int id;
       glm::ivec2 dimensions;
-      unique_ptr<Texture_Generator_Old> generator_old;
+//      unique_ptr<Texture_Generator_Old> generator_old;
       Texture_Generator generator;
       char multisamples = 0;
 
@@ -52,5 +52,11 @@ namespace texturing {
       unsigned int get_id() const {
         return id;
       }
+
+      char get_multisamples() const {
+        return multisamples;
+      }
+
+      unsigned int get_mode() const;
   };
 }

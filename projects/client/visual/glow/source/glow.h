@@ -1,6 +1,7 @@
 #pragma once
 
 #include "utility.h"
+#include <glm/vec4.hpp>
 
 #ifdef _MSC_VER
 #ifdef GLOW_LIB
@@ -45,6 +46,10 @@ namespace glow {
   GLOW_EXPORT void set_depth_write(bool value);
   GLOW_EXPORT void set_line_thickness(float value);
   GLOW_EXPORT void set_blend_function(Blend_Factor source, Blend_Factor destination);
+
+  GLOW_EXPORT void set_clear_color(const glm::vec4 &value);
+  GLOW_EXPORT const glm::vec4 &get_clear_color();
+
   GLOW_EXPORT inline void set_blend_function(Blend_Function blend_function) {
     set_blend_function(blend_function.source, blend_function.destination);
   }

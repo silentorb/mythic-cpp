@@ -8,11 +8,9 @@
 #include <vector>
 #include <functional>
 
-namespace lookinglass {
-  namespace through {
-    template<typename T>
-    class Mist;
-  }
+namespace through {
+  template<typename T>
+  class Mist;
 }
 
 using namespace glm;
@@ -24,7 +22,7 @@ namespace perspective {
 
   class MYTHIC_EXPORT Viewport {
   private:
-      lookinglass::through::Mist<Viewport_Data> &mist;
+      through::Mist<Viewport_Data> &mist;
       Camera *camera;
       vector<Vector2_Delegate> listeners;
 
@@ -43,7 +41,7 @@ namespace perspective {
 
       static Viewport *get_active_viewport();
 
-      Viewport(lookinglass::through::Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
+      Viewport(through::Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
       void set_projection();
       void activate();
       void update_device();
@@ -55,6 +53,8 @@ namespace perspective {
       void set_camera(Camera *camera) {
         this->camera = camera;
       }
+
+      bool is_active() const;
 
       int get_width() const {
         return dimensions.x;
@@ -75,7 +75,7 @@ namespace perspective {
       }
 
       void set_dimensions(const ivec2 &value);
-      void set_bounds(const ivec2 & position, const ivec2 &dimensions);
+      void set_bounds(const ivec2 &position, const ivec2 &dimensions);
 
       void add_listener(Vector2_Delegate listener) {
         listeners.push_back(listener);
@@ -86,5 +86,7 @@ namespace perspective {
       const ivec2 &get_position() const {
         return position;
       }
+
+      void set_position(const glm::ivec2& value);
   };
 }

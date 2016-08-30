@@ -19,10 +19,11 @@ namespace shading {
   }
 
   void Vector4_Property_Functions::update(unsigned int index, const vec4 &value) {
-    if (value == (vec4(0))) {
-      int k = 0;
-    }
-    glUniform4f(index, value.x, value.y, value.z, value.w);
+    glUniform4fv(index, 1, (float *) &value);
+  }
+
+  void Vector2_Property_Functions::update(unsigned int index, const vec2 &value) {
+    glUniform2fv(index, 1, (float *) &value);
   }
 
   void Float_Property_Functions::update(unsigned int index, float value) {

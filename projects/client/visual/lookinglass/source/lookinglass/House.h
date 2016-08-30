@@ -31,12 +31,19 @@ namespace framing {
   class Frame_Info;
 }
 
+namespace resourceful {
+  class Resource;
+
+  class Resource_Handler;
+}
+
+namespace through {
+  template<typename T>
+  class Mist;
+}
+
 namespace lookinglass {
 
-  namespace through {
-    template<typename T>
-    class Mist;
-  }
   using namespace through;
 
   class Glass;
@@ -55,10 +62,11 @@ namespace lookinglass {
       bool active;
       vector<Renderable> renderables;
       unique_ptr<Lookinglass_Resources> resource_manager;
+      unique_ptr<resourceful::Resource_Handler> resource_handler;
       static House *instance;
 
       void initialize();
-      House(framing::Platform_Frame *frame, const Graphic_Options & options);
+      House(framing::Platform_Frame *frame, const Graphic_Options &options);
       Graphic_Options options;
       unique_ptr<glow::Capabilities> capabilities;
 
@@ -103,5 +111,14 @@ namespace lookinglass {
 
       static House &get_instance();
 
+      resourceful::Resource_Handler &get_resource_handler() const {
+        return *resource_handler;
+      }
+
+      void watch_resource(const std::shared_ptr<resourceful::Resource> &resource);
+
+      const Graphic_Options &get_options() const {
+        return options;
+      }
   };
 }

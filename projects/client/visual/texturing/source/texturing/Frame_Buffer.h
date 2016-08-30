@@ -15,6 +15,7 @@ namespace texturing {
 //      glm::ivec2 dimensions;
 //      std::shared_ptr<texturing::Texture> texture;
 //      char multisamples = 0;
+      void check_complete();
 
   public:
       Frame_Buffer();

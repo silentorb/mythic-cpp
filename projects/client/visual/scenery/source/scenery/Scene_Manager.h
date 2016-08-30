@@ -4,10 +4,10 @@
 #include <memory>
 #include <vector>
 #include <scenery/elements/Light.h>
-#include "lookinglass/through/Mist.h"
+#include "through/Mist.h"
 
 using namespace std;
-using namespace lookinglass::through;
+using namespace through;
 
 namespace lookinglass {
   class House;
@@ -27,8 +27,9 @@ namespace scenery {
       vector<unique_ptr<Light>> lights;
 
       void update_lights();
+
   public:
-      Scene_Manager(lookinglass::House &house);
+      Scene_Manager();
 
       void update();
       Light_Data & add_light();

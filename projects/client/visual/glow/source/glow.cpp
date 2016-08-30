@@ -25,6 +25,7 @@ namespace glow {
     bool depth_write = false;
     bool scissor_box = false;
     float line_width = 1;
+    glm::vec4 clear_color;
     Blend_Factor source = Blend_Factor::one;
     Blend_Factor destination = Blend_Factor::zero;
   }
@@ -92,6 +93,18 @@ namespace glow {
 
     cache::line_width = value;
     glLineWidth(value);
+  }
+
+  void set_clear_color(const glm::vec4 &value) {
+    if (cache::clear_color == value)
+      return;
+
+    cache::clear_color = value;
+    glClearColor(value.r, value.g, value.b, value.a);
+  }
+
+  const glm::vec4 &get_clear_color() {
+    return cache::clear_color;
   }
 
   void set_blend_function(Blend_Factor source, Blend_Factor destination) {

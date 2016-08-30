@@ -7,33 +7,34 @@
 namespace perspective {
   class Camera;
 
+  struct Viewport_Data;
+
   class Viewport;
 }
-namespace lookinglass {
-  class House;
-}
 
-using namespace perspective;
+namespace through {
+  template<typename T>
+  class Mist;
+};
 
 namespace scenery {
 
   class MYTHIC_EXPORT Scene : no_copy {
-      unique_ptr<Camera> camera;
-      unique_ptr<Viewport> viewport;
+      unique_ptr<perspective::Camera> camera;
+      unique_ptr<perspective::Viewport> viewport;
       unique_ptr<scenery::Group> root;
-      lookinglass::House &house;
 
   public:
-      Scene(lookinglass::House &house);
+      Scene(through::Mist<perspective::Viewport_Data> &viewport_mist);
       ~Scene();
 
       void render();
 
-      Camera &get_camera() const {
+      perspective::Camera &get_camera() const {
         return *camera;
       }
 
-      Viewport &get_viewport() const {
+      perspective::Viewport &get_viewport() const {
         return *viewport;
       }
 

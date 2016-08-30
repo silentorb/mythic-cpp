@@ -7,6 +7,7 @@
 using namespace glm;
 
 namespace perspective {
+
   struct Viewport_Data {
       mat4 view;
       mat4 projection;;

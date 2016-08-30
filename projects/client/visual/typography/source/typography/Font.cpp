@@ -142,7 +142,7 @@ namespace typography {
   }
 
   void Font::activate() {
-    glBindTexture(GL_TEXTURE_2D, texture);
     glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
   }
 }
