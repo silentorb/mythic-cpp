@@ -19,7 +19,7 @@ namespace lookinglass {
     if (!frame) {
       throw std::runtime_error("Frame (Window) was null.");
     }
-#define GL2_0
+//#define GL2_0
 #ifdef GL2_0
     auto version = glow::Version(2, 0);
 #else

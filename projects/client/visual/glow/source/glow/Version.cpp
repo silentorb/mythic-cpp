@@ -78,6 +78,11 @@ namespace glow {
     major(major), minor(minor) {
     ES = false;
   }
+
+  bool Version::at_least(int major, int minor) {
+    return this->major > major
+           || (this->major == major && this->minor >= minor);
+  }
 }
 
 /*

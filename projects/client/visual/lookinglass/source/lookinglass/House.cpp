@@ -111,4 +111,12 @@ namespace lookinglass {
   void House::watch_resource(const std::shared_ptr<resourceful::Resource> &resource) {
     resource_handler->add_resource(resource);
   }
+
+  const Version & House::get_version() const {
+    return capabilities->get_version();
+  }
+
+  glow::Capabilities &House::get_capabilities() const {
+    return *capabilities;
+  }
 }

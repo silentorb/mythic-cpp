@@ -15,6 +15,11 @@ namespace bloom {
     class MYTHIC_EXPORT Buffered_Flower : public flowers::Single_Parent {
         std::shared_ptr<texturing::Frame_Buffer> frame_buffer;
         std::shared_ptr<texturing::Texture> texture;
+        int multisamples;
+
+        std::shared_ptr<texturing::Frame_Buffer> multisample_frame_buffer;
+        std::shared_ptr<texturing::Texture> multisample_texture;
+
         Buffered_Flower_Renderer renderer;
 
         void prepare_texture();

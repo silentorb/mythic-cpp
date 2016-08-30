@@ -22,8 +22,11 @@ namespace perspective {
 using namespace perspective;
 
 using namespace std;
+
 namespace glow {
   class Capabilities;
+
+  class Version;
 }
 namespace framing {
   class Platform_Frame;
@@ -120,5 +123,8 @@ namespace lookinglass {
       const Graphic_Options &get_options() const {
         return options;
       }
+
+      const glow::Version & get_version() const;
+      glow::Capabilities &get_capabilities() const;
   };
 }

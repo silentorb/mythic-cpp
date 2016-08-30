@@ -13,7 +13,7 @@ namespace texturing {
 
   Texture::Texture(const glm::ivec2 &dimensions, Texture_Generator generator, char multisamples)
     : id(0), dimensions(dimensions),
-      generator(generator), multisamples(0) {
+      generator(generator), multisamples(multisamples) {
     load();
   }
 

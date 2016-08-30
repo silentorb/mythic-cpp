@@ -40,7 +40,8 @@ namespace desktop {
   mythic::Shader_Processor Desktop::create_shader_processor() {
     return [](shading::Shader_Type type, const string &source) {
       auto included = shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
-      return string("precision highp float;\n\n") + shading::olden(included, type);
+      return string("#version 150\nprecision highp float;\n\n") + shading::olden(included, type);
+//      return string("#version 150\nprecision highp float;\n\n") + included;
 
 //      return "#version 430\n" + shading::process_includes(source, type, resourceful::File_Loader(Desktop_File_Loader));
     };

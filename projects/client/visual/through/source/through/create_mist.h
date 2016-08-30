@@ -14,8 +14,7 @@ namespace through {
   template<typename T>
   MYTHIC_EXPORT Mist<T> *create_mist(Struct_Info *info) {
 
-    auto &version = Capabilities::get_version();
-    Mist<T> *result = version.major < 3
+    Mist<T> *result = !Capabilities::get_instance().uniform_buffer()
                       ? (Mist<T> *) new Ancient_Mist<T>()
                       : (Mist<T> *) new Buffer_Mist<T>();
 //      auto result = new Buffer_Mist<T>();

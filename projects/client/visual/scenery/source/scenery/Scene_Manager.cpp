@@ -2,6 +2,8 @@
 #include "through/create_mist.h"
 #include "glow_gl.h"
 
+using namespace std;
+
 namespace scenery {
 
   Scene_Manager::Scene_Manager() :

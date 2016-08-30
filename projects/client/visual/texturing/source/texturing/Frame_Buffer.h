@@ -36,6 +36,10 @@ namespace texturing {
 //        return texture;
 //      }
 
+      unsigned int get_id() const {
+        return id;
+      }
+
       virtual ~Frame_Buffer();
   };
 }

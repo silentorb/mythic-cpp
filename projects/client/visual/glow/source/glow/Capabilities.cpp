@@ -1,14 +1,16 @@
 #include "Capabilities.h"
 #include "glow.h"
-#include <memory>
+#include "glow_gl.h"
+#include <string>
 
 namespace glow {
 
-  Capabilities *capabilities;
+  Capabilities *instance;
 
   Capabilities::Capabilities(Version version)
     : version(version) {
-    capabilities = this;
+    extensions = glGetString(GL_EXTENSIONS);
+    instance = this;
 
 #ifdef glMultiDrawArrays
     _multidraw = glMultiDrawArrays != nullptr;
@@ -17,22 +19,40 @@ namespace glow {
 #endif
 
     _multidraw = false; // For testing mobile code on desktop
-    _uniform_layout = version.major > 3;
+    _uniform_layout = version.at_least(3, 0);
+    _multisamplers = supports_extension("ARB_texture_multisample");
+    _uniform_buffer = supports_extension("GL_ARB_uniform_buffer_object");
   }
 
   Capabilities::~Capabilities() {
-    capabilities = nullptr;
+    instance = nullptr;
   }
 
-  Version &Capabilities::get_version() {
-    return capabilities->version;
+  bool Capabilities::supports_extension(const char *name) {
+    return std::string(reinterpret_cast<const char *>(extensions)).find(name) != std::string::npos;
   }
 
-  bool Capabilities::multidraw() {
-    return capabilities->_multidraw;
+  const Version &Capabilities::get_version() const {
+    return version;
   }
 
-  bool Capabilities::uniform_layout() {
-    return capabilities->_uniform_layout;
+  bool Capabilities::multidraw() const {
+    return _multidraw;
+  }
+
+  bool Capabilities::uniform_layout() const {
+    return _uniform_layout;
+  }
+
+  bool Capabilities::multisamplers() const {
+    return _multisamplers;
+  }
+
+  Capabilities &Capabilities::get_instance() {
+    return *instance;
+  }
+
+  bool Capabilities::uniform_buffer() const {
+    return false;
   }
 }

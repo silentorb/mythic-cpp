@@ -57,7 +57,7 @@ namespace modeling {
     shared_ptr<unsigned short> indices;
     this->_has_opacity = data.has_opacity;
 
-    if (!glow::Capabilities::multidraw() && !support_lines) {
+    if (!glow::Capabilities::get_instance().multidraw() && !support_lines) {
       indices = shared_ptr<unsigned short>(
         convert_to_indices(index_count, data, vertex_buffer.get_vertex_schema().get_vertex_size()));
       glGenBuffers(1, &ebo);
@@ -91,7 +91,7 @@ namespace modeling {
                 ? GL_TRIANGLE_FAN
                 : GL_LINE_STRIP;
 
-    if (glow::Capabilities::multidraw()) {
+    if (glow::Capabilities::get_instance().multidraw()) {
       // The preprocessor is needed or this will fail to compile on some platforms.
 #ifdef glMultiDrawArrays
       glMultiDrawArrays(mode, get_offsets(), get_counts(), get_polygon_count());

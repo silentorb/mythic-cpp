@@ -6,7 +6,6 @@
 #include <scenery/elements/Light.h>
 #include "through/Mist.h"
 
-using namespace std;
 using namespace through;
 
 namespace lookinglass {
@@ -22,9 +21,9 @@ namespace scenery {
   };
 
   class MYTHIC_EXPORT Scene_Manager {
-      unique_ptr<Mist<Lighting_Data>> lighting_mist;
-      unique_ptr<Lighting_Data> lighting;
-      vector<unique_ptr<Light>> lights;
+      std::unique_ptr<Mist<Lighting_Data>> lighting_mist;
+      std::unique_ptr<Lighting_Data> lighting;
+      std::vector<std::unique_ptr<Light>> lights;
 
       void update_lights();
 

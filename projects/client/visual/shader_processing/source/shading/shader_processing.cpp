@@ -1,6 +1,7 @@
 #include "shader_processing.h"
 #include "textual/regex_additions.h"
 #include <boost/regex.hpp>
+#include <glow/Capabilities.h>
 
 using namespace textual;
 
@@ -26,6 +27,9 @@ namespace shading {
       code = string_replace(code, "out vec4 output_color;", "");
       code = string_replace(code, "output_color", "gl_FragColor");
       code = boost::regex_replace(code, boost::regex(R"(texture\s*\()"), "texture2D(");
+      if (!glow:: Capabilities:: get_instance().multisamplers()) {
+        code = string_replace(code, "sampler2DMS", "sampler2D");
+      }
     }
 
     return code;

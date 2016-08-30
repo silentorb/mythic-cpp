@@ -12,5 +12,6 @@ namespace glow {
 
       Version();
       Version(int major, int minor);
+      bool at_least(int major, int minor);
   };
 }
