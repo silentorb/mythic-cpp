@@ -109,6 +109,7 @@ namespace bloom {
             }
             full_length.y = length.y + resolve_margins<Vertical_Axis>(parent_bounds);
           }
+          changed = false;
 
         } while (changed);
       }

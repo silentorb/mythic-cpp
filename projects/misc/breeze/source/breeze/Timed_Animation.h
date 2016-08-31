@@ -72,4 +72,36 @@ namespace breeze {
       }
   };
 
+  template<typename Accessor, typename Updater, typename T, typename Target>
+  class MYTHIC_EXPORT Timed_Animation2 : public Base_Timed_Animation {
+  protected:
+      T start_value;
+      const T final_value;
+      Target &target;
+
+  public:
+      Timed_Animation2(Target &target, const T final_value, float duration, Curve_Delegate curve)
+        : Base_Timed_Animation(duration, curve), final_value(final_value), target(target) {
+        start_value = Accessor::get(target);
+      }
+
+      virtual ~Timed_Animation2() override {}
+
+      virtual bool update(float delta) override {
+
+        counter += delta / duration;
+        if (counter >= 1) {
+          Accessor::set(target, final_value);
+          return true;
+        }
+
+        Accessor::set(target, Updater::get_value(start_value, final_value, counter));
+        return false;
+      }
+
+      virtual void *get_target() const override {
+        return &target;
+      }
+  };
+
 }

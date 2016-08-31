@@ -42,6 +42,7 @@ namespace perspective {
       static Viewport *get_active_viewport();
 
       Viewport(through::Mist<Viewport_Data> &mist, int width, int height, int left = 0, int top = 0);
+      Viewport(Viewport &viewport, const ivec2 &dimensions, const ivec2 &position);
       void set_projection();
       void activate();
       void update_device();
@@ -87,6 +88,6 @@ namespace perspective {
         return position;
       }
 
-      void set_position(const glm::ivec2& value);
+      void set_position(const glm::ivec2 &value);
   };
 }

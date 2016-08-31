@@ -7,7 +7,7 @@
 namespace perspective {
   Viewport *active_viewport = NULL;
 
-  Viewport::Viewport(through::Mist <Viewport_Data> &mist, int width, int height, int left, int top) :
+  Viewport::Viewport(through::Mist<Viewport_Data> &mist, int width, int height, int left, int top) :
     mist(mist),
     dimensions(ivec2(width, height)),
     position(left, top),
@@ -15,9 +15,17 @@ namespace perspective {
     set_projection();
   }
 
+  Viewport::Viewport(Viewport &viewport, const ivec2 &dimensions, const ivec2 &position) :
+    mist(viewport.mist),
+    dimensions(dimensions),
+    position(position),
+    camera(nullptr) {
+    set_projection();
+  }
+
   void Viewport::set_projection() {
-		if (dimensions.x == 0 || dimensions.y == 0)
-			return;
+    if (dimensions.x == 0 || dimensions.y == 0)
+      return;
 
     projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
     flat_projection = glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);

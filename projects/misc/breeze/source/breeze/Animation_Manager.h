@@ -28,6 +28,14 @@ namespace breeze {
         return animation->get_promise();
       }
 
+      template<typename Accessor, typename Target, typename T>
+      promising::Promise<void> &animate2(Target &target, const T final_value, float duration, Curve_Delegate curve) {
+        auto animation = new Timed_Animation2<Accessor, Timed_Animation_Updater<T>, T, Target>(
+          target, final_value, duration, curve);
+        add_animation(animation, &target);
+        return animation->get_promise();
+      }
+
 //      promising::Promise<void> &animate(Animation_Update animation_update) {
 //        auto animation = new Indefinite_Animation(animation_update);
 //        animations.push_back(unique_ptr<Animation>(animation));

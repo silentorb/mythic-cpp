@@ -103,10 +103,10 @@ namespace bloom {
       }
     }
 
-    const Axis_Values &List::get_absolute_bounds() const {
-      throw runtime_error("Not supported.");
-
-    }
+//    const Axis_Values &List::get_absolute_bounds() const {
+//      throw runtime_error("Not supported.");
+//
+//    }
 
   }
 }

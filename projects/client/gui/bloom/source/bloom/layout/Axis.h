@@ -27,6 +27,10 @@ namespace bloom {
         return value.x;
       }
 
+//      static void set(vec2 &target, float value) {
+//        target.x = value;
+//      }
+
       static const float get_perpendicular(const vec2 &value) {
         return value.y;
       }
@@ -55,7 +59,7 @@ namespace bloom {
 //        return values.x;
 //      }
 
-      static Axis_Measurement &get(Axis_Measurements & measurements) {
+      static Axis_Measurement &get(Axis_Measurements &measurements) {
         return measurements.x;
       }
 
@@ -100,6 +104,10 @@ namespace bloom {
         return 1;
       }
 
+//      static void set(vec2 &target, float value) {
+//        target.y = value;
+//      }
+
 //      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
 //        return parent_dimensions.y;
 //      }
@@ -108,7 +116,7 @@ namespace bloom {
 //        return values.y;
 //      }
 
-      static Axis_Measurement &get(Axis_Measurements & measurements) {
+      static Axis_Measurement &get(Axis_Measurements &measurements) {
         return measurements.y;
       }
 

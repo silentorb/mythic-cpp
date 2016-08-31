@@ -90,6 +90,10 @@ namespace bloom {
           measurement_bounds.y.far = vertical;
         }
 
+        Axis_Measurements &get_measurements() {
+          return measurement_bounds;
+        }
+
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_position) override;
 

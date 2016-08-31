@@ -9,13 +9,15 @@ namespace bloom {
   namespace flowers {
 
     Scene_Flower::Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent) :
-      scene(scene){
-      flowers:: Parent_Implementation::initialize_child(this, parent);
+      scene(scene) {
+      flowers::Parent_Implementation::initialize_child(this, parent);
     }
 
     Scene_Flower::Scene_Flower(Parent *parent) :
-      Scene_Flower(shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance().get_viewport_mist())), parent) {
-			int k = 0;
+      Scene_Flower(
+        shared_ptr<scenery::Scene>(new scenery::Scene(lookinglass::House::get_instance().get_viewport_mist())),
+        parent) {
+      int k = 0;
     }
 
     void Scene_Flower::render() {
@@ -25,7 +27,7 @@ namespace bloom {
 //        vec2(pos.x, converter.get_unit_dimensions().y - bounds.get_corner().y));
 //      auto dimensions = converter.convert_to_pixels(bounds.get_dimensions());
 
-      auto & converter = Garden:: get_instance().get_converter();
+      auto &converter = Garden::get_instance().get_converter();
       auto pos = bounds.position;
       pos.y = converter.get_pixel_dimensions().y - pos.y - bounds.dimensions.y;
       scene->get_viewport().set_bounds(ivec2(pos) + Viewport::get_active_viewport()->get_position(), bounds.dimensions);

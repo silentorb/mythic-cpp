@@ -65,6 +65,10 @@ namespace bloom {
         return value;
       }
 
+      void set_value(float value) {
+        this->value = value;
+      }
+
       static float pixel_scale;
   };
 
@@ -231,4 +235,17 @@ namespace bloom {
       Axis_Measurement x;
       Axis_Measurement y;
   };
+
+
+  struct Measurement_Accessor {
+
+      static float get(const Measurement &measurement) {
+        return measurement.get_value();
+      }
+
+      static void set(Measurement &measurement, float value) {
+        measurement.set_value(value);
+      }
+  };
+
 }

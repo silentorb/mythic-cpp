@@ -1,4 +1,5 @@
 #include "Buffered_Flower.h"
+#include <bloom/Garden.h>
 #include <texturing/Frame_Buffer.h>
 #include <glow_gl.h>
 #include <glow.h>
@@ -62,8 +63,10 @@ namespace bloom {
       render_frame->attach_texture(render_texture.get());
       auto &house = lookinglass::House::get_instance();
       auto &base_viewport = house.get_base_viewport();
+      auto &converter = Garden::get_instance().get_converter();
+      auto pos_y = converter.get_pixel_dimensions().y - bounds.position.y - bounds.dimensions.y;
       perspective::Viewport viewport(house.get_viewport_mist(), base_viewport.get_width(), base_viewport.get_height(),
-                                     -bounds.position.x, bounds.position.y);
+                                     -bounds.position.x, pos_y);
       viewport.activate();
       flowers::Single_Parent::render();
       base_viewport.activate();
