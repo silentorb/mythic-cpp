@@ -1,6 +1,8 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+#include <commoner/no_copy.h>
+#include "songbird_export.h"
+
 //#include <functional>
 
 //using namespace std;
@@ -9,22 +11,25 @@ namespace songbird {
 
   class Listener;
 
-  struct MYTHIC_EXPORT Channel_Interface : no_copy {
+  struct SONGBIRD_EXPORT Channel_Interface : no_copy {
       const void *id;
-      Listener* listener = nullptr;
+      Listener *listener = nullptr;
 
       virtual ~Channel_Interface();
-      Channel_Interface(Channel_Interface&&) {}
+
+      Channel_Interface(Channel_Interface &&) {}
+
       Channel_Interface() {}
   };
 
   template<typename T>
-  struct MYTHIC_EXPORT Channel : public Channel_Interface {
+  struct SONGBIRD_EXPORT Channel : public Channel_Interface {
       T dance;
 
-      Channel(Channel<T> &&listener) : Channel_Interface(listener) { }
-      Channel() { }
+      Channel(Channel<T> &&listener) : Channel_Interface(listener) {}
 
-      virtual ~Channel() override { }
+      Channel() {}
+
+      virtual ~Channel() override {}
   };
 }

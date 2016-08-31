@@ -57,25 +57,25 @@ namespace bloom {
     return result;
   }
 
-  bool Flower_Old::check_event(const songbird::Song<Flower_Delegate_Old> &event_type, const vec2 &point) {
-    if (!visible)
-      return false;
-
-    for (auto &child: children) {
-      if (child->check_event(event_type, point)) {
-        return true;
-      }
-    }
-
-    if (point_is_inside(point)) {
-      if (has_listeners(event_type)) {
-        sing(event_type, this);
-        return true;
-      }
-    }
-
-    return false;
-  }
+//  bool Flower_Old::check_event(const songbird::Song<Flower_Delegate_Old> &event_type, const vec2 &point) {
+//    if (!visible)
+//      return false;
+//
+//    for (auto &child: children) {
+//      if (child->check_event(event_type, point)) {
+//        return true;
+//      }
+//    }
+//
+//    if (point_is_inside(point)) {
+//      if (has_listeners(event_type)) {
+//        sing(event_type, this);
+//        return true;
+//      }
+//    }
+//
+//    return false;
+//  }
 
   bool Flower_Old::check_event_new(const songbird::Song<Flower_Delegate> &event_type, const vec2 &point) {
     if (!visible)
@@ -207,7 +207,7 @@ namespace bloom {
 
   void Flower_Old::close() {
     shared_ptr<bool> local_is_deleted = get_is_deleted();
-    sing(Events::close_old, this);
+//    sing(Events::close_old, this);
     if (!local_is_deleted)
       remove();
   }
