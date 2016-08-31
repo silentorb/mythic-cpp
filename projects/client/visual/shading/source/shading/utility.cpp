@@ -5,7 +5,7 @@ namespace shading {
 
   void set_opacity_support(bool value){
     if (value) {
-      glow::set_culling(false);
+//      glow::set_culling(false);
       glow::set_blend(true);
     }
     else {

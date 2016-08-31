@@ -145,6 +145,8 @@ namespace bloom {
         update_glide(delta);
       else if (mode == Mode::rebounding)
         update_rebound(delta);
+
+      Group::update(delta);
     }
   }
 }

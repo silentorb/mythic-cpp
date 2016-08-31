@@ -12,6 +12,8 @@ namespace bloom {
 
         Visible() : Single_Parent() {}
 
+        virtual ~Visible() {}
+
         virtual void update(float delta) override;
         virtual void render() override;
 
