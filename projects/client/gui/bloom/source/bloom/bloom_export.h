@@ -5,6 +5,7 @@
 #define BLOOM_EXPORT __declspec(dllexport)
 #else
 #define BLOOM_EXPORT __declspec(dllimport)
+#define BLOOM_EXPORT
 #endif
 #else
 #define BLOOM_EXPORT

@@ -8,6 +8,7 @@
 #define GLOW_EXPORT __declspec(dllexport)
 #else
 #define GLOW_EXPORT __declspec(dllimport)
+#define GLOW_EXPORT
 #endif
 #else
 #define GLOW_EXPORT

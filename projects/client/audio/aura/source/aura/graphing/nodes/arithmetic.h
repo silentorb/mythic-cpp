@@ -5,18 +5,19 @@
 namespace aura {
   namespace graphing {
     namespace nodes {
+
       AURA_EXPORT Node Add(const Node &first, const Node &second);
       AURA_EXPORT Node Multiply(const Node &first, const Node &second);
 
-      Node operator+(const Node &first, const Node &second) {
+      inline Node operator+(const Node &first, const Node &second) {
         return nodes::Add(first, second);
       }
 
-      Node operator*(const Node &first, const Node &second) {
+      inline Node operator*(const Node &first, const Node &second) {
         return nodes::Multiply(first, second);
       }
 
-      Node operator*(const Node &first, float value) {
+      inline Node operator*(const Node &first, float value) {
         return nodes::Multiply(first, value);
       }
 

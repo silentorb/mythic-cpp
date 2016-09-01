@@ -6,6 +6,7 @@
 #define SEQUENCING_EXPORT __declspec(dllexport)
 #else
 #define SEQUENCING_EXPORT __declspec(dllimport)
+#define SEQUENCING_EXPORT
 #endif
 #else
 #define SEQUENCING_EXPORT

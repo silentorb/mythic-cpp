@@ -94,7 +94,7 @@ add_subdirectory(projects/client/gui/bloom_texturing)
 add_subdirectory(projects/client/gui/bloom_lookinglass)
 
 if (MINGW)
-  add_subdirectory(projects/client/gui/bloom/test)
+#  add_subdirectory(projects/client/gui/bloom/test)
 endif ()
 
 if (MINGW OR MSCV)

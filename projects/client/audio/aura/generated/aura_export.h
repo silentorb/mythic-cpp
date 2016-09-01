@@ -3,6 +3,7 @@
 #define AURA_EXPORT __declspec(dllexport)
 #else
 #define AURA_EXPORT __declspec(dllimport)
+#define AURA_EXPORT
 #endif
 #else
 #define AURA_EXPORT

@@ -8,7 +8,8 @@
 #define MANUAL_SYMBOL_EXPORTING
 #define MYTHIC_EXPORT __declspec(dllexport)
 #else
-#define MYTHIC_EXPORT __declspec(dllimport)
+//#define MYTHIC_EXPORT __declspec(dllimport)
+#define MYTHIC_EXPORT
 #endif /* MyLibrary_EXPORTS */
 #else /* defined (_WIN32) */
 #define MYTHIC_EXPORT

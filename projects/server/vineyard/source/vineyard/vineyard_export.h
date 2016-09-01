@@ -5,6 +5,7 @@
 #define VINEYARD_EXPORT __declspec(dllexport)
 #else
 #define VINEYARD_EXPORT __declspec(dllimport)
+#define VINEYARD_EXPORT
 #endif
 #else
 #define VINEYARD_EXPORT
