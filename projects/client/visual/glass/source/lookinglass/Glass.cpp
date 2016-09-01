@@ -6,7 +6,7 @@
 
 namespace lookinglass {
 
-  Glass *glass_instance;
+  static Glass *glass_instance;
 
   Glass::Glass(Viewport &viewport) :
     capabilities(capabilities), viewport(&viewport) {

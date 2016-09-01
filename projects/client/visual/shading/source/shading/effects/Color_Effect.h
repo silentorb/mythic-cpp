@@ -5,10 +5,11 @@
 using namespace glm;
 
 namespace shading {
+
   class MYTHIC_EXPORT Color_Effect: protected Effect {
 
   public:
-      Color_Effect(Program &program) : Effect(program) { }
+      Color_Effect(Program &program);
 
       void activate(const vec4 &value);
   };

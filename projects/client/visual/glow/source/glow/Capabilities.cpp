@@ -5,7 +5,7 @@
 
 namespace glow {
 
-  Capabilities *instance;
+  static Capabilities *instance;
 
   Capabilities::Capabilities(Version version)
     : version(version) {

@@ -5,7 +5,7 @@ get_filename_component(PARENT_DIR ${CMAKE_SOURCE_DIR} DIRECTORY)
 if (NOT ANDROID)
   enable_language(CXX) # SINCE Compiler/Platform variables do not normally exist before a project command in CMake.
 endif ()
-
+SET(CMAKE_EXE_LINKER_FLAGS "-static")
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(../../cmake-tools/scripts/generator-key.cmake)
 
@@ -47,11 +47,11 @@ endif ()
 if (MINGW)
   set(SDL_BIN ${MYTHIC_DEPENDENCIES}/sdl2/bin/SDL2.dll)
   set(SDL_LIB ${MYTHIC_DEPENDENCIES}/sdl2/lib/libSDL2.dll.a)
-  set(OPENGL_LIB -lglu32 -lopengl32)
+#  set(OPENGL_LIB -lglu32 -lopengl32)
 elseif (MSVC)
   set(SDL_BIN ${MYTHIC_DEPENDENCIES}/sdl2/lib/SDL2.dll)
   set(SDL_LIB ${MYTHIC_DEPENDENCIES}/sdl2/lib/SDL2.lib)
-  set(OPENGL_LIB opengl32.lib)
+#  set(OPENGL_LIB opengl32.lib)
 endif ()
 
 #add_subdirectory(projects/core/metahub)
