@@ -77,8 +77,8 @@ namespace bloom {
 
         glBindFramebuffer(GL_READ_FRAMEBUFFER, multisample_frame_buffer->get_id());
         GLenum frame_buffers = {GL_COLOR_ATTACHMENT0};
-//        glDrawBuffers(1, &frame_buffers);
-        glDrawBuffer(GL_COLOR_ATTACHMENT0);
+        glDrawBuffers(1, &frame_buffers);
+//        glDrawBuffer(GL_COLOR_ATTACHMENT0);
         glReadBuffer(GL_COLOR_ATTACHMENT0);
 //        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);   // Make sure no FBO is set as the draw framebuffer
 //        glBindFramebuffer(GL_READ_FRAMEBUFFER, multisample_frame_buffer->get_id()); // Make sure your multisampled FBO is the read framebuffer

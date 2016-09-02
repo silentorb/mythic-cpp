@@ -6,14 +6,21 @@
 namespace texturing {
 
   unsigned int Texture::get_mode() const{
+#ifdef GL_TEXTURE_2D_MULTISAMPLE
     return get_multisamples() == 0
                           ? GL_TEXTURE_2D
                           : GL_TEXTURE_2D_MULTISAMPLE;
+#else
+      return GL_TEXTURE_2D;
+#endif
   }
 
   Texture::Texture(const glm::ivec2 &dimensions, Texture_Generator generator, char multisamples)
     : id(0), dimensions(dimensions),
       generator(generator), multisamples(multisamples) {
+         #ifndef GL_TEXTURE_2D_MULTISAMPLE 
+          this->multisamples = 0;
+#endif
     load();
   }
 
@@ -44,7 +51,9 @@ namespace texturing {
       }
     }
     else {
+#ifdef GL_TEXTURE_2D_MULTISAMPLE
       glTexImage2DMultisample(texture_mode, multisamples, GL_RGBA, dimensions.x, dimensions.y, GL_TRUE);
+#endif
     }
 
     glow::check_error("Creating texture.");

@@ -35,13 +35,17 @@ namespace texturing {
 
   void Frame_Buffer::activate() {
     glBindFramebuffer(GL_FRAMEBUFFER, id);
-    glDrawBuffer(GL_FRAMEBUFFER);
+    GLenum frame_buffers = {GL_COLOR_ATTACHMENT0};
+    glDrawBuffers(1, &frame_buffers);
+//    glDrawBuffer(GL_FRAMEBUFFER);
   }
 
   void Frame_Buffer::deactivate() {
     // Probably don't need to unbind this but I'm doing it for now until the code is more battle-tested.
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glDrawBuffer(GL_BACK);
+    GLenum frame_buffers = {GL_BACK};
+    glDrawBuffers(1, &frame_buffers);
+//    glDrawBuffer(GL_BACK);
   }
 
 //  void Frame_Buffer::set_dimensions(const glm::ivec2 &value) {
@@ -68,10 +72,12 @@ namespace texturing {
           name = "GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT";
           break;
 
+#ifdef GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER
         case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER :
           name = "GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER";
           break;
-
+#endif
+              
         case GL_FRAMEBUFFER_UNSUPPORTED:
           name = "GL_FRAMEBUFFER_UNSUPPORTED";
           break;
@@ -79,11 +85,13 @@ namespace texturing {
         case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
           name = "GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER";
           break;
-
+              
+#ifdef GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS
         case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:
           name = "GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS";
           break;
-
+#endif
+              
         default:
           name = to_string(complete);
       }
