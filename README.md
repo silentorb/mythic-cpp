@@ -31,6 +31,13 @@ This involves 3 commands:
     ./build
     ./debug
 
+### Compiling for MinGW
+
+Mostly I use CLion to handle MinGW builds but sometimes I need a command line MinGW build for build debugging.
+
+    cd ../build/mingw
+    cmake -G "MinGW Makefiles" ../../mythic
+
 ### Generating Graph Viz
 
     cmake -DGRAPHVIZ=1 -G "Visual Studio 14 2015" ../../mythic

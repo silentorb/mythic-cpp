@@ -1,13 +1,15 @@
 #include "Buffered_Flower.h"
 #include <bloom/Garden.h>
-#include <texturing/Frame_Buffer.h>
 #include <glow_gl.h>
 #include <glow.h>
 #include <lookinglass/House.h>
 #include <perspective/Viewport.h>
 #include <glow/Capabilities.h>
+#include <texturing/buffering/Render_Buffer.h>
+#include <texturing/buffering/Frame_Buffer.h>
 
 using namespace texturing;
+using namespace texturing::buffering;
 
 namespace bloom {
   namespace flowers {
@@ -21,9 +23,8 @@ namespace bloom {
 
       frame_buffer = shared_ptr<Frame_Buffer>(new Frame_Buffer());
       house.watch_resource(frame_buffer);
-
       if (multisamples) {
-        multisample_frame_buffer = shared_ptr<Frame_Buffer>(new Frame_Buffer());
+        multisample_frame_buffer = shared_ptr<Frame_Buffer>(new buffering::Frame_Buffer());
         house.watch_resource(multisample_frame_buffer);
       }
     }
@@ -34,9 +35,14 @@ namespace bloom {
         auto &house = lookinglass::House::get_instance();
         texture = shared_ptr<Texture>(new Texture(dimensions, nullptr, 0));
         house.watch_resource(texture);
+//        if (multisamples) {
+//          multisample_texture = shared_ptr<Texture>(new Texture(dimensions, nullptr, (char) multisamples));
+//          house.watch_resource(multisample_texture);
+//        }
+
         if (multisamples) {
-          multisample_texture = shared_ptr<Texture>(new Texture(dimensions, nullptr, (char) multisamples));
-          house.watch_resource(multisample_texture);
+          multisample_render_buffer = shared_ptr<Render_Buffer>(new buffering::Render_Buffer(dimensions, multisamples));
+          house.watch_resource(multisample_render_buffer);
         }
       }
       else if (texture->get_dimensions() != glm::ivec2(dimensions)) {
@@ -51,16 +57,22 @@ namespace bloom {
     void Buffered_Flower::render() {
       auto &bounds = get_absolute_bounds();
       prepare_texture();
-      auto &render_frame = multisamples
-                           ? multisample_frame_buffer
-                           : frame_buffer;
 
-      auto &render_texture = multisamples
-                             ? multisample_texture
-                             : texture;
-
-      render_frame->activate();
-      render_frame->attach_texture(render_texture.get());
+      if (multisamples) {
+        multisample_frame_buffer->activate();
+        multisample_frame_buffer->attach_render_buffer(multisample_render_buffer.get());
+        auto color = glm::vec4(0);
+//        glClearBufferiv(GL_FRAMEBUFFER, multisample_frame_buffer->get_id(), (GLint*)&color);
+        auto clear_color = glow::get_clear_color();
+        glow::set_clear_color(vec4(0));
+        glClear(GL_COLOR_BUFFER_BIT);
+        glow::set_clear_color(clear_color);
+//        multisample_render_buffer->activate();
+      }
+      else {
+        frame_buffer->activate();
+        frame_buffer->attach_texture(texture.get());
+      }
       auto &house = lookinglass::House::get_instance();
       auto &base_viewport = house.get_base_viewport();
       auto &converter = Garden::get_instance().get_converter();
@@ -84,11 +96,11 @@ namespace bloom {
 //        glBindFramebuffer(GL_READ_FRAMEBUFFER, multisample_frame_buffer->get_id()); // Make sure your multisampled FBO is the read framebuffer
 //        glDrawBuffer(GL_BACK);
         //bounds.position.x, bounds.position.y
-        glBlitFramebuffer(0,0, bounds.dimensions.x, bounds.dimensions.y, 0,0, bounds.dimensions.x,
+        glBlitFramebuffer(0, 0, bounds.dimensions.x, bounds.dimensions.y, 0, 0, bounds.dimensions.x,
                           bounds.dimensions.y,
                           GL_COLOR_BUFFER_BIT, GL_NEAREST);
       }
-      texturing::Frame_Buffer::deactivate();
+      Frame_Buffer::deactivate();
       renderer(bounds.position, bounds.dimensions, *texture);
     }
   }

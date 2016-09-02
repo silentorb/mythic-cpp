@@ -109,7 +109,10 @@ elseif (IOS)
   add_subdirectory(platform/mythic_ios)
 
 else ()
+  add_subdirectory(platform/mythic_desktop/desktop_display)
+  add_subdirectory(platform/mythic_desktop/desktop_input)
   add_subdirectory(platform/mythic_desktop)
+
   #  add_subdirectory(platform/workshop)
 
 endif ()

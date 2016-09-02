@@ -1,7 +1,4 @@
 
-add_subdirectory(desktop_display)
-add_subdirectory(desktop_input)
-
 create_library(desktop)
 
 require(mythic desktop_display desktop_input shading shader_processing haft client logger audio_player resourceful shading)
@@ -11,7 +8,6 @@ include_directories(
 )
 
 link_external(sdl2 SDL2)
-
 #target_link_libraries(desktop
 #  ${SDL_LIB}
 #  )
