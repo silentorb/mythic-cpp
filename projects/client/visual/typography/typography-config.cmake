@@ -1,4 +1,3 @@
-find_package(math)
 
 include_external_directory(freetype freetype2)
 include_directories(

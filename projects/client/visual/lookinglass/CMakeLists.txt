@@ -1,7 +1,5 @@
 
 create_library(lookinglass)
 
-require(glass glow shading perspective through resourceful modeling typography texturing)
+require(glass glow shading perspective through resourceful modeling typography texturing math vectoring frame)
 
-find_package(math)
-find_package(vectoring)

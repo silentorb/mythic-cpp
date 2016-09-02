@@ -1,7 +1,7 @@
 
 create_library(desktop_display)
 
-require(glow lookinglass shading logger)
+require(glow lookinglass shading logger frame)
 link_external(sdl2 SDL2)
 
 #include_directories(

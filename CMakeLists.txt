@@ -128,4 +128,4 @@ if (GRAPHVIZ)
   gemerate_graphviz_file(mythic)
 endif ()
 
-finish_mythic()
+finish_cmake()

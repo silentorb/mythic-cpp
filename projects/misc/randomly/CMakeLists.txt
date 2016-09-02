@@ -1,3 +1,2 @@
-find_package(math)
-
-set(randomly_DIR ${CMAKE_CURRENT_LIST_DIR} PARENT_SCOPE)
+create_header_library(randomly)
+require(math)

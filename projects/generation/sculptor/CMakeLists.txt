@@ -1,4 +1,4 @@
 
 create_library(sculptor)
 
-find_package(math)
+require(math vectoring)

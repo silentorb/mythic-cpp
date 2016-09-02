@@ -1,5 +1,4 @@
 
 create_library(through)
 
-find_package(math)
-require(glow logger shading resourceful)
+require(glow logger shading resourceful math shading)

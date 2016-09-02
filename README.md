@@ -26,7 +26,8 @@ This involves 3 commands:
 
 
     cd ../build/android
-    Start-Process cmake -ArgumentList "cmake -G ""MinGW Makefiles"" -DANDROID_NDK=E:\Programs\crystax-ndk-10.3.1 -DCMAKE_BUILD_TYPE=Debug -DANDROID_ABI=armeabi-v7a ../../mythic" -NoNewWindow
+    #Start-Process cmake -ArgumentList "cmake -G ""MinGW Makefiles"" -DANDROID_NDK=E:\Programs\crystax-ndk-10.3.1 -DCMAKE_BUILD_TYPE=Debug -DANDROID_ABI=armeabi-v7a ../../mythic" -NoNewWindow
+    cmake -G "MinGW Makefiles" -DANDROID_NDK=E:\Programs\crystax-ndk-10.3.1 -DCMAKE_BUILD_TYPE=Debug -DANDROID_ABI=armeabi-v7a ../../mythic
     ./build
     ./debug
 

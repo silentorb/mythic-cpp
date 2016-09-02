@@ -1,5 +1,4 @@
 
 create_library(perspective)
 
-find_package(math)
-require(shading glow logger resourceful)
+require(shading glow logger resourceful math through spatial)

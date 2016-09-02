@@ -1,2 +1,2 @@
 
-set(vectoring_DIR ${CMAKE_CURRENT_LIST_DIR} PARENT_SCOPE)
+create_header_library(vectoring)
