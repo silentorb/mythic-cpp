@@ -26,7 +26,7 @@
 }
 
 - (void)initialize_mythic {
-    lookinglass::Graphic_Options graphic_options(0, 0);
+    lookinglass::Graphic_Options graphic_options(0, 0, 4);
     mythic = new Mythic_iOS(_context, self, graphic_options);
     gamepad_manager = [[Gamepad_Manager alloc] init];
     input_view = [[UIView alloc] initWithFrame:CGRectZero];
