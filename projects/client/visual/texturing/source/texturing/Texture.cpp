@@ -6,21 +6,21 @@
 namespace texturing {
 
   unsigned int Texture::get_mode() const{
-#ifdef GL_TEXTURE_2D_MULTISAMPLE
-    return get_multisamples() == 0
-                          ? GL_TEXTURE_2D
-                          : GL_TEXTURE_2D_MULTISAMPLE;
-#else
+//#ifdef GL_TEXTURE_2D_MULTISAMPLE
+//    return get_multisamples() == 0
+//                          ? GL_TEXTURE_2D
+//                          : GL_TEXTURE_2D_MULTISAMPLE;
+//#else
       return GL_TEXTURE_2D;
-#endif
+//#endif
   }
 
   Texture::Texture(const glm::ivec2 &dimensions, Texture_Generator generator, char multisamples)
     : id(0), dimensions(dimensions),
       generator(generator), multisamples(multisamples) {
-         #ifndef GL_TEXTURE_2D_MULTISAMPLE 
+//         #ifndef GL_TEXTURE_2D_MULTISAMPLE 
           this->multisamples = 0;
-#endif
+//#endif
     load();
   }
 
@@ -34,31 +34,31 @@ namespace texturing {
     glBindTexture(texture_mode, id);
 
 //    glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction
-//    glTexParameteri(texture_mode, GL_TEXTURE_WRAP_S, GL_REPEAT);
-//    glTexParameteri(texture_mode, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(texture_mode, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(texture_mode, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     glTexParameteri(texture_mode, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 //    glTexParameteri(texture_mode, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    if (multisamples == 0) {
+//    if (multisamples == 0) {
       if (generator) {
         unique_ptr<unsigned char> data(generator(dimensions.x, dimensions.y));
-        glTexImage2D(texture_mode, 0, GL_RGBA, dimensions.x, dimensions.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data.get());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x, dimensions.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data.get());
       }
       else {
-        glTexImage2D(texture_mode, 0, GL_RGBA, dimensions.x, dimensions.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x, dimensions.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
       }
-    }
-    else {
-#ifdef GL_TEXTURE_2D_MULTISAMPLE
-      glTexImage2DMultisample(texture_mode, multisamples, GL_RGBA, dimensions.x, dimensions.y, GL_TRUE);
-#endif
-    }
+//    }
+//    else {
+//#ifdef GL_TEXTURE_2D_MULTISAMPLE
+//      glTexImage2DMultisample(texture_mode, multisamples, GL_RGBA, dimensions.x, dimensions.y, GL_TRUE);
+//#endif
+//    }
 
     glow::check_error("Creating texture.");
 
-    glBindTexture(texture_mode, 0);
+//    glBindTexture(texture_mode, 0);
   }
 
   void Texture::release() {

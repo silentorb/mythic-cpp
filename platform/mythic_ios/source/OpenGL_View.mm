@@ -10,6 +10,7 @@
 #import "Mythic_iOS.h"
 #import "Gamepad_Manager.h"
 #include "lookinglass/Graphic_Options.h"
+#include <glow.h>
 
 @interface OpenGL_View() {    
     Mythic_iOS *mythic;
@@ -87,9 +88,12 @@
         glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
         glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, width, height);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
+        
+        glow::set_default_framebuffer(sample_framebuffer);
     }
     else {
         glBindRenderbuffer(GL_RENDERBUFFER, color_buffer);
+        glow::set_default_framebuffer(framebuffer);
     }
 }
 

@@ -28,6 +28,8 @@ namespace glow {
     glm::vec4 clear_color;
     Blend_Factor source = Blend_Factor::one;
     Blend_Factor destination = Blend_Factor::zero;
+      
+      unsigned int default_framebuffer = 0;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -116,6 +118,13 @@ namespace glow {
     glBlendFunc(static_cast<GLenum>(cache::source), static_cast<GLenum>(cache::destination));
   }
 
+    void set_default_framebuffer(unsigned int id) {
+        cache::default_framebuffer = id;
+    }
+    
+    unsigned int get_default_framebuffer() {
+        return cache::default_framebuffer;
+    }
 
 }
 

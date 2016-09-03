@@ -37,33 +37,33 @@ namespace texturing {
 
     void Frame_Buffer::set_read() {
       glBindFramebuffer(GL_READ_FRAMEBUFFER, id);
-      glReadBuffer(GL_COLOR_ATTACHMENT0);
+//      glReadBuffer(GL_COLOR_ATTACHMENT0);
     }
 
     void Frame_Buffer::set_draw() {
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
-      if (attachments.size() > 0) {
-        GLenum frame_buffers[2];
-        GLenum k = GL_COLOR_ATTACHMENT0;
-        for (int i = 0; i < attachments.size(); ++i) {
-          frame_buffers[i] = attachments[i].port;
-          glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, attachments[i].port, GL_RENDERBUFFER, attachments[i].render_buffer->get_id());
-        }
-        glDrawBuffers(attachments.size(), frame_buffers);
-      }
-      else {
-        GLenum frame_buffers[] = {GL_COLOR_ATTACHMENT0};
-        glDrawBuffers(1, frame_buffers);
-      }
+//      if (attachments.size() > 0) {
+//        GLenum frame_buffers[2];
+//        GLenum k = GL_COLOR_ATTACHMENT0;
+//        for (int i = 0; i < attachments.size(); ++i) {
+//          frame_buffers[i] = attachments[i].port;
+////          glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, attachments[i].port, GL_RENDERBUFFER, attachments[i].render_buffer->get_id());
+//        }
+//        glDrawBuffers(attachments.size(), frame_buffers);
+//      }
+//      else {
+//        GLenum frame_buffers[] = {GL_COLOR_ATTACHMENT0};
+//        glDrawBuffers(1, frame_buffers);
+//      }
 //      glDrawBuffer(GL_FRAMEBUFFER);
 //      check_complete();
     }
 
     void Frame_Buffer::deactivate() {
       // Probably don't need to unbind this but I'm doing it for now until the code is more battle-tested.
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      GLenum frame_buffers = {GL_BACK};
-      glDrawBuffers(1, &frame_buffers);
+      glBindFramebuffer(GL_FRAMEBUFFER, glow::get_default_framebuffer());
+//      GLenum frame_buffers = {GL_BACK};
+//      glDrawBuffers(1, &frame_buffers);
       glow::check_error("checking");
 //    glDrawBuffer(GL_BACK);
     }
@@ -132,13 +132,13 @@ namespace texturing {
       glClear(GL_COLOR_BUFFER_BIT);
       glow::set_clear_color(clear_color);
       check_complete();
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, glow::get_default_framebuffer());
     }
 
     void Frame_Buffer::attach_render_buffer(const shared_ptr<Render_Buffer> &render_buffer, GLenum port) {
       attachments.push_back({render_buffer, port});
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
-      glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, port, GL_RENDERBUFFER, render_buffer->get_id());
+      glBindFramebuffer(GL_FRAMEBUFFER, id);
+      glFramebufferRenderbuffer(GL_FRAMEBUFFER, port, GL_RENDERBUFFER, render_buffer->get_id());
     }
   }
 }

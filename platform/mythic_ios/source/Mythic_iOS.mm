@@ -150,7 +150,6 @@ void iOS_Frame::create_window(const char *title, int width, int height) {
 void  iOS_Frame::update_events() {
 }
 
-
 void iOS_Frame::flip_buffer() {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         int multisample = 4;

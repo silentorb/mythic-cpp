@@ -11,7 +11,8 @@ namespace lookinglass {
 
       Graphic_Options() { }
 
-      Graphic_Options(int width, int height) : width(width), height(height) { }
+      Graphic_Options(int width, int height, int multisamples = 0) :
+      width(width), height(height), multisamples(multisamples) { }
 
       int get_width() const {
         return width;

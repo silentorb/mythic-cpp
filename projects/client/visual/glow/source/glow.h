@@ -57,4 +57,6 @@ namespace glow {
 
   GLOW_EXPORT void enable_scissor_box(float left, float top, float width, float height);
   GLOW_EXPORT void disable_scissor_box();
+    void set_default_framebuffer(unsigned int id);
+    unsigned int get_default_framebuffer();
 }
