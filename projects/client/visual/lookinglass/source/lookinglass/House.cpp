@@ -112,11 +112,15 @@ namespace lookinglass {
     resource_handler->add_resource(resource);
   }
 
-  const Version & House::get_version() const {
+  const Version &House::get_version() const {
     return capabilities->get_version();
   }
 
   glow::Capabilities &House::get_capabilities() const {
     return *capabilities;
+  }
+
+  texturing::buffering::Frame_Buffer &House::get_frame_buffer() const {
+    return *frame_buffer;
   }
 }

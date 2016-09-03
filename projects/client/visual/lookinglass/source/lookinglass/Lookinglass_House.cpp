@@ -1,5 +1,6 @@
 #include "Lookinglass_House.h"
 #include "glow.h"
+#include "glow_gl.h"
 #include "glow/Capabilities.h"
 #include "perspective/Viewport.h"
 #include "through/create_mist.h"
@@ -8,6 +9,8 @@
 #include "lookinglass/Renderable_List.h"
 #include "typography/Text_Effect.h"
 #include "framing/Platform_Frame.h"
+#include <texturing/buffering/Render_Buffer.h>
+#include <texturing/buffering/Frame_Buffer.h>
 
 using namespace through;
 
@@ -49,6 +52,21 @@ namespace lookinglass {
 
     glass = unique_ptr<Glass>(new Glass(get_base_viewport()));
     initialize();
+
+    frame_buffer = shared_ptr<texturing::buffering::Frame_Buffer>(new texturing::buffering::Frame_Buffer());
+    watch_resource(frame_buffer);
+
+    color_buffer = shared_ptr<texturing::buffering::Render_Buffer>(
+      new texturing::buffering::Render_Buffer(dimensions, GL_RGBA, options.get_multisamples()));
+    watch_resource(color_buffer);
+
+    depth_buffer = shared_ptr<texturing::buffering::Render_Buffer>(
+      new texturing::buffering::Render_Buffer(dimensions, GL_DEPTH_COMPONENT16, options.get_multisamples()));
+    watch_resource(depth_buffer);
+
+    frame_buffer->attach_render_buffer(color_buffer, GL_COLOR_ATTACHMENT0);
+    frame_buffer->attach_render_buffer(depth_buffer, GL_DEPTH_ATTACHMENT);
+    texturing::buffering::Frame_Buffer::deactivate();
   }
 
 }

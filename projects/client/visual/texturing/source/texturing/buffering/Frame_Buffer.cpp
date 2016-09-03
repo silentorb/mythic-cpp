@@ -35,11 +35,28 @@ namespace texturing {
       }
     }
 
-    void Frame_Buffer::activate() {
-      glBindFramebuffer(GL_FRAMEBUFFER, id);
-      GLenum frame_buffers = {GL_COLOR_ATTACHMENT0};
-      glDrawBuffers(1, &frame_buffers);
-//    glDrawBuffer(GL_FRAMEBUFFER);
+    void Frame_Buffer::set_read() {
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, id);
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+    }
+
+    void Frame_Buffer::set_draw() {
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
+      if (attachments.size() > 0) {
+        GLenum frame_buffers[2];
+        GLenum k = GL_COLOR_ATTACHMENT0;
+        for (int i = 0; i < attachments.size(); ++i) {
+          frame_buffers[i] = attachments[i].port;
+          glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, attachments[i].port, GL_RENDERBUFFER, attachments[i].render_buffer->get_id());
+        }
+        glDrawBuffers(attachments.size(), frame_buffers);
+      }
+      else {
+        GLenum frame_buffers[] = {GL_COLOR_ATTACHMENT0};
+        glDrawBuffers(1, frame_buffers);
+      }
+//      glDrawBuffer(GL_FRAMEBUFFER);
+//      check_complete();
     }
 
     void Frame_Buffer::deactivate() {
@@ -47,6 +64,7 @@ namespace texturing {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
       GLenum frame_buffers = {GL_BACK};
       glDrawBuffers(1, &frame_buffers);
+      glow::check_error("checking");
 //    glDrawBuffer(GL_BACK);
     }
 
@@ -102,6 +120,7 @@ namespace texturing {
     }
 
     void Frame_Buffer::attach_texture(texturing::Texture *texture) {
+      glBindFramebuffer(GL_FRAMEBUFFER, id);
       glFramebufferTexture2D(
         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, (GLenum) texture->get_mode(), texture->get_id(), 0);
 //    glFramebufferTexture(GL_DRAW_BUFFER, GL_COLOR_ATTACHMENT0, texture->get_id(), 0);
@@ -113,10 +132,13 @@ namespace texturing {
       glClear(GL_COLOR_BUFFER_BIT);
       glow::set_clear_color(clear_color);
       check_complete();
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
-    void Frame_Buffer::attach_render_buffer(Render_Buffer *render_buffer) {
-      glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, render_buffer->get_id());
+    void Frame_Buffer::attach_render_buffer(const shared_ptr<Render_Buffer> &render_buffer, GLenum port) {
+      attachments.push_back({render_buffer, port});
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
+      glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, port, GL_RENDERBUFFER, render_buffer->get_id());
     }
   }
 }

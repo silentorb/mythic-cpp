@@ -8,11 +8,12 @@ namespace texturing {
 
     class Render_Buffer : public resourceful::Resource {
         unsigned int id = 0;
+        unsigned int format;
         glm::ivec2 dimensions;
         int multisamples = 0;
 
     public:
-        Render_Buffer(const glm::ivec2 &dimensions, int multisamples);
+        Render_Buffer(const glm::ivec2 &dimensions, int format, int multisamples);
         virtual ~Render_Buffer();
         void activate();
 
@@ -22,7 +23,6 @@ namespace texturing {
         unsigned int get_id() const {
           return id;
         }
-
     };
   }
 }

@@ -8,8 +8,8 @@ using namespace glm;
 namespace texturing {
   namespace buffering {
 
-    Render_Buffer::Render_Buffer(const glm::ivec2 &dimensions, int multisamples) :
-      dimensions(dimensions), multisamples(multisamples) {
+    Render_Buffer::Render_Buffer(const glm::ivec2 &dimensions, int format, int multisamples) :
+      dimensions(dimensions), format(format), multisamples(multisamples) {
       load();
     }
 
@@ -21,15 +21,18 @@ namespace texturing {
       glGenRenderbuffers(1, &id);
       glBindRenderbuffer(GL_RENDERBUFFER, id);
       if (multisamples) {
-        glRenderbufferStorageMultisample(GL_RENDERBUFFER, multisamples, GL_RGBA, dimensions.x, dimensions.y);
+        glRenderbufferStorageMultisample(GL_RENDERBUFFER, multisamples, format, dimensions.x, dimensions.y);
       }
       else {
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA, dimensions.x, dimensions.y);
+        glRenderbufferStorage(GL_RENDERBUFFER, format, dimensions.x, dimensions.y);
       }
     }
 
     void Render_Buffer::release() {
-
+      if (id) {
+        glDeleteRenderbuffers(1, &id);
+        id = 0;
+      }
     }
 
     void Render_Buffer::activate() {
