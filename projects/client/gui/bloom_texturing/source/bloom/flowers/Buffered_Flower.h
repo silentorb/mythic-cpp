@@ -23,8 +23,8 @@ namespace bloom {
         std::shared_ptr<texturing::Texture> texture;
         int multisamples;
 
-        std::shared_ptr<texturing::buffering::Frame_Buffer> multisample_frame_buffer;
-        std::shared_ptr<texturing::buffering::Render_Buffer> multisample_render_buffer;
+//        std::shared_ptr<texturing::buffering::Frame_Buffer> multisample_frame_buffer;
+//        std::shared_ptr<texturing::buffering::Render_Buffer> multisample_render_buffer;
 
         Buffered_Flower_Renderer renderer;
 

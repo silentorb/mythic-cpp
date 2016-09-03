@@ -18,9 +18,9 @@ namespace desktop {
     SDL_Init(SDL_INIT_VIDEO);   // Initialize SDL2
     int fullscreen_flag = is_fullscreen() ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
 
-    if(graphic_options.get_multisampling()) {
+    if(graphic_options.get_multisamples()) {
       SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, graphic_options.get_multisampling());
+      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, graphic_options.get_multisamples());
     }
 
     sdl_window = SDL_CreateWindow(

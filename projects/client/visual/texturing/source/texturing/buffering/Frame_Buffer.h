@@ -2,6 +2,8 @@
 
 #include <resourceful/Resource.h>
 #include "texturing/Texture.h"
+#include <vector>
+#include <memory>
 
 namespace resourceful {
   class Resource_Handler;
@@ -12,21 +14,28 @@ namespace texturing {
 
     class Render_Buffer;
 
+    struct Attachment {
+        std::shared_ptr<Render_Buffer> render_buffer;
+        unsigned int port;
+    };
+
     class MYTHIC_EXPORT Frame_Buffer : public resourceful::Resource {
         unsigned int id = 0;
 //      std::shared_ptr<texturing::Texture> texture;
-        void check_complete();
+        std::vector<Attachment> attachments;
 
     public:
         Frame_Buffer();
-        void activate();
+        void set_draw();
+        void set_read();
         static void deactivate();
 
         virtual void load() override;
         virtual void release() override;
 
         void attach_texture(texturing::Texture *texture);
-        void attach_render_buffer(Render_Buffer *render_buffer);
+        void attach_render_buffer(const shared_ptr<Render_Buffer> &render_buffer, unsigned int port);
+        void check_complete();
 
         unsigned int get_id() const {
           return id;

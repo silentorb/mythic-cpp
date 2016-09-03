@@ -5,7 +5,7 @@ namespace lookinglass {
   class Graphic_Options {
       int width;
       int height;
-      int multisampling = 0;
+      int multisamples = 0;
 
   public:
 
@@ -29,12 +29,12 @@ namespace lookinglass {
         Graphic_Options::height = height;
       }
 
-      int get_multisampling() const {
-        return multisampling;
+      int get_multisamples() const {
+        return multisamples;
       }
 
-      void set_multisampling(int value) {
-        multisampling = value;
+      void set_multisamples(int value) {
+        multisamples = value;
       }
   };
 }

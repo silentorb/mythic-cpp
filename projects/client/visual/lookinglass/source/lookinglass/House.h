@@ -45,6 +45,13 @@ namespace through {
   class Mist;
 }
 
+namespace texturing {
+  namespace buffering {
+    class Frame_Buffer;
+
+    class Render_Buffer;
+  }
+}
 namespace lookinglass {
 
   using namespace through;
@@ -72,6 +79,10 @@ namespace lookinglass {
       House(framing::Platform_Frame *frame, const Graphic_Options &options);
       Graphic_Options options;
       unique_ptr<glow::Capabilities> capabilities;
+
+      std::shared_ptr<texturing::buffering::Frame_Buffer> frame_buffer;
+      std::shared_ptr<texturing::buffering::Render_Buffer> color_buffer;
+      std::shared_ptr<texturing::buffering::Render_Buffer> depth_buffer;
 
   public:
 
@@ -124,7 +135,9 @@ namespace lookinglass {
         return options;
       }
 
-      const glow::Version & get_version() const;
+      const glow::Version &get_version() const;
       glow::Capabilities &get_capabilities() const;
+
+      texturing::buffering::Frame_Buffer &get_frame_buffer() const;
   };
 }
