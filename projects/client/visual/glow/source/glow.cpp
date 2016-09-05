@@ -28,8 +28,10 @@ namespace glow {
     glm::vec4 clear_color;
     Blend_Factor source = Blend_Factor::one;
     Blend_Factor destination = Blend_Factor::zero;
-      
-      unsigned int default_framebuffer = 0;
+
+    unsigned int default_framebuffer = 0;
+    unsigned int array_buffer = 0;
+    unsigned int element_array_buffer = 0;
   }
 
   void toggle(GLenum setting, bool value) {
@@ -118,13 +120,30 @@ namespace glow {
     glBlendFunc(static_cast<GLenum>(cache::source), static_cast<GLenum>(cache::destination));
   }
 
-    void set_default_framebuffer(unsigned int id) {
-        cache::default_framebuffer = id;
-    }
-    
-    unsigned int get_default_framebuffer() {
-        return cache::default_framebuffer;
-    }
+  void set_default_framebuffer(unsigned int id) {
+    cache::default_framebuffer = id;
+  }
 
+  unsigned int get_default_framebuffer() {
+    return cache::default_framebuffer;
+  }
+
+  void set_array_buffer(unsigned int id) {
+    if (cache::array_buffer == id)
+      return;
+
+    cache::array_buffer = id;
+    cache::element_array_buffer = 0;
+    glBindBuffer(GL_ARRAY_BUFFER, id);
+  }
+
+  void set_element_array_buffer(unsigned int id) {
+    if (cache::element_array_buffer == id)
+      return;
+
+    cache::element_array_buffer = id;
+    cache::array_buffer = 0;
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
+  }
 }
 

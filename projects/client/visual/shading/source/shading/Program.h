@@ -29,7 +29,7 @@ namespace shading {
       ~Program();
       void activate();
 
-      int get_id() const {
+      unsigned int get_id() const {
         return id;
       }
 

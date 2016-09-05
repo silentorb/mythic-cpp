@@ -54,7 +54,7 @@ namespace scenery {
                               bool has_opacity, const vec4 &color) {
     Effect::activate();
     update_shader_properties(transform, normal_transform, has_opacity, color);
-    mesh_data->draw(get_draw_method());
+    mesh_data->render(get_draw_method());
   }
 
 }

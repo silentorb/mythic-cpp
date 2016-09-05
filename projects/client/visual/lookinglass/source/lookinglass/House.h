@@ -70,7 +70,8 @@ namespace lookinglass {
       unique_ptr<Glass> glass;
       unique_ptr<framing::Platform_Frame> frame;
       bool active;
-      vector<Renderable> renderables;
+//      vector<Renderable> renderables;
+      Renderable renderable;
       unique_ptr<Lookinglass_Resources> resource_manager;
       unique_ptr<resourceful::Resource_Handler> resource_handler;
       static House *instance;
@@ -89,7 +90,6 @@ namespace lookinglass {
       ~House();
       void update();
       bool is_closing();
-      void add_renderable(Renderable renderable);
 //      void remove_renderable(Renderable &renderable);
 
       Glass &get_glass() const {
@@ -139,5 +139,6 @@ namespace lookinglass {
       glow::Capabilities &get_capabilities() const;
 
       texturing::buffering::Frame_Buffer &get_frame_buffer() const;
+      void set_renderable(const Renderable &renderable);
   };
 }

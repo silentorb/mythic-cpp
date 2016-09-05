@@ -3,13 +3,13 @@
 #include "commoner/dllexport.h"
 #include <memory>
 #include "glm/glm.hpp"
-#include "Group.h"
 #include <string>
 #include <vector>
 #include <functional>
+#include <modeling/Renderable_Mesh.h>
 
 namespace lookinglass {
-  typedef function<void()> Renderable;
+//  typedef function<void()> Renderable;
 
   class House;
 }
@@ -48,24 +48,16 @@ namespace drawing {
   class MYTHIC_EXPORT Draw : no_copy {
       unique_ptr<shading::Vertex_Schema> solid_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> solid_mesh;
-
       unique_ptr<shading::Vertex_Schema> image_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> image_mesh;
       unique_ptr<Image_Effect> default_image_effect;
       shading::Program *flat_program;
-//      unique_ptr<lookinglass::Renderable_List> sprites;
       lookinglass::House &house;
-      vector<lookinglass::Renderable> renderables;
+//      vector<lookinglass::Renderable> renderables;
 
   public:
       Draw(lookinglass::House &house);
       ~Draw();
-
-      Sprite *create_sprite(Image &image, const glm::vec2 &position = glm::vec2(0, 0));
-
-      void add_sprite_sheet(texturing::Texture &texture, const string &filename);
-
-      Sprite_Layer &create_sprite_layer(texturing::Texture &texture);
 
       modeling::Simple_Mesh &get_solid_mesh() const {
         return *solid_mesh;
@@ -89,12 +81,10 @@ namespace drawing {
         return house;
       }
 
-      void draw_square(float left, float top, float width, float height, bool solid, shading::Program &program);
+      void draw_square(float left, float top, float width, float height, bool solid, shading::Program &program,
+                       modeling::Renderable_Mesh &mesh);
       void draw_square(float left, float top, float width, float height, const vec4 &color, bool solid);
-      void add_to_house();
       void set_depth(bool value);
-      void render();
-      void add_renderable(lookinglass::Renderable renderable);
       const framing::Frame_Info &get_frame() const;
   };
 }

@@ -59,4 +59,7 @@ namespace glow {
   GLOW_EXPORT void disable_scissor_box();
     void set_default_framebuffer(unsigned int id);
     unsigned int get_default_framebuffer();
+
+  void set_array_buffer(unsigned int id);
+  void set_element_array_buffer(unsigned int id);
 }

@@ -25,9 +25,14 @@ namespace lookinglass {
     options(options),
     resource_handler(new Resource_Handler()) {
     instance = this;
+    renderable = []() {};
   }
 
   House::~House() {}
+
+  void House::set_renderable(const Renderable &renderable) {
+    this->renderable = renderable;
+  }
 
   void House::update() {
     if (!active)
@@ -40,9 +45,7 @@ namespace lookinglass {
     viewport->set_dimensions(frame->get_dimensions());
     viewport->update_device();
 
-    for (auto &renderable : renderables) {
-      renderable();
-    }
+    renderable();
 
     frame->flip_buffer();
   }
@@ -50,14 +53,6 @@ namespace lookinglass {
   bool House::is_closing() {
     return frame->is_closing();
   }
-
-  void House::add_renderable(Renderable renderable) {
-    renderables.push_back(renderable);
-  }
-
-//  void House::remove_renderable(Renderable &renderable) {
-//    renderables->remove(renderable);
-//  }
 
   Lookinglass_Resources &House::get_resources() const {
     return *resource_manager;

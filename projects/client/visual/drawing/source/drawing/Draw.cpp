@@ -4,9 +4,7 @@
 #include "shading/Vertex_Schema.h"
 #include "shading/Shader_Manager.h"
 #include "Image_Effect.h"
-#include "Sprite.h"
 #include "modeling/Simple_Mesh.h"
-#include "Sprite_Layer.h"
 #include "lookinglass/House.h"
 #include "glow.h"
 #include "perspective/Viewport.h"
@@ -18,28 +16,23 @@ using namespace texturing;
 
 namespace drawing {
 
-//  class Renderable_Draw : public lookinglass::Renderable {
-//      Draw &draw;
-//  public:
-//      Renderable_Draw(Draw &draw) : draw(draw) { }
-//
-//      virtual void render(lookinglass::Glass &glass) override {
-//        draw.render();
-//      }
-//  };
-
   Draw::Draw(lookinglass::House &house) :
     house(house),
-    solid_vertex_schema(new Vertex_Schema({2})),
+    solid_vertex_schema(new Vertex_Schema(
+      {
+        Vertex_Attribute(0, "position", 2),
+        Vertex_Attribute(1, "color", 4)
+      }
+    )),
     image_vertex_schema(new Vertex_Schema({4})) {
 
     auto &shader_manager = house.get_shader_manager();
 
     float solid_vertices[] = {
-      0, 0,
-      0, 1,
-      1, 1,
-      1, 0,
+      0, 0, 1, 1, 1, 1,
+      0, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1,
+      1, 0, 1, 1, 1, 1,
     };
 
     float image_vertices[] = {
@@ -73,26 +66,12 @@ namespace drawing {
 
   Draw::~Draw() {}
 
-  void Draw::add_to_house() {
-    house.add_renderable([&]() { render(); });
-  }
-
-  Sprite *Draw::create_sprite(Image &image, const glm::vec2 &position) {
-    auto sprite = new Sprite(*this, *default_image_effect, image, position);
-//    add(*sprite);
-    return sprite;
-  }
-
-  Sprite_Layer &Draw::create_sprite_layer(Texture &texture) {
-    auto layer = new Sprite_Layer(texture, *default_image_effect, *this);
-    return *layer;
-  }
-
   const ivec2 &Draw::get_dimensions() const {
     return house.get_glass().get_viewport_dimensions();
   }
 
-  void Draw::draw_square(float left, float top, float width, float height, bool solid, shading::Program &program) {
+  void Draw::draw_square(float left, float top, float width, float height, bool solid,
+                         shading::Program &program, Renderable_Mesh &mesh) {
     glow::set_depth_test(false);
     glow::set_depth_write(false);
     glow::set_blend(true);
@@ -107,7 +86,7 @@ namespace drawing {
     auto transform_index = glGetUniformLocation(program.get_id(), "transform");
     glUniformMatrix4fv(transform_index, 1, GL_FALSE, (GLfloat *) &transform);
 
-    solid_mesh->render(solid);
+    mesh.render(solid ? modeling::Draw_Method::triangles : modeling::Draw_Method::lines);
     glow::check_error("drew_square");
   }
 
@@ -115,22 +94,12 @@ namespace drawing {
     flat_program->activate();
     auto color_index = glGetUniformLocation(flat_program->get_id(), "color");
     glUniform4fv(color_index, 1, (float *) &color);
-    draw_square(left, top, width, height, solid, *flat_program);
+    draw_square(left, top, width, height, solid, *flat_program, *solid_mesh);
   }
 
   void Draw::set_depth(bool value) {
     glow::set_depth_test(value);
     glow::set_depth_write(value);
-  }
-
-  void Draw::render() {
-    for (auto &renderable: renderables) {
-      renderable();
-    }
-  }
-
-  void Draw::add_renderable(lookinglass::Renderable renderable) {
-    renderables.push_back(renderable);
   }
 
   const framing::Frame_Info &Draw::get_frame() const {

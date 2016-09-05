@@ -3,13 +3,17 @@
 #include <glow.h>
 #include "lookinglass/Lookinglass_Resources.h"
 #include "lookinglass/House.h"
+#include <drawing/Draw.h>
 
-void Lookinglass_Bloom::register_renderable(bloom::Garden &garden) {
-  draw.add_renderable([&]() {
-    enable_3d(false);
-    garden.render();
-    enable_3d(true);
-  });
+Lookinglass_Bloom::Lookinglass_Bloom(lookinglass::House &house, drawing::Draw &draw) :
+  house(house), draw(draw) {
+
+}
+
+void Lookinglass_Bloom::render(bloom::Garden &garden) {
+  enable_3d(false);
+  garden.render();
+  enable_3d(true);
 }
 
 void Lookinglass_Bloom::enable_3d(bool value) {
@@ -27,12 +31,12 @@ void Lookinglass_Bloom::draw_square(float left, float top, float width, float he
 }
 
 typography::Font &Lookinglass_Bloom::get_font(const string &name) const {
-  auto &resources = draw.get_house().get_resources();
+  auto &resources = house.get_resources();
   return resources.get_font(name);
 }
 
 typography::Text_Effect &Lookinglass_Bloom::get_text_effect() const {
-  auto &resources = draw.get_house().get_resources();
+  auto &resources = house.get_resources();
   return resources.get_text_effect();
 }
 

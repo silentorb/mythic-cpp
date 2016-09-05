@@ -57,8 +57,6 @@ namespace mythic {
         external_myths.push_back(&myth);
       }
 
-      void add_renderable(lookinglass::Renderable &renderable);
-//      void remove_renderable(lookinglass::Renderable &renderable);
       void update();
       void loop();
 

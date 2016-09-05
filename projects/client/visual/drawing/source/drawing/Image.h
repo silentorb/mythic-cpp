@@ -55,10 +55,6 @@ namespace drawing {
         return pixel_height;
       }
 
-      float get_width() const;
-
-      float get_height() const;
-
 
       const string &get_name() const {
         return name;

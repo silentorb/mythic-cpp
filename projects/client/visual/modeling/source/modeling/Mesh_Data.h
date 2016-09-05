@@ -6,6 +6,7 @@
 #include "resourceful/Resource.h"
 #include "Vertex_Buffer.h"
 #include "Draw_Method.h"
+#include "Renderable_Mesh.h"
 #include <functional>
 
 using namespace std;
@@ -20,7 +21,8 @@ namespace modeling {
       shared_ptr<int> counts;
       bool has_opacity;
 
-      void initialize(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts, bool has_opacity = false) {
+      void initialize(int polygon_count, int vertex_count, float *vertices, int *offsets, int *counts,
+                      bool has_opacity = false) {
         this->polygon_count = polygon_count;
         this->vertex_count = vertex_count;
         this->vertices = shared_ptr<float>(vertices);
@@ -42,7 +44,7 @@ namespace modeling {
 
   typedef function<void(Mesh_Export &data)> Mesh_Data_Generator;
 
-  class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource {
+  class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh {
   private:
       unsigned int ebo = 0;
       int polygon_count;
@@ -58,7 +60,8 @@ namespace modeling {
 
   public:
 
-      Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true, bool has_opacity = false);
+      Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true,
+                bool has_opacity = false);
 
       virtual ~Mesh_Data();
 
@@ -109,7 +112,7 @@ namespace modeling {
         return _has_opacity;
       }
 
-      void draw(Draw_Method draw_method);
+      virtual void render(Draw_Method draw_method) override;
 
       const string &get_name() const {
         return name;

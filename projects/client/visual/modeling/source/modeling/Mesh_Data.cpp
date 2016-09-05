@@ -64,7 +64,7 @@ namespace modeling {
       if (!ebo)
         throw runtime_error("Unable to create mesh buffer.");
 
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+      glow::set_element_array_buffer(ebo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * index_count, indices.get(), GL_STATIC_DRAW);
     }
     else {
@@ -84,7 +84,7 @@ namespace modeling {
     }
   }
 
-  void Mesh_Data::draw(Draw_Method draw_method) {
+  void Mesh_Data::render(Draw_Method draw_method) {
     vertex_buffer.activate();
 
     auto mode = draw_method == Draw_Method::triangles

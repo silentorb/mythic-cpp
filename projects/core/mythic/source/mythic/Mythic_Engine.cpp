@@ -49,10 +49,6 @@ namespace mythic {
   Mythic_Engine::~Mythic_Engine() {
   }
 
-  void Mythic_Engine::add_renderable(lookinglass::Renderable &renderable) {
-    client->get_house().add_renderable(renderable);
-  }
-
   void Mythic_Engine::update() {
     float delta = timer->update();
     client->update();

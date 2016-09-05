@@ -34,7 +34,7 @@ namespace typography {
     glGenBuffers(1, &vbo);
 
     glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glow::set_array_buffer(vbo);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 4, GL_FLOAT, false, 4 * sizeof(float), nullptr);
     glow::check_error("creating text buffer");
@@ -119,7 +119,7 @@ namespace typography {
     calculate();
 
     glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glow::set_array_buffer(vbo);
     auto without_spaces = string_replace(content, " ", "");
     auto &characters = font.get_characters();
 
@@ -189,7 +189,7 @@ namespace typography {
 //    block_dimensions.y = -top;
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4 * element_count, vertices, GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glow::set_array_buffer(0);
     delete vertices;
     glow::check_error("Error preparing text.");
     appearance_changed = false;

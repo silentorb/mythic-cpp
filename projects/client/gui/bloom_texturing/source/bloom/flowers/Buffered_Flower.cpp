@@ -68,8 +68,6 @@ namespace bloom {
         glow::set_clear_color(vec4(0));
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glow::set_clear_color(clear_color);
-//        multisample_render_buffer->activate();
-//        house.get_frame_buffer().check_complete();
         flowers::Single_Parent::render();
 //        glow::check_error("");
 //        house.get_frame_buffer().check_complete();

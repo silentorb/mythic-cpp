@@ -61,7 +61,7 @@ namespace lookinglass {
     watch_resource(color_buffer);
 
     depth_buffer = shared_ptr<texturing::buffering::Render_Buffer>(
-      new texturing::buffering::Render_Buffer(dimensions, GL_DEPTH_COMPONENT16, options.get_multisamples()));
+      new texturing::buffering::Render_Buffer(dimensions, GL_DEPTH_COMPONENT, options.get_multisamples()));
     watch_resource(depth_buffer);
 
     frame_buffer->attach_render_buffer(color_buffer, GL_COLOR_ATTACHMENT0);

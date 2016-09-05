@@ -21,11 +21,12 @@ namespace texturing {
       glGenRenderbuffers(1, &id);
       glBindRenderbuffer(GL_RENDERBUFFER, id);
       if (multisamples) {
-        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, multisamples, format, dimensions.x, dimensions.y);
+        glRenderbufferStorageMultisample(GL_RENDERBUFFER, multisamples, format, dimensions.x, dimensions.y);
       }
       else {
         glRenderbufferStorage(GL_RENDERBUFFER, format, dimensions.x, dimensions.y);
       }
+      glBindRenderbuffer(GL_RENDERBUFFER, 0);
     }
 
     void Render_Buffer::release() {
