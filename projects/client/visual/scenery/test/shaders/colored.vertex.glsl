@@ -96,7 +96,7 @@ void main() {
 	fragment_position = model_position.xyz;
     gl_Position = projection * view * model_position;
 
-	vec3 rgb = process_lights(color, fragment_normal);
+	vec3 rgb = process_lights(color, fragment_normal, camera_direction);
     fragment_color = vec4(rgb, color.a) * color_filter;
 //    fragment_color = color;
 }

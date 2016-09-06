@@ -1,17 +1,18 @@
 #pragma once
-#include "glm/glm.hpp"
-#include "Effect.h"
 
-using namespace glm;
+#include <shading/Shader_Property.h>
+#include "Effect.h"
 
 namespace shading {
 
-  class MYTHIC_EXPORT Color_Effect: protected Effect {
+  class MYTHIC_EXPORT Color_Effect : public Effect {
+  protected:
+      Vector4_Property &color;
 
   public:
       Color_Effect(Program &program);
 
-      void activate(const vec4 &value);
+      void set_color(const glm::vec4 &value);
   };
 
 }

@@ -1,3 +1,10 @@
+struct Light {
+	int type;
+	float brightness;
+	vec3 position;
+	vec3 direction;
+	vec3 color;
+};
 
 const float constant_attenuation = 0.5;
 const float linear_attenuation = 0.2;
@@ -20,7 +27,7 @@ Relationship get_relationship(Light light) {
 	return info;
 }
 
-vec3 process_light(Light light, vec4 input_color) {
+vec3 process_light(Light light, vec4 input_color, vec3 camera_direction) {
 	Relationship info = get_relationship(light);
 
 	float attenuation;
@@ -55,7 +62,7 @@ vec3 process_light(Light light, vec4 input_color) {
 	return rgb;
 }
 
-vec3 process_lights(vec4 input_color) {
+vec3 process_lights(vec4 input_color, vec3 camera_direction) {
 	vec3 result = vec3(0);
 	for(int i = 0; i < Lighting.count; ++i) {
 		result += process_light(Lighting.lights[i], input_color);

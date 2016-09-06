@@ -3,14 +3,11 @@
 namespace shading {
 
   Color_Effect::Color_Effect(Program &program)
-    : Effect(program) {
+    : Effect(program), color(program.create_property<Vector4_Property>("color")) {
 
   }
 
-  void Color_Effect::activate(const vec4 &value) {
-    Effect::activate();
-    auto index = get_location("color");
-    set_vec4(index, value);
-
+  void Color_Effect::set_color(const vec4 &value) {
+    color.set(value);
   }
 }

@@ -22,7 +22,22 @@ namespace modeling {
 
   void Simple_Mesh::render(Draw_Method mode) {
     glBindVertexArray(vao);
-    glDrawArrays(mode == Draw_Method::triangles ? GL_TRIANGLE_FAN : GL_LINE_LOOP, 0, vertex_count);
+    GLenum _mode;
+    switch (mode) {
+      case (Draw_Method::triangles):
+        _mode = GL_TRIANGLE_FAN;
+        break;
+      case (Draw_Method::line_loop):
+        _mode = GL_LINE_LOOP;
+        break;
+      case (Draw_Method::line_strip):
+        _mode = GL_LINE_STRIP;
+        break;
+      case (Draw_Method::lines):
+        _mode = GL_LINES;
+        break;
+    }
+    glDrawArrays(_mode, 0, vertex_count);
 //    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count);
   }
 

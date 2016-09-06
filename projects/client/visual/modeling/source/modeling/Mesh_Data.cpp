@@ -98,7 +98,7 @@ namespace modeling {
 #endif
     }
     else {
-      if (draw_method == Draw_Method::lines || supports_lines()) {
+      if (draw_method == Draw_Method::line_loop || supports_lines()) {
         for (int i = 0; i < get_polygon_count(); ++i) {
           glDrawArrays(mode, get_offsets()[i], get_counts()[i]);
         }
