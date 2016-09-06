@@ -91,7 +91,7 @@ namespace drawing {
     auto scaled_position = position / scaling;
     auto scaled_dimensions = dimensions / scaling;
     auto transform = glm::translate(mat4(1), vec3(scaled_position, 0))
-                     * glm::scale(mat4(1), vec3(scaled_dimensions, 1));
+                     * glm::scale(mat4(1), vec3(scaled_dimensions.x, -scaled_dimensions.y, 1));
 
     effect.set_transform(transform);
 

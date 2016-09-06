@@ -17,7 +17,8 @@ namespace sculptor {
             position = 1,
             normal,
             uv,
-            color
+            color,
+            group
         };
     };
 

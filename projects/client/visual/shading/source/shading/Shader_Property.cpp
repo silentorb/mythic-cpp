@@ -14,20 +14,20 @@ namespace shading {
     }
   }
 
-  void Matrix_Property_Functions::update(unsigned int index, const mat4 &value) {
-    glUniformMatrix4fv(index, 1, GL_FALSE, (float *) &value);
+  void Matrix_Property_Functions::update(unsigned int index, const mat4 *values, int count) {
+    glUniformMatrix4fv(index, count, GL_FALSE, (float *) values);
   }
 
-  void Vector4_Property_Functions::update(unsigned int index, const vec4 &value) {
-    glUniform4fv(index, 1, (float *) &value);
+  void Vector4_Property_Functions::update(unsigned int index, const vec4 *values, int count) {
+    glUniform4fv(index, count, (float *) values);
   }
 
-  void Vector2_Property_Functions::update(unsigned int index, const vec2 &value) {
-    glUniform2fv(index, 1, (float *) &value);
+  void Vector2_Property_Functions::update(unsigned int index, const vec2 *values, int count) {
+    glUniform2fv(index, count, (float *) values);
   }
 
-  void Float_Property_Functions::update(unsigned int index, float value) {
-    glUniform1f(index, value);
+  void Float_Property_Functions::update(unsigned int index, const float *values, int count) {
+    glUniform1fv(index, count, values);
   }
 
 }

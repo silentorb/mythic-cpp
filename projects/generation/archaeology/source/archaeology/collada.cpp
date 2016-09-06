@@ -17,7 +17,7 @@ extern void android_load_binary(std::vector<char> &buffer, const std::string &pa
 
 namespace archaeology {
 
-  typedef function<void(sculptor::geometry::Polygon *, xml_node &)> Polygon_Delegate;
+  typedef function<void(sculptor::geometry::Polygon * , xml_node & )> Polygon_Delegate;
 
   struct Effect {
       vec4 color;
@@ -149,14 +149,56 @@ namespace archaeology {
     }
   }
 
+  struct Vertex_Group_Data {
+      string mesh_name;
+      string data;
+  };
+
+  vector <Vertex_Group_Data> load_vertex_groups(xml_node &controllers) {
+    vector<Vertex_Group_Data> result;
+    for (auto controller : controllers.children("controller")) {
+      auto skin = controller.child("skin");
+      auto indices = skin.child("vertex_weights").child("v");
+      string full_name = skin.attribute("source").value();
+      string name = full_name.substr(1, full_name.size() - 6);
+      string data = indices.first_child().value();
+      result.push_back({name, data,});
+    }
+    return result;
+  }
+
+  void attach_vertex_group(Basic_Mesh &mesh, const string &data) {
+    int count_index = 0;
+    map<Vertex *, int> index_map;
+//    vector<int> group_indices(mesh.vertices.size());
+    for (int i = 0; i < mesh.vertices.size(); ++i) {
+      int group = next_value<int>(data, count_index, atoi);
+      int vertex_index = next_value<int>(data, count_index, atoi);
+      index_map[mesh.vertices[vertex_index]] = group;
+    }
+    int index_buffer[8];
+
+    for (auto polygon: mesh.polygons) {
+      for (int i = 0; i < polygon->vertices.size(); ++i) {
+        index_buffer[i] = index_map[polygon->vertices[i]];
+      }
+      polygon->set_data(sculptor::geometry::Vertex_Data::group, (float *) &index_buffer, 1, 1);
+    }
+  }
+
+
   void load_many_models(xml_node &collada, Mesh_Delegate delegate, bool loading_materials) {
     auto library = collada.child("library_geometries");
+    auto controllers = collada.child("library_controllers");
+    vector <Vertex_Group_Data> vertex_group_data;
+    bool has_vertex_groups = false;
+    if (!controllers.empty()) {
+      vertex_group_data = load_vertex_groups(controllers);
+      has_vertex_groups = true;
+    }
     auto materials = loading_materials ? load_materials(collada) : map<const string, Material>();
     for (auto geometry : library.children("geometry")) {
       auto mesh = unique_ptr<Basic_Mesh>(new Basic_Mesh());
-//      load_geometry2(geometry, mesh, [mesh](Polygon *polygon, xml_node &polygon_list) {
-//        mesh->add_polygon(polygon);
-//      });
       load_geometry2(geometry, mesh.get(), [delegate, &mesh, &materials](Polygon *polygon, xml_node &polygon_list) {
         if (materials.size()) {
           auto material_id = polygon_list.attribute("material").value();
@@ -165,7 +207,19 @@ namespace archaeology {
         }
         mesh->add_polygon(polygon);
       });
-      delegate(geometry.attribute("name").value(), mesh);
+
+      string name = geometry.attribute("name").value();
+
+      if (has_vertex_groups) {
+        for (auto &entry: vertex_group_data) {
+          if (name == entry.mesh_name) {
+            attach_vertex_group(*mesh, entry.data);
+            break;
+          }
+        }
+      }
+
+      delegate(name, mesh);
     }
   }
 
@@ -197,7 +251,7 @@ namespace archaeology {
 
   }
 
-  unique_ptr<Basic_Mesh> load_collada_file(const string filename) {
+  unique_ptr <Basic_Mesh> load_collada_file(const string filename) {
     auto mesh = new Basic_Mesh();
     xml_document document;
     open_file(document, filename);
