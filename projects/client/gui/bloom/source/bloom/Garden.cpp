@@ -30,36 +30,38 @@ namespace bloom {
 
   Garden::~Garden() {}
 
+  flowers::Flower &Garden::get_event_root() const {
+    return modal_stack.size() > 0
+           ? *modal_stack.top()->root
+           : *root;
+  }
+
   void Garden::update_input(haft::Input_State &input_state) {
     auto input_result = garden_input.update_input(input_state);
-    flowers::Flower &start = modal_stack.size() > 0
-                             ? *modal_stack.top()->root
-                             : *root;
-    if (input_result.mouse_click) {
-      auto &position = input_state.get_position();
 
-//      if (start.check_event(Events::activate_old, vec2(position.x, position.y))) {
-//        input_state.clear_gestures();
-//      }
-      if (start.check_event(Events::activate, vec2(position.x, position.y))) {
-        input_state.clear_gestures();
+    {
+      flowers::Flower &start = get_event_root();
+      if (input_result.mouse_click) {
+        auto &position = input_state.get_position();
+
+        if (start.check_event(Events::activate, vec2(position.x, position.y))) {
+          input_state.clear_gestures();
+        }
       }
     }
 
-    if (input_result.down) {
-      start.check_event(Events::mouse_down, garden_input.get_position());
-    }
-    else if (input_result.up) {
-      start.check_event(Events::mouse_down, garden_input.get_position());
-    }
-    else if (input_result.dragging) {
-      auto &position = garden_input.get_drag_start();
-
-//      if (start.check_event(Events::drag_old, vec2(position.x, position.y))) {
-////        input_state.set_handled(*select_action);
-//      }
-
-      start.check_event(Events::drag, vec2(position.x, position.y));
+    {
+      flowers::Flower &start = get_event_root();
+      if (input_result.down) {
+        start.check_event(Events::mouse_down, garden_input.get_position());
+      }
+      else if (input_result.up) {
+        start.check_event(Events::mouse_down, garden_input.get_position());
+      }
+      else if (input_result.dragging) {
+        auto &position = garden_input.get_drag_start();
+        start.check_event(Events::drag, vec2(position.x, position.y));
+      }
     }
   }
 

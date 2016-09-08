@@ -112,7 +112,6 @@ namespace vineyard {
       }
     }
 
-
     int query_integer(Ground &ground, const string &sql) {
       Connection connection(ground);
       {

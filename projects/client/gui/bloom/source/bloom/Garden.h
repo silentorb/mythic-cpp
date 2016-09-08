@@ -34,10 +34,11 @@ namespace bloom {
       Draw_Interface &draw;
       Measurement_Converter converter;
       flowers::Flower *focused_flower;
-      stack <unique_ptr<Modal>> modal_stack;
+      stack<unique_ptr<Modal>> modal_stack;
       static Garden *instance;
       float text_scale = 1;
       Garden_Input garden_input;
+      flowers::Flower &get_event_root() const;
 
   public:
       Garden(Draw_Interface &draw);

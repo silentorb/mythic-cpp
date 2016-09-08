@@ -114,6 +114,8 @@ namespace vineyard {
       static void set_initializing(Seed &seed) {
         seed.initializing = false;
       }
+
+      void set_ground(Ground *ground);
   };
 
 }

@@ -20,11 +20,12 @@ namespace bloom {
         bool space_outside = false;
 
     public:
-        List(Parent *parent) : Parent_Implementation(parent) { }
-        List(Arrangement arrangement, const Measurement spacing, Parent *parent) :
-          Parent_Implementation(parent), arrangement(arrangement), spacing(spacing) { }
+        List(Parent *parent = nullptr) : Parent_Implementation(parent) {}
 
-        virtual ~List() override { }
+        List(Arrangement arrangement, const Measurement spacing, Parent *parent= nullptr) :
+          Parent_Implementation(parent), arrangement(arrangement), spacing(spacing) {}
+
+        virtual ~List() override {}
 
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_position) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;

@@ -5,13 +5,13 @@
 namespace scenery {
 
   void Group::render() {
-//    if (is_visible()) {
+    if (is_visible()) {
 //    auto base_transform = get_transform();
     for (auto &element: children) {
 //        if (element->is_visible())
       element->render();
     }
-//    }
+    }
   }
 
   void Group::add_child(unique_ptr<Element> element) {

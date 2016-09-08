@@ -183,5 +183,9 @@ namespace vineyard {
     }
 
   }
+
+  void Seed::set_ground(Ground *ground) {
+    this->ground = ground;
+  }
 }
 
