@@ -30,13 +30,13 @@ namespace scenery {
       vector<unique_ptr<Visible_Particle>> particles;
       vector<Particle_Data> vertices;
       modeling::Vertex_Buffer* vertex_buffer;
-      shared_ptr<Particle_Effect> effect;
+      Particle_Effect& effect;
 
 //      float* generate(int & vertex_count);
 
   public:
       virtual void update(float delta) override;
-      Particle_Array(shared_ptr<Particle_Effect> effect, Parent *parent = nullptr);
+      Particle_Array(Particle_Effect &effect, Parent *parent = nullptr);
       ~Particle_Array();
 
       virtual void render() override;

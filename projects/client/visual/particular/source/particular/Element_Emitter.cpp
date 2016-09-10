@@ -11,8 +11,8 @@ namespace scenery {
 
   Element_Emitter::Element_Emitter(
     const Particle_Generator &generator, Particle_Element_Delegate initializer,
-    Particle_Element_Delegate animator, Parent *parent) :
-    emitter(new Emitter(generator, this)), initializer(initializer), animator(animator), scenery::Group(parent) {
+    Particle_Element_Delegate animator, const Particle_Animator &particle_animator, Parent *parent) :
+    emitter(new Emitter(generator, this, particle_animator)), initializer(initializer), animator(animator), scenery::Group(parent) {
 
   }
 

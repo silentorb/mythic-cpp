@@ -16,9 +16,9 @@ namespace substance {
 
   public:
 
-      Particle() { }
+      Particle() {}
 
-      Particle(const vec3 &position) : position(position) { }
+      Particle(const vec3 &position) : position(position) {}
 
       const vec3 &get_position() const {
         return position;
@@ -32,12 +32,20 @@ namespace substance {
         position += offset;
       }
 
+      void modify_timer(float value) {
+        timer += value;
+      }
+
       const vec3 &get_velocity() const {
         return velocity;
       }
 
       void set_velocity(const vec3 &velocity) {
         Particle::velocity = velocity;
+      }
+
+      const float &get_timer() const {
+        return timer;
       }
 
       const vec3 &get_acceleration() const {
@@ -52,10 +60,18 @@ namespace substance {
         return timer >= lifetime;
       }
 
-      void update(float delta);
-
       float get_life() const {
         return timer / lifetime;
       }
+
+      void set_lifetime(float value) {
+        lifetime = value;
+      }
+
+      void finish() {
+        lifetime = timer;
+      }
+
+      static void simple_update(Particle &particle, float delta);
   };
 }

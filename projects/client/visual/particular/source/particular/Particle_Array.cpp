@@ -10,11 +10,11 @@ using namespace modeling;
 
 namespace scenery {
 
-  Particle_Array::Particle_Array(shared_ptr<Particle_Effect> effect, Parent *parent) :
+  Particle_Array::Particle_Array(Particle_Effect &effect, Parent *parent) :
     effect(effect),
     Spatial(parent) {
 
-    vertex_buffer = new Vertex_Buffer(effect->get_program().get_vertex_schema(), [&](int &vertex_count) {
+    vertex_buffer = new Vertex_Buffer(effect.get_program().get_vertex_schema(), [&](int &vertex_count) {
       vertex_count = particles.size();
       return (float *) vertices.data();
     });
@@ -37,7 +37,7 @@ namespace scenery {
       vertex_buffer->load();
     }
 
-    effect->activate();
+    effect.activate();
     shading::set_opacity_support(true);
     vertex_buffer->draw_points(particles.size());
   }

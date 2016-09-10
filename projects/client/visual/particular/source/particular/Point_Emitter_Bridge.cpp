@@ -7,9 +7,9 @@ namespace scenery {
   Point_Emitter_Bridge::Point_Emitter_Bridge(
     Particle_Array *target_array,
     const Particle_Generator &generator, Visible_Particle_Generator visible_generator,
-    Particle_Point_Delegate animator, Parent *parent) :
+    Particle_Point_Delegate point_animator, const Particle_Animator &particle_animator, Parent *parent) :
     target_array(target_array),
-    emitter(new Emitter(generator, this)), visible_generator(visible_generator), animator(animator),
+    emitter(new Emitter(generator, this, particle_animator)), visible_generator(visible_generator), point_animator(point_animator),
     scenery::Spatial(parent) {
 
   }
@@ -23,7 +23,7 @@ namespace scenery {
 
   void Point_Emitter_Bridge::particle_added(const Particle &particle) {
     auto child = visible_generator(particle);
-    child->set_animator(animator);
+    child->set_animator(point_animator);
     target_array->add_particle(child);
     child->update(0);
   }

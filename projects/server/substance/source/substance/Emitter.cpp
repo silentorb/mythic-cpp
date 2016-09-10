@@ -3,15 +3,18 @@
 
 namespace substance {
 
-  Emitter::Emitter(const Particle_Generator &generator, Particle_Listener *listener) :
-    generator(generator), particle_listener(listener) { }
+  Emitter::Emitter(const Particle_Generator &generator, Particle_Listener *listener,
+                   const Particle_Animator &particle_animator) :
+    generator(generator), particle_listener(listener), particle_animator(particle_animator) {
 
-  Emitter::~Emitter() { }
+  }
+
+  Emitter::~Emitter() {}
 
   void Emitter::update(float delta) {
     for (int i = particles.size() - 1; i >= 0; --i) {
       auto &particle = particles[i];
-      particle->update(delta);
+      particle_animator(*particle, delta);
       if (particle->is_finished()) {
         if (particle_listener)
           particle_listener->particle_removed(*particle);
@@ -36,6 +39,7 @@ namespace substance {
         auto particle = generator(delta);
         particle->modify_position(position);
         particles.push_back(unique_ptr<Particle>(particle));
+
         if (particle_listener)
           particle_listener->particle_added(*particle);
       }

@@ -13,7 +13,8 @@ using namespace std;
 
 namespace substance {
 
-  typedef function<Particle*(float)> Particle_Generator;
+  typedef function<Particle *(float)> Particle_Generator;
+  typedef function<void(Particle &, float)> Particle_Animator;
 
   class MYTHIC_EXPORT Particle_Listener {
   public:
@@ -21,18 +22,20 @@ namespace substance {
       virtual void particle_removed(const Particle &particle) = 0;
   };
 
-  class MYTHIC_EXPORT Emitter: no_copy {
+  class MYTHIC_EXPORT Emitter : no_copy {
       vector<unique_ptr<Particle>> particles;
       Particle_Generator generator;
       float rate = 1; // per second
       vec3 position;
-      Particle_Listener* particle_listener = nullptr;
-
+      Particle_Listener *particle_listener = nullptr;
+      Particle_Animator particle_animator;
       float accumulator = 0;
 
   public:
 
-      Emitter(const Particle_Generator &generator, Particle_Listener* listener);
+      Emitter(const Particle_Generator &generator, Particle_Listener *listener,
+              const Particle_Animator &particle_animator);
+
       ~Emitter();
 
       void update(float delta);

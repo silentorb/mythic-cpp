@@ -2,12 +2,12 @@
 
 #include "commoner/dllexport.h"
 #include <memory>
+#include "Element.h"
 
 using namespace std;
 
 namespace scenery {
 
-  class Element;
 
   class MYTHIC_EXPORT Parent : public virtual Element {
   public:

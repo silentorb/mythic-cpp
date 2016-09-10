@@ -45,7 +45,7 @@ namespace scenery {
 
       void update(float delta) {
         if (animator) {
-          (*animator)(*this);
+          (*animator)(*this, delta);
         }
       }
 
