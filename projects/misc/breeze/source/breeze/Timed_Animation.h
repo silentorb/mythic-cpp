@@ -63,7 +63,7 @@ namespace breeze {
           return true;
         }
 
-        target = Updater::get_value(start_value, final_value, counter);
+        target = Updater::get_value(start_value, final_value, curve(counter));
         return false;
       }
 
@@ -95,7 +95,7 @@ namespace breeze {
           return true;
         }
 
-        Accessor::set(target, Updater::get_value(start_value, final_value, counter));
+        Accessor::set(target, Updater::get_value(start_value, final_value, curve(counter)));
         return false;
       }
 

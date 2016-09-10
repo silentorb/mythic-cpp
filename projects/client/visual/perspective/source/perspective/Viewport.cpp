@@ -27,7 +27,7 @@ namespace perspective {
     if (dimensions.x == 0 || dimensions.y == 0)
       return;
 
-    projection = glm::perspective(angle, get_aspect_ratio(), 0.1f, 600.0f);
+    projection = glm::perspective(glm::radians(angle), get_aspect_ratio(), 0.1f, 600.0f);
     flat_projection = glm::ortho(0.0f, (float) dimensions.x, 0.0f, (float) dimensions.y);
   }
 

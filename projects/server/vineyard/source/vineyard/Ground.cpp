@@ -46,6 +46,9 @@ namespace vineyard {
   Ground::~Ground() {}
 
   void Ground::initialize() {
+    if (!_writing_enabled)
+      return;
+
     db->wait(Wait_Flags::queue | Wait_Flags::connections, 5000);
     Transaction transaction(*this);
     clear_database();

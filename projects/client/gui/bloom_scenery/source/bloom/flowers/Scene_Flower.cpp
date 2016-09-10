@@ -40,6 +40,6 @@ namespace bloom {
   }
 
   void flowers::Scene_Flower::set_camera_angle(float degrees) {
-    scene->get_camera().set_angle(glm::radians(degrees));
+    scene->get_camera().set_angle(degrees);
   }
 }

@@ -15,7 +15,7 @@ namespace perspective {
   private:
       vec3 position;
       quat orientation;
-      float angle = glm::radians(45.0f);
+      float angle = 45.0f;
 
   public:
 
@@ -47,7 +47,7 @@ namespace perspective {
       void set_all(const vec3 &position, const quat &orientation, float degrees) {
         set_position(position);
         set_orientation(orientation);
-        set_degrees(degrees);
+        set_angle(degrees);
       }
 
       float &get_angle() {
@@ -58,9 +58,9 @@ namespace perspective {
         this->angle = angle;
       }
 
-      void set_degrees(float angle) {
-        this->angle = glm::radians(angle);
-      }
+//      void set_degrees(float angle) {
+//        this->angle = glm::radians(angle);
+//      }
   };
 
 }

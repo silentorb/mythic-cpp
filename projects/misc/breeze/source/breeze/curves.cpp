@@ -8,7 +8,7 @@ namespace breeze {
     }
 
     float bezier(float value) {
-      return value * value * (4.0f - 3.0f * value);
+      return value * value * (3.0f - 2.0f * value);
     }
 
     float cubic(float value) {
@@ -17,7 +17,7 @@ namespace breeze {
       if (value <= 0.5)
         return value * value * value * value * scale;
 
-      value -= -1;
+      value -= 1;
       return value * value * value * value * -scale + 1;
     }
   }
