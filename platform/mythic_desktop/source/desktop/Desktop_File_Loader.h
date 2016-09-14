@@ -2,7 +2,7 @@
 
 #include "commoner/dllexport.h"
 #include <string>
-#include "mythic/Platform_Factory.h"
+#include "platforming/Platform_Factory.h"
 
 using namespace std;
 

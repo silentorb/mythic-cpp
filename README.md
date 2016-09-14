@@ -37,6 +37,7 @@ Mostly I use CLion to handle MinGW builds but sometimes I need a command line Mi
 
     cd ../build/mingw
     cmake -G "MinGW Makefiles" ../../mythic
+    mingw32-make
 
 ### Generating Graph Viz
 

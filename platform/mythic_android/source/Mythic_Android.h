@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "mythic/Platform_Factory.h"
+#include "../../../projects/misc/platforming/source/platforming/Platform_Factory.h"
 #include "Android_App.h"
 #include "mythic/Mythic_Engine.h"
 #include "logger.h"

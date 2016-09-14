@@ -15,6 +15,7 @@ namespace flowers {
   public:
       Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent);
       Scene_Flower(Parent *parent);
+      ~Scene_Flower();
 
       virtual void render() override;
 

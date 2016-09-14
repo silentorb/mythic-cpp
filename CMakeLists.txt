@@ -54,8 +54,6 @@ elseif (MSVC)
 #  set(OPENGL_LIB opengl32.lib)
 endif ()
 
-#add_subdirectory(projects/core/metahub)
-
 add_subdirectory(projects/misc/logger)
 add_subdirectory(projects/misc/quartz)
 add_subdirectory(projects/misc/math)
@@ -86,12 +84,15 @@ add_subdirectory(projects/client/general/client)
 add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/server/vineyard)
 
-add_subdirectory(projects/core/mythic)
+add_subdirectory(projects/misc/platforming)
+add_subdirectory(projects/misc/mythic)
 
 add_subdirectory(projects/client/gui/bloom)
 add_subdirectory(projects/client/gui/bloom_scenery)
 add_subdirectory(projects/client/gui/bloom_texturing)
 add_subdirectory(projects/client/gui/bloom_lookinglass)
+
+add_subdirectory(projects/misc/achieving)
 
 if (MINGW)
 #  add_subdirectory(projects/client/gui/bloom/test)
