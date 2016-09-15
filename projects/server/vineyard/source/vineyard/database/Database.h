@@ -1,14 +1,13 @@
 #pragma once
 
 #include "vineyard/vineyard_export.h"
-#include "Statement.h"
 #include <string>
-#include <sqlite3.h>
 #include <memory>
 #include <map>
 #include <mutex>
 #include <commoner/dllexport.h>
 #include "Data_Task.h"
+#include <sqlite3.h>
 
 using namespace std;
 
@@ -24,6 +23,8 @@ namespace vineyard {
     class Connection;
 
     class Asynchronous_Queue;
+
+    class Statement;
 
     namespace Wait_Flags {
       enum values {
@@ -74,7 +75,6 @@ namespace vineyard {
         void release_static();
         void wait(int conditions, int millisecond_timeout = 1000);
         void initialize_queue();
-
     };
   }
 }
