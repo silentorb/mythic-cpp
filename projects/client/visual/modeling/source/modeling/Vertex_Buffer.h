@@ -16,6 +16,8 @@ namespace modeling {
       unsigned int vao = 0;
       const Vertex_Schema &vertex_schema;
       Vertex_Generator generator;
+      bool is_dynamic = false;
+      int vertex_count;
 
   public:
       Vertex_Buffer(const Vertex_Schema &vertex_schema, Vertex_Generator generator = nullptr);
@@ -27,7 +29,7 @@ namespace modeling {
 //      }
 
       virtual void load() override;
-      void load(int vertex_count, float *data);
+      void load(int new_vertex_count, float *data);
 
       virtual void release() override;
 
