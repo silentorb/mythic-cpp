@@ -47,7 +47,7 @@ namespace modeling {
     glow::check_error("Error storing mesh data.");
 
     if (vertex_count > 0) {
-      glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
+      glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_STATIC_DRAW);
       glow::check_error("Error storing mesh data.");
     }

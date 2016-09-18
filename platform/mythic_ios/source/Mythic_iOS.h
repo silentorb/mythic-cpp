@@ -3,7 +3,7 @@
 #define Mythic_iOS_hpp
 
 #import <UIKit/UIKit.h>
-#include "../../../projects/misc/platforming/source/platforming/Platform_Factory.h"
+#include "platforming/Platform_Factory.h"
 #include <framing/Mutable_Frame.h>
 #include <framing/Platform_Frame.h>
 #include <memory>
@@ -17,7 +17,6 @@ namespace clienting {
 
 namespace mythic {
     class Mythic_Engine;
-    class Platform_Factory;
 }
 
 namespace framing {
@@ -48,9 +47,9 @@ const string iOS_File_Loader(const string &path);
 //    virtual string load(string path);
 //};
 
-void initialize_mythic_engine(mythic::Mythic_Engine & engine);
+void initialize_mythic_engine(mythic::Mythic_Engine & engine, platforming::Platform_Factory &factory);
 
-class Mythic_iOS : public mythic::Platform_Factory {
+class Mythic_iOS : public platforming::Platform_Factory {
     EAGLContext* context;
     unique_ptr<mythic::Mythic_Engine> engine;
 OpenGL_View* view;
@@ -61,11 +60,11 @@ public:
 //    virtual shading::Shader_Loader *create_shader_loader() override;
     virtual haft::Input_Source *create_input_source(haft::Input_Configuration &config) override;
     virtual audio::Speaker *create_speaker() override;
-    virtual mythic::Shader_Processor create_shader_processor() override;
-    virtual mythic::File_Loader create_file_loader() override;
+    virtual platforming::Shader_Processor create_shader_processor() override;
+    virtual platforming::File_Loader create_file_loader() override;
     virtual const string get_storage_path() override;
 
-    void update();
+    void update(float delta);
 };
 
 #endif /* Mythic_iOS_hpp */

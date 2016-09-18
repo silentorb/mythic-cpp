@@ -136,6 +136,10 @@ namespace glow {
     cache::element_array_buffer = 0;
     glBindBuffer(GL_ARRAY_BUFFER, id);
   }
+    
+    unsigned int get_array_buffer() {
+        return cache::array_buffer;
+    }
 
   void set_element_array_buffer(unsigned int id) {
     if (cache::element_array_buffer == id)

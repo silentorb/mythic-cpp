@@ -98,22 +98,24 @@
 }
 
 - (void)setup_frame_buffer {
-//    GLuint framebuffer;
-//    glGenFramebuffers(1, &framebuffer);
-//    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-//    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-//                              GL_RENDERBUFFER, _color_render_buffer);
+
 }
 
 - (void)render:(CADisplayLink*)link {
-//     glClear(GL_COLOR_BUFFER_BIT);
-//   bool result = [_context presentRenderbuffer:GL_RENDERBUFFER];
-    mythic->update();
-    
+    CFTimeInterval current_time = [link timestamp];
+    if (previous_time == 0) {
+        previous_time = current_time;
+    }
+    else {
+        CFTimeInterval delta_time = current_time - previous_time;
+        float delta = (float)delta_time;
+        previous_time = current_time;
+        mythic->update(delta);
+    }
 }
 
 - (void)setup_display_link {
-    CADisplayLink* link = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+    link = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
     [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
@@ -122,18 +124,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        previous_time = 0;
         self.contentScaleFactor = [[UIScreen mainScreen] scale];
         [self setup_layer];
         [self setup_context];
         [self setup_render_buffer];
         [self setup_frame_buffer];
-        
-//        glClearColor(0, 1, 1, 1);
-//      glViewport(0, 0, self.frame.size.width, self.frame.size.height);
-        
         [self initialize_mythic];
         [self setup_display_link];
-         [self becomeFirstResponder];
+        [self becomeFirstResponder];
     }
     return self;
 }

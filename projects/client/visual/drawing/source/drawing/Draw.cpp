@@ -7,7 +7,7 @@
 #include "glow.h"
 #include "perspective/Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "glow_gl.h"
 using namespace modeling;
 using namespace texturing;
 
@@ -56,9 +56,10 @@ namespace drawing {
     flat_program = shader_manager.get_program_or_null("drawing.flat");
     if (!flat_program) {
       flat_program = &shader_manager.create_program_from_files("drawing.flat", "drawing/flat.vertex",
-                                                               "drawing/flat.fragment", {});
+                                                               "drawing/flat.fragment", {
+                                                               "position", "vertex_color"});
     }
-
+        
     square_effect = unique_ptr<Square_Effect>(new Square_Effect(*flat_program));
   }
 
