@@ -62,10 +62,6 @@ namespace bloom {
         first = false;
       }
 
-      if (space_outside && children.size() > 0) {
-        content_length += resolved_spacing * 2.0f;
-      }
-
       return content_length;
     }
 
@@ -73,10 +69,6 @@ namespace bloom {
       auto position = parent_position;
       vec2 child_position;
       vec2 child_dimensions;
-
-      if (space_outside && children.size() > 0) {
-        position += resolved_spacing;
-      }
 
       for (auto &child : children) {
         if (child->get_relative_bounds(child_position, child_dimensions)) {
