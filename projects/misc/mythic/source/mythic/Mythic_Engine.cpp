@@ -28,12 +28,14 @@ namespace mythic {
   }
 
   void Mythic_Engine::update() {
-    float delta = timer->update();
-    client->update();
-
-    update_delegate(delta);
+    update(timer->update());
   }
-
+    
+    void Mythic_Engine::update(float delta) {
+        client->update();
+        update_delegate(delta);
+    }
+    
   void Mythic_Engine::loop() {
     while (!client->is_closing()) {
       update();

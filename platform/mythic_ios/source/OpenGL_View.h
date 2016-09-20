@@ -15,6 +15,8 @@
     CAEAGLLayer* _eagl_layer;
     EAGLContext* _context;
     GLuint _color_render_buffer;
+    CADisplayLink* link;
+    CFTimeInterval previous_time;
     
 @public
     GLuint framebuffer;

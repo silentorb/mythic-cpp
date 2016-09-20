@@ -176,11 +176,11 @@ namespace archaeology {
       int vertex_index = next_value<int>(data, count_index, atoi);
       index_map[mesh.vertices[vertex_index]] = group;
     }
-    int index_buffer[8];
+    float index_buffer[8];
 
     for (auto polygon: mesh.polygons) {
       for (int i = 0; i < polygon->vertices.size(); ++i) {
-        index_buffer[i] = index_map[polygon->vertices[i]];
+        index_buffer[i] = (float)index_map[polygon->vertices[i]];
       }
       polygon->set_data(sculptor::geometry::Vertex_Data::group, (float *) &index_buffer, 1, 1);
     }

@@ -185,7 +185,7 @@ context(context), view(view) {
 
     engine->get_client().load();
 
-        initialize_mythic_engine(*engine);
+        initialize_mythic_engine(*engine, *this);
     }
     catch(std::exception ex) {
         @throw [NSException exceptionWithName:@"Mythic Error"
@@ -214,11 +214,11 @@ audio::Speaker *Mythic_iOS::create_speaker() {
   return speaker;
 }
 
-void Mythic_iOS::update() {
-    engine->update();
+void Mythic_iOS::update(float delta) {
+    engine->update(delta);
 }
 
-mythic::Shader_Processor Mythic_iOS::create_shader_processor() {
+platforming::Shader_Processor Mythic_iOS::create_shader_processor() {
   return [](shading::Shader_Type type, const string &source) {
     auto included = shading::process_includes(source, type, resourceful::File_Loader(iOS_File_Loader));
     return string("precision highp float;\n\n") + shading::olden(included, type);
@@ -227,7 +227,7 @@ mythic::Shader_Processor Mythic_iOS::create_shader_processor() {
   };
 }
 
-mythic::File_Loader Mythic_iOS::create_file_loader() {
+platforming::File_Loader Mythic_iOS::create_file_loader() {
   return iOS_File_Loader;
 }
 

@@ -40,6 +40,7 @@ namespace mythic {
       }
 
       void update();
+      void update(float delta);
       void loop();
 
       clienting::Client &get_client() const {
