@@ -83,6 +83,8 @@ add_subdirectory(projects/client/general/client)
 
 add_subdirectory(projects/generation/architect)
 add_subdirectory(projects/server/vineyard)
+add_subdirectory(projects/server/sqling)
+add_subdirectory(projects/server/ground)
 
 add_subdirectory(projects/misc/platforming)
 add_subdirectory(projects/misc/mythic)
@@ -92,7 +94,8 @@ add_subdirectory(projects/client/gui/bloom_scenery)
 add_subdirectory(projects/client/gui/bloom_texturing)
 add_subdirectory(projects/client/gui/bloom_lookinglass)
 
-add_subdirectory(projects/misc/achieving)
+add_subdirectory(projects/misc/achievements/achieving)
+add_subdirectory(projects/misc/achievements/achieving_sqling)
 
 if (MINGW)
 #  add_subdirectory(projects/client/gui/bloom/test)
