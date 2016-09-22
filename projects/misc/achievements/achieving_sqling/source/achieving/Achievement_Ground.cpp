@@ -12,18 +12,6 @@ namespace achieving {
   Achievement_Ground::Achievement_Ground(sqling::Database &database, Achievement_Collection &achievements) :
     database(database), achievements(achievements) {
     create_table();
-    auto setter = [this](const Achievement &achievement, int progress) {
-      Connection connection(this->database);
-      Statement statement("REPLACE INTO achievement (key, progress) (:key, :progres);", connection);
-      auto key_index = statement.get_bind_parameter_index(":key");
-      auto progress_index = statement.get_bind_parameter_index(":progress");
-      statement.bind_string(key_index, achievement.get_key());
-      statement.bind_int(progress_index, progress);
-      statement.step();
-    };
-    for (auto &achievement: achievements) {
-      achievement.second->set_progress_setter(setter);
-    }
     load();
   }
 
@@ -36,7 +24,7 @@ namespace achieving {
       auto &achievement = achievements[key];
       auto progress = statement.get_int(1);
       if (progress > achievement->get_progress())
-        achievement->set_progress(progress, false);
+        achievement->set_progress(progress);
     }
   }
 
@@ -45,5 +33,23 @@ namespace achieving {
     connection.execute(
       "CREATE TABLE IF NOT EXISTS achievement(key UNIQUE, progress);"
     );
+  }
+
+  void Achievement_Ground::save_achievement(const Achievement &achievement) {
+    Connection connection(database);
+    Statement statement("REPLACE INTO achievement (key, progress) VALUES (:key, :progress);", connection);
+    auto key_index = statement.get_bind_parameter_index(":key");
+    auto progress_index = statement.get_bind_parameter_index(":progress");
+    statement.bind_string(key_index, achievement.get_key());
+    statement.bind_int(progress_index, achievement.get_progress());
+    statement.step();
+  }
+
+  void Achievement_Ground::reset_achievements() {
+    Connection connection(database);
+    connection.execute("DELETE FROM achievement;");
+    for (auto &achievement: achievements) {
+      achievement.second->set_progress(0);
+    }
   }
 }

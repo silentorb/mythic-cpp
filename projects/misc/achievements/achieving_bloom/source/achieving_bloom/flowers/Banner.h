@@ -18,7 +18,7 @@ namespace achieving_bloom {
         void initialize_appearance(const achieving::Achievement &achievement);
 
     public:
-        Banner(const achieving::Achievement &achievement);
+        Banner(const achieving::Achievement &achievement, const std::function<void()> &on_finished);
         virtual void update(float delta) override;
     };
   }

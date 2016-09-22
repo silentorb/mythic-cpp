@@ -17,5 +17,7 @@ namespace achieving {
 
   public:
       Achievement_Ground(sqling::Database &database, Achievement_Collection &achievements);
+      void save_achievement(const Achievement &achievement);
+      void reset_achievements();
   };
 }

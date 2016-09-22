@@ -6,7 +6,7 @@ using namespace bloom;
 
 namespace achieving_bloom {
 
-  void Banner_Manager::add_achievement(achieving::Achievement &achievement) {
+  void Banner_Manager::add_achievement(const achieving::Achievement &achievement) {
     achievements.push(&achievement);
   }
 
@@ -14,7 +14,9 @@ namespace achieving_bloom {
     if (!current_banner && achievements.size()) {
       auto achievement = achievements.front();
       achievements.pop();
-      current_banner = banner_creator(*achievement);
+      current_banner = banner_creator(*achievement, [this]() {
+        current_banner = nullptr;
+      });
       root.add_child(current_banner);
     }
   }

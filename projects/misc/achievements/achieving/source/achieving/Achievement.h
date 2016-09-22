@@ -7,11 +7,11 @@ namespace achieving {
 
   class Achievement;
 
-  typedef std::function<void(const Achievement &, int)> Achievement_Progress_Setter;
+//  typedef std::function<void(const Achievement &, int)> Achievement_Progress_Setter;
 
   class Achievement {
       Achievement_Definition definition;
-      Achievement_Progress_Setter progress_setter = nullptr;
+//      Achievement_Progress_Setter progress_setter = nullptr;
       int progress = 0;
 
   public:
@@ -27,20 +27,19 @@ namespace achieving {
         return progress;
       }
 
-      bool is_completed() const {
+      bool is_complete() const {
         return progress == definition.get_range();
       }
 
-      void set_progress_setter(const Achievement_Progress_Setter &setter) {
-        progress_setter = setter;
+      void complete(){
+        progress = definition.get_range();
       }
+//      void set_progress_setter(const Achievement_Progress_Setter &setter) {
+//        progress_setter = setter;
+//      }
 
-      void set_progress(int value, bool serialize = true) {
-        if (progress != value) {
-          progress = value;
-          if (serialize)
-            progress_setter(*this, value);
-        }
+      void set_progress(int value) {
+        progress = value;
       }
 
       const std::string &get_key() const {
