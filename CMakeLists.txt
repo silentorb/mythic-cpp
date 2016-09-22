@@ -100,6 +100,7 @@ endif ()
 
 add_subdirectory(projects/misc/achievements/achieving)
 add_subdirectory(projects/misc/achievements/achieving_sqling)
+add_subdirectory(projects/misc/achievements/achieving_bloom)
 
 if (MINGW)
   #  add_subdirectory(projects/client/gui/bloom/test)

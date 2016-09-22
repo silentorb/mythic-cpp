@@ -15,9 +15,6 @@ namespace achieving {
       int progress = 0;
 
   public:
-//      Achievement(const Achievement_Definition &definition,
-//                  const Achievement_Progress_Setter &progress_setter, int progress = 0) :
-//        definition(definition), progress_setter(progress_setter), progress(progress) {}
       Achievement() {}
 
       Achievement(const Achievement_Definition &definition, int progress = 0) :
@@ -25,9 +22,6 @@ namespace achieving {
 
       Achievement(const std::string &key, const std::string &title, int range = 1) :
         definition({key, title, range}) {}
-
-//      Achievement(const Achievement &other) :
-//        Achievement(other.definition, other.progress_setter, other.progress) {}
 
       int get_progress() const {
         return progress;

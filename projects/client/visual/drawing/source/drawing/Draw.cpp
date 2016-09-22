@@ -8,10 +8,17 @@
 #include "perspective/Viewport.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "glow_gl.h"
+
 using namespace modeling;
 using namespace texturing;
 
 namespace drawing {
+
+  static Draw *instance;
+
+  Draw &Draw::get_instance() {
+    return *instance;;
+  }
 
   Draw::Draw(lookinglass::House &house) :
     house(house),
@@ -22,7 +29,7 @@ namespace drawing {
       }
     )),
     image_vertex_schema(new Vertex_Schema({4})) {
-
+    instance = this;
     auto &shader_manager = house.get_shader_manager();
 
     float solid_vertices[] = {
@@ -57,9 +64,9 @@ namespace drawing {
     if (!flat_program) {
       flat_program = &shader_manager.create_program_from_files("drawing.flat", "drawing/flat.vertex",
                                                                "drawing/flat.fragment", {
-                                                               "position", "vertex_color"});
+                                                                 "position", "vertex_color"});
     }
-        
+
     square_effect = unique_ptr<Square_Effect>(new Square_Effect(*flat_program));
   }
 

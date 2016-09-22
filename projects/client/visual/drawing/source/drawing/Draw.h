@@ -90,7 +90,8 @@ namespace drawing {
         return house;
       }
 
-      void draw_square(float left, float top, float width, float height, modeling::Draw_Method draw_method, Square_Effect &effect,
+      void draw_square(float left, float top, float width, float height, modeling::Draw_Method draw_method,
+                       Square_Effect &effect,
                        modeling::Renderable_Mesh &mesh);
 
       void draw_pixel_square(const glm::vec2 &position, const glm::vec2 &dimensions, bool solid,
@@ -99,6 +100,7 @@ namespace drawing {
       void draw_square(float left, float top, float width, float height, const vec4 &color, bool solid);
       void set_depth(bool value);
       const framing::Frame_Info &get_frame() const;
+      static Draw &get_instance();
   };
 }
 
