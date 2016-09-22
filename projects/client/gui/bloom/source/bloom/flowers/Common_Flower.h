@@ -10,6 +10,7 @@ namespace bloom {
     class BLOOM_EXPORT Common_Flower : no_copy, public virtual Flower {
     protected:
         Parent *parent = nullptr;
+        Axis_Values bounds;
 
     public:
         unsigned long debug_id = 0;

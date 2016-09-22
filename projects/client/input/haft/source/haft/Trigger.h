@@ -7,12 +7,14 @@
 using namespace std;
 
 namespace haft {
+
 	class MYTHIC_EXPORT Trigger {
       string name;
       int id;
       Action *action;
 			Trigger& operator=(const Trigger&) = delete;
 			Trigger(Trigger const &) = delete;
+
 	public:
       Trigger(const string &name, int id = 0)
         : name(name), id(id), action(nullptr) { }

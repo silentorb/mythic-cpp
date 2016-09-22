@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common_Flower.h"
+#include "Endpoint.h"
 #include <string>
 #include <glm/vec4.hpp>
 
@@ -15,7 +16,7 @@ namespace typography {
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Text : public Common_Flower {
+    class BLOOM_EXPORT Text : public Common_Flower, Endpoint {
         float size;
         bool dimensions_changed = true;
         unique_ptr<typography::Text> text;
@@ -56,9 +57,9 @@ namespace bloom {
 
         virtual void update(float delta) override { }
 
-        virtual const Axis_Values &get_absolute_bounds() const override {
-          throw runtime_error("Not supported.");
-        }
+//        virtual const Axis_Values &get_absolute_bounds() const override {
+//          throw runtime_error("Not supported.");
+//        }
 
     };
   }

@@ -35,10 +35,6 @@ namespace bloom {
 
     }
 
-    const Axis_Values &Interactive::get_absolute_bounds() const {
-      throw runtime_error("Not supported.");
-    }
-
     bool Interactive::check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
       if (singer->has_listeners(event_type) && point_is_inside(get_parent(), point)) {
         singer->sing(event_type, this);

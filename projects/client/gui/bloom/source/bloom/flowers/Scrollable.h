@@ -27,7 +27,6 @@ namespace bloom {
         float boundary_length;
         Direction direction;
         Mode mode = Mode::stationary;
-
         void on_drag();
         void on_release();
         void update_glide(float delta);
@@ -54,6 +53,7 @@ namespace bloom {
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual void update(float delta) override;
+        virtual const Axis_Values &get_absolute_bounds() const override;
     };
   }
 }

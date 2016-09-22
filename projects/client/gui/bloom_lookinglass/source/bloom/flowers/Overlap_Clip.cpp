@@ -10,7 +10,6 @@ namespace bloom {
   namespace flowers {
 
     void Overlap_Clip::render() {
-      auto &bounds = get_absolute_bounds();
       auto previous_viewport = Viewport::get_active_viewport();
       auto &converter = Garden::get_instance().get_converter();
       auto pos_y = converter.get_pixel_dimensions().y - bounds.position.y - bounds.dimensions.y;
@@ -38,5 +37,14 @@ namespace bloom {
 
     }
 
+    vec2 Overlap_Clip::update_dimensions(const glm::vec2 &parent_dimensions) {
+      bounds.dimensions = parent_dimensions;
+      return Single_Parent::update_dimensions(parent_dimensions);
+    }
+
+    void Overlap_Clip::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+      bounds.position = parent_position;
+      Single_Parent::update_position(parent_position, parent_dimensions);
+    }
   }
 }

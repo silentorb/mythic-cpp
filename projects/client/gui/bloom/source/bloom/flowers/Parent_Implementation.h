@@ -31,6 +31,8 @@ namespace bloom {
 
         static void initialize_child(Flower *child, Parent *parent);
         virtual void remove_child(Flower *child) override;
+        virtual int get_child_count() override;
+        virtual Flower *get_child(int index) override;
     };
 
   }

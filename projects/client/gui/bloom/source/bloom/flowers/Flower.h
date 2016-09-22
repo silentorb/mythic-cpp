@@ -36,6 +36,8 @@ namespace bloom {
         virtual void remove() = 0;
         virtual Flower *get_parent() const = 0;
         virtual void set_parent(Parent *parent) = 0;
+        virtual int get_child_count() = 0;
+        virtual Flower *get_child(int index) = 0;
     };
 
     inline Flower::~Flower() {}

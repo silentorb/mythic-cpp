@@ -22,6 +22,8 @@ namespace bloom {
         virtual void clear() override;
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
+        virtual int get_child_count() override;
+        virtual Flower *get_child(int index) override;
     };
   }
 }

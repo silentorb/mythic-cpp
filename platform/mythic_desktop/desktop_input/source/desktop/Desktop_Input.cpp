@@ -1,4 +1,6 @@
 #include <SDL2/SDL_mouse.h>
+#include <SDL2/SDL_scancode.h>
+#include <SDL2/SDL_keyboard.h>
 #include "Desktop_Input.h"
 #include "Device_Type.h"
 #include "Gamepad_Trigger.h"
@@ -13,7 +15,9 @@ namespace desktop {
   }
 
   void Desktop_Input::initialize_keyboard() {
-    keyboard = new Device("keyboard");
+    keyboard = new Device("keyboard", {
+      new Trigger("F9", SDL_SCANCODE_F9),
+    });
     config.add_device(keyboard);
   }
 
@@ -63,7 +67,13 @@ namespace desktop {
   }
 
   void Desktop_Input::update_keyboard(Input_State &state) {
+    const Uint8 *scancode_state = SDL_GetKeyboardState(NULL);
 
+    for (auto trigger: keyboard->get_active_triggers()) {
+      if (scancode_state[trigger->get_id()]) {
+        state.add_event(*trigger->get_action());
+      }
+    }
   }
 
   void Desktop_Input::update_mouse(Input_State &state) {

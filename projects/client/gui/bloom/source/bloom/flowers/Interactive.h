@@ -3,6 +3,7 @@
 #include "Common_Flower.h"
 #include "Events.h"
 #include "Parent_Implementation.h"
+#include "Endpoint.h"
 
 namespace songbird {
   class Singer;
@@ -11,7 +12,7 @@ namespace songbird {
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Interactive : public Common_Flower {
+    class BLOOM_EXPORT Interactive : public Common_Flower, Endpoint {
         unique_ptr<songbird::Singer> singer;
 
     public:
@@ -23,7 +24,6 @@ namespace bloom {
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual void update(float delta) override;
         virtual void render() override;
-        virtual const Axis_Values &get_absolute_bounds() const override;
         void click(Flower_Delegate action);
         bool static point_is_inside(const Flower *flower, const glm::vec2 &point);
 

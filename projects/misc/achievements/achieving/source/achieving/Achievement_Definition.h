@@ -10,6 +10,9 @@ namespace achieving {
       int range;
 
   public:
+      Achievement_Definition() :
+        key(""), title(""), range(1) {}
+
       Achievement_Definition(const std::string &key, const std::string &title, int range = 1) :
         key(key), title(title), range(range) {}
 

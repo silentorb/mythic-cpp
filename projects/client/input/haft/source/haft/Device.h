@@ -14,9 +14,11 @@ namespace haft {
       vector<unique_ptr<Trigger>> triggers;
       Device &operator=(const Device &) = delete;
       Device(Device const &) = delete;
+      vector<Trigger *> active_triggers;
+
   public:
 
-      Device(const string &name) : name(name) { }
+      Device(const string &name) : name(name) {}
 
       Device(const string &name, initializer_list<Trigger *> triggers);
 
@@ -37,17 +39,24 @@ namespace haft {
       void assign(int index, Action &action) {
         auto &trigger = *triggers[index].get();
         trigger.set_action(action);
+        active_triggers.push_back(&trigger);
       }
 
       void assign(const string trigger_name, Action &action) {
         auto trigger = get_trigger(trigger_name);
-        if (trigger)
+        if (trigger) {
           trigger->set_action(action);
+          active_triggers.push_back(trigger);
+        }
       }
 
       void assign(Trigger &trigger, Action &action) {
         trigger.set_action(action);
-        //        action.add_trigger(trigger);
+        active_triggers.push_back(&trigger);
+      }
+
+      const std::vector<Trigger *> get_active_triggers() const {
+        return active_triggers;
       }
   };
 

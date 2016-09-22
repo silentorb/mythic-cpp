@@ -22,7 +22,7 @@ namespace achieving {
       statement.step();
     };
     for (auto &achievement: achievements) {
-      achievement.second.set_progress_setter(setter);
+      achievement.second->set_progress_setter(setter);
     }
     load();
   }
@@ -35,8 +35,8 @@ namespace achieving {
       auto key = statement.get_string(0);
       auto &achievement = achievements[key];
       auto progress = statement.get_int(1);
-      if (progress > achievement.get_progress())
-        achievement.set_progress(progress, false);
+      if (progress > achievement->get_progress())
+        achievement->set_progress(progress, false);
     }
   }
 

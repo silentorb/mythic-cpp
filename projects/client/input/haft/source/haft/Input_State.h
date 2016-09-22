@@ -32,14 +32,6 @@ namespace haft {
         events.push_back(unique_ptr<Event>(new Event(action, value)));
       }
 
-//      Gesture &get_gesture(int index) const {
-//        return *gestures[index];
-//      }
-//
-//      void add_gesture(Gesture *gesture) {
-//        gestures.push_back(unique_ptr<Gesture>(gesture));
-//      }
-
       Event *get_event(const Action &action) const {
         for (auto &event: events) {
           if (&event->get_action() == &action)

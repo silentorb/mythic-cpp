@@ -43,9 +43,9 @@ namespace bloom {
       const float margin = 25;
 
 //      if (mode == Mode::dragging) {
-        range += margin * 2;
-        minimum -= margin;
-        maximum += margin;
+      range += margin * 2;
+      minimum -= margin;
+      maximum += margin;
 //      }
 
       if (offset.y < minimum) {
@@ -123,6 +123,7 @@ namespace bloom {
     }
 
     vec2 Scrollable::update_dimensions(const glm::vec2 &parent_dimensions) {
+      bounds.dimensions = parent_dimensions;
       auto content_dimensions = Group::update_dimensions(ivec2(parent_dimensions.x, 0));
       content_length = direction == Direction::horizontal
                        ? content_dimensions.x
@@ -136,6 +137,7 @@ namespace bloom {
     }
 
     void Scrollable::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
+      bounds.position = parent_position;
       auto position = parent_position + offset;
       Group::update_position(position, get_content_dimensions(parent_dimensions));
     }
@@ -147,6 +149,10 @@ namespace bloom {
         update_rebound(delta);
 
       Group::update(delta);
+    }
+
+    const Axis_Values &Scrollable::get_absolute_bounds() const {
+      return bounds;
     }
   }
 }

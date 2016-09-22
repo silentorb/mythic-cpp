@@ -60,6 +60,14 @@ namespace bloom {
       child.reset();
     }
 
+    int Single_Parent::get_child_count() {
+      return child ? 1 : 0;
+    }
+
+    Flower *Single_Parent::get_child(int index) {
+      return child.get();
+    }
+
   }
 }
 

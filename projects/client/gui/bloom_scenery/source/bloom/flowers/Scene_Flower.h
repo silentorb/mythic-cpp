@@ -1,29 +1,30 @@
 #pragma once
 
 #include <bloom/flowers/Common_Flower.h>
+#include <bloom/flowers/Endpoint.h>
 
 namespace scenery {
   class Scene;
 }
 
 namespace bloom {
-namespace flowers {
+  namespace flowers {
 
-  class MYTHIC_EXPORT Scene_Flower : public flowers::Common_Flower {
-      shared_ptr<scenery::Scene> scene;
+    class MYTHIC_EXPORT Scene_Flower : public flowers::Common_Flower, flowers::Endpoint {
+        shared_ptr<scenery::Scene> scene;
 
-  public:
-      Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent);
-      Scene_Flower(Parent *parent);
-      ~Scene_Flower();
+    public:
+        Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent);
+        Scene_Flower(Parent *parent);
+        ~Scene_Flower();
 
-      virtual void render() override;
+        virtual void render() override;
 
-      const scenery::Scene &get_scene() const {
-        return *scene;
-      }
+        const scenery::Scene &get_scene() const {
+          return *scene;
+        }
 
-      void set_camera_angle(float degrees);
-  };
-}
+        void set_camera_angle(float degrees);
+    };
+  }
 }

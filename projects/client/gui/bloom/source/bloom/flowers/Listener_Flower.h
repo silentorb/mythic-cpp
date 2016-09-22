@@ -2,11 +2,12 @@
 
 #include <songbird/Listener.h>
 #include "Common_Flower.h"
+#include "Endpoint.h"
 
 namespace bloom {
   namespace flowers {
   
-    class Listener_Flower : public Common_Flower {
+    class Listener_Flower : public Common_Flower, Endpoint {
         songbird::Listener listener;
 
     public:

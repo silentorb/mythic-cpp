@@ -60,5 +60,13 @@ namespace bloom {
         }
       }
     }
+
+    int Parent_Implementation::get_child_count() {
+      return children.size();
+    }
+
+    Flower *Parent_Implementation::get_child(int index) {
+      return children [index].get();
+    }
   }
 }

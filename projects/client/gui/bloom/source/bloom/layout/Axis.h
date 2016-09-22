@@ -27,9 +27,13 @@ namespace bloom {
         return value.x;
       }
 
-//      static void set(vec2 &target, float value) {
-//        target.x = value;
-//      }
+      static void set(vec2 &target, float value) {
+        target.x = value;
+      }
+
+      static void modify(vec2 &target, float value) {
+        target.x += value;
+      }
 
       static const float get_perpendicular(const vec2 &value) {
         return value.y;
@@ -104,10 +108,13 @@ namespace bloom {
         return 1;
       }
 
-//      static void set(vec2 &target, float value) {
-//        target.y = value;
-//      }
+      static void set(vec2 &target, float value) {
+        target.y = value;
+      }
 
+      static void modify(vec2 &target, float value) {
+        target.y += value;
+      }
 //      static const Parent_Dimension get(const Parent_Dimensions & parent_dimensions) {
 //        return parent_dimensions.y;
 //      }

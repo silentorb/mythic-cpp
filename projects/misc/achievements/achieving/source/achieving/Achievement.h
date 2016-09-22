@@ -10,7 +10,7 @@ namespace achieving {
   typedef std::function<void(const Achievement &, int)> Achievement_Progress_Setter;
 
   class Achievement {
-      const Achievement_Definition definition;
+      Achievement_Definition definition;
       Achievement_Progress_Setter progress_setter = nullptr;
       int progress = 0;
 
@@ -18,6 +18,7 @@ namespace achieving {
 //      Achievement(const Achievement_Definition &definition,
 //                  const Achievement_Progress_Setter &progress_setter, int progress = 0) :
 //        definition(definition), progress_setter(progress_setter), progress(progress) {}
+      Achievement() {}
 
       Achievement(const Achievement_Definition &definition, int progress = 0) :
         definition(definition), progress(progress) {}
@@ -50,6 +51,10 @@ namespace achieving {
 
       const std::string &get_key() const {
         return definition.get_key();
+      }
+
+      const std::string &get_title() const {
+        return definition.get_title();
       }
   };
 }
