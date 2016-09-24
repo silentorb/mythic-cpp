@@ -11,7 +11,7 @@ namespace texturing {
   class Texture;
 }
 namespace scenery {
-  class Spatial_Effect;
+  class Complex_Spatial_Effect;
 }
 using namespace std;
 using namespace glm;
@@ -23,12 +23,12 @@ namespace scenery {
   class MYTHIC_EXPORT Model : public Simple_Element {
   protected:
       Mesh_Data *mesh_data;
-      Spatial_Effect *effect;
+      Complex_Spatial_Effect *effect;
       texturing::Texture *texture = nullptr;
       vec4 color = vec4(1);
 
   public:
-      Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent = nullptr);
+      Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent = nullptr);
 
       virtual ~Model() {}
 
@@ -55,7 +55,7 @@ namespace scenery {
         Model::texture = texture;
       }
 
-      void set_effect(Spatial_Effect &effect) {
+      void set_effect(Complex_Spatial_Effect &effect) {
         this->effect = &effect;
       }
 
@@ -63,7 +63,7 @@ namespace scenery {
         return mesh_data;
       }
 
-      Spatial_Effect *get_effect() const {
+      Complex_Spatial_Effect *get_effect() const {
         return effect;
       }
 

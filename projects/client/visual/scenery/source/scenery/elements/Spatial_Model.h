@@ -10,7 +10,7 @@ namespace scenery {
       Model model;
 
   public:
-      Spatial_Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent = nullptr);
+      Spatial_Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent = nullptr);
       ~Spatial_Model() {}
 
       Model &get_model() {

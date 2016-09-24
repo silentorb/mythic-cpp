@@ -10,9 +10,6 @@
 namespace modeling {
   class Mesh_Data;
 }
-//namespace glow {
-//  struct Blend_Function;
-//}
 
 using namespace shading;
 using namespace glm;
@@ -22,11 +19,10 @@ namespace scenery {
 
   const float OPACITY_NOT_SET = -1;
 
-  class MYTHIC_EXPORT Spatial_Effect : public Effect {
+  class MYTHIC_EXPORT Complex_Spatial_Effect : public Effect {
       Draw_Method draw_method;
       vec4 color = vec4(1);
       glow::Blend_Function blend_function;
-//      void activate(mat4 &transform, bool has_opacity, float opacity);
 
   protected:
       Vector4_Property &color_property;
@@ -37,7 +33,7 @@ namespace scenery {
                                     const vec4 &color);
 
   public:
-      Spatial_Effect(Program &program);
+      Complex_Spatial_Effect(Program &program);
       void activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, vec4 &color);
 
       Draw_Method get_draw_method() { return draw_method; }

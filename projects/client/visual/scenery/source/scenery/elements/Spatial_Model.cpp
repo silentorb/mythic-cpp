@@ -2,7 +2,7 @@
 
 namespace scenery {
 
-  Spatial_Model::Spatial_Model(Mesh_Data *mesh_data, Spatial_Effect *effect, Parent *parent) :
+  Spatial_Model::Spatial_Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent) :
     Spatial(parent), model(mesh_data, effect) {
   }
 

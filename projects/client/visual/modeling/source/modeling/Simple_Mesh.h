@@ -18,15 +18,17 @@ namespace modeling {
       int vertex_count;
       float *data;
       const Vertex_Schema &vertex_schema;
+      bool is_dynamic = false;
 
   public:
       Simple_Mesh(float *data, int vertex_count, const Vertex_Schema &vertex_schema);
       Simple_Mesh(const Vertex_Schema &vertex_schema);
       ~Simple_Mesh();
       virtual void render(Draw_Method mode) override;
+      void initialize();
 
       // Only needed for dynamic meshes
-      void load(float *data, int vertex_count);
+      void replace(float *data, int vertex_count);
 
       virtual void load() override;
       virtual void release() override;

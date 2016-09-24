@@ -20,6 +20,13 @@ namespace modeling {
 //    delete data;
   }
 
+  void Simple_Mesh::initialize() {
+    glGenBuffers(1, &vbo);
+    glow::set_array_buffer(vbo);
+    glow::check_error("Error storing mesh data.");
+    vao = vertex_schema.create_vao();
+  }
+
   void Simple_Mesh::render(Draw_Method mode) {
     glBindVertexArray(vao);
     GLenum _mode;
@@ -42,29 +49,30 @@ namespace modeling {
   }
 
   void Simple_Mesh::load() {
-    glGenBuffers(1, &vbo);
-    glow::set_array_buffer(vbo);
-    glow::check_error("Error storing mesh data.");
+    initialize();
 
     if (vertex_count > 0) {
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_STATIC_DRAW);
       glow::check_error("Error storing mesh data.");
     }
-
-    vao = vertex_schema.create_vao();
   }
 
-  void Simple_Mesh::load(float *data, int vertex_count) {
+  void Simple_Mesh::replace(float *data, int vertex_count) {
+    glow::set_array_buffer(vbo);
+    if (this->vertex_count == 0) {
+      glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
+                   GL_DYNAMIC_DRAW);
+    }
+    else {
+      glBufferSubData(GL_ARRAY_BUFFER, 0, vertex_count * vertex_schema.get_vertex_size(), data);
+    }
     this->data = data;
     this->vertex_count = vertex_count;
 
-    glow::set_array_buffer(vbo);
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size() * sizeof(float), data,
-                 GL_STATIC_DRAW);
-
     glow::check_error("Error storing mesh data.");
   }
+
 
   void Simple_Mesh::release() {
     if (!vao)
