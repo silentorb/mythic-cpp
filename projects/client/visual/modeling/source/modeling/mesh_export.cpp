@@ -69,12 +69,6 @@ namespace modeling {
         counts,
         has_opacity
       );
-
-//      result.polygon_count = mesh.polygons.size();
-//      result.vertex_count = vertex_count;
-//      result.vertices = shared_ptr<float>(vertices);
-//      result.offsets = offsets;
-//      result.counts = counts;
     }
 
     Mesh_Data *output(const Basic_Mesh &mesh, Vertex_Schema &vertex_schema, bool support_lines) {
