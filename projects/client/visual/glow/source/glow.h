@@ -62,5 +62,7 @@ namespace glow {
 
   void set_array_buffer(unsigned int id);
   unsigned int get_array_buffer();
+    void set_vertex_array(unsigned int id);
+    unsigned int get_vertex_array();
   void set_element_array_buffer(unsigned int id);
 }

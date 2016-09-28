@@ -65,6 +65,9 @@ namespace modeling {
     // vbo and then generating a new one results in corrupting the new vbo.
     if (glow::get_array_buffer() == vbo)
       glow::set_array_buffer(0);
+      
+      if (glow::get_vertex_array() == vao)
+          glow::set_vertex_array(0);
 
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
@@ -74,7 +77,7 @@ namespace modeling {
 
   void Vertex_Buffer::activate() {
     glow::check_error("binding");
-    glBindVertexArray(vao);
+    glow::set_vertex_array(vao);
     glow::check_error("bound");
   }
 

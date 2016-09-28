@@ -33,7 +33,7 @@ namespace typography {
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
 
-    glBindVertexArray(vao);
+    glow::set_vertex_array(vao);
     glow::set_array_buffer(vbo);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 4, GL_FLOAT, false, 4 * sizeof(float), nullptr);
@@ -118,7 +118,7 @@ namespace typography {
   void Text::prepare() {
     calculate();
 
-    glBindVertexArray(vao);
+    glow::set_vertex_array(vao);
     glow::set_array_buffer(vbo);
     auto without_spaces = string_replace(content, " ", "");
     auto &characters = font.get_characters();
@@ -216,11 +216,11 @@ namespace typography {
 
     font.activate();
 
-    glBindVertexArray(vao);
+    glow::set_vertex_array(vao);
     glow::check_error("rendering text");
 
     glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
-    glBindVertexArray(0);
+    glow::set_vertex_array(0);
 //    glBindTexture(GL_TEXTURE_2D, 0);
     glow::check_error("rendering text");
   }

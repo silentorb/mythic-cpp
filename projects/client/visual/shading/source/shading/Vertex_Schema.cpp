@@ -38,7 +38,7 @@ namespace shading {
     unsigned int schema = vertex_size;
     int offset = 0;
     glGenVertexArrays(1, &schema);
-    glBindVertexArray(schema);
+    glow::set_vertex_array(schema);
     glow::check_error("creating vao");
 
     const int stride = vertex_size;

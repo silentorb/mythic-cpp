@@ -81,4 +81,20 @@
     return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;
 }
 
+-(void)will_resign_active {
+    [self.view will_resign_active];
+}
+
+-(void)will_enter_background {
+        [self.view will_enter_background];
+}
+
+-(void)will_enter_foreground {
+        [self.view will_enter_foreground];
+}
+
+-(void)did_become_active {
+        [self.view did_become_active];
+}
+
 @end

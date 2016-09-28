@@ -68,6 +68,8 @@ namespace modeling {
     }
 
     vertex_buffer.load(vertex_count, data.vertices.get());
+      element_buffer.activate();
+            glow::set_vertex_array(0);
   }
 
   void Mesh_Data::release() {
@@ -95,11 +97,12 @@ namespace modeling {
         }
       }
       else {
-        element_buffer.activate();
+        //element_buffer.activate();
         glDrawElements(GL_TRIANGLES, get_index_count(), GL_UNSIGNED_SHORT, nullptr);
       }
     }
 
+      glow::set_vertex_array(0);
     glow::check_error("drawing mesh");
   }
 }

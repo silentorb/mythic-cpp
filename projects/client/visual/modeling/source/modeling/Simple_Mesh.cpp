@@ -29,7 +29,7 @@ namespace modeling {
   }
 
   void Simple_Mesh::render(Draw_Method mode) {
-    glBindVertexArray(vao);
+      glow::set_vertex_array(vao);
     GLenum _mode;
     switch (mode) {
       case (Draw_Method::triangles):
@@ -63,7 +63,7 @@ namespace modeling {
 
   void Simple_Mesh::replace(float *data, int vertex_count) {
     glow::set_array_buffer(vbo);
-    glBindVertexArray(vao);
+    glow::set_vertex_array(vao);
     if (this->vertex_count == 0) {
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_DYNAMIC_DRAW);

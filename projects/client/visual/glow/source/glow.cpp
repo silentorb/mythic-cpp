@@ -31,6 +31,7 @@ namespace glow {
 
     unsigned int default_framebuffer = 0;
     unsigned int array_buffer = 0;
+      unsigned int vertex_array = 0;
     unsigned int element_array_buffer = 0;
   }
 
@@ -140,6 +141,19 @@ namespace glow {
     unsigned int get_array_buffer() {
         return cache::array_buffer;
     }
+    
+    void set_vertex_array(unsigned int id) {
+        if (cache::vertex_array == id)
+            return;
+        
+        cache::vertex_array = id;
+        glBindVertexArray(id);
+    }
+    
+    unsigned int get_vertex_array() {
+        return cache::vertex_array;
+    }
+    
 
   void set_element_array_buffer(unsigned int id) {
     if (cache::element_array_buffer == id)

@@ -172,4 +172,20 @@
     return false;
 }
 
+-(void)will_resign_active {
+    link.paused = true;
+    //Call glFinish() here if any OpenGL resources are ever manually deleted through this function.
+}
+
+-(void)will_enter_background {
+    
+}
+
+-(void)will_enter_foreground {
+    
+}
+
+-(void)did_become_active {
+    link.paused = false;
+}
 @end

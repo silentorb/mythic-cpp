@@ -23,4 +23,9 @@
     GLuint sample_framebuffer, color_buffer;
 }
 
+-(void) will_resign_active;
+-(void) will_enter_background;
+-(void) will_enter_foreground;
+-(void) did_become_active;
+
 @end
