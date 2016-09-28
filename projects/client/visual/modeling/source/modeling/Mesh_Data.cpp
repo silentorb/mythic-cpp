@@ -104,7 +104,8 @@ namespace modeling {
         }
       }
       else {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, get_ebo());
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, get_ebo());
+          glow::set_element_array_buffer(ebo);
         glDrawElements(GL_TRIANGLES, get_index_count(), GL_UNSIGNED_SHORT, nullptr);
       }
     }
