@@ -28,7 +28,7 @@ namespace bloom {
                         converter.convert_to_units(bounds.position.y),
                         converter.convert_to_units(bounds.dimensions.x),
                         converter.convert_to_units(bounds.dimensions.y),
-                        modeling::Draw_Method::triangles, effect, mesh);
+                        modeling::Draw_Method::triangle_fan, effect, mesh);
     }
   }
 

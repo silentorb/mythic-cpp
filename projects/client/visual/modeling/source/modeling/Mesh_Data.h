@@ -30,22 +30,11 @@ namespace modeling {
         this->counts = shared_ptr<int>(counts);
         this->has_opacity = has_opacity;
       }
-
-//      Mesh_Export(const Mesh_Export &other) {
-//        intitialize(
-//          other.polygon_count,
-//          other.vertex_count,
-//          vertices_buffer,
-//          other.offsets,
-//          other.counts
-//        );
-//      }
   };
 
   typedef function<void(Mesh_Export &data)> Mesh_Data_Generator;
 
   class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh {
-  private:
       unsigned int ebo = 0;
       int polygon_count;
 //      int vertex_count;
@@ -59,7 +48,6 @@ namespace modeling {
       string name;
 
   public:
-
       Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true,
                 bool has_opacity = false);
 

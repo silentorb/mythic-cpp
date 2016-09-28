@@ -26,6 +26,6 @@ namespace drawing {
     auto texture_transform_index = glGetUniformLocation(program->get_id(), "texture_transform");
     glUniformMatrix4fv(texture_transform_index, 1, GL_FALSE, (GLfloat *) &texture_transform);
 
-    mesh.render(modeling::Draw_Method::triangles);
+    mesh.render(modeling::Draw_Method::triangle_fan);
   }
 }

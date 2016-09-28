@@ -104,7 +104,7 @@ namespace songbird {
             [this, local_is_deleted, &song, a, b](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
               if (has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
                 auto particular_listener = static_cast<Channel<T> *>(channel);
-                auto &result = particular_listener->dance(a, b);
+                promising::Promise<R> &result = particular_listener->dance(a, b);
                 if (*local_is_deleted)
                   cancel = true;
 

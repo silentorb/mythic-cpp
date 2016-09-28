@@ -12,6 +12,7 @@ namespace modeling {
 
   Simple_Mesh::Simple_Mesh(const Vertex_Schema &vertex_schema) :
     vertex_schema(vertex_schema) {
+    initialize();
     vertex_count = 0;
   }
 
@@ -32,6 +33,9 @@ namespace modeling {
     GLenum _mode;
     switch (mode) {
       case (Draw_Method::triangles):
+        _mode = GL_TRIANGLES;
+        break;
+      case (Draw_Method::triangle_fan):
         _mode = GL_TRIANGLE_FAN;
         break;
       case (Draw_Method::line_loop):
@@ -45,7 +49,6 @@ namespace modeling {
         break;
     }
     glDrawArrays(_mode, 0, vertex_count);
-//    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count);
   }
 
   void Simple_Mesh::load() {
@@ -60,6 +63,7 @@ namespace modeling {
 
   void Simple_Mesh::replace(float *data, int vertex_count) {
     glow::set_array_buffer(vbo);
+    glBindVertexArray(vao);
     if (this->vertex_count == 0) {
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_DYNAMIC_DRAW);

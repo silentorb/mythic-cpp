@@ -25,8 +25,6 @@ namespace modeling {
   }
 
   void Vertex_Buffer::load(int new_vertex_count, float *data) {
-//    std::cout << "  vb: " << (void *) this << " vbo: " << vbo << " count: " << new_vertex_count << std::endl;
-
     if (!vbo) {
       glGenBuffers(1, &vbo);
       glow::set_array_buffer(vbo);
@@ -35,23 +33,10 @@ namespace modeling {
       vertex_count = new_vertex_count;
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data, GL_STATIC_DRAW);
       glow::check_error("binding vbo buffer data");
-        
-//        glDeleteBuffers(1, &vbo);
-//        vbo = 0;
-//        glow::set_array_buffer(0);
-//        
-//        glGenBuffers(1, &vbo);
-//        glow::set_array_buffer(vbo);
-//        glow::check_error("binding vbo");
-//        
-//        vertex_count = new_vertex_count;
-//        glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data, GL_STATIC_DRAW);
-//        glow::check_error("binding vbo buffer data");
-        
-        vao = vertex_schema.create_vao();
+      vao = vertex_schema.create_vao();
     }
     else {
-    glow::set_array_buffer(vbo);
+      glow::set_array_buffer(vbo);
       if (!is_dynamic) {
         is_dynamic = true;
         vertex_count = new_vertex_count;
@@ -75,12 +60,12 @@ namespace modeling {
     if (!vao)
       return;
 //    std::cout << "- vb: " << (void *) this << " vbo: " << vbo << std::endl;
-      
-      // There seems to be a multi-platform hardware bug where deleting the currently bound
-      // vbo and then generating a new one results in corrupting the new vbo.
-      if (glow::get_array_buffer() == vbo)
-          glow::set_array_buffer(0);
-      
+
+    // There seems to be a multi-platform hardware bug where deleting the currently bound
+    // vbo and then generating a new one results in corrupting the new vbo.
+    if (glow::get_array_buffer() == vbo)
+      glow::set_array_buffer(0);
+
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
     vao = 0;

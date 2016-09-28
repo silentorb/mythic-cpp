@@ -62,10 +62,13 @@ namespace scenery {
   }
 
   void Group::update(float delta) {
-    for (auto &element: children) {
-//      if (element->is_visible())
-      element->update(delta);
+    for (int i = 0; i < children.size(); ++i) {
+      children[i]->update(delta);
+
     }
+//    for (auto &element: children) {
+////      if (element->is_visible())
+//    }
   }
 
   void Group::move_child(unique_ptr<Element> &element, Parent &destination) {

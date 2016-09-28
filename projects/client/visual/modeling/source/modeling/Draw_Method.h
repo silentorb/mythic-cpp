@@ -6,6 +6,7 @@ namespace modeling {
       line_loop,
       lines,
       line_strip,
-      triangles
+      triangles,
+      triangle_fan
   };
 }

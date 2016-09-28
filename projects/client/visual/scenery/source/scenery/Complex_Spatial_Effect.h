@@ -9,6 +9,7 @@
 
 namespace modeling {
   class Mesh_Data;
+  class Renderable_Mesh;
 }
 
 using namespace shading;
@@ -46,7 +47,7 @@ namespace scenery {
         return color;
       }
 
-      virtual void render(Mesh_Data *mesh_data, const mat4 &transform, const mat4 &normal_transform,
+      virtual void render(modeling::Renderable_Mesh *mesh_data, const mat4 &transform, const mat4 &normal_transform,
                           bool has_opacity,
                           const vec4 &color);
 

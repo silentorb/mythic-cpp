@@ -24,10 +24,6 @@ namespace modeling {
 
       ~Vertex_Buffer();
 
-//      const unsigned int &get_vao() const {
-//        return vao;
-//      }
-
       virtual void load() override;
       void load(int new_vertex_count, float *data);
 
@@ -40,5 +36,9 @@ namespace modeling {
       }
 
       void draw_points(int count);
+
+      int get_vertex_count() const {
+        return vertex_count;
+      }
   };
 }

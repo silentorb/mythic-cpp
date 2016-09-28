@@ -6,7 +6,7 @@
 namespace scenery {
   Complex_Spatial_Effect::Complex_Spatial_Effect(Program &program) :
     Effect(program),
-    draw_method(Draw_Method::triangles),
+    draw_method(Draw_Method::triangle_fan),
     model_property(program.create_property<shading::Matrix_Property>("model")),
     normal_property(program.create_property<shading::Matrix_Property>("normal_transform")),
     color_property(program.create_property<shading::Vector4_Property>("color_filter")) {
@@ -50,7 +50,7 @@ namespace scenery {
     normal_property.set(normal_transform);
   }
 
-  void Complex_Spatial_Effect::render(Mesh_Data *mesh_data, const mat4 &transform, const mat4 &normal_transform,
+  void Complex_Spatial_Effect::render(modeling::Renderable_Mesh *mesh_data, const mat4 &transform, const mat4 &normal_transform,
                               bool has_opacity, const vec4 &color) {
     Effect::activate();
     update_shader_properties(transform, normal_transform, has_opacity, color);

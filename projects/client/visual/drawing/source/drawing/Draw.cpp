@@ -103,14 +103,14 @@ namespace drawing {
 
     effect.set_transform(transform);
 
-    mesh.render(solid ? modeling::Draw_Method::triangles : modeling::Draw_Method::line_loop);
+    mesh.render(solid ? modeling::Draw_Method::triangle_fan : modeling::Draw_Method::line_loop);
     glow::check_error("drew_square");
   }
 
   void Draw::draw_square(float left, float top, float width, float height, const vec4 &color, bool solid) {
     square_effect->activate();
     square_effect->set_color(color);
-    draw_square(left, top, width, height, solid ? modeling::Draw_Method::triangles : modeling::Draw_Method::line_loop,
+    draw_square(left, top, width, height, solid ? modeling::Draw_Method::triangle_fan : modeling::Draw_Method::line_loop,
                 *square_effect, *solid_mesh);
   }
 
