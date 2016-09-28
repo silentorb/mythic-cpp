@@ -20,6 +20,7 @@ namespace shading {
       const std::string name;
       int uniform_index;
       bool is_stale = true;
+      bool is_initialized = false;
       Program &program;
 
   public:
@@ -44,9 +45,11 @@ namespace shading {
       Shader_Property_Template(const std::string &name, Program &program) : Shader_Property(name, program) {}
 
       void set(const T &value) {
-//        if (this->value == value)
-//          return;
+        if (is_initialized && this->value[0] == value)
+          return;
 
+        is_initialized = true;
+        this->value[0] = value;
 
         if (program.is_active()) {
           if (get_uniform_index() != -1) {
@@ -55,7 +58,6 @@ namespace shading {
         }
         else {
           is_stale = true;
-          this->value[0] = value;
         }
       }
 

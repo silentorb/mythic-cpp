@@ -133,7 +133,7 @@ namespace glow {
       return;
 
     cache::array_buffer = id;
-//    cache::element_array_buffer = 0;
+    cache::element_array_buffer = 0;
     glBindBuffer(GL_ARRAY_BUFFER, id);
   }
     
@@ -146,7 +146,7 @@ namespace glow {
       return;
 
     cache::element_array_buffer = id;
-//    cache::array_buffer = 0;
+    cache::array_buffer = 0;
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
   }
 }

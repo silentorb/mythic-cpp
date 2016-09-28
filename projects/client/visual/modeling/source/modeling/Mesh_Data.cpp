@@ -60,12 +60,7 @@ namespace modeling {
     if (!glow::Capabilities::get_instance().multidraw() && !support_lines) {
       indices = shared_ptr<unsigned short>(
         convert_to_indices(index_count, data, vertex_buffer.get_vertex_schema().get_vertex_size()));
-      glGenBuffers(1, &ebo);
-      if (!ebo)
-        throw runtime_error("Unable to create mesh buffer.");
-
-      glow::set_element_array_buffer(ebo);
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * index_count, indices.get(), GL_STATIC_DRAW);
+      element_buffer.initialize(index_count, indices.get());
     }
     else {
       offsets = data.offsets;
@@ -77,11 +72,7 @@ namespace modeling {
 
   void Mesh_Data::release() {
     vertex_buffer.release();
-
-    if (ebo) {
-      glDeleteBuffers(1, &ebo);
-      ebo = 0;
-    }
+    element_buffer.release();
   }
 
   void Mesh_Data::render(Draw_Method draw_method) {
@@ -104,8 +95,7 @@ namespace modeling {
         }
       }
       else {
-//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, get_ebo());
-          glow::set_element_array_buffer(ebo);
+        element_buffer.activate();
         glDrawElements(GL_TRIANGLES, get_index_count(), GL_UNSIGNED_SHORT, nullptr);
       }
     }

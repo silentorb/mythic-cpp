@@ -7,6 +7,7 @@
 #include "Vertex_Buffer.h"
 #include "Draw_Method.h"
 #include "Renderable_Mesh.h"
+#include "Element_Buffer.h"
 #include <functional>
 
 using namespace std;
@@ -35,9 +36,8 @@ namespace modeling {
   typedef function<void(Mesh_Export &data)> Mesh_Data_Generator;
 
   class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh {
-      unsigned int ebo = 0;
+     Element_Buffer element_buffer;
       int polygon_count;
-//      int vertex_count;
       shared_ptr<int> offsets;
       shared_ptr<int> counts;
       Mesh_Data_Generator generator;
@@ -54,20 +54,12 @@ namespace modeling {
       virtual ~Mesh_Data();
 
       const unsigned int &get_ebo() const {
-        return ebo;
+        return element_buffer.get_id();
       }
 
       int get_polygon_count() const {
         return polygon_count;
       }
-
-//      int get_vertex_count() const {
-//        return vertex_count;
-//      }
-
-//      float *get_vertices() const {
-//        return vertices.get();
-//      }
 
       int *get_offsets() const {
         return offsets.get();
@@ -76,10 +68,6 @@ namespace modeling {
       int *get_counts() const {
         return counts.get();
       }
-
-//      unsigned int *get_indices() const {
-//        return indices.get();
-//      }
 
       virtual void release() override;
       virtual void load() override;

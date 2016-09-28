@@ -12,7 +12,7 @@ namespace modeling {
   void Indexed_Mesh::render(Draw_Method mode) {
     vertex_buffer.activate();
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer.get_id());
+    glow::set_element_array_buffer(element_buffer.get_id());
     glDrawElements(GL_TRIANGLES, vertex_buffer.get_vertex_count(), GL_UNSIGNED_SHORT, nullptr);
 
     glow::check_error("drawing mesh");
