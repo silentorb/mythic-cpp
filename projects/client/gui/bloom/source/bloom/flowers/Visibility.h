@@ -4,15 +4,15 @@
 
 namespace bloom {
   namespace flowers {
-    class BLOOM_EXPORT Visible : public Single_Parent {
+    class BLOOM_EXPORT Visibility : public Single_Parent {
         bool visible = true;
 
     public:
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
 
-        Visible() : Single_Parent() {}
+        Visibility() : Single_Parent() {}
 
-        virtual ~Visible() {}
+        virtual ~Visibility() {}
 
         virtual void update(float delta) override;
         virtual void render() override;
