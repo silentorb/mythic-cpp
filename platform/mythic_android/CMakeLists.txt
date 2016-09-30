@@ -1,6 +1,7 @@
 create_library(mythic_android)
 
-require(shading shader_processing glow lookinglass mythic client haft audio_player resourceful math frame)
+require(shading shader_processing glow lookinglass mythic client haft
+  platforming audio_player resourceful math frame)
 add_system_libraries(EGL)
 add_system_libraries(OpenSLES)
 

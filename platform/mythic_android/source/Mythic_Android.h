@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "../../../projects/misc/platforming/source/platforming/Platform_Factory.h"
+#include "platforming/Platform_Factory.h"
 #include "Android_App.h"
 #include "mythic/Mythic_Engine.h"
 #include "logger.h"
@@ -26,19 +26,19 @@ namespace audio {
 namespace lookinglass {
 class Graphic_Opions;
 };
-using namespace mythic;
 
 class Android_Input;
 
-typedef void (*Mythic_Initializer)(Mythic_Engine &engine);
+class Mythic_Android;
+typedef void (*Mythic_Initializer)(mythic::Mythic_Engine &engine, Mythic_Android &mythic_android);
 
-class Mythic_Android : public mythic::Platform_Factory {
+class Mythic_Android : public platforming::Platform_Factory {
 private:
 
     Android_App *app;
     void start();
     Mythic_Initializer initializer;
-    unique_ptr<Mythic_Engine> engine;
+    unique_ptr<mythic::Mythic_Engine> engine;
     clienting::Client *client;
 
     bool is_closing();
@@ -68,12 +68,12 @@ public:
 
     virtual audio::Speaker *create_speaker() override;
 
-    Mythic_Engine &get_engine() const {
+    mythic::Mythic_Engine &get_engine() const {
       return *engine.get();
     }
 
-    virtual mythic::Shader_Processor create_shader_processor() override;
-    virtual mythic::File_Loader create_file_loader() override;
+    virtual platforming::Shader_Processor create_shader_processor() override;
+    virtual platforming::File_Loader create_file_loader() override;
     virtual const string get_storage_path() override;
 
 };

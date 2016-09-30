@@ -42,6 +42,8 @@ include(../../cmake-tools/cmake-tools.cmake)
 set(MYTHIC_EXTERNAL ${CMAKE_SOURCE_DIR}/external)
 if (NOT ANDROID)
   set(MYTHIC_DEPENDENCIES ${PARENT_DIR}/dependencies/${GENERATOR_KEY})
+else ()
+  set(MYTHIC_DEPENDENCIES ${PARENT_DIR}/dependencies/mingw)
 endif ()
 
 if (MINGW)
@@ -132,6 +134,7 @@ include(local-config.cmake OPTIONAL)
 
 if (ANDROID)
   set(JNI_PATH "jni/")
+  set(ANDROID_DEPENDENCIES "${PARENT_DIR}/mythic-dependencies/build/android/jni")
 endif ()
 
 if (GRAPHVIZ)

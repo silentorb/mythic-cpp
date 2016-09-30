@@ -117,7 +117,7 @@ void Mythic_Android::start() {
 
   if (initializer) {
     log_info("loading myths.");
-    initializer(*engine);
+    initializer(*engine, *this);
   }
 
   log_info("mythic engine is running.");
@@ -221,10 +221,10 @@ audio::Speaker *Mythic_Android::create_speaker() {
   return new Android_Speaker();
 }
 
-mythic::Shader_Processor Mythic_Android::create_shader_processor() {
+platforming::Shader_Processor Mythic_Android::create_shader_processor() {
   return [](shading::Shader_Type type, const string &source) {
 //    log_info("Loaded shader: %s", source);
-    auto included = shading::process_includes(source, type, mythic::File_Loader(android_load_string));
+    auto included = shading::process_includes(source, type, platforming::File_Loader(android_load_string));
 //    log_info("Loaded shader includes: %s", source);
     return string("precision highp float;\n\n") + shading::olden(included, type);
 
@@ -232,7 +232,7 @@ mythic::Shader_Processor Mythic_Android::create_shader_processor() {
   };
 }
 
-mythic::File_Loader Mythic_Android::create_file_loader() {
+platforming::File_Loader Mythic_Android::create_file_loader() {
   return android_load_string;
 }
 
