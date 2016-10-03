@@ -12,11 +12,13 @@ using namespace shading;
 
 namespace typography {
 
+  struct Text_Manager_Internal;
+
   class MYTHIC_EXPORT Text_Manager {
       unique_ptr<resourceful::Resource_Manager> fonts;
-      FT_Library library;
       Shader_Manager &shader_manager;
       unique_ptr<Text_Effect> text_effect;
+      unique_ptr<Text_Manager_Internal> internal;
 
   public:
       Text_Manager(Shader_Manager &shader_manager,  perspective:: Viewport& viewport);

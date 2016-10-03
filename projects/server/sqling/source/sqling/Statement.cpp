@@ -2,7 +2,15 @@
 #include "Connection.h"
 #include <thread>
 #include <sqlite3.h>
-
+#if ANDROID
+#include <sstream>
+template<typename T>
+static std::string to_string(T value) {
+  std::ostringstream os;
+  os << value;
+  return os.str();
+}
+#endif
 namespace sqling {
 
   Statement::Statement(const string &sql, Connection &connection, const string name) :

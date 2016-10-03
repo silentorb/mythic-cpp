@@ -1,7 +1,7 @@
 
 if (LOCAL_HEADER)
 
-  set(android_sdk_dir "E:/Programs/Android/sdk")
+#  set(android_sdk_dir "E:/Programs/Android/sdk")
   #  set(DEBUG_OPTIMIZATION_LEVEL O2)
   set(MYTHIC_DEPENDENCIES E:/dev/cpp/mythic/dependencies/mingw)
   set(ANDROID_DEPENDENCIES E:/dev/cpp/mythic/mythic-dependencies/build/android/jni)

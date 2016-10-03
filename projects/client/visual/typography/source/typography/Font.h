@@ -2,8 +2,6 @@
 
 #include "commoner/dllexport.h"
 #include "resourceful/Resource.h"
-#include <ft2build.h>
-#include FT_FREETYPE_H
 #include <string>
 #include <map>
 #include <memory>
@@ -25,10 +23,10 @@ namespace typography {
         : size(size), bearing(bearing), advance(advance), offset(offset), height(height) { }
   };
 
+  struct External_Font_Data;
+
   class MYTHIC_EXPORT Font : public resourceful::Resource, no_copy {
-      FT_Face face;
       string filename;
-      const FT_Library &library;
       unsigned int texture;
       glm::ivec2 dimensions;
       string name;
@@ -36,9 +34,10 @@ namespace typography {
       std::map<char, std::unique_ptr<Character>> characters;
       void generate_texture();
       glm::ivec2 determine_texture_dimensions();
+      unique_ptr<External_Font_Data> data;
 
   public:
-      Font(const string name,const string filename, const FT_Library &library);
+      Font(const string name,const string filename, const void *library);
       ~Font();
       virtual void release() override;
       virtual void load() override;

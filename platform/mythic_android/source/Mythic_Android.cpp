@@ -111,7 +111,8 @@ void Mythic_Android::start() {
   }
   initialized = true;
   log_info("creating_client");
-  engine = unique_ptr<Mythic_Engine>{new Mythic_Engine(*this, *graphic_options)};
+
+  engine = unique_ptr<mythic::Mythic_Engine>{new mythic::Mythic_Engine(*this, *graphic_options)};
 
   engine->get_client().load();
 

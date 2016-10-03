@@ -93,7 +93,7 @@ add_subdirectory(projects/misc/mythic)
 
 add_subdirectory(projects/client/gui/bloom)
 add_subdirectory(projects/client/gui/bloom_scenery)
-add_subdirectory(projects/client/gui/bloom_texturing)
+#add_subdirectory(projects/client/gui/bloom_texturing)
 add_subdirectory(projects/client/gui/bloom_lookinglass)
 
 if (MINGW)
