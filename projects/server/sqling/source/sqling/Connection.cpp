@@ -10,15 +10,7 @@
 #if ANDROID
 #include "logger.h"
 #endif
-#if ANDROID
-#include <sstream>
-template<typename T>
-static std::string to_string(T value) {
-  std::ostringstream os;
-  os << value;
-  return os.str();
-}
-#endif
+
   namespace sqling {
 
     Connection::Connection(Database *database) :

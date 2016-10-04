@@ -6,15 +6,7 @@
 
 using namespace vineyard;
 using namespace sqling;
-#if ANDROID
-#include <sstream>
-template<typename T>
-static std::string to_string(T value) {
-  std::ostringstream os;
-  os << value;
-  return os.str();
-}
-#endif
+
 namespace ground {
 
   void get_query_value(const Property &property, int i, void *value, Statement &statement) {
