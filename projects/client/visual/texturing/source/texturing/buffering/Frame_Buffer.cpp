@@ -36,12 +36,17 @@ namespace texturing {
     }
 
     void Frame_Buffer::set_read() {
+#ifndef ANDROID
       glBindFramebuffer(GL_READ_FRAMEBUFFER, id);
+#endif
 //      glReadBuffer(GL_COLOR_ATTACHMENT0);
     }
 
     void Frame_Buffer::set_draw() {
+#ifndef ANDROID
+
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
+#endif
 //      if (attachments.size() > 0) {
 //        GLenum frame_buffers[2];
 //        GLenum k = GL_COLOR_ATTACHMENT0;
@@ -60,10 +65,13 @@ namespace texturing {
     }
 
     void Frame_Buffer::deactivate() {
+#ifndef ANDROID
+
       // Probably don't need to unbind this but I'm doing it for now until the code is more battle-tested.
       glBindFramebuffer(GL_FRAMEBUFFER, glow::get_default_framebuffer());
 //      GLenum frame_buffers = {GL_BACK};
 //      glDrawBuffers(1, &frame_buffers);
+#endif
       glow::check_error("checking");
 //    glDrawBuffer(GL_BACK);
     }
@@ -76,6 +84,8 @@ namespace texturing {
 ////    texture->set_dimensions(value);
 //  }
     void Frame_Buffer::check_complete() {
+#ifndef ANDROID
+
       auto complete = glCheckFramebufferStatus(GL_FRAMEBUFFER);
       if (complete != GL_FRAMEBUFFER_COMPLETE) {
         string name;
@@ -117,9 +127,12 @@ namespace texturing {
         }
         throw runtime_error("Framebuffer is incomplete: " + name);
       }
+#endif
     }
 
     void Frame_Buffer::attach_texture(texturing::Texture *texture) {
+#ifndef ANDROID
+
       glBindFramebuffer(GL_FRAMEBUFFER, id);
       glFramebufferTexture2D(
         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, (GLenum) texture->get_mode(), texture->get_id(), 0);
@@ -133,12 +146,16 @@ namespace texturing {
       glow::set_clear_color(clear_color);
       check_complete();
         glBindFramebuffer(GL_FRAMEBUFFER, glow::get_default_framebuffer());
+#endif
     }
 
     void Frame_Buffer::attach_render_buffer(const shared_ptr<Render_Buffer> &render_buffer, GLenum port) {
+#ifndef ANDROID
+
       attachments.push_back({render_buffer, port});
       glBindFramebuffer(GL_FRAMEBUFFER, id);
       glFramebufferRenderbuffer(GL_FRAMEBUFFER, port, GL_RENDERBUFFER, render_buffer->get_id());
+#endif
     }
   }
 }

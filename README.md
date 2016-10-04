@@ -19,7 +19,13 @@ Created by Christopher W. Johnson
 
 ### Compiling for Android
 
-This involves 3 commands:
+#### Prerequisites
+
+1. Install the Java SDK
+2. Install crystax sdk.
+3. Add the crystax folder to your command-line path.
+
+#### Android compiling involves 3 commands:
 1. Generating the Android makefiles
 2. Building the source
 3. Deploying the apk and launching the debugger

@@ -16,15 +16,15 @@ namespace typography {
   const unsigned char first_char = 33;
   const unsigned char last_char = 126;
 
-  struct External_Font_Data {
+  struct Internal_Font {
       const FT_Library &library;
       FT_Face face;
 
-      External_Font_Data(FT_Library const &library) : library(library) {}
+      Internal_Font(FT_Library const &library) : library(library) {}
   };
 
   Font::Font(const string name, const string filename, const void *library) :
-    name(name), filename(filename), data(new External_Font_Data(*(FT_Library*)library)) {
+    name(name), filename(filename), internal(new Internal_Font(*(FT_Library*)library)) {
 
     load();
   }
@@ -47,23 +47,23 @@ namespace typography {
 #if ANDROID
     vector<char> buffer;
     android_load_binary(buffer, path);
-    auto error = FT_New_Memory_Face(library, (unsigned char*)buffer.data(), buffer.size(), 0, &face);
+    auto error = FT_New_Memory_Face(internal->library, (unsigned char*)buffer.data(), buffer.size(), 0, &internal->face);
     if (error)
-      throw runtime_error("ERROR::FREETYPE: Problem processing font: " + path + "(size=" + to_string(buffer.size()) + ")");
+      throw runtime_error("ERROR::FREETYPE: Problem processing font: " + path);
 
 #else
-    auto error = FT_New_Face(data->library, path.c_str(), 0, &data->face);
+    auto error = FT_New_Face(internal->library, path.c_str(), 0, &internal->face);
     if (error)
       throw runtime_error("ERROR::FREETYPE: Failed to load font: " + path);
 
 #endif
 
 
-    FT_Set_Pixel_Sizes(data->face, 0, 48);
+    FT_Set_Pixel_Sizes(internal->face, 0, 48);
 
     generate_texture();
 
-    FT_Done_Face(data->face);
+    FT_Done_Face(internal->face);
   }
 
   void Font::generate_texture() {
@@ -85,16 +85,16 @@ namespace typography {
     float vertical_offset = 0;
     const int memory_margin = dimensions.x * 2;
     for (unsigned char c = first_char; c <= last_char; c++) {
-      if (FT_Load_Char(data->face, c, FT_LOAD_RENDER) != 0)
+      if (FT_Load_Char(internal->face, c, FT_LOAD_RENDER) != 0)
         throw runtime_error("Failed to load glyph");
 
       // A hack to work around an issue where the bitmap is not already rendered in certain cases.
       // This happens on the 32 bit Windows build  but not the 64 bit build.
-      if (data->face->glyph->bitmap.buffer == NULL)
-        FT_Render_Glyph(data->face->glyph, FT_RENDER_MODE_NORMAL);
+      if (internal->face->glyph->bitmap.buffer == NULL)
+        FT_Render_Glyph(internal->face->glyph, FT_RENDER_MODE_NORMAL);
 
-      auto glyph = data->face->glyph;
-      auto bitmap = data->face->glyph->bitmap;
+      auto glyph = internal->face->glyph;
+      auto bitmap = internal->face->glyph->bitmap;
 
       characters[(char) c] = std::unique_ptr<Character>(new Character(
         glm::ivec2(bitmap.width, bitmap.rows),
@@ -133,13 +133,13 @@ namespace typography {
     unsigned int offset = 0;
 
     for (unsigned char c = first_char; c <= last_char; c++) {
-      if (FT_Load_Char(data->face, c, FT_LOAD_RENDER) != 0)
+      if (FT_Load_Char(internal->face, c, FT_LOAD_RENDER) != 0)
         throw runtime_error("Failed to load glyph");
 
-      if (data->face->glyph->bitmap.buffer == NULL)
-        FT_Render_Glyph(data->face->glyph, FT_RENDER_MODE_NORMAL);
+      if (internal->face->glyph->bitmap.buffer == NULL)
+        FT_Render_Glyph(internal->face->glyph, FT_RENDER_MODE_NORMAL);
 
-      auto glyph = data->face->glyph;
+      auto glyph = internal->face->glyph;
       auto bitmap = glyph->bitmap;
       if (bitmap.width > max_width)
         max_width = bitmap.width;

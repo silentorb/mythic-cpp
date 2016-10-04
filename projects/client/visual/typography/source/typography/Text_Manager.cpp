@@ -9,8 +9,6 @@ namespace typography {
 
   struct Text_Manager_Internal {
       FT_Library library;
-
-      Text_Manager_Internal(const FT_Library library) : library(library) {}
   };
 
   Text_Manager::Text_Manager(Shader_Manager &shader_manager, perspective::Viewport &viewport)

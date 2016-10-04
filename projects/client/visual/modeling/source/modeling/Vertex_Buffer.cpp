@@ -69,7 +69,9 @@ namespace modeling {
       if (glow::get_vertex_array() == vao)
           glow::set_vertex_array(0);
 
+#ifndef ANDROID
     glDeleteVertexArrays(1, &vao);
+#endif
     glDeleteBuffers(1, &vbo);
     vao = 0;
     vbo = 0;

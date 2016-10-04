@@ -23,7 +23,7 @@ namespace typography {
         : size(size), bearing(bearing), advance(advance), offset(offset), height(height) { }
   };
 
-  struct External_Font_Data;
+  struct Internal_Font;
 
   class MYTHIC_EXPORT Font : public resourceful::Resource, no_copy {
       string filename;
@@ -34,7 +34,7 @@ namespace typography {
       std::map<char, std::unique_ptr<Character>> characters;
       void generate_texture();
       glm::ivec2 determine_texture_dimensions();
-      unique_ptr<External_Font_Data> data;
+      unique_ptr<Internal_Font> internal;
 
   public:
       Font(const string name,const string filename, const void *library);

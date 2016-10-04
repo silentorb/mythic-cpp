@@ -21,9 +21,10 @@ namespace texturing {
       glGenRenderbuffers(1, &id);
       glBindRenderbuffer(GL_RENDERBUFFER, id);
       if (multisamples) {
+#ifndef ANDROID
         glRenderbufferStorageMultisample(GL_RENDERBUFFER, multisamples, format, dimensions.x, dimensions.y);
-      }
-      else {
+#endif
+      } else {
         glRenderbufferStorage(GL_RENDERBUFFER, format, dimensions.x, dimensions.y);
       }
       glBindRenderbuffer(GL_RENDERBUFFER, 0);
