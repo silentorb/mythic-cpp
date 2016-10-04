@@ -29,7 +29,7 @@ namespace typography {
   }
 
   Font &Text_Manager::create_font(const string name, const string filename) {
-    auto font = new Font(name, filename, internal->library);
+    auto font = new Font(name, filename, &internal->library);
     fonts->add_resource(font);
     return *font;
   }
