@@ -6,3 +6,4 @@ add_system_libraries(EGL)
 add_system_libraries(OpenSLES)
 
 #target_link_libraries(mythic_android -lEGL)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/java DESTINATION ${CMAKE_BINARY_DIR}/src)
