@@ -1,6 +1,3 @@
 [submodule "external/boost_regex"]
 	path = external/boost_regex
 	url = git@bitbucket.org:silentorb/boost_regex.git
-[submodule "vineyard"]
-	path = projects/server/vineyard
-	url = git@github.com:silentorb/vineyard_cpp.git
