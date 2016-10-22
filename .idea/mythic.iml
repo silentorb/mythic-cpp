@@ -30,27 +30,27 @@
         <CLASSES>
           <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/rapidjson/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/zlib/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sqlite/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/pugixml/include" />
-          <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
+          <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/../dependencies/mingw/glm/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/rapidjson/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/zlib/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/sqlite/include" />
-          <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/freetype/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/libpng/include" />
+          <root url="file://$MODULE_DIR$/../dependencies/mingw/sdl2/include" />
           <root url="file://$MODULE_DIR$/../dependencies/mingw/pugixml/include" />
-          <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include" />
+          <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/lib/gcc/i686-w64-mingw32/4.8.4/include-fixed" />
           <root url="file://E:/Programs/mingw-w64/i686-4.8.4-posix-sjlj-rt_v3-rev0/mingw32/i686-w64-mingw32/include" />
         </SOURCES>
       </library>
