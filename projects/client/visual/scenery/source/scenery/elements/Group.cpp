@@ -5,12 +5,10 @@
 namespace scenery {
 
   void Group::render() {
-    if (is_visible()) {
-//    auto base_transform = get_transform();
-    for (auto &element: children) {
-//        if (element->is_visible())
-      element->render();
-    }
+    if (visible) {
+      for (auto &element : children) {
+        element->render();
+      }
     }
   }
 
