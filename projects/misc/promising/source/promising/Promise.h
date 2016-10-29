@@ -21,8 +21,11 @@ namespace promising {
       virtual bool update() = 0;
       static int get_size();
 
-      virtual ~Promise_Interface() { }
+      virtual ~Promise_Interface() {}
   };
+
+  template<typename O>
+  class Promise_With_Count;
 
   template<typename O>
   class Promise : public Promise_Interface {
@@ -31,7 +34,7 @@ namespace promising {
       bool _is_done = false;
       vector<unique_ptr<Promise>> dependents;
 
-      Promise() { }
+      Promise() {}
 
       virtual void execute() {
         resolve();
@@ -39,9 +42,9 @@ namespace promising {
 
   public:
 
-      Promise(Promise &&) { }
+      Promise(Promise &&) {}
 
-      virtual ~Promise() override { }
+      virtual ~Promise() override {}
 
       void resolve() {
         _is_done = true;
@@ -49,8 +52,8 @@ namespace promising {
 
       Promise &void_then(function<void()> action);
       Promise &then(function<Promise<O> &()> action);
-      static Promise &defer(function<O()> action = []() { });
-      static Promise &resolved(function<O()> action = []() { });
+      static Promise &defer(function<O()> action = []() {});
+      static Promise &resolved(function<O()> action = []() {});
 
       template<typename E>
       static Promise &update_sequence(vector<E> items, function<Promise &(E item, bool &)> action, int step) {
@@ -75,7 +78,8 @@ namespace promising {
       }
 
       template<typename E>
-      static Promise &update_reference_sequence(vector<E> &items, function<Promise &(E &item, bool &)> action, int step) {
+      static Promise &
+      update_reference_sequence(vector<E> &items, function<Promise &(E &item, bool &)> action, int step) {
         bool cancel = false;
         return action(items[step], cancel)
           .then(static_cast<function<Promise &()>>([&items, action, step, cancel]() -> Promise & {
@@ -96,13 +100,25 @@ namespace promising {
         return update_reference_sequence(items, action, step);
       }
 
+      static Promise *all(initializer_list<Promise *> promises) {
+        auto result = new Promise_With_Count<O>(promises.size());
+        Promise_Interface::add_promise(*result);
+        for (auto promise : promises) {
+          promise->void_then([result]() mutable {
+              result->execute();
+          });
+        }
+
+        return result;
+      }
+
       template<typename E>
       static Promise &unique_sequence(const vector<unique_ptr<E>> &items, function<Promise &(E *item, bool &)> action) {
         if (items.size() == 0)
           return Promise::resolved();
 
-        vector<E*> clone;
-        for(auto & item: items){
+        vector<E *> clone;
+        for (auto &item: items) {
           clone.push_back(item.get());
         }
         int step = 0;
@@ -133,7 +149,9 @@ namespace promising {
       }
 
       virtual void execute() override {
-        action();
+        if (action)
+          action();
+
         this->resolve();
       }
   };
@@ -151,6 +169,20 @@ namespace promising {
         promise.void_then([&]() {
           this->resolve();
         });
+      }
+  };
+
+  template<typename O>
+  class Promise_With_Count : public Promise<O> {
+      int count;
+
+  public:
+      Promise_With_Count(int count) :
+        count(count) {}
+
+      virtual void execute() override {
+        if (--count == 0)
+          Promise<O>::execute();
       }
   };
 
