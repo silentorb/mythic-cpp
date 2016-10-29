@@ -1,8 +1,0 @@
-aura.sequencing {
-
-    extern Note {
-
-        get_frequency(): float
-        get_duration(): float
-    }
-}

@@ -1,8 +1,0 @@
-{
-  "name": "aura",
-  "target": "cpp",
-  "output": "generated",
-  "inputs": [
-    "imp"
-  ]
-}

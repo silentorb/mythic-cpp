@@ -5,7 +5,9 @@
 
 namespace aura {
 
-  class Engineer;
+  namespace engineering {
+    class Engineer;
+  }
 
   const float default_frequency = 440;
 
@@ -22,7 +24,7 @@ namespace aura {
 //        frequency(frequency),
         increment(frequency / sample_rate), sample_rate(sample_rate) { }
 
-      Loop(Engineer &conductor, double frequency = default_frequency);
+      Loop(engineering::Engineer &conductor, double frequency = default_frequency);
 
       float next();
 //      float next(int cycles);

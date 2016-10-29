@@ -1,9 +1,11 @@
 #include "Loop.h"
 #include <cmath>
 #include <iostream>
-#include "aura/engineer/Engineer.h"
+#include "aura/engineering/Engineer.h"
 
 namespace aura {
+
+  using namespace engineering;
 
   Loop::Loop(Engineer &conductor, double frequency) :
 //    frequency(frequency),

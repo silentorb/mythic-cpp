@@ -1,22 +1,25 @@
 #pragma once
 
-#include <aura/engineer/Buffer.h>
+#include <aura/engineering/Buffer.h>
 #include "commoner/dllexport.h"
 #include "Loop.h"
 #include "Generator.h"
 
 namespace aura {
-  class Engineer;
+
+  namespace engineering {
+    class Engineer;
+  }
 
   class MYTHIC_EXPORT Oscillator {
       Loop loop;
       Loop_Function operation;
-      Engineer &engineer;
+      engineering::Engineer &engineer;
       Generator frequency_generator;
 
   public:
-      Oscillator(Engineer &engineer, float frequency, Loop_Function operation);
-      Oscillator(Engineer &engineer, const Generator frequency_generator, Loop_Function operation);
+      Oscillator(engineering::Engineer &engineer, float frequency, Loop_Function operation);
+      Oscillator(engineering::Engineer &engineer, const Generator frequency_generator, Loop_Function operation);
 
       float get_frequency() const {
         return loop.get_frequency();
@@ -33,5 +36,5 @@ namespace aura {
       float operator()();
   };
 
-  typedef std::function<Oscillator *(Engineer &, float, Loop_Function)> Oscillator_Generator;
+  typedef std::function<Oscillator *(engineering::Engineer &, float, Loop_Function)> Oscillator_Generator;
 }
