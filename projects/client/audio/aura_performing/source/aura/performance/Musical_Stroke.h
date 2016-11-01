@@ -18,9 +18,6 @@ namespace aura {
         float frequency;
         Note note;
 
-    protected:
-        double progress = 0;
-
     public:
         Musical_Stroke(const Note &note) :
           Stroke(note.get_duration()),

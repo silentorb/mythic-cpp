@@ -17,6 +17,9 @@ namespace aura {
         Performance(Instrument &instrument, Sequencer &sequencer, int group_id)
           : instrument(instrument), sequencer(sequencer), group_id(group_id) {}
 
+        ~Performance() {
+
+        }
         Instrument &get_instrument() const {
           return instrument;
         }
