@@ -21,11 +21,11 @@ namespace aura {
           return start;
         }
 
-        float get_duration() const {
+        const float &get_duration() const {
           return duration;
         }
 
-        float get_frequency() const {
+        const float &get_frequency() const {
           return frequency;
         }
 

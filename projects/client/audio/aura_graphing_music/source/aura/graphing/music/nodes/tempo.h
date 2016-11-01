@@ -1,12 +1,16 @@
 #pragma once
 
-#include "aura/graphing/Node.h"
+#include "signal_graph/Node.h"
 
 namespace aura {
+  namespace sequencing {
+    class Conductor;
+  }
+
   namespace graphing {
     namespace nodes {
 
-      AURA_EXPORT Node Seconds_Tempo(const Producer &producer);
+      signal_graph::Node Seconds_Tempo(const sequencing::Conductor &conductor);
     }
   }
 }

@@ -1,3 +1,3 @@
 create_library(aura_graphing)
 
-require(aura)
+require(aura signal_graph)

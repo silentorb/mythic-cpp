@@ -17,7 +17,7 @@ namespace aura {
 
   struct Clip_Group_Pair {
       int group_index;
-      shared_ptr<Instrument> instrument;
+      shared_ptr<performing::Instrument> instrument;
       shared_ptr<Sequencer> sequencer;
   };
 

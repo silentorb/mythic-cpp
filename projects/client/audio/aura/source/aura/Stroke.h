@@ -21,11 +21,11 @@ namespace aura {
 
       virtual float update(float beat_delta) = 0;
 
-      double get_duration() const {
+      const double &get_duration() const {
         return duration;
       }
 
-      const double get_position() const {
+      const double &get_position() const {
         return progress;
       }
 

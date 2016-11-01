@@ -1,37 +1,41 @@
 #pragma once
 
-#include "../Node.h"
+#include "signal_graph/Node.h"
 #include <aura/envelopes/Custom_Envelope.h>
 
 namespace aura {
   namespace graphing {
     namespace nodes {
 
-
       struct Envelope_Node_Data {
           envelopes::Custom_Envelope_Instance instance;
           float output;
       };
 
-      Node Envelope_Node(const shared_ptr<envelopes::Custom_Envelope> &envelope) {
-        return Node(
+      signal_graph::Node Envelope_Node(const shared_ptr<envelopes::Custom_Envelope> &envelope, const signal_graph::External &duration,
+                         const signal_graph::External &progress) {
+        return signal_graph::Node(
           NODE_ID("Envelope_Node")
           {
-            new Internal<envelopes::Custom_Envelope_Instance>(
-              [envelope](void *data, Producer &producer, const Stroke &stroke) {
+            new signal_graph::Internal<envelopes::Custom_Envelope_Instance>(
+              [envelope, & duration](void *data, const signal_graph::Externals&externals) {
                 auto instance = new(data) envelopes::Custom_Envelope_Instance();
-                envelopes::Custom_Envelope::initialize_instance(*instance, *envelope, stroke);
+                double duration_value = externals.get_external<double>(duration);
+                  envelopes::Custom_Envelope::initialize_instance(*instance, *envelope, duration_value);
               }),
-            new Output<float>(),
+            new signal_graph::Output<float>(),
           },
-          [envelope](const Stroke &stroke, void *raw_data) {
+          [envelope, &duration, &progress](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(Envelope_Node_Data *) raw_data;
-            data.output = envelope->update(data.instance, stroke);
+            double duration_value = externals.get_external<double>(duration);
+            double progress_value = externals.get_external<double>(progress);
+            data.output = envelope->update(data.instance, progress_value, duration_value);
           });
       }
 
-      Node Envelope_Node(initializer_list<envelopes::Point> points) {
-        return Envelope_Node(std::shared_ptr<envelopes::Custom_Envelope>(new envelopes::Custom_Envelope(points)));
+      signal_graph::Node Envelope_Node(initializer_list<envelopes::Point> points, const signal_graph::External &duration,
+                                       const signal_graph::External &progress) {
+        return Envelope_Node(std::shared_ptr<envelopes::Custom_Envelope>(new envelopes::Custom_Envelope(points)), duration, progress);
       }
     }
   }

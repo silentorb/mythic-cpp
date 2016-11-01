@@ -4,15 +4,15 @@ namespace aura {
   namespace graphing {
     namespace nodes {
 
-      Node Clip(const aura::graphing::Node &signal, const aura::graphing::Node &max) {
-        return Node(
+      signal_graph::Node Clip(const signal_graph::Node &signal, const signal_graph::Node &max) {
+        return signal_graph::Node(
           NODE_ID("Clip")
           {
-            new Input<float>(signal),
-            new Input<float>(max),
-            new Output<float>(),
+            new signal_graph::Input<float>(signal),
+            new signal_graph::Input<float>(max),
+            new signal_graph::Output<float>(),
           },
-          [](const Stroke &stroke, void *raw_data) {
+          [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(Clip_Data *) raw_data;
             if (data.signal > data.max)
               data.output = data.max;
@@ -23,8 +23,8 @@ namespace aura {
           });
       }
 
-      Node Clip(const Node &max) {
-        return Clip(Node::create_empty(), max);
+      signal_graph::Node Clip(const signal_graph::Node &max) {
+        return Clip(signal_graph::Node::create_empty(), max);
       }
     }
   }

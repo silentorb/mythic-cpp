@@ -5,22 +5,21 @@
 #include <memory>
 
 using namespace std;
-using namespace aura::performance;
 using namespace aura::sequencing;
 
 namespace aura {
 
   class Clip : no_copy {
-      shared_ptr<Instrument> instrument;
+      shared_ptr<performing::Instrument> instrument;
       shared_ptr<Sequencer> sequencer;
       int group_id = -1;
 
   public:
 
-      Clip(const shared_ptr<Instrument> &instrument, const shared_ptr<Sequencer> &sequencer) :
+      Clip(const shared_ptr<performing::Instrument> &instrument, const shared_ptr<Sequencer> &sequencer) :
         instrument(instrument), sequencer(sequencer) { }
 
-      Instrument &get_instrument() {
+        performing::Instrument &get_instrument() {
         return *instrument;
       }
 

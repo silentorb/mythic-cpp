@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Node.h"
+#include "signal_graph/Node.h"
 #include <cmath>
 
 namespace aura {
@@ -13,9 +13,9 @@ namespace aura {
           float output;
       };
 
-      Node Clip(const Node &signal, const Node &max);
+      signal_graph::Node Clip(const signal_graph::Node &signal, const signal_graph::Node &max);
 
-      Node Clip(const Node &max);
+      signal_graph::Node Clip(const signal_graph::Node &max);
     }
   }
 }

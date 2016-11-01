@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Node.h"
+#include "signal_graph/Node.h"
 #include <cmath>
 #include <math/utility.h>
 
@@ -8,11 +8,11 @@ namespace aura {
   namespace graphing {
     namespace nodes {
 
-      AURA_EXPORT Node Sine_Wave_With_Position_Source(const Node &position_source);
-      AURA_EXPORT Node Sine_Wave(const Node &frequency);
+      signal_graph::Node Sine_Wave_With_Position_Source(const signal_graph::Node &position_source);
+      signal_graph::Node Sine_Wave(const signal_graph::Node &frequency, const signal_graph::External &engineer);
 
-      AURA_EXPORT Node Saw_Wave_With_Position_Source(const Node &position_source);
-      AURA_EXPORT Node Saw_Wave(const Node &frequency);
+      signal_graph::Node Saw_Wave_With_Position_Source(const signal_graph::Node &position_source);
+      signal_graph::Node Saw_Wave(const signal_graph::Node &frequency, const signal_graph::External &engineer);
 
     }
   }

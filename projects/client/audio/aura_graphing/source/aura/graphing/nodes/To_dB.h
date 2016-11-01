@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Node.h"
+#include "signal_graph/Node.h"
 #include <cmath>
 
 namespace aura {
@@ -12,21 +12,21 @@ namespace aura {
           float output;
       };
 
-      Node To_dB(const Node & source) {
-        return Node(
+      signal_graph::Node To_dB(const signal_graph::Node & source) {
+        return signal_graph::Node(
           NODE_ID("To_dB")
           {
-            new Input<float>(source),
-            new Output<float>(),
+            new signal_graph::Input<float>(source),
+            new signal_graph::Output<float>(),
           },
-          [](const Stroke &stroke, void *raw_data) {
+          [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(To_dB_Data *) raw_data;
             data.output = std::pow(data.input, 2);
           });
       }
 
-      Node To_dB() {
-        return To_dB(Node::create_empty());
+      signal_graph::Node To_dB() {
+        return To_dB(signal_graph::Node::create_empty());
       }
     }
   }

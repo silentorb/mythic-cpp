@@ -1,5 +1,4 @@
 #include <aura/sequencing/Conductor.h>
-#include <aura/performance/Producer.h>
 #include "tempo.h"
 
 namespace aura {
@@ -10,15 +9,15 @@ namespace aura {
           float output;
       };
 
-      Node Seconds_Tempo(const Producer &producer) {
-        return Node(
+      signal_graph::Node Seconds_Tempo(const sequencing::Conductor &conductor) {
+        return signal_graph::Node(
           NODE_ID("Seconds_Tempo")
           {
-            new Output<float>(),
+            new signal_graph::Output<float>(),
           },
-          [& producer](const Stroke &stroke, void *raw_data) {
+          [& conductor](void *raw_data, const signal_graph::Externals &externals) {
             auto &data = *(Tempo_Data *) raw_data;
-            data.output = producer.get_conductor().get_seconds_tempo();
+            data.output = conductor.get_seconds_tempo();
           });
       }
     }

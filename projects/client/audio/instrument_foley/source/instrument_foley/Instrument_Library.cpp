@@ -10,5 +10,6 @@ namespace instrument_foley {
 //      throw runtime_error("Invalid sound/instrument id: " + to_string(id) + ".");
 //
 //    return unique_ptr<Sound>(new Sound(*instruments[id]));
+    throw runtime_error("Not implemented.");
   }
 }

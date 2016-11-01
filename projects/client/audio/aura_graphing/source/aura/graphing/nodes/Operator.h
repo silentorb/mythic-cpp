@@ -11,20 +11,20 @@
 ////          float output;
 ////      };
 //
-//      class Operator : public Node {
+//      class Operator : public signal_graph::Node {
 //      public:
-//          Input<float> first;
-//          Input<float> second;
-//          Output<float> output;
+//          signal_graph::Input<float> first;
+//          signal_graph::Input<float> second;
+//          signal_graph::Output<float> output;
 //
 //          Operator() :
 //            first(this),
 //            second(this),
-//            output(this), Node(<#initializer#>) {
+//            output(this), signal_graph::Node(<#initializer#>) {
 //
 //          }
 //
-//          Operator(Node first_source, Node second_source): Operator(), Node(<#initializer#>) {
+//          Operator(signal_graph::Node first_source, signal_graph::Node second_source): Operator(), signal_graph::Node(<#initializer#>) {
 //            first.set_other_property(first_source);
 //            second.set_other_property(second_source);
 //          }
