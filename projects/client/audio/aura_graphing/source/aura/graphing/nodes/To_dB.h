@@ -2,6 +2,7 @@
 
 #include "signal_graph/Node.h"
 #include <cmath>
+#include <aura/utility/utility.h>
 
 namespace aura {
   namespace graphing {
@@ -21,7 +22,8 @@ namespace aura {
           },
           [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(To_dB_Data *) raw_data;
-            data.output = std::pow(data.input, 2);
+//            data.output = std::pow(data.input, 2);
+            data.output = utility::to_db(data.input);
           });
       }
 

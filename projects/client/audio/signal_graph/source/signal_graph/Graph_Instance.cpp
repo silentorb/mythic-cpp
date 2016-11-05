@@ -54,7 +54,7 @@ namespace signal_graph {
     info.node->get_update()(node_data, externals);
   }
 
-  float Graph_Instance::update(float beat_delta) {
+  float Graph_Instance::update() {
 
 //      std::fill(up_to_date.begin(), up_to_date.end(), 0);
 //			memset(up_to_date.data(), 0, sizeof(bool) * up_to_date.size());

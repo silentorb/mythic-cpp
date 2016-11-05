@@ -46,7 +46,7 @@ namespace aura {
 //      std::fill(up_to_date.begin(), up_to_date.end(), 0);
 //			memset(up_to_date.data(), 0, sizeof(bool) * up_to_date.size());
 
-      return graph_instance->update(beat_delta);
+      return graph_instance->update();
     }
   }
 }

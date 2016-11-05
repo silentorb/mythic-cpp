@@ -4,6 +4,8 @@
 namespace aura {
 
   float convert_to_db(float value) {
-    return pow(value, 2);
+//    return pow(value, 2);
+    auto base = 10;
+    return (std::pow(base, value) - 1) / (base - 1);
   }
 }

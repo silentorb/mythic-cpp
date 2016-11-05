@@ -34,6 +34,6 @@ namespace signal_graph {
   public:
       Graph_Instance(const Graph_Generator &graph_generator, const Externals &externals);
       ~Graph_Instance();
-      float update(float beat_delta);
+      float update();
   };
 }

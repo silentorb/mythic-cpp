@@ -12,12 +12,12 @@ namespace songbird {
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Interactive : public Common_Flower, Endpoint {
+    class Interactive : public Common_Flower, Endpoint {
         unique_ptr<songbird::Singer> singer;
 
     public:
         virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
-        Interactive(Parent *parent);
+        Interactive(Parent *parent = nullptr);
         virtual ~Interactive();
 
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;

@@ -2,11 +2,12 @@
 
 #include <glm/vec2.hpp>
 #include "Group.h"
+#include "Interactive.h"
 
 namespace bloom {
   namespace flowers {
 
-    class BLOOM_EXPORT Scrollable : public Group {
+    class Scrollable : public Group {
         enum class Direction {
             horizontal,
             vertical
@@ -33,6 +34,7 @@ namespace bloom {
         void update_rebound(float delta);
         glm::ivec2 get_content_dimensions(const glm::vec2 &parent_dimensions);
         void stop_velocity();
+        Interactive interactive;
 
     public:
         Scrollable(Direction direction = Direction::vertical);
@@ -54,6 +56,7 @@ namespace bloom {
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual void update(float delta) override;
         virtual const Axis_Values &get_absolute_bounds() const override;
+        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
     };
   }
 }
