@@ -1,3 +1,3 @@
 create_library(foley)
 
-require(aura_engineering)
+require(aura aura_engineering)

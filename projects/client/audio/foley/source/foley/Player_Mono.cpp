@@ -33,7 +33,7 @@ namespace foley {
     sample_worker->update(buffer, length, engineer);
   }
 
-  void Player_Mono::add_sound(unique_ptr<Sound> &sound) {
+  void Player_Mono::add_sound(unique_ptr<Sound_Performance> &sound) {
     lock_guard<mutex> buffer_lock(buffer_mutex);
     sound_buffer.push_back(std::move(sound));
   }

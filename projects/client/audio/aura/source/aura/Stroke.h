@@ -4,9 +4,6 @@
 #include <functional>
 
 namespace aura {
-  namespace sequencing {
-    class Conductor;
-  }
 
   class Stroke {
       double duration;

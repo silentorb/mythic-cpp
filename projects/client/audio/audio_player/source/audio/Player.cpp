@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Speaker.h"
 
+using namespace std;
+
 namespace audio {
 
   Player::Player(Speaker *speaker) : speaker(speaker) {

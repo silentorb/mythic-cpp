@@ -1,13 +1,11 @@
 #pragma once
 
 #include "commoner/dllexport.h"
-#include "Sound.h"
 #include "Device_Settings.h"
 #include "Signal_Source.h"
 #include <vector>
 #include <mutex>
-
-using namespace std;
+#include <memory>
 
 namespace audio {
 
@@ -16,14 +14,13 @@ namespace audio {
   class MYTHIC_EXPORT Player {
       friend class Speaker;
 
-      vector<Sound> sounds;
-      unique_ptr<Speaker> speaker;
+      std::unique_ptr<Speaker> speaker;
       float last_delta;
       float current = 0;
       Device_Settings device_settings;
-      weak_ptr<Signal_Source> source;
+      std::weak_ptr<Signal_Source> source;
       void speaker_update_buffer(float *data, int length);
-      mutex m;
+      std::mutex m;
 
   public:
 
@@ -32,8 +29,8 @@ namespace audio {
 //      void play(Waveform &waveform);
 //      void update(float delta);
 
-      void set_source(const shared_ptr<Signal_Source> &source) {
-        this->source = weak_ptr<Signal_Source>(source);
+      void set_source(const std::shared_ptr<Signal_Source> &source) {
+        this->source = std::weak_ptr<Signal_Source>(source);
       }
 
       void delete_source() {

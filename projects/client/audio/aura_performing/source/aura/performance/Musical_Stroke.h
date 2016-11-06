@@ -26,8 +26,6 @@ namespace aura {
 
         virtual ~Musical_Stroke() {}
 
-        virtual float update(float beat_delta) = 0;
-
         const float &get_frequency() const {
           return frequency;
         }

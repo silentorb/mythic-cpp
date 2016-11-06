@@ -1,7 +1,8 @@
 #pragma once
 
-#include <foley/Sound.h>
+#include <foley/Sound_Performance.h>
 #include <memory>
+#include <foley/Sound_Data.h>
 
 namespace signal_graph {
   class Graph_Instance;
@@ -11,23 +12,15 @@ namespace signal_graph {
 
 namespace foley_graphing {
 
-  class Graph_Sound : public foley::Sound {
-      float volume = 1;
+  class Graph_Sound : public foley::Sound_Performance {
       std::unique_ptr<signal_graph::Graph_Instance> graph_instance;
       std::unique_ptr<signal_graph::Externals> externals;
+      std::unique_ptr<foley::Sound_Data> sound_data;
 
   public:
-      Graph_Sound(std::unique_ptr<signal_graph::Graph_Instance> &graph_instance,
+      Graph_Sound(std::unique_ptr<signal_graph::Graph_Instance> &graph_instance, std::unique_ptr<foley::Sound_Data> &sound_data,
                   std::unique_ptr<signal_graph::Externals> &externals);
 
-      void set_volume(float value) {
-        volume = value;
-      }
-
-      float get_volume() const {
-        return volume;
-      }
-
-      virtual float update_mono(float delta) const override;
+      virtual float update_mono(float delta) override;
   };
 }
