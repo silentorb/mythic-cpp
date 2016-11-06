@@ -13,4 +13,8 @@ namespace foley_graphing {
     sound_data->update(delta);
     return graph_instance->update();
   }
+
+  bool Graph_Sound::is_finished() const {
+    return sound_data->is_finished();
+  }
 }

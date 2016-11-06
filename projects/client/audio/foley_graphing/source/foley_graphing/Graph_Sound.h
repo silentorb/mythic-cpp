@@ -22,5 +22,6 @@ namespace foley_graphing {
                   std::unique_ptr<signal_graph::Externals> &externals);
 
       virtual float update_mono(float delta) override;
+      virtual bool is_finished() const override;
   };
 }

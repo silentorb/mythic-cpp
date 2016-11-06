@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <aura/performance/Musical_Stroke.h>
 
 namespace aura {
   namespace envelopes {

@@ -17,9 +17,8 @@ namespace aura {
         Sample_Worker_Mono(T *self) :
           self(*self) {}
 
-        void update(float *buffer, int length, Engineer &engineer) {
+        void update(float *buffer, int samples, Engineer &engineer) {
           float delta = 1.0f / engineer.get_sample_rate();
-          auto samples = engineer.bytes_to_samples(length);
           int i = 0;
           if (!started) {
             started = true;

@@ -21,7 +21,7 @@ namespace foley {
     return value;
   }
 
-  void Player_Mono::update(float *buffer, int length) {
+  void Player_Mono::manage_sounds() {
     {
       lock_guard<mutex> buffer_lock(buffer_mutex);
       if (sound_buffer.size() > 0) {
@@ -30,6 +30,17 @@ namespace foley {
       }
     }
 
+    // This could be performed during the mixing loop but it is a more flexible separation of operations
+    // to perform sound removal separately.
+    for (int i = sounds.size() - 1; i >= 0; --i) {
+      if (sounds[i]->is_finished()) {
+        sounds.erase(sounds.begin() + i);
+      }
+    }
+  }
+
+  void Player_Mono::update(float *buffer, int length) {
+    manage_sounds();
     sample_worker->update(buffer, length, engineer);
   }
 

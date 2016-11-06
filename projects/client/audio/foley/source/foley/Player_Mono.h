@@ -23,6 +23,7 @@ namespace foley {
       std::unique_ptr<aura::engineering::Sample_Worker_Mono<Player_Mono, Player_Mono>> sample_worker;
 
       std::mutex buffer_mutex;
+      void manage_sounds();
 
   public:
       Player_Mono(aura::engineering::Engineer &engineer);

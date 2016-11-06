@@ -1,10 +1,10 @@
+#include <stdexcept>
 #include "Custom_Envelope.h"
 
 using namespace std;
 
 namespace aura {
   namespace envelopes {
-
 
     inline double get_absolute_position(const Point &point, const double &last_point_position, double duration) {
       switch (point.type) {
