@@ -20,7 +20,11 @@ namespace foley {
       }
 
       virtual float update(float beat_delta) override {
-        progress += beat_delta;
+        if (progress == -1)
+          progress = 0;
+        else
+          progress += beat_delta;
+
         return 0;
       }
   };

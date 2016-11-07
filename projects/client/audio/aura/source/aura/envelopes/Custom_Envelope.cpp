@@ -24,10 +24,7 @@ namespace aura {
 
     inline bool is_past(const Point &point, const double &last_point_position, double position, double duration) {
       auto milestone = get_absolute_position(point, last_point_position, duration);
-      if (position >= milestone) {
-        int k = 0;
-      }
-      return duration >= milestone;
+      return position >= milestone;
     }
 
     double get_transition_modifier(const vector<Point> &points, Custom_Envelope_Instance &instance,
@@ -47,6 +44,9 @@ namespace aura {
         instance.height_offset = points[instance.next_point - 1].level;
         auto next_level = points[instance.next_point].level;
         float slope = next_level - instance.height_offset;
+        if (slope == 0)
+          return 1;
+
         return slope / range;
         // The full equation is:
         // relative_position / range * slope + offset.
@@ -58,6 +58,9 @@ namespace aura {
         auto slope = -point.level;
         auto range = duration
                      - get_absolute_position(point, instance.last_point_position, duration);
+        if (range == 0)
+          return 0;
+
         return slope / range;
       }
     }

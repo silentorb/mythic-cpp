@@ -19,7 +19,7 @@ namespace aura {
     if (position > 1)
       position = fmod(position + increment, 1.0);
 
-    return (float) position;
+    return (float) old;
   }
 
 //  float Loop::next(int cycles) {

@@ -25,7 +25,7 @@ namespace aura {
           type(type), position(position), level(level), curve(Curve::linear) {}
 
         Point(Position type, double position) :
-          type(type), position(position), level(level), curve(Curve::hold) {}
+          type(type), position(position), level(0), curve(Curve::hold) {}
     };
 
     struct Custom_Envelope_Instance {

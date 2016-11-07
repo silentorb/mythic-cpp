@@ -9,7 +9,7 @@ namespace aura {
       double duration;
 
   protected:
-      double progress = 0;
+      double progress = -1;
 
   public:
       Stroke(double duration) : duration(duration) {}
