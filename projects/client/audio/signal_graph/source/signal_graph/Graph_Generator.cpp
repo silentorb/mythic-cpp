@@ -92,7 +92,7 @@ namespace signal_graph {
     }
   }
 
-  Node_Info *Graph_Generator::get_node_info(Node_Instance *node) {
+  Node_Info *Graph_Generator::get_node_info(Node_Internal *node) {
     for (int i = 0; i < node_info.size(); ++i) {
       if (node_info[i].node == node)
         return &node_info[i];

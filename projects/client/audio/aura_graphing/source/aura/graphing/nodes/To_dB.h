@@ -16,6 +16,7 @@ namespace aura {
       signal_graph::Node To_dB(const signal_graph::Node & source);
 
       signal_graph::Node To_dB();
+      signal_graph::Node dB(float value);
     }
   }
 }

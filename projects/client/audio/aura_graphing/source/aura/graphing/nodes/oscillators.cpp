@@ -17,6 +17,7 @@ namespace aura {
             new signal_graph::Input<float>(position_source),
             new signal_graph::Output<float>,
           },
+          nullptr,
           [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(Oscillator_Data *) raw_data;
             data.output = sin(data.position * 2 * Pi);
@@ -34,6 +35,7 @@ namespace aura {
             new signal_graph::Input<float>(position_source),
             new signal_graph::Output<float>,
           },
+          nullptr,
           [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(Oscillator_Data *) raw_data;
             data.output = std::abs(fmod(data.position, 2) - 1);

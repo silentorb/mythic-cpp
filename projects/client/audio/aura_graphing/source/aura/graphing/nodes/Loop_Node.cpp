@@ -15,13 +15,14 @@ namespace aura {
         return signal_graph::Node(
           NODE_ID("Loop")
           {
-            new signal_graph::Internal<Loop>([& engineer](void *data, const signal_graph::Externals&externals) {
-              new(data) Loop(externals.get_external<engineering::Engineer>(engineer).get_sample_rate());
-            }),
+            new signal_graph::Internal<Loop>(),
             new signal_graph::Input<float>(frequency_source),
             new signal_graph::Output<float>(),
           },
-          [](void *raw_data, const signal_graph::Externals&externals) {
+          [& engineer](void *data, const signal_graph::Externals &externals) {
+            new(data) Loop(externals.get_external<engineering::Engineer>(engineer).get_sample_rate());
+          },
+          [](void *raw_data, const signal_graph::Externals &externals) {
             auto &data = *(Oscillator_Data *) raw_data;
             data.loop.set_frequency(data.frequency);
             data.output = data.loop.next();

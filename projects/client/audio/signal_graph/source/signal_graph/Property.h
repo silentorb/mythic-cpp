@@ -11,14 +11,14 @@ namespace signal_graph {
 
     class Node;
 
-    class Node_Instance;
+    class Node_Internal;
 
     class Property : no_copy {
         friend class Node;
 
-        friend class Node_Instance;
+        friend class Node_Internal;
 
-        std::weak_ptr<Node_Instance> node;
+        std::weak_ptr<Node_Internal> node;
         size_t offset;
 
     protected:
@@ -43,7 +43,7 @@ namespace signal_graph {
           return offset;
         }
 
-        const std::weak_ptr<Node_Instance> &get_node() const {
+        const std::weak_ptr<Node_Internal> &get_node() const {
           return node;
         }
     };
@@ -53,12 +53,12 @@ namespace signal_graph {
 
     };
 
-    class Node_Instance;
+    class Node_Internal;
 
     class Input_Base : public Property {
     protected:
         const Output_Base *other_property = nullptr;
-        std::shared_ptr<Node_Instance> other_node_instance = nullptr;
+        std::shared_ptr<Node_Internal> other_node_instance = nullptr;
 
     public:
         virtual ~Input_Base() {}
@@ -78,10 +78,10 @@ namespace signal_graph {
 //        void set_other_property(const std::shared_ptr<Node_Instance> &other_node);
         void set_other_property(const Node &other_node);
 
-        virtual const std::weak_ptr<Node_Instance> get_other_node() const {
+        virtual const std::weak_ptr<Node_Internal> get_other_node() const {
           return other_property
                  ? other_property->get_node()
-                 : std::weak_ptr<Node_Instance>();
+                 : std::weak_ptr<Node_Internal>();
         }
 
         virtual void assign(void *data, const void *other_data, const Property &other_property)= 0;
@@ -148,45 +148,25 @@ namespace signal_graph {
     };
 
     class Internal_Base : public Property {
-        std::function<void(void *, const Externals &)> initializer;
 
     public:
-        Internal_Base(std::function<void(void *, const Externals &)> initializer) :
-        initializer(initializer) {}
+        Internal_Base() {}
 
         virtual ~Internal_Base() {}
 
         virtual Type get_type() const override {
           return Property::Type::internal;
         }
-
-        void initialize_data(void *data, const Externals &stroke) {
-//          T *value = new(data) T();
-          initializer(data, stroke);
-        }
-
     };
 
     template<typename T>
     class Internal : public Internal_Base {
     public:
-        Internal(const std::function<void(void *, const Externals &)> &initializer) :
-          Internal_Base(initializer) {}
+        Internal() :
+          Internal_Base() {}
 
         virtual size_t get_size() const override {
           return sizeof(T);
-        }
-
-    };
-
-
-    class Empty_Internal : public Internal_Base {
-    public:
-        Empty_Internal(const std::function<void(void *, const Externals &)> &initializer) :
-          Internal_Base(initializer) {}
-
-        virtual size_t get_size() const override {
-          return 0;
         }
 
     };

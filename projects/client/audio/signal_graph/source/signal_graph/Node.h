@@ -8,28 +8,36 @@
 namespace signal_graph {
 
   typedef std::function<void(void *, const Externals &)> Node_Update;
+  typedef std::function<void(void *, const Externals &)> Node_Initializer;
+  typedef std::function<void(void *)> Node_Destructor;
 
-  struct Node_Instance : no_copy {
+  struct Node_Internal : no_copy {
       std::vector<std::unique_ptr<Property>> properties;
+      Node_Initializer initializer;
+      Node_Destructor destructor;
       Node_Update update;
       size_t data_size = 0;
 
 #ifdef COMMONER_DEBUG
       std::string name;
-
-      Node_Instance(const std::string &name, const Node_Update &update) :
-        name(name), update(update) {}
-
-      ~Node_Instance() {
-        int k = 0;
-      }
-
-#else
-
-      Node_Instance(const Node_Update &update) :
-        update(update) {}
-
 #endif
+
+      Node_Internal(
+#ifdef COMMONER_DEBUG
+        const std::string &name,
+#endif
+        const Node_Initializer &initializer, const Node_Update &update, const Node_Destructor &destructor);
+
+      Node_Internal(
+#ifdef COMMONER_DEBUG
+        const std::string &name,
+#endif
+        const Node_Initializer &initializer, const Node_Update &update);
+
+      void initialize_data(void *data, const Externals &externals) {
+        if (initializer)
+          initializer(data, externals);
+      }
 
       Property &get_first_output() const;
       Input_Base &get_first_input() const;
@@ -50,15 +58,16 @@ namespace signal_graph {
         return data_size;
       };
 
-      void finalize();
+//      void add_property(Property *property);
+      void set_properties(const std::initializer_list<Property *> property_initializer,
+                          std::shared_ptr<Node_Internal> &pointer);
 
   };
 
   class Node {
       friend class Property;
 
-      std::shared_ptr<Node_Instance> instance;
-      void add_property(Property *property);
+      std::shared_ptr<Node_Internal> instance;
 
   private:
       Node(void *);
@@ -66,17 +75,17 @@ namespace signal_graph {
   public:
 #ifdef COMMONER_DEBUG
       Node(const std::string &name, const std::initializer_list<Property *> property_initializer,
-           const Node_Update &update);
+           const Node_Initializer &initializer, const Node_Update &update);
 #else
       Node(const initializer_list<Property *> property_initializer, const Node_Update &update);
 #endif
       Node(const Node &node);
 
-      Node(const std::shared_ptr<Node_Instance> &new_instance) : instance(new_instance) {}
+      Node(const std::shared_ptr<Node_Internal> &new_instance) : instance(new_instance) {}
 
       Node(float value);
 
-      const std::shared_ptr<Node_Instance> &get_instance() const {
+      const std::shared_ptr<Node_Internal> &get_instance() const {
         return instance;
       }
 
@@ -104,6 +113,32 @@ namespace signal_graph {
 
       Node operator>>(const Node &other);
   };
+
+  template<typename T>
+  Node create_node(
+#ifdef COMMONER_DEBUG
+    const std::string &name,
+#endif
+    const std::initializer_list<signal_graph::Property *> &property_initializer,
+    const Node_Update &update) {
+
+    auto internal = std::shared_ptr<Node_Internal>(new Node_Internal(
+#ifdef COMMONER_DEBUG
+      name,
+#endif
+      [](void *data, const signal_graph::Externals &externals) {
+        new(data)T();
+      },
+      update,
+      [](void *raw_data) {
+        auto data = (T *) raw_data;
+        data->~T();
+      }
+    ));
+    internal->set_properties(property_initializer, internal);
+    return Node(internal);
+  }
+
 
 #ifdef COMMONER_DEBUG
 #define NODE_ID(name) name,

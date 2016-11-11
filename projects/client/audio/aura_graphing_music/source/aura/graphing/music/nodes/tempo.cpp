@@ -15,6 +15,7 @@ namespace aura {
           {
             new signal_graph::Output<float>(),
           },
+          nullptr,
           [& conductor](void *raw_data, const signal_graph::Externals &externals) {
             auto &data = *(Tempo_Data *) raw_data;
             data.output = conductor.get_seconds_tempo();

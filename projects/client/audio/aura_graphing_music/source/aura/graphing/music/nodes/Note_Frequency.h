@@ -16,11 +16,11 @@ namespace aura {
         return signal_graph::Node(
           NODE_ID("Note_Frequency")
           {
-            new signal_graph::Empty_Internal([& frequency](void *raw_data, const signal_graph::Externals &externals) {
-              auto &data = *(Note_Frequency_Data *) raw_data;
-              data.output = externals.get_external<float>(frequency);
-            }),
             new signal_graph::Output<float>(),
+          },
+          [& frequency](void *raw_data, const signal_graph::Externals &externals) {
+            auto &data = *(Note_Frequency_Data *) raw_data;
+            data.output = externals.get_external<float>(frequency);
           },
           [&frequency](void *raw_data, const signal_graph::Externals &externals) {
 //            auto &data = *(Note_Frequency_Data *) raw_data;

@@ -4,9 +4,31 @@ using namespace std;
 
 namespace signal_graph {
 
+  Node_Internal::Node_Internal(
+#ifdef COMMONER_DEBUG
+    const std::string &name,
+#endif
+    const Node_Initializer &initializer, const Node_Update &update, const Node_Destructor &destructor) :
+#ifdef COMMONER_DEBUG
+    name(name),
+#endif
+    initializer(initializer), update(update), destructor(destructor) {
+  }
+
+  Node_Internal::Node_Internal(
+#ifdef COMMONER_DEBUG
+    const std::string &name,
+#endif
+    const Node_Initializer &initializer, const Node_Update &update) :
+#ifdef COMMONER_DEBUG
+    name(name),
+#endif
+    initializer(initializer), update(update), destructor(nullptr) {
+  }
+
   Node::Node(void *) : Node(
     NODE_ID("Empty")
-    {}, nullptr) {
+    {}, nullptr, nullptr) {
 
   }
 
@@ -14,27 +36,19 @@ namespace signal_graph {
     return Node(nullptr);
   }
 
+  Node::Node(
 #ifdef COMMONER_DEBUG
-
-  Node::Node(const string &name, const initializer_list<Property *> property_initializer, const Node_Update &update) :
-    instance(new Node_Instance(name, update)) {
-    for (auto property: property_initializer) {
-      add_property(property);
-    }
-    instance->finalize();
-  }
-
-#else
-
-  Node::Node(const initializer_list<Property *> property_initializer, const Node_Update &update) :
-    instance(new Node_Instance(update)) {
-    for (auto property: property_initializer) {
-      add_property(property);
-    }
-    instance->finalize();
-  }
-
+    const string &name,
 #endif
+    const initializer_list<Property *> property_initializer,
+    const Node_Initializer &initializer, const Node_Update &update) :
+    instance(new Node_Internal(
+#ifdef COMMONER_DEBUG
+      name,
+#endif
+      initializer, update)) {
+    instance->set_properties(property_initializer, instance);
+  }
 
   Node::Node(const Node &node) :
     instance(node.instance) {
@@ -45,23 +59,21 @@ namespace signal_graph {
     NODE_ID("Constant")
     {
       new Constant_Output<float>(value)
-    }, nullptr) {
+    }, nullptr, nullptr) {
   }
 
-  void Node::add_property(Property *property) {
-    instance->properties.push_back(unique_ptr<Property>(property));
-    property->node = instance;
-  }
-
-  void Node_Instance::finalize() {
+  void Node_Internal::set_properties(const std::initializer_list<Property *> property_initializer,
+                                     std::shared_ptr<Node_Internal> &pointer) {
     data_size = 0;
-    for (auto &property: properties) {
+    for (auto property: property_initializer) {
+      properties.push_back(unique_ptr<Property>(property));
+      property->node = pointer;
       property->offset = data_size;
       data_size += property->get_size();
     }
   }
 
-  Property &Node_Instance::get_first_output() const {
+  Property &Node_Internal::get_first_output() const {
     for (auto &property: properties) {
       if (property->get_type() == Property::Type::output || property->get_type() == Property::Type::constant)
         return *property;
@@ -69,7 +81,7 @@ namespace signal_graph {
     throw runtime_error("Aura node has no output property.");
   }
 
-  Input_Base &Node_Instance::get_first_input() const {
+  Input_Base &Node_Internal::get_first_input() const {
     for (auto &property: properties) {
       if (property->get_type() == Property::Type::input)
         return static_cast<Input_Base &>(*property);

@@ -12,6 +12,7 @@ namespace aura {
             new signal_graph::Input<float>(max),
             new signal_graph::Output<float>(),
           },
+          nullptr,
           [](void *raw_data, const signal_graph::Externals&externals) {
             auto &data = *(Clip_Data *) raw_data;
             if (data.signal > data.max)

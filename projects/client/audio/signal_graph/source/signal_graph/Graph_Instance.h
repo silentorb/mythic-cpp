@@ -6,8 +6,9 @@
 namespace signal_graph {
 
   class Graph_Instance {
-      const std::vector<Node_Info> node_info;
+//      const std::vector<Node_Info> node_info;
       std::vector<unsigned char> up_to_date;
+      const std::vector<Node_Info> & node_info;
       float *output_value;
       const Externals &externals;
 

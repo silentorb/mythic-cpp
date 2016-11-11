@@ -17,7 +17,7 @@ namespace signal_graph {
         new signal_graph::Input<T>(first),
         new signal_graph::Input<T>(second),
         new signal_graph::Output<T>(),
-      }, update);
+      }, nullptr, update);
   }
 
   signal_graph::Node Add(const signal_graph::Node &first, const signal_graph::Node &second) {

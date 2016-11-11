@@ -10,13 +10,13 @@ namespace aura {
         return signal_graph::Node(
           NODE_ID("Envelope_Node")
           {
-            new signal_graph::Internal<envelopes::Custom_Envelope_Instance>(
-              [envelope, & duration](void *data, const signal_graph::Externals &externals) {
-                auto instance = new(data) envelopes::Custom_Envelope_Instance();
-                double duration_value = externals.get_external<double>(duration);
-                envelopes::Custom_Envelope::initialize_instance(*instance, *envelope, duration_value);
-              }),
+            new signal_graph::Internal<envelopes::Custom_Envelope_Instance>(),
             new signal_graph::Output<float>(),
+          },
+          [envelope, & duration](void *data, const signal_graph::Externals &externals) {
+            auto instance = new(data) Envelope_Node_Data();
+            double duration_value = externals.get_external<double>(duration);
+            envelopes::Custom_Envelope::initialize_instance(instance->instance, *envelope, duration_value);
           },
           [envelope, &duration, &progress](void *raw_data, const signal_graph::Externals &externals) {
             auto &data = *(Envelope_Node_Data *) raw_data;

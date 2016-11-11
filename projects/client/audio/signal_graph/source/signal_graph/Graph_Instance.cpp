@@ -2,30 +2,25 @@
 
 namespace signal_graph {
 
-
-//    Graph_Instance::Graph_Instance(const Graph_Generator &graph_generator, const Externals &externals) :
-//      Stroke(duration), instance(graph_generator) {
-//
-//    }
-
   Graph_Instance::Graph_Instance(const Graph_Generator &graph_generator, const Externals &externals) :
-    node_info(graph_generator.get_node_info()), externals(externals) {
+    externals(externals), node_info(graph_generator.get_node_info()) {
+    auto &node_info = graph_generator.get_node_info();
     data = new char[graph_generator.get_data_size()];
     up_to_date.resize(node_info.size());
 
     // Initialize constants
 
     // Initialize internal class objects
-    for (auto &internal:graph_generator.get_internal_objects()) {
-      internal.property->initialize_data(get_data(*internal.node_info) + internal.property->get_offset(),
-                                         externals);
+    for (auto &info : node_info) {
+      info.node->initialize_data(get_data(info), externals);
     }
 
-    for (auto &constant: graph_generator.get_constants()) {
+    for (auto &constant : graph_generator.get_constants()) {
       auto node_data = data + constant.input.node_info->offset;
       auto field_data = node_data + constant.input.property->get_offset();
       *(float *) field_data = constant.value;
     }
+
     // Initialize output_value
     auto root_data = get_data(node_info[0]);
     auto &first_output = node_info[0].node->get_first_output();
@@ -33,6 +28,9 @@ namespace signal_graph {
   }
 
   Graph_Instance::~Graph_Instance() {
+    for(auto & info: node_info){
+
+    }
     delete data;
   }
 

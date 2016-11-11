@@ -15,8 +15,8 @@ namespace signal_graph {
       int offset;
       int size;
       int index;
-      Node_Instance *node;
-      std::vector<Input_Info> inputs;
+      Node_Internal *node;
+            std::vector<Input_Info> inputs;
   };
 
   struct Constant_Info {
@@ -39,7 +39,7 @@ namespace signal_graph {
       void include_node(const Node &node, int &constant_count, int &internal_objects_count);
       bool contains_node(const Node &node);
       void finalize();
-      Node_Info *get_node_info(Node_Instance *node);
+      Node_Info *get_node_info(Node_Internal *node);
       void initialize_node_info(Node_Info &info, const Node &node, int offset);
       void initialize_input(Input_Base *input_property, Node_Info &info, int &input_count);
 
