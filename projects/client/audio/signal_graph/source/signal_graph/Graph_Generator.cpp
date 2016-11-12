@@ -4,7 +4,6 @@ using namespace std;
 
 namespace signal_graph {
 
-
   size_t get_input_count(const Node &node) {
     size_t result = 0;
     for (auto &property: node.get_properties()) {
@@ -39,8 +38,8 @@ namespace signal_graph {
       }
       else if (property->get_type() == Property::Type::input) {
         auto other_node = static_cast<Input_Base *>(property.get())->get_other_node();
-        if (!other_node.expired()) {
-          include_node(Node(other_node.lock()), constant_count, internal_objects_count);
+        if (other_node) {
+          include_node(Node(other_node), constant_count, internal_objects_count);
         }
       }
       else if (property->get_type() == Property::Type::internal) {
@@ -63,9 +62,9 @@ namespace signal_graph {
     }
     else {
       auto &other_node = input_property->get_other_node();
-      if (!other_node.expired()) {
+      if (other_node) {
         auto &input = info.inputs[input_count++];
-        input.node_info = get_node_info(other_node.lock().get());
+        input.node_info = get_node_info(other_node.get());
         input.property = input_property;
       }
     }

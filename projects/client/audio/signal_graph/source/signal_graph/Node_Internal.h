@@ -26,7 +26,8 @@ namespace signal_graph {
       virtual void set_properties(const std::initializer_list<Property *> property_initializer,
                                   std::shared_ptr<Node_Internal> &pointer) = 0;
 
-      virtual void attach(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) = 0;
+      virtual void attach_input(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) = 0;
+      virtual void attach_output(const std::shared_ptr<Node_Internal> &instance) = 0;
   };
 
   class Node_Internal_With_Properties : public Node_Internal {
@@ -49,6 +50,8 @@ namespace signal_graph {
       virtual void set_properties(const std::initializer_list<Property *> property_initializer,
                                   std::shared_ptr<Node_Internal> &pointer) override;
 
+      virtual void attach_input(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) override;
+      virtual void attach_output(const std::shared_ptr<Node_Internal> &instance) override;
   };
 
   class Dynamic_Node_Internal : public Node_Internal_With_Properties {
@@ -78,6 +81,5 @@ namespace signal_graph {
       virtual void initialize(void *data, const Externals &externals) const override;
       virtual void update(void *data, const Externals &externals) const override;
       virtual void free(void *data) const override;
-      virtual void attach(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) override;
   };
 }

@@ -16,7 +16,8 @@ namespace signal_graph {
       virtual void free(void *data) const override;
       virtual void set_properties(const std::initializer_list<Property *> property_initializer,
                                   std::shared_ptr<Node_Internal> &pointer) override;
-      virtual void attach(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) override;
+      virtual void attach_input(Input_Base &input, const std::shared_ptr<Node_Internal> &instance) override;
+      virtual void attach_output(const std::shared_ptr<Node_Internal> &instance) override;
   };
 
   Node create_temporary();

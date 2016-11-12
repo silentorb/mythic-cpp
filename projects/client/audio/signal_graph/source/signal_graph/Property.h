@@ -87,11 +87,13 @@ namespace signal_graph {
 
 //        void set_other_property(const std::shared_ptr<Node_Instance> &other_node);
       void set_other_property(const std::shared_ptr<Node_Internal> &other_node);
+      void set_other_node(const std::shared_ptr<Node_Internal> &other_node);
 
-      virtual const std::weak_ptr<Node_Internal> get_other_node() const {
-        return other_property
-               ? other_property->get_node()
-               : std::weak_ptr<Node_Internal>();
+      virtual const std::shared_ptr<Node_Internal> get_other_node() const {
+        return other_node_instance;
+//        return other_property
+//               ? other_property->get_node()
+//               : std::weak_ptr<Node_Internal>();
       }
 
       virtual void assign(void *data, const void *other_data, const Property &other_property)= 0;

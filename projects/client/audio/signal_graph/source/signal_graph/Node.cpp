@@ -38,7 +38,8 @@ namespace signal_graph {
   }
 
   Node Node::operator>>(const Node &other) {
-    other.get_instance()->get_first_input().set_other_property(get_instance());
+//    other.get_instance()->get_first_input().set_other_property(get_instance());
+    other.get_instance()->attach_output(get_instance());
     return other;
   }
 }

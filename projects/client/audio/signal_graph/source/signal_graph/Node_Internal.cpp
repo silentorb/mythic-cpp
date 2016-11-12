@@ -66,7 +66,17 @@ namespace signal_graph {
     destructor(data);
   }
 
-  void Dynamic_Node_Internal::attach(Input_Base &input, const shared_ptr<Node_Internal> &instance) {
+  void Node_Internal_With_Properties::attach_input(Input_Base &input, const shared_ptr<Node_Internal> &instance) {
     input.set_other_property(instance);
+  }
+
+  void Node_Internal_With_Properties::attach_output(const std::shared_ptr<Node_Internal> &instance) {
+    auto &input = get_first_input();
+    if (input.get_other_node().get()) {
+      input.get_other_node()->attach_output(instance);
+    }
+    else {
+      input.set_other_property(instance);
+    }
   }
 }
