@@ -12,7 +12,7 @@ namespace aura {
           float output;
       };
 
-      signal_graph::Node Note_Frequency(const signal_graph::External &frequency) {
+      signal_graph::Node Note_Frequency(const signal_graph::External_Base &frequency) {
         return signal_graph::Node(
           NODE_ID("Note_Frequency")
           {

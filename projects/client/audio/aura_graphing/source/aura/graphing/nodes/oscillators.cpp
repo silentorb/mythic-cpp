@@ -24,7 +24,7 @@ namespace aura {
           });
       }
 
-      signal_graph::Node Sine_Wave(const signal_graph::Node &frequency, const signal_graph::External &engineer) {
+      signal_graph::Node Sine_Wave(const signal_graph::Node &frequency, const signal_graph::External_Base &engineer) {
         return Sine_Wave_With_Position_Source(Loop_Node(frequency, engineer));
       }
 
@@ -42,7 +42,7 @@ namespace aura {
           });
       }
 
-      signal_graph::Node Saw_Wave(const signal_graph::Node &frequency, const signal_graph::External &engineer) {
+      signal_graph::Node Saw_Wave(const signal_graph::Node &frequency, const signal_graph::External_Base &engineer) {
         return Saw_Wave_With_Position_Source(Loop_Node(frequency, engineer));
       }
     }

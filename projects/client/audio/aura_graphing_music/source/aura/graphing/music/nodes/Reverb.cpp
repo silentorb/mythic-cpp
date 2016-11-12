@@ -2,6 +2,7 @@
 #include "Delay.h"
 #include <aura/engineering/Engineer.h>
 #include <signal_graph/Temporary_Node.h>
+#include <aura/utility/utility.h>
 
 using namespace signal_graph;
 using namespace std;
@@ -12,11 +13,11 @@ namespace aura {
 
       struct Reverb_Data {
           float original;
-          std::vector<float> const *input;
+          std::vector<float> const *buffer;
           float output;
       };
 
-      Node Reverb(const Node &signal, const External &engineer) {
+      Node Reverb(const Node &signal, const External_Input<engineering::Engineer> &engineer) {
         auto delay = Delay(signal, engineer);
 
         return create_node<Reverb_Data>(
@@ -28,12 +29,13 @@ namespace aura {
           },
           [&engineer](void *raw_data, const Externals &externals) {
             auto &data = *(Reverb_Data *) raw_data;
-            auto &buffer = *data.input;
-            data.output = data.original + buffer[buffer.size() - 1];
+            auto &buffer = *data.buffer;
+            data.output = data.original ;//+ buffer[buffer.size() - 1];// * utility::to_db(0.5f);
+//            data.output = buffer[buffer.size() - 1];// * utility::to_db(0.5f);
           });
       }
 
-      Node Reverb(const External &engineer) {
+      Node Reverb(const External_Input<engineering::Engineer> &engineer) {
         return Reverb(create_temporary(), engineer);
       }
     }

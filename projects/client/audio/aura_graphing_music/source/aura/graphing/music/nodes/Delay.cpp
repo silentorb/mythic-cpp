@@ -13,7 +13,7 @@ namespace aura {
           std::vector<float> buffer;
       };
 
-      Node Delay(const Node &signal, const External &engineer) {
+      Node Delay(const Node &signal, const External_Base &engineer, const External_Output<) {
         return create_node<Delay_Data>(
           NODE_ID("Delay")
           {
@@ -26,8 +26,9 @@ namespace aura {
             auto &buffer = data.buffer;
             if (buffer.size() == 0) {
               auto &engineer_value = externals.get_external<engineering::Engineer>(engineer);
-              buffer.resize(engineer_value.get_sample_rate());
+              buffer.resize(engineer_value.get_sample_rate() * 2);
               data.output = &buffer;
+
             }
             else {
               std::move(buffer.begin(), buffer.end() - 1, buffer.begin() + 1);
@@ -36,7 +37,7 @@ namespace aura {
           });
       }
 
-      Node Delay(const External &engineer) {
+      Node Delay(const External_Base &engineer) {
         return Delay(Node::create_empty(), engineer);
       }
     }

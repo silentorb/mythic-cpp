@@ -28,17 +28,17 @@ namespace signal_graph {
   }
 
   Graph_Instance::~Graph_Instance() {
-    for(auto & info: node_info){
+    for (auto &info: node_info) {
 
     }
     delete data;
   }
 
   void Graph_Instance::update_node(const Node_Info &info) {
-//      if (is_fresh(info))
-//        return;
-//
-//      set_fresh(info);
+    if (is_fresh(info))
+      return;
+
+    set_fresh(info);
 
     auto node_data = data + info.offset;
     for (int i = 0; i < info.inputs.size(); ++i) {
@@ -54,7 +54,7 @@ namespace signal_graph {
 
   float Graph_Instance::update() {
 
-//      std::fill(up_to_date.begin(), up_to_date.end(), 0);
+    std::fill(up_to_date.begin(), up_to_date.end(), 0);
 //			memset(up_to_date.data(), 0, sizeof(bool) * up_to_date.size());
 
     update_node(node_info[0]);
