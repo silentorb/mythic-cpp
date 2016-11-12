@@ -12,7 +12,7 @@ namespace signal_graph {
 
     // Initialize internal class objects
     for (auto &info : node_info) {
-      info.node->initialize_data(get_data(info), externals);
+      info.node->initialize(get_data(info), externals);
     }
 
     for (auto &constant : graph_generator.get_constants()) {
@@ -49,7 +49,7 @@ namespace signal_graph {
         node_data, get_data(input_node),
         *input.property->get_other_property());
     }
-    info.node->get_update()(node_data, externals);
+    info.node->update(node_data, externals);
   }
 
   float Graph_Instance::update() {

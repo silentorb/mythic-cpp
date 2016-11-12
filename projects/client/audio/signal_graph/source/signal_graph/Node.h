@@ -1,68 +1,11 @@
 #pragma once
 
 #include <vector>
-#include "Property.h"
+#include "Node_Internal.h"
 #include <memory>
 #include <commoner/debug-macro.h>
 
 namespace signal_graph {
-
-  typedef std::function<void(void *, const Externals &)> Node_Update;
-  typedef std::function<void(void *, const Externals &)> Node_Initializer;
-  typedef std::function<void(void *)> Node_Destructor;
-
-  struct Node_Internal : no_copy {
-      std::vector<std::unique_ptr<Property>> properties;
-      Node_Initializer initializer;
-      Node_Destructor destructor;
-      Node_Update update;
-      size_t data_size = 0;
-
-#ifdef COMMONER_DEBUG
-      std::string name;
-#endif
-
-      Node_Internal(
-#ifdef COMMONER_DEBUG
-        const std::string &name,
-#endif
-        const Node_Initializer &initializer, const Node_Update &update, const Node_Destructor &destructor);
-
-      Node_Internal(
-#ifdef COMMONER_DEBUG
-        const std::string &name,
-#endif
-        const Node_Initializer &initializer, const Node_Update &update);
-
-      void initialize_data(void *data, const Externals &externals) {
-        if (initializer)
-          initializer(data, externals);
-      }
-
-      Property &get_first_output() const;
-      Input_Base &get_first_input() const;
-
-      std::vector<std::unique_ptr<Property>> &get_properties() {
-        return properties;
-      }
-
-      const std::vector<std::unique_ptr<Property>> &get_properties() const {
-        return properties;
-      }
-
-      const Node_Update &get_update() const {
-        return update;
-      }
-
-      int get_data_size() const {
-        return data_size;
-      };
-
-//      void add_property(Property *property);
-      void set_properties(const std::initializer_list<Property *> property_initializer,
-                          std::shared_ptr<Node_Internal> &pointer);
-
-  };
 
   class Node {
       friend class Property;
@@ -85,24 +28,25 @@ namespace signal_graph {
 
       Node(float value);
 
+      std::shared_ptr<Node_Internal> &get_instance() {
+        return instance;
+      }
+
       const std::shared_ptr<Node_Internal> &get_instance() const {
         return instance;
       }
 
       std::vector<std::unique_ptr<Property>> &get_properties() {
-        return instance->properties;
+        return instance->get_properties();
       }
 
       const std::vector<std::unique_ptr<Property>> &get_properties() const {
-        return instance->properties;
+        return instance->get_properties();
       }
 
-      Node_Update &get_update() const {
-        return instance->update;
-      }
 
       int get_data_size() const {
-        return instance->data_size;
+        return instance->get_data_size();
       };
 
       bool is_empty() const {
@@ -122,7 +66,7 @@ namespace signal_graph {
     const std::initializer_list<signal_graph::Property *> &property_initializer,
     const Node_Update &update) {
 
-    auto internal = std::shared_ptr<Node_Internal>(new Node_Internal(
+    auto internal = std::shared_ptr<Node_Internal>(new Dynamic_Node_Internal(
 #ifdef COMMONER_DEBUG
       name,
 #endif

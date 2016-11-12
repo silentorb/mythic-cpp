@@ -1,6 +1,7 @@
 #include "Reverb.h"
 #include "Delay.h"
 #include <aura/engineering/Engineer.h>
+#include <signal_graph/Temporary_Node.h>
 
 using namespace signal_graph;
 using namespace std;
@@ -33,7 +34,7 @@ namespace aura {
       }
 
       Node Reverb(const External &engineer) {
-        return Reverb(Node::create_empty(), engineer);
+        return Reverb(create_temporary(), engineer);
       }
     }
   }
