@@ -50,7 +50,7 @@ namespace signal_graph {
       };
 
       bool is_empty() const {
-        return instance->get_properties().size() == 0;
+        return instance.get() == nullptr;
       }
 
       static Node create_empty();

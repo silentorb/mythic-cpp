@@ -4,9 +4,7 @@ using namespace std;
 
 namespace signal_graph {
 
-  Node::Node(void *) : Node(
-    NODE_ID("Empty")
-    {}, nullptr, nullptr) {
+  Node::Node(void *) {
 
   }
 
