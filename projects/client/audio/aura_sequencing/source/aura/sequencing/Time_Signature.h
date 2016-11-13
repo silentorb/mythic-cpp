@@ -5,7 +5,7 @@
 namespace aura {
   namespace sequencing {
 
-    struct MYTHIC_EXPORT Time_Signature {
+    struct Time_Signature {
         int8_t upper;
         int8_t lower;
 

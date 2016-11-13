@@ -2,12 +2,10 @@
 
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/common_processors.h>
-#include "commoner/dllexport.h"
 #include "Note_Envelope_Generator.h"
-#include <aura_export.h>
 
 namespace aura {
-  struct MYTHIC_EXPORT ADSR {
+  struct ADSR {
       double attack_duration;
       double attack_level;
       double decay_duration;
@@ -40,7 +38,7 @@ namespace aura {
       }
   };
 
-  class MYTHIC_EXPORT ADSR_Envelope : public Note_Envelope {
+  class ADSR_Envelope : public Note_Envelope {
       const ADSR &settings;
       ADSR_Instance instance;
 
@@ -54,7 +52,7 @@ namespace aura {
       virtual float get_value(double position) override;
   };
 
-  class MYTHIC_EXPORT ADSR_Envelope_Generator : public Note_Envelope_Generator {
+  class ADSR_Envelope_Generator : public Note_Envelope_Generator {
       const ADSR settings;
 
   public:
@@ -72,6 +70,6 @@ namespace aura {
       }
   };
 
- AURA_EXPORT float update_ADSR(ADSR_Instance &instance, double position, const ADSR &settings);
+ float update_ADSR(ADSR_Instance &instance, double position, const ADSR &settings);
 
 }

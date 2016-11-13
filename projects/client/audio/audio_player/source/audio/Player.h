@@ -11,7 +11,7 @@ namespace audio {
 
   class Speaker;
 
-  class MYTHIC_EXPORT Player {
+  class Player {
       friend class Speaker;
 
       std::unique_ptr<Speaker> speaker;

@@ -9,7 +9,7 @@ using namespace std;
 namespace aura {
   namespace sequencing {
 
-  class MYTHIC_EXPORT Chord_Structure {
+  class Chord_Structure {
       vector<Chord_Instance> chords;
       float measures = 0;
 

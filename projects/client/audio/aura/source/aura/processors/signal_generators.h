@@ -8,10 +8,10 @@ namespace aura {
 
   namespace generate {
 
-    MYTHIC_EXPORT float sine(float position);
-    MYTHIC_EXPORT float saw(float position);
-    MYTHIC_EXPORT float square(float position);
-    MYTHIC_EXPORT float white_noise(float position);
+    float sine(float position);
+    float saw(float position);
+    float square(float position);
+    float white_noise(float position);
 
   }
 }

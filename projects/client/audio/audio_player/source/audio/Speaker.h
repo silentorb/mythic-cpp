@@ -8,7 +8,7 @@ namespace audio {
 
   class Player;
 
-  class MYTHIC_EXPORT Speaker {
+  class Speaker {
       Player *player;
 
   public:

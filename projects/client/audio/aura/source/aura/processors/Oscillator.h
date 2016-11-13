@@ -11,7 +11,7 @@ namespace aura {
     class Engineer;
   }
 
-  class MYTHIC_EXPORT Oscillator {
+  class Oscillator {
       Loop loop;
       Loop_Function operation;
       engineering::Engineer &engineer;

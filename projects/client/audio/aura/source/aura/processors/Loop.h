@@ -13,7 +13,7 @@ namespace aura {
 
   typedef std::function<float(float position)> Loop_Function;
 
-  class MYTHIC_EXPORT Loop {
+  class Loop {
       double position = 0;
       double increment;
       const int sample_rate;

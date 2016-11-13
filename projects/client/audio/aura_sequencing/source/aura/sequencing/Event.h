@@ -13,7 +13,7 @@ namespace aura {
         chord
     };
 
-    class MYTHIC_EXPORT Event : no_copy {
+    class Event : no_copy {
         Event_Type type;
         double absolute_start = -1;
         double trigger_start;
@@ -47,7 +47,7 @@ namespace aura {
         virtual float get_relative_start() const = 0;
     };
 
-    class MYTHIC_EXPORT Note_Event : public Event {
+    class Note_Event : public Event {
         Note note;
         int group_id;
 
@@ -68,7 +68,7 @@ namespace aura {
         }
     };
 
-    class MYTHIC_EXPORT Chord_Event : public Event {
+    class Chord_Event : public Event {
         Chord_Instance chord;
         float relative_start;
 

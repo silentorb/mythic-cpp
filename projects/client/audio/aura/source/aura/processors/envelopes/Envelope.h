@@ -7,7 +7,7 @@ using namespace std;
 
 namespace aura {
 
-  class MYTHIC_EXPORT Envelope {
+  class Envelope {
       vector <Curve> curves;
 
   public:

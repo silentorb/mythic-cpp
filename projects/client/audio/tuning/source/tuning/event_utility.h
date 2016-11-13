@@ -5,6 +5,6 @@
 
 namespace tuning {
 
-  MYTHIC_EXPORT void write_events_to_file(Event_Data &source, const string &filename);
-  MYTHIC_EXPORT void write_notation_to_file(Event_Data &source, const string &filename);
+  void write_events_to_file(Event_Data &source, const string &filename);
+  void write_notation_to_file(Event_Data &source, const string &filename);
 }

@@ -7,12 +7,12 @@ namespace aura {
 
   typedef std::function<float(double)> Simple_Operator_Delegate;
 
-  class MYTHIC_EXPORT Note_Envelope {
+  class Note_Envelope {
   public:
       virtual float get_value(double position) = 0;
   };
 
-  class MYTHIC_EXPORT Functional_Envelope : public Note_Envelope {
+  class Functional_Envelope : public Note_Envelope {
       Simple_Operator_Delegate operation;
   public:
 

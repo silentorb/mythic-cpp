@@ -2,10 +2,11 @@
 
 #include <aura/engineering/Buffer.h>
 #include <functional>
+#include <aura/performing/Sound.h>
 
 namespace aura {
 
-  class Stroke {
+  class Stroke : public performing::Sound<float> {
       double duration;
 
   protected:
@@ -16,7 +17,7 @@ namespace aura {
 
       virtual ~Stroke() {}
 
-      virtual float update(float beat_delta) = 0;
+//      virtual float update(float beat_delta) = 0;
 
       const double &get_duration() const {
         return duration;

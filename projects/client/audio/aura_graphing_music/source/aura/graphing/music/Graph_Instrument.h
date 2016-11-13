@@ -4,7 +4,7 @@
 #include <aura/processors/Oscillator.h>
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/envelopes/Note_Envelope_Generator.h>
-#include "aura/performance/Instrument.h"
+#include "aura/performance/Instrument_Old.h"
 #include "signal_graph/Node.h"
 #include "signal_graph/Graph_Generator.h"
 #include <aura/performance/Musical_Stroke.h>
@@ -17,7 +17,7 @@ namespace aura {
     using Externals_Source = std::function<std::unique_ptr<Externals>(const performing::Musical_Stroke &)>;
 
     template<typename Externals>
-    class Graph_Instrument : public performing::Instrument, no_copy {
+    class Graph_Instrument : public performing::Instrument_Old, no_copy {
         const Externals_Source<Externals> externals_source;
         signal_graph::Graph_Generator<Externals> graph_generator;
 

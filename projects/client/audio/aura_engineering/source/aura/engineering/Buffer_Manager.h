@@ -8,7 +8,7 @@ using namespace std;
 namespace aura {
   namespace engineering {
 
-    class MYTHIC_EXPORT Buffer_Manager {
+    class Buffer_Manager {
         unique_ptr<unsigned char> data;
         int capacity = 0;
         int size = 0;

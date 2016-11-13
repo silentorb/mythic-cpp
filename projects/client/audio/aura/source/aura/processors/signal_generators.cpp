@@ -27,7 +27,7 @@ namespace aura {
       return (float)fabs(fmod(position, 2) - 1);
     }
 
-//    MYTHIC_EXPORT float triangle(float position) {
+//    float triangle(float position) {
 //      auto value = fmod(position, 2);
 //      return position > 0
 //    }

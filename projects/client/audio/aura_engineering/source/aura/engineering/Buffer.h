@@ -9,7 +9,7 @@ namespace aura {
 
     class Engineer;
 
-    class MYTHIC_EXPORT Buffer {
+    class Buffer {
         float *data;
         Buffer_Manager *manager;
         const int _size;

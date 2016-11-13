@@ -7,7 +7,7 @@ namespace aura {
       linear,
   };
 
-  struct MYTHIC_EXPORT Curve {
+  struct Curve {
       float x;
       float y;
       Curve_Type type;

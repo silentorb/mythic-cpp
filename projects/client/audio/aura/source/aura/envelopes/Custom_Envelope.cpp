@@ -103,15 +103,17 @@ namespace aura {
 //      }
     }
 
-    void Custom_Envelope::initialize_instance(Custom_Envelope_Instance &instance, const Custom_Envelope &envelope,
-                                              double duration) {
-      auto &point = envelope.get_points()[0];
+    void Custom_Envelope::initialize_instance(Custom_Envelope_Instance &instance, double duration) const {
+      auto &point = get_points()[0];
       float slope = point.level;
       auto range = get_absolute_position(point, instance.last_point_position, duration);
       instance.transition_modifier = slope / range;
 
     }
 
+    Custom_Envelope_Instance::Custom_Envelope_Instance(const Custom_Envelope &envelope, double duration) {
+      envelope.initialize_instance(*this, duration);
+    }
   }
 }
 

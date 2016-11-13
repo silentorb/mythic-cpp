@@ -1,6 +1,6 @@
 #include <iostream>
 #include <aura/sequencing/Note.h>
-#include "Performer.h"
+#include "Musical_Performer.h"
 #include "aura/sequencing/Sequencer.h"
 #include "aura/sequencing/Chord_Structure.h"
 #include <string>
@@ -10,9 +10,9 @@ using namespace aura::sequencing;
 
 namespace aura {
   namespace performing {
-    
-    void Performer::add_stroke(Musical_Stroke *stroke) {
-      strokes.push_back(unique_ptr<Musical_Stroke>(stroke));
+
+    void Musical_Performer::add_stroke(unique_ptr<Musical_Stroke> stroke) {
+      strokes.push_back(std::move(stroke));
     }
 
     inline bool is_inside(const Note &note, float start, float end) {
@@ -22,8 +22,8 @@ namespace aura {
              : note.get_start() >= start || offset < end;
     }
 
-    void Performer::perform(Conductor &conductor, Performance &performance,
-                            float start, float end) {
+    void Musical_Performer::perform(Conductor &conductor, Musical_Performance &performance,
+                                    float start, float end) {
       if (end == start)
         return;
 
@@ -35,7 +35,7 @@ namespace aura {
       for (int i = 0; i < sequencer.size(); ++i) {
         auto &note = sequencer.get_note(i, conductor);
         if (is_inside(note, start, end)) {
-          add_stroke(performance.get_instrument().generate_stroke(note));
+          add_stroke(performance.get_instrument().create_sound(note));
           auto recorder = conductor.get_recorder();
           if (recorder)
             recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end, performance.get_group_id()));
@@ -43,7 +43,7 @@ namespace aura {
       }
     }
 
-    float Performer::update(float delta, Conductor &conductor) {
+    float Musical_Performer::update(float delta, Conductor &conductor) {
       for (auto &loop: loops) {
         loop->update(conductor);
       }
@@ -93,7 +93,7 @@ namespace aura {
       }
     }
 
-    Tempo_Loop &Performer::get_loop_with_beat_count(float beats) {
+    Tempo_Loop &Musical_Performer::get_loop_with_beat_count(float beats) {
       for (auto &loop:loops) {
         if (loop->get_beats() == beats)
           return *loop;
@@ -104,8 +104,8 @@ namespace aura {
       return *loop;
     }
 
-    void Performer::add_performance(Instrument &instrument, Sequencer &sequencer, int group_id) {
-      performances.push_back(Performance(instrument, sequencer, group_id));
+    void Musical_Performer::add_performance(Instrument_Old &instrument, Sequencer &sequencer, int group_id) {
+      performances.push_back(Musical_Performance(instrument, sequencer, group_id));
       auto &performance = performances[performances.size() - 1];
       auto &loop = get_loop_with_beat_count(sequencer.get_beats());
       loop.listen([&, group_id, performance](Conductor &conductor, float start, float end) mutable {
@@ -113,7 +113,7 @@ namespace aura {
       });
     }
 
-    void Performer::clear_performances() {
+    void Musical_Performer::clear_performances() {
       performances.empty();
       for (auto &loop:loops) {
         loop->clear_handlers();

@@ -1,3 +1,1 @@
-create_library(aura_performing)
-
-require(aura aura_engineering)
+create_header_library(aura_performing)

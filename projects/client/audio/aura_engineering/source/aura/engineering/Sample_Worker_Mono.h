@@ -8,7 +8,7 @@ namespace aura {
 
 //    using Sample_Worker_Delegate = std::function<void(float *, float, int &, float)>;
 
-    template<typename T, typename Static_Class>
+    template<typename T>
     class Sample_Worker_Mono {
         bool started = false;
         T& self;
@@ -22,14 +22,14 @@ namespace aura {
           int i = 0;
           if (!started) {
             started = true;
-            float value = Static_Class::update_sample(self, 0);
+            float value = self.update_sample(0);
             for (int j = 0; j < engineer.get_channel_count(); ++j) {
               *buffer++ = value;
             }
             i = 1;
           }
           for (; i < samples; ++i) {
-            float value = Static_Class::update_sample(self, delta);
+            float value = self.update_sample(delta);
             for (int j = 0; j < engineer.get_channel_count(); ++j) {
               *buffer++ = value;
             }

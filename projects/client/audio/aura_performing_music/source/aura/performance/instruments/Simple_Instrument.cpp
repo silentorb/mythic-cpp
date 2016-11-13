@@ -31,8 +31,12 @@ namespace aura {
 
     }
 
-    Musical_Stroke *Simple_Instrument::generate_stroke(const Note &note) {
-      return stroke_generator(note, producer, volume_envelope.generate_envelope());
+    std::unique_ptr<Musical_Stroke> Simple_Instrument::create_sound(const Note &note) const {
+      return std::unique_ptr<Musical_Stroke>(stroke_generator(note, producer, volume_envelope.generate_envelope()));
+    }
+
+    Simple_Instrument::~Simple_Instrument() {
+
     }
 
     float Simple_Instrument_Stroke::update(float beat_delta) {

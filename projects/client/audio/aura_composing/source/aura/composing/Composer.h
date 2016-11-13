@@ -17,11 +17,11 @@ namespace aura {
 
   struct Clip_Group_Pair {
       int group_index;
-      shared_ptr<performing::Instrument> instrument;
+      shared_ptr<performing::Instrument_Old> instrument;
       shared_ptr<Sequencer> sequencer;
   };
 
-  class MYTHIC_EXPORT Composer : no_copy {
+  class Composer : no_copy {
       vector<unique_ptr<Chord_Structure>> chord_structures;
       map<int, unique_ptr<Clip_Group>> clip_groups;
       int current_structure_index = 0;

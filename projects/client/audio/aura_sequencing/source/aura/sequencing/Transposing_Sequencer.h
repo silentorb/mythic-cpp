@@ -10,7 +10,7 @@ using namespace std;
 namespace aura {
 	namespace sequencing {
 
-		class MYTHIC_EXPORT Transposing_Sequencer : public Sequencer {
+		class Transposing_Sequencer : public Sequencer {
 			shared_ptr<Sequence> source;
 			Note return_note;
 

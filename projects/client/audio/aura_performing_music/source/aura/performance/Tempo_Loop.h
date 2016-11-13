@@ -15,7 +15,7 @@ namespace aura {
   typedef function<void(sequencing::Conductor &, float, float)> Range_Handler;
 
   namespace performing {
-    class MYTHIC_EXPORT Tempo_Loop {
+    class Tempo_Loop {
         Loop loop;
         vector<Range_Handler> handlers;
         float beats;

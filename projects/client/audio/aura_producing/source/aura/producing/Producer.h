@@ -4,7 +4,7 @@
 #include <aura/composing/Composer.h>
 #include <aura/performance/Performance_Producer.h>
 #include "aura/performance/Tempo_Loop.h"
-#include "aura/performance/Performer.h"
+#include "aura/performance/Musical_Performer.h"
 
 namespace aura {
   namespace producing {
@@ -13,7 +13,7 @@ namespace aura {
         Composer &composer;
         Conductor &conductor;
         engineering::Engineer &engineer;
-        unique_ptr<performing::Performer> performer;
+        unique_ptr<performing::Musical_Performer> performer;
         unique_ptr<performing::Tempo_Loop> chord_loop;
 
     public:
@@ -34,7 +34,7 @@ namespace aura {
           return engineer;
         }
 
-        performing::Performer &get_performer() const {
+        performing::Musical_Performer &get_performer() const {
           return *performer;
         }
 

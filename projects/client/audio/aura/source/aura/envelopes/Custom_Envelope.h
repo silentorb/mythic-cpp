@@ -28,18 +28,22 @@ namespace aura {
           type(type), position(position), level(0), curve(Curve::hold) {}
     };
 
+    class Custom_Envelope;
+
     struct Custom_Envelope_Instance {
         double last_point_position = 0;
         double transition_modifier;
         float height_offset = 0;
         int next_point = 0;
+
+        Custom_Envelope_Instance(const Custom_Envelope &envelope, double duration);
     };
 
     class Custom_Envelope {
         std::vector<Point> points;
 
     public:
-        Custom_Envelope(std::initializer_list<Point> &points_initializer) : points(points_initializer) {
+        Custom_Envelope(const std::initializer_list<Point> &points_initializer) : points(points_initializer) {
           for (int i = 0; i < points.size(); ++i) {
             auto &point = points[i];
             if (point.curve == Point::Curve::hold)
@@ -53,8 +57,7 @@ namespace aura {
 
         float update(Custom_Envelope_Instance &instance, double position, double duration) const;
 
-        static void initialize_instance(Custom_Envelope_Instance &instance,
-                                        const Custom_Envelope &envelope, double duration);
+        void initialize_instance(Custom_Envelope_Instance &instance, double duration) const;
     };
   }
 }

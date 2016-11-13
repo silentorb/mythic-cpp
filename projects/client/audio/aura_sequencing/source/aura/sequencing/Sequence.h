@@ -11,7 +11,7 @@ namespace aura {
   namespace sequencing {
     class Performer;
 
-  class MYTHIC_EXPORT Sequence : public Sequencer {
+  class Sequence : public Sequencer {
       vector<Note> notes;
       float beats = 0;
 

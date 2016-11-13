@@ -7,7 +7,7 @@
 namespace aura {
   namespace sequencing {
 
-    class MYTHIC_EXPORT Sequencer {
+    class Sequencer {
     public:
         virtual float get_beats() const = 0;
         virtual int size() const = 0;

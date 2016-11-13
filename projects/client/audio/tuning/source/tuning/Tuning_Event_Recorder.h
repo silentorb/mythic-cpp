@@ -7,7 +7,7 @@
 namespace tuning {
   class Event_Data;
 
-  class MYTHIC_EXPORT Tuning_Event_Recorder : public aura::sequencing::Event_Recorder {
+  class Tuning_Event_Recorder : public aura::sequencing::Event_Recorder {
       Event_Data &destination;
       double current_time = 0;
 

@@ -4,7 +4,7 @@
 #include "commoner/dllexport.h"
 #include <functional>
 #include <aura/sequencing/Note.h>
-#include <aura/Stroke.h>
+#include "Stroke.h"
 
 using namespace aura::sequencing;
 
@@ -14,7 +14,7 @@ namespace aura {
   }
 
   namespace performing {
-    class MYTHIC_EXPORT Musical_Stroke : public Stroke {
+    class Musical_Stroke : public Stroke {
         float frequency;
         Note note;
 

@@ -6,7 +6,7 @@
 namespace aura {
   namespace sequencing {
 
-    class MYTHIC_EXPORT Note {
+    class Note {
         float duration;
         const Pitch *pitch;
         float frequency;

@@ -11,7 +11,7 @@ using namespace aura;
 
 namespace tuning {
 
-  class MYTHIC_EXPORT Event_Data : no_copy {
+  class Event_Data : no_copy {
       vector<unique_ptr<aura::sequencing::Event>> events;
 
   public:

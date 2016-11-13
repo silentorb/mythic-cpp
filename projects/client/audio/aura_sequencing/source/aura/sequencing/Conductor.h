@@ -9,7 +9,7 @@ namespace aura {
 
     class Event_Recorder;
 
-    class MYTHIC_EXPORT Conductor {
+    class Conductor {
         Chord_Instance chord;
         float tempo = 120;
         float seconds_tempo = tempo / 60;

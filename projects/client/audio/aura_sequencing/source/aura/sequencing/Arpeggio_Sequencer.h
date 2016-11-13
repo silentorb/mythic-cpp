@@ -10,7 +10,7 @@ using namespace std;
 namespace aura {
   namespace sequencing {
 
-    class MYTHIC_EXPORT Arpeggio_Sequencer : public Sequencer {
+    class Arpeggio_Sequencer : public Sequencer {
         shared_ptr<Arpeggio> arpeggio;
         float beats_per_note;
         float beats;
