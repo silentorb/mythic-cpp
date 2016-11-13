@@ -5,37 +5,40 @@
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/envelopes/Note_Envelope_Generator.h>
 #include "aura/performance/Instrument.h"
-#include "../../../../../signal_graph/source/signal_graph/Node.h"
-#include "../../../../../signal_graph/source/signal_graph/Graph_Generator.h"
+#include "signal_graph/Node.h"
+#include "signal_graph/Graph_Generator.h"
 #include <aura/performance/Musical_Stroke.h>
-#include "../../../../../signal_graph/source/signal_graph/Graph_Instance.h"
+#include "signal_graph/Graph_Instance.h"
 
 namespace aura {
   namespace graphing {
 
-    using Externals_Source =std::function<std::unique_ptr<signal_graph::Externals>(const performing::Musical_Stroke &)>;
+    template<typename Externals>
+    using Externals_Source = std::function<std::unique_ptr<Externals>(const performing::Musical_Stroke &)>;
 
-    class AURA_EXPORT Graph_Instrument : public performing::Instrument, no_copy {
-        const Externals_Source externals_source;
-        signal_graph::Graph_Generator graph_generator;
+    template<typename Externals>
+    class Graph_Instrument : public performing::Instrument, no_copy {
+        const Externals_Source<Externals> externals_source;
+        signal_graph::Graph_Generator<Externals> graph_generator;
 
     public:
-        Graph_Instrument(const signal_graph::Node &node, const Externals_Source &externals_source);
+        Graph_Instrument(const signal_graph::Node &node, const Externals_Source<Externals> &externals_source);
         virtual ~Graph_Instrument();
         virtual performing::Musical_Stroke *generate_stroke(const sequencing::Note &note) override;
 
-        const signal_graph::Graph_Generator &get_graph_generator() const {
+        const signal_graph::Graph_Generator<Externals> &get_graph_generator() const {
           return graph_generator;
         }
     };
 
+    template<typename Externals>
     class Musical_Graph_Stroke : public performing::Musical_Stroke {
-        std::unique_ptr<signal_graph::Graph_Instance> graph_instance;
-        std::unique_ptr<signal_graph::Externals> externals;
+        std::unique_ptr<signal_graph::Graph_Instance<Externals>> graph_instance;
+        std::unique_ptr<Externals> externals;
 //        void update_node(const Node_Info &info);
     public:
-        Musical_Graph_Stroke(const sequencing::Note &note, const Graph_Instrument &instrument,
-                             const Externals_Source &externals_source);
+        Musical_Graph_Stroke(const sequencing::Note &note, const Graph_Instrument<Externals> &instrument,
+                             const Externals_Source<Externals> &externals_source);
 
         virtual ~Musical_Graph_Stroke() {}
 

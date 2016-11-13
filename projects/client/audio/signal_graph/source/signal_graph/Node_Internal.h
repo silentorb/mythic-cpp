@@ -22,19 +22,12 @@ namespace signal_graph {
       virtual void update(Externals &externals) = 0;
   };
 
-  template<typename Externals, typename Data_Type>
+  template<typename Externals>
   class Node_Instance : public Node_Instance_Base<Externals> {
-  protected:
-      Data_Type data;
-
   public:
       Node_Instance(Externals &externals) : Node_Instance_Base<Externals>(externals) {}
 
       virtual ~Node_Instance() {}
-
-      virtual const void *get_data() override {
-        return &data;
-      }
 
       static Node create_node(const std::initializer_list<signal_graph::Property *> &property_initializer);
   };
@@ -56,7 +49,7 @@ namespace signal_graph {
       virtual const std::shared_ptr<Node_Internal> get_self() const = 0;
   };
 
-  template <typename Externals>
+  template<typename Externals>
   class Node_Internal_With_Properties : public Node_Internal {
       std::vector<std::unique_ptr<Property>> properties;
       std::weak_ptr<Node_Internal> self;
@@ -89,14 +82,21 @@ namespace signal_graph {
         Node_Internal_With_Properties<Externals>(property_initializer) {}
 
       virtual void initialize(void *data, const Externals &externals) const override {
-        new (data) Node_Instance_Type(externals);
+        new(data) Node_Instance_Type(externals);
       }
 
       virtual void free(void *data) const override {
-        ((Node_Instance_Type*)data)->~Node_Instance_Type();
+        ((Node_Instance_Type *) data)->~Node_Instance_Type();
       }
   };
 
+#ifdef Default_Externals
+#define NODE_TEMPLATE
+#define POSSIBLE_TEMPLATE
+#else
+#define NODE_TEMPLATE template<typename Default_Externals>
+#define POSSIBLE_TEMPLATE <Default_Externals>
+#endif
 //  template<typename Externals, typename Data_Type>
 //  class Data_Node : public Template_Node<Externals> {
 //  protected:

@@ -17,7 +17,7 @@ namespace aura {
       template<typename Externals>
       class Delay_Internal : public Node_Instance<Externals, Delay_Data> {
       public:
-          Delay_Internal(Externals &externals) : Node_Instance(externals) {}
+          Delay_Internal(Externals &externals) : Node_Instance<Externals, Delay_Data>(externals) {}
 
           virtual void update(Externals &externals) override {
             auto &buffer = data.buffer;

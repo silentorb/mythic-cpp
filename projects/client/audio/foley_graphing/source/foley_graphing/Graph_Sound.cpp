@@ -3,18 +3,14 @@
 
 namespace foley_graphing {
 
-  Graph_Sound::Graph_Sound(std::unique_ptr<signal_graph::Graph_Instance> &graph_instance,
-                           std::unique_ptr<foley::Sound_Data> &sound_data,
-                           std::unique_ptr<signal_graph::Externals> &externals) :
-    sound_data(std::move(sound_data)),
-    graph_instance(std::move(graph_instance)), externals(std::move(externals)) {}
-
-  float Graph_Sound::update_mono(float delta) {
+  template<typename Externals>
+  float Graph_Sound<Externals>::update_mono(float delta) {
     sound_data->update(delta);
     return graph_instance->update();
   }
 
-  bool Graph_Sound::is_finished() const {
+  template<typename Externals>
+  bool Graph_Sound<Externals>::is_finished() const {
     return sound_data->is_finished();
   }
 }

@@ -27,6 +27,7 @@ namespace aura {
           }
       };
 
+      
       template<typename Externals>
       class Envelope_Node_Definition : public signal_graph::Template_Node<Externals, Envelope_Node_Instance> {
           const std::shared_ptr<envelopes::Custom_Envelope> &envelope;

@@ -13,10 +13,36 @@ namespace aura {
           float output;
       };
 
-      signal_graph::Node To_dB(const signal_graph::Node & source);
+      template<typename Externals>
+      class To_dB_Instance : public signal_graph::Node_Instance<Externals, To_dB_Data> {
 
-      signal_graph::Node To_dB();
-      signal_graph::Node dB(float value);
+      public:
+          To_dB_Instance(Externals &externals) :
+            signal_graph::Node_Instance<Externals, To_dB_Data>(externals) {}
+
+          virtual void update(Externals &externals) override {
+            data.output = utility::to_db(data.input);
+          }
+      };
+
+      NODE_TEMPLATE
+      signal_graph::Node To_dB(const signal_graph::Node &source) {
+        return To_dB_Instance<Default_Externals>::create_node(
+          {
+            new signal_graph::Input<float>(source),
+            new signal_graph::Output<float>(),
+          });
+      }
+
+      NODE_TEMPLATE
+      signal_graph::Node To_dB() {
+        return To_dB POSSIBLE_TEMPLATE(signal_graph::Node::create_empty());
+      }
+
+      signal_graph::Node dB(float value) {
+        return signal_graph::Node(utility::to_db(value));
+      }
+
     }
   }
 }
