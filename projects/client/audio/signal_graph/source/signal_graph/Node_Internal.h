@@ -90,13 +90,6 @@ namespace signal_graph {
       }
   };
 
-#ifdef Default_Externals
-#define NODE_TEMPLATE
-#define POSSIBLE_TEMPLATE
-#else
-#define NODE_TEMPLATE template<typename Default_Externals>
-#define POSSIBLE_TEMPLATE <Default_Externals>
-#endif
 //  template<typename Externals, typename Data_Type>
 //  class Data_Node : public Template_Node<Externals> {
 //  protected:

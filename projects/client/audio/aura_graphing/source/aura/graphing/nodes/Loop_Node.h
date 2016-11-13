@@ -2,6 +2,7 @@
 
 #include "signal_graph/Node.h"
 #include <aura/processors/Loop.h>
+#include <signal_graph/default_externals.h>
 
 namespace aura {
   namespace graphing {

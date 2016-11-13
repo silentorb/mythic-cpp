@@ -8,20 +8,22 @@ namespace aura {
   namespace graphing {
     namespace nodes {
 
-      struct To_dB_Data {
-          float input;
-          float output;
-      };
 
       template<typename Externals>
-      class To_dB_Instance : public signal_graph::Node_Instance<Externals, To_dB_Data> {
+      class To_dB_Instance : public signal_graph::Node_Instance<Externals> {
+          float input;
+          float output;
 
       public:
           To_dB_Instance(Externals &externals) :
-            signal_graph::Node_Instance<Externals, To_dB_Data>(externals) {}
+            signal_graph::Node_Instance<Externals>(externals) {}
 
           virtual void update(Externals &externals) override {
-            data.output = utility::to_db(data.input);
+            output = utility::to_db(input);
+          }
+
+          virtual const void *get_data() override {
+            return &input;
           }
       };
 

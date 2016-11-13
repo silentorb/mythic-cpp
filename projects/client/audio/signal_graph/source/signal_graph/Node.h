@@ -53,17 +53,10 @@ namespace signal_graph {
       Node operator>>(const Node &other);
   };
 
-  template<typename Externals, typename Data_Type>
-  Node Node_Instance<Externals, Data_Type>::create_node(const std::initializer_list<signal_graph::Property *> &property_initializer) {
+  template<typename Externals>
+  Node Node_Instance<Externals>::create_node(const std::initializer_list<signal_graph::Property *> &property_initializer) {
     auto internal = std::shared_ptr<Node_Internal>(
-      new Template_Node<Externals, Node_Instance<Externals, Data_Type>>(property_initializer));
+      new Template_Node<Externals, Node_Instance<Externals>>(property_initializer));
     return Node(internal);
   }
-
-#ifdef COMMONER_DEBUG
-#define NODE_ID(name) name,
-#else
-#define NODE_ID(name)
-#endif
-
 }
