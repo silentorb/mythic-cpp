@@ -17,20 +17,7 @@ namespace signal_graph {
     throw runtime_error("Not supported.");
   }
 
-  void Temporary_Node::initialize(void *data, const Externals &externals) const {
-
-  }
-
-  void Temporary_Node::update(void *data, const Externals &externals) const {
-
-  }
-
-  void Temporary_Node::free(void *data) const {
-
-  }
-
-  void Temporary_Node::set_properties(const std::initializer_list<Property *> property_initializer,
-                                      std::shared_ptr<Node_Internal> &pointer) {
+  void Temporary_Node::set_properties(const std::initializer_list<Property *> property_initializer) {
 
   }
 
@@ -45,6 +32,10 @@ namespace signal_graph {
     }
 
     // At this point this Temporary_Node should be reference counted to 0 and deleted
+  }
+
+  const shared_ptr<Node_Internal> Temporary_Node::get_self() const {
+    return self.lock();
   }
 
   Node create_temporary() {

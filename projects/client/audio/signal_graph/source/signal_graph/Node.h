@@ -16,12 +16,7 @@ namespace signal_graph {
       Node(void *);
 
   public:
-#ifdef COMMONER_DEBUG
-      Node(const std::string &name, const std::initializer_list<Property *> property_initializer,
-           const Node_Initializer &initializer, const Node_Update &update);
-#else
-      Node(const initializer_list<Property *> property_initializer, const Node_Update &update);
-#endif
+
       Node(const Node &node);
 
       Node(const std::shared_ptr<Node_Internal> &new_instance) : instance(new_instance) {}
@@ -58,31 +53,12 @@ namespace signal_graph {
       Node operator>>(const Node &other);
   };
 
-  template<typename T>
-  Node create_node(
-#ifdef COMMONER_DEBUG
-    const std::string &name,
-#endif
-    const std::initializer_list<signal_graph::Property *> &property_initializer,
-    const Node_Update &update) {
-
-    auto internal = std::shared_ptr<Node_Internal>(new Dynamic_Node_Internal(
-#ifdef COMMONER_DEBUG
-      name,
-#endif
-      [](void *data, const signal_graph::Externals &externals) {
-        new(data)T();
-      },
-      update,
-      [](void *raw_data) {
-        auto data = (T *) raw_data;
-        data->~T();
-      }
-    ));
-    internal->set_properties(property_initializer, internal);
+  template<typename Externals, typename Data_Type>
+  Node Node_Instance<Externals, Data_Type>::create_node(const std::initializer_list<signal_graph::Property *> &property_initializer) {
+    auto internal = std::shared_ptr<Node_Internal>(
+      new Template_Node<Externals, Node_Instance<Externals, Data_Type>>(property_initializer));
     return Node(internal);
   }
-
 
 #ifdef COMMONER_DEBUG
 #define NODE_ID(name) name,

@@ -2,7 +2,8 @@
 
 namespace signal_graph {
 
-  Graph_Instance::Graph_Instance(const Graph_Generator &graph_generator, const Externals &externals) :
+  template <typename Externals>
+  Graph_Instance<Externals>::Graph_Instance(const Graph_Generator<Externals> &graph_generator, Externals &externals) :
     externals(externals), node_info(graph_generator.get_node_info()) {
     auto &node_info = graph_generator.get_node_info();
     data = new char[graph_generator.get_data_size()];
@@ -27,14 +28,16 @@ namespace signal_graph {
     output_value = (float *) (root_data + first_output.get_offset());
   }
 
-  Graph_Instance::~Graph_Instance() {
+  template <typename Externals>
+  Graph_Instance<Externals>::~Graph_Instance() {
     for (auto &info: node_info) {
 
     }
     delete data;
   }
 
-  void Graph_Instance::update_node(const Node_Info &info) {
+  template <typename Externals>
+  void Graph_Instance<Externals>::update_node(const Node_Info<Externals> &info) {
     if (is_fresh(info))
       return;
 
@@ -49,10 +52,13 @@ namespace signal_graph {
         node_data, get_data(input_node),
         *input.property->get_other_property());
     }
-    info.node->update(node_data, externals);
+    auto instance = static_cast<Node_Instance_Base<Externals>*>(node_data);
+    instance->update(externals);
+//    info.node->update(node_data, externals);
   }
 
-  float Graph_Instance::update() {
+  template <typename Externals>
+  float Graph_Instance<Externals>::update() {
 
     std::fill(up_to_date.begin(), up_to_date.end(), 0);
 //			memset(up_to_date.data(), 0, sizeof(bool) * up_to_date.size());

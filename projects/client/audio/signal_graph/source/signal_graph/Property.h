@@ -16,8 +16,6 @@ namespace signal_graph {
   class Property : no_copy {
       friend class Node;
 
-      friend class Node_Internal;
-
       std::weak_ptr<Node_Internal> node;
       size_t offset;
 
@@ -47,7 +45,7 @@ namespace signal_graph {
         return node;
       }
 
-      void set_node(std::shared_ptr<Node_Internal> &value) {
+      void set_node(const std::shared_ptr<Node_Internal> &value) {
         node = value;
       }
 
@@ -60,8 +58,6 @@ namespace signal_graph {
   public:
 
   };
-
-  class Node_Internal;
 
   class Input_Base : public Property {
   protected:

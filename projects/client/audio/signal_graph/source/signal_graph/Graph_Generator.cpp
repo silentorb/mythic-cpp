@@ -17,7 +17,8 @@ namespace signal_graph {
     return result;
   }
 
-  Graph_Generator::Graph_Generator(const Node &node) {
+  template<typename Externals>
+  Graph_Generator<Externals>::Graph_Generator(const Node &node) {
     int constant_count = 0;
     int internal_objects_count = 0;
     include_node(node, constant_count, internal_objects_count);
@@ -26,7 +27,8 @@ namespace signal_graph {
     finalize();
   }
 
-  void Graph_Generator::include_node(const Node &node, int &constant_count, int &internal_objects_count) {
+  template<typename Externals>
+  void Graph_Generator<Externals>::include_node(const Node &node, int &constant_count, int &internal_objects_count) {
     if (contains_node(node))
       return;
 
@@ -48,10 +50,11 @@ namespace signal_graph {
     }
   }
 
-  void Graph_Generator::initialize_input(Input_Base *input_property, Node_Info &info, int &input_count) {
+  template<typename Externals>
+  void Graph_Generator<Externals>::initialize_input(Input_Base *input_property, Node_Info<Externals> &info, int &input_count) {
     if (input_property->get_other_property()->get_type() == Property::Type::constant) {
       auto constant = static_cast<const Constant_Output_Base *>(input_property->get_other_property());
-      Constant_Info constant_info;
+      Constant_Info<Externals> constant_info;
       constant_info.input = {
         &info,
         input_property
@@ -70,7 +73,8 @@ namespace signal_graph {
     }
   }
 
-  void Graph_Generator::initialize_node_info(Node_Info &info, const Node &node, int offset) {
+  template<typename Externals>
+  void Graph_Generator<Externals>::initialize_node_info(Node_Info<Externals> &info, const Node &node, int offset) {
     info.size = node.get_data_size();
     info.offset = offset;
 //      info.node = node; // Already done during an earlier pass.
@@ -82,7 +86,7 @@ namespace signal_graph {
       }
       else {
         if (property->get_type() == Property::Type::internal) {
-          Internal_Info internal_info;
+          Internal_Info<Externals> internal_info;
           internal_info.node_info = &info;
           internal_info.property = static_cast<Internal_Base *>(property.get());
           internal_objects.push_back(internal_info);
@@ -91,7 +95,8 @@ namespace signal_graph {
     }
   }
 
-  Node_Info *Graph_Generator::get_node_info(Node_Internal *node) {
+  template<typename Externals>
+  Node_Info<Externals> *Graph_Generator<Externals>::get_node_info(Node_Internal *node) {
     for (int i = 0; i < node_info.size(); ++i) {
       if (node_info[i].node == node)
         return &node_info[i];
@@ -99,7 +104,8 @@ namespace signal_graph {
     throw runtime_error("Could not find node info from node.");
   }
 
-  void Graph_Generator::finalize() {
+  template<typename Externals>
+  void Graph_Generator<Externals>::finalize() {
     data_byte_size = 0;
     node_info.resize(nodes.size());
     for (int i = 0; i < nodes.size(); ++i) {
@@ -117,7 +123,8 @@ namespace signal_graph {
     }
   }
 
-  bool Graph_Generator::contains_node(const Node &node) {
+  template<typename Externals>
+  bool Graph_Generator<Externals>::contains_node(const Node &node) {
     for (auto &possible: nodes) {
       if (&possible == &node)
         return true;
@@ -129,7 +136,8 @@ namespace signal_graph {
 //      return new Graph_Stroke(note, *this, producer);
 //    }
 
-  Graph_Generator::~Graph_Generator() {
+  template<typename Externals>
+  Graph_Generator<Externals>::~Graph_Generator() {
 
   }
 
