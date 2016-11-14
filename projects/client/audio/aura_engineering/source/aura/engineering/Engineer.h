@@ -13,19 +13,19 @@ namespace aura {
   namespace engineering {
 
     class Engineer {
-        int sample_rate;
-        int buffer_size;
+        unsigned int sample_rate;
+        unsigned int buffer_size;
         unsigned char channel_count;
         Buffer_Manager buffer_manager;
 
     public:
         Engineer(const audio::Device_Settings &device_settings);
 
-        int get_sample_rate() const {
+        unsigned int get_sample_rate() const {
           return sample_rate;
         }
 
-        int get_buffer_byte_size() const {
+        unsigned int get_buffer_byte_size() const {
           return buffer_size;
         }
 

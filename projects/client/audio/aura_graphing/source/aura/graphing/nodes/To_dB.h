@@ -2,7 +2,7 @@
 
 #include "signal_graph/Node.h"
 #include <cmath>
-#include <aura/utility/utility.h>
+#include <aura/processing/utility.h>
 
 namespace aura {
   namespace graphing {
