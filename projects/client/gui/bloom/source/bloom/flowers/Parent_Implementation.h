@@ -17,7 +17,7 @@ namespace bloom {
     public:
         virtual ~Parent_Implementation();
 
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
+        virtual bool check_event(const Event &event) override;
 
         Parent_Implementation(Parent *parent = nullptr) {
           Parent_Implementation::initialize_child(this, parent);
@@ -33,6 +33,10 @@ namespace bloom {
         virtual void remove_child(Flower *child) override;
         virtual int get_child_count() override;
         virtual Flower *get_child(int index) override;
+
+        virtual const string get_class_name() const override {
+          return "Parent_Implementation";
+        }
     };
 
   }

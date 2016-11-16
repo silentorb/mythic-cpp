@@ -3,9 +3,9 @@
 namespace bloom {
   namespace flowers {
 
-    bool Visibility::check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
+    bool Visibility::check_event(const Event &event) {
       return visible
-             ? Single_Parent::check_event(event_type, point)
+             ? Single_Parent::check_event(event)
              : false;
     }
 

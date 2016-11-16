@@ -32,6 +32,11 @@ namespace bloom {
         glm::vec4 &get_color() {
           return color;
         }
+
+        virtual const string get_class_name() const override {
+          return "Fill";
+        }
+
     };
   }
 }

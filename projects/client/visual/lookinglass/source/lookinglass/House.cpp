@@ -28,7 +28,9 @@ namespace lookinglass {
     renderable = []() {};
   }
 
-  House::~House() {}
+  House::~House() {
+
+  }
 
   void House::set_renderable(const Renderable &renderable) {
     this->renderable = renderable;

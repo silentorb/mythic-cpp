@@ -16,6 +16,10 @@ namespace bloom {
         songbird::Listener &get_listener() {
           return listener;
         }
+
+        virtual const string get_class_name() const override {
+          return "Listener_Flower";
+        }
     };
   }
 }

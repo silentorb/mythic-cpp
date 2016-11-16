@@ -35,7 +35,7 @@ namespace bloom {
 
         virtual bool affects_parent_dimensions() const override { return false; }
 
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override {
+        virtual bool check_event(const Event &event) override {
           return false;
         }
 

@@ -14,6 +14,10 @@ namespace bloom {
     public:
         Box_Group(Parent *parent = nullptr);
 
+        virtual const string get_class_name() const override {
+          return "Box_Group";
+        }
+
         virtual ~Box_Group() {}
     };
 

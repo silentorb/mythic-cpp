@@ -8,7 +8,7 @@ namespace bloom {
         bool visible = true;
 
     public:
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
+        virtual bool check_event(const Event &event) override;
 
         Visibility() : Single_Parent() {}
 
@@ -27,6 +27,10 @@ namespace bloom {
 
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
+
+        virtual const string get_class_name() const override {
+          return "Visibility";
+        }
     };
 
   }

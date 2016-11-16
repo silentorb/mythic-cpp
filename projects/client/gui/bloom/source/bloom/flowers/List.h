@@ -32,6 +32,10 @@ namespace bloom {
 
         virtual ~List() override {}
 
+        virtual const string get_class_name() const override {
+          return "List";
+        }
+
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
 //        virtual const Axis_Values &get_absolute_bounds() const override;

@@ -17,13 +17,17 @@ namespace bloom {
         virtual void remove_child(Flower *child) override;
         virtual void update(float delta) override;
         virtual void render() override;
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
+        virtual bool check_event(const Event &event) override;
         virtual bool affects_parent_dimensions() const override;
         virtual void clear() override;
         virtual glm::vec2 update_dimensions(const glm::vec2 &parent_dimensions) override;
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual int get_child_count() override;
         virtual Flower *get_child(int index) override;
+
+        virtual const string get_class_name() const override {
+          return "Single_Parent";
+        }
     };
   }
 }

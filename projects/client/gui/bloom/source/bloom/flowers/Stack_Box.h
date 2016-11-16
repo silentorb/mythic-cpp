@@ -22,6 +22,10 @@ namespace bloom {
         virtual void add_child(Flower *child) override;
         virtual void insert(Flower *child, int index) override;
         virtual void remove_child(Flower *child) override;
+
+        virtual const string get_class_name() const override {
+          return "Stack_Box";
+        }
     };
 
   }

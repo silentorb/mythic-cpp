@@ -5,6 +5,7 @@
 
 namespace bloom {
   namespace flowers {
+
     Fill::Fill(const glm::vec4 &color, flowers::Parent *parent) :
       color(color), mesh(drawing::Draw::get_instance().get_solid_mesh()) {
       flowers::Parent_Implementation::initialize_child(this, parent);

@@ -34,6 +34,10 @@ namespace bloom {
 
         virtual ~Box() {}
 
+        virtual const string get_class_name() const override {
+          return "Box";
+        }
+
         virtual bool affects_parent_dimensions() const override {
           return true;
         }

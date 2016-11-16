@@ -35,6 +35,10 @@ namespace bloom {
         void set_size(int value) {
           thickness = value;
         }
+
+        virtual const string get_class_name() const override {
+          return "Border";
+        }
     };
   }
 }

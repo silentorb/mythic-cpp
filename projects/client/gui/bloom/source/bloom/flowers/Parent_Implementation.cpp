@@ -19,9 +19,9 @@ namespace bloom {
       }
     }
 
-    bool Parent_Implementation::check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
+    bool Parent_Implementation::check_event(const Event &event) {
       for (auto &child : children) {
-        if (child->check_event(event_type, point))
+        if (child->check_event(event))
           return true;
       }
       return false;

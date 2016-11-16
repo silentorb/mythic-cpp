@@ -31,13 +31,14 @@ namespace bloom {
         virtual void render() = 0;
         virtual const Axis_Values &get_absolute_bounds() const = 0;
         virtual bool affects_parent_dimensions() const = 0;
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) = 0;
+        virtual bool check_event(const Event &event) = 0;
         virtual bool get_relative_bounds(glm::vec2 &position, glm::vec2 &dimensions) = 0;
         virtual void remove() = 0;
         virtual Flower *get_parent() const = 0;
         virtual void set_parent(Parent *parent) = 0;
         virtual int get_child_count() = 0;
         virtual Flower *get_child(int index) = 0;
+        virtual const std::string get_class_name() const = 0;;
     };
 
     inline Flower::~Flower() {}

@@ -16,7 +16,7 @@ namespace drawing {
   class Draw;
 }
 
-class MYTHIC_EXPORT Lookinglass_Bloom : public bloom::Draw_Interface, no_copy {
+class Lookinglass_Bloom : public bloom::Draw_Interface, no_copy {
     lookinglass::House &house;
     drawing::Draw &draw;
 

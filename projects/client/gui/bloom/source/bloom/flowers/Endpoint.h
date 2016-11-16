@@ -14,6 +14,10 @@ namespace bloom {
         virtual Flower *get_child(int index) override {
           return nullptr;
         }
+
+        virtual const string get_class_name() const override {
+          return "Endpoint";
+        }
     };
   }
 }

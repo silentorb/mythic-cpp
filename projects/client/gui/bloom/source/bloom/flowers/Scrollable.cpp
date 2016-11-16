@@ -2,6 +2,7 @@
 #include "Interactive.h"
 #include <songbird/Singer.h>
 #include <bloom/Garden.h>
+#include <glm/glm.hpp>
 
 using namespace glm;
 
@@ -11,26 +12,26 @@ namespace bloom {
     Scrollable::Scrollable(Direction direction) :
       direction(direction) {
       interactive.set_parent(this);
-      interactive.get_singer().listen(Events::drag, Flower_Delegate([this](Flower *flower) {
+      interactive.get_singer().listen((songbird::Song<Flower_Delegate>&)Events::drag, Flower_Delegate([this](Flower *flower) {
         on_drag();
       }));
 
-      interactive.get_singer().listen(Events::mouse_down, Flower_Delegate([this](Flower *flower) {
+      interactive.get_singer().listen((songbird::Song<Flower_Delegate>&)Events::mouse_down, Flower_Delegate([this](Flower *flower) {
         auto &input = Garden::get_instance().get_input();
         drag_start = input.get_position() - offset;
       }));
 
-      interactive.get_singer().listen(Events::mouse_down, Flower_Delegate([this](Flower *flower) {
+      interactive.get_singer().listen((songbird::Song<Flower_Delegate>&)Events::mouse_down, Flower_Delegate([this](Flower *flower) {
         on_release();
       }));
     }
 
-    bool Scrollable::check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
-      auto result = Parent_Implementation::check_event(event_type, point);
+    bool Scrollable::check_event(const Event &event) {
+      auto result = Parent_Implementation::check_event(event);
       if (result)
         return result;
 
-      return interactive.check_event(event_type, point);
+      return interactive.check_event(event);
     }
 
     void Scrollable::on_drag() {

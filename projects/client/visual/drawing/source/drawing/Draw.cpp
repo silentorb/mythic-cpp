@@ -70,7 +70,9 @@ namespace drawing {
     square_effect = unique_ptr<Square_Effect>(new Square_Effect(*flat_program));
   }
 
-  Draw::~Draw() {}
+  Draw::~Draw() {
+
+  }
 
   const ivec2 &Draw::get_dimensions() const {
     return house.get_glass().get_viewport_dimensions();

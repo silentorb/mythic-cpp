@@ -1,12 +1,11 @@
 #pragma once
 
-#include "bloom/old/Flower_Old.h"
 #include "bloom/garden/Modal.h"
 #include <stack>
 #include <string>
 #include <bloom/garden/Garden_Input.h>
 #include <bloom/flowers/Parent.h>
-#include <bloom/flowers/Group.h>
+#include <bloom/layout/Measurement_Converter.h>
 #include "Draw_Interface.h"
 
 namespace haft {
@@ -25,11 +24,13 @@ namespace framing {
 
 namespace bloom {
 
-  class Text_Flower;
+  namespace flowers {
+    class Root;
+  }
 
-  class BLOOM_EXPORT Garden {
-      shared_ptr<Style> default_style;
-      unique_ptr<flowers::Group> root;
+  class Garden {
+//      shared_ptr<Style> default_style;
+      unique_ptr<flowers::Root> root;
       unique_ptr<haft::Action> select_action;
       Draw_Interface &draw;
       Measurement_Converter converter;
@@ -47,11 +48,8 @@ namespace bloom {
       void update_input(haft::Input_State &input_state);
       void update(float delta);
 
-      flowers::Group &get_root() const {
-        return *root;
-      }
+      flowers::Parent &get_root() const;
 
-      Text_Flower *create_text(const string content, const string font = "default");
       void render();
 
       Draw_Interface &get_draw() const {
@@ -74,20 +72,16 @@ namespace bloom {
         Garden::focused_flower = focused_flower;
       }
 
-      void add_modal(Flower_Old &flower);
       void add_modal(flowers::Flower &flower);
 
       static Garden &get_instance() {
         return *instance;
       }
 
-      Orientation get_orientation() const;
+//      Orientation get_orientation() const;
       flowers::Flower *get_modal() const;
       void pop_modal();
 
-      shared_ptr<Style> &get_default_style() {
-        return default_style;
-      }
 
       void update_layout();
       const framing::Frame_Info &get_frame() const;

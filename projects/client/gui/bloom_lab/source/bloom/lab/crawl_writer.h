@@ -1,8 +1,8 @@
 #pragma once
+#include <bloom/flowers/Flower.h>
 
 namespace bloom {
-  namespace lab {
 
+  void log_hierarchy(bloom::flowers::Flower *root);
 
-  }
 }

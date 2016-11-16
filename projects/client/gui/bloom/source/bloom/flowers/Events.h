@@ -2,6 +2,7 @@
 
 #include "commoner/dllexport.h"
 #include <functional>
+#include <glm/vec2.hpp>
 #include "bloom/bloom_export.h"
 
 namespace songbird {
@@ -19,23 +20,37 @@ namespace bloom {
     class Flower;
   }
 
-//  typedef function<void(Flower_Old *flower)> Flower_Delegate_Old;
+  class Event_Id {
 
-  namespace Events {
-//    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate_Old> activate_old;
-//    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate_Old> drag_old;
-//    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate_Old> close_old;
-//    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate_Old> cancel_old;
   };
 
+  class Event {
+      const Event_Id &id;
+      const glm::vec2 &point;
+
+  public:
+      Event(const Event_Id &id, const glm::vec2 &point) : id(id), point(point) {}
+
+      const Event_Id &get_id() const {
+        return id;
+      }
+
+      const glm::vec2 &get_point() const {
+        return point;
+      }
+  };
+
+  typedef function<void()> Delegate;
+  typedef function<void(const Event &)> Event_Delegate;
   typedef function<void(flowers::Flower *flower)> Flower_Delegate;
 
   namespace Events {
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> activate;
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> drag;
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> mouse_down;
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> close;
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> cancel;
-    BLOOM_EXPORT extern const songbird::Song<Flower_Delegate> changed;
+    extern const Event_Id activate;
+    extern const Event_Id drag;
+    extern const Event_Id mouse_down;
+    extern const Event_Id changed;
+    BLOOM_EXPORT extern const Event_Id activate_old;
+    BLOOM_EXPORT extern const Event_Id close;
+    BLOOM_EXPORT extern const Event_Id changed_old;
   };
 }

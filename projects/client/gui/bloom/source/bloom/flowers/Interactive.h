@@ -13,10 +13,8 @@ namespace bloom {
   namespace flowers {
 
     class Interactive : public Common_Flower, Endpoint {
-        unique_ptr<songbird::Singer> singer;
 
     public:
-        virtual bool check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) override;
         Interactive(Parent *parent = nullptr);
         virtual ~Interactive();
 
@@ -24,12 +22,8 @@ namespace bloom {
         virtual void update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) override;
         virtual void update(float delta) override;
         virtual void render() override;
-        void click(Flower_Delegate action);
         bool static point_is_inside(const Flower *flower, const glm::vec2 &point);
 
-        songbird::Singer &get_singer() const {
-          return *singer;
-        }
     };
   }
 }

@@ -43,9 +43,9 @@ namespace bloom {
         child->render();
     }
 
-    bool Single_Parent::check_event(const songbird::Song<Flower_Delegate> &event_type, const glm::vec2 &point) {
+    bool Single_Parent::check_event(const Event &event) {
       return child
-             ? child->check_event(event_type, point)
+             ? child->check_event(event)
              : false;
     }
 

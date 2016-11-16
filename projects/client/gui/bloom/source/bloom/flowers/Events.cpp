@@ -11,11 +11,12 @@ namespace bloom {
   };
 
   namespace Events {
-    const songbird::Song<Flower_Delegate> activate = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> drag = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> mouse_down = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> close = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> cancel = songbird::Song<Flower_Delegate>();
-    const songbird::Song<Flower_Delegate> changed = songbird::Song<Flower_Delegate>();
+    const Event_Id activate = Event_Id();
+    const Event_Id drag = Event_Id();
+    const Event_Id mouse_down = Event_Id();
+    const Event_Id changed = Event_Id();
+    const Event_Id activate_old = Event_Id();
+    const Event_Id close = Event_Id();
+    const Event_Id changed_old = Event_Id();
   };
 }
