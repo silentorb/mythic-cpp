@@ -43,7 +43,7 @@ namespace bloom {
     }
 
     void Slider::initialize_interaction() {
-      interactive = new flowers::Interactive_Template<2>(&Events::mouse_down, &Events::drag);
+      interactive = new flowers::Interactive_Template_Inside<2>(&Events::mouse_down, &Events::drag);
       add_child(interactive);
       interactive->on(Events::mouse_down, [this](const Event &event) {
         auto &input = Garden::get_instance().get_input();
@@ -61,7 +61,7 @@ namespace bloom {
       });
 
       interactive->on(Events::drag, [this](const Event &event) {
-        update_user_input();
+          update_user_input();
       });
     }
 
@@ -100,6 +100,10 @@ namespace bloom {
       value = new_value;
 //  std::cout << " " << to_string(value) << std::endl;
       left_side->set_width({Measurements::percent, value * 100});
+    }
+
+    const string Slider::get_class_name() const {
+      return "Slider";
     }
   }
 }

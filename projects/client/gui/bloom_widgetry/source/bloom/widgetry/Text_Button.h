@@ -25,6 +25,8 @@ namespace bloom {
         flowers::Text *get_text() const {
           return text;
         }
+
+        virtual const string get_class_name() const override;
     };
   }
 }

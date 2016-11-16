@@ -16,5 +16,9 @@ namespace bloom {
       text->set_size(16);
     }
 
+    const string Text_Button::get_class_name() const {
+      return "Text_Button";
+    }
+
   }
 }

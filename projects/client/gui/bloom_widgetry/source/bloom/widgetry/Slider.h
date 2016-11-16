@@ -13,7 +13,7 @@ namespace bloom {
         flowers::Box_Group *knob;
         float value = 0.5f;
         float knob_offset = 0;
-        flowers::Interactive_Template<2> *interactive;
+        flowers::Interactive_Template_Inside<2> *interactive;
         std::function<void(float value)> changed_delegate;
 
         flowers::Box_Group *create_side(glm::vec4 color, flowers::Parent *parent);
@@ -33,6 +33,8 @@ namespace bloom {
         void on_changed(const function<void(float)> &value) {
           changed_delegate = value;
         }
+
+        virtual const string get_class_name() const override;
     };
   }
 }

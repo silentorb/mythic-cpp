@@ -48,7 +48,7 @@ namespace bloom {
       if (input_result.mouse_click) {
         auto &position = input_state.get_position();
 
-        if (start.check_event({Events::activate_old, vec2(position.x, position.y)})) {
+        if (start.check_event({Events::activate, vec2(position.x, position.y)})) {
           input_state.clear_gestures();
         }
       }

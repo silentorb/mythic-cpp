@@ -70,5 +70,9 @@ namespace foley {
         lock_guard<mutex> buffer_lock(buffer_mutex);
         sound_buffer.push_back(std::move(sound));
       }
+
+      int get_sound_count() const {
+        return sounds.size() + sound_buffer.size();
+      }
   };
 }

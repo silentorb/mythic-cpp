@@ -7,6 +7,7 @@ namespace bloom {
 
     template<int Event_Count>
     class Interactive_Template : public Interactive {
+    protected:
         const Event_Id *events[Event_Count];
         Event_Delegate delegates[Event_Count];
 
@@ -43,10 +44,23 @@ namespace bloom {
             }
           }
         }
+    };
 
-        bool is_inside(const Event &event) const {
-          return Interactive:: point_is_inside(this, event.get_point());
+    template<int Event_Count>
+    class Interactive_Template_Inside : public Interactive_Template<Event_Count> {
+    public:
+        template<typename ... Events>
+        Interactive_Template_Inside(Events ... event_arguments):
+          Interactive_Template<Event_Count>(event_arguments...) {
+        }
+
+        virtual bool check_event(const Event &event) override {
+          if (!Interactive::point_is_inside(this, event.get_point()))
+            return false;
+
+          return Interactive_Template<Event_Count>::check_event(event);
         }
     };
+
   }
 }

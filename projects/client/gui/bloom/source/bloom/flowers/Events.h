@@ -49,7 +49,6 @@ namespace bloom {
     extern const Event_Id drag;
     extern const Event_Id mouse_down;
     extern const Event_Id changed;
-    BLOOM_EXPORT extern const Event_Id activate_old;
     BLOOM_EXPORT extern const Event_Id close;
     BLOOM_EXPORT extern const Event_Id changed_old;
   };

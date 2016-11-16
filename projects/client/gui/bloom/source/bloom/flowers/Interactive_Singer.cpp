@@ -4,7 +4,7 @@ namespace bloom {
   namespace flowers {
 
     void Interactive_Singer::click(Flower_Delegate action) {
-      singer->listen((songbird::Song<Flower_Delegate>&)Events::activate_old, action);
+      singer->listen((songbird::Song<Flower_Delegate>&)Events::activate, action);
     }
 
     bool Interactive_Singer::check_event(const Event &event) {

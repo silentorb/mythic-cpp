@@ -3,7 +3,7 @@
 namespace nobby {
 
   template<typename T>
-  class Knob {
+  class Knob : commoner::no_copy {
       T value;
       const T min;
       const T max;
@@ -32,8 +32,21 @@ namespace nobby {
         return (value - min) / (max - min);
       }
 
-      void set_normalized(float normalized_value){
+      void set_normalized(float normalized_value) {
         value = min + normalized_value * (max - min);
+      }
+  };
+
+  template<typename T, typename Data_Type>
+  class Data_Knob : public Knob<T> {
+      Data_Type data;
+
+  public:
+      Data_Knob(T default_value, T min, T max, Data_Type data) :
+        Knob<T>(default_value, min, max), data(data) {}
+
+      const Data_Type &get_data() const {
+        return data;
       }
   };
 }

@@ -9,15 +9,16 @@ namespace aura {
 
     float smooth;
 
-    float white_noise(float position) {
+    float white_noise() {
       auto sample = dice.get_float(-1, 1);
-//    return sample;
-//    float amount = 1 - position;
       float amount = 0.5;
       smooth = smooth - (amount * (smooth - sample));
       return smooth;
     }
 
+    float white_noise_dummy_position(float position) {
+      return white_noise();
+    }
 
     float sine(float position) {
       return (float)sin(position * 2 * Pi);

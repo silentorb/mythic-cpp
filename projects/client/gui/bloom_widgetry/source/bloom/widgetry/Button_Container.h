@@ -10,7 +10,7 @@ namespace bloom {
 
     class Button_Container:public flowers:: Box_Group {
     protected:
-        flowers::Interactive_Template<1> *interactive;
+        flowers::Interactive_Template_Inside<1> *interactive;
         flowers::Border *border;
         flowers::Box_Group *padding;
 
