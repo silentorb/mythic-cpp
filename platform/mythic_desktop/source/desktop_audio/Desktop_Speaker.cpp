@@ -19,7 +19,7 @@ namespace desktop {
     want.freq = 44100;
     want.format = AUDIO_F32;
     want.channels = 2;
-    want.samples = 4096;
+    want.samples = 2048;
     want.callback = audio_callback;
     want.userdata = this;
 
