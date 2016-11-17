@@ -27,8 +27,14 @@ namespace foley {
       std::unique_ptr<aura::engineering::Sample_Worker_Mono<Player>> sample_worker;
 
       std::mutex buffer_mutex;
+      bool should_stop_all = false;
 
       void manage_sounds() {
+        if (should_stop_all) {
+          sounds.clear();
+          should_stop_all = false;
+        }
+
         {
           lock_guard<mutex> buffer_lock(buffer_mutex);
           if (sound_buffer.size() > 0) {
@@ -73,6 +79,10 @@ namespace foley {
 
       int get_sound_count() const {
         return sounds.size() + sound_buffer.size();
+      }
+
+      void stop_all(){
+        should_stop_all = true;
       }
   };
 }

@@ -3,7 +3,7 @@
 namespace nobby {
 
   template<typename T>
-  class Knob : commoner::no_copy {
+  class Knob {
       T value;
       const T min;
       const T max;
@@ -11,6 +11,10 @@ namespace nobby {
   public:
       Knob(T default_value, T min, T max) :
         value(default_value), min(min), max(max) {}
+
+      virtual ~Knob() {
+
+      }
 
       T get_value() const {
         return value;
@@ -44,6 +48,10 @@ namespace nobby {
   public:
       Data_Knob(T default_value, T min, T max, Data_Type data) :
         Knob<T>(default_value, min, max), data(data) {}
+
+      virtual ~Data_Knob() {
+
+      }
 
       const Data_Type &get_data() const {
         return data;

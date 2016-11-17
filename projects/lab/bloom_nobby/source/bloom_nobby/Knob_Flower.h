@@ -8,9 +8,6 @@
 #include <bloom/flowers/List.h>
 
 namespace bloom_nobby {
-}
-
-namespace bloom_nobby {
 
   struct Knob_Flower_Internal {
       bloom::flowers::Text *text;
@@ -18,10 +15,13 @@ namespace bloom_nobby {
       void initialize(bloom::flowers::Group *flower, const std::string &label_text);
   };
 
+  using Knob_Modifier = std::function<float(float &)>;
+
   template<typename T>
   class Knob_Flower : public bloom::flowers::Group {
       Knob_Flower_Internal internal;
       nobby::Knob<T> &knob;
+      Knob_Modifier modifier;
 
       void set_text_value() {
         internal.text->set_content(std::to_string(knob.get_value()));
@@ -39,9 +39,16 @@ namespace bloom_nobby {
         set_slider_value();
 
         internal.slider->on_changed([&knob, this](float value) {
+          if (modifier)
+            value = modifier(value);
+
           knob.set_normalized(value);
           set_text_value();
         });
+      }
+
+      void set_modifier(const Knob_Modifier &value) {
+        modifier = value;
       }
 
       virtual const string get_class_name() const override {

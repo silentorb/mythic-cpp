@@ -21,6 +21,10 @@ namespace aura {
           }
         }
 
+        void operator()(float delta) {
+          update(delta);
+        }
+
         const double &get_duration() const {
           return duration;
         }
