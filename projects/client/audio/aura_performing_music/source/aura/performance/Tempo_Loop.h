@@ -1,9 +1,9 @@
 #pragma once
 
 #include <aura/processors/Loop.h>
-#include "commoner/dllexport.h"
 #include <functional>
 #include <vector>
+#include <aura/engineering/Engineer.h>
 
 using namespace std;
 
@@ -26,7 +26,7 @@ namespace aura {
 
     public:
 
-        Tempo_Loop(engineering::Engineer &engineer, float beats) : loop(engineer), beats(beats) {}
+        Tempo_Loop(engineering::Engineer &engineer, float beats) : loop(engineer.get_sample_rate()), beats(beats) {}
 
 //      Loop &get_loop() const {
 //        return loop;

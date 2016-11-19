@@ -5,28 +5,29 @@
 
 namespace aura {
 
-  namespace engineering {
-    class Engineer;
-  }
-
   const float default_frequency = 440;
 
   typedef std::function<float(float position)> Loop_Function;
 
   class Loop {
-      double position = 0;
-      double increment;
-      const int sample_rate;
+      long double position = 0;
+      long double increment;
+      const unsigned int sample_rate;
+//      long step = -1;
 
   public:
-      Loop(const int sample_rate, double frequency = default_frequency) :
-        increment(frequency / sample_rate), sample_rate(sample_rate) { }
+      Loop(const unsigned int sample_rate, double frequency = default_frequency) :
+        increment(frequency / sample_rate), sample_rate(sample_rate) {
+        position = -increment;
+      }
 
-      Loop(engineering::Engineer &conductor, double frequency = default_frequency);
+      long double next();
 
-      float next();
-//      float next(int cycles);
-      float next(bool & looped);
+      long double operator()() {
+        return next();
+      }
+
+      long double next(bool & looped);
 
       float get_frequency() const {
         return (float)increment * sample_rate;

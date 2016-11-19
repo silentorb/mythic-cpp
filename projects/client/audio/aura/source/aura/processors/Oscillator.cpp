@@ -2,22 +2,25 @@
 #include <math/utility.h>
 #include "Oscillator.h"
 #include "aura/engineering/Engineer.h"
+#include "signal_generators.h"
 
 namespace aura {
 
-  Oscillator::Oscillator(engineering::Engineer &engineer, float frequency, Loop_Function operation) :
-    loop(engineer.get_sample_rate(), frequency), engineer(engineer),
-    operation(operation) { }
+  Oscillator::Oscillator(engineering::Engineer &engineer, float frequency, const Loop_Function &operation) :
+    loop(engineer.get_sample_rate(), frequency),
+    operation(operation) {}
 
-  Oscillator::Oscillator(engineering::Engineer &engineer, const Generator frequency_generator, Loop_Function operation) :
-    loop(engineer.get_sample_rate()), engineer(engineer),
-    operation(operation), frequency_generator(frequency_generator) { }
+  Oscillator::Oscillator(engineering::Engineer &engineer, float frequency) :
+    Oscillator(engineer, frequency, generate::sine) {
 
-  float Oscillator::operator()() {
-    if (frequency_generator)
-      loop.set_frequency(frequency_generator());
-
-    return operation(loop.next());
   }
 
+  Oscillator::Oscillator(unsigned int sample_rate, float frequency, const Loop_Function &operation) :
+    loop(sample_rate, frequency),
+    operation(operation) {}
+
+  Oscillator::Oscillator(unsigned int sample_rate, float frequency) :
+    Oscillator(sample_rate, frequency, generate::sine) {
+
+  }
 }

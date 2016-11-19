@@ -5,16 +5,15 @@
 
 namespace scenery {
 
-  template<typename T>
-  class MYTHIC_EXPORT Behavior : public Simple_Element {
-      const function<void(float, T &)> on_update;
+  template<typename Parent_Type>
+  class  Behavior : public Simple_Element {
+      const function<void(float, Parent_Type &)> on_update;
 
   public:
-      Behavior(const function<void(float, T &)> &on_update) : on_update(on_update) {}
-
+      Behavior(const function<void(float, Parent_Type &)> &on_update) : on_update(on_update) {}
 
       virtual void update(float delta) override {
-        on_update(delta, *(T*)(parent));
+        on_update(delta, *dynamic_cast<Parent_Type*>(parent));
       }
   };
 }

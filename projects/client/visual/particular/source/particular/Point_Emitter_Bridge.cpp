@@ -14,6 +14,10 @@ namespace scenery {
 
   }
 
+  Point_Emitter_Bridge::~Point_Emitter_Bridge() {
+
+  }
+
   void Point_Emitter_Bridge::update(float delta) {
     auto absolute_position = vec3(get_transform() * vec4(vec3(0), 1));
     emitter->set_position(absolute_position);
@@ -40,4 +44,5 @@ namespace scenery {
 
     throw runtime_error("Could not find particle element to remove.  Particle element unaccounted for.");
   }
+
 }

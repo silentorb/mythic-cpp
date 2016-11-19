@@ -25,6 +25,7 @@ namespace scenery {
                            Visible_Particle_Generator visible_generator, Particle_Point_Delegate point_animator,
                            const Particle_Animator &particle_animator, Parent *parent);
 
+      virtual ~Point_Emitter_Bridge();
       virtual void update(float delta) override;
 
       virtual void particle_added(const Particle &particle) override;

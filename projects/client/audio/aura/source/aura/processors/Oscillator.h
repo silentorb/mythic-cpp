@@ -1,9 +1,7 @@
 #pragma once
 
 #include <aura/engineering/Buffer.h>
-#include "commoner/dllexport.h"
 #include "Loop.h"
-#include "Generator.h"
 
 namespace aura {
 
@@ -12,15 +10,24 @@ namespace aura {
   }
 
   class Oscillator {
+      constexpr static float DEFAULT_FREQUENCY = 440;
       Loop loop;
-      Loop_Function operation;
-      engineering::Engineer &engineer;
-      Generator frequency_generator;
+      const Loop_Function operation;
 
   public:
-      Oscillator(engineering::Engineer &engineer, float frequency, Loop_Function operation);
-      Oscillator(engineering::Engineer &engineer, const Generator frequency_generator, Loop_Function operation);
+      Oscillator(engineering::Engineer &engineer, float frequency, const Loop_Function &operation);
 
+      Oscillator(engineering::Engineer &engineer, const Loop_Function &operation) : Oscillator(engineer, DEFAULT_FREQUENCY,
+                                                                                               operation) {}
+
+      Oscillator(engineering::Engineer &engineer, float frequency = DEFAULT_FREQUENCY);
+
+      Oscillator(unsigned int sample_rate, float frequency, const Loop_Function &operation);
+
+      Oscillator(unsigned int sample_rate, const Loop_Function &operation) : Oscillator(sample_rate, DEFAULT_FREQUENCY,
+                                                                                               operation) {}
+
+      Oscillator(unsigned int sample_rate, float frequency = DEFAULT_FREQUENCY);
       float get_frequency() const {
         return loop.get_frequency();
       }
@@ -29,12 +36,16 @@ namespace aura {
         loop.set_frequency(frequency);
       }
 
-      void set_frequency_generator(const Generator &frequency_generator) {
-        Oscillator::frequency_generator = frequency_generator;
+      float operator()() {
+        return operation(loop());
       }
 
-      float operator()();
+      float operator()(float frequency) {
+        set_frequency(frequency);
+        return operation(loop());
+      }
+
   };
 
-  typedef std::function<Oscillator *(engineering::Engineer &, float, Loop_Function)> Oscillator_Generator;
+//  typedef std::function<Oscillator *(engineering::Engineer &, float, Loop_Function)> Oscillator_Generator;
 }
