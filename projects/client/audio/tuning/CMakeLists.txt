@@ -1,4 +1,4 @@
 
 create_library(tuning)
 
-require(aura aura_sequencing)
+require(aura_processing aura_sequencing)

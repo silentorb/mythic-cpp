@@ -1,3 +1,3 @@
 create_header_library(aura_graphing)
 
-require(aura )
+require(aura_processing )

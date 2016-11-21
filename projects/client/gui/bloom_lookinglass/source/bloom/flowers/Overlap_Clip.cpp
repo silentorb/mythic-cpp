@@ -13,7 +13,7 @@ namespace bloom {
       auto previous_viewport = Viewport::get_active_viewport();
       auto &converter = Garden::get_instance().get_converter();
       auto pos_y = converter.get_pixel_dimensions().y - bounds.position.y - bounds.dimensions.y;
-      auto dimensions = glm::ivec2(bounds.dimensions);
+      auto dimensions = glm::ivec2(get_absolute_bounds().dimensions);
 
       glScissor(
         (int)bounds.position.x + previous_viewport->get_position().x,
@@ -45,6 +45,10 @@ namespace bloom {
     void Overlap_Clip::update_position(const glm::vec2 &parent_position, const glm::vec2 &parent_dimensions) {
       bounds.position = parent_position;
       Single_Parent::update_position(parent_position, parent_dimensions);
+    }
+
+    const string Overlap_Clip::get_class_name() const {
+      return "Overlap_Clip";
     }
   }
 }

@@ -1,1 +1,3 @@
-create_header_library(nobby commoner)
+create_header_library(nobby)
+
+require(commoner)
