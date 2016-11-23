@@ -11,9 +11,9 @@ namespace scenery {
       Parent *parent = nullptr;
 
   public:
-      Simple_Element(Parent *parent = nullptr) {
-        if (parent)
-          parent->add_child(unique_ptr<Element>(this));
+      Simple_Element() {
+//        if (parent)
+//          parent->add_child(unique_ptr<Element>(this));
       }
       ~Simple_Element() {}
 

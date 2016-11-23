@@ -16,7 +16,7 @@ namespace aura {
         perform_chord_structure(conductor, composer.get_current_chord_structure(), start, end);
       });
 
-      chord_loop->set_on_loop([this](Conductor &conductor, float start, float end) {
+      chord_loop->set_on_loop([this](Conductor &conductor, double start, double end) {
         next_section();
         conductor.set_chord(this->composer.get_current_chord_structure().get_chords()[0], 0, start, end);
       });

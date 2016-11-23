@@ -10,9 +10,9 @@ using namespace modeling;
 
 namespace scenery {
 
-  Particle_Array::Particle_Array(Particle_Effect &effect, Parent *parent) :
+  Particle_Array::Particle_Array(Particle_Effect &effect) :
     effect(effect),
-    Spatial(parent) {
+    Spatial() {
 
     vertex_buffer = new Vertex_Buffer(effect.get_program().get_vertex_schema(), [&](int &vertex_count) {
       vertex_count = particles.size();

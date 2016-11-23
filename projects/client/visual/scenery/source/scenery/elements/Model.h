@@ -22,13 +22,13 @@ namespace scenery {
 
   class MYTHIC_EXPORT Model : public Simple_Element {
   protected:
-      Mesh_Data *mesh_data;
+      Renderable_Mesh_With_Opacity *mesh_data;
       Complex_Spatial_Effect *effect;
       texturing::Texture *texture = nullptr;
       vec4 color = vec4(1);
 
   public:
-      Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent = nullptr);
+      Model(Renderable_Mesh_With_Opacity *mesh_data, Complex_Spatial_Effect *effect);
 
       virtual ~Model() {}
 
@@ -59,7 +59,11 @@ namespace scenery {
         this->effect = &effect;
       }
 
-      Mesh_Data *get_mesh_data() const {
+      void set_mesh(Renderable_Mesh_With_Opacity *value) {
+        mesh_data = value;
+      }
+
+      Renderable_Mesh_With_Opacity *get_mesh() const {
         return mesh_data;
       }
 

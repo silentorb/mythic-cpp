@@ -2,8 +2,8 @@
 
 namespace scenery {
 
-  Spatial_Model::Spatial_Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent) :
-    Spatial(parent), model(mesh_data, effect) {
+  Spatial_Model::Spatial_Model(Renderable_Mesh_With_Opacity *mesh_data, Complex_Spatial_Effect *effect) :
+    Spatial(), model(mesh_data, effect) {
   }
 
   void Spatial_Model::render() {

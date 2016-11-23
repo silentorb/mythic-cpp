@@ -35,7 +35,7 @@ namespace modeling {
 
   typedef function<void(Mesh_Export &data)> Mesh_Data_Generator;
 
-  class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh {
+  class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
      Element_Buffer element_buffer;
       int polygon_count;
       shared_ptr<int> offsets;

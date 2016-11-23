@@ -18,26 +18,25 @@ namespace aura {
   public:
       Loop(const unsigned int sample_rate, double frequency = default_frequency) :
         increment(frequency / sample_rate), sample_rate(sample_rate) {
-        position = -increment;
       }
 
-      long double next();
+      long double update();
 
       long double operator()() {
-        return next();
+        return update();
       }
 
-      long double next(bool & looped);
+      long double update(bool &looped);
 
       float get_frequency() const {
-        return (float)increment * sample_rate;
+        return (float) increment * sample_rate;
       }
 
       void set_frequency(float frequency) {
         increment = frequency / sample_rate;
       }
 
-      double get_position() const {
+      long double get_next() const {
         return position;
       }
 

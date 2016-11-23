@@ -12,7 +12,7 @@ namespace scenery {
       const Particle &particle;
 
   public:
-      Particle_Element(const Particle &particle, Parent *parent) : particle(particle), scenery::Group(parent) {}
+      Particle_Element(const Particle &particle, Parent *parent) : particle(particle), scenery::Group() {}
 
       const Particle &get_particle() const {
         return particle;

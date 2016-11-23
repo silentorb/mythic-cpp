@@ -22,16 +22,6 @@ namespace scenery {
     }
   }
 
-  void Group::add_child(Element &element) {
-    if (element.get_parent() && element.get_parent() != this) {
-      element.get_parent()->move_child(element, *this);
-    }
-    else {
-      element.set_parent(this, false);
-      children.push_back(unique_ptr<Element>(&element));
-    }
-  }
-
 //  bool Group::has_transform() {
 //    return true;
 //  }
@@ -74,6 +64,12 @@ namespace scenery {
   }
 
   void Group::add_child(Element *element) {
-    add_child(*element);
+    if (element->get_parent() && element->get_parent() != this) {
+      element->get_parent()->move_child(*element, *this);
+    }
+    else {
+      element->set_parent(this, false);
+      children.push_back(unique_ptr<Element>(element));
+    }
   }
 }

@@ -16,7 +16,7 @@ namespace scenery {
     }
     else if (new_parent) {
       parent = new_parent;
-      parent->add_child(*this);
+      parent->add_child(this);
     }
     else {
       remove();

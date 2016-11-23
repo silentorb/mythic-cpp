@@ -12,7 +12,7 @@ using namespace shading;
 
 namespace modeling {
 
-  class MYTHIC_EXPORT Simple_Mesh : public resourceful::Resource, public Renderable_Mesh {
+  class MYTHIC_EXPORT Simple_Mesh : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
       unsigned int vao;
       unsigned int vbo;
       int vertex_count;
@@ -32,5 +32,9 @@ namespace modeling {
 
       virtual void load() override;
       virtual void release() override;
+
+      virtual bool has_opacity() const override {
+        return false;
+      }
   };
 }

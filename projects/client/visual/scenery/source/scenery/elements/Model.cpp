@@ -7,10 +7,10 @@
 
 namespace scenery {
 
-  Model::Model(Mesh_Data *mesh_data, Complex_Spatial_Effect *effect, Parent *parent)
-    : mesh_data(mesh_data), effect(effect), Simple_Element(parent) {
-    if (mesh_data->get_ebo() == 0)
-      throw runtime_error("Model mesh is not initialized.");
+  Model::Model(Renderable_Mesh_With_Opacity *mesh_data, Complex_Spatial_Effect *effect)
+    : mesh_data(mesh_data), effect(effect), Simple_Element() {
+//    if (mesh_data->get_ebo() == 0)
+//      throw runtime_error("Model mesh is not initialized.");
   }
 
   void Model::render() {

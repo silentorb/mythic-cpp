@@ -17,14 +17,13 @@ namespace scenery {
       vector<unique_ptr<Element>> children;
 
   public:
-      Group(Parent *parent = nullptr) : Spatial(parent) {}
+      Group() : Spatial() {}
 
       virtual ~Group() {}
 
       virtual void render() override;
       virtual void add_child(unique_ptr<Element> element) override;
-      virtual void add_child(Element &element) override;
-//      virtual bool has_transform() override;
+      //      virtual bool has_transform() override;
       virtual void add_child(Element *element) override;
       virtual void move_child(Element &element, Parent &destination) override;
 

@@ -28,7 +28,7 @@ namespace aura {
           return chord;
         }
 
-        void set_chord(const Chord_Instance chord, float offset = 0, float start = 0, float end = 0);
+        void set_chord(const Chord_Instance chord, float offset = 0, double start = 0, double end = 0);
 
         float get_tempo() const {
           return tempo;

@@ -23,7 +23,7 @@ namespace aura {
 
           virtual void update(Externals &externals) override {
             loop.set_frequency(frequency);
-            output = loop.next();
+            output = loop.update();
           }
 
           virtual const void *get_data() override {

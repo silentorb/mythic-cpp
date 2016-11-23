@@ -3,8 +3,8 @@
 
 namespace scenery {
 
-  Spatial::Spatial(Parent *parent) :
-    position(vec3(0)), orientation(quat()), scale(vec3(1)), Simple_Element(parent) {}
+  Spatial::Spatial() :
+    position(vec3(0)), orientation(quat()), scale(vec3(1)), Simple_Element() {}
 
   mat4 &Spatial::get_absolute_orientation() {
     orientation_transform = glm::mat4_cast(orientation);

@@ -14,7 +14,7 @@ namespace scenery {
       mat4 orientation_transform;
 
   public:
-      Spatial(Parent *parent = nullptr);
+      Spatial();
       ~Spatial() {}
 
       vec3 &get_position() {

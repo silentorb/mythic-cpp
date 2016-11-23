@@ -19,9 +19,9 @@ namespace scenery {
       Particle_Element_Delegate animator;
 
   public:
-      Element_Emitter(Emitter *emitter, Particle_Element_Delegate initializer, Parent *parent = nullptr);
+      Element_Emitter(Emitter *emitter, Particle_Element_Delegate initializer);
       Element_Emitter(const Particle_Generator &generator, Particle_Element_Delegate initializer,
-                      Particle_Element_Delegate animator, const Particle_Animator &particle_animator, Parent *parent);
+                      Particle_Element_Delegate animator, const Particle_Animator &particle_animator);
 
       virtual void update(float delta) override;
 

@@ -36,7 +36,7 @@ namespace scenery {
 
   public:
       virtual void update(float delta) override;
-      Particle_Array(Particle_Effect &effect, Parent *parent = nullptr);
+      Particle_Array(Particle_Effect &effect);
       ~Particle_Array();
 
       virtual void render() override;
