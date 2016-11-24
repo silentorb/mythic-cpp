@@ -14,8 +14,8 @@ namespace bloom {
         shared_ptr<scenery::Scene> scene;
 
     public:
-        Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent);
-        Scene_Flower(Parent *parent);
+        Scene_Flower(shared_ptr<scenery::Scene> scene, Parent *parent = nullptr);
+        Scene_Flower(Parent *parent = nullptr);
         ~Scene_Flower();
 
         virtual void render() override;
