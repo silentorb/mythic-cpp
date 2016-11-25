@@ -56,7 +56,7 @@ namespace shading {
       T &create_property(const std::string &name) {
         auto property = get_property(name);
         if (property)
-          static_cast<T &>(*property);
+          return static_cast<T &>(*property);
 
         return static_cast<T &>(add_property(new T(name, *this)));
       }

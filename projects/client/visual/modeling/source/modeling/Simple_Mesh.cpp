@@ -29,6 +29,9 @@ namespace modeling {
   }
 
   void Simple_Mesh::render(Draw_Method mode) {
+      if (vertex_count == 0)
+          return;
+      
       glow::set_vertex_array(vao);
     GLenum _mode;
     switch (mode) {
@@ -65,6 +68,9 @@ namespace modeling {
     glow::set_array_buffer(vbo);
     glow::set_vertex_array(vao);
     if (this->vertex_count == 0) {
+        if (vertex_count == 0)
+            return;
+        
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_DYNAMIC_DRAW);
     }
@@ -82,7 +88,12 @@ namespace modeling {
     if (!vao)
       return;
 
+      #ifdef ANDROID
     glDeleteBuffers(1, &vao);
+#else
+    glDeleteVertexArrays(1, &vao);
+#endif
+    
     glDeleteBuffers(1, &vbo);
     vao = 0;
   }

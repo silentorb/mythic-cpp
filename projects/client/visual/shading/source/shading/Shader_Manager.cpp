@@ -2,6 +2,7 @@
 #include "Ancient_Code_Processor.h"
 #include "glow/Capabilities.h"
 #include "resourceful/Resource_Manager.h"
+#include <iostream>
 
 using namespace resourceful;
 
@@ -49,6 +50,7 @@ namespace shading {
     auto program = new Program(name, vertex_shader, fragment_shader, vertex_schema);
     programs->add_resource(program);
     register_program(program);
+    std::cout << "Shader " << program->get_id() << ": " << name << std::endl;
     return *program;
   }
 
