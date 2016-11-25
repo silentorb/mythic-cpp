@@ -4,6 +4,7 @@
 #include "Parent.h"
 #include <memory>
 #include <vector>
+#include <string>
 
 using namespace std;
 

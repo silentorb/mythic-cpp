@@ -2,6 +2,7 @@
 
 #include "Common_Flower.h"
 #include <memory>
+#include <string>
 
 namespace bloom {
   namespace flowers {

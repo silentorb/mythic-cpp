@@ -8,6 +8,7 @@
 #include <bloom/layout/Measurement.h>
 #include <bloom/layout/Parent_Dimensions.h>
 #include <commoner/debug-macro.h>
+#include <string>
 
 using namespace std;
 
