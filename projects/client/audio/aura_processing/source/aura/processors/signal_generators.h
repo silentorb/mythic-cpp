@@ -13,6 +13,7 @@ namespace aura {
     float square(float position);
     float white_noise_dummy_position(float position);
     float white_noise();
+    float triangle(float position);
 
   }
 }

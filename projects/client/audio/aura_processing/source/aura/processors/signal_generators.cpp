@@ -36,6 +36,18 @@ namespace aura {
     float square(float position) {
       return fmod(position, 1) < 0.5 ? 1 : -1;
     }
+
+    float triangle(float position){
+      float x = fmod(position, 1);
+      float a = x * 4;
+      if (x < 0.25)
+        return a;
+
+      if (x < 0.75)
+        return 2 - a;
+
+      return a - 4;
+    }
   }
 }
 
