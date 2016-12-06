@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Fixed_Delay_Buffer.h"
+#include <math/utility.h>
+#include <cmath>
 
 namespace aura {
   namespace processing {
@@ -42,31 +44,49 @@ namespace aura {
         }
     };
 
-    struct Second_Order_Pre_Calculation {
-        float a0, a1, a2, b1, b2;
+    template<typename Signal_Type>
+    struct Second_Order_Calculations {
+        Signal_Type a0, a1, a2, b1, b2;
+
+        Signal_Type process(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
+                            Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
+          return 0
+                 + a0 * input
+                 + a1 * original_buffer[0]
+                 + a2 * original_buffer[1]
+                 - b1 * output_buffer[0]
+                 - b2 * output_buffer[1];
+        }
+    };
+
+    template<typename Signal_Type>
+    struct Second_Order_Mix_Calculations : public Second_Order_Calculations<Signal_Type> {
+        Signal_Type c, d;
+        Signal_Type process_mixed(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
+                            Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
+          return Second_Order_Calculations<Signal_Type>::process(input, original_buffer, output_buffer)
+                 * c
+                 + d * input;
+        }
     };
 
     template<typename Signal_Type, typename Calculation_Type>
     class Second_Order_Filter : public Resonant_Filter_Base<Signal_Type> {
-        Fixed_Delay_Buffer<float, 2> original_buffer;
-        Fixed_Delay_Buffer<float, 2> output_buffer;
-        Second_Order_Pre_Calculation calculation;
+        Fixed_Delay_Buffer<Signal_Type, 2> original_buffer;
+        Fixed_Delay_Buffer<Signal_Type, 2> output_buffer;
+        Second_Order_Calculations<Signal_Type> calculation;
 
     public:
         Second_Order_Filter(unsigned int sample_rate) :
           Resonant_Filter_Base<Signal_Type>(sample_rate) {}
 
-        float operator()(float input) {
+        Signal_Type operator()(Signal_Type input) {
           if (this->changed) {
             Calculation_Type::pre_calculate(calculation, this->frequency, this->sample_rate, this->Q);
             this->changed = false;
           }
 
-          auto output = calculation.a0 * input
-                        + calculation.a1 * original_buffer[0]
-                        + calculation.a2 * original_buffer[1]
-                        - calculation.b1 * output_buffer[0]
-                        - calculation.b2 * output_buffer[1];
+          auto output = calculation.process(input, original_buffer, output_buffer);
           original_buffer.update(input);
           output_buffer.update(output);
           return output;
@@ -74,4 +94,17 @@ namespace aura {
 
     };
   }
+
+  template<typename Signal_Type>
+  struct Second_Order_Common {
+      Signal_Type B, y;
+
+      Second_Order_Common(float frequency, float sample_rate, float Q) {
+        auto arc = 2 * Pi * frequency / sample_rate;
+        auto d = 1 / Q;
+        auto k = d / 2 * sin(arc);
+        B = 0.5 * (1 - k) / (1 + k);
+        y = (0.5 + B) * cos(arc);
+      }
+  };
 }

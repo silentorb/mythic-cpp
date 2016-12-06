@@ -4,6 +4,10 @@
 #include <cmath>
 #include <math/utility.h>
 
+namespace randomly {
+  class Dice;
+}
+
 namespace aura {
 
   namespace generate {
@@ -13,6 +17,7 @@ namespace aura {
     float square(float position);
     float white_noise_dummy_position(float position);
     float white_noise();
+    float white_noise(randomly::Dice &dice);
     float triangle(float position);
 
   }

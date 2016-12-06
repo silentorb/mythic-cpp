@@ -16,6 +16,13 @@ namespace aura {
       return smooth;
     }
 
+    float white_noise(randomly:: Dice &dice) {
+      auto sample = dice.get_float(-1, 1);
+      float amount = 0.5;
+      smooth = smooth - (amount * (smooth - sample));
+      return smooth;
+    }
+
     float white_noise_dummy_position(float position) {
       return white_noise();
     }
