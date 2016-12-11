@@ -1,17 +1,18 @@
 #pragma once
 
-#include <emission/Emitter.h>
+#include <emission/Random_Emitter.h>
 
 namespace aura {
   namespace generation {
 
     template<typename Signal_Type, typename Sound_Type>
     class Sound_Emitter {
-        emission::Emitter<Sound_Type> emitter;
+        emission::Random_Emitter<Sound_Type> emitter;
 
     public:
-        Sound_Emitter(const emission::Particle_Factory<Sound_Type> &factory) :
-          emitter(factory) {}
+        Sound_Emitter(const emission::Particle_Factory<Sound_Type> &factory, randomly:: Dice & dice) :
+          emitter(factory, dice) {}
+
 
         Signal_Type operator()(float delta) {
           emitter(delta);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <substance/Emitter.h>
-#include "commoner/dllexport.h"
 #include "scenery/elements/Group.h"
 #include "particular/Particle_Element.h"
 #include "particular/Particle_Array.h"
@@ -13,7 +12,7 @@ namespace scenery {
   typedef function<void(Visible_Particle &, float delta)> Particle_Point_Delegate;
   typedef function<Visible_Particle *(const Particle &)> Visible_Particle_Generator;
 
-  class MYTHIC_EXPORT Point_Emitter_Bridge : public scenery::Spatial, public substance::Particle_Listener {
+  class Point_Emitter_Bridge : public scenery::Spatial, public substance::Particle_Listener {
   protected:
       unique_ptr<Emitter> emitter;
       Visible_Particle_Generator visible_generator;
@@ -23,7 +22,7 @@ namespace scenery {
   public:
       Point_Emitter_Bridge(Particle_Array *target_array, const Particle_Generator &generator,
                            Visible_Particle_Generator visible_generator, Particle_Point_Delegate point_animator,
-                           const Particle_Animator &particle_animator, Parent *parent);
+                           const Particle_Animator &particle_animator);
 
       virtual ~Point_Emitter_Bridge();
       virtual void update(float delta) override;

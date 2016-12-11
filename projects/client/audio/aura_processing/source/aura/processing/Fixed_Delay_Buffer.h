@@ -21,6 +21,10 @@ namespace aura {
           buffer[0] = value;
         }
 
+        void operator()(const Signal_Type &value) {
+          update(value);
+        }
+
         const Signal_Type &get_last() const {
           return buffer[Size - 1];
         }

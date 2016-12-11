@@ -15,19 +15,19 @@ namespace emission {
   using Particle_Delegate = std::function<void(Particle_Type &)>;
 
   template<typename Particle_Type>
-  class Emitter {
+  class Emitter_Base {
+  protected:
       std::vector<std::unique_ptr<Particle_Type>> particles;
       float rate = 0; // particles per second
-      float accumulator = 0;
       Particle_Factory<Particle_Type> factory;
       Particle_Updater<Particle_Type> updater;
       Particle_Delegate<Particle_Type> on_delete;
 
       void update_particles(float delta);
-      void generate(float delta);
+      virtual void generate(float delta) = 0;
 
   public:
-      Emitter(const Particle_Factory<Particle_Type> &factory) :
+      Emitter_Base(const Particle_Factory<Particle_Type> &factory) :
         factory(factory) {}
 
       void set_rate(float value) {

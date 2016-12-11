@@ -7,6 +7,21 @@ namespace aura {
 
   namespace generate {
 
+    namespace ranged {
+
+      float triangle(float x) {
+        float a = x * 4;
+        if (x < 0.25)
+          return a;
+
+        if (x < 0.75)
+          return 2 - a;
+
+        return a - 4;
+      }
+
+    }
+
     float smooth;
 
     float white_noise() {
@@ -16,7 +31,7 @@ namespace aura {
       return smooth;
     }
 
-    float white_noise(randomly:: Dice &dice) {
+    float white_noise(randomly::Dice &dice) {
       auto sample = dice.get_float(-1, 1);
       float amount = 0.5;
       smooth = smooth - (amount * (smooth - sample));
@@ -28,11 +43,11 @@ namespace aura {
     }
 
     float sine(float position) {
-      return (float)sin(position * 2 * Pi);
+      return (float) sin(position * 2 * Pi);
     }
 
     float saw(float position) {
-      return (float)fabs(fmod(position, 2) - 1);
+      return (float) fabs(fmod(position, 2) - 1);
     }
 
 //    float triangle(float position) {
@@ -44,16 +59,9 @@ namespace aura {
       return fmod(position, 1) < 0.5 ? 1 : -1;
     }
 
-    float triangle(float position){
+    float triangle(double position) {
       float x = fmod(position, 1);
-      float a = x * 4;
-      if (x < 0.25)
-        return a;
-
-      if (x < 0.75)
-        return 2 - a;
-
-      return a - 4;
+      return ranged::triangle(x);
     }
   }
 }

@@ -17,7 +17,7 @@ namespace aura {
 
       float update() {
         auto value = envelope.update(instance, timer.get_position(), timer.get_duration());
-        return processing::dB(value);
+        return processing::to_dB(value);
       }
 
       float operator()() {

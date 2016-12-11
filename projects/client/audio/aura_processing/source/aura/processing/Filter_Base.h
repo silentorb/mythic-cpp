@@ -62,12 +62,14 @@ namespace aura {
     template<typename Signal_Type>
     struct Second_Order_Mix_Calculations : public Second_Order_Calculations<Signal_Type> {
         Signal_Type c, d;
-        Signal_Type process_mixed(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
-                            Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
-          return Second_Order_Calculations<Signal_Type>::process(input, original_buffer, output_buffer)
-                 * c
-                 + d * input;
-        }
+
+//        Signal_Type process_mixed(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
+//                                  Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
+//          auto processed = Second_Order_Calculations<Signal_Type>::process(input, original_buffer, output_buffer);
+//          return
+//            c * processed
+//            + d * input;
+//        }
     };
 
     template<typename Signal_Type, typename Calculation_Type>
@@ -96,13 +98,25 @@ namespace aura {
   }
 
   template<typename Signal_Type>
-  struct Second_Order_Common {
+  struct Second_Order_Side {
       Signal_Type B, y;
 
-      Second_Order_Common(float frequency, float sample_rate, float Q) {
+      Second_Order_Side(float frequency, float sample_rate, float Q) {
         auto arc = 2 * Pi * frequency / sample_rate;
         auto d = 1 / Q;
         auto k = d / 2 * sin(arc);
+        B = 0.5 * (1 - k) / (1 + k);
+        y = (0.5 + B) * cos(arc);
+      }
+  };
+
+  template<typename Signal_Type>
+  struct Second_Order_Middle {
+      Signal_Type B, y;
+
+      Second_Order_Middle(float frequency, float sample_rate, float Q) {
+        auto arc = 2 * Pi * frequency / sample_rate;
+        auto k = tan(arc/(2 * Q));
         B = 0.5 * (1 - k) / (1 + k);
         y = (0.5 + B) * cos(arc);
       }

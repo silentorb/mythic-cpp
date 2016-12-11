@@ -3,8 +3,8 @@
 #include <aura/engineering/Engineer.h>
 #include <math/utility.h>
 #include <cmath>
-#include "Fixed_Delay_Buffer.h"
-#include "Filter_Base.h"
+#include "aura/processing/Fixed_Delay_Buffer.h"
+#include "aura/processing/Filter_Base.h"
 
 namespace aura {
   namespace processing {
@@ -17,7 +17,7 @@ namespace aura {
           Second_Order_Filter<Signal_Type, High_Pass_Filter<Signal_Type>>(sample_rate) {}
 
         static void pre_calculate(Second_Order_Calculations<Signal_Type> &result, float frequency, float sample_rate, float Q) {
-          Second_Order_Common<Signal_Type> common(frequency, sample_rate, Q);
+          Second_Order_Side<Signal_Type> common(frequency, sample_rate, Q);
           auto j = 0.5 + common.B + common.y;
           result.a0 = j / 2;
           result.a1 = -j;

@@ -12,13 +12,18 @@ namespace aura {
 
   namespace generate {
 
+    namespace ranged {
+      float triangle(float position);
+    }
+
     float sine(float position);
     float saw(float position);
     float square(float position);
     float white_noise_dummy_position(float position);
     float white_noise();
     float white_noise(randomly::Dice &dice);
-    float triangle(float position);
+    float triangle(double position);
 
   }
+
 }
