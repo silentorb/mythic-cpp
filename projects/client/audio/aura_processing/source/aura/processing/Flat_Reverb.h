@@ -3,8 +3,8 @@
 #include <cstdlib>
 #include "Fixed_Delay_Buffer.h"
 #include "utility.h"
-#include "Decibels.h"
-#include "Signal.h"
+#include "aura/primitives/Decibels.h"
+#include "aura/primitives/Signal.h"
 
 namespace aura {
   namespace processing {

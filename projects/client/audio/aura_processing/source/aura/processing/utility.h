@@ -4,14 +4,14 @@
 namespace aura {
   namespace processing {
 
-//    constexpr float dB(float value);
-    constexpr float to_dB(float value) {
-//      return std::pow(value, 2);
-//      const auto base = 10;
-      return (std::pow(10, value) - 1) / (10 - 1);
-//      return 20 * log10(value);'
-//      return std::pow(10.0f, value / 20.0f);
-    }
+    float to_dB(float value);
+//    float to_dB(float value) {
+////      return std::pow(value, 2);
+////      const auto base = 10;
+//      return (std::pow(10, value) - 1) / (10 - 1);
+////      return 20 * log10(value);'
+////      return std::pow(10.0f, value / 20.0f);
+//    }
     float inverse_dB(float value);
 
     template<typename Signal_Type>

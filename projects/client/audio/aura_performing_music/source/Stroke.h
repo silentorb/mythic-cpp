@@ -19,7 +19,7 @@ namespace aura {
 
 //      virtual float update(float beat_delta) = 0;
 
-      const double &get_duration() const {
+     virtual double get_duration() const override {
         return duration;
       }
 

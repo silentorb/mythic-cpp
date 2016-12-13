@@ -25,7 +25,7 @@ namespace aura {
         Simple_Instrument(Performance_Producer &producer, Instrument_Stroke_Generator stroke_generator,
                           Note_Envelope_Generator &volume_envelope);
         virtual ~Simple_Instrument();
-        virtual std::unique_ptr<Musical_Stroke> create_sound(const sequencing::Note &note) const override;
+        virtual std::unique_ptr<Musical_Stroke> create_sound(const sequencing::Note &note) override;
     };
 
     class Simple_Instrument_Stroke : public Musical_Stroke {

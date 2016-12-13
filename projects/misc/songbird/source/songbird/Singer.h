@@ -102,6 +102,11 @@ namespace songbird {
         return promising::Promise<R>::unique_sequence(
           channels, function<promising::Promise<R> &(Channel_Interface *, bool &cancel)>(
             [this, local_is_deleted, &song, a, b](Channel_Interface *channel, bool &cancel) -> promising::Promise<R> & {
+              if (*local_is_deleted) {
+                cancel = true;
+                return promising::Promise<R>::resolved();
+              }
+
               if (has_channel(channel) && channel->id == static_cast<const void *>(&song)) {
                 auto particular_listener = static_cast<Channel<T> *>(channel);
                 promising::Promise<R> &result = particular_listener->dance(a, b);

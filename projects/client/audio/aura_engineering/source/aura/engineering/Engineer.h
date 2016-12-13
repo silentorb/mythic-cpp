@@ -44,6 +44,7 @@ namespace aura {
         int bytes_to_samples(int byte_count) {
           return byte_count / sizeof(float) / channel_count;
         }
+
     };
   }
 }

@@ -31,7 +31,7 @@ namespace aura {
 
     }
 
-    std::unique_ptr<Musical_Stroke> Simple_Instrument::create_sound(const Note &note) const {
+    std::unique_ptr<Musical_Stroke> Simple_Instrument::create_sound(const Note &note) {
       return std::unique_ptr<Musical_Stroke>(stroke_generator(note, producer, volume_envelope.generate_envelope()));
     }
 
