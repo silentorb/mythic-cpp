@@ -16,6 +16,7 @@ namespace breeze {
       vector<unique_ptr<Animation>> animations;
       float delta;
 
+      void add_animation(Animation *new_animation);
       void add_animation(Animation *new_animation, void *target);
 
   public:
@@ -36,31 +37,19 @@ namespace breeze {
         return animation->get_promise();
       }
 
-//      promising::Promise<void> &animate(Animation_Update animation_update) {
-//        auto animation = new Indefinite_Animation(animation_update);
-//        animations.push_back(unique_ptr<Animation>(animation));
-//        return animation->get_promise();
-//      }
-
-//      promising::Promise<void> &animate_position_incremental(glm::vec3 &target, glm::vec3 final_value, float speed) {
-//        auto animation = new Position_Animation_Incremental(target, final_value, speed);
-//        animations.push_back(unique_ptr<Animation>(animation));
-//        return animation->get_promise();
-//      }
-
-//      promising::Promise<void> &animate_position_over_time(glm::vec3 &target, glm::vec3 final_value,
-//                                                           float speed, Curve_Delegate curve) {
-//        auto animation = new Position_Animation_Over_Time(target, final_value, speed, curve);
-//        animations.push_back(unique_ptr<Animation>(animation));
-//        return animation->get_promise();
-//      }
-
       promising::Promise<void> &slerp(glm::quat &target, glm::quat destination, float duration, Curve_Delegate curve) {
         auto animation = new Timed_Animation<glm::quat, Slerp_Updater>(target, destination, duration, curve);
         add_animation(animation, &target);
         return animation->get_promise();
       }
 
+      template<typename T>
+      promising::Promise<void> &drive(const T start_value, const T final_value, float duration, Curve_Delegate curve,
+                                      const Animation_Driver_Updater<T> &updater) {
+        auto animation = new Animation_Driver<T>(start_value, final_value, duration, curve, updater);
+        add_animation(animation);
+        return animation->get_promise();
+      }
 
       promising::Promise<void> &delay(float duration);
 

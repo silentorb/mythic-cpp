@@ -24,6 +24,9 @@ namespace scenery {
       Draw_Method draw_method;
       vec4 color = vec4(1);
       glow::Blend_Function blend_function;
+      bool culling_set = false;
+      bool culling = true;
+      bool depth_test = true;
 
   protected:
       Vector4_Property &color_property;
@@ -53,6 +56,15 @@ namespace scenery {
 
       void set_blend_function(const glow::Blend_Function value) {
         this->blend_function = value;
+      }
+
+      void set_culling(bool value){
+        culling = value;
+        culling_set = true;
+      }
+
+      void set_depth_test(bool value){
+        depth_test = value;
       }
   };
 }

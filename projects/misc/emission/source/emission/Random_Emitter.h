@@ -15,7 +15,7 @@ namespace emission {
       virtual void generate(float delta);
 
   public:
-      Random_Emitter(const Particle_Factory<Particle_Type> &factory, randomly::Dice &dice) :
+      Random_Emitter(const Empty_Delegate &factory, randomly::Dice &dice) :
         Emitter_Base<Particle_Type>(factory), dice(dice) {
 
       }

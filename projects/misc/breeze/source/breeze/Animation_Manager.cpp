@@ -22,6 +22,10 @@ namespace breeze {
     return animation->get_promise();
   }
 
+  void Animation_Manager::add_animation(Animation *new_animation) {
+    animations.push_back(unique_ptr<Animation>(new_animation));
+  }
+
   void Animation_Manager::add_animation(Animation *new_animation, void *target) {
     if (target) {
       for (int i = 0; i < animations.size(); ++i) {
@@ -34,7 +38,7 @@ namespace breeze {
       }
     }
 
-    animations.push_back(unique_ptr<Animation>(new_animation));
+    add_animation(new_animation);
   }
 
   void Animation_Manager::clear() {

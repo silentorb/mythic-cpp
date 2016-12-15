@@ -41,11 +41,14 @@ namespace scenery {
 
     auto opacity_support = has_opacity || color.w != 1;
     set_color(color);
+    if (culling_set)
+      glow::set_culling(culling);
+
     shading::set_opacity_support(opacity_support);
     if (opacity_support) {
       glow::set_blend_function(blend_function);
     }
-    glow::set_depth_test(true);
+    glow::set_depth_test(depth_test);
     model_property.set(transform);
     normal_property.set(normal_transform);
   }

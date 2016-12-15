@@ -11,7 +11,7 @@ namespace emission {
       virtual void generate(float delta);
 
   public:
-      Consistent_Emitter(const Particle_Factory<Particle_Type> &factory) :
+      Consistent_Emitter(const Empty_Delegate &factory) :
         Emitter_Base<Particle_Type>(factory) {
 
       }

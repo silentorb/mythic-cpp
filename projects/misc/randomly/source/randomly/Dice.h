@@ -41,6 +41,10 @@ namespace randomly {
         return min + get_float() * (max - min);
       }
 
+      float get_centered_float(float range) {
+        return get_float(-range, range);
+      }
+
       float get_float_relative(float a, float b) {
         return b > a
                ? a + get_float() * (b - a)

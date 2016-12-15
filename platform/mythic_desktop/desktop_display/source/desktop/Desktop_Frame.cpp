@@ -23,6 +23,8 @@ namespace desktop {
       SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, graphic_options.get_multisamples());
     }
 
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 1);
+
     sdl_window = SDL_CreateWindow(
       title,
       SDL_WINDOWPOS_UNDEFINED,           //    initial x position
