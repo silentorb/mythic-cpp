@@ -30,6 +30,9 @@ namespace bloom {
         List(Arrangement arrangement, const Measurement spacing, Parent *parent = nullptr) :
           Parent_Implementation(parent), arrangement(arrangement), spacing(spacing) {}
 
+        List(const Measurement spacing) :
+          Parent_Implementation(nullptr), spacing(spacing) {}
+
         virtual ~List() override {}
 
         virtual const string get_class_name() const override {
