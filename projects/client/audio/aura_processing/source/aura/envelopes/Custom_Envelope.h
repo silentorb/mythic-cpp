@@ -42,13 +42,21 @@ namespace aura {
     class Custom_Envelope {
         std::vector<Point> points;
 
-    public:
-        Custom_Envelope(const std::initializer_list<Point> &points_initializer) : points(points_initializer) {
+        void initialize() {
           for (int i = 0; i < points.size(); ++i) {
             auto &point = points[i];
             if (point.curve == Point::Curve::hold)
               point.level = points[i - 1].level;
           }
+        }
+
+    public:
+        Custom_Envelope(const std::initializer_list<Point> &points_initializer) : points(points_initializer) {
+          initialize();
+        }
+
+        Custom_Envelope(const std::vector<Point> &points_initializer) : points(points_initializer) {
+          initialize();
         }
 
         const std::vector<Point> &get_points() const {

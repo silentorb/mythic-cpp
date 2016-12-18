@@ -37,6 +37,10 @@ namespace randomly {
         return static_cast <float> (engine.operator()()) / static_cast <float> (engine.max());
       }
 
+      float get_float(float max) {
+        return get_float() * max;
+      }
+
       float get_float(float min, float max) {
         return min + get_float() * (max - min);
       }

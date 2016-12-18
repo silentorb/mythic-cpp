@@ -29,7 +29,7 @@ namespace aura {
           return result;
         }
 
-        void set_rate(int rate) {
+        void set_rate(float rate) {
           emitter.set_rate(rate);
         }
     };
