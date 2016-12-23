@@ -8,8 +8,10 @@ namespace bloom {
     }
 
     void Parent_Implementation::update(float delta) {
-      for (auto &child : children) {
-        child->update(delta);
+      // Incremented indexes may be slower than an iterator but is a simple way to deal with
+      // at least some cases of children being removed during the update loop.
+      for (int i = 0; i < children.size(); ++i) {
+        children[i]->update(delta);
       }
     }
 
@@ -66,7 +68,7 @@ namespace bloom {
     }
 
     Flower *Parent_Implementation::get_child(int index) {
-      return children [index].get();
+      return children[index].get();
     }
   }
 }
