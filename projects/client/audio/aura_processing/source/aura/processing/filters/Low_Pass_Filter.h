@@ -3,7 +3,7 @@
 #include <aura/engineering/Engineer.h>
 #include <math/utility.h>
 #include <cmath>
-#include "aura/processing/Fixed_Delay_Buffer.h"
+#include "aura/processing/Fixed_Delay.h"
 #include "aura/processing/Filter_Base.h"
 
 namespace aura {

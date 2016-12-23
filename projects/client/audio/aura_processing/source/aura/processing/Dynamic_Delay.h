@@ -7,11 +7,11 @@ namespace aura {
   namespace processing {
 
     template<typename Signal_Type>
-    class Dynamic_Delay_Buffer {
+    class Dynamic_Delay {
         std::vector<Signal_Type> buffer;
 
     public:
-        Dynamic_Delay_Buffer(size_t size) {
+        Dynamic_Delay(size_t size) {
           set_size(size);
         }
 

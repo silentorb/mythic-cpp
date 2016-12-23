@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include "Sound.h"
 
 namespace aura {
   namespace performing {

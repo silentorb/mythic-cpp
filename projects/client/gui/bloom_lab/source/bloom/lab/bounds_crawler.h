@@ -12,6 +12,7 @@ namespace bloom {
 
   struct Crawl_Result {
       unsigned long debug_id;
+      void* pointer;
       std::string class_name;
       glm::vec2 position;
       glm::vec2 dimensions;

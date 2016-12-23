@@ -38,10 +38,6 @@ namespace aura {
       return smooth;
     }
 
-    float white_noise_dummy_position(float position) {
-      return white_noise();
-    }
-
     float sine(float position) {
       return (float) sin(position * 2 * Pi);
     }

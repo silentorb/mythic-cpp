@@ -1,7 +1,6 @@
 #pragma once
 
 #include "commoner/dllexport.h"
-#include "promising_export.h"
 #include <functional>
 #include <memory>
 #include <vector>
@@ -10,18 +9,20 @@ using namespace std;
 
 namespace promising {
 
-  class PROMISING_EXPORT Promise_Interface : no_copy {
-      static vector<unique_ptr<Promise_Interface>> promises;
+  class Promise_Manager;
 
+  class Promise_Interface : no_copy {
   public:
-      static void add_promise(Promise_Interface &promise);
-//      static void add_promise(unique_ptr<Promise_Interface> &promise);
-      static void update_queue();
-      static void clear();
-      virtual bool update() = 0;
-      static int get_size();
+      virtual bool update(Promise_Manager &manager) = 0;
 
       virtual ~Promise_Interface() {}
+  };
+
+
+  class Promise_Manager {
+  public:
+      virtual void add_promise(Promise_Interface &promise) = 0;
+      static Promise_Manager &get_global_manager();
   };
 
   template<typename O>
@@ -33,16 +34,16 @@ namespace promising {
   protected:
       bool _is_done = false;
       vector<unique_ptr<Promise>> dependents;
+      Promise_Manager &manager;
 
-      Promise() {}
+      Promise(Promise_Manager &manager) : manager(manager) {}
 
       virtual void execute() {
         resolve();
       }
 
   public:
-
-      Promise(Promise &&) {}
+//      Promise(Promise &&) {}
 
       virtual ~Promise() override {}
 
@@ -52,7 +53,7 @@ namespace promising {
 
       Promise &void_then(function<void()> action);
       Promise &then(function<Promise<O> &()> action);
-      static Promise &defer(function<O()> action = []() {});
+      static Promise &defer(Promise_Manager &manager, function<O()> action = []() {});
       static Promise &resolved(function<O()> action = []() {});
 
       template<typename E>
@@ -100,12 +101,12 @@ namespace promising {
         return update_reference_sequence(items, action, step);
       }
 
-      static Promise *all(initializer_list<Promise *> promises) {
-        auto result = new Promise_With_Count<O>(promises.size());
-        Promise_Interface::add_promise(*result);
+      static Promise *all(initializer_list<Promise *> promises, Promise_Manager &manager) {
+        auto result = new Promise_With_Count<O>(promises.size(), manager);
+        manager.add_promise(*result);
         for (auto promise : promises) {
           promise->void_then([result]() mutable {
-              result->execute();
+            result->execute();
           });
         }
 
@@ -129,11 +130,11 @@ namespace promising {
 //        return promise;
       }
 
-      virtual bool update() override {
+      virtual bool update(Promise_Manager &manager) override {
         if (_is_done) {
           for (auto &dependent: dependents) {
             dependent->execute();
-            Promise_Interface::add_promise(*dependent.release());
+            manager.add_promise(*dependent.release());
           }
         }
         return _is_done;
@@ -145,7 +146,8 @@ namespace promising {
       function<O()> action;
   public:
 
-      Promise_Returning_Value(function<O()> action) : action(action) {
+      Promise_Returning_Value(Promise_Manager &manager, function<O()> action) :
+        Promise<O>(manager), action(action) {
       }
 
       virtual void execute() override {
@@ -161,7 +163,8 @@ namespace promising {
       function<Promise<O> &()> action;
 
   public:
-      Promise_Returning_Promise(function<Promise<O> &()> action) : action(action) {
+      Promise_Returning_Promise(Promise_Manager &manager, function<Promise<O> &()> action) :
+        Promise<O>(manager), action(action) {
       }
 
       virtual void execute() override {
@@ -177,8 +180,8 @@ namespace promising {
       int count;
 
   public:
-      Promise_With_Count(int count) :
-        count(count) {}
+      Promise_With_Count(int count, Promise_Manager &manager) :
+        count(count), Promise<O>(manager) {}
 
       virtual void execute() override {
         if (--count == 0)
@@ -189,29 +192,29 @@ namespace promising {
   typedef Promise<void> Empty_Promise;
 
   template<typename O>
-  Promise<O> &Promise<O>::defer(function<O()> action) {
-    auto promise = new Promise_Returning_Value<O>(action);
-    Promise_Interface::add_promise(*promise);
+  Promise<O> &Promise<O>::defer(Promise_Manager &manager, function<O()> action) {
+    auto promise = new Promise_Returning_Value<O>(manager, action);
+    manager.add_promise(*promise);
     return *promise;
   }
 
   template<typename O>
   Promise<O> &Promise<O>::resolved(function<O()> action) {
-    auto &result = defer(action);
+    auto &result = defer(Promise_Manager::get_global_manager(), action);
     result.resolve();
     return result;
   }
 
   template<typename O>
   Promise<O> &Promise<O>::void_then(function<void()> action) {
-    auto promise = new Promise_Returning_Value<O>(action);
+    auto promise = new Promise_Returning_Value<O>(manager, action);
     dependents.push_back(unique_ptr<Promise<O>>(promise));
     return *promise;
   }
 
   template<typename O>
   Promise<O> &Promise<O>::then(function<Promise<O> &()> action) {
-    auto promise = new Promise_Returning_Promise<O>(action);
+    auto promise = new Promise_Returning_Promise<O>(manager, action);
     dependents.push_back(unique_ptr<Promise<O>>(promise));
     return *promise;
   }

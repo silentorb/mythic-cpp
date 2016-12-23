@@ -10,8 +10,8 @@ namespace aura {
 
     template<typename Signal_Type>
     class Gain_Filter : public Resonant_Filter_Base<Signal_Type> {
-        Fixed_Delay_Buffer<Signal_Type, 2> original_buffer;
-        Fixed_Delay_Buffer<Signal_Type, 2> output_buffer;
+        Fixed_Delay<Signal_Type, 2> original_buffer;
+        Fixed_Delay<Signal_Type, 2> output_buffer;
         Second_Order_Mix_Calculations<Signal_Type> calculation;
         float gain;
 

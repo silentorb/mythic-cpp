@@ -28,17 +28,17 @@ namespace aura {
         virtual std::unique_ptr<Musical_Stroke> create_sound(const sequencing::Note &note) override;
     };
 
-    class Simple_Instrument_Stroke : public Musical_Stroke {
-        unique_ptr<Oscillator> oscillator;
-        unique_ptr<Note_Envelope> volume_envelope;
-
-    public:
-        virtual float update(float beat_delta) override;
-
-        Simple_Instrument_Stroke(const sequencing::Note &note, Oscillator *oscillator, Note_Envelope *volume_envelope) :
-          Musical_Stroke(note), oscillator(oscillator), volume_envelope(volume_envelope) {}
-
-        virtual ~Simple_Instrument_Stroke() {}
-    };
+//    class Simple_Instrument_Stroke : public Musical_Stroke {
+//        unique_ptr<Oscillator> oscillator;
+//        unique_ptr<Note_Envelope> volume_envelope;
+//
+//    public:
+//        virtual float update(float beat_delta) override;
+//
+//        Simple_Instrument_Stroke(const sequencing::Note &note, Oscillator *oscillator, Note_Envelope *volume_envelope) :
+//          Musical_Stroke(note), oscillator(oscillator), volume_envelope(volume_envelope) {}
+//
+//        virtual ~Simple_Instrument_Stroke() {}
+//    };
   }
 }

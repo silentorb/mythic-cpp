@@ -72,6 +72,11 @@ namespace foley {
         sample_worker->update(buffer, length, engineer);
       }
 
+      float update(float delta) {
+        manage_sounds();
+        return update_sample(delta);
+      }
+
       void add_sound(std::unique_ptr<Sound<Signal_Type>> &sound) {
         lock_guard<mutex> buffer_lock(buffer_mutex);
         sound_buffer.push_back(std::move(sound));
@@ -81,7 +86,7 @@ namespace foley {
         return sounds.size() + sound_buffer.size();
       }
 
-      void stop_all(){
+      void stop_all() {
         should_stop_all = true;
       }
   };

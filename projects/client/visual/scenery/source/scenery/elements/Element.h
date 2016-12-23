@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "glm/glm.hpp"
 #include "Spatial_Source.h"
 
@@ -10,7 +9,7 @@ namespace scenery {
 
   class Parent;
 
-  class MYTHIC_EXPORT Element : no_copy {
+  class Element : no_copy {
 
   public:
 //      Element() :

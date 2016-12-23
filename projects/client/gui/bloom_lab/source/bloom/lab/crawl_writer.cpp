@@ -22,6 +22,7 @@ namespace bloom {
       cout << "[" << result.class_name << "]"
            << " (" << result.position.x << ", " << result.position.y << ")"
            << " (" << result.dimensions.x << ", " << result.dimensions.y << ")"
+           << " " << result.pointer
            << endl;
     });
   }

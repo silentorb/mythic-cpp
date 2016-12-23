@@ -15,6 +15,7 @@ namespace aura {
 
   namespace performing {
     class Musical_Stroke : public Stroke {
+    protected:
         float frequency;
         Note note;
 

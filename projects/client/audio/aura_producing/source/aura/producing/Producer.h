@@ -9,20 +9,21 @@
 namespace aura {
   namespace producing {
 
+    template<typename Sound_Type, typename Event_Type>
     class Producer : virtual public performing::Performance_Producer {
-        Composer &composer;
+        composing::Composer<Sound_Type, Event_Type> &composer;
         Conductor &conductor;
         engineering::Engineer &engineer;
-        unique_ptr<performing::Musical_Performer> performer;
+        unique_ptr<performing::Musical_Performer<Sound_Type, Event_Type>> performer;
         unique_ptr<performing::Tempo_Loop> chord_loop;
 
     public:
-        Producer(Composer &composer, Conductor &conductor, engineering::Engineer &engineer);
+        Producer(composing::Composer<Sound_Type, Event_Type> &composer, Conductor &conductor, engineering::Engineer &engineer);
         ~Producer();
         float update(float delta);
         void commence();
 
-        Composer &get_composer() const {
+        composing::Composer<Sound_Type, Event_Type> &get_composer() const {
           return composer;
         }
 
@@ -34,7 +35,7 @@ namespace aura {
           return engineer;
         }
 
-        performing::Musical_Performer &get_performer() const {
+        performing::Musical_Performer<Sound_Type, Event_Type> &get_performer() const {
           return *performer;
         }
 

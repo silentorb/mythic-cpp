@@ -1,6 +1,6 @@
 #include <achieving/Achievement.h>
 #include "Banner.h"
-#include <breeze/Animation_Manager.h>
+#include <breeze/Animator.h>
 #include <bloom/flowers/Border.h>
 #include <bloom/flowers/Fill.h>
 #include <bloom/flowers/Text.h>
@@ -16,15 +16,15 @@ namespace achieving_bloom {
     static const float banner_height = 60;
 
     Banner::Banner(const Achievement &achievement, const std::function<void()> &on_finished) :
-      animator(new Animation_Manager()) {
+      animator(new Animator()) {
       initialize_appearance(achievement);
       static const float transition_duration = 0.3f;
       animator->animate2<Measurement_Accessor>(get_measurements().y.near, 0.0f, transition_duration,
                                                breeze::curves::bezier)
-        .then([this]() -> Empty_Promise & {
+        .then([this]() -> promising::Empty_Promise & {
           return animator->delay(4);
         })
-        .then([this]() -> Empty_Promise & {
+        .then([this]() -> promising::Empty_Promise & {
           return animator->animate2<Measurement_Accessor>(get_measurements().y.near, -banner_height,
                                                           transition_duration, breeze::curves::bezier);
         })

@@ -8,10 +8,11 @@ namespace breeze {
 
   class MYTHIC_EXPORT Delay : public Animation {
       float remainder;
-      Empty_Promise &promise;
+      promising::Empty_Promise &promise;
 
   public:
-      Delay(float duration) : remainder(duration), promise(promising::Promise<void>::defer()) { }
+      Delay(float duration, promising::Promise_Manager &promise_manager) :
+        remainder(duration), promise(promising::Promise<void>::defer(promise_manager)) { }
 
       virtual bool update(float delta) override {
         remainder -= delta;
@@ -22,7 +23,7 @@ namespace breeze {
         return false;
       }
 
-      Empty_Promise &get_promise() const {
+      promising::Empty_Promise &get_promise() const {
         return promise;
       }
 

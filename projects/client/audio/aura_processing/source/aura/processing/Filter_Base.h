@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fixed_Delay_Buffer.h"
+#include "Fixed_Delay.h"
 #include <math/utility.h>
 #include <cmath>
 
@@ -48,8 +48,8 @@ namespace aura {
     struct Second_Order_Calculations {
         Signal_Type a0, a1, a2, b1, b2;
 
-        Signal_Type process(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
-                            Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
+        Signal_Type process(Signal_Type input, Fixed_Delay<Signal_Type, 2> original_buffer,
+                            Fixed_Delay<Signal_Type, 2> output_buffer) const {
           return 0
                  + a0 * input
                  + a1 * original_buffer[0]
@@ -63,8 +63,8 @@ namespace aura {
     struct Second_Order_Mix_Calculations : public Second_Order_Calculations<Signal_Type> {
         Signal_Type c, d;
 
-//        Signal_Type process_mixed(Signal_Type input, Fixed_Delay_Buffer<Signal_Type, 2> original_buffer,
-//                                  Fixed_Delay_Buffer<Signal_Type, 2> output_buffer) const {
+//        Signal_Type process_mixed(Signal_Type input, Fixed_Delay<Signal_Type, 2> original_buffer,
+//                                  Fixed_Delay<Signal_Type, 2> output_buffer) const {
 //          auto processed = Second_Order_Calculations<Signal_Type>::process(input, original_buffer, output_buffer);
 //          return
 //            c * processed
@@ -74,8 +74,8 @@ namespace aura {
 
     template<typename Signal_Type, typename Calculation_Type>
     class Second_Order_Filter : public Resonant_Filter_Base<Signal_Type> {
-        Fixed_Delay_Buffer<Signal_Type, 2> original_buffer;
-        Fixed_Delay_Buffer<Signal_Type, 2> output_buffer;
+        Fixed_Delay<Signal_Type, 2> original_buffer;
+        Fixed_Delay<Signal_Type, 2> output_buffer;
         Second_Order_Calculations<Signal_Type> calculation;
 
     public:

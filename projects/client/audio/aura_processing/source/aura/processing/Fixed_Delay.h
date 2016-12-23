@@ -8,11 +8,11 @@ namespace aura {
   namespace processing {
 
     template<typename Signal_Type, size_t Size>
-    class Fixed_Delay_Buffer {
+    class Fixed_Delay {
         Signal_Type buffer[Size];
 
     public:
-        Fixed_Delay_Buffer() {
+        Fixed_Delay() {
           memset(&buffer, 0, Size * sizeof(Signal_Type));
         }
 
@@ -21,8 +21,9 @@ namespace aura {
           buffer[0] = value;
         }
 
-        void operator()(const Signal_Type &value) {
+        const Signal_Type operator()(const Signal_Type &value) {
           update(value);
+          return buffer[Size - 1];
         }
 
         const Signal_Type &get_last() const {

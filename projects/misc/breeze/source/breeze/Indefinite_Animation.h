@@ -14,9 +14,9 @@ namespace breeze {
       Animation_Update animation_update;
 
   public:
-      Indefinite_Animation(Animation_Update animation_update)
+      Indefinite_Animation(Animation_Update animation_update, promising::Promise_Manager &promise_manager)
         : animation_update(animation_update),
-          promise(promising::Promise<void>::defer()) {
+          promise(promising::Promise<void>::defer(promise_manager)) {
 
       }
 

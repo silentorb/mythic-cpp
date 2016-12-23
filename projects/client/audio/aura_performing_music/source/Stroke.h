@@ -16,10 +16,8 @@ namespace aura {
       Stroke(double duration) : duration(duration) {}
 
       virtual ~Stroke() {}
-
-//      virtual float update(float beat_delta) = 0;
-
-     virtual double get_duration() const override {
+      
+      virtual double get_duration() const override {
         return duration;
       }
 

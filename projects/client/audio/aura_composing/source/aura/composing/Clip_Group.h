@@ -3,27 +3,27 @@
 #include "Clip.h"
 #include <vector>
 #include <memory>
-
-namespace randomly {
-  class Dice;
-}
-
-using namespace std;
+#include <randomly/Dice.h>
 
 namespace aura {
+  namespace composing {
 
-  class Clip_Group : no_copy {
-      vector<unique_ptr<Clip>> clips;
+    template<typename Sound_Type, typename Event_Type>
+    class Clip_Group : no_copy {
+        std::vector<std::unique_ptr<Clip<Sound_Type, Event_Type>>> clips;
 
-  public:
-      void add_clip(Clip * clip) {
-        clips.push_back(unique_ptr<Clip>(clip));
-      }
+    public:
+        void add_clip(Clip<Sound_Type, Event_Type> *clip) {
+          clips.push_back(unique_ptr<Clip<Sound_Type, Event_Type>>(clip));
+        }
 
-      const vector<unique_ptr<Clip>> &get_clips() const {
-        return clips;
-      }
+        const std::vector <std::unique_ptr<Clip<Sound_Type, Event_Type>>> &get_clips() const {
+          return clips;
+        }
 
-      Clip* get_random_clip(randomly::Dice &dice);
-  };
+        Clip<Sound_Type, Event_Type> *get_random_clip(randomly::Dice &dice) {
+          return clips[dice.get_int(clips.size())].get();
+        }
+    };
+  }
 }

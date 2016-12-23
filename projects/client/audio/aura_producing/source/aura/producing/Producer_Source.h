@@ -5,12 +5,14 @@ namespace aura {
 
   using namespace engineering;
   using namespace performing;
+  using namespace composing;
 
   namespace producing {
 
-    Producer::Producer(Composer &composer, Conductor &conductor, Engineer &engineer) :
+    template<typename Sound_Type, typename Event_Type>
+    Producer<Sound_Type, Event_Type>::Producer(Composer<Sound_Type, Event_Type> &composer, Conductor &conductor, Engineer &engineer) :
       composer(composer), conductor(conductor), engineer(engineer),
-      performer(new Musical_Performer(engineer)) {
+      performer(new Musical_Performer<Sound_Type, Event_Type>(engineer)) {
       chord_loop = unique_ptr<Tempo_Loop>(new Tempo_Loop(engineer, 32));
       chord_loop->listen([&](Conductor &conductor, float start, float end) {
         perform_chord_structure(conductor, composer.get_current_chord_structure(), start, end);
@@ -22,11 +24,13 @@ namespace aura {
       });
     }
 
-    Producer::~Producer() {
+    template<typename Sound_Type, typename Event_Type>
+    Producer<Sound_Type, Event_Type>::~Producer() {
       std::cout << "Deleting Producer.";
     }
 
-    void Producer::next_section() {
+    template<typename Sound_Type, typename Event_Type>
+    void Producer<Sound_Type, Event_Type>::next_section() {
       composer.next_chord();
       performer->clear_performances();
       auto clips = composer.select_clips();
@@ -35,12 +39,14 @@ namespace aura {
       }
     }
 
-    void Producer::commence() {
+    template<typename Sound_Type, typename Event_Type>
+    void Producer<Sound_Type, Event_Type>::commence() {
       next_section();
       conductor.commence();
     }
 
-    float Producer::update(float delta) {
+    template<typename Sound_Type, typename Event_Type>
+    float Producer<Sound_Type, Event_Type>::update(float delta) {
       if (!chord_loop.get())
         return 0;
 

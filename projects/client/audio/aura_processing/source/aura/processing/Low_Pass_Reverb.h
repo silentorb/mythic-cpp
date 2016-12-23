@@ -2,7 +2,7 @@
 
 #include <cstdlib>
 #include <aura/processing/filters/Low_Pass_Filter.h>
-#include "Fixed_Delay_Buffer.h"
+#include "Fixed_Delay.h"
 #include "utility.h"
 #include "aura/primitives/Decibels.h"
 #include "aura/primitives/Signal.h"
@@ -12,7 +12,7 @@ namespace aura {
 
     template<typename Signal_Type, size_t Size>
     class Low_Pass_Reverb {
-        Fixed_Delay_Buffer<Signal_Type, Size> delay;
+        Fixed_Delay<Signal_Type, Size> delay;
         Decibels decay = 0.5;
         Low_Pass_Filter<Signal_Type> filter;
 

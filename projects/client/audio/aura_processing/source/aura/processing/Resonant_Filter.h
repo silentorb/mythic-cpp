@@ -3,7 +3,7 @@
 #include <aura/engineering/Engineer.h>
 #include <math/utility.h>
 #include <cmath>
-#include "Fixed_Delay_Buffer.h"
+#include "Fixed_Delay.h"
 #include "Filter_Base.h"
 
 namespace aura {
@@ -11,8 +11,8 @@ namespace aura {
 
     template<typename Signal_Type>
     class Resonant_Filter : public Resonant_Filter_Base<Signal_Type> {
-        Fixed_Delay_Buffer<float, 2> original_buffer;
-        Fixed_Delay_Buffer<float, 2> output_buffer;
+        Fixed_Delay<float, 2> original_buffer;
+        Fixed_Delay<float, 2> output_buffer;
         float a0, a2, b1, b2;
 
         void pre_calculate() {

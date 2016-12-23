@@ -12,6 +12,7 @@ namespace bloom {
     result.position = root->get_absolute_bounds().position;
     result.dimensions = root->get_absolute_bounds().dimensions;
     result.class_name = root->get_class_name();
+    result.pointer = root;
 
     auto &children = result.children;
     for (int i = 0; i < root->get_child_count(); ++i) {

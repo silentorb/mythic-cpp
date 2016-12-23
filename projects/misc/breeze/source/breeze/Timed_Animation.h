@@ -1,25 +1,23 @@
 #pragma once
 
 #include <promising/Promise.h>
-#include "commoner/dllexport.h"
 #include "Animation_Delegate.h"
 #include "Animation.h"
 #include "curves.h"
 
-using namespace promising;
-
 namespace breeze {
 
-  class MYTHIC_EXPORT Base_Timed_Animation : public Animation {
+  class  Base_Timed_Animation : public Animation {
   protected:
       const float duration;
       const Curve_Delegate curve;
       float counter = 0;
-      Empty_Promise &promise;
+      promising::Empty_Promise &promise;
 
   public:
-      Base_Timed_Animation(const float duration, const Curve_Delegate &curve) :
-        duration(duration), curve(curve), promise(promising::Promise<void>::defer()) {}
+      Base_Timed_Animation(const float duration, const Curve_Delegate &curve,
+                                 promising::Promise_Manager &promise_manager) :
+        duration(duration), curve(curve), promise(promising::Promise<void>::defer(promise_manager)) {}
 
       virtual ~Base_Timed_Animation() {}
 
@@ -48,8 +46,9 @@ namespace breeze {
       T &target;
 
   public:
-      Timed_Animation(T &target, const T final_value, float duration, Curve_Delegate curve)
-        : Base_Timed_Animation(duration, curve), final_value(final_value), target(target) {
+      Timed_Animation(T &target, const T final_value, float duration, Curve_Delegate curve,
+                            promising::Promise_Manager &promise_manager)
+        : Base_Timed_Animation(duration, curve, promise_manager), final_value(final_value), target(target) {
         start_value = target;
       }
 
@@ -80,8 +79,9 @@ namespace breeze {
       Target &target;
 
   public:
-      Timed_Animation2(Target &target, const T final_value, float duration, Curve_Delegate curve)
-        : Base_Timed_Animation(duration, curve), final_value(final_value), target(target) {
+      Timed_Animation2(Target &target, const T final_value, float duration, Curve_Delegate curve,
+                             promising::Promise_Manager &promise_manager)
+        : Base_Timed_Animation(duration, curve, promise_manager), final_value(final_value), target(target) {
         start_value = Accessor::get(target);
       }
 
@@ -118,8 +118,9 @@ namespace breeze {
   public:
 
       Animation_Driver(const T start_value, const T final_value, float duration, Curve_Delegate curve,
-                       const Animation_Driver_Updater<T> &updater)
-        : Base_Timed_Animation(duration, curve),
+                             const Animation_Driver_Updater <T> &updater,
+                             promising::Promise_Manager &promise_manager)
+        : Base_Timed_Animation(duration, curve, promise_manager),
           start_value(start_value), final_value(final_value), updater(updater) {
         range = final_value - start_value;
       }

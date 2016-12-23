@@ -11,7 +11,8 @@ using namespace aura::sequencing;
 namespace aura {
   namespace performing {
 
-    void Musical_Performer::add_stroke(unique_ptr<Musical_Stroke> stroke) {
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::add_stroke(unique_ptr<Sound_Type> stroke) {
       strokes.push_back(std::move(stroke));
     }
 
@@ -22,8 +23,10 @@ namespace aura {
              : note.get_start() >= start || offset < end;
     }
 
-    void Musical_Performer::perform(Conductor &conductor, Musical_Performance &performance,
-                                    float start, float end) {
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::perform(Conductor &conductor,
+                                                            Musical_Performance<Sound_Type, Event_Type> &performance,
+                                                            float start, float end) {
       if (end == start)
         return;
 
@@ -36,14 +39,15 @@ namespace aura {
         auto &note = sequencer.get_note(i, conductor);
         if (is_inside(note, start, end)) {
           add_stroke(performance.get_instrument().create_sound(note));
-          auto recorder = conductor.get_recorder();
-          if (recorder)
-            recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end, performance.get_group_id()));
+//          auto recorder = conductor.get_recorder();
+//          if (recorder)
+//            recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end, performance.get_group_id()));
         }
       }
     }
 
-    float Musical_Performer::update(float delta, Conductor &conductor) {
+    template<typename Sound_Type, typename Event_Type>
+    float Musical_Performer<Sound_Type, Event_Type>::update(float delta, Conductor &conductor) {
       for (auto &loop: loops) {
         loop->update(conductor);
       }
@@ -55,12 +59,12 @@ namespace aura {
         auto value = stroke->update(beat_delta);
         if (stroke->is_finished()) {
 //        std::cout << "Removed note" << std::endl;
-          auto recorder = conductor.get_recorder();
-          if (recorder) {
-            recorder->add_event(new Note_Event(Event_Type::note_end, stroke->get_note(),
-                                               stroke->get_duration(), stroke->get_position(), -1)
-            );
-          }
+//          auto recorder = conductor.get_recorder();
+//          if (recorder) {
+//            recorder->add_event(new Note_Event(Event_Type::note_end, stroke->get_note(),
+//                                               stroke->get_duration(), stroke->get_position(), -1)
+//            );
+//          }
           strokes.erase(strokes.begin() + i);
         }
         else {
@@ -93,7 +97,8 @@ namespace aura {
       }
     }
 
-    Tempo_Loop &Musical_Performer::get_loop_with_beat_count(float beats) {
+    template<typename Sound_Type, typename Event_Type>
+    Tempo_Loop &Musical_Performer<Sound_Type, Event_Type>::get_loop_with_beat_count(float beats) {
       for (auto &loop:loops) {
         if (loop->get_beats() == beats)
           return *loop;
@@ -104,8 +109,10 @@ namespace aura {
       return *loop;
     }
 
-    void Musical_Performer::add_performance(Instrument_Old &instrument, Sequencer &sequencer, int group_id) {
-      performances.push_back(Musical_Performance(instrument, sequencer, group_id));
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::add_performance(Instrument<Sound_Type, Event_Type> &instrument,
+                                                                    Sequencer &sequencer, int group_id) {
+      performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer, group_id));
       auto &performance = performances[performances.size() - 1];
       auto &loop = get_loop_with_beat_count(sequencer.get_beats());
       loop.listen([&, group_id, performance](Conductor &conductor, float start, float end) mutable {
@@ -113,7 +120,8 @@ namespace aura {
       });
     }
 
-    void Musical_Performer::clear_performances() {
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::clear_performances() {
       performances.empty();
       for (auto &loop:loops) {
         loop->clear_handlers();

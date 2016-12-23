@@ -8,19 +8,20 @@ using namespace aura::sequencing;
 namespace aura {
   namespace performing {
 
+    template<typename Sound_Type, typename Event_Type>
     class Musical_Performance {
-        Instrument_Old &instrument;
+        Instrument<Sound_Type, Event_Type> &instrument;
         Sequencer &sequencer;
         int group_id;
 
     public:
-        Musical_Performance(Instrument_Old &instrument, Sequencer &sequencer, int group_id)
+        Musical_Performance(Instrument<Sound_Type, Event_Type> &instrument, Sequencer &sequencer, int group_id)
           : instrument(instrument), sequencer(sequencer), group_id(group_id) {}
 
         ~Musical_Performance() {
 
         }
-        Instrument_Old &get_instrument() const {
+        Instrument<Sound_Type, Event_Type> &get_instrument() const {
           return instrument;
         }
 

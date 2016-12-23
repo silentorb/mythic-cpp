@@ -5,29 +5,31 @@
 #include "Custom_Envelope.h"
 
 namespace aura {
+  namespace envelopes {
 
-  class Envelope_Container {
-      envelopes::Custom_Envelope_Instance instance;
-      const envelopes::Custom_Envelope &envelope;
-      processing::Timer &timer;
-      float value;
+    class Envelope_Container {
+        envelopes::Custom_Envelope_Instance instance;
+        const envelopes::Custom_Envelope &envelope;
+        processing::Timer &timer;
+        float value;
 
-  public:
-      Envelope_Container(const envelopes::Custom_Envelope &envelope, processing::Timer &timer) :
-        instance(envelope, timer.get_duration()), envelope(envelope), timer(timer) {}
+    public:
+        Envelope_Container(const envelopes::Custom_Envelope &envelope, processing::Timer &timer) :
+          instance(envelope, timer.get_duration()), envelope(envelope), timer(timer) {}
 
-      float update() {
-        value = envelope.update(instance, timer.get_position(), timer.get_duration());
-        value = processing::to_dB(value);
-        return value;
-      }
+        float update() {
+          value = envelope.update(instance, timer.get_position(), timer.get_duration());
+          value = processing::to_dB(value);
+          return value;
+        }
 
-      float operator()() {
-        return update();
-      }
+        float operator()() {
+          return update();
+        }
 
-      float get_value() const {
-        return value;
-      }
-  };
+        float get_value() const {
+          return value;
+        }
+    };
+  }
 }
