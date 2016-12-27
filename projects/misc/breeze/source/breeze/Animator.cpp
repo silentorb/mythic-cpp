@@ -45,5 +45,4 @@ namespace breeze {
   void Animator::clear() {
     animations.clear();
   }
-
 }

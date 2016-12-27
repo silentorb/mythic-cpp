@@ -33,10 +33,10 @@ namespace promising {
 
   protected:
       bool _is_done = false;
-      vector<unique_ptr<Promise>> dependents;
+      std::vector<std::unique_ptr<Promise>> dependents;
       Promise_Manager &manager;
 
-      Promise(Promise_Manager &manager) : manager(manager) {}
+      Promise(Promise_Manager &manager) : manager(manager) { }
 
       virtual void execute() {
         resolve();

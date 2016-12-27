@@ -15,23 +15,11 @@ namespace achieving_bloom {
 
     static const float banner_height = 60;
 
-    Banner::Banner(const Achievement &achievement, const std::function<void()> &on_finished) :
-      animator(new Animator()) {
+    Banner::Banner(const Achievement &achievement, breeze::Animator& animator,
+                   const std::function<void()> &on_finished) :
+      animator(animator) {
       initialize_appearance(achievement);
-      static const float transition_duration = 0.3f;
-      animator->animate2<Measurement_Accessor>(get_measurements().y.near, 0.0f, transition_duration,
-                                               breeze::curves::bezier)
-        .then([this]() -> promising::Empty_Promise & {
-          return animator->delay(4);
-        })
-        .then([this]() -> promising::Empty_Promise & {
-          return animator->animate2<Measurement_Accessor>(get_measurements().y.near, -banner_height,
-                                                          transition_duration, breeze::curves::bezier);
-        })
-        .void_then([this, on_finished]() {
-          remove();
-          on_finished();
-        });
+      initialize_animation(on_finished);
     }
 
     void Banner::initialize_appearance(const Achievement &achievement) {
@@ -51,9 +39,26 @@ namespace achieving_bloom {
       text->set_size(16);
     }
 
+    void Banner::initialize_animation(const std::function<void()> &on_finished) {
+      static const float transition_duration = 0.3f;
+      animator.animate2<Measurement_Accessor>(get_measurements().y.near, 0.0f, transition_duration,
+                                              breeze::curves::bezier)
+        .then([this]() -> promising::Empty_Promise & {
+          return animator.delay(4);
+        })
+        .then([this]() -> promising::Empty_Promise & {
+          return animator.animate2<Measurement_Accessor>(get_measurements().y.near, -banner_height,
+                                                         transition_duration, breeze::curves::bezier);
+        })
+        .void_then([this, on_finished]() {
+          remove();
+          on_finished();
+        });
+    }
+
     void Banner::update(float delta) {
       bloom::flowers::Single_Parent::update(delta);
-      animator->update(delta);
+      animator.update(delta);
     }
   }
 }

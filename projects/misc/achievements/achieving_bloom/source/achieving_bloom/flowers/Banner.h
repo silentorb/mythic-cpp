@@ -13,12 +13,13 @@ namespace achieving_bloom {
   namespace flowers {
 
     class Banner : public bloom::flowers::Box_Group {
-        unique_ptr<breeze::Animator> animator;
+        breeze::Animator& animator;
 
         void initialize_appearance(const achieving::Achievement &achievement);
 
+        void initialize_animation(const std::function<void()> &on_finished);
     public:
-        Banner(const achieving::Achievement &achievement, const std::function<void()> &on_finished);
+        Banner(const achieving::Achievement &achievement, breeze::Animator& animator, const std::function<void()> &on_finished);
         virtual void update(float delta) override;
     };
   }

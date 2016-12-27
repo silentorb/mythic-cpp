@@ -1,4 +1,7 @@
 #include "Promise_Manager_Implementation.h"
+#ifdef DEBUG_PROMISES
+#include <debugging/stack_trace.h>
+#endif
 
 using namespace std;
 
@@ -16,6 +19,9 @@ namespace promising {
 
   void Promise_Manager_Implementation::add_promise(Promise_Interface &promise) {
     promises.push_back(unique_ptr<Promise_Interface>(&promise));
+#ifdef DEBUG_PROMISES
+		stack_traces[&promise] = debugging::get_stack_trace();
+#endif
   }
 
   void Promise_Manager_Implementation::update() {
