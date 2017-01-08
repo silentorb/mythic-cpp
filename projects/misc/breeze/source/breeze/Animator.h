@@ -58,5 +58,9 @@ namespace breeze {
       promising::Promise<void> &delay(float duration);
 
       void clear();
+
+      promising::Promise_Manager_Implementation &get_promise_manager() {
+        return promise_manager;
+      }
   };
 }

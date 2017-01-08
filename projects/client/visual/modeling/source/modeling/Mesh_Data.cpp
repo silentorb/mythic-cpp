@@ -6,7 +6,7 @@
 namespace modeling {
 
   Mesh_Data::Mesh_Data(Mesh_Data_Generator generator,
-                       Vertex_Schema &vertex_schema, bool support_lines, bool has_opacity) :
+                       const Vertex_Schema &vertex_schema, bool support_lines, bool has_opacity) :
     generator(generator), vertex_buffer(vertex_schema), support_lines{support_lines}, _has_opacity(has_opacity) {
     load();
   }

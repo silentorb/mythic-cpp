@@ -51,6 +51,7 @@ TEST(Layout_Test, percentage_measurements) {
     200
   };
 
+
   box.set_right({Measurements::percent, 10});
   box.set_width({Measurements::percent, 60});
 

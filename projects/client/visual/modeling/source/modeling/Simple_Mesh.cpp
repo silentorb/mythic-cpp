@@ -29,10 +29,10 @@ namespace modeling {
   }
 
   void Simple_Mesh::render(Draw_Method mode) {
-      if (vertex_count == 0)
-          return;
-      
-      glow::set_vertex_array(vao);
+    if (vertex_count == 0)
+      return;
+
+    glow::set_vertex_array(vao);
     GLenum _mode;
     switch (mode) {
       case (Draw_Method::triangles):
@@ -49,6 +49,9 @@ namespace modeling {
         break;
       case (Draw_Method::lines):
         _mode = GL_LINES;
+        break;
+      case (Draw_Method::points):
+        _mode = GL_POINTS;
         break;
     }
     glDrawArrays(_mode, 0, vertex_count);
@@ -68,9 +71,9 @@ namespace modeling {
     glow::set_array_buffer(vbo);
     glow::set_vertex_array(vao);
     if (this->vertex_count == 0) {
-        if (vertex_count == 0)
-            return;
-        
+      if (vertex_count == 0)
+        return;
+
       glBufferData(GL_ARRAY_BUFFER, vertex_count * vertex_schema.get_vertex_size(), data,
                    GL_DYNAMIC_DRAW);
     }
@@ -88,12 +91,12 @@ namespace modeling {
     if (!vao)
       return;
 
-      #ifdef ANDROID
-    glDeleteBuffers(1, &vao);
+#ifdef ANDROID
+      glDeleteBuffers(1, &vao);
 #else
     glDeleteVertexArrays(1, &vao);
 #endif
-    
+
     glDeleteBuffers(1, &vbo);
     vao = 0;
   }

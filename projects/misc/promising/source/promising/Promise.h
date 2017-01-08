@@ -55,6 +55,7 @@ namespace promising {
       Promise &then(function<Promise<O> &()> action);
       static Promise &defer(Promise_Manager &manager, function<O()> action = []() {});
       static Promise &resolved(function<O()> action = []() {});
+      static Promise &resolved(Promise_Manager &manager, function<O()> action = []() {});
 
       template<typename E>
       static Promise &update_sequence(vector<E> items, function<Promise &(E item, bool &)> action, int step) {
@@ -205,6 +206,12 @@ namespace promising {
     return result;
   }
 
+  template<typename O>
+  Promise<O> &Promise<O>::resolved(Promise_Manager &manager, function<O()> action) {
+    auto &result = defer(manager, action);
+    result.resolve();
+    return result;
+  }
   template<typename O>
   Promise<O> &Promise<O>::void_then(function<void()> action) {
     auto promise = new Promise_Returning_Value<O>(manager, action);

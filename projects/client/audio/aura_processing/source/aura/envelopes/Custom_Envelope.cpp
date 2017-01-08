@@ -6,16 +6,16 @@ using namespace std;
 namespace aura {
   namespace envelopes {
 
-    inline double get_absolute_position(const Point &point, const double &last_point_position, double duration) {
-      switch (point.type) {
+    double Point::get_absolute_position(const double &last_point_position, double duration) const {
+      switch (type) {
         case Point::Position::percentage:
-          return point.position * duration;
+          return position * duration;
 
         case Point::Position::absolute:
-          return point.position;
+          return position;
 
         case Point::Position::relative:
-          return last_point_position + point.position;
+          return last_point_position + position;
 
       }
 
@@ -23,7 +23,7 @@ namespace aura {
     }
 
     inline bool is_past(const Point &point, const double &last_point_position, double position, double duration) {
-      auto milestone = get_absolute_position(point, last_point_position, duration);
+      auto milestone = point.get_absolute_position(last_point_position, duration);
       return position >= milestone;
     }
 
@@ -35,17 +35,17 @@ namespace aura {
 //      }
 //      else
       if (instance.next_point < points.size()) {
-        auto next_position = get_absolute_position(points[instance.next_point], instance.last_point_position,
-                                                   duration);
-        auto previous_position = get_absolute_position(points[instance.next_point - 1], instance.last_point_position,
-                                                       duration);
+        auto next_position = points[instance.next_point].get_absolute_position(instance.last_point_position,
+                                                                               duration);
+        auto previous_position = points[instance.next_point - 1].get_absolute_position(instance.last_point_position,
+                                                                                       duration);
 
         auto range = next_position - previous_position;
         instance.height_offset = points[instance.next_point - 1].level;
         auto next_level = points[instance.next_point].level;
         float slope = next_level - instance.height_offset;
         if (slope == 0)
-          return 1;
+          return 0;
 
         return slope / range;
         // The full equation is:
@@ -57,7 +57,7 @@ namespace aura {
         instance.height_offset = point.level;
         auto slope = -point.level;
         auto range = duration
-                     - get_absolute_position(point, instance.last_point_position, duration);
+                     - point.get_absolute_position(instance.last_point_position, duration);
         if (range == 0)
           return 0;
 
@@ -77,16 +77,24 @@ namespace aura {
           instance.transition_modifier = get_transition_modifier(points, instance, duration);
         }
       }
+
       if (instance.next_point < points.size() && points[instance.next_point].curve == Point::Curve::hold) {
         return points[instance.next_point].level;
       }
+
+      if (this->points[0].level > 0.55 && this->points[0].level < 0.56)
+        int k = 0;
+
       auto relative_position = position - instance.last_point_position;
-      float result = (float) (relative_position * instance.transition_modifier)
-                     + instance.height_offset;
+      float result = instance.transition_modifier == 0
+                     ? points[instance.next_point].level
+                     : (float) (relative_position * instance.transition_modifier) + instance.height_offset;
 
       if (result < 0 || result > 1) {
         int k = 0;
       }
+      if (result < 0)
+        result = 0;
       return result;
 //      if (instance.next_point == 0) {
 //        return (float) (points[0].level * stroke.get_position() / instance.current_range);
@@ -106,9 +114,8 @@ namespace aura {
     void Custom_Envelope::initialize_instance(Custom_Envelope_Instance &instance, double duration) const {
       auto &point = get_points()[0];
       float slope = point.level;
-      auto range = get_absolute_position(point, instance.last_point_position, duration);
+      auto range = point.get_absolute_position(instance.last_point_position, duration);
       instance.transition_modifier = slope / range;
-
     }
 
     Custom_Envelope_Instance::Custom_Envelope_Instance(const Custom_Envelope &envelope, double duration) {

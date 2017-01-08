@@ -21,8 +21,9 @@ namespace foley {
 
   template<typename Signal_Type>
   class Player {
-      std::vector<std::unique_ptr<Sound<Signal_Type>>> sounds;
-      std::vector<std::unique_ptr<Sound<Signal_Type>>> sound_buffer; // For concurrent adding of sounds during playback
+      using Sound_Vector =std::vector<std::unique_ptr<Sound<Signal_Type>>>;
+      Sound_Vector sounds;
+      Sound_Vector sound_buffer; // For concurrent adding of sounds during playback
       aura::engineering::Engineer &engineer;
       std::unique_ptr<aura::engineering::Sample_Worker_Mono<Player>> sample_worker;
 
@@ -88,6 +89,10 @@ namespace foley {
 
       void stop_all() {
         should_stop_all = true;
+      }
+
+      const Sound_Vector &get_sounds() const {
+        return sounds;
       }
   };
 }

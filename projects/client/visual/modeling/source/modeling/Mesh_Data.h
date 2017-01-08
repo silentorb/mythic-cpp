@@ -48,7 +48,7 @@ namespace modeling {
       string name;
 
   public:
-      Mesh_Data(Mesh_Data_Generator generator, Vertex_Schema &vertex_schema, bool support_lines = true,
+      Mesh_Data(Mesh_Data_Generator generator, const Vertex_Schema &vertex_schema, bool support_lines = true,
                 bool has_opacity = false);
 
       virtual ~Mesh_Data();

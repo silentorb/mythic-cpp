@@ -10,7 +10,7 @@ namespace aura {
     class Envelope_Container {
         envelopes::Custom_Envelope_Instance instance;
         const envelopes::Custom_Envelope &envelope;
-        processing::Timer &timer;
+        const processing::Timer &timer;
         float value;
 
     public:

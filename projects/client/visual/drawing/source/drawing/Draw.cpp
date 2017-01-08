@@ -112,7 +112,8 @@ namespace drawing {
   void Draw::draw_square(float left, float top, float width, float height, const vec4 &color, bool solid) {
     square_effect->activate();
     square_effect->set_color(color);
-    draw_square(left, top, width, height, solid ? modeling::Draw_Method::triangle_fan : modeling::Draw_Method::line_loop,
+    draw_square(left, top, width, height,
+                solid ? modeling::Draw_Method::triangle_fan : modeling::Draw_Method::line_loop,
                 *square_effect, *solid_mesh);
   }
 

@@ -26,6 +26,8 @@ namespace aura {
 
         Point(Position type, double position) :
           type(type), position(position), level(0), curve(Curve::hold) {}
+
+        double get_absolute_position(const double &last_point_position, double duration)const;
     };
 
     class Custom_Envelope;

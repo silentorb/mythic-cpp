@@ -11,7 +11,7 @@ using namespace bloom;
 namespace bloom {
   namespace flowers {
 
-    class Border : public flowers::Common_Flower, flowers::Endpoint {
+    class Border : public flowers::Common_Flower, public flowers::Endpoint {
         glm::vec4 color;
         float thickness;
         modeling::Simple_Mesh &mesh;
