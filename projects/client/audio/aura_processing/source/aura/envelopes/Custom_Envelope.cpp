@@ -15,6 +15,8 @@ namespace aura {
           return position;
 
         case Point::Position::relative:
+          if (position == 5 && level == 1)
+            int k = 0;
           return last_point_position + position;
 
       }
@@ -28,17 +30,17 @@ namespace aura {
     }
 
     double get_transition_modifier(const vector<Point> &points, Custom_Envelope_Instance &instance,
-                                   double duration) {
+                                   double duration, double position) {
 
 //      if (instance.next_point == 0) {
 //        return get_absolute_position(points[0], instance.last_point_position, stroke);
 //      }
 //      else
       if (instance.next_point < points.size()) {
-        auto next_position = points[instance.next_point].get_absolute_position(instance.last_point_position,
-                                                                               duration);
         auto previous_position = points[instance.next_point - 1].get_absolute_position(instance.last_point_position,
                                                                                        duration);
+        auto next_position = points[instance.next_point].get_absolute_position(previous_position,
+                                                                               duration);
 
         auto range = next_position - previous_position;
         instance.height_offset = points[instance.next_point - 1].level;
@@ -57,7 +59,7 @@ namespace aura {
         instance.height_offset = point.level;
         auto slope = -point.level;
         auto range = duration
-                     - point.get_absolute_position(instance.last_point_position, duration);
+                     - point.get_absolute_position(position, duration);
         if (range == 0)
           return 0;
 
@@ -70,12 +72,12 @@ namespace aura {
       while (instance.next_point < points.size()
              && is_past(points[instance.next_point], instance.last_point_position, position, duration)) {
         ++instance.next_point;
-        instance.last_point_position = position;
         if (instance.next_point < points.size() && points[instance.next_point].curve == Point::Curve::hold) {
         }
         else {
-          instance.transition_modifier = get_transition_modifier(points, instance, duration);
+          instance.transition_modifier = get_transition_modifier(points, instance, duration, position);
         }
+        instance.last_point_position = position;
       }
 
       if (instance.next_point < points.size() && points[instance.next_point].curve == Point::Curve::hold) {
