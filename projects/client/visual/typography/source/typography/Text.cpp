@@ -11,8 +11,10 @@ using namespace textual;
 namespace typography {
 
   const float unit_conversion = 24;
+  static shading::Vertex_Schema vertex_schema = {4};
 
-  Text::Text(Font &font, Text_Effect &effect, const string &value) : font(font), effect(effect) {
+  Text::Text(Font &font, Text_Effect &effect, const string &value) :
+    font(font), effect(effect), mesh(vertex_schema) {
     set_content(value);
     create_buffers();
     appearance_changed = true;
@@ -30,14 +32,14 @@ namespace typography {
   }
 
   void Text::create_buffers() {
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-
-    glow::set_vertex_array(vao);
-    glow::set_array_buffer(vbo);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, false, 4 * sizeof(float), nullptr);
-    glow::check_error("creating text buffer");
+//    glGenVertexArrays(1, &vao);
+//    glGenBuffers(1, &vbo);
+//
+//    glow::set_vertex_array(vao);
+//    glow::set_array_buffer(vbo);
+//    glEnableVertexAttribArray(0);
+//    glVertexAttribPointer(0, 4, GL_FLOAT, false, 4 * sizeof(float), nullptr);
+//    glow::check_error("creating text buffer");
   }
 
   void Text::calculate() {
@@ -92,7 +94,7 @@ namespace typography {
         x += letter_space;
       }
 
-      auto& character = characters.at(c);
+      auto &character = characters.at(c);
       float character_width = character->size.x;
       x += character_width;
       if (_max_width && x > max_width && last_space_index > 0) {
@@ -118,8 +120,8 @@ namespace typography {
   void Text::prepare() {
     calculate();
 
-    glow::set_vertex_array(vao);
-    glow::set_array_buffer(vbo);
+//    glow::set_vertex_array(vao);
+//    glow::set_array_buffer(vbo);
     auto without_spaces = string_replace(content, " ", "");
     auto &characters = font.get_characters();
 
@@ -127,7 +129,7 @@ namespace typography {
     if (element_count == 0)
       return;
 
-    auto vertices = new Vertex[6 * element_count];
+    std::vector<Vertex> vertices(6 * element_count);
     float left = 0;
     auto step = 0;
     float top = -characters.at('A')->size.y;
@@ -187,10 +189,9 @@ namespace typography {
 
 //    block_dimensions.x = left;
 //    block_dimensions.y = -top;
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4 * element_count, vertices, GL_DYNAMIC_DRAW);
-    glow::set_array_buffer(0);
-    delete vertices;
+    mesh.replace((float *) vertices.data(), vertices.size());
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4 * element_count, vertices, GL_DYNAMIC_DRAW);
+//    glow::set_array_buffer(0);
     glow::check_error("Error preparing text.");
     appearance_changed = false;
   }
@@ -216,11 +217,13 @@ namespace typography {
 
     font.activate();
 
-    glow::set_vertex_array(vao);
-    glow::check_error("rendering text");
+//    glow::set_vertex_array(vao);
+//    glow::check_error("rendering text");
 
-    glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
-    glow::set_vertex_array(0);
+//    glDrawArrays(GL_TRIANGLES, 0, 6 * element_count);
+//    glow::set_vertex_array(0);
+    mesh.render(modeling::Draw_Method::triangles);
+
 //    glBindTexture(GL_TEXTURE_2D, 0);
     glow::check_error("rendering text");
   }
