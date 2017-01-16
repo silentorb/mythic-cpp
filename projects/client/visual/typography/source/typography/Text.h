@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include <string>
 #include <vector>
+#include <modeling/Simple_Mesh.h>
 
 using namespace glm;
 using namespace std;
@@ -21,7 +22,7 @@ namespace typography {
   struct Vertex {
       float x, y, u, v;
 
-      Vertex() { }
+      Vertex() {}
 
       Vertex(float x, float y, float u, float v) {
         this->x = x;
@@ -32,8 +33,9 @@ namespace typography {
   };
 
   class MYTHIC_EXPORT Text {
-      unsigned int vao;
-      unsigned int vbo;
+//      unsigned int vao;
+//      unsigned int vbo;
+      modeling::Simple_Mesh mesh;
       Font &font;
       bool appearance_changed;
       bool needs_recalculating;
