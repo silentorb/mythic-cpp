@@ -58,6 +58,7 @@
     
     color_buffer = 0;
     GLuint _depthRenderBuffer = 0;
+    GLuint _stencilBuffer = 0;
     int width = self.frame.size.width * self.contentScaleFactor;
     int height = self.frame.size.height * self.contentScaleFactor;
     
@@ -67,12 +68,17 @@
     
     glGenRenderbuffers(1, &_depthRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, width, height);
+    
+//    glGenRenderbuffers(1, &_stencilBuffer);
+//    glBindRenderbuffer(GL_RENDERBUFFER, _stencilBuffer);
+//    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
     
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, color_buffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
     
     if (multisample) {
         GLuint sampleColorRenderbuffer, sampleDepthRenderbuffer;
@@ -86,8 +92,9 @@
         
         glGenRenderbuffers(1, &sampleDepthRenderbuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
-        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, width, height);
+        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8_OES, width, height);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
         
         glow::set_default_framebuffer(sample_framebuffer);
     }
