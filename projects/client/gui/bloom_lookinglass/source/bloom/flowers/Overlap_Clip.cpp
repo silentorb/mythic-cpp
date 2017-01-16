@@ -12,8 +12,8 @@ namespace bloom {
     void Overlap_Clip::render() {
       auto previous_viewport = Viewport::get_active_viewport();
       auto &converter = Garden::get_instance().get_converter();
-      auto pos_y = converter.get_pixel_dimensions().y - bounds.position.y - bounds.dimensions.y;
       auto dimensions = glm::ivec2(get_absolute_bounds().dimensions);
+      auto pos_y = converter.get_pixel_dimensions().y - bounds.position.y - dimensions.y;
 
       glScissor(
         (int)bounds.position.x + previous_viewport->get_position().x,
