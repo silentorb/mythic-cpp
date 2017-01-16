@@ -56,16 +56,17 @@ namespace bloom {
 
     {
       flowers::Flower &start = get_event_root();
-      if (input_result.down) {
+      if (input_result.dragging) {
+        auto &position = garden_input.get_drag_start();
+        start.check_event({Events::drag, vec2(position.x, position.y)});
+      }
+      else if (input_result.down) {
         start.check_event({Events::mouse_down, garden_input.get_position()});
       }
       else if (input_result.up) {
         start.check_event({Events::mouse_down, garden_input.get_position()});
       }
-      else if (input_result.dragging) {
-        auto &position = garden_input.get_drag_start();
-        start.check_event({Events::drag, vec2(position.x, position.y)});
-      }
+
     }
   }
 

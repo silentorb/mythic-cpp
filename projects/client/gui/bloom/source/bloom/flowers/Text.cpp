@@ -51,9 +51,6 @@ namespace bloom {
     }
 
     glm::vec2 Text::update_dimensions(const vec2 &parent_dimensions) {
-      if (text->get_content() == "Victory!") {
-        int k = 0;
-      }
       auto &garden = Garden::get_instance();
       if (screen_dimensions != garden.get_frame().get_dimensions()) {
         set_size(size);
@@ -62,7 +59,6 @@ namespace bloom {
       auto &converter = Garden::get_instance().get_converter();
       auto text_dimensions = converter.convert_to_pixels(text->get_dimensions() + font_descender_hack);
       vec2 result;
-      result.y = text_dimensions.y;
 
       if (text_dimensions.x < parent_dimensions.x || parent_dimensions.x == 0) {
         result.x = text_dimensions.x;
@@ -73,6 +69,8 @@ namespace bloom {
         result.x = parent_dimensions.x;
       }
 
+      text_dimensions = converter.convert_to_pixels(text->get_dimensions() + font_descender_hack);
+      result.y = text_dimensions.y;
       return result;
     }
 
