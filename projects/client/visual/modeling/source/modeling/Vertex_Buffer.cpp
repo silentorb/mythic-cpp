@@ -24,9 +24,13 @@ namespace modeling {
     }
   }
 
+  void Vertex_Buffer::initialize() {
+    glGenBuffers(1, &vbo);
+  }
+
   void Vertex_Buffer::load(int new_vertex_count, float *data) {
     if (!vbo) {
-      glGenBuffers(1, &vbo);
+      initialize();
       glow::set_array_buffer(vbo);
       glow::check_error("binding vbo");
 
@@ -59,7 +63,6 @@ namespace modeling {
   void Vertex_Buffer::release() {
     if (!vao)
       return;
-//    std::cout << "- vb: " << (void *) this << " vbo: " << vbo << std::endl;
 
     // There seems to be a multi-platform hardware bug where deleting the currently bound
     // vbo and then generating a new one results in corrupting the new vbo.

@@ -19,6 +19,7 @@ namespace aura {
     float sine(float position);
     float saw(float position);
     float square(float position);
+    float square(float position, float pulse_width);
     float white_noise_dummy_position(float position);
     float white_noise();
     float white_noise(randomly::Dice &dice);

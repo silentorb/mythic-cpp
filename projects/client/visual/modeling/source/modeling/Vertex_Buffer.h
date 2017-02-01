@@ -17,7 +17,9 @@ namespace modeling {
       const Vertex_Schema &vertex_schema;
       Vertex_Generator generator;
       bool is_dynamic = false;
-      int vertex_count;
+      int vertex_count = 0;
+
+      void initialize();
 
   public:
       Vertex_Buffer(const Vertex_Schema &vertex_schema, Vertex_Generator generator = nullptr);

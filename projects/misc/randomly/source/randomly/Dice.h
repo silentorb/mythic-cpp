@@ -29,7 +29,7 @@ namespace randomly {
       }
 
       void seed() {
-        _seed = (unsigned int)time(NULL);
+        _seed = (unsigned int) time(NULL);
         engine.seed(_seed);
       }
 
@@ -43,6 +43,14 @@ namespace randomly {
 
       float get_float(float min, float max) {
         return min + get_float() * (max - min);
+      }
+
+      double get_double() {
+        return static_cast <double> (engine.operator()()) / static_cast <double> (engine.max());
+      }
+
+      double get_double(double max) {
+        return get_double() * max;
       }
 
       float get_centered_float(float range) {
@@ -63,7 +71,7 @@ namespace randomly {
       }
 
       int get_int(int max) {
-				Assert(max > 0);
+        Assert(max > 0);
         return engine.operator()() % max;
       }
 

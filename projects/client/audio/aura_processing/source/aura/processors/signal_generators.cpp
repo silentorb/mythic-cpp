@@ -55,6 +55,15 @@ namespace aura {
       return fmod(position, 1) < 0.5 ? 1 : -1;
     }
 
+    // For performance and simplicity this does not have the same phase as square(float)
+    float square(float position, float pulse_width) {
+      float half = (1 - pulse_width) * 0.5f;
+      float value = (float)fmod(position, 1);
+      return value > half && value < 1 - half
+             ? 1
+             : -1;
+    }
+
     float triangle(double position) {
       float x = fmod(position, 1);
       return ranged::triangle(x);

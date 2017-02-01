@@ -114,7 +114,7 @@ namespace ground {
       int seed_id = id;
       ground->async([this, local_trellis, local_is_deleted, values, seed_id](sqling::Database &db) {
 //        unique_lock<mutex>(update_lock);
-        if (*local_is_deleted) {
+        if (*local_is_deleted || !ground->is_writing_enabled()) {
           is_saving = false;
           return;
         }
