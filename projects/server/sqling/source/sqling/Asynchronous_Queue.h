@@ -18,11 +18,12 @@ namespace sqling {
       mutex m;
       Database &db;
       unique_ptr<thread> t;
-      enum State {
+      enum class State {
           initializing, // No logic depends on the initializing value but it can be useful for debugging.
           active,
           closing,
-          closed
+          closed,
+          clearing
       } state = State::initializing;
 
       void loop() {
@@ -37,7 +38,13 @@ namespace sqling {
       void process() {
         Task task;
         unique_lock<mutex>(m);
-        while (tasks.size()) {
+        if (state == State::clearing) {
+          tasks.empty();
+          state = State:: active;
+          return;
+        }
+
+        while (tasks.size() && state != State::closing) {
           {
             task = tasks.front();
             tasks.pop();
@@ -78,6 +85,14 @@ namespace sqling {
           throw runtime_error("Database task is empty.");
 
         tasks.push(task);
+      }
+
+      void clear(){
+        unique_lock<mutex>(m);
+        if (state != State::active)
+          return;
+
+        state = State::clearing;
       }
 
       size_t size() {
