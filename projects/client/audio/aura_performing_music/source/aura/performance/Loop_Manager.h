@@ -13,7 +13,7 @@ namespace aura {
         Loop_Manager(engineering::Engineer &engineer) : engineer(engineer) {}
         Tempo_Loop &get_loop_with_beat_count(float beats);
         void update(sequencing::Conductor &conductor);
-        void clear();
+//        void clear();
     };
   }
 }

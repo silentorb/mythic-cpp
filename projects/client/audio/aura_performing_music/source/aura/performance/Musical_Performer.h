@@ -29,9 +29,10 @@ namespace aura {
 //        Loop_Manager loop_manager;
         Tempo_Loop loop;
         double measure_position = 0;
+        bool first_update = true;
 
     public:
-        Musical_Performer(engineering::Engineer &engineer) : loop(engineer, 1) {
+        Musical_Performer(engineering::Engineer &engineer) : loop(engineer, 4) {
           loop.set_on_loop([this](Conductor &conductor, double start, double end) {
             measure_position = 0;
             populate_next_measure(conductor);

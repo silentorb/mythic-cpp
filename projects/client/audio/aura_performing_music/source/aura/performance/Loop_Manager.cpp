@@ -20,10 +20,10 @@ namespace aura {
       }
     }
 
-    void Loop_Manager::clear() {
-      for (auto &loop : loops) {
-        loop->clear_handlers();
-      }
-    }
+//    void Loop_Manager::clear() {
+//      for (auto &loop : loops) {
+//        loop->clear_handlers();
+//      }
+//    }
   }
 }

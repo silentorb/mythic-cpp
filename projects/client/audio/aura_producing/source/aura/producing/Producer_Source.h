@@ -14,7 +14,7 @@ namespace aura {
       composer(composer), conductor(conductor), engineer(engineer),
       performer(new Musical_Performer<Sound_Type, Event_Type>(engineer)) {
       chord_loop = unique_ptr<Tempo_Loop>(new Tempo_Loop(engineer, 32));
-      chord_loop->listen([&](Conductor &conductor, float start, float end) {
+      chord_loop->set_on_loop([&](Conductor &conductor, float start, float end) {
         composer.get_current_chord_structure().update(conductor, start, end);
       });
 

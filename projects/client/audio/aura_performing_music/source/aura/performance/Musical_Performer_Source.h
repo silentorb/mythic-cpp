@@ -35,6 +35,12 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_note(Instrument<Sound_Type, Event_Type> &instrument,
                                                              const sequencing::Note &note) {
+      for (auto it = notes.begin(); it != notes.end(); it++) {
+        if ((*it).get_note().get_start() > note.get_start()) {
+          notes.emplace(it, instrument, note);
+          return;
+        }
+      }
       notes.emplace_back(instrument, note);
     }
 
@@ -87,6 +93,10 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     float Musical_Performer<Sound_Type, Event_Type>::update(float delta, Conductor &conductor) {
       loop.update(conductor);
+      if (first_update) {
+        populate_next_measure(conductor);
+        first_update = false;
+      }
       update_notes(delta, conductor);
       return update_strokes(delta, conductor);
     }
