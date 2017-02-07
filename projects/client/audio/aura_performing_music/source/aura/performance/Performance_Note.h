@@ -8,12 +8,20 @@ namespace aura {
 
     template<typename Sound_Type, typename Event_Type>
     class Performance_Note {
-        Instrument<Sound_Type, Event_Type> &instrument;
-        const sequencing::Note note;
+        Instrument <Sound_Type, Event_Type> *instrument;
+        sequencing::Note note;
 
     public:
-        Performance_Note(Instrument<Sound_Type, Event_Type> &instrument, const sequencing::Note &note) :
-          instrument(instrument), note(note) {}
+        Performance_Note(Instrument <Sound_Type, Event_Type> &instrument, const sequencing::Note &note) :
+          instrument(&instrument), note(note) {}
+
+        Instrument <Sound_Type, Event_Type> &get_instrument() const {
+          return *instrument;
+        }
+
+        const Note &get_note() const {
+          return note;
+        }
     };
   }
 }

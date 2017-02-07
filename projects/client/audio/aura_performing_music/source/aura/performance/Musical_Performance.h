@@ -36,17 +36,17 @@ namespace aura {
           return sequencer;
         }
 
-        void update(Stroke_Input<Sound_Type> &input, Conductor &conductor, float start, float end) {
-          start *= sequencer.get_beats();
-          end *= sequencer.get_beats();
-
-          for (int i = 0; i < sequencer.size(); ++i) {
-            auto &note = sequencer.get_note(i, conductor);
-            if (sequencing::is_inside(note.get_start(), start, end)) {
-              input.add_stroke(instrument.create_sound(note));
-            }
-          }
-        }
+//        void update(Stroke_Input<Sound_Type> &input, Conductor &conductor, float start, float end) {
+//          start *= sequencer.get_beats();
+//          end *= sequencer.get_beats();
+//
+//          for (int i = 0; i < sequencer.size(); ++i) {
+//            auto &note = sequencer.get_note(i, conductor);
+//            if (sequencing::is_inside(note.get_start(), start, end)) {
+//              input.add_stroke(instrument.create_sound(note));
+//            }
+//          }
+//        }
     };
   }
 }

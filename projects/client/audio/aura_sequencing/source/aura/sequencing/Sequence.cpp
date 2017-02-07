@@ -23,5 +23,11 @@ namespace aura {
       }
     }
 
+    void Sequence::generate_notes(Note_Consumer &consumer, Conductor &conductor) {
+      for(auto & note: notes) {
+        consumer.add_note(note);
+      }
+    }
+
   }
 }

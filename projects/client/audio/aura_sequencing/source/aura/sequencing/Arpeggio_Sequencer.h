@@ -27,24 +27,26 @@ namespace aura {
           set_beats_per_note(beats_per_note);
         }
 
-        virtual ~Arpeggio_Sequencer() { }
+        virtual ~Arpeggio_Sequencer() {}
 
-        virtual float get_beats() const override {
+        float get_beats() const {
           return beats;
         }
 
-        virtual int size() const override {
+        int size() const {
           return arpeggio->size();
         }
 
 //      const Pitch &transpose(Pitch &pitch, const Chord_Instance &chord);
 
-        virtual const Note &get_note(int index, Conductor &conductor) override;
+        const Note &get_note(int index, Conductor &conductor);
 
         void set_beats_per_note(float value) {
           beats_per_note = value;
           beats = beats_per_note * arpeggio->size();
         }
+
+        void generate_notes(Note_Consumer &consumer, Conductor &conductor) override;
     };
   }
 }

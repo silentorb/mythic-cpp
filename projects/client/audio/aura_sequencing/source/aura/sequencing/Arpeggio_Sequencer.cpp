@@ -28,5 +28,11 @@ namespace aura {
       return return_note;
     }
 
+    void Arpeggio_Sequencer::generate_notes(Note_Consumer &consumer, Conductor &conductor) {
+      for (int i = 0; i < arpeggio->size(); ++i) {
+
+      }
+    }
+
   }
 }

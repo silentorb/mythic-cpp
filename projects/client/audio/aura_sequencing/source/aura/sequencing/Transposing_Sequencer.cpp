@@ -28,5 +28,11 @@ namespace aura {
       return return_note;
     }
 
+    void Transposing_Sequencer::generate_notes(Note_Consumer &consumer, Conductor &conductor) {
+      for (int i = 0; i < source->size(); ++i) {
+        consumer.add_note(get_note(i, conductor));
+      }
+    }
+
   }
 }

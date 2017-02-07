@@ -44,14 +44,14 @@ namespace aura {
         beats = value;
       }
 
-      virtual int size() const override {
+      int size() const {
         return notes.size();
       }
 
-      virtual const Note &get_note(int index, Conductor &conductor) override {
+      const Note &get_note(int index, Conductor &conductor) {
         return notes[index];
       }
 
-
+      void generate_notes(Note_Consumer &consumer, Conductor &conductor) override;
   };
 }}

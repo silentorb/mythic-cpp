@@ -8,30 +8,31 @@
 using namespace std;
 
 namespace aura {
-	namespace sequencing {
+  namespace sequencing {
 
-		class Transposing_Sequencer : public Sequencer {
-			shared_ptr<Sequence> source;
-			Note return_note;
+    class Transposing_Sequencer : public Sequencer {
+        shared_ptr<Sequence> source;
+        Note return_note;
 
-		public:
-			Transposing_Sequencer(shared_ptr<Sequence> &source) :
-				source(source), return_note(Note(pitches::A4, 0, 1)) {
-			}
+    public:
+        Transposing_Sequencer(shared_ptr<Sequence> &source) :
+          source(source), return_note(Note(pitches::A4, 0, 1)) {
+        }
 
-			virtual ~Transposing_Sequencer() { }
+        virtual ~Transposing_Sequencer() {}
 
-			virtual float get_beats() const override {
-				return source->get_beats();
-			}
+        float get_beats() const {
+          return source->get_beats();
+        }
 
-			virtual int size() const override {
-				return source->size();
-			}
+        int size() const {
+          return source->size();
+        }
 
-			virtual const Note &get_note(int index, Conductor &conductor) override;
-		};
+        const Note &get_note(int index, Conductor &conductor);
+        void generate_notes(Note_Consumer &consumer, Conductor &conductor) override;
+    };
 
-		const Pitch &transpose(const Pitch &pitch, const Chord_Instance &chord);
-	}
+    const Pitch &transpose(const Pitch &pitch, const Chord_Instance &chord);
+  }
 }
