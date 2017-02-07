@@ -5,9 +5,9 @@
 #include <memory>
 #include <aura/engineering/Buffer.h>
 #include <aura/sequencing/Conductor.h>
-#include "Instrument_Old.h"
 #include "Musical_Performance.h"
-#include "Tempo_Loop.h"
+#include "Performance_Note.h"
+#include "Loop_Manager.h"
 
 using namespace std;
 
@@ -15,30 +15,29 @@ namespace aura {
 
   namespace sequencing {
     class Sequencer;
+
     struct Chord_Structure;
   }
 
   namespace performing {
 
     template<typename Sound_Type, typename Event_Type>
-    class Musical_Performer : no_copy {
+    class Musical_Performer : no_copy, Stroke_Input<Sound_Type> {
+        std::vector<Performance_Note<Sound_Type, Event_Type>> notes;
         vector<unique_ptr<Sound_Type>> strokes;
         vector<Musical_Performance<Sound_Type, Event_Type>> performances;
-        vector<unique_ptr<Tempo_Loop>> loops;
-        engineering::Engineer &engineer;
+        Loop_Manager loop_manager;
 
     public:
-        Musical_Performer(engineering::Engineer &engineer) : engineer(engineer) {}
+        Musical_Performer(engineering::Engineer &engineer) : loop_manager(engineer) {}
 
-        void add_stroke(unique_ptr<Sound_Type> stroke);
-        void perform(Conductor &conductor, Musical_Performance<Sound_Type, Event_Type> &performance, float start, float end);
+        virtual void add_stroke(unique_ptr<Sound_Type> stroke) override;
+        void perform(Conductor &conductor, Musical_Performance<Sound_Type, Event_Type> &performance, float start,
+                     float end);
         float update(float delta, Conductor &conductor);
-        void add_performance(Instrument<Sound_Type, Event_Type> &instrument, Sequencer &sequencer, int group_id);
-        Tempo_Loop &get_loop_with_beat_count(float beats);
+        void add_performance(Instrument<Sound_Type, Event_Type> &instrument, Sequencer &sequencer);
         void clear_performances();
     };
 
-    void perform_chord_structure(Conductor &conductor, sequencing::Chord_Structure &chord_structure, float start,
-                                               float end);
   }
 }

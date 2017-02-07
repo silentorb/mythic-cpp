@@ -19,8 +19,8 @@ namespace tuning {
                + " " + to_string(event.get_relative_start())
                + " (" + to_string(event.get_trigger_start())
                + " - " + to_string(event.get_trigger_end()) + ")"
-               + " " + get_keyname(pitch->key) + to_string(pitch->index)
-               + " #" + to_string(note_event->get_note().get_id());
+               + " " + get_keyname(pitch->key) + to_string(pitch->index);
+//               + " #" + to_string(note_event->get_note().get_id());
       }
 
       case Event_Type::chord: {

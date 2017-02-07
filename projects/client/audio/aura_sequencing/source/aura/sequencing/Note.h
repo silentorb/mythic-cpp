@@ -11,7 +11,7 @@ namespace aura {
         const Pitch *pitch;
         float frequency;
         float start;
-        unsigned long id;
+//        unsigned long id;
 
     public:
         Note(const Pitch &pitch, float start, float duration = 1);
@@ -33,9 +33,15 @@ namespace aura {
           return pitch;
         }
 
-        const unsigned long get_id() const {
-          return id;
-        }
+//        const unsigned long get_id() const {
+//          return id;
+//        }
+
+//        inline bool is_inside(float start, float end) const {
+//          return end > start
+//                 ? this->start >= start && this->start < end
+//                 : this->start >= start || this->start < end;
+//        }
     };
   }
 }

@@ -37,7 +37,7 @@ namespace sqling {
 
       void process() {
         Task task;
-        unique_lock<mutex>(m);
+        lock_guard<mutex>l (m);
         if (state == State::clearing) {
           tasks.empty();
           state = State:: active;
@@ -80,7 +80,7 @@ namespace sqling {
       }
 
       void push(Task &task) {
-        unique_lock<mutex>(m);
+        lock_guard<mutex> l(m);
         if (!task)
           throw runtime_error("Database task is empty.");
 
@@ -88,7 +88,7 @@ namespace sqling {
       }
 
       void clear(){
-        unique_lock<mutex>(m);
+        lock_guard<mutex> l(m);
         if (state != State::active)
           return;
 

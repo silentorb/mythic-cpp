@@ -16,13 +16,6 @@ namespace aura {
       strokes.push_back(std::move(stroke));
     }
 
-    inline bool is_inside(const Note &note, float start, float end) {
-      auto offset = note.get_start();
-      return end > start
-             ? note.get_start() >= start && offset < end
-             : note.get_start() >= start || offset < end;
-    }
-
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::perform(Conductor &conductor,
                                                             Musical_Performance<Sound_Type, Event_Type> &performance,
@@ -30,27 +23,12 @@ namespace aura {
       if (end == start)
         return;
 
-      auto &sequencer = performance.get_sequencer();
-
-      start *= sequencer.get_beats();
-      end *= sequencer.get_beats();
-
-      for (int i = 0; i < sequencer.size(); ++i) {
-        auto &note = sequencer.get_note(i, conductor);
-        if (is_inside(note, start, end)) {
-          add_stroke(performance.get_instrument().create_sound(note));
-//          auto recorder = conductor.get_recorder();
-//          if (recorder)
-//            recorder->add_event(new Note_Event(Event_Type::note_start, note, start, end, performance.get_group_id()));
-        }
-      }
+      performance.update(*this, conductor, start, end);
     }
 
     template<typename Sound_Type, typename Event_Type>
     float Musical_Performer<Sound_Type, Event_Type>::update(float delta, Conductor &conductor) {
-      for (auto &loop: loops) {
-        loop->update(conductor);
-      }
+      loop_manager.update(conductor);
 
       float result = 0;
       float beat_delta = conductor.get_seconds_tempo() * delta;
@@ -58,13 +36,6 @@ namespace aura {
         auto &stroke = strokes[i];
         auto value = stroke->update(beat_delta);
         if (stroke->is_finished()) {
-//        std::cout << "Removed note" << std::endl;
-//          auto recorder = conductor.get_recorder();
-//          if (recorder) {
-//            recorder->add_event(new Note_Event(Event_Type::note_end, stroke->get_note(),
-//                                               stroke->get_duration(), stroke->get_position(), -1)
-//            );
-//          }
           strokes.erase(strokes.begin() + i);
         }
         else {
@@ -75,47 +46,13 @@ namespace aura {
       return result;
     }
 
-    void perform_chord_structure(Conductor &conductor, Chord_Structure &chord_structure, float start, float end) {
-      if (end == start)
-        return;
-
-      start *= chord_structure.get_measures();
-      end *= chord_structure.get_measures();
-
-      auto chords = chord_structure.get_chords();
-      float offset = 0;
-      for (auto &chord: chords) {
-        auto is_inside = end > start
-                         ? offset >= start && offset < end
-                         : offset >= start || offset < end;
-
-        offset += chord.duration;
-        if (is_inside) {
-
-          conductor.set_chord(chord, offset, start, end);
-        }
-      }
-    }
-
-    template<typename Sound_Type, typename Event_Type>
-    Tempo_Loop &Musical_Performer<Sound_Type, Event_Type>::get_loop_with_beat_count(float beats) {
-      for (auto &loop:loops) {
-        if (loop->get_beats() == beats)
-          return *loop;
-      }
-
-      auto loop = new Tempo_Loop(engineer, beats);
-      loops.push_back(unique_ptr<Tempo_Loop>(loop));
-      return *loop;
-    }
-
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_performance(Instrument<Sound_Type, Event_Type> &instrument,
-                                                                    Sequencer &sequencer, int group_id) {
-      performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer, group_id));
+                                                                    Sequencer &sequencer) {
+      performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
       auto &performance = performances[performances.size() - 1];
-      auto &loop = get_loop_with_beat_count(sequencer.get_beats());
-      loop.listen([&, group_id, performance](Conductor &conductor, float start, float end) mutable {
+      auto &loop = loop_manager.get_loop_with_beat_count(sequencer.get_beats());
+      loop.listen([&, performance](Conductor &conductor, float start, float end) mutable {
         perform(conductor, performance, start, end);
       });
     }
@@ -123,9 +60,7 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::clear_performances() {
       performances.empty();
-      for (auto &loop:loops) {
-        loop->clear_handlers();
-      }
+      loop_manager.clear();
     }
   }
 }

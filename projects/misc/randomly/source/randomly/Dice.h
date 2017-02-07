@@ -67,7 +67,8 @@ namespace randomly {
         if (min == max)
           return min;
 
-        return engine.operator()() % (max - min) + min;
+        auto value = engine.operator()();
+        return value % (max - min) + min;
       }
 
       int get_int(int max) {

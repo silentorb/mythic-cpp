@@ -15,12 +15,12 @@ namespace aura {
       performer(new Musical_Performer<Sound_Type, Event_Type>(engineer)) {
       chord_loop = unique_ptr<Tempo_Loop>(new Tempo_Loop(engineer, 32));
       chord_loop->listen([&](Conductor &conductor, float start, float end) {
-        perform_chord_structure(conductor, composer.get_current_chord_structure(), start, end);
+        composer.get_current_chord_structure().update(conductor, start, end);
       });
 
       chord_loop->set_on_loop([this](Conductor &conductor, double start, double end) {
         next_section();
-        conductor.set_chord(this->composer.get_current_chord_structure().get_chords()[0], 0, start, end);
+        conductor.set_chord(this->composer.get_current_chord_structure().get_chords()[0]);
       });
     }
 
@@ -35,14 +35,14 @@ namespace aura {
       performer->clear_performances();
       auto clips = composer.select_clips();
       for (auto &clip : clips) {
-        performer->add_performance(clip->get_instrument(), clip->get_sequencer(), clip->get_group_id());
+        performer->add_performance(clip->get_instrument(), clip->get_sequencer());
       }
     }
 
     template<typename Sound_Type, typename Event_Type>
     void Producer<Sound_Type, Event_Type>::commence() {
       next_section();
-      conductor.commence();
+//      conductor.commence();
     }
 
     template<typename Sound_Type, typename Event_Type>
