@@ -13,7 +13,7 @@ namespace aura {
   namespace performing {
 
     template<typename Sound_Type, typename Event_Type>
-    class Performer_Note_Consumer : public Note_Consumer {
+    class Performer_Note_Consumer : public Event_Consumer<Event_Type> {
         Musical_Performer<Sound_Type, Event_Type> &performer;
         Instrument<Sound_Type, Event_Type> &instrument;
 
@@ -22,8 +22,8 @@ namespace aura {
                                 Instrument<Sound_Type, Event_Type> &instrument) : performer(performer),
                                                                                   instrument(instrument) {}
 
-        void add_note(const Note &note) override {
-          performer.add_note(instrument, note);
+        void add_event(const Event_Type &note) override {
+          performer.add_event(instrument, note);
         }
     };
 
@@ -33,15 +33,15 @@ namespace aura {
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::add_note(Instrument<Sound_Type, Event_Type> &instrument,
-                                                             const sequencing::Note &note) {
-      for (auto it = notes.begin(); it != notes.end(); it++) {
+    void Musical_Performer<Sound_Type, Event_Type>::add_event(Instrument<Sound_Type, Event_Type> &instrument,
+                                                              const Event_Type &note) {
+      for (auto it = events.begin(); it != events.end(); it++) {
         if ((*it).get_note().get_start() > note.get_start()) {
-          notes.emplace(it, instrument, note);
+          events.emplace(it, instrument, note);
           return;
         }
       }
-      notes.emplace_back(instrument, note);
+      events.emplace_back(instrument, note);
     }
 
     template<typename Sound_Type, typename Event_Type>
@@ -57,7 +57,7 @@ namespace aura {
     void Musical_Performer<Sound_Type, Event_Type>::update_notes(float delta, Conductor &conductor) {
       measure_position += delta;
       int played_notes = 0;
-      for (auto &note : notes) {
+      for (auto &note : events) {
         if (note.get_note().get_start() <= measure_position) {
           ++played_notes;
           add_stroke(note.get_instrument().create_sound(note.get_note()));
@@ -68,7 +68,7 @@ namespace aura {
       }
 
       if (played_notes > 0) {
-        notes.erase(notes.begin(), notes.begin() + played_notes);
+        events.erase(events.begin(), events.begin() + played_notes);
       }
     }
 
@@ -103,7 +103,7 @@ namespace aura {
 
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_performance(Instrument<Sound_Type, Event_Type> &instrument,
-                                                                    Sequencer &sequencer) {
+                                                                    Sequencer<Event_Type> &sequencer) {
       performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
       auto &performance = performances[performances.size() - 1];
 //      auto &loop = loop_manager.get_loop_with_beat_count(sequencer.get_beats());

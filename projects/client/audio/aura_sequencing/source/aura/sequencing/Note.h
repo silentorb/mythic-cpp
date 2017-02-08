@@ -11,6 +11,7 @@ namespace aura {
         const Pitch *pitch;
         float frequency;
         float start;
+        float velocity = 1;
 //        unsigned long id;
 
     public:
@@ -33,6 +34,13 @@ namespace aura {
           return pitch;
         }
 
+        float get_velocity() const {
+          return velocity;
+        }
+
+        void set_velocity(float value) {
+          velocity = value;
+        }
 //        const unsigned long get_id() const {
 //          return id;
 //        }

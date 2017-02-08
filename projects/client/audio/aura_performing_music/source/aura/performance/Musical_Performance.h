@@ -18,10 +18,10 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     class Musical_Performance {
         Instrument <Sound_Type, Event_Type> &instrument;
-        Sequencer &sequencer;
+        Sequencer<Event_Type> &sequencer;
 
     public:
-        Musical_Performance(Instrument <Sound_Type, Event_Type> &instrument, Sequencer &sequencer)
+        Musical_Performance(Instrument <Sound_Type, Event_Type> &instrument, Sequencer<Event_Type> &sequencer)
           : instrument(instrument), sequencer(sequencer) {}
 
         ~Musical_Performance() {
@@ -32,7 +32,7 @@ namespace aura {
           return instrument;
         }
 
-        Sequencer &get_sequencer() const {
+        Sequencer<Event_Type> &get_sequencer() const {
           return sequencer;
         }
 

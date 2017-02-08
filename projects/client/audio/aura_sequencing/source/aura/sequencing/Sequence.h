@@ -11,47 +11,67 @@ namespace aura {
   namespace sequencing {
     class Performer;
 
-  class Sequence : public Sequencer {
-      vector<Note> notes;
-      float beats = 0;
+    template<typename Event_Type>
+    class Sequence : public Sequencer<Event_Type> {
+        vector<Note> events;
+        float beats = 0;
 
-  public:
+    public:
+        Sequence() {}
 
-      Sequence() { }
+        Sequence(initializer_list<const Note> initializer, float beats) : beats(beats) {
+          add_events(initializer);
+        }
 
-      Sequence(initializer_list<const Note> initializer, float beats) : beats(beats) {
-        add_notes(initializer);
-      }
+        Sequence(float offset, float note_length, initializer_list<const Note> initializer, float beats) : beats(
+          beats) {
+          add_events(offset, note_length, initializer);
+        }
 
-      Sequence(float offset, float note_length, initializer_list<const Note> initializer, float beats) : beats(beats) {
-        add_notes(offset, note_length, initializer);
-      }
+        void add_event(const Event_Type &note) {
+          events.push_back(note);
+          auto end = note.get_start() + note.get_duration();
+          if (end > beats)
+            beats = end;
+        }
 
-//      void update(float offset);
-      void add_note(const Note &note);
-      void add_notes(initializer_list<const Note> initializer);
-      void add_notes(float offset, float note_length, initializer_list<const Note> initializer);
+        void add_events(initializer_list<const Event_Type> initializer) {
+          for (auto &note: initializer) {
+            add_event(note);
+          }
+        }
 
-      const vector<Note> &get_notes() const {
-        return notes;
-      }
+        void add_events(float offset, float note_length, initializer_list<const Event_Type> initializer) {
+          for (auto &note: initializer) {
+            add_event(Note(*note.get_pitch(), note.get_start() + offset, note_length));
+          }
+        }
 
-      float get_beats() const {
-        return beats;
-      }
+        const vector<Event_Type> &get_events() const {
+          return events;
+        }
 
-      void set_beats(float value) {
-        beats = value;
-      }
+        float get_beats() const {
+          return beats;
+        }
 
-      int size() const {
-        return notes.size();
-      }
+        void set_beats(float value) {
+          beats = value;
+        }
 
-      const Note &get_note(int index, Conductor &conductor) {
-        return notes[index];
-      }
+        int size() const {
+          return events.size();
+        }
 
-      void generate_notes(Note_Consumer &consumer, Conductor &conductor) override;
-  };
-}}
+        const Event_Type &get_note(int index, Conductor &conductor) {
+          return events[index];
+        }
+
+        void generate_notes(Event_Consumer <Event_Type> &consumer, Conductor &conductor) override {
+          for (auto &note: events) {
+            consumer.add_event(note);
+          }
+        }
+    };
+  }
+}

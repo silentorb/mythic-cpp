@@ -21,18 +21,5 @@ namespace aura {
       return Pitches[index];
     }
 
-    const Note &Transposing_Sequencer::get_note(int index, Conductor &conductor) {
-      auto note = source->get_note(index, conductor);
-      auto &pitch = transpose(*note.get_pitch(), conductor.get_chord());
-      return_note = Note(pitch, note.get_start(), note.get_duration());
-      return return_note;
-    }
-
-    void Transposing_Sequencer::generate_notes(Note_Consumer &consumer, Conductor &conductor) {
-      for (int i = 0; i < source->size(); ++i) {
-        consumer.add_note(get_note(i, conductor));
-      }
-    }
-
   }
 }
