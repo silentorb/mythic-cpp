@@ -7,30 +7,30 @@
 namespace aura {
 
   class Stroke : public performing::Sound<float> {
-      double duration;
+      sequencing::Beats duration;
 
   protected:
       double progress = -1;
 
   public:
-      Stroke(double duration) : duration(duration) {}
+      Stroke(sequencing::Beats duration) : duration(duration) {}
 
       virtual ~Stroke() {}
       
-      virtual double get_duration() const override {
+      virtual sequencing::Beats get_duration() const override {
         return duration;
       }
 
-      const double &get_position() const {
+      const sequencing::Beats &get_position() const {
         return progress;
       }
 
-      const double get_percentage() const {
-        return progress / duration;
-      }
+//      const sequencing::Beats get_percentage() const {
+//        return progress / duration;
+//      }
 
-      bool is_finished() const {
-        return progress >= duration;
-      }
+//      bool is_finished() const {
+//        return progress >= duration;
+//      }
   };
 }

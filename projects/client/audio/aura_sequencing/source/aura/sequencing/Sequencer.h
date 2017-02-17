@@ -19,7 +19,7 @@ namespace aura {
 //        virtual float get_beats() const = 0;
 //        virtual int size() const = 0;
 //        virtual const Note &get_note(int index, Conductor &conductor) = 0;
-        virtual void generate_notes(Event_Consumer<Event_Type> &consumer, Conductor &conductor) = 0;
+        virtual void generate_notes(Event_Consumer<Event_Type> &consumer) = 0;
     };
   }
 }

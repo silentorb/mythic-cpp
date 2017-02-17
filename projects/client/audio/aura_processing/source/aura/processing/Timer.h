@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Time_Source.h"
+
 namespace aura {
   namespace processing {
 
-    class Timer {
+    class Timer : public Time_Source {
         const double duration;
         double position = -1;
 
@@ -30,6 +32,14 @@ namespace aura {
         }
 
         const double &get_position() const {
+          return position;
+        }
+
+        virtual double get_duration() override {
+          return duration;
+        }
+
+        virtual double get_position() override {
           return position;
         }
 

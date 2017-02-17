@@ -12,38 +12,36 @@ namespace aura {
 
     template<typename Event_Type>
     class Transposing_Sequencer : public Sequencer<Event_Type> {
-        shared_ptr<Sequence<Event_Type>> source;
-        Note return_note;
+        shared_ptr<Sequence<Event_Type>> event_source;
+        Chord_Source &chord_source;
 
     public:
-        Transposing_Sequencer(shared_ptr<Sequence<Event_Type>> &source) :
-          source(source), return_note(Note(pitches::A4, 0, 1)) {
+        Transposing_Sequencer(shared_ptr<Sequence<Event_Type>> &source, Chord_Source &chord_source) :
+          event_source(source), chord_source(chord_source) {
         }
 
         virtual ~Transposing_Sequencer() {}
 
         float get_beats() const {
-          return source->get_beats();
+          return event_source->get_beats();
         }
 
         int size() const {
-          return source->size();
+          return event_source->size();
         }
 
-        const Note &get_note(int index, Conductor &conductor) {
-          auto note = source->get_note(index, conductor);
-          auto &pitch = transpose(*note.get_pitch(), conductor.get_chord());
-          return_note = Note(pitch, note.get_start(), note.get_duration());
-          return return_note;
+        const Note get_note(int index) {
+          auto note = event_source->get_note(index);
+          auto &pitch = transpose(*note.get_pitch(), chord_source.get_chord());
+          return Note(pitch, note.get_start(), note.get_duration());
         }
 
-        void generate_notes(Event_Consumer<Event_Type> &consumer, Conductor &conductor) override {
-          for (int i = 0; i < source->size(); ++i) {
-            consumer.add_event(get_note(i, conductor));
+        void generate_notes(Event_Consumer<Event_Type> &consumer) override {
+          for (int i = 0; i < event_source->size(); ++i) {
+            consumer.add_event(get_note(i));
           }
         }
     };
 
-    const Pitch &transpose(const Pitch &pitch, const Chord_Instance &chord);
   }
 }

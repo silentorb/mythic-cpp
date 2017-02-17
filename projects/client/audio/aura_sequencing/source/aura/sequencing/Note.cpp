@@ -5,7 +5,7 @@ namespace aura {
 
     unsigned long current_id = 0;
 
-    Note::Note(const Pitch &pitch, float start, float duration) :
+    Note::Note(const Pitch &pitch, Beats start, Beats duration) :
       pitch(&pitch), start(start), duration(duration),
 //      id(current_id++),
       frequency(pitch.frequency) {

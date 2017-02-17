@@ -15,12 +15,6 @@ namespace aura {
       if (looped && on_loop) {
         on_loop(conductor, last_time, next);
       }
-
-//      if (skip++ == 100) {
-//        trigger(conductor, last_time, next);
-//        skip = 0;
-//        last_time = next;
-//      }
     }
   }
 }

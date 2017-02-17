@@ -1,4 +1,6 @@
 #pragma once
+#include "Pitch.h"
+#include "Chord.h"
 
 namespace aura {
   namespace sequencing {
@@ -8,5 +10,8 @@ namespace aura {
       ? offset >= start && offset < end
       : offset >= start || offset < end;
     }
+
+    const Pitch &transpose(const Pitch &pitch, const Chord &chord);
+
   }
 }

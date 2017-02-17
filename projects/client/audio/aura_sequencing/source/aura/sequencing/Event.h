@@ -20,7 +20,6 @@ namespace aura {
         double trigger_end;
 
     public:
-
         Event(Event_Type type, double trigger_start, double trigger_end) :
           type(type), trigger_start(trigger_start), trigger_end(trigger_end) { }
 
@@ -44,7 +43,7 @@ namespace aura {
           return trigger_end;
         }
 
-        virtual float get_relative_start() const = 0;
+        virtual sequencing::Beats get_relative_start() const = 0;
     };
 
     class Note_Event : public Event {
@@ -59,7 +58,7 @@ namespace aura {
           return note;
         }
 
-        virtual float get_relative_start() const override {
+        virtual sequencing::Beats get_relative_start() const override {
           return note.get_start();
         }
 
@@ -68,21 +67,21 @@ namespace aura {
         }
     };
 
-    class Chord_Event : public Event {
-        Chord_Instance chord;
-        float relative_start;
-
-    public:
-        Chord_Event(const Chord_Instance &chord, float relative_start, double trigger_start, double trigger_end) :
-          Event(Event_Type::chord, trigger_start, trigger_end), chord(chord), relative_start(relative_start) { }
-
-        const Chord_Instance &get_chord() const {
-          return chord;
-        }
-
-        virtual float get_relative_start() const override {
-          return relative_start;
-        }
-    };
+//    class Chord_Event : public Event {
+//        Chord_Instance chord;
+//        float relative_start;
+//
+//    public:
+//        Chord_Event(const Chord_Instance &chord, float relative_start, double trigger_start, double trigger_end) :
+//          Event(Event_Type::chord, trigger_start, trigger_end), chord(chord), relative_start(relative_start) { }
+//
+//        const Chord_Instance &get_chord() const {
+//          return chord;
+//        }
+//
+//        virtual float get_relative_start() const override {
+//          return relative_start;
+//        }
+//    };
   }
 }

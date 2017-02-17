@@ -2,27 +2,28 @@
 
 #include "commoner/dllexport.h"
 #include "aura/sequencing/Pitch.h"
+#include "Beats.h"
 
 namespace aura {
   namespace sequencing {
 
     class Note {
-        float duration;
+        Beats duration;
         const Pitch *pitch;
         float frequency;
-        float start;
+        Beats start;
         float velocity = 1;
 //        unsigned long id;
 
     public:
-        Note(const Pitch &pitch, float start, float duration = 1);
+        Note(const Pitch &pitch, Beats start, Beats duration = 1);
 //      Note(float frequency, float start, float duration = 1);
 
-        const float &get_start() const {
+        const Beats &get_start() const {
           return start;
         }
 
-        const float &get_duration() const {
+        const Beats &get_duration() const {
           return duration;
         }
 

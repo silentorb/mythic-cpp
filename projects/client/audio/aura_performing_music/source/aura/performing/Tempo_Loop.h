@@ -4,6 +4,7 @@
 #include <functional>
 #include <vector>
 #include <aura/engineering/Engineer.h>
+#include <aura/sequencing/Beats.h>
 
 using namespace std;
 
@@ -17,39 +18,27 @@ namespace aura {
   namespace performing {
     class Tempo_Loop {
         Loop loop;
-//        vector<Range_Handler> handlers;
-        float beats;
+        sequencing::Beats beats;
         Range_Handler on_loop = nullptr;
-        int skip = 100;
         double last_time = 0;
 
     public:
 
-        Tempo_Loop(engineering::Engineer &engineer, float beats) : loop(engineer.get_sample_rate()), beats(beats) {}
-
-//        void listen(Range_Handler handler) {
-//          handlers.push_back(handler);
-//        }
+        Tempo_Loop(unsigned int sample_rate, float beats) : loop(sample_rate), beats(beats) {}
 
         void update(sequencing::Conductor &conductor);
-
-//        void trigger(sequencing::Conductor &conductor, double start, double end) {
-//          for (auto &handler: handlers) {
-//            handler(conductor, start, end);
-//          }
-//        }
 
         void set_on_loop(const Range_Handler &on_loop) {
           Tempo_Loop::on_loop = on_loop;
         }
 
-        float get_beats() const {
+        sequencing::Beats get_beats() const {
           return beats;
         }
 
-//        void clear_handlers() {
-//          handlers.clear();
-//        }
+        void set_beats(sequencing::Beats value){
+          beats = value;
+        }
     };
   }
 }

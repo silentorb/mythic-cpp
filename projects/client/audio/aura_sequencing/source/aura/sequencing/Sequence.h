@@ -14,16 +14,16 @@ namespace aura {
     template<typename Event_Type>
     class Sequence : public Sequencer<Event_Type> {
         vector<Note> events;
-        float beats = 0;
+        Beats beats = 0;
 
     public:
         Sequence() {}
 
-        Sequence(initializer_list<const Note> initializer, float beats) : beats(beats) {
+        Sequence(initializer_list<const Note> initializer, Beats beats) : beats(beats) {
           add_events(initializer);
         }
 
-        Sequence(float offset, float note_length, initializer_list<const Note> initializer, float beats) : beats(
+        Sequence(Beats offset, Beats note_length, initializer_list<const Note> initializer, Beats beats) : beats(
           beats) {
           add_events(offset, note_length, initializer);
         }
@@ -41,7 +41,7 @@ namespace aura {
           }
         }
 
-        void add_events(float offset, float note_length, initializer_list<const Event_Type> initializer) {
+        void add_events(Beats offset, Beats note_length, initializer_list<const Event_Type> initializer) {
           for (auto &note: initializer) {
             add_event(Note(*note.get_pitch(), note.get_start() + offset, note_length));
           }
@@ -51,7 +51,7 @@ namespace aura {
           return events;
         }
 
-        float get_beats() const {
+        Beats get_beats() const {
           return beats;
         }
 
@@ -63,11 +63,11 @@ namespace aura {
           return events.size();
         }
 
-        const Event_Type &get_note(int index, Conductor &conductor) {
+        const Event_Type &get_note(int index) {
           return events[index];
         }
 
-        void generate_notes(Event_Consumer <Event_Type> &consumer, Conductor &conductor) override {
+        void generate_notes(Event_Consumer <Event_Type> &consumer) override {
           for (auto &note: events) {
             consumer.add_event(note);
           }

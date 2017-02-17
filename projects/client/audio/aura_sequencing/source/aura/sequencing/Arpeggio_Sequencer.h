@@ -16,16 +16,16 @@ namespace aura {
         shared_ptr<Arpeggio> arpeggio;
         float beats_per_note;
         float beats;
-        Note return_note;
+        Chord_Source &chord_source;
 
     public:
-        Arpeggio_Sequencer(const shared_ptr<Arpeggio> &arpeggio, float beats_per_note) :
-          arpeggio(arpeggio), return_note(Note(pitches::A4, 0, 1)) {
+        Arpeggio_Sequencer(const shared_ptr<Arpeggio> &arpeggio,Chord_Source & chord_source, float beats_per_note) :
+          arpeggio(arpeggio), chord_source(chord_source) {
           set_beats_per_note(beats_per_note);
         }
 
-        Arpeggio_Sequencer(Arpeggio *arpeggio, float beats_per_note) :
-          arpeggio(arpeggio), return_note(Note(pitches::A4, 0, 1)) {
+        Arpeggio_Sequencer(Arpeggio *arpeggio,Chord_Source & chord_source, float beats_per_note) :
+          arpeggio(arpeggio), chord_source(chord_source) {
           set_beats_per_note(beats_per_note);
         }
 
@@ -39,10 +39,9 @@ namespace aura {
           return arpeggio->size();
         }
 
-        const Note &get_note(int index, Conductor &conductor) {
-          auto &pitch = transpose(arpeggio->at(index), conductor.get_chord());
-          return_note = Note(pitch, index * beats_per_note, beats_per_note);
-          return return_note;
+        const Event_Type get_event(int index) {
+          auto &pitch = transpose(arpeggio->at(index), chord_source.get_chord());
+          return Note(pitch, index * beats_per_note, beats_per_note);
         }
 
         void set_beats_per_note(float value) {
@@ -50,9 +49,9 @@ namespace aura {
           beats = beats_per_note * arpeggio->size();
         }
 
-        void generate_notes(Event_Consumer<Event_Type> &consumer, Conductor &conductor) override {
+        void generate_notes(Event_Consumer<Event_Type> &consumer) override {
           for (int i = 0; i < arpeggio->size(); ++i) {
-
+            consumer.add_event(get_event(i));
           }
         }
     };

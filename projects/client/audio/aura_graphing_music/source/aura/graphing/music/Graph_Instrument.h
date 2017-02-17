@@ -1,13 +1,13 @@
 #pragma once
 
-#include <aura/performance/Performance_Producer.h>
+#include <aura/performing/Performance_Producer.h>
 #include <aura/processors/Oscillator.h>
 #include <aura/processors/envelopes/Note_Envelope.h>
 #include <aura/processors/envelopes/Note_Envelope_Generator.h>
-#include "aura/performance/Instrument_Old.h"
+#include "aura/performing/Instrument_Old.h"
 #include "signal_graph/Node.h"
 #include "signal_graph/Graph_Generator.h"
-#include <aura/performance/Musical_Stroke.h>
+#include <aura/performing/Musical_Stroke.h>
 #include "signal_graph/Graph_Instance.h"
 
 namespace aura {

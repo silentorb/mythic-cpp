@@ -5,6 +5,7 @@
 #include <memory>
 #include <aura/engineering/Buffer.h>
 #include <aura/sequencing/Conductor.h>
+#include <containment/Mutable_Container.h>
 #include "Musical_Performance.h"
 #include "Performance_Note.h"
 #include "Loop_Manager.h"
@@ -14,7 +15,7 @@ using namespace std;
 namespace aura {
 
   namespace sequencing {
-    template <typename Event_Type>
+    template<typename Event_Type>
     class Sequencer;
 
     struct Chord_Structure;
@@ -23,7 +24,9 @@ namespace aura {
   namespace performing {
 
     template<typename Sound_Type, typename Event_Type>
-    class Musical_Performer : no_copy, Stroke_Input<Sound_Type> {
+    class Musical_Performer : no_copy, Stroke_Input<Sound_Type>,
+                              public virtual containment::Mutable_Container<Musical_Performance<Sound_Type, Event_Type>> {
+
         std::vector<Performance_Note<Sound_Type, Event_Type>> events;
         vector<unique_ptr<Sound_Type>> strokes;
         vector<Musical_Performance<Sound_Type, Event_Type>> performances;
@@ -31,12 +34,14 @@ namespace aura {
         Tempo_Loop loop;
         double measure_position = 0;
         bool first_update = true;
+        sequencing::Conductor &conductor;
 
     public:
-        Musical_Performer(engineering::Engineer &engineer) : loop(engineer, 4) {
+        Musical_Performer(sequencing::Conductor &conductor) :
+          loop(conductor.get_sample_rate(), 4), conductor(conductor) {
           loop.set_on_loop([this](Conductor &conductor, double start, double end) {
             measure_position = 0;
-            populate_next_measure(conductor);
+            populate_next_measure();
           });
         }
 
@@ -44,12 +49,16 @@ namespace aura {
         void add_event(Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note);
 //        void perform(Conductor &conductor, Musical_Performance<Sound_Type, Event_Type> &performance, float start,
 //                     float end);
-        void populate_next_measure(Conductor &conductor);
-        float update(float delta, Conductor &conductor);
-        void update_notes(float delta, Conductor &conductor);
-        float update_strokes(float delta, Conductor &conductor);
-        void add_performance(Instrument<Sound_Type, Event_Type> &instrument, Sequencer<Event_Type> &sequencer);
-        void clear_performances();
+        void populate_next_measure();
+        float update(float delta);
+        void update_notes(float delta);
+        float update_strokes(float delta);
+        Musical_Performance<Sound_Type, Event_Type> &add_performance(Instrument<Sound_Type, Event_Type> &instrument,
+                                                                     Sequencer<Event_Type> &sequencer);
+
+        void remove(Musical_Performance<Sound_Type, Event_Type> &performance) override;
+        void add(Musical_Performance<Sound_Type, Event_Type> &performance) override;
+        void clear() override;
     };
 
   }

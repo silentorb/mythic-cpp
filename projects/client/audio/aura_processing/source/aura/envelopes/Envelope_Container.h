@@ -12,11 +12,11 @@ namespace aura {
         envelopes::Custom_Envelope_Instance instance;
         Absolute_Envelope envelope;
 //        const envelopes::Custom_Envelope &envelope;
-        const processing::Timer &timer;
+        processing::Time_Source &timer;
         float value;
 
     public:
-        Envelope_Container(const envelopes::Custom_Envelope &envelope, processing::Timer &timer) :
+        Envelope_Container(const envelopes::Custom_Envelope &envelope, processing::Time_Source &timer) :
           instance(envelope, timer.get_duration()), envelope(envelope, timer.get_duration()), timer(timer) {}
 
         float update() {

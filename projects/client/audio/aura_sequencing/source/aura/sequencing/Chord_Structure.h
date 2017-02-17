@@ -31,7 +31,7 @@ namespace aura {
           return measures;
         }
 
-        void update(Conductor &conductor, float start, float end);
+//        void update(Conductor &conductor, float start, float end);
     };
   }
 }

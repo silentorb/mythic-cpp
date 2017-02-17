@@ -9,7 +9,7 @@ namespace aura {
           return *loop;
       }
 
-      auto loop = new Tempo_Loop(engineer, beats);
+      auto loop = new Tempo_Loop(engineer.get_sample_rate(), beats);
       loops.push_back(unique_ptr<Tempo_Loop>(loop));
       return *loop;
     }

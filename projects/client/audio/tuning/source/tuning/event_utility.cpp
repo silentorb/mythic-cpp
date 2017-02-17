@@ -16,7 +16,7 @@ namespace tuning {
         auto note_event = static_cast<Note_Event *>(&event);
         auto pitch = note_event->get_note().get_pitch();
         return label + " " + to_string(event.get_absolute_start())
-               + " " + to_string(event.get_relative_start())
+//               + " " + to_string(event.get_relative_start())
                + " (" + to_string(event.get_trigger_start())
                + " - " + to_string(event.get_trigger_end()) + ")"
                + " " + get_keyname(pitch->key) + to_string(pitch->index);
@@ -26,7 +26,7 @@ namespace tuning {
       case Event_Type::chord: {
 //        auto chord_event = static_cast<Chord_Event *>(&event);
         return "CHORD " + to_string(event.get_absolute_start())
-               + " " + to_string(event.get_relative_start())
+//               + " " + to_string(event.get_relative_start())
                + " (" + to_string(event.get_trigger_start())
                + " - " + to_string(event.get_trigger_end()) + ")";
       }
@@ -51,10 +51,10 @@ namespace tuning {
         return get_indentation(note_event->get_group_id()) + get_keyname(pitch->key) + to_string(pitch->index) + "\n";
       }
 
-      case Event_Type::chord: {
-        auto chord_event = static_cast<Chord_Event *>(&event);
-        return string("chord ") + get_keyname(chord_event->get_chord().chord.key) + "\n";
-      }
+//      case Event_Type::chord: {
+//        auto chord_event = static_cast<Chord_Event *>(&event);
+//        return string("chord ") + get_keyname(chord_event->get_chord().chord.key) + "\n";
+//      }
     }
 
     return "";

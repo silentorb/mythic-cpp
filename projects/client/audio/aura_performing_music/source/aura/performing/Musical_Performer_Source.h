@@ -45,22 +45,22 @@ namespace aura {
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::populate_next_measure(Conductor &conductor) {
+    void Musical_Performer<Sound_Type, Event_Type>::populate_next_measure() {
       std::cout << "next" << std::endl;
       for (auto &performance: performances) {
         Performer_Note_Consumer<Sound_Type, Event_Type> consumer(*this, performance.get_instrument());
-        performance.get_sequencer().generate_notes(consumer, conductor);
+        performance.get_sequencer().generate_notes(consumer);
       }
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::update_notes(float delta, Conductor &conductor) {
+    void Musical_Performer<Sound_Type, Event_Type>::update_notes(float delta) {
       measure_position += delta;
       int played_notes = 0;
-      for (auto &note : events) {
-        if (note.get_note().get_start() <= measure_position) {
+      for (auto &event : events) {
+        if (event.get_note().get_start() <= measure_position) {
           ++played_notes;
-          add_stroke(note.get_instrument().create_sound(note.get_note()));
+          add_stroke(event.get_instrument().create_sound(event.get_note()));
         }
         else {
           break;
@@ -73,7 +73,7 @@ namespace aura {
     }
 
     template<typename Sound_Type, typename Event_Type>
-    float Musical_Performer<Sound_Type, Event_Type>::update_strokes(float delta, Conductor &conductor) {
+    float Musical_Performer<Sound_Type, Event_Type>::update_strokes(float delta) {
       float result = 0;
       float beat_delta = conductor.get_seconds_tempo() * delta;
       for (int i = strokes.size() - 1; i >= 0; --i) {
@@ -91,29 +91,42 @@ namespace aura {
     }
 
     template<typename Sound_Type, typename Event_Type>
-    float Musical_Performer<Sound_Type, Event_Type>::update(float delta, Conductor &conductor) {
+    float Musical_Performer<Sound_Type, Event_Type>::update(float delta) {
       loop.update(conductor);
       if (first_update) {
-        populate_next_measure(conductor);
+        populate_next_measure();
         first_update = false;
       }
-      update_notes(delta, conductor);
-      return update_strokes(delta, conductor);
+      update_notes(delta);
+      return update_strokes(delta);
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::add_performance(Instrument<Sound_Type, Event_Type> &instrument,
-                                                                    Sequencer<Event_Type> &sequencer) {
+    Musical_Performance<Sound_Type, Event_Type> &Musical_Performer<Sound_Type, Event_Type>::add_performance(
+      Instrument<Sound_Type, Event_Type> &instrument, Sequencer<Event_Type> &sequencer) {
       performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
       auto &performance = performances[performances.size() - 1];
-//      auto &loop = loop_manager.get_loop_with_beat_count(sequencer.get_beats());
-//      loop.listen([&, performance](Conductor &conductor, float start, float end) mutable {
-//        perform(conductor, performance, start, end);
-//      });
+      return performance;
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::clear_performances() {
+    void Musical_Performer<Sound_Type, Event_Type>::add(Musical_Performance<Sound_Type, Event_Type> &performance) {
+      performances.push_back(performance);
+    }
+
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::remove(
+      Musical_Performance<Sound_Type, Event_Type> &performance) {
+      for (int i = 0; i < performances.size(); ++i) {
+        if (&performances[i] == &performance) {
+          performances.erase(performances.begin() + i);
+          break;
+        }
+      }
+    }
+
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::clear() {
       performances.empty();
 //      loop_manager.clear();
     }
