@@ -53,6 +53,10 @@ namespace randomly {
         return get_double() * max;
       }
 
+      double get_double(double min, double max) {
+        return min + get_double() * (max - min);
+      }
+
       float get_centered_float(float range) {
         return get_float(-range, range);
       }
@@ -85,4 +89,17 @@ namespace randomly {
         return items[index];
       }
   };
+
+  template<typename T>
+  T get_generic(Dice &dice, T min, T max);
+
+  template<>
+  inline float get_generic(Dice &dice, float min, float max) {
+    return dice.get_float(min, max);
+  }
+
+  template<>
+  inline double get_generic(Dice &dice, double min, double max) {
+    return dice.get_double(min, max);
+  }
 }

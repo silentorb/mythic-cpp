@@ -20,7 +20,7 @@ namespace aura {
     struct Clip_Group_Pair {
         int group_index;
         performing::Instrument<Sound_Type, Event_Type> &instrument;
-        std::shared_ptr<Sequencer<Event_Type>> sequencer;
+        Sequencer_Factory<Event_Type> sequencer;
     };
 
     template<typename Sound_Type, typename Event_Type>

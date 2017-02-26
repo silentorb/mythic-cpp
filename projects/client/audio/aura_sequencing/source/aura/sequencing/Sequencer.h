@@ -3,6 +3,8 @@
 #include "commoner/dllexport.h"
 #include "Note.h"
 #include "Conductor.h"
+#include <functional>
+#include <memory>
 
 namespace aura {
   namespace sequencing {
@@ -13,13 +15,13 @@ namespace aura {
         virtual void add_event(const Event_Type &note) = 0;
     };
 
-    template<typename Event_Type>
+    template<typename Event_Type = Note>
     class Sequencer {
     public:
-//        virtual float get_beats() const = 0;
-//        virtual int size() const = 0;
-//        virtual const Note &get_note(int index, Conductor &conductor) = 0;
         virtual void generate_notes(Event_Consumer<Event_Type> &consumer) = 0;
     };
+
+    template<typename Event_Type = Note>
+    using Sequencer_Factory = std::function<std::unique_ptr<Sequencer<Event_Type>>()>;
   }
 }

@@ -54,7 +54,7 @@ namespace aura {
         void update_notes(float delta);
         float update_strokes(float delta);
         Musical_Performance<Sound_Type, Event_Type> &add_performance(Instrument<Sound_Type, Event_Type> &instrument,
-                                                                     Sequencer<Event_Type> &sequencer);
+                                                                     const Sequencer_Factory<Event_Type> &sequencer);
 
         void remove(Musical_Performance<Sound_Type, Event_Type> &performance) override;
         void add(Musical_Performance<Sound_Type, Event_Type> &performance) override;

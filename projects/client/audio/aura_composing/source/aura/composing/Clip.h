@@ -13,19 +13,19 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     class Clip : no_copy {
         performing::Instrument<Sound_Type, Event_Type> &instrument;
-        shared_ptr<Sequencer<Event_Type>> sequencer;
+        Sequencer_Factory<Event_Type> sequencer;
         int group_id = -1;
 
     public:
-        Clip(performing::Instrument<Sound_Type, Event_Type> &instrument, const shared_ptr<Sequencer<Event_Type>> &sequencer) :
+        Clip(performing::Instrument<Sound_Type, Event_Type> &instrument, const Sequencer_Factory<Event_Type> &sequencer) :
           instrument(instrument), sequencer(sequencer) {}
 
         performing::Instrument<Sound_Type, Event_Type> &get_instrument() {
           return instrument;
         }
 
-        Sequencer<Event_Type> &get_sequencer() {
-          return *sequencer;
+        Sequencer_Factory<Event_Type> &get_sequencer() {
+          return sequencer;
         }
 
         int get_group_id() const {

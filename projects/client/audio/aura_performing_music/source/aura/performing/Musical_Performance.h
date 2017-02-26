@@ -18,11 +18,26 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type = aura::sequencing::Note>
     class Musical_Performance {
         Instrument <Sound_Type, Event_Type> *instrument;
-        Sequencer<Event_Type> *sequencer;
+        std::unique_ptr<Sequencer<Event_Type>> sequencer;
 
     public:
-        Musical_Performance(Instrument <Sound_Type, Event_Type> &instrument, Sequencer<Event_Type> &sequencer)
-          : instrument(&instrument), sequencer(&sequencer) {}
+        Musical_Performance(Instrument <Sound_Type, Event_Type> &instrument,
+                            std::unique_ptr<Sequencer<Event_Type>> &sequencer)
+          : instrument(&instrument), sequencer(std::move(sequencer)) {}
+
+        Musical_Performance(Musical_Performance &&other)
+          : instrument(other.instrument), sequencer(std::move(other.sequencer)) {
+
+        }
+
+        Musical_Performance(Musical_Performance const &) = delete;
+        Musical_Performance &operator=(Musical_Performance const &) = delete;
+
+        Musical_Performance &operator=(Musical_Performance &&other) {
+          instrument = other.instrument;
+          sequencer = std::move(other.sequencer);
+          return *this;
+        }
 
         ~Musical_Performance() {
 
@@ -41,7 +56,7 @@ namespace aura {
     class Performance_Source {
     public:
         virtual Instrument <Sound_Type, Event_Type> &get_instrument() = 0;
-        virtual Sequencer<Event_Type> &get_sequencer() = 0;
+        virtual std::unique_ptr<Sequencer<Event_Type>> get_sequencer() = 0;
     };
   }
 }
