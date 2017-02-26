@@ -101,14 +101,14 @@ namespace aura {
       return update_strokes(delta);
     }
 
-//    template<typename Sound_Type, typename Event_Type>
-//    Musical_Performance<Sound_Type, Event_Type> &Musical_Performer<Sound_Type, Event_Type>::add_performance(
-//      Instrument<Sound_Type, Event_Type> &instrument, const Sequencer_Factory<Event_Type> &sequencer_factory) {
-//      auto sequencer = sequencer_factory();
-//      performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
-//      auto &performance = performances[performances.size() - 1];
-//      return performance;
-//    }
+    template<typename Sound_Type, typename Event_Type>
+    Musical_Performance<Sound_Type, Event_Type> &Musical_Performer<Sound_Type, Event_Type>::add_performance(
+      Instrument<Sound_Type, Event_Type> &instrument, const Sequencer_Factory<Event_Type> &sequencer_factory) {
+      auto sequencer = sequencer_factory();
+      performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
+      auto &performance = performances[performances.size() - 1];
+      return performance;
+    }
 
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add(Musical_Performance<Sound_Type, Event_Type> &performance) {

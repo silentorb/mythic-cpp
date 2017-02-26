@@ -1,0 +1,2 @@
+create_test(aura_sequencing_test)
+require(aura_sequencing)

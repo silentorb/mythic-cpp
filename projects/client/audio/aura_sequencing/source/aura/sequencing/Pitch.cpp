@@ -186,6 +186,42 @@ namespace aura {
       pitches::B7,
       pitches::C8,
     };
+
+    const Pitch Pitch::transpose(int offset) const {
+      return Pitches[index + offset];
+    }
+
+    int find_index(const Key *keys, int count, const Key key) {
+      for (int i = 0; i < count; ++i) {
+        if (keys[i] == key)
+          return i;
+      }
+
+      throw std::runtime_error("Pitch was not in list of pitches.");
+    }
+
+    const Key cycle_through_keys(const Key keys[], int count, const Key key, int direction) {
+      int key_index = find_index(keys, count, key) + direction;
+
+      if (key_index >= count)
+        key_index -= count;
+      else if (key_index < 0)
+        key_index += count;
+
+      return keys[key_index];
+    }
+
+    const Pitch &Pitch::traverse(const Key keys[], int count, int steps) const {
+      auto new_key = cycle_through_keys(keys, count, key, steps);
+      int new_index = index;
+      int direction = steps < 0 ? -1 : 1;
+
+      do {
+        new_index += direction;
+      } while (Pitches[new_index].key != new_key);
+
+      return Pitches[new_index];
+    }
   }
 
 }

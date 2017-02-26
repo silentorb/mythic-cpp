@@ -2,15 +2,29 @@
 
 #include <aura/sequencing/Key.h>
 #include "commoner/dllexport.h"
+#include <stdexcept>
 
 namespace aura {
   namespace sequencing {
 
     struct Pitch {
-        const int index;
-        const float frequency;
+        int index;
+        float frequency;
         const char *name;
-        const Key key;
+        Key key;
+
+        const Pitch transpose(int offset) const;
+
+        // This assumes the pitches are in order.
+        const Pitch &traverse(const aura::sequencing::Key keys[], int count, int steps) const;
+
+        bool operator==(const Pitch &other) const {
+          return frequency == other.frequency;
+        }
+
+        const std::string get_name() const {
+          return name;
+        }
     };
 
     namespace pitches {

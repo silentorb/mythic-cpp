@@ -10,7 +10,7 @@ namespace randomly {
     template<typename T>
     std::vector<T> create_simple(Dice &dice, int count, T range) {
       std::vector<T> result;
-      result.reserve(count);
+      result.resize(count);
 
       for (int i = 0; i < count; ++i) {
         result[i] = get_generic<T>(dice, 0, range);

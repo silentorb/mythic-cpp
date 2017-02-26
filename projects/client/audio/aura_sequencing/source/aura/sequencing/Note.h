@@ -42,6 +42,10 @@ namespace aura {
         void set_velocity(float value) {
           velocity = value;
         }
+
+        void set_duration(const Beats &value) {
+          duration = value;
+        }
 //        const unsigned long get_id() const {
 //          return id;
 //        }
