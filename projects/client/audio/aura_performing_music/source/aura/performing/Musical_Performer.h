@@ -56,6 +56,9 @@ namespace aura {
         Musical_Performance<Sound_Type, Event_Type> &add_performance(Instrument<Sound_Type, Event_Type> &instrument,
                                                                      const Sequencer_Factory<Event_Type> &sequencer);
 
+        void set_loop_beats(int count) {
+          loop.set_beats(count);
+        }
         void remove(Musical_Performance<Sound_Type, Event_Type> &performance) override;
         void add(Musical_Performance<Sound_Type, Event_Type> &performance) override;
         void clear() override;
