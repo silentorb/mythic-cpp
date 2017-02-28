@@ -46,6 +46,10 @@ namespace aura {
         void set_duration(const Beats &value) {
           duration = value;
         }
+
+        void set_start(const Beats &value) {
+          start = value;
+        }
 //        const unsigned long get_id() const {
 //          return id;
 //        }

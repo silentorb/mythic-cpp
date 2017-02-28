@@ -34,6 +34,10 @@ namespace aura {
           return time_signature;
         }
 
+        int get_beats_per_measure() const {
+          return time_signature.upper;
+        }
+
         void set_time_signature(const Time_Signature &_time_signature) {
           Conductor::time_signature = _time_signature;
         }

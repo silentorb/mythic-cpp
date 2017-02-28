@@ -32,14 +32,17 @@ namespace aura {
                               public virtual containment::Mutable_Container<Musical_Performance<Sound_Type, Event_Type>> {
 
         Event_Buffer<Sound_Type, Event_Type> event_buffers[2];
-        Event_Buffer<Sound_Type, Event_Type> *current_buffer, *next_buffer;
+        Event_Buffer<Sound_Type, Event_Type> *playing_buffer, *next_buffer;
         vector<unique_ptr<Sound_Type>> strokes;
         vector<Musical_Performance<Sound_Type, Event_Type>> performances;
         Tempo_Loop loop;
         int measure_step = 0;
+        int loop_measure_size = 4;
         double measure_position = 0;
         bool first_update = true;
         sequencing::Conductor &conductor;
+        void add_event(Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note,
+                       Event_Buffer<Sound_Type, Event_Type> *buffer);
 
         void swap_buffers();
         void on_measure();
@@ -47,7 +50,7 @@ namespace aura {
     public:
         Musical_Performer(sequencing::Conductor &conductor);
         virtual void add_stroke(unique_ptr<Sound_Type> stroke) override;
-        void add_event(Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note);
+        void add_event(Instrument<Sound_Type, Event_Type> &instrument, Event_Type &note);
         void populate_next_measure();
         float update(float delta);
         void update_notes(float delta);
