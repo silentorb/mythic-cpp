@@ -12,6 +12,7 @@ using namespace aura::sequencing;
 namespace aura {
   namespace performing {
 
+
     template<typename Sound_Type, typename Event_Type>
     class Performer_Note_Consumer : public Event_Consumer<Event_Type> {
         Musical_Performer<Sound_Type, Event_Type> &performer;
@@ -28,6 +29,42 @@ namespace aura {
     };
 
     template<typename Sound_Type, typename Event_Type>
+    Musical_Performer<Sound_Type, Event_Type>::Musical_Performer(sequencing::Conductor &conductor) :
+      loop(conductor.get_sample_rate(), 4), conductor(conductor),
+      current_buffer(&event_buffers[0]), next_buffer(&event_buffers[1]) {
+      loop.set_on_loop([this](Conductor &, double start, double end) {
+        this->on_measure();
+      });
+    }
+
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::swap_buffers() {
+      if (current_buffer->size() > 0) {
+        auto &first = current_buffer->front();
+        throw std::runtime_error("Current event buffer finished before all events were hit.");
+      }
+
+      auto temp = current_buffer;
+      current_buffer = next_buffer;
+      next_buffer = temp;
+
+      std::cout << current_buffer->size() << ", " << next_buffer->size() << std::endl;
+    }
+
+    template<typename Sound_Type, typename Event_Type>
+    void Musical_Performer<Sound_Type, Event_Type>::on_measure() {
+      measure_step++;
+      if (measure_step == 3) {
+        populate_next_measure();
+      }
+      if (measure_step == 4) {
+        measure_position = 0;
+        measure_step = 0;
+        swap_buffers();
+      }
+    }
+
+    template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_stroke(unique_ptr<Sound_Type> stroke) {
       strokes.push_back(std::move(stroke));
     }
@@ -35,13 +72,13 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_event(Instrument<Sound_Type, Event_Type> &instrument,
                                                               const Event_Type &note) {
-      for (auto it = events.begin(); it != events.end(); it++) {
+      for (auto it = next_buffer->begin(); it != next_buffer->end(); it++) {
         if ((*it).get_note().get_start() > note.get_start()) {
-          events.emplace(it, instrument, note);
+          next_buffer->emplace(it, instrument, note);
           return;
         }
       }
-      events.emplace_back(instrument, note);
+      next_buffer->emplace_back(instrument, note);
     }
 
     template<typename Sound_Type, typename Event_Type>
@@ -55,20 +92,17 @@ namespace aura {
 
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::update_notes(float delta) {
-      measure_position += delta;
-      int played_notes = 0;
-      for (auto &event : events) {
+      measure_position += conductor.get_seconds_tempo() * delta;
+      auto i = current_buffer->begin();
+      while (i != current_buffer->end()) {
+        auto &event = *i;
         if (event.get_note().get_start() <= measure_position) {
-          ++played_notes;
           add_stroke(event.get_instrument().create_sound(event.get_note()));
+          current_buffer->erase(i++);  // alternatively, i = items.erase(i);
         }
         else {
           break;
         }
-      }
-
-      if (played_notes > 0) {
-        events.erase(events.begin(), events.begin() + played_notes);
       }
     }
 
@@ -95,6 +129,7 @@ namespace aura {
       loop.update(conductor);
       if (first_update) {
         populate_next_measure();
+        swap_buffers();
         first_update = false;
       }
       update_notes(delta);

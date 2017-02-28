@@ -72,12 +72,12 @@ namespace randomly {
           return min;
 
         auto value = engine.operator()();
-        return value % (max - min) + min;
+        return value % (max - min + 1) + min + 1;
       }
 
       int get_int(int max) {
         Assert(max > 0);
-        return engine.operator()() % max;
+        return engine.operator()() % (max + 1);
       }
 
       template<typename T>
