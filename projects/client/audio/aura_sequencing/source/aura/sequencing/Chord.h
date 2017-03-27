@@ -1,7 +1,7 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "Key.h"
+#include "Beats.h"
 
 namespace aura {
   namespace sequencing {
@@ -36,34 +36,31 @@ namespace aura {
         }
     };
 
-    struct Chord_Instance {
+    class Chord_Event {
         Chord chord;
-        float duration;
+        Beats offset;
         Transpose_Direction direction;
 
-        Chord_Instance(const Chord &chord, float duration = 1,
-                       Transpose_Direction direction = Transpose_Direction::incidental) :
-          chord(chord), duration(duration), direction(direction) {}
+    public:
+        Chord_Event(const Chord &chord, Beats offset) : chord(chord), offset(offset) {}
 
-        Chord_Instance(Key key, Chord_Type type, float duration = 1,
-                       Transpose_Direction direction = Transpose_Direction::incidental) :
-          chord(key, type), duration(duration), direction(direction) {}
+        Chord_Event(Key key, Chord_Type type, Beats offset,
+                    Transpose_Direction direction = Transpose_Direction::incidental) :
+          chord(key, type), offset(offset), direction(direction) {}
+
+        const Chord &get_chord() const {
+          return chord;
+        }
+
+        Beats get_offset() const {
+          return offset;
+        }
     };
 
     namespace chords {
       const Chord c_major = {Key::C};
       const Chord c_minor = {Key::C, Chord_Type::minor};
     }
-
-//    class Chord_Consumer {
-//    public:
-//        virtual void add_chord(const Chord &chord) = 0;
-//    };
-//
-//    class Chord_Source {
-//    public:
-//        virtual void generate_chords(Chord_Consumer &consumer) = 0;
-//    };
 
     class Chord_Source {
     public:

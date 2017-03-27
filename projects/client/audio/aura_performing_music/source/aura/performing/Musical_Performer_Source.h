@@ -23,7 +23,7 @@ namespace aura {
                                 Instrument<Sound_Type, Event_Type> &instrument) : performer(performer),
                                                                                   instrument(instrument) {}
 
-        void add_event(Event_Type &note) override {
+        void add_event(const Event_Type &note) override {
           performer.add_event(instrument, note);
         }
     };
@@ -70,7 +70,7 @@ namespace aura {
     }
 
     template<typename Sound_Type, typename Event_Type>
-    void Musical_Performer<Sound_Type, Event_Type>::add_event(
+    void Musical_Performer<Sound_Type, Event_Type>::add_event_internal(
       Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note,
       Event_Buffer<Sound_Type, Event_Type> *buffer) {
       for (auto it = next_buffer->begin(); it != next_buffer->end(); it++) {
@@ -84,7 +84,7 @@ namespace aura {
 
     template<typename Sound_Type, typename Event_Type>
     void Musical_Performer<Sound_Type, Event_Type>::add_event(Instrument<Sound_Type, Event_Type> &instrument,
-                                                              Event_Type &note) {
+                                                              const Event_Type &note) {
 
       if (note.get_start() < 0) {
         auto start = note.get_start() + loop_measure_size * conductor.get_beats_per_measure();
@@ -94,11 +94,12 @@ namespace aura {
                                    + std::to_string(start) + " is less than the next playing position of "
                                    + to_string(measure_position) + ".");
         }
-        note.set_start(start);
-        add_event(instrument, note, playing_buffer);
+        auto new_note = note;
+        new_note.set_start(start);
+        add_event_internal(instrument, new_note, playing_buffer);
       }
       else {
-        add_event(instrument, note, next_buffer);
+        add_event_internal(instrument, note, next_buffer);
       }
     }
   }

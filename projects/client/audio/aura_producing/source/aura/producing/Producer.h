@@ -1,7 +1,6 @@
 #pragma once
 
 #include <aura/sequencing/Conductor.h>
-#include <aura/composing/Composer.h>
 #include <aura/performing/Performance_Producer.h>
 #include "aura/performing/Tempo_Loop.h"
 #include "aura/performing/Musical_Performer.h"

@@ -6,28 +6,13 @@
 #include "aura/sequencing/Chord.h"
 #include <iostream>
 #include <string>
+#include <aura/sequencing/Chord_Structure.h>
 
 namespace aura {
   namespace composing {
 
-    class Chord_Event {
-        sequencing::Chord chord;
-        sequencing::Beats offset;
-
-    public:
-        Chord_Event(const sequencing::Chord &chord, sequencing::Beats offset) : chord(chord), offset(offset) {}
-
-        const sequencing::Chord &get_chord() const {
-          return chord;
-        }
-
-        sequencing::Beats get_offset() const {
-          return offset;
-        }
-    };
-
     class Chord_Queue : public sequencing::Chord_Source {
-        std::vector<Chord_Event> events;
+        std::vector<sequencing::Chord_Event> events;
         performing::Tempo_Loop loop;
 
         void update_duration() {
@@ -42,7 +27,7 @@ namespace aura {
           log_chord(events[0]);
         }
 
-        void log_chord(const Chord_Event &chord) {
+        void log_chord(const sequencing::Chord_Event &chord) {
           std::cout << sequencing::get_keyname(chord.get_chord().key) << ", " << chord.get_offset() << std::endl;
         }
 
@@ -57,16 +42,22 @@ namespace aura {
           return events[0].get_chord();
         }
 
-        const std::vector<Chord_Event> &get_chords() const {
+        const std::vector<sequencing::Chord_Event> &get_chords() const {
           return events;
         }
 
-        void add_chord(const Chord_Event chord) {
-          if(events.size()== 0)
+        void add_chord(const sequencing::Chord_Event chord) {
+          if (events.size() == 0)
             log_chord(chord);
 
           events.push_back(chord);
           update_duration();
+        }
+
+        void add_chords(const sequencing::Chord_Structure &structure) {
+          for (auto &event : structure) {
+            add_chord(event);
+          }
         }
 
         void update(sequencing::Conductor &conductor) {

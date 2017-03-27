@@ -81,7 +81,7 @@ namespace randomly {
       }
 
       template<typename T>
-      T get_item(std::vector<T> &items) {
+      T &get_item(std::vector<T> &items) {
         if (items.size() == 0)
           throw std::runtime_error("Cannot grab random item out of empty vector.");
 

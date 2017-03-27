@@ -1,4 +1,5 @@
 create_library(promising)
+require(commoner)
 add_definitions(-DPROMISING_LIB)
 
 option(DEBUG_PROMISES "Debug Promises" OFF)

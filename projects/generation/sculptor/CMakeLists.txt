@@ -1,4 +1,4 @@
 
 create_library(sculptor)
 
-require(math vectoring)
+require(math vectoring commoner)

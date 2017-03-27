@@ -1,4 +1,2 @@
-
 create_library(haft)
-
-require(math)
+require(math commoner)

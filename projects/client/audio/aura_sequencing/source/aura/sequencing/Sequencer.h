@@ -12,7 +12,7 @@ namespace aura {
     template<typename Event_Type>
     class Event_Consumer {
     public:
-        virtual void add_event(Event_Type &note) = 0;
+        virtual void add_event(const Event_Type &note) = 0;
     };
 
     template<typename Event_Type = Note>

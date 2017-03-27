@@ -26,4 +26,4 @@ endif ()
 
 add_definitions(-DGLOW_LIB)
 
-require(math)
+require(math commoner)
