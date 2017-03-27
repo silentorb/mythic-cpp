@@ -33,8 +33,8 @@ namespace aura {
         }
 
     public:
-        Gain_Filter(unsigned int sample_rate) :
-          Resonant_Filter_Base<Signal_Type>(sample_rate) {}
+        Gain_Filter(unsigned int sample_rate, float Q) :
+          Resonant_Filter_Base<Signal_Type>(sample_rate, Q) {}
 
         Signal_Type operator()(Signal_Type input) {
           if (this->changed) {

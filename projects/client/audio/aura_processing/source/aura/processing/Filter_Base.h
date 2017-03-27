@@ -33,7 +33,8 @@ namespace aura {
         float Q;
 
     public:
-        Resonant_Filter_Base(unsigned int sample_rate) : Filter_Base<Signal_Type>(sample_rate) {}
+        Resonant_Filter_Base(unsigned int sample_rate, float Q) :
+          Filter_Base<Signal_Type>(sample_rate), Q(Q) {}
 
         void set_Q(float value) {
           if (Q == value)
@@ -79,8 +80,8 @@ namespace aura {
         Second_Order_Calculations<Signal_Type> calculation;
 
     public:
-        Second_Order_Filter(unsigned int sample_rate) :
-          Resonant_Filter_Base<Signal_Type>(sample_rate) {}
+        Second_Order_Filter(unsigned int sample_rate, float Q) :
+          Resonant_Filter_Base<Signal_Type>(sample_rate, Q) {}
 
         Signal_Type operator()(Signal_Type input) {
           if (this->changed) {
@@ -116,7 +117,7 @@ namespace aura {
 
       Second_Order_Middle(float frequency, float sample_rate, float Q) {
         auto arc = 2 * Pi * frequency / sample_rate;
-        auto k = tan(arc/(2 * Q));
+        auto k = tan(arc / (2 * Q));
         B = 0.5 * (1 - k) / (1 + k);
         y = (0.5 + B) * cos(arc);
       }

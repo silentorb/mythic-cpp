@@ -26,8 +26,8 @@ namespace aura {
         }
 
     public:
-        Resonant_Filter(unsigned int sample_rate) :
-          Resonant_Filter_Base<Signal_Type>(sample_rate) {}
+        Resonant_Filter(unsigned int sample_rate, float Q) :
+          Resonant_Filter_Base<Signal_Type>(sample_rate, Q) {}
 
         float operator()(float input) {
           if (this->changed)
