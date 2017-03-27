@@ -17,7 +17,7 @@ namespace aura {
 
         void update_duration() {
           if (events.size() > 1) {
-            loop.set_beats(events[1].get_offset());
+            loop.set_beats(events[1].get_duration());
           }
         }
 
@@ -28,7 +28,7 @@ namespace aura {
         }
 
         void log_chord(const sequencing::Chord_Event &chord) {
-          std::cout << sequencing::get_keyname(chord.get_chord().key) << ", " << chord.get_offset() << std::endl;
+          std::cout << sequencing::get_keyname(chord.get_chord().key) << ", " << chord.get_duration() << std::endl;
         }
 
     public:
@@ -38,8 +38,17 @@ namespace aura {
           });
         }
 
-        virtual const sequencing::Chord get_chord() override {
-          return events[0].get_chord();
+        virtual const sequencing::Chord &get_chord(sequencing::Beats time = 0) override {
+          float next = 0;
+          for(auto &event : events) {
+            next += event.get_duration();
+            if (time < next) {
+              return event.get_chord();
+            }
+
+          }
+
+          throw std::runtime_error("Requested chord outside of current Chord_Queue buffer range.");
         }
 
         const std::vector<sequencing::Chord_Event> &get_chords() const {

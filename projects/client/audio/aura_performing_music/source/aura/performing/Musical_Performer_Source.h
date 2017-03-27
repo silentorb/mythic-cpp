@@ -29,8 +29,10 @@ namespace aura {
     };
 
     template<typename Sound_Type, typename Event_Type>
-    Musical_Performer<Sound_Type, Event_Type>::Musical_Performer(sequencing::Conductor &conductor) :
+    Musical_Performer<Sound_Type, Event_Type>::Musical_Performer(sequencing::Conductor &conductor,
+                                                                 int loop_measure_size) :
       loop(conductor.get_sample_rate(), conductor.get_beats_per_measure()), conductor(conductor),
+      loop_measure_size(loop_measure_size),
       playing_buffer(&event_buffers[0]), next_buffer(&event_buffers[1]) {
       loop.set_on_loop([this](Conductor &, double start, double end) {
         this->on_measure();
@@ -109,7 +111,7 @@ namespace aura {
     std::cout << "next" << std::endl;
     for (auto &performance: performances) {
       Performer_Note_Consumer <Sound_Type, Event_Type> consumer(*this, performance.get_instrument());
-      performance.get_sequencer().generate_notes(consumer);
+      performance.get_sequencer().generate_notes(consumer, loop_measure_size * 4);
     }
   }
 

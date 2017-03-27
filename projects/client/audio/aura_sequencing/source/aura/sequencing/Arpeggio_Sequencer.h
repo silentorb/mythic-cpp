@@ -49,9 +49,16 @@ namespace aura {
           beats = beats_per_note * arpeggio.size();
         }
 
-        void generate_notes(Event_Consumer<Event_Type> &consumer) override {
-          for (int i = 0; i < arpeggio.size(); ++i) {
-            consumer.add_event(get_event(i));
+        void generate_notes(Event_Consumer<Event_Type> &consumer, const Beats range) override {
+          int step = 0;
+          auto loop_count = range / get_beats();
+          for (int i = 0; i < loop_count; ++i) {
+            for (auto &event : arpeggio) {
+              auto position = step * beats_per_note;
+              auto &pitch = transpose(event, chord_source.get_chord(position));
+              consumer.add_event(Note(pitch, position, beats_per_note));
+              ++step;
+            }
           }
         }
     };

@@ -35,7 +35,7 @@ namespace aura {
         vector<Musical_Performance<Sound_Type, Event_Type>> performances;
         Tempo_Loop loop;
         int measure_step = 0;
-        int loop_measure_size = 4;
+        int loop_measure_size;
         double measure_position = 0;
         bool first_update = true;
         sequencing::Conductor &conductor;
@@ -46,7 +46,7 @@ namespace aura {
         void on_measure();
 
     public:
-        Musical_Performer(sequencing::Conductor &conductor);
+        Musical_Performer(sequencing::Conductor &conductor, int loop_measure_size);
         virtual void add_stroke(unique_ptr<Sound_Type> stroke) override;
         void add_event(Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note);
         void populate_next_measure();

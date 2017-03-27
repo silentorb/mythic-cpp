@@ -38,22 +38,24 @@ namespace aura {
 
     class Chord_Event {
         Chord chord;
-        Beats offset;
+        Beats duration;
         Transpose_Direction direction;
 
     public:
-        Chord_Event(const Chord &chord, Beats offset) : chord(chord), offset(offset) {}
-
-        Chord_Event(Key key, Chord_Type type, Beats offset,
+        Chord_Event(const Chord &chord, Beats duration,
                     Transpose_Direction direction = Transpose_Direction::incidental) :
-          chord(key, type), offset(offset), direction(direction) {}
+          chord(chord), duration(duration), direction(direction) {}
+
+        Chord_Event(Key key, Chord_Type type, Beats duration,
+                    Transpose_Direction direction = Transpose_Direction::incidental) :
+          chord(key, type), duration(duration), direction(direction) {}
 
         const Chord &get_chord() const {
           return chord;
         }
 
-        Beats get_offset() const {
-          return offset;
+        Beats get_duration() const {
+          return duration;
         }
     };
 
@@ -64,7 +66,7 @@ namespace aura {
 
     class Chord_Source {
     public:
-        virtual const Chord get_chord() = 0;
+        virtual const Chord &get_chord(Beats time = 0) = 0;
     };
   }
 }

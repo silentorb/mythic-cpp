@@ -67,7 +67,7 @@ namespace aura {
           return events[index];
         }
 
-        void generate_notes(Event_Consumer <Event_Type> &consumer) override {
+        void generate_notes(Event_Consumer <Event_Type> &consumer, const Beats range) override {
           for (auto &note: events) {
             consumer.add_event(note);
           }

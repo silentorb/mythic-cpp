@@ -18,7 +18,7 @@ namespace aura {
     template<typename Event_Type = Note>
     class Sequencer {
     public:
-        virtual void generate_notes(Event_Consumer<Event_Type> &consumer) = 0;
+        virtual void generate_notes(Event_Consumer<Event_Type> &consumer, const Beats range) = 0;
     };
 
     template<typename Event_Type = Note>
