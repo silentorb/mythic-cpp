@@ -3,5 +3,5 @@
 #include "commoner/dllexport.h"
 
 namespace aura {
-  float convert_to_db(float value);
+  float to_db(float value);
 }

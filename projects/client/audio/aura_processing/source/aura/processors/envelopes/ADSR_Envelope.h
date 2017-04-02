@@ -33,8 +33,8 @@ namespace aura {
       ADSR_Stage stage = ADSR_Stage::attack;
 
       ADSR_Instance(const ADSR &settings) {
-        attack_level = convert_to_db((float)settings.attack_level);
-        sustain_level = convert_to_db((float)settings.sustain_level);
+        attack_level = to_db((float) settings.attack_level);
+        sustain_level = to_db((float) settings.sustain_level);
       }
   };
 

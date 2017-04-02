@@ -15,6 +15,11 @@ namespace aura {
         Band_Pass_Filter(unsigned int sample_rate, float Q) :
           Second_Order_Filter<Signal_Type, Band_Pass_Filter<Signal_Type>>(sample_rate, Q) {}
 
+        Band_Pass_Filter(unsigned int sample_rate, float Q, float frequency) :
+          Second_Order_Filter<Signal_Type, Band_Pass_Filter<Signal_Type>>(sample_rate, Q) {
+          this->set_frequency(frequency);
+        }
+
         static void pre_calculate(Second_Order_Calculations<Signal_Type> &result, float frequency, float sample_rate, float Q) {
           Second_Order_Side<Signal_Type> common(frequency, sample_rate, Q);
           auto j = 0.5 - common.B;

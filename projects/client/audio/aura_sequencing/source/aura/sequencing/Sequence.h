@@ -11,19 +11,19 @@ namespace aura {
   namespace sequencing {
     class Performer;
 
-    template<typename Event_Type>
+    template<typename Event_Type = Note>
     class Sequence : public Sequencer<Event_Type> {
-        vector<Note> events;
+        vector<Event_Type> events;
         Beats beats = 0;
 
     public:
         Sequence() {}
 
-        Sequence(initializer_list<const Note> initializer, Beats beats) : beats(beats) {
+        Sequence(initializer_list<const Event_Type> initializer, Beats beats) : beats(beats) {
           add_events(initializer);
         }
 
-        Sequence(Beats offset, Beats note_length, initializer_list<const Note> initializer, Beats beats) : beats(
+        Sequence(Beats offset, Beats note_length, initializer_list<const Event_Type> initializer, Beats beats) : beats(
           beats) {
           add_events(offset, note_length, initializer);
         }

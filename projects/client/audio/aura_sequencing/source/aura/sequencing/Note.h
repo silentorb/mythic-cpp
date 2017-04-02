@@ -16,7 +16,7 @@ namespace aura {
 //        unsigned long id;
 
     public:
-        Note(const Pitch &pitch, Beats start, Beats duration = 1);
+        Note(const Pitch &pitch, Beats start, Beats duration = 1, float velocity = 1);
 //      Note(float frequency, float start, float duration = 1);
 
         const Beats &get_start() const {
