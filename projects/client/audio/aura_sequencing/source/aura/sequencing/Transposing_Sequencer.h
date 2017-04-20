@@ -10,35 +10,40 @@ using namespace std;
 namespace aura {
   namespace sequencing {
 
-    template<typename Event_Type>
+    template<typename Event_Type = Note>
     class Transposing_Sequencer : public Sequencer<Event_Type> {
-        shared_ptr<Sequence<Event_Type>> event_source;
+        Sequence<Event_Type> &event_source;
         Chord_Source &chord_source;
 
     public:
-        Transposing_Sequencer(shared_ptr<Sequence<Event_Type>> &source, Chord_Source &chord_source) :
+        Transposing_Sequencer(Sequence<Event_Type> &source, Chord_Source &chord_source) :
           event_source(source), chord_source(chord_source) {
         }
 
         virtual ~Transposing_Sequencer() {}
 
         float get_beats() const {
-          return event_source->get_beats();
+          return event_source.get_beats();
         }
 
         int size() const {
-          return event_source->size();
+          return event_source.size();
         }
 
-        const Note get_note(int index) {
-          auto note = event_source->get_note(index);
-          auto &pitch = transpose(*note.get_pitch(), chord_source.get_chord());
-          return Note(pitch, note.get_start(), note.get_duration());
+        const Note get_note(int index, Beats offset) {
+          auto note = event_source.get_note(index);
+          auto &pitch = transpose(*note.get_pitch(), chord_source.get_chord(note.get_start() + offset));
+          return Note(pitch, note.get_start() + offset, note.get_duration());
         }
 
-        void generate_notes(Event_Consumer<Event_Type> &consumer) override {
-          for (int i = 0; i < event_source->size(); ++i) {
-            consumer.add_event(get_note(i));
+        void generate_notes(Event_Consumer<Event_Type> &consumer, const Beats range) override {
+          auto loop_count = range / get_beats();
+          for (int j = 0; j < loop_count; ++j) {
+            float offset = j * 4;
+            for (int i = 0; i < event_source.size(); ++i) {
+              auto note = get_note(i, offset);
+              consumer.add_event(note);
+            }
           }
         }
     };

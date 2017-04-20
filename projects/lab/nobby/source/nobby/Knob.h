@@ -39,6 +39,10 @@ namespace nobby {
       void set_normalized(float normalized_value) {
         value = min + normalized_value * (max - min);
       }
+
+      virtual operator float() {
+        return get_value();
+      }
   };
 
   template<typename T, typename Data_Type>

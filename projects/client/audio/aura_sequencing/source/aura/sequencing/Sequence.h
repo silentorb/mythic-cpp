@@ -23,6 +23,10 @@ namespace aura {
           add_events(initializer);
         }
 
+        Sequence(Beats beats, initializer_list<const Event_Type> initializer) : beats(beats) {
+          add_events(initializer);
+        }
+
         Sequence(Beats offset, Beats note_length, initializer_list<const Event_Type> initializer, Beats beats) : beats(
           beats) {
           add_events(offset, note_length, initializer);
