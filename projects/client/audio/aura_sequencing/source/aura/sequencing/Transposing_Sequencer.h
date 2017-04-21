@@ -46,26 +46,5 @@ namespace aura {
         }
     };
 
-    template<typename Event_Type = Note>
-    class Transposing_Sequencer_Factory{
-        std::unique_ptr<Sequence < Event_Type>> event_source;
-        Chord_Source &chord_source;
-
-    public:
-        Transposing_Sequencer_Factory(Transposing_Sequencer_Factory const &) = delete;
-
-        Transposing_Sequencer_Factory(Chord_Source &chord_source, Beats beats,
-                                      std::initializer_list<const Event_Type> initializer):
-          event_source(new Sequence<Event_Type>(initializer, beats)),
-        chord_source(chord_source){
-
-        }
-
-        std::unique_ptr<Sequencer < Event_Type>> operator()(){
-          return std::unique_ptr<Sequencer<Event_Type>>(
-            new Transposing_Sequencer<Event_Type>(*event_source, chord_source)
-          );
-        }
-    };
   }
 }
