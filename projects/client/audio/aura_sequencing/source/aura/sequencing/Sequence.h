@@ -5,29 +5,27 @@
 #include "Sequencer.h"
 #include <vector>
 
-using namespace std;
-
 namespace aura {
   namespace sequencing {
     class Performer;
 
     template<typename Event_Type = Note>
     class Sequence : public Sequencer<Event_Type> {
-        vector<Event_Type> events;
+        std::vector<Event_Type> events;
         Beats beats = 0;
 
     public:
         Sequence() {}
 
-        Sequence(initializer_list<const Event_Type> initializer, Beats beats) : beats(beats) {
+        Sequence(std::initializer_list<const Event_Type> initializer, Beats beats) : beats(beats) {
           add_events(initializer);
         }
 
-        Sequence(Beats beats, initializer_list<const Event_Type> initializer) : beats(beats) {
+        Sequence(Beats beats, std::initializer_list<const Event_Type> initializer) : beats(beats) {
           add_events(initializer);
         }
 
-        Sequence(Beats offset, Beats note_length, initializer_list<const Event_Type> initializer, Beats beats) : beats(
+        Sequence(Beats offset, Beats note_length, std::initializer_list<const Event_Type> initializer, Beats beats) : beats(
           beats) {
           add_events(offset, note_length, initializer);
         }
@@ -39,19 +37,19 @@ namespace aura {
             beats = end;
         }
 
-        void add_events(initializer_list<const Event_Type> initializer) {
+        void add_events(std::initializer_list<const Event_Type> initializer) {
           for (auto &note: initializer) {
             add_event(note);
           }
         }
 
-        void add_events(Beats offset, Beats note_length, initializer_list<const Event_Type> initializer) {
+        void add_events(Beats offset, Beats note_length, std::initializer_list<const Event_Type> initializer) {
           for (auto &note: initializer) {
             add_event(Note(*note.get_pitch(), note.get_start() + offset, note_length));
           }
         }
 
-        const vector<Event_Type> &get_events() const {
+        const std::vector<Event_Type> &get_events() const {
           return events;
         }
 

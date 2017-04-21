@@ -22,6 +22,13 @@ namespace aura {
     };
 
     template<typename Event_Type = Note>
-    using Sequencer_Factory = std::function<std::unique_ptr<Sequencer<Event_Type>>()>;
+    using Sequencer_Factory_Function = std::function<std::unique_ptr<Sequencer<Event_Type>>()>;
+
+    template<typename Event_Type = Note>
+    class Sequencer_Factory {
+    public:
+        virtual std::unique_ptr<Sequencer<Event_Type>> operator()() = 0;
+    };
+
   }
 }

@@ -53,8 +53,16 @@ namespace aura {
         float update(float delta);
         void update_notes(float delta);
         float update_strokes(float delta);
+
+        template<typename Factory>
         Musical_Performance<Sound_Type, Event_Type> &add_performance(Instrument<Sound_Type, Event_Type> &instrument,
-                                                                     const Sequencer_Factory<Event_Type> &sequencer);
+                                                                     Factory &sequencer_factory) {
+          auto sequencer = sequencer_factory();
+          performances.push_back(Musical_Performance<Sound_Type, Event_Type>(instrument, sequencer));
+          auto &performance = performances[performances.size() - 1];
+          return performance;
+        }
+
         void remove(Musical_Performance<Sound_Type, Event_Type> &performance) override;
         void add(Musical_Performance<Sound_Type, Event_Type> &performance) override;
         void clear() override;
