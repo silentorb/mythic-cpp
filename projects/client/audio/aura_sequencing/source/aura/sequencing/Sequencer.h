@@ -21,6 +21,9 @@ namespace aura {
         virtual void generate_notes(Event_Consumer<Event_Type> &consumer, const Beats range) = 0;
     };
 
+    template<typename Event = Note>
+    using Sequencer_Pointer = std::unique_ptr<Sequencer<Event>>;
+
     template<typename Event_Type = Note>
     using Sequencer_Factory_Function = std::function<std::unique_ptr<Sequencer<Event_Type>>()>;
 

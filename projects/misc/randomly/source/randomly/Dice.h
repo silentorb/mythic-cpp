@@ -76,7 +76,9 @@ namespace randomly {
       }
 
       int get_int(int max) {
-        Assert(max > 0);
+        if (max == 0)
+          return 0;
+
         return engine.operator()() % (max + 1);
       }
 
@@ -85,7 +87,7 @@ namespace randomly {
         if (items.size() == 0)
           throw std::runtime_error("Cannot grab random item out of empty vector.");
 
-        int index = get_int(items.size());
+        int index = get_int(items.size() - 1);
         return items[index];
       }
   };

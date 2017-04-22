@@ -109,6 +109,10 @@ namespace aura {
   template<typename Sound_Type, typename Event_Type>
   void Musical_Performer<Sound_Type, Event_Type>::populate_next_measure() {
     std::cout << "next" << std::endl;
+
+    if(update_delegate)
+      update_delegate(*this);
+
     for (auto &performance: performances) {
       Performer_Note_Consumer <Sound_Type, Event_Type> consumer(*this, performance.get_instrument());
       performance.get_sequencer().generate_notes(consumer, loop_measure_size * 4);
@@ -179,7 +183,7 @@ namespace aura {
 
   template<typename Sound_Type, typename Event_Type>
   void Musical_Performer<Sound_Type, Event_Type>::clear() {
-    performances.empty();
+    performances.clear();
 //      loop_manager.clear();
   }
 }

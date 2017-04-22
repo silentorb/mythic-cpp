@@ -25,10 +25,13 @@ namespace aura {
     template<typename Sound_Type, typename Event_Type>
     using Event_Buffer = std::list<Performance_Note<Sound_Type, Event_Type>>;
 
-    template<typename Sound_Type, typename Event_Type>
+    template<typename Sound_Type, typename Event_Type= sequencing::Note>
     class Musical_Performer : no_copy, Stroke_Input<Sound_Type>,
                               public virtual containment::Mutable_Container<Musical_Performance<Sound_Type, Event_Type>> {
+    public:
+        using Update_Delegate = std::function<void(Musical_Performer &)>;
 
+    private:
         Event_Buffer<Sound_Type, Event_Type> event_buffers[2];
         Event_Buffer<Sound_Type, Event_Type> *playing_buffer, *next_buffer;
         vector<unique_ptr<Sound_Type>> strokes;
@@ -39,6 +42,8 @@ namespace aura {
         double measure_position = 0;
         bool first_update = true;
         sequencing::Conductor &conductor;
+        Update_Delegate update_delegate;
+
         void add_event_internal(Instrument<Sound_Type, Event_Type> &instrument, const Event_Type &note,
                                 Event_Buffer<Sound_Type, Event_Type> *buffer);
 
@@ -53,6 +58,10 @@ namespace aura {
         float update(float delta);
         void update_notes(float delta);
         float update_strokes(float delta);
+
+        void set_update_delegate(const Update_Delegate &value) {
+          update_delegate = value;
+        }
 
         template<typename Factory>
         Musical_Performance<Sound_Type, Event_Type> &add_performance(Instrument<Sound_Type, Event_Type> &instrument,

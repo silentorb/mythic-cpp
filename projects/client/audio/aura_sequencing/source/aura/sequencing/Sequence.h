@@ -75,5 +75,8 @@ namespace aura {
           }
         }
     };
+
+    template<typename Event = Note>
+    using Sequence_Pointer = std::unique_ptr<Sequence<Event>>;
   }
 }
