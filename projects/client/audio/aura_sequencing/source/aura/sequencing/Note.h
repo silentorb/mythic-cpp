@@ -50,6 +50,10 @@ namespace aura {
         void set_start(const Beats &value) {
           start = value;
         }
+
+        Note operator+(const Beats &value) const {
+          return Note(*pitch, start + value, duration, velocity);
+        }
 //        const unsigned long get_id() const {
 //          return id;
 //        }

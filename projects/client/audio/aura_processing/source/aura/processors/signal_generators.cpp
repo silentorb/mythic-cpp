@@ -56,7 +56,7 @@ namespace aura {
     }
 
     // For performance and simplicity this does not have the same phase as square(float)
-    float square(float position, float pulse_width) {
+    float square_pulse_width(float position, float pulse_width) {
       float half = (1 - pulse_width) * 0.5f;
       float value = (float)fmod(position, 1);
       return value > half && value < 1 - half

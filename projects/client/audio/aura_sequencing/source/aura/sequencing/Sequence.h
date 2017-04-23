@@ -25,10 +25,19 @@ namespace aura {
           add_events(initializer);
         }
 
-        Sequence(Beats offset, Beats note_length, std::initializer_list<const Event_Type> initializer, Beats beats) : beats(
-          beats) {
-          add_events(offset, note_length, initializer);
+        Sequence(Beats beats, std::initializer_list<const Event_Type> initializer, Beats beats2,
+                 std::initializer_list<const Event_Type> additional) : beats(beats2) {
+          add_events(initializer);
+          for (auto &note: initializer) {
+            add_event(note + (beats2 - beats));
+          }
+          add_events(additional);
         }
+
+//        Sequence(Beats offset, Beats note_length, std::initializer_list<const Event_Type> initializer, Beats beats) : beats(
+//          beats) {
+//          add_events(offset, note_length, initializer);
+//        }
 
         void add_event(const Event_Type &note) {
           events.push_back(note);

@@ -37,7 +37,7 @@ namespace aura {
         void generate_notes(Event_Consumer <Event_Type> &consumer, const Beats range) override {
           auto loop_count = range / get_beats();
           for (int j = 0; j < loop_count; ++j) {
-            float offset = j * 4;
+            float offset = j * get_beats();
             for (int i = 0; i < event_source.size(); ++i) {
               auto note = get_note(i, offset);
               consumer.add_event(note);

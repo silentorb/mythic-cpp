@@ -18,7 +18,7 @@ namespace aura {
                                                                                           DEFAULT_FREQUENCY,
                                                                                           operation) {}
 
-        Oscillator(unsigned int sample_rate, float frequency = DEFAULT_FREQUENCY);
+//        Oscillator(unsigned int sample_rate, float frequency = DEFAULT_FREQUENCY);
 
         float get_frequency() const {
           return loop.get_frequency();

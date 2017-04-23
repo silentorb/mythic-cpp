@@ -8,8 +8,8 @@ namespace aura {
   namespace sequencing {
 
     template<typename Event = Note>
-    class Transposing_Sequencer_Factory  : public Sequencer_Factory<Event>{
-        Sequence_Pointer<Event> event_source;
+    class Transposing_Sequencer_Factory : public Sequencer_Factory<Event> {
+        Sequence_Pointer <Event> event_source;
         Chord_Source &chord_source;
 
     public:
@@ -22,8 +22,8 @@ namespace aura {
 
         }
 
-        Sequencer_Pointer<Event> operator()() {
-          return Sequencer_Pointer<Event >(
+        Sequencer_Pointer <Event> operator()() {
+          return Sequencer_Pointer<Event>(
             new Transposing_Sequencer<Event>(*event_source, chord_source)
           );
         }
@@ -46,7 +46,7 @@ namespace aura {
 
         }
 
-        Sequencer_Pointer<Event> operator()() {
+        Sequencer_Pointer <Event> operator()() {
           return Sequencer_Pointer<Event>(
             new Arpeggio_Sequencer<Event>(event_source, chord_source, beats_per_note)
           );
@@ -55,7 +55,7 @@ namespace aura {
 
     template<typename Event = Note>
     class Simple_Sequencer_Factory : public Sequencer_Factory<Event> {
-        Sequence_Pointer<Event> event_source;
+        Sequence_Pointer <Event> event_source;
 
     public:
         Simple_Sequencer_Factory(Simple_Sequencer_Factory const &) = delete;
@@ -66,7 +66,13 @@ namespace aura {
 
         }
 
-        Sequencer_Pointer<Event> operator()() {
+        Simple_Sequencer_Factory(Beats beats, std::initializer_list<const Event> initializer,
+                                 Beats beats2, std::initializer_list<const Event> additional) :
+          event_source(new Sequence<Event>(beats, initializer, beats2, additional)) {
+
+        }
+
+        Sequencer_Pointer <Event> operator()() {
           return Sequencer_Pointer<Event>(
             new Simple_Sequencer<Event>(*event_source)
           );

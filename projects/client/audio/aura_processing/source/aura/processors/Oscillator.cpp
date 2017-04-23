@@ -11,9 +11,9 @@ namespace aura {
       loop(sample_rate, frequency),
       operation(operation) {}
 
-    Oscillator::Oscillator(unsigned int sample_rate, float frequency) :
-      Oscillator(sample_rate, frequency, generate::sine) {
-
-    }
+//    Oscillator::Oscillator(unsigned int sample_rate, float frequency) :
+//      Oscillator(sample_rate, frequency, generate::sine) {
+//
+//    }
   }
 }
