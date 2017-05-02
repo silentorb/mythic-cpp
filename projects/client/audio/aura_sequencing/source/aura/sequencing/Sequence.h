@@ -42,8 +42,9 @@ namespace aura {
         void add_event(const Event_Type &note) {
           events.push_back(note);
           auto end = note.get_start() + note.get_duration();
-          if (end > beats)
-            beats = end;
+//          if (end > beats)
+//            throw std::runtime_error("Note outside of sequence range.");
+//            beats = end;
         }
 
         void add_events(std::initializer_list<const Event_Type> initializer) {
