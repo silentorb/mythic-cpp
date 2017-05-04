@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+#include <commoner/no_copy.h>
 #include "Particle.h"
 #include <vector>
 #include <memory>
@@ -16,13 +16,13 @@ namespace substance {
   typedef function<Particle *(float)> Particle_Generator;
   typedef function<void(Particle &, float)> Particle_Animator;
 
-  class MYTHIC_EXPORT Particle_Listener {
+  class Particle_Listener {
   public:
       virtual void particle_added(const Particle &particle) = 0;
       virtual void particle_removed(const Particle &particle) = 0;
   };
 
-  class MYTHIC_EXPORT Emitter : no_copy {
+  class Emitter : no_copy {
       vector<unique_ptr<Particle>> particles;
       Particle_Generator generator;
       float rate = 1; // per second

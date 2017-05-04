@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "glm/glm.hpp"
 #include <string>
 #include <vector>
@@ -32,7 +31,7 @@ namespace typography {
       }
   };
 
-  class MYTHIC_EXPORT Text {
+  class Text {
 //      unsigned int vao;
 //      unsigned int vbo;
       modeling::Simple_Mesh mesh;

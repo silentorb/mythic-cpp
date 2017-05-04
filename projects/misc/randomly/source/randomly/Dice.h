@@ -1,7 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
-#include <commoner/assert.h>
+//#include <commoner/assert.h>
 #include <random>
 #include <vector>
 #include <stdexcept>
@@ -9,7 +8,7 @@
 
 namespace randomly {
 
-  class MYTHIC_EXPORT Dice {
+  class Dice {
       std::mt19937 engine;
       unsigned int _seed;
 

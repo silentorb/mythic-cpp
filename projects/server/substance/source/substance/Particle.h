@@ -1,13 +1,12 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include <glm/vec3.hpp>
 
 using namespace glm;
 
 namespace substance {
 
-  class MYTHIC_EXPORT Particle {
+  class Particle {
       vec3 position;
       vec3 velocity;
       vec3 acceleration;
