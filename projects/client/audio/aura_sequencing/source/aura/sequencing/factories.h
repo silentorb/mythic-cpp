@@ -54,6 +54,32 @@ namespace aura {
     };
 
     template<typename Event = Note>
+    class Delayed_Arpeggio_Sequencer_Factory : public Sequencer_Factory<Event> {
+        Arpeggio event_source;
+        Chord_Source &chord_source;
+        float beats_per_note;
+        Beats delay;
+
+    public:
+        Delayed_Arpeggio_Sequencer_Factory(Delayed_Arpeggio_Sequencer_Factory const &) = delete;
+
+        Delayed_Arpeggio_Sequencer_Factory(Chord_Source &chord_source, float beats_per_note,
+                                           std::initializer_list<Pitch> initializer, Beats delay) :
+          event_source(initializer),
+          chord_source(chord_source),
+          beats_per_note(beats_per_note),
+          delay(delay) {
+
+        }
+
+        Sequencer_Pointer <Event> operator()() {
+          return Sequencer_Pointer<Event>(
+            new Delayed_Arpeggio_Sequencer<Event>(event_source, chord_source, beats_per_note, delay)
+          );
+        }
+    };
+
+    template<typename Event = Note>
     class Simple_Sequencer_Factory : public Sequencer_Factory<Event> {
         Sequence_Pointer <Event> event_source;
 
