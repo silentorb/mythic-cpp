@@ -1,7 +1,7 @@
 #pragma once
 
 #include <aura/sequencing/Key.h>
-#include "commoner/dllexport.h"
+#include <string>
 #include <stdexcept>
 
 namespace aura {
