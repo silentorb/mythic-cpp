@@ -15,7 +15,7 @@ namespace foley {
   public:
       Sample_Sound(const std::vector<Signal_Type> &buffer, aura::Decibels volume) :
         buffer(buffer), volume(volume) {
-
+int k = buffer.size();
       }
 
       Signal_Type update(float delta) override {

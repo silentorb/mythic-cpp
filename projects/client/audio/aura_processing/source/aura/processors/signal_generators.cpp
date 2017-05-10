@@ -43,7 +43,8 @@ namespace aura {
     }
 
     float saw(float position) {
-      return (float) fabs(fmod(position, 2) - 1);
+//      return (float) fabs(fmod(position, 2) - 1);
+      return (float) fabs(position - 1);
     }
 
 //    float triangle(float position) {
@@ -52,7 +53,8 @@ namespace aura {
 //    }
 
     float square(float position) {
-      return fmod(position, 1) < 0.5 ? 1 : -1;
+//      return fmod(position, 1) < 0.5 ? 1 : -1;
+      return position < 0.5 ? 1 : -1;
     }
 
     // For performance and simplicity this does not have the same phase as square(float)
@@ -65,8 +67,8 @@ namespace aura {
     }
 
     float triangle(double position) {
-      float x = fmod(position, 1);
-      return ranged::triangle(x);
+//      float x = fmod(position, 1);
+      return ranged::triangle(position);
     }
   }
 }

@@ -19,7 +19,7 @@ namespace foley {
       }
 
       virtual std::unique_ptr<aura::performing::Sound<Signal_Type>> create_sound(const Event_Type &event) {
-        auto next = dice.get_int(buffers.size());
+        auto next = dice.get_int(buffers.size() - 1);
         if (next == last_sound)
           next = (next + 1) % buffers.size();
 
