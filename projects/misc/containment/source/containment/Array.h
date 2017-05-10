@@ -56,10 +56,10 @@ namespace containment {
         }
       }
 
-      void clear() override {
-        handler->on_clear();
-        items.clear();
-      }
+//      void clear() override {
+//        handler->on_clear();
+//        items.clear();
+//      }
   };
 
 }

@@ -3,6 +3,7 @@
 #include <aura/performing/Sound.h>
 #include <vector>
 #include <aura/primitives/Decibels.h>
+#include <commoner/assert.h>
 
 namespace foley {
 
@@ -15,7 +16,7 @@ namespace foley {
   public:
       Sample_Sound(const std::vector<Signal_Type> &buffer, aura::Decibels volume) :
         buffer(buffer), volume(volume) {
-int k = buffer.size();
+        Assert(buffer.size());
       }
 
       Signal_Type update(float delta) override {
