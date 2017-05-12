@@ -67,8 +67,8 @@ namespace aura {
     }
 
     float triangle(double position) {
-//      float x = fmod(position, 1);
-      return ranged::triangle(position);
+      float x = fmod(position, 1);
+      return ranged::triangle(x);
     }
   }
 }
