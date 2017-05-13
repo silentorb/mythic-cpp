@@ -16,6 +16,7 @@ namespace aura {
       float triangle(float position);
     }
 
+      void initialize();
     float sine(float position);
     float saw(float position);
     float square(float position);

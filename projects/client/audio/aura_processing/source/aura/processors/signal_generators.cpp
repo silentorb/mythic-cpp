@@ -3,9 +3,20 @@
 
 randomly::Dice dice;
 
+static std::vector<float> sine_buffer;
+
 namespace aura {
 
   namespace generate {
+      
+      void initialize() {
+          long range = 44100;
+          sine_buffer.resize(range);
+          for(long i = 0; i < range; ++i) {
+              float position = (float)i / (float)range;
+              sine_buffer[i] = (float) sin(position * 2 * Pi);
+          }
+      }
 
     namespace ranged {
 
@@ -39,12 +50,14 @@ namespace aura {
     }
 
     float sine(float position) {
-      return (float) sin(position * 2 * Pi);
+//      return (float) sin(position * 2 * Pi);
+        int index = position * sine_buffer.size();
+        return sine_buffer[index];
     }
 
     float saw(float position) {
 //      return (float) fabs(fmod(position, 2) - 1);
-      return (float) fabs(position - 1);
+      return (float) position - 1;
     }
 
 //    float triangle(float position) {
