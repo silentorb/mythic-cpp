@@ -4,19 +4,22 @@
 randomly::Dice dice;
 
 static std::vector<float> sine_buffer;
-
+const static unsigned long sine_buffer_range = 44100;
 namespace aura {
 
   namespace generate {
-      
-      void initialize() {
-          long range = 44100;
-          sine_buffer.resize(range);
-          for(long i = 0; i < range; ++i) {
-              float position = (float)i / (float)range;
-              sine_buffer[i] = (float) sin(position * 2 * Pi);
-          }
+
+    void initialize() {
+      sine_buffer.resize(sine_buffer_range + 1);
+      for (long i = 0; i < sine_buffer_range; ++i) {
+        float position = (float) i / (float) sine_buffer_range;
+        sine_buffer[i] = (float) sin(position * 2 * Pi);
       }
+
+      // Add a single sample for solid 1
+      // Loops don't return 1 but rounding from long double to float can cause it to become 1
+      sine_buffer[sine_buffer_range] = (float) sin(2 * Pi);
+    }
 
     namespace ranged {
 
@@ -30,7 +33,6 @@ namespace aura {
 
         return a - 4;
       }
-
     }
 
     float smooth;
@@ -51,8 +53,28 @@ namespace aura {
 
     float sine(float position) {
 //      return (float) sin(position * 2 * Pi);
-        int index = position * sine_buffer.size();
-        return sine_buffer[index];
+      unsigned int index = (unsigned int)(position * sine_buffer_range);
+
+      auto result = sine_buffer[index];
+      auto k = (float) sin(position * 2 * Pi);
+      auto diff = fabs(result - k);
+      if (diff > 0.001) {
+        int j = 0;
+      }
+      return sine_buffer[index];
+    }
+
+    float cosine(float position) {
+      auto p = position + 0.25f;
+      if (p > 1)
+        p -= 1;
+
+      return sine(p);
+//      auto p2 = Pi * Pi;
+//      auto result = sine(position + Pi / 2);
+//      auto i = sin(position * 2 * Pi + Pi / 2);
+//      auto k = cos(position * 2 * Pi);
+//      return result;
     }
 
     float saw(float position) {
@@ -73,7 +95,7 @@ namespace aura {
     // For performance and simplicity this does not have the same phase as square(float)
     float square_pulse_width(float position, float pulse_width) {
       float half = (1 - pulse_width) * 0.5f;
-      float value = (float)fmod(position, 1);
+      float value = (float) fmod(position, 1);
       return value > half && value < 1 - half
              ? 1
              : -1;

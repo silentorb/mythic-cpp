@@ -18,6 +18,7 @@ namespace aura {
 
       void initialize();
     float sine(float position);
+    float cosine(float position);
     float saw(float position);
     float square(float position);
     float square_pulse_width(float position, float pulse_width);

@@ -25,7 +25,7 @@ namespace aura {
 //    return (float)position2;
     auto old = position;
     position += increment;
-    if (position > 1) {
+    if (position >= 1) {
       position -= 1;
       if (position > 1)
         position = fmod(position + increment, 1.0);
@@ -38,7 +38,7 @@ namespace aura {
   long double Loop::update(bool &looped) {
     auto old = position;;
     position += increment;
-    if (position > 1) {
+    if (position >= 1) {
       if (position -= 1 > 1)
         position = fmod(position, 1.0);
 

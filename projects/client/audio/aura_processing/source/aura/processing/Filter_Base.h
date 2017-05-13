@@ -103,37 +103,30 @@ namespace aura {
       Signal_Type B, y;
 
       Second_Order_Side(float frequency, float sample_rate, float Q) {
-//        auto arc = 2 * Pi * frequency / sample_rate;
-          auto arc = frequency / sample_rate;
-        auto d = 1 / Q;
-//        auto k = d / 2 * sin(arc);
-          auto k = generate::sine(arc);
-        B = 0.5 * (1 - k) / (1 + k);
-//        y = (0.5 + B) * cos(arc);
-          auto cos_arg = arc + 0.5f;
-          if (cos_arg > 1)
-              cos_arg -= 1;
-          
-          y = (0.5 + B) * generate::sine(cos_arg);
-      }
-  };
-
-  template<typename Signal_Type>
-  struct Second_Order_Middle {
-      Signal_Type B, y;
-
-      Second_Order_Middle(float frequency, float sample_rate, float Q) {
         auto arc = 2 * Pi * frequency / sample_rate;
           auto arc2 = frequency / sample_rate;
-        auto k = tan(arc / (2 * Q));
+        auto d = 1 / Q;
+//        auto k = d / 2 * sin(arc);
+        auto k = d / 2 * generate::sine(arc2);
         B = 0.5 * (1 - k) / (1 + k);
-//          y = (0.5 + B) * generate::sine(arc + 0.5f);
-//                  y = (0.5 + B) * cos(arc);
-          auto cos_arg = arc2 + 0.5f;
-          if (cos_arg > 1)
-              cos_arg -= 1;
-          
-          y = (0.5 + B) * generate::sine(cos_arg);
+        auto y2 = (0.5 + B) * generate::cosine(arc2);
+//        y = (0.5 + B) * cos(arc);
+          y = (0.5 + B) * generate::cosine(arc2);
       }
   };
+
+//  template<typename Signal_Type>
+//  struct Second_Order_Middle {
+//      Signal_Type B, y;
+//
+//      Second_Order_Middle(float frequency, float sample_rate, float Q) {
+//        auto arc = 2 * Pi * frequency / sample_rate;
+//          auto arc2 = frequency / sample_rate;
+//        auto k = tan(arc / (2 * Q));
+//        B = 0.5 * (1 - k) / (1 + k);
+////          y = (0.5 + B) * generate::sine(arc + 0.5f);
+////                  y = (0.5 + B) * cos(arc);
+//          y = (0.5 + B) * generate::cosine(arc2);
+//      }
+//  };
 }
