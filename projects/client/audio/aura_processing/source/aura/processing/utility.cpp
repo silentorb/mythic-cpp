@@ -4,9 +4,9 @@
 namespace aura {
   namespace processing {
 
-    float to_dB(float value) {
-      return (std::pow(10, value) - 1) / (10 - 1);
-    }
+//    float to_dB(float value) {
+//      return (std::pow(10, value) - 1) / (10 - 1);
+//    }
 
     float inverse_dB(float value) {
       const auto base = 10;

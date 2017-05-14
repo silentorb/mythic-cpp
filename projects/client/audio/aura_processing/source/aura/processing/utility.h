@@ -4,7 +4,7 @@
 namespace aura {
   namespace processing {
 
-    float to_dB(float value);
+//    float to_dB(float value);
 //    float to_dB(float value) {
 ////      return std::pow(value, 2);
 ////      const auto base = 10;

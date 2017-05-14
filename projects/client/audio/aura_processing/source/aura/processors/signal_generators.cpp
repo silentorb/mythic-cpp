@@ -52,15 +52,7 @@ namespace aura {
     }
 
     float sine(float position) {
-//      return (float) sin(position * 2 * Pi);
       unsigned int index = (unsigned int)(position * sine_buffer_range);
-
-      auto result = sine_buffer[index];
-      auto k = (float) sin(position * 2 * Pi);
-      auto diff = fabs(result - k);
-      if (diff > 0.001) {
-        int j = 0;
-      }
       return sine_buffer[index];
     }
 
@@ -70,11 +62,6 @@ namespace aura {
         p -= 1;
 
       return sine(p);
-//      auto p2 = Pi * Pi;
-//      auto result = sine(position + Pi / 2);
-//      auto i = sin(position * 2 * Pi + Pi / 2);
-//      auto k = cos(position * 2 * Pi);
-//      return result;
     }
 
     float saw(float position) {

@@ -21,7 +21,7 @@ namespace aura {
 
         float update() {
           value = envelope.update(instance, timer.get_position(), timer.get_duration());
-          value = processing::to_dB(value);
+          value = to_db(value);
           return value;
         }
 

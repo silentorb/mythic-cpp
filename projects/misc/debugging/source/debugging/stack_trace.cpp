@@ -45,8 +45,9 @@ namespace debugging {
       if (!SymFromAddr(process, DWORD64(stack[i]), &displacement, symbol))
         throw std::runtime_error("Could not load stack symbols.");
 
-      if (!SymGetLineFromAddr64(process, DWORD64(stack[i]), &displacement2, &line))
-        throw std::runtime_error("Could not load stack line numbers.");
+			if (!SymGetLineFromAddr64(process, DWORD64(stack[i]), &displacement2, &line))
+				break;
+//        throw std::runtime_error("Could not load stack line numbers.");
 
       result.append(symbol->Name, symbol->NameLen);
       result += ":" + std::to_string(line.LineNumber) + '\n';

@@ -6,7 +6,7 @@
 namespace aura {
 
   struct Decibels : public Primitive<float> {
-      Decibels(float value) : Primitive(aura::processing::to_dB(value)) {}
+      Decibels(float value) : Primitive(aura::to_db(value)) {}
 //            static Decibels convert(float value) {
 //              Decibels result;
 //              result.value = to_dB(value);
