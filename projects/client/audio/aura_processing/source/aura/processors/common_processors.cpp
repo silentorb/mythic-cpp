@@ -3,6 +3,9 @@
 #include <vector>
 #include <stdexcept>
 
+const static unsigned long range = 4000;
+const static float range_shift = (float)range * 0.5f;
+
 namespace aura {
 
   static std::vector<float> db_buffer;
@@ -13,7 +16,6 @@ namespace aura {
   }
 
   void initialize_db() {
-    unsigned long range = 4000;
     db_buffer.resize(range);
     for (long i = 0; i < range; ++i) {
       float position = 2 * (float) i / (float) range;
@@ -26,11 +28,11 @@ namespace aura {
 //    if (value == 1)
 //      return 1;
 
-    if (value < 0 || value >= 2)
+    if (value >= 2.0f)
       return to_db_internal(value);
 //      throw std::runtime_error("Invalid db range.");
 
-    float initial = 0.5f * value * db_buffer.size();
+    float initial = value * range_shift;
     unsigned int index = (unsigned int)initial;
 //    float diff = initial - (float)index;
 

@@ -29,12 +29,16 @@ namespace aura {
         }
 
         float operator()() {
-          return operation(loop());
+            auto old = loop.get_next_float();
+            loop.update();
+          return old;
         }
 
         float operator()(float frequency) {
           set_frequency(frequency);
-          return operation(loop());
+            auto old = loop.get_next_float();
+            loop.update();
+            return old;
         }
 
     };

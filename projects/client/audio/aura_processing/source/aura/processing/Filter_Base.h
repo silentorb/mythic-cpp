@@ -103,15 +103,15 @@ namespace aura {
       Signal_Type B, y;
 
       Second_Order_Side(float frequency, float sample_rate, float Q) {
-        auto arc = 2 * Pi * frequency / sample_rate;
-          auto arc2 = frequency / sample_rate;
-        auto d = 1 / Q;
+//        auto arc = 2.0f * Pi * frequency / sample_rate;
+          float arc2 = frequency / sample_rate;
+        float d = 1.0f / Q;
 //        auto k = d / 2 * sin(arc);
-        auto k = d / 2 * generate::sine(arc2);
-        B = 0.5 * (1 - k) / (1 + k);
-        auto y2 = (0.5 + B) * generate::cosine(arc2);
+        float k = d / 2.0f * generate::sine(arc2);
+        B = 0.5f * (1.0f - k) / (1.0f + k);
+//        auto y2 = (0.5 + B) * generate::cosine(arc2);
 //        y = (0.5 + B) * cos(arc);
-          y = (0.5 + B) * generate::cosine(arc2);
+          y = (0.5f + B) * generate::cosine(arc2);
       }
   };
 

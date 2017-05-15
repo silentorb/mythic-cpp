@@ -20,13 +20,15 @@ namespace aura {
         increment(frequency / sample_rate), sample_rate(sample_rate) {
       }
 
-      long double update();
+      void update();
 
-      long double operator()() {
-        return update();
-      }
+//      long double operator()() {
+//          auto old = position;
+//        update();
+//        return old;
+//      }
 
-      long double update(bool &looped);
+      void update(bool &looped);
 
       float get_frequency() const {
         return (float) increment * sample_rate;
@@ -40,6 +42,10 @@ namespace aura {
         return position;
       }
 
+      float get_next_float() const {
+          return position;
+      }
+      
       void set_position(double value) {
         position = value;
       }

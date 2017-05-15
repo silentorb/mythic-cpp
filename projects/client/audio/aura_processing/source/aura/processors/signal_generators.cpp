@@ -4,7 +4,7 @@
 randomly::Dice dice;
 
 static std::vector<float> sine_buffer;
-const static unsigned long sine_buffer_range = 44100;
+const static float sine_buffer_range = 44100;
 namespace aura {
 
   namespace generate {
@@ -38,22 +38,21 @@ namespace aura {
     float smooth;
 
     float white_noise() {
-      auto sample = dice.get_float(-1, 1);
-      float amount = 0.5;
-      smooth = smooth - (amount * (smooth - sample));
-      return smooth;
+      return dice.get_float(-1.0f, 1.0f);
+//      float amount = 0.5f;
+//      smooth = smooth - (amount * (smooth - sample));
+//      return smooth;
     }
 
     float white_noise(randomly::Dice &dice) {
-      auto sample = dice.get_float(-1, 1);
-      float amount = 0.5;
-      smooth = smooth - (amount * (smooth - sample));
-      return smooth;
+      return dice.get_float(-1.0f, 1.0f);
+//      float amount = 0.5f;
+//      smooth = smooth - (amount * (smooth - sample));
+//      return smooth;
     }
 
     float sine(float position) {
-      unsigned int index = (unsigned int)(position * sine_buffer_range);
-      return sine_buffer[index];
+      return sine_buffer[position * sine_buffer_range];
     }
 
     float cosine(float position) {
