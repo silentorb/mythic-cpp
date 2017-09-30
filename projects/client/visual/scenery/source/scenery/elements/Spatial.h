@@ -71,6 +71,7 @@ namespace scenery {
 
       virtual mat4 &get_absolute_orientation();
       virtual mat4 &get_transform();
+      virtual mat4 &get_transform_without_scale();
 
 
   };

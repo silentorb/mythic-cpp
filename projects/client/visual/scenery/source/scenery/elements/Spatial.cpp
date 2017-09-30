@@ -26,4 +26,15 @@ namespace scenery {
 
     return transform;
   }
+
+  mat4 &Spatial::get_transform_without_scale() {
+    transform =
+      glm::translate(position)
+      * glm::mat4_cast(orientation);
+
+    if (parent)
+      transform = parent->get_spatial().get_transform_without_scale() * transform;
+
+    return transform;
+  }
 }
