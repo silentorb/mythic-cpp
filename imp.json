@@ -1,6 +1,0 @@
-{
-  "target": "cpp",
-  "projects": [
-    "projects/client/audio/aura"
-  ]
-}
