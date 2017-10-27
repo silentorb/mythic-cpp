@@ -1,7 +1,6 @@
 #pragma once
 
 #include <shading/Shader_Property.h>
-#include "commoner/dllexport.h"
 #include "shading/effects/Effect.h"
 #include "glm/glm.hpp"
 #include "modeling/Draw_Method.h"
@@ -20,7 +19,7 @@ namespace scenery {
 
   const float OPACITY_NOT_SET = -1;
 
-  class MYTHIC_EXPORT Complex_Spatial_Effect : public Effect {
+  class Complex_Spatial_Effect : public Effect {
       Draw_Method draw_method;
       vec4 color = vec4(1);
       glow::Blend_Function blend_function;

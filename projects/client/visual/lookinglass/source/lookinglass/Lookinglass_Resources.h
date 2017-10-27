@@ -43,7 +43,7 @@ namespace lookinglass {
 
 
 
-  class MYTHIC_EXPORT Lookinglass_Resources {
+  class Lookinglass_Resources {
 
       unique_ptr<resourceful::Resource_Manager> texture_manager;
       unique_ptr<resourceful::Resource_Manager> mesh_manager;

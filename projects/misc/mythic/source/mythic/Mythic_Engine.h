@@ -35,8 +35,8 @@ namespace mythic {
       Mythic_Engine(platforming::Platform_Factory &factory, const lookinglass::Graphic_Options &graphic_options);
       ~Mythic_Engine();
 
-      void add_external_myth(const Update_Delegate &update_delegate) {
-        this->update_delegate = update_delegate;
+      void add_external_myth(const Update_Delegate &value) {
+        update_delegate = value;
       }
 
       void update();

@@ -7,7 +7,7 @@
 namespace sculptor {
   namespace geometry {
 
-    class MYTHIC_EXPORT Basic_Mesh {
+    class Basic_Mesh {
         vector<Edge *> edges;
 
     public:
