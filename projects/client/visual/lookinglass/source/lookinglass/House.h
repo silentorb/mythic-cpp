@@ -6,6 +6,7 @@
 #include <memory>
 #include <functional>
 #include <glm/vec2.hpp>
+#include <perspective/Camera.h>
 
 namespace shading {
   class Shader_Loader;
@@ -62,7 +63,7 @@ namespace lookinglass {
 
   class Lookinglass_Resources;
 
-  class MYTHIC_EXPORT House {
+  class House {
   protected:
       unique_ptr<Mist<Viewport_Data>> viewport_mist;
       unique_ptr<Viewport> base_viewport;

@@ -10,7 +10,7 @@ namespace timing {
 }
 
 namespace clienting {
-  class Client;
+  class Mythic_Client;
 }
 namespace platforming {
   class Platform_Factory;
@@ -28,7 +28,7 @@ namespace mythic {
 
   class MYTHIC_EXPORT Mythic_Engine : no_copy {
       unique_ptr<timing::Quartz> timer;
-      unique_ptr<clienting::Client> client;
+      unique_ptr<clienting::Mythic_Client> client;
       Update_Delegate update_delegate;
 
   public:
@@ -43,7 +43,7 @@ namespace mythic {
       void update(float delta);
       void loop();
 
-      clienting::Client &get_client() const {
+      clienting::Mythic_Client &get_client() const {
         return *client;
       }
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
-
 #include "glm/glm.hpp"
 #include "Viewport_Data.h"
 #include "Camera.h"
@@ -14,26 +12,22 @@ namespace through {
 }
 
 using namespace glm;
-using namespace std;
 
 namespace perspective {
 
-  typedef function<void(const ivec2 &)> Vector2_Delegate;
+  typedef std::function<void(const ivec2 &)> Vector2_Delegate;
 
-  class MYTHIC_EXPORT Viewport {
+  class Viewport {
   private:
       through::Mist<Viewport_Data> &mist;
-      Camera *camera;
-      vector<Vector2_Delegate> listeners;
+      std::vector<Vector2_Delegate> listeners;
 
   public:
       ivec2 dimensions;
       ivec2 position;
-//        mat4 view;
       mat4 projection;
       mat4 flat_projection;
       float angle = glm::radians(45.0f);
-//        mat4 view_projection;
 
       float get_aspect_ratio() {
         return (float) dimensions.x / dimensions.y;
@@ -45,15 +39,7 @@ namespace perspective {
       Viewport(Viewport &viewport, const ivec2 &dimensions, const ivec2 &position);
       void set_projection();
       void activate();
-      void update_device();
-
-//        Camera &get_camera() const {
-//          return *camera;
-//        }
-
-      void set_camera(Camera *camera) {
-        this->camera = camera;
-      }
+      void update_device(const Camera &camera);
 
       bool is_active() const;
 
@@ -69,7 +55,7 @@ namespace perspective {
         return dimensions;
       }
 
-      void shoot_ray(const ivec2 &point, vec3 &start, vec3 &end) const;
+      void shoot_ray(const ivec2 &point, vec3 &start, vec3 &end, const Camera &camera) const;
 
       const mat4 &get_flat_projection() const {
         return flat_projection;

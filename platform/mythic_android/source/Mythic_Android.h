@@ -18,7 +18,7 @@ namespace shading {
 }
 
 namespace clienting {
-  class Client;
+  class Mythic_Client;
 }
 namespace audio {
   class Speaker;
@@ -39,7 +39,7 @@ private:
     void start();
     Mythic_Initializer initializer;
     unique_ptr<mythic::Mythic_Engine> engine;
-    clienting::Client *client;
+    clienting::Mythic_Client *client;
 
     bool is_closing();
     int ready = 0;

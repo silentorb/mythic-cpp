@@ -3,7 +3,7 @@
 #include "display/Android_Shader_Loader.h"
 #include "android_utility.h"
 #include "lookinglass/House.h"
-#include "clienting/Client.h"
+#include "../../../projects/client/general/client/source/clienting/Mythic_Client.h"
 #include <iostream>
 #include "logger.h"
 #include "input/Android_Input.h"

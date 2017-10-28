@@ -2,6 +2,7 @@
 
 #include "commoner/dllexport.h"
 #include <memory>
+#include <perspective/Camera.h>
 
 namespace lookinglass {
   class House;
@@ -20,13 +21,14 @@ namespace haft {
 
 namespace audio {
   class Player;
+
   class Speaker;
 }
 
 using namespace haft;
 
 namespace clienting {
-  class Client : no_copy {
+  class Mythic_Client : no_copy {
   private:
       unique_ptr<House> house;
       unique_ptr<Input_Manager> input_manager;
@@ -34,9 +36,9 @@ namespace clienting {
       bool _is_closing;
 
   public:
-      Client(House *house, audio::Speaker* speaker);
+      Mythic_Client(House *house, audio::Speaker *speaker);
 
-      ~Client();
+      ~Mythic_Client();
 
       void update();
       bool is_closing();
@@ -58,7 +60,7 @@ namespace clienting {
       void release();
       void load();
 
-      audio:: Player & get_audio_player()const {
+      audio::Player &get_audio_player() const {
         return *audio_player;
       }
   };

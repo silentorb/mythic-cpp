@@ -40,7 +40,7 @@ namespace lookinglass {
     viewport_mist = unique_ptr<Mist<Viewport_Data>>(
       through::create_mist<Viewport_Data>(scene_definition));
     base_viewport = unique_ptr<Viewport>(new Viewport(*viewport_mist, dimensions.x, dimensions.y));
-    base_viewport->activate();
+      base_viewport->activate();
 
     resource_manager = unique_ptr<Lookinglass_Resources>(
       new Lookinglass_Resources(file_loader, shader_processor, *base_viewport));

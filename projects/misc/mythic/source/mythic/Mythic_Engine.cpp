@@ -1,7 +1,7 @@
 #include <lookinglass/Lookinglass_House.h>
 #include "Mythic_Engine.h"
 #include "timing/Quartz.h"
-#include "clienting/Client.h"
+#include "clienting/Mythic_Client.h"
 #include "haft/Input_Manager.h"
 #include <platforming/Platform_Factory.h>
 
@@ -14,7 +14,7 @@ namespace mythic {
                                                     factory.create_shader_processor(),
                                                     graphic_options
     );
-    client.reset(new clienting::Client(house, factory.create_speaker()));
+    client.reset(new clienting::Mythic_Client(house, factory.create_speaker()));
 
     auto &input_manager = client->get_input_manager();
     auto input_source = factory.create_input_source(input_manager.get_config());

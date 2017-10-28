@@ -2,7 +2,7 @@
 #include <audio/Speaker.h>
 #include "Desktop.h"
 #include "desktop/Desktop_Frame.h"
-#include "clienting/Client.h"
+#include "clienting/Mythic_Client.h"
 #include <desktop_audio/interface.h>
 #include <shading/shader_processing.h>
 #include "Desktop_File_Loader.h"

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
-
 #include "glm/gtc/quaternion.hpp"
 #include "glm/vec3.hpp"
 #include "spatial/Positioned_Oriented.h"
@@ -11,7 +9,7 @@ using namespace spatial;
 
 namespace perspective {
 
-  class MYTHIC_EXPORT Camera : public Positioned_Oriented {
+  class Camera {
   private:
       vec3 position;
       quat orientation;
@@ -24,24 +22,22 @@ namespace perspective {
       Camera(const vec3 &position, const quat &orientation, float angle) : position(position), orientation(orientation),
                                                                            angle(angle) {}
 
-      virtual ~Camera() {}
+      const mat4 get_view_matrix() const;
 
-      virtual mat4 get_view_matrix();
-
-      vec3 &get_position() override {
+      const vec3 &get_position() const {
         return position;
       }
 
-      void set_position(const vec3 &position) override {
+      void set_position(const vec3 &position) {
         Camera::position = position;
       }
 
-      quat &get_orientation() override {
+      const quat &get_orientation() const {
         return orientation;
       }
 
-      void set_orientation(const quat &orientation) override {
-        Camera::orientation = orientation;
+      void set_orientation(const quat &value) {
+        orientation = value;
       }
 
       void set_all(const vec3 &position, const quat &orientation, float degrees) {
@@ -50,7 +46,7 @@ namespace perspective {
         set_angle(degrees);
       }
 
-      float &get_angle() {
+      const float &get_angle() const {
         return angle;
       }
 

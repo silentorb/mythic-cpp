@@ -16,6 +16,4 @@ if (LOCAL_HEADER)
 
 elseif (LOCAL_FOOTER)
 
-  include(games/spacegame/spacegame.cmake)
-
 endif ()

@@ -1,7 +1,7 @@
 
 #include "Mythic_iOS.h"
 #include "lookinglass/House.h"
-#include "clienting/Client.h"
+#include "../../../projects/client/general/client/source/clienting/Mythic_Client.h"
 #include "mythic/Mythic_Engine.h"
 #include "glow.h"
 #include "glow_gl.h"

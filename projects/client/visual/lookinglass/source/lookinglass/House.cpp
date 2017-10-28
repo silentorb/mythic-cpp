@@ -45,7 +45,6 @@ namespace lookinglass {
 
     auto viewport = Viewport::get_active_viewport();
     viewport->set_dimensions(frame->get_dimensions());
-    viewport->update_device();
 
     renderable();
 

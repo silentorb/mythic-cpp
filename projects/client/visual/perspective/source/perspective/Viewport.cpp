@@ -10,16 +10,14 @@ namespace perspective {
   Viewport::Viewport(through::Mist<Viewport_Data> &mist, int width, int height, int left, int top) :
     mist(mist),
     dimensions(ivec2(width, height)),
-    position(left, top),
-    camera(nullptr) {
+    position(left, top) {
     set_projection();
   }
 
   Viewport::Viewport(Viewport &viewport, const ivec2 &dimensions, const ivec2 &position) :
     mist(viewport.mist),
     dimensions(dimensions),
-    position(position),
-    camera(nullptr) {
+    position(position) {
     set_projection();
   }
 
@@ -42,26 +40,23 @@ namespace perspective {
     active_viewport = this;
 
     glViewport(position.x, position.y, dimensions.x, dimensions.y);
-    update_device();
   }
 
-  void Viewport::update_device() {
-    if (camera == nullptr)
-      return;
+  void Viewport::update_device(const Camera &camera) {
 
-    if (angle != camera->get_angle()) {
-      angle = camera->get_angle();
+    if (angle != camera.get_angle()) {
+      angle = camera.get_angle();
       set_projection();
     }
 
     auto data = Viewport_Data();
-    data.view = camera->get_view_matrix();
+    data.view = camera.get_view_matrix();
     data.projection = projection;
-    data.camera_direction = camera->get_orientation() * vec3(0, 1, 0);
+    data.camera_direction = camera.get_orientation() * vec3(0, 1, 0);
     mist.update(&data);
   }
 
-  void Viewport::shoot_ray(const ivec2 &point, vec3 &start, vec3 &end) const {
+  void Viewport::shoot_ray(const ivec2 &point, vec3 &start, vec3 &end, const Camera &camera) const {
 //      float x = (2.0f * point.x) / dimensions.x - 1.0f;
 //      float y = 1.0f - (2.0f * point.y) / dimensions.y;
 //      vec4 ray_clip = vec4(x, 1, y, 1.0);
@@ -73,8 +68,8 @@ namespace perspective {
     int y = dimensions.y - point.y;
     auto bounds = vec4(position.x, position.y, dimensions.x, dimensions.y);
 
-    start = glm::unProject(vec3(float(point.x), float(y), 0), camera->get_view_matrix(), projection, bounds);
-    end = glm::unProject(vec3(float(point.x), float(y), 1), camera->get_view_matrix(), projection, bounds);
+    start = glm::unProject(vec3(float(point.x), float(y), 0), camera.get_view_matrix(), projection, bounds);
+    end = glm::unProject(vec3(float(point.x), float(y), 1), camera.get_view_matrix(), projection, bounds);
 
   }
 
