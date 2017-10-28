@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <vector>
 #include <memory>
 #include "Device.h"
@@ -8,33 +8,34 @@
 #include "Input_Source.h"
 #include "Input_Configuration.h"
 
-using namespace std;
+
 
 namespace haft {
 
-  class MYTHIC_EXPORT Input_Manager : no_copy {
-      unique_ptr<Input_Configuration> config;
-      vector<unique_ptr<Gesture_Interpreter>> gesture_interpreters;
-      unique_ptr<Input_Source> source;
-      unique_ptr<Input_State> current_state;
-      unique_ptr<Input_State> previous_state;
+  class Input_Manager {
+      std::unique_ptr<Input_Configuration> config;
+      std::vector<std::unique_ptr<Gesture_Interpreter>> gesture_interpreters;
+      std::unique_ptr<Input_Source> source;
+      std::unique_ptr<Input_State> current_state;
+      std::unique_ptr<Input_State> previous_state;
 
   public:
 
       Input_Manager();
+      Input_Manager(const Input_Manager&) = delete;
 
       void add_device(Device *device) {
-//        devices.push_back(unique_ptr<Device>(device));
+//        devices.push_back(std::unique_ptr<Device>(device));
       }
 
-      Action &add_action(int id, string name) {
-        auto action = new Action(id, name);
-//        actions.push_back(unique_ptr<Action>(action));
-        return *action;
-      }
+//      Action &add_action(int id, std::string name) {
+//        auto action = new Action(id, name);
+////        actions.push_back(std::unique_ptr<Action>(action));
+//        return *action;
+//      }
 
       void add_gesture_interpreter(Gesture_Interpreter *interpreter) {
-        gesture_interpreters.push_back(unique_ptr<Gesture_Interpreter>(interpreter));
+        gesture_interpreters.push_back(std::unique_ptr<Gesture_Interpreter>(interpreter));
       }
 
       Input_State &get_current_state() const {

@@ -2,7 +2,7 @@
 
 namespace haft {
 
-  Device *Input_Configuration::get_device(const string name) const {
+  Device *Input_Configuration::get_device(const std::string name) const {
     for (auto &device: devices) {
       if (device->get_name() == name)
         return device.get();

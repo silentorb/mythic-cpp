@@ -5,7 +5,7 @@
 
 namespace spatial {
 
-  class Positioned_Oriented: public Positioned, public Oriented {
+  class Positioned_Oriented : public Positioned, public Oriented {
   public:
   };
 }

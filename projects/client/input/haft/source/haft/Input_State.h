@@ -9,14 +9,13 @@
 #include <glm/vec2.hpp>
 #include <algorithm>
 
-using namespace std;
 using namespace glm;
 
 namespace haft {
 
-  class Input_State : public Event_Consumer, no_copy {
-      vector<Gesture> gestures;
-      vector<unique_ptr<Event>> events;
+  class Input_State : public Event_Consumer {
+      std::vector<Gesture> gestures;
+      std::vector<std::unique_ptr<Event>> events;
       ivec2 position;
       Input_State *previous;
 
@@ -24,28 +23,30 @@ namespace haft {
 
       Input_State() {}
 
+      Input_State(const Input_State &) = delete;
+
       void add_event(Event *event) override {
-        events.push_back(unique_ptr<Event>(event));
+        events.push_back(std::unique_ptr<Event>(event));
       }
 
       void add_event(Action &action, float value = 1) {
-        events.push_back(unique_ptr<Event>(new Event(action, value)));
+        events.push_back(std::unique_ptr<Event>(new Event(action, value)));
       }
 
       Event *get_event(const Action &action) const {
         for (auto &event: events) {
-          if (&event->get_action() == &action)
+          if (event->get_action() == action)
             return event.get();
         }
 
         return nullptr;
       }
 
-      vector<unique_ptr<Event>>::const_iterator events_begin() const {
+      std::vector<std::unique_ptr<Event>>::const_iterator events_begin() const {
         return events.begin();
       }
 
-      vector<unique_ptr<Event>>::const_iterator events_end() const {
+      std::vector<std::unique_ptr<Event>>::const_iterator events_end() const {
         return events.end();
       }
 
@@ -67,11 +68,11 @@ namespace haft {
 
       bool just_pressed(const Action &action) const {
         auto current_event = get_event(action);
-        return current_event && !current_event->was_handled() && !previous->get_event(action);
+        return current_event /*&& !current_event->was_handled()*/ && !previous->get_event(action);
       }
 
       void set_handled(const Action &action) const {
-        get_event(action)->set_handled(true);
+//        get_event(action)->set_handled(true);
       }
 
       void clear_events() {
@@ -82,7 +83,7 @@ namespace haft {
         return events.size();
       }
 
-      const vector<Gesture> &get_gestures() const {
+      const std::vector<Gesture> &get_gestures() const {
         return gestures;
       }
 
@@ -94,7 +95,7 @@ namespace haft {
         gestures.push_back({action, position});
       }
 
-      const vector<unique_ptr<Event>> &get_events() const {
+      const std::vector<std::unique_ptr<Event>> &get_events() const {
         return events;
       }
 

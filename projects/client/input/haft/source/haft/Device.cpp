@@ -3,13 +3,13 @@
 
 namespace haft {
 
-  Device::Device(const string &name, initializer_list<Trigger *> triggers) : name(name) {
+  Device::Device(const std::string &name, std::initializer_list<Trigger *> triggers) : name(name) {
     for (auto trigger : triggers) {
       add_trigger(trigger);
     }
   }
 
-  Trigger *Device::get_trigger(const string trigger_name) const {
+  Trigger *Device::get_trigger(const std::string trigger_name) const {
     for (auto &trigger: triggers) {
       if (trigger->get_name() == trigger_name)
         return trigger.get();

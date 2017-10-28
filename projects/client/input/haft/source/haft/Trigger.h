@@ -1,22 +1,22 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <string>
 #include "Action.h"
 
-using namespace std;
+
 
 namespace haft {
 
-	class MYTHIC_EXPORT Trigger {
-      string name;
+	class Trigger {
+      std::string name;
       int id;
       Action *action;
 			Trigger& operator=(const Trigger&) = delete;
 			Trigger(Trigger const &) = delete;
 
 	public:
-      Trigger(const string &name, int id = 0)
+      Trigger(const std::string &name, int id = 0)
         : name(name), id(id), action(nullptr) { }
 
       Action *get_action() const {
@@ -27,7 +27,7 @@ namespace haft {
         this->action = &action;
       }
 
-      const string &get_name() const {
+      const std::string &get_name() const {
         return name;
       }
 
