@@ -1,12 +1,12 @@
 #pragma once
 
 #include <glm/gtc/quaternion.hpp>
-#include "commoner/dllexport.h"
 #include "Simple_Element.h"
+#include <memory>
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Spatial : public Simple_Element, virtual public Spatial_Source {
+  class Spatial : public Simple_Element, virtual public Spatial_Source {
       vec3 position;
       quat orientation;
       vec3 scale;
@@ -72,7 +72,7 @@ namespace scenery {
       virtual mat4 &get_absolute_orientation();
       virtual mat4 &get_transform();
       virtual mat4 &get_transform_without_scale();
-
-
   };
+
+  using Spatial_Owner = std::unique_ptr<Spatial>;
 }

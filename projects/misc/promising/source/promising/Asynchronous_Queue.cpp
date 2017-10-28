@@ -43,6 +43,12 @@ namespace promising {
     }
   }
 
+  void Asynchronous_Queue::wait() {
+    while (tasks.size() > 0) {
+      this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+  }
+
   void Asynchronous_Queue::start_on_new_thread() {
     on_main_thread = false;
 

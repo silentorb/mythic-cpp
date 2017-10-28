@@ -32,6 +32,7 @@ namespace promising {
 
       void push(Task task);
       void update();
+      void wait();
 
       size_t size() {
         return tasks.size();
