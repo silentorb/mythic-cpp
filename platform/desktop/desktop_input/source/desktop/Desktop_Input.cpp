@@ -16,9 +16,13 @@ namespace desktop {
 
   void Desktop_Input::initialize_keyboard() {
     keyboard = new Device("keyboard", {
-      new Trigger("F9", SDL_SCANCODE_F9),
+//      new Trigger("F9", SDL_SCANCODE_F9),
     });
     config.add_device(keyboard);
+
+    for (int i = SDL_SCANCODE_A; i <= SDL_SCANCODE_VOLUMEDOWN; ++i) {
+      keyboard->add_trigger(new Trigger(std::string(SDL_GetScancodeName((SDL_Scancode) i)), i));
+    }
   }
 
   void Desktop_Input::initialize_mouse() {

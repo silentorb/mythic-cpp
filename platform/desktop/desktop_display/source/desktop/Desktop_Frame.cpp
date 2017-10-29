@@ -18,7 +18,7 @@ namespace desktop {
     SDL_Init(SDL_INIT_VIDEO);   // Initialize SDL2
     int fullscreen_flag = is_fullscreen() ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
 
-    if(graphic_options.get_multisamples()) {
+    if (graphic_options.get_multisamples()) {
       SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
       SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, graphic_options.get_multisamples());
     }
@@ -58,7 +58,7 @@ namespace desktop {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   }
 
-  void  Desktop_Frame::update_events() {
+  void Desktop_Frame::update_events() {
     SDL_Event event;
     if (SDL_PollEvent(&event)) {
 
@@ -68,19 +68,23 @@ namespace desktop {
           closing = true;
           return;
 
-//        case SDL_WINDOWEVENT_SIZE_CHANGED:
         case SDL_WINDOWEVENT:
           switch (event.window.event) {
             case SDL_WINDOWEVENT_SIZE_CHANGED:
               std::cout << "Window Dimensions: " <<
-              std::to_string(event.window.data1) << ", " <<
-              std::to_string(event.window.data2) << std::endl;
+                        std::to_string(event.window.data1) << ", " <<
+                        std::to_string(event.window.data2) << std::endl;
 
               set_dimensions(
                 event.window.data1,
                 event.window.data2
               );
+              return;
           }
+
+//        default: // For occasional debugging
+//        std::cout<< "Unhandled event " << event.type << std::endl;
+//          return;
       }
 
     }
