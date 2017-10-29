@@ -15,6 +15,10 @@ namespace haft {
       Action get_action() const {
         return action;
       }
+
+      float get_value() const {
+        return value;
+      }
   };
 
 }

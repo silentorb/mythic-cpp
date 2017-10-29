@@ -71,7 +71,7 @@ namespace desktop {
 
     for (auto trigger: keyboard->get_active_triggers()) {
       if (scancode_state[trigger->get_id()]) {
-        state.add_event(*trigger->get_action());
+        state.add_event(trigger->get_action());
       }
     }
   }
@@ -87,7 +87,7 @@ namespace desktop {
         if (trigger.get_id() < 4
             && !(buttons & trigger.get_id())
             && previous_buttons & trigger.get_id()) {
-          state.add_event(*trigger.get_action());
+          state.add_event(trigger.get_action());
         }
       }
     }
@@ -118,7 +118,7 @@ namespace desktop {
       auto &trigger = gamepad->get_trigger(i);
       if (trigger.get_action()) {
         if (SDL_GameControllerGetButton(controller, (SDL_GameControllerButton) i) != 0) {
-          state.add_event(*trigger.get_action());
+          state.add_event(trigger.get_action());
         }
       }
     }
@@ -150,13 +150,13 @@ namespace desktop {
 
   void Desktop_Input::check_negative_direction(double value, Trigger &trigger, Input_State &state) {
     if (value < -gamepad_min_threshold && trigger.get_action()) {
-      state.add_event(*trigger.get_action(), -value);
+      state.add_event(trigger.get_action(), -value);
     }
   }
 
   void Desktop_Input::check_positive_direction(double value, Trigger &trigger, Input_State &state) {
     if (value > gamepad_min_threshold && trigger.get_action()) {
-      state.add_event(*trigger.get_action(), value);
+      state.add_event(trigger.get_action(), value);
     }
   }
 }

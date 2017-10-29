@@ -15,7 +15,7 @@ namespace haft {
 
   class Input_State : public Event_Consumer {
       std::vector<Gesture> gestures;
-      std::vector<std::unique_ptr<Event>> events;
+      std::vector<Event> events;
       ivec2 position;
       Input_State *previous;
 
@@ -25,30 +25,34 @@ namespace haft {
 
       Input_State(const Input_State &) = delete;
 
-      void add_event(Event *event) override {
-        events.push_back(std::unique_ptr<Event>(event));
+      void add_event(const Event &event) override {
+        events.push_back(event);
       }
 
-      void add_event(Action &action, float value = 1) {
-        events.push_back(std::unique_ptr<Event>(new Event(action, value)));
+      void add_event(Action action, float value = 1) {
+        events.push_back({action, value});
       }
 
-      Event *get_event(const Action &action) const {
+      const Event *get_event(const Action &action) const {
         for (auto &event: events) {
-          if (event->get_action() == action)
-            return event.get();
+          if (event.get_action() == action)
+            return &event;
         }
 
         return nullptr;
       }
 
-      std::vector<std::unique_ptr<Event>>::const_iterator events_begin() const {
-        return events.begin();
+      const std::vector<Event> &get_events() const {
+        return events;
       }
 
-      std::vector<std::unique_ptr<Event>>::const_iterator events_end() const {
-        return events.end();
-      }
+//      std::vector<Event>>::const_iterator events_begin() const {
+//        return events.begin();
+//      }
+//
+//      std::vector<std::unique_ptr<Event>>::const_iterator events_end() const {
+//        return events.end();
+//      }
 
       const ivec2 &get_position() const {
         return position;
@@ -93,10 +97,6 @@ namespace haft {
 
       void add_gesture(Gesture_Type action, ivec2 position) {
         gestures.push_back({action, position});
-      }
-
-      const std::vector<std::unique_ptr<Event>> &get_events() const {
-        return events;
       }
 
       void clear_gestures() {

@@ -5,8 +5,6 @@
 #include <memory>
 
 
-
-
 namespace haft {
 
   class Device {
@@ -36,13 +34,22 @@ namespace haft {
         return name;
       }
 
-      void assign(int index, Action &action) {
+      void assign(int index, Action action) {
         auto &trigger = *triggers[index].get();
         trigger.set_action(action);
         active_triggers.push_back(&trigger);
       }
 
-      void assign(const std::string trigger_name, Action &action) {
+      template<typename T>
+      void assign(const std::string trigger_name, T action) {
+        auto trigger = get_trigger(trigger_name);
+        if (trigger) {
+          trigger->set_action(*(Action *) &action);
+          active_triggers.push_back(trigger);
+        }
+      }
+
+      void assign(const std::string trigger_name, Action action) {
         auto trigger = get_trigger(trigger_name);
         if (trigger) {
           trigger->set_action(action);
