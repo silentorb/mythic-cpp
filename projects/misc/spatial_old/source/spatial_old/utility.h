@@ -5,7 +5,7 @@
 
 using namespace glm;
 
-namespace spatial {
+namespace spatial_old {
 
   vec3 look_at_yaw(const vec3 &direction);
   vec3 look_at_yaw(const vec3 &source, const vec3 &target);

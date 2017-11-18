@@ -4,7 +4,7 @@
 
 using namespace glm;
 
-namespace spatial {
+namespace spatial_old {
 
   class Positioned {
   public:

@@ -33,7 +33,7 @@ namespace scenery {
       virtual ~Model() {}
 
       virtual void render() override;
-      void render(Spatial_Source &spatial);
+      void render(Spatial_Source &spatial_old);
 
       float &get_opacity() {
         return color.w;

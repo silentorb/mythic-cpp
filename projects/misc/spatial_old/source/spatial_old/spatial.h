@@ -3,7 +3,7 @@
 #include <glm/vec3.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace spatial {
+namespace spatial_old {
 
   using vec3 = glm::vec3;
   using quat = glm::quat;

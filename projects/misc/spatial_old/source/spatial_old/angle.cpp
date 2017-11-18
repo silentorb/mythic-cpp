@@ -2,7 +2,7 @@
 #include <math/utility.h>
 #include "angle.h"
 
-namespace spatial {
+namespace spatial_old {
   float z_angle(float y, float x) {
     auto angle = (float)(atan2(y, x));
     if (angle < 0)

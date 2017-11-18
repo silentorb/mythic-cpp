@@ -17,9 +17,9 @@ namespace scenery {
     render(parent->get_spatial());
   }
 
-  void Model::render(Spatial_Source &spatial) {
-    auto &transform = spatial.get_transform();
-    auto &normal_transform = spatial.get_absolute_orientation();
+  void Model::render(Spatial_Source &spatial_old) {
+    auto &transform = spatial_old.get_transform();
+    auto &normal_transform = spatial_old.get_absolute_orientation();
     if (texture)
       texture->activate();
 

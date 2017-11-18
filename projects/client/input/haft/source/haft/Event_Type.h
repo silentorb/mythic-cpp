@@ -4,6 +4,6 @@ namespace haft {
   enum Event_Type {
       simple,
       value,
-      spatial
+      spatial_old
   };
 }

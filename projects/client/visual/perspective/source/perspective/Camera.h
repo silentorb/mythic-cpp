@@ -2,10 +2,10 @@
 
 #include "glm/gtc/quaternion.hpp"
 #include "glm/vec3.hpp"
-#include "spatial/Positioned_Oriented.h"
+#include "spatial_old/Positioned_Oriented.h"
 
 using namespace glm;
-using namespace spatial;
+using namespace spatial_old;
 
 namespace perspective {
 

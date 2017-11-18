@@ -1,5 +1,5 @@
 #pragma once
 
-namespace spatial {
+namespace spatial_old {
   float z_angle(float y, float x);
 }

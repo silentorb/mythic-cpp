@@ -1,0 +1,4 @@
+name: mythic
+projects:
+  - projects/misc/math
+  - projects/misc/spatial
