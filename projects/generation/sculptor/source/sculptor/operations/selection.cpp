@@ -4,7 +4,7 @@
 #include <sculptor/geometry/Polygon.h>
 #include "sculptor/geometry/Edge.h"
 
-namespace sculptor {
+namespace sculptor_old {
 
   namespace selecting {
     Basic_Mesh *const get_mesh(const Selection &selection) {

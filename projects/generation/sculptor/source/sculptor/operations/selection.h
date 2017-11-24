@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
     class Basic_Mesh;
   }

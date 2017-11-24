@@ -4,7 +4,7 @@
 #include "declarations.h"
 #include "sculptor/operations/selection.h"
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
 
     class Basic_Mesh {

@@ -6,7 +6,7 @@
 
 using namespace glm;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace create {
 
     Basic_Mesh *square(vec2 size, float z) {

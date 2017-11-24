@@ -4,7 +4,7 @@
 #include "sculptor/geometry/Polygon.h"
 #include "sculptor/geometry/Edge.h"
 
-namespace sculptor {
+namespace sculptor_old {
   using namespace geometry;
 
   namespace operations {

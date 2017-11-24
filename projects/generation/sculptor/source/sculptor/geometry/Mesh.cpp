@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
     Basic_Mesh::Basic_Mesh() {
 

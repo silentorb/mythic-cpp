@@ -1,6 +1,6 @@
 #include "sculptor/geometry.h"
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
     Edge::Edge(Vertex *first, Vertex *second) {
       vertices[0] = first;

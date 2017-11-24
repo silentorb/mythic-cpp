@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
 
     struct Vertex_Data {

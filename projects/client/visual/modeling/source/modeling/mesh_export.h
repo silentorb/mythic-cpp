@@ -6,7 +6,7 @@
 #include "sculptor/geometry.h"
 #include "shading/Vertex_Schema.h"
 
-using namespace sculptor::geometry;
+using namespace sculptor_old::geometry;
 
 namespace modeling {
   namespace mesh_export {

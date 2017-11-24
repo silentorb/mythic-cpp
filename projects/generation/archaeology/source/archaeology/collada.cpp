@@ -6,8 +6,8 @@
 #include <textual/string_additions.h>
 #include <sstream>
 
-using namespace sculptor;
-using namespace sculptor::geometry;
+using namespace sculptor_old;
+using namespace sculptor_old::geometry;
 using namespace pugi;
 
 #if ANDROID
@@ -17,7 +17,7 @@ extern void android_load_binary(std::vector<char> &buffer, const std::string &pa
 
 namespace archaeology {
 
-  typedef function<void(sculptor::geometry::Polygon * , xml_node & )> Polygon_Delegate;
+  typedef function<void(sculptor_old::geometry::Polygon * , xml_node & )> Polygon_Delegate;
 
   struct Effect {
       vec4 color;
@@ -182,7 +182,7 @@ namespace archaeology {
       for (int i = 0; i < polygon->vertices.size(); ++i) {
         index_buffer[i] = (float)index_map[polygon->vertices[i]];
       }
-      polygon->set_data(sculptor::geometry::Vertex_Data::group, (float *) &index_buffer, 1, 1);
+      polygon->set_data(sculptor_old::geometry::Vertex_Data::group, (float *) &index_buffer, 1, 1);
     }
   }
 

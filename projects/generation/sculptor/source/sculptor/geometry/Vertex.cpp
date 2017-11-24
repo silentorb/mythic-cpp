@@ -1,7 +1,7 @@
 #include <vectoring/utility.h>
 #include "sculptor/geometry.h"
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
 
     Vertex::Vertex(vec3 vector)

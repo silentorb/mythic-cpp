@@ -1,7 +1,7 @@
 #include <vectoring/utility.h>
 #include "sculptor/geometry.h"
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
 
     Polygon::Polygon(initializer_list<Vertex *> source) {

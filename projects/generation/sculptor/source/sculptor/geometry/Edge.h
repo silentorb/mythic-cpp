@@ -3,7 +3,7 @@
 #include "commoner/dllexport.h"
 #include <vectoring/utility.h>
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
     class MYTHIC_EXPORT Edge {
 

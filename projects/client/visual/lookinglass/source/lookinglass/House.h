@@ -89,7 +89,7 @@ namespace lookinglass {
   public:
 
       ~House();
-      void update();
+      void render();
       bool is_closing();
 //      void remove_renderable(Renderable &renderable);
 

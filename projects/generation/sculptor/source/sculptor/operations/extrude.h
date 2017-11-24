@@ -6,9 +6,9 @@
 #include "operations.h"
 #include <vectoring/utility.h>
 
-using namespace sculptor::geometry;
+using namespace sculptor_old::geometry;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace operations {
 //    template<typename Iterator>
 //    void extrude(Iterator &edges, mat4 &offset, bool fill = false);

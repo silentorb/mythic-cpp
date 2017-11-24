@@ -6,10 +6,10 @@
 #include <string>
 #include <math/utility.h>
 
-using namespace sculptor::geometry;
+using namespace sculptor_old::geometry;
 using namespace std;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace operations {
 
     MYTHIC_EXPORT vec3 calculate_normal(Vertex *vertex);

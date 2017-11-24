@@ -40,7 +40,10 @@ namespace clienting {
 
       ~Mythic_Client();
 
-      void update();
+//      void update();
+  void render();
+      void update_input();
+
       bool is_closing();
 
       House &get_house() const {

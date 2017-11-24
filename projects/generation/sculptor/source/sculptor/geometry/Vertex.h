@@ -5,7 +5,7 @@
 using namespace glm;
 using namespace std;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace geometry {
     class MYTHIC_EXPORT Vertex : no_copy {
         vec3 position;

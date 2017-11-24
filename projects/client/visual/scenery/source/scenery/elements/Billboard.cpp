@@ -24,8 +24,8 @@ namespace scenery {
       billboard_data::vertex_schema = unique_ptr<Vertex_Schema>(
         new Vertex_Schema(
           {
-            Vertex_Attribute(sculptor::geometry::Vertex_Data::position, "position", 3),
-            Vertex_Attribute(sculptor::geometry::Vertex_Data::uv, "uv", 2)
+            Vertex_Attribute(sculptor_old::geometry::Vertex_Data::position, "position", 3),
+            Vertex_Attribute(sculptor_old::geometry::Vertex_Data::uv, "uv", 2)
           }));
 
       billboard_data::billboard_mesh = unique_ptr<Mesh_Data>(

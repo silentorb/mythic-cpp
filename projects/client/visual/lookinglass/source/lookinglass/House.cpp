@@ -36,7 +36,7 @@ namespace lookinglass {
     this->renderable = renderable;
   }
 
-  void House::update() {
+  void House::render() {
     if (!active)
       return;
 

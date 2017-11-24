@@ -3,9 +3,9 @@
 #include <math/utility.h>
 #include "sculptor/geometry.h"
 
-using namespace sculptor::geometry;
+using namespace sculptor_old::geometry;
 
-namespace sculptor {
+namespace sculptor_old {
   namespace create {
     Basic_Mesh *square(vec2 size = vec2(1), float z = 0);
 

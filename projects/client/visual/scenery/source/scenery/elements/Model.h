@@ -16,7 +16,7 @@ namespace scenery {
 using namespace std;
 using namespace glm;
 using namespace modeling;
-using namespace sculptor::geometry;
+using namespace sculptor_old::geometry;
 
 namespace scenery {
 

@@ -14,8 +14,11 @@ namespace clienting {
 
   Mythic_Client::~Mythic_Client() {}
 
-  void Mythic_Client::update() {
-    house->update();
+  void Mythic_Client::render() {
+    house->render();
+  }
+
+  void Mythic_Client::update_input() {
     input_manager->update();
   }
 
