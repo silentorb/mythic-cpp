@@ -72,7 +72,7 @@ add_subdirectory(projects/misc/mapping)
 add_subdirectory(projects/misc/breeze)
 add_subdirectory(projects/misc/songbird)
 add_subdirectory(projects/misc/emission)
-add_subdirectory(external/boost_regex)
+#add_subdirectory(external/boost_regex)
 
 add_subdirectory(projects/generation/sculptor)
 add_subdirectory(projects/generation/archaeology)

@@ -34,9 +34,9 @@ namespace ground {
       int step = 0;
       while (is_saving) {
 //#if _DEBUG
-        if (++step == 300) {
-          throw runtime_error("Deleting unsaved seed.");
-        }
+//        if (++step == 300) {
+//          throw runtime_error("Deleting unsaved seed.");
+//        }
 //#endif
         this_thread::sleep_for(std::chrono::milliseconds(20));
       }

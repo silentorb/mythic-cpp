@@ -62,10 +62,10 @@ namespace promising {
   }
 
   void Asynchronous_Queue::push(Task task) {
-    unique_lock<mutex>(m);
-    if (!task)
-      throw runtime_error("Database task is empty.");
-
-    tasks.push(task);
+//    unique_lock<mutex>(m);
+//    if (!task)
+//      throw runtime_error("Database task is empty.");
+//
+//    tasks.push(task);
   }
 }

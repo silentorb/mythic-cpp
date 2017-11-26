@@ -17,7 +17,7 @@ namespace resourceful {
       Resource_Manager(Resource_Manager const &) = delete;
 
   public:
-      Resource_Manager(const string name) : name(name) { }
+      Resource_Manager(const string name) : name(name) {}
 
       ~Resource_Manager();
 
@@ -38,6 +38,10 @@ namespace resourceful {
 
       void add_resource(Resource *resource) {
         resources.push_back(unique_ptr<Resource>(resource));
+      }
+
+      void add_resource(std::unique_ptr<Resource> resource) {
+        resources.push_back(std::move(resource));
       }
 
       void remove_resource(Resource *resource);

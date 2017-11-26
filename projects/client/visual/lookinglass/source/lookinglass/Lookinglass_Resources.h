@@ -10,6 +10,7 @@ using namespace std;
 
 namespace resourceful {
   class Resource_Manager;
+
   class Resource;
 }
 
@@ -42,7 +43,6 @@ namespace glow {
 namespace lookinglass {
 
 
-
   class Lookinglass_Resources {
 
       unique_ptr<resourceful::Resource_Manager> texture_manager;
@@ -52,7 +52,8 @@ namespace lookinglass {
       unique_ptr<resourceful::Resource_Manager> general;
 
   public:
-      Lookinglass_Resources(function<const string(const string &)> file_loader, shading::Shader_Processor shader_processor, perspective::Viewport &viewport);
+      Lookinglass_Resources(function<const string(const string &)> file_loader,
+                            shading::Shader_Processor shader_processor, perspective::Viewport &viewport);
       ~Lookinglass_Resources();
 
       shading::Shader_Manager &get_shader_manager() const;
@@ -61,6 +62,8 @@ namespace lookinglass {
       void load();
 
       void add_mesh(modeling::Mesh_Data *data);
+      void add_mesh(std::unique_ptr<modeling::Mesh_Data> data);
+
 
       void add_texture(texturing::Texture *texture);
       void add_font(const string name, const string path);

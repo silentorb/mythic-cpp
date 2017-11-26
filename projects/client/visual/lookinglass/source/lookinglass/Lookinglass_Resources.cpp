@@ -13,8 +13,9 @@ using namespace modeling;
 
 namespace lookinglass {
 
-  Lookinglass_Resources::Lookinglass_Resources(resourceful::File_Loader file_loader, shading::Shader_Processor shader_processor,
-                                               perspective::Viewport & viewport) :
+  Lookinglass_Resources::Lookinglass_Resources(resourceful::File_Loader file_loader,
+                                               shading::Shader_Processor shader_processor,
+                                               perspective::Viewport &viewport) :
     general(new Resource_Manager("general")),
     texture_manager(new Resource_Manager("textures")),
     mesh_manager(new Resource_Manager("meshes")) {
@@ -47,6 +48,10 @@ namespace lookinglass {
 
   void Lookinglass_Resources::add_mesh(Mesh_Data *data) {
     mesh_manager->add_resource(data);
+  }
+
+  void Lookinglass_Resources::add_mesh(std::unique_ptr<Mesh_Data> data) {
+    mesh_manager->add_resource(std::move(data));
   }
 
   void Lookinglass_Resources::add_font(const string name, const string path) {

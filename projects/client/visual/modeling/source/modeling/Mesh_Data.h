@@ -14,7 +14,7 @@ using namespace std;
 
 namespace modeling {
 
-  struct MYTHIC_EXPORT Mesh_Export {
+  struct Mesh_Export {
       int polygon_count;
       int vertex_count;
       shared_ptr<float> vertices;
@@ -35,7 +35,7 @@ namespace modeling {
 
   typedef function<void(Mesh_Export &data)> Mesh_Data_Generator;
 
-  class MYTHIC_EXPORT Mesh_Data : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
+  class Mesh_Data : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
      Element_Buffer element_buffer;
       int polygon_count;
       shared_ptr<int> offsets;
