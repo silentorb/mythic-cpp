@@ -6,11 +6,10 @@
 #include <bloom/garden/Garden_Input.h>
 #include <bloom/flowers/Parent.h>
 #include <bloom/layout/Measurement_Converter.h>
+#include <haft/Action.h>
 #include "Draw_Interface.h"
 
 namespace haft {
-  class Action;
-
   class Input_State;
 }
 

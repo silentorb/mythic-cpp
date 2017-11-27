@@ -3,14 +3,7 @@
 #include "utility.h"
 #include <glm/vec4.hpp>
 
-#ifdef _MSC_VER
-#ifdef GLOW_LIB
-#define GLOW_EXPORT __declspec(dllexport)
-#else
-#define GLOW_EXPORT __declspec(dllimport)
-#define GLOW_EXPORT
-#endif
-#else
+#ifndef GLOW_EXPORT
 #define GLOW_EXPORT
 #endif
 
@@ -57,12 +50,12 @@ namespace glow {
 
   GLOW_EXPORT void enable_scissor_box(float left, float top, float width, float height);
   GLOW_EXPORT void disable_scissor_box();
-    void set_default_framebuffer(unsigned int id);
-    unsigned int get_default_framebuffer();
+  void set_default_framebuffer(unsigned int id);
+  unsigned int get_default_framebuffer();
 
   void set_array_buffer(unsigned int id);
   unsigned int get_array_buffer();
-    void set_vertex_array(unsigned int id);
-    unsigned int get_vertex_array();
+  void set_vertex_array(unsigned int id);
+  unsigned int get_vertex_array();
   void set_element_array_buffer(unsigned int id);
 }
