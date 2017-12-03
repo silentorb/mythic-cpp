@@ -1,16 +1,12 @@
 #pragma once
-
-#include "commoner/dllexport.h"
-#include<string>
+#include <string>
 
 namespace glow {
 
-  using namespace std;
-
-#if COMMONER_DEBUG
-  MYTHIC_EXPORT void check_error(const char *message);
+#if DEBUG_GLOW
+  void check_error(const std::string &message);
 #else
- inline void check_error(const char *message) {}
+ inline void check_error(const std::string &message) {}
 #endif
 
 }

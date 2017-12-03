@@ -25,13 +25,14 @@ namespace glow {
     bool depth_write = false;
     bool scissor_box = false;
     float line_width = 1;
+    float point_radius = 1;
     glm::vec4 clear_color;
     Blend_Factor source = Blend_Factor::one;
     Blend_Factor destination = Blend_Factor::zero;
 
     unsigned int default_framebuffer = 0;
     unsigned int array_buffer = 0;
-      unsigned int vertex_array = 0;
+    unsigned int vertex_array = 0;
     unsigned int element_array_buffer = 0;
   }
 
@@ -100,6 +101,14 @@ namespace glow {
     glLineWidth(value);
   }
 
+  void set_point_radius(float value) {
+    if (cache::point_radius == value)
+      return;
+
+    cache::point_radius = value;
+    glPointSize(value);
+  }
+
   void set_clear_color(const glm::vec4 &value) {
     if (cache::clear_color == value)
       return;
@@ -137,23 +146,23 @@ namespace glow {
     cache::element_array_buffer = 0;
     glBindBuffer(GL_ARRAY_BUFFER, id);
   }
-    
-    unsigned int get_array_buffer() {
-        return cache::array_buffer;
-    }
-    
-    void set_vertex_array(unsigned int id) {
-        if (cache::vertex_array == id)
-            return;
-        
-        cache::vertex_array = id;
-        glBindVertexArray(id);
-    }
-    
-    unsigned int get_vertex_array() {
-        return cache::vertex_array;
-    }
-    
+
+  unsigned int get_array_buffer() {
+    return cache::array_buffer;
+  }
+
+  void set_vertex_array(unsigned int id) {
+    if (cache::vertex_array == id)
+      return;
+
+    cache::vertex_array = id;
+    glBindVertexArray(id);
+  }
+
+  unsigned int get_vertex_array() {
+    return cache::vertex_array;
+  }
+
 
   void set_element_array_buffer(unsigned int id) {
     if (cache::element_array_buffer == id)

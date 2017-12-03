@@ -4,6 +4,7 @@
 #include "modeling/Mesh_Data.h"
 
 namespace scenery {
+
   Complex_Spatial_Effect::Complex_Spatial_Effect(Program &program) :
     Effect(program),
     draw_method(Draw_Method::triangle_fan),
@@ -11,7 +12,6 @@ namespace scenery {
     normal_property(program.create_property<shading::Matrix_Property>("normal_transform")),
     color_property(program.create_property<shading::Vector4_Property>("color_filter")) {
 
-//    Effect::activate();
     color_property.set(color);
   }
 
@@ -31,13 +31,8 @@ namespace scenery {
     color_property.set(color);
   }
 
-  void Complex_Spatial_Effect::activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, vec4 &color) {
-    Effect::activate();
-    update_shader_properties(transform, normal_transform, has_opacity, color);
-  }
-
-  void Complex_Spatial_Effect::update_shader_properties(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
-                                                const vec4 &color) {
+  void Complex_Spatial_Effect::update_shader_properties(const mat4 &transform, const mat4 &normal_transform,
+                                                        bool has_opacity, const vec4 &color) {
 
     auto opacity_support = has_opacity || color.w != 1;
     set_color(color);
@@ -53,11 +48,17 @@ namespace scenery {
     normal_property.set(normal_transform);
   }
 
-  void Complex_Spatial_Effect::render(modeling::Renderable_Mesh *mesh_data, const mat4 &transform, const mat4 &normal_transform,
-                              bool has_opacity, const vec4 &color) {
+  void Complex_Spatial_Effect::activate(const mat4 &transform, const mat4 &normal_transform, bool has_opacity,
+                                        const vec4 &color) {
     Effect::activate();
     update_shader_properties(transform, normal_transform, has_opacity, color);
-    mesh_data->render(get_draw_method());
   }
+
+//  void Complex_Spatial_Effect::prepare(const mat4 &transform,
+//                                       const mat4 &normal_transform,
+//                                       bool has_opacity, const vec4 &color) {
+//    Effect::activate();
+//    update_shader_properties(transform, normal_transform, has_opacity, color);
+//  }
 
 }

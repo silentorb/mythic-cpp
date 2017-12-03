@@ -1,3 +1,6 @@
+if (DEBUG_GLOW)
+  add_definitions(-DDEBUG_GLOW=1)
+endif ()
 
 include_directories(
   ${CMAKE_CURRENT_LIST_DIR}/source

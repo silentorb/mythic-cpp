@@ -76,13 +76,40 @@ namespace modeling {
     vertex_buffer.release();
     element_buffer.release();
   }
+  
+  int convert_draw_method(modeling::Draw_Method mode) {
+    switch (mode) {
+      case (Draw_Method::triangles):
+        return GL_TRIANGLES;
+        break;
+      case (Draw_Method::triangle_fan):
+        return GL_TRIANGLE_FAN;
+        break;
+      case (Draw_Method::line_loop):
+        return GL_LINE_LOOP;
+        break;
+      case (Draw_Method::line_strip):
+        return GL_LINE_STRIP;
+        break;
+      case (Draw_Method::lines):
+        return GL_LINES;
+        break;
+      case (Draw_Method::points):
+        return GL_POINTS;
+        break;
 
+      default:
+        throw std::runtime_error("Not supported.");
+    }
+  }
+  
   void Mesh_Data::render(Draw_Method draw_method) {
     vertex_buffer.activate();
 
-    auto mode = draw_method == Draw_Method::triangle_fan
-                ? GL_TRIANGLE_FAN
-                : GL_LINE_STRIP;
+    auto mode = convert_draw_method(draw_method);
+//    auto mode = draw_method == Draw_Method::triangle_fan
+//                ? GL_TRIANGLE_FAN
+//                : GL_LINE_STRIP;
 
     if (glow::Capabilities::get_instance().multidraw()) {
       // The preprocessor is needed or this will fail to compile on some platforms.

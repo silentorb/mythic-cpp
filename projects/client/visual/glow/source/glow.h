@@ -39,6 +39,7 @@ namespace glow {
   GLOW_EXPORT void set_depth_test(bool value);
   GLOW_EXPORT void set_depth_write(bool value);
   GLOW_EXPORT void set_line_thickness(float value);
+  GLOW_EXPORT void set_point_radius(float value);
   GLOW_EXPORT void set_blend_function(Blend_Factor source, Blend_Factor destination);
 
   GLOW_EXPORT void set_clear_color(const glm::vec4 &value);

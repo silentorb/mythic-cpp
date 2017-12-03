@@ -18,7 +18,6 @@ namespace glow {
     _multidraw = false;
 #endif
 
-    _multidraw = false; // For testing mobile code on desktop
     _uniform_layout = version.at_least(3, 0);
     _multisamplers = supports_extension("ARB_texture_multisample");
     _uniform_buffer = supports_extension("GL_ARB_uniform_buffer_object");

@@ -51,6 +51,8 @@ namespace modeling {
       Mesh_Data(Mesh_Data_Generator generator, const Vertex_Schema &vertex_schema, bool support_lines = true,
                 bool has_opacity = false);
 
+      Mesh_Data(const Mesh_Data&) = delete;
+
       virtual ~Mesh_Data();
 
       const unsigned int &get_ebo() const {

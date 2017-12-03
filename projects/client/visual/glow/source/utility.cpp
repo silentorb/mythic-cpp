@@ -6,7 +6,7 @@
 
 namespace glow {
 
-  string get_error_info(GLenum error) {
+  std::string get_error_info(GLenum error) {
     switch (error) {
       case GL_INVALID_OPERATION:
         return "GL_INVALID_OPERATION";
@@ -23,17 +23,19 @@ namespace glow {
     return os.str();
   }
 
-#if COMMONER_DEBUG
-  void check_error(const char *message) {
-      static unsigned long step = 0;
-      ++step;
-      return;
-      GLenum error = glGetError();
+#if DEBUG_GLOW
 
-      if (error != GL_NO_ERROR) {
-        auto text = "OpenGL Error: " + get_error_info(error) + string(message);
-        throw std::runtime_error(text);
-      }
+  void check_error(const std::string &message) {
+//    static unsigned long step = 0;
+//    ++step;
+//    return;
+    GLenum error = glGetError();
+
+    if (error != GL_NO_ERROR) {
+      auto text = "OpenGL Error: " + get_error_info(error) + " " + message;
+      throw std::runtime_error(text);
     }
+  }
+
 #endif
 }

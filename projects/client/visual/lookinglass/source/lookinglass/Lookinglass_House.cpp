@@ -23,11 +23,11 @@ namespace lookinglass {
       throw std::runtime_error("Frame (Window) was null.");
     }
 //#define GL2_0
-#ifdef GL2_0
-    auto version = glow::Version(2, 0);
-#else
+//#ifdef GL2_0
+//    auto version = glow::Version(2, 0);
+//#else
     auto version = glow::Version();
-#endif
+//#endif
     capabilities = unique_ptr<glow::Capabilities>(new Capabilities(version));
 
     auto &dimensions = frame->get_dimensions();

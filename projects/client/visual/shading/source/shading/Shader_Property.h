@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "Program.h"
 #include <string>
 #include <glm/mat4x4.hpp>
@@ -15,7 +14,7 @@ namespace shading {
 
   class Program;
 
-  class MYTHIC_EXPORT Shader_Property {
+  class Shader_Property {
   protected:
       const std::string name;
       int uniform_index;
@@ -83,7 +82,7 @@ namespace shading {
       }
   };
 
-  struct MYTHIC_EXPORT Matrix_Property_Functions {
+  struct  Matrix_Property_Functions {
       static void update(unsigned int index, const mat4 *values, int count);
   };
 

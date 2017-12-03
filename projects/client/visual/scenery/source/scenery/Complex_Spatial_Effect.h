@@ -37,7 +37,7 @@ namespace scenery {
 
   public:
       Complex_Spatial_Effect(Program &program);
-      void activate(mat4 &transform, mat4 &normal_transform, bool has_opacity, vec4 &color);
+      void activate(const mat4 &transform, const mat4 &normal_transform, bool has_opacity, const vec4 &color);
 
       Draw_Method get_draw_method() { return draw_method; }
 
@@ -49,9 +49,9 @@ namespace scenery {
         return color;
       }
 
-      virtual void render(modeling::Renderable_Mesh *mesh_data, const mat4 &transform, const mat4 &normal_transform,
-                          bool has_opacity,
-                          const vec4 &color);
+//      void prepare(const mat4 &transform, const mat4 &normal_transform,
+//                           bool has_opacity,
+//                           const vec4 &color);
 
       void set_blend_function(const glow::Blend_Function value) {
         this->blend_function = value;
