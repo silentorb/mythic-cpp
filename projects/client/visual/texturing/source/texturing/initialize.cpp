@@ -10,15 +10,16 @@ namespace texturing {
 
     initialized = true;
 
-    auto &image_vertex = shader_manager.create_shader(Shader_Type::vertex, "texturing/image.vertex");
+    auto &image_vertex = shader_manager.create_shader_from_file(Shader_Type::vertex, "texturing/image.vertex");
 
     shader_manager.create_program("image",
                                   image_vertex,
-                                  shader_manager.create_shader(Shader_Type::fragment, "texturing/image.fragment"), {});
+                                  shader_manager.create_shader_from_file(Shader_Type::fragment,
+                                                                         "texturing/image.fragment"), {});
 
     shader_manager.create_program("colored-image",
                                   image_vertex,
-                                  shader_manager.create_shader(Shader_Type::fragment,
-                                                               "texturing/colored-image.fragment"), {});
+                                  shader_manager.create_shader_from_file(Shader_Type::fragment,
+                                                                         "texturing/colored-image.fragment"), {});
   }
 }

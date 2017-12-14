@@ -36,7 +36,8 @@ namespace shading {
   public:
       Shader_Manager(resourceful::File_Loader loader, Shader_Processor processor);
       ~Shader_Manager();
-      Shader &create_shader(Shader_Type type, string path);
+      Shader &create_shader_from_file(Shader_Type type, string path);
+      Shader &create_shader(Shader_Type type, const string &source_code);
       void register_program(Program *program);
       Program &create_program(string name, Shader &vertex_shader, Shader &fragment_shader,
                               initializer_list<string> names);

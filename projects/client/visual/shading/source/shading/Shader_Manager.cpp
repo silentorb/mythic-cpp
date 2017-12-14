@@ -29,7 +29,13 @@ namespace shading {
     }
   }
 
-  Shader &Shader_Manager::create_shader(Shader_Type type, string path) {
+  Shader &Shader_Manager::create_shader(Shader_Type type, const string &source_code) {
+    auto shader = new Shader(type, source_code.c_str());
+    shaders->add_resource(shader);
+    return *shader;
+  }
+
+  Shader &Shader_Manager::create_shader_from_file(Shader_Type type, string path) {
     auto source = loader("shaders/" + path + ".glsl");
     auto code = process(type, source);
     auto shader = new Shader(type, code.c_str());
@@ -58,8 +64,8 @@ namespace shading {
                                                      initializer_list<string> names) {
     return create_program(
       name,
-      create_shader(Shader_Type::vertex, vertex),
-      create_shader(Shader_Type::fragment, fragment),
+      create_shader_from_file(Shader_Type::vertex, vertex),
+      create_shader_from_file(Shader_Type::fragment, fragment),
       names
     );
   }
@@ -68,8 +74,8 @@ namespace shading {
                                                      const Vertex_Schema &vertex_schema) {
     return create_program(
       name,
-      create_shader(Shader_Type::vertex, vertex),
-      create_shader(Shader_Type::fragment, fragment),
+      create_shader_from_file(Shader_Type::vertex, vertex),
+      create_shader_from_file(Shader_Type::fragment, fragment),
       vertex_schema
     );
   }

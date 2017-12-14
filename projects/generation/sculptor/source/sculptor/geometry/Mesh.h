@@ -46,7 +46,7 @@ namespace sculptor_old {
           return *vertices[index];
         }
 
-        int get_vertex_index(Vertex & vertex)const;
+        int get_vertex_index(Vertex &vertex) const;
 
         void add_vertices(vec3 *points, int count);
 
@@ -70,12 +70,11 @@ namespace sculptor_old {
         Selection select(std::initializer_list<int> indices) const {
           Selection buffer(indices.size());
           int i = 0;
-          for(auto index : indices) {
+          for (auto index : indices) {
             buffer[i++] = vertices[index];
           }
           return buffer;
         }
     };
-
   }
 }

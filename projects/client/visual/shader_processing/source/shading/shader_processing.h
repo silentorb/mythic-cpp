@@ -8,9 +8,9 @@
 
 namespace shading {
 
-  MYTHIC_EXPORT const string process_includes(const string &source, Shader_Type type,
-                                              resourceful::File_Loader file_loader);
+//  MYTHIC_EXPORT const string process_includes(const string &source, Shader_Type type,
+//                                              resourceful::File_Loader file_loader);
 
-  MYTHIC_EXPORT const string olden(const string &input, Shader_Type type);
+//  MYTHIC_EXPORT const string olden(const string &input, Shader_Type type);
 
 }

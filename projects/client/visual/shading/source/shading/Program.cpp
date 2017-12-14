@@ -18,8 +18,8 @@ namespace shading {
 
   Program::Program(const string &name, const string &first, const string &second, const Vertex_Schema &vertex_schema) :
     id(0), name(name),
-    first(Shader_Manager::get_instance().create_shader(Shader_Type::vertex, first)),
-    second(Shader_Manager::get_instance().create_shader(Shader_Type::fragment, second)), vertex_schema(&vertex_schema) {
+    first(Shader_Manager::get_instance().create_shader_from_file(Shader_Type::vertex, first)),
+    second(Shader_Manager::get_instance().create_shader_from_file(Shader_Type::fragment, second)), vertex_schema(&vertex_schema) {
     for (auto &attribute: vertex_schema.get_attributes()) {
       attribute_names.push_back(attribute.get_name());
     }
