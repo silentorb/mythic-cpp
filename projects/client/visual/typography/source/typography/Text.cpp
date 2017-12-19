@@ -11,7 +11,7 @@ using namespace textual;
 namespace typography {
 
   const float unit_conversion = 24;
-  static shading::Vertex_Schema vertex_schema = {4};
+  static shading::Vertex_Schema vertex_schema = shading::Vertex_Schema{4};
 
   Text::Text(Font &font, Text_Effect &effect, const string &value) :
     font(font), effect(effect), mesh(vertex_schema) {

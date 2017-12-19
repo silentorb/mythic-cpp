@@ -10,13 +10,13 @@ using namespace std;
 namespace shading {
 
   class MYTHIC_EXPORT Vertex_Schema {
-        vector<Vertex_Attribute> attributes;
+      vector<Vertex_Attribute> attributes;
       int vertex_size;
       int field_count;
 
   public:
-      Vertex_Schema(initializer_list<Vertex_Attribute> attributes);
-      Vertex_Schema(initializer_list<int> attributes_initializer);
+      explicit Vertex_Schema(initializer_list<Vertex_Attribute> attributes);
+      explicit Vertex_Schema(initializer_list<int> attributes_initializer);
 //        Vertex_Schema(Vertex_Schema &&source) :
 //          attributes(source.attributes), vertex_size(source.vertex_size), field_count(source.field_count) { }
 
