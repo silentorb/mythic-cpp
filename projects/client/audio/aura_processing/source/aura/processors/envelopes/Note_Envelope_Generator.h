@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Envelope.h"
 #include "Note_Envelope.h"
 

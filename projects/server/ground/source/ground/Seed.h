@@ -2,8 +2,9 @@
 
 #include <vineyard/Trellis.h>
 #include <mutex>
-#include "songbird/Singer.h"
+//#include "songbird/Singer.h"
 #include "vineyard/identity.h"
+#include <memory>
 
 namespace ground {
   class Ground;
@@ -13,7 +14,7 @@ namespace ground {
       Ground *ground = nullptr;
       vineyard::Trellis *trellis = nullptr;
       bool initializing = true;
-      shared_ptr<bool> is_deleted;
+      std::shared_ptr<bool> is_deleted;
       mutex update_lock;
       bool is_saving = false;
 

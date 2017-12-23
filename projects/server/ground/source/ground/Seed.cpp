@@ -4,7 +4,6 @@
 #include "Seed.h"
 #include "Ground.h"
 #include "Update.h"
-#include <commoner/assert.h>
 
 using namespace vineyard;
 
@@ -147,7 +146,7 @@ namespace ground {
       auto value = get_sql_value(property, get_pointer(property));
       auto local_id = get_id();
       auto &db = ground->get_database();
-      Assert(property.get_trellis().get_name().size() > 0);
+//      Assert(property.get_trellis().get_name().size() > 0);
       ground->async([&db, local_id, &property, value](sqling::Database &db) {
         update_property(db, local_id, property, value);
       });

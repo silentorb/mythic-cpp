@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Channel.h"
 #include "Singer.h"
 #include <vector>
@@ -14,7 +14,7 @@ namespace songbird {
       Channel_Interface *channel;
   };
 
-  class MYTHIC_EXPORT Listener {
+  class Listener {
       vector<Channel_Connection> connections;
 
   public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <glm/vec4.hpp>
 #include <bloom/layout/Bounds.h>
 

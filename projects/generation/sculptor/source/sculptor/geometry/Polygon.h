@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include "declarations.h"
 #include <map>
@@ -22,7 +22,7 @@ namespace sculptor_old {
         };
     };
 
-    class MYTHIC_EXPORT Polygon {
+    class Polygon {
     private:
         void initialize();
         void add_vertex(Vertex *vertex);

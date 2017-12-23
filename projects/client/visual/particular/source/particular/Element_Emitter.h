@@ -1,7 +1,7 @@
 #pragma once
 
 #include <substance/Emitter.h>
-#include "commoner/dllexport.h"
+
 #include "scenery/elements/Group.h"
 #include "Particle_Element.h"
 #include "Particle_Array.h"
@@ -12,7 +12,7 @@ namespace scenery {
 
   typedef function<void(Particle_Element &)> Particle_Element_Delegate;
 
-  class MYTHIC_EXPORT Element_Emitter : public scenery::Group, public substance::Particle_Listener {
+  class Element_Emitter : public scenery::Group, public substance::Particle_Listener {
   protected:
       unique_ptr<Emitter> emitter;
       Particle_Element_Delegate initializer;

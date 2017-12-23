@@ -6,7 +6,7 @@
 
 namespace lookinglass {
 
-  class MYTHIC_EXPORT Lookinglass_House : public House {
+  class Lookinglass_House : public House {
   public:
       Lookinglass_House(framing::Platform_Frame *frame, resourceful::File_Loader file_loader,
                         shading::Shader_Processor shader_processor, const Graphic_Options &options);

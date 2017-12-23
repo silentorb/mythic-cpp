@@ -1,18 +1,19 @@
 #pragma once
 
-#include "commoner/dllexport.h"
-
 using namespace glm;
 using namespace std;
 
 namespace sculptor_old {
   namespace geometry {
-    class MYTHIC_EXPORT Vertex : no_copy {
+
+    class Vertex {
         vec3 position;
 
     public:
         Vertex(vec3 tvec3);
         ~Vertex();
+
+        Vertex(const Vertex&) = delete;
 
         template<typename Iterator>
         Vertex(vec3 vector, Iterator new_meshes);

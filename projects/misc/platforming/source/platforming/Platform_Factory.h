@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <functional>
 #include <string>
 
@@ -32,7 +32,7 @@ namespace platforming {
   typedef function<const string(const string &)> File_Loader;
   typedef function<const string(shading::Shader_Type, const string &)> Shader_Processor;
 
-  class MYTHIC_EXPORT Platform_Factory {
+  class Platform_Factory {
 
   public:
       virtual framing::Platform_Frame *create_frame(const lookinglass::Graphic_Options &graphic_options) = 0;

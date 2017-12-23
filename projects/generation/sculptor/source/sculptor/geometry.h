@@ -1,5 +1,5 @@
 #pragma once
-#include "commoner/dllexport.h"
+
 
 #include "sculptor/geometry/Mesh.h"
 #include "geometry/Vertex.h"

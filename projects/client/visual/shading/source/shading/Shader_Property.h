@@ -98,7 +98,7 @@ namespace shading {
         Shader_Property_Template<mat4, Matrix_Property_Functions, Count>(name, program) {}
   };
 
-  struct MYTHIC_EXPORT Vector4_Property_Functions {
+  struct Vector4_Property_Functions {
       static void update(unsigned int index, const vec4 *values, int count);
   };
 
@@ -107,7 +107,7 @@ namespace shading {
       Vector4_Property(const std::string &name, Program &program) : Shader_Property_Template(name, program) {}
   };
 
-  struct MYTHIC_EXPORT Vector2_Property_Functions {
+  struct Vector2_Property_Functions {
       static void update(unsigned int index, const vec2 *values, int count);
   };
 
@@ -116,7 +116,7 @@ namespace shading {
       Vector2_Property(const std::string &name, Program &program) : Shader_Property_Template(name, program) {}
   };
 
-  struct MYTHIC_EXPORT Float_Property_Functions {
+  struct Float_Property_Functions {
       static void update(unsigned int index, const float *values, int count);
   };
 

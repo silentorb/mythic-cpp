@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "aura/sequencing/Event.h"
 #include <vector>
 #include <memory>

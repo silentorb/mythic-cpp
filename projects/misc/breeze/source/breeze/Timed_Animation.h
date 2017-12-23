@@ -39,7 +39,7 @@ namespace breeze {
   };
 
   template<typename T, typename Updater>
-  class MYTHIC_EXPORT Timed_Animation : public Base_Timed_Animation {
+  class Timed_Animation : public Base_Timed_Animation {
   protected:
       T start_value;
       const T final_value;

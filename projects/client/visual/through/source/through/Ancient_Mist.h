@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Mist.h"
 #include "Doorway.h"
 #include "Struct_Info.h"
@@ -11,7 +11,7 @@ using namespace shading;
 
 namespace through {
 
-  class MYTHIC_EXPORT Ancient_Mist_Map {
+  class Ancient_Mist_Map {
       Program &program;
       vector<unique_ptr<Doorway>> doorways;
 
@@ -35,7 +35,7 @@ namespace through {
   };
 
   template<typename T>
-  class MYTHIC_EXPORT Ancient_Mist : public Mist<T> {
+  class Ancient_Mist : public Mist<T> {
       vector<unique_ptr<Ancient_Mist_Map>> maps;
       unique_ptr<Struct_Info> info;
 

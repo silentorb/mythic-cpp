@@ -1,5 +1,5 @@
 #pragma once
-#include "commoner/dllexport.h"
+
 #include <cstdint>
 
 namespace aura {

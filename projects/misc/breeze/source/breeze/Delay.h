@@ -1,12 +1,12 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Timed_Animation.h"
 //#include <iostream>
 
 namespace breeze {
 
-  class MYTHIC_EXPORT Delay : public Animation {
+  class Delay : public Animation {
       float remainder;
       promising::Empty_Promise &promise;
 

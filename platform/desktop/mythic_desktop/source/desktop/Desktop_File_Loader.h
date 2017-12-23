@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <string>
 #include "platforming/Platform_Factory.h"
 

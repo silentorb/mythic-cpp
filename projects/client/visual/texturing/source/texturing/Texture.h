@@ -17,7 +17,7 @@ namespace texturing {
       unsigned char a;
   };
 
-  class MYTHIC_EXPORT Texture : public resourceful::Resource {
+  class Texture : public resourceful::Resource {
       unsigned int id;
       glm::ivec2 dimensions;
 //      unique_ptr<Texture_Generator_Old> generator_old;

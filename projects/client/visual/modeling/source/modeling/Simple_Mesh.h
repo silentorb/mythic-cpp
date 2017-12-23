@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "resourceful/Resource.h"
 #include "Draw_Method.h"
 #include "Renderable_Mesh.h"
@@ -13,7 +13,7 @@ using namespace shading;
 
 namespace modeling {
 
-  class MYTHIC_EXPORT Simple_Mesh : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
+  class Simple_Mesh : public resourceful::Resource, public Renderable_Mesh_With_Opacity {
 //      unsigned int vao;
 //      unsigned int vbo;
 //      int vertex_count;

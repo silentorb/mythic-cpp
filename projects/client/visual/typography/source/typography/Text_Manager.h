@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Font.h"
 #include "resourceful/Resource_Manager.h"
 #include "Text_Effect.h"
@@ -14,7 +14,7 @@ namespace typography {
 
   struct Text_Manager_Internal;
 
-  class MYTHIC_EXPORT Text_Manager {
+  class Text_Manager {
       unique_ptr<resourceful::Resource_Manager> fonts;
       Shader_Manager &shader_manager;
       unique_ptr<Text_Effect> text_effect;

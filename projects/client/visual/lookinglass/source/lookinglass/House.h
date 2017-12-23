@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Graphic_Options.h"
 #include <vector>
 #include <memory>

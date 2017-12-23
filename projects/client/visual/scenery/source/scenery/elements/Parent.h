@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <memory>
 #include "Element.h"
 
@@ -9,7 +9,7 @@ using namespace std;
 namespace scenery {
 
 
-  class MYTHIC_EXPORT Parent : public virtual Element {
+  class Parent : public virtual Element {
   public:
       virtual ~Parent();
 

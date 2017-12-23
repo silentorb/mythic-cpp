@@ -7,7 +7,7 @@
 namespace through {
 
   template<typename T>
-  class MYTHIC_EXPORT Buffer_Mist : public Mist<T> {
+  class Buffer_Mist : public Mist<T> {
       Data_Buffer buffer;
   public:
       virtual void initialize(Struct_Info *info) override {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include <map>
 #include "shading/Program.h"
@@ -12,7 +12,7 @@ using namespace shading;
 namespace through {
 
   template<typename T>
-  class MYTHIC_EXPORT Mist : public Program_Add_Listener {
+  class Mist : public Program_Add_Listener {
   public:
       virtual ~Mist() {}
 

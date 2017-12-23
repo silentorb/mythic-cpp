@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <memory>
 #include <perspective/Camera.h>
 

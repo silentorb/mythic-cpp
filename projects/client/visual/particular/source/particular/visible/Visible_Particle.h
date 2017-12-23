@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "glm/vec4.hpp"
 #include "particular/Point_Emitter_Bridge.h"
 #include <substance/Particle.h>
@@ -9,7 +9,7 @@ using namespace glm;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Visible_Particle {
+  class Visible_Particle {
       float size = 1;
       vec4 color = vec4(1, 1, 1, 1);
       Particle_Point_Delegate *animator = nullptr;

@@ -1,18 +1,19 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "glm/glm.hpp"
 
 namespace shading {
 
   class Program;
 
-  class Effect : no_copy {
+  class Effect {
   protected:
       Program *const program;
 
   public:
       Effect(Program &program);
+      Effect(const Effect&) = delete;
       virtual ~Effect();
       virtual void activate();
 

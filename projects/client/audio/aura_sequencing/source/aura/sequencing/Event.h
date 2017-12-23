@@ -2,7 +2,7 @@
 
 #include <aura/sequencing/Chord.h>
 #include <aura/sequencing/Note.h>
-#include "commoner/dllexport.h"
+
 
 namespace aura {
   namespace sequencing {

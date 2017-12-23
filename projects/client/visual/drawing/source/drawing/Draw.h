@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <memory>
 #include "glm/glm.hpp"
 #include "Square_Effect.h"
@@ -46,7 +46,7 @@ namespace drawing {
 
   class Sprite_Layer;
 
-  class MYTHIC_EXPORT Draw : no_copy {
+  class Draw : no_copy {
       unique_ptr<shading::Vertex_Schema> solid_vertex_schema;
       unique_ptr<modeling::Simple_Mesh> solid_mesh;
       unique_ptr<shading::Vertex_Schema> image_vertex_schema;

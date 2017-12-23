@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "audio/Speaker.h"
 #include <mutex>
 #include <vector>
@@ -11,7 +11,7 @@ using namespace std;
 
 typedef short Sample_Type;
 
-class MYTHIC_EXPORT Android_Speaker : public audio::Speaker {
+class Android_Speaker : public audio::Speaker {
     void initialize_sl_engine();
     void initialize_buffer();
     mutex buffer_mutex;

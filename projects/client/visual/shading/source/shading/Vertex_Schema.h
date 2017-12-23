@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include <vector>
 #include "Vertex_Attribute.h"
@@ -9,7 +9,7 @@ using namespace std;
 
 namespace shading {
 
-  class MYTHIC_EXPORT Vertex_Schema {
+  class Vertex_Schema {
       vector<Vertex_Attribute> attributes;
       int vertex_size;
       int field_count;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Shader.h"
 #include "Program.h"
 #include "Shader_Processor.h"
@@ -21,7 +21,7 @@ namespace glow {
 
 namespace shading {
 
-  class MYTHIC_EXPORT Shader_Manager {
+  class Shader_Manager {
   private:
       resourceful::File_Loader loader;
       Shader_Processor processor;

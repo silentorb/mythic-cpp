@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include "Glass.h"
 #include<functional>
@@ -12,7 +12,7 @@ namespace lookinglass {
 
   typedef function<void()> Renderable;
 
-//  class MYTHIC_EXPORT Renderable {
+//  class Renderable {
 ////      Renderable_List *renderable_list;
 //
 //  public:

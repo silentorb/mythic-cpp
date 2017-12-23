@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/vec2.hpp>
-#include "commoner/dllexport.h"
+
 #include <vector>
 #include <stdexcept>
 #include <memory>

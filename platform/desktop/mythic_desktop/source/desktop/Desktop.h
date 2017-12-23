@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <memory>
 #include "platforming/Platform_Factory.h"
 
@@ -13,7 +13,7 @@ namespace framing {
 
 namespace desktop {
 
-  class MYTHIC_EXPORT Desktop : public platforming::Platform_Factory {
+  class Desktop : public platforming::Platform_Factory {
         const char *title;
 
   public:

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <vectoring/utility.h>
 
 namespace sculptor_old {
   namespace geometry {
-    class MYTHIC_EXPORT Edge {
+    class Edge {
 
         void find_polygons();
 

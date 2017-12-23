@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Shader.h"
 #include "resourceful/Resource.h"
 #include "Vertex_Schema.h"
@@ -11,7 +11,7 @@ namespace shading {
 
   class Shader_Property;
 
-  class MYTHIC_EXPORT Program : public resourceful::Resource, no_copy {
+  class Program : public resourceful::Resource {
       unsigned int id;
       const std::string name;
       Shader &first, &second;
@@ -27,6 +27,9 @@ namespace shading {
       Program(const std::string &name, const std::string &first, const std::string &second,
               const Vertex_Schema &vertex_schema);
       ~Program();
+
+      Program(const Program&) = delete;
+
       void activate();
 
       unsigned int get_id() const {
@@ -64,7 +67,7 @@ namespace shading {
       bool is_active() const;
   };
 
-  class MYTHIC_EXPORT Program_Add_Listener {
+  class Program_Add_Listener {
   public:
       virtual void add_program(Program &program) = 0;
       virtual void remove_program(Program &program) = 0;

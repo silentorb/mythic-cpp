@@ -1,7 +1,7 @@
 #pragma once
 
 //#include <cmath>
-#include "commoner/dllexport.h"
+
 
 namespace aura {
   void initialize_db();

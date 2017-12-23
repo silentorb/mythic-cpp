@@ -1,10 +1,10 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 namespace breeze {
 
-  class MYTHIC_EXPORT Animation : no_copy {
+  class Animation : no_copy {
 
   public:
       virtual ~Animation() {}

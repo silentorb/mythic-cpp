@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "Device_Settings.h"
 #include <cstdint>
 

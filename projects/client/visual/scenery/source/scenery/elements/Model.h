@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include <memory>
 #include "Simple_Element.h"
@@ -20,7 +20,7 @@ using namespace sculptor_old::geometry;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Model : public Simple_Element {
+  class Model : public Simple_Element {
   protected:
       Renderable_Mesh_With_Opacity *mesh_data;
       Complex_Spatial_Effect *effect;

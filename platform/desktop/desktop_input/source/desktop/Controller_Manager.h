@@ -1,11 +1,10 @@
 #pragma once
 
 #include <SDL2/SDL_gamecontroller.h>
-#include "commoner/dllexport.h"
 
 namespace desktop {
 
-  class MYTHIC_EXPORT Controller_Manager {
+  class Controller_Manager {
   private:
       SDL_GameController *controller;
 

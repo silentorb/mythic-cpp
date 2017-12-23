@@ -5,7 +5,7 @@
 
 namespace shading {
 
-  class MYTHIC_EXPORT Color_Effect : public Effect {
+  class Color_Effect : public Effect {
   protected:
       Vector4_Property &color;
 

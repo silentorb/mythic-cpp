@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Measurement.h"
 #include "glm/vec2.hpp"
 #include "Axis_Value_Old.h"

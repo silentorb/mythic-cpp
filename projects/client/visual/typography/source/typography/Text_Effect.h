@@ -1,12 +1,12 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <shading/effects/Color_Effect.h>
 #include <perspective/Viewport.h>
 
 namespace typography {
 
-  class MYTHIC_EXPORT Text_Effect : protected shading::Color_Effect {
+  class Text_Effect : protected shading::Color_Effect {
       perspective::Viewport *viewport;
 
   public:

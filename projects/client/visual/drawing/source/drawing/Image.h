@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <string>
 
 namespace texturing {
@@ -13,7 +13,7 @@ namespace drawing {
 
   class Sprite_Sheet_Info;
 
-  class MYTHIC_EXPORT Image {
+  class Image {
       texturing::Texture &texture;
       const Sprite_Sheet_Info &sheet;
       const string name;

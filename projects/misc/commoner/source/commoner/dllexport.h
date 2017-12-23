@@ -6,9 +6,9 @@
 #if defined (_MSC_VER)
 #if defined(EXPORTING_DLL)
 #define MANUAL_SYMBOL_EXPORTING
-#define MYTHIC_EXPORT __declspec(dllexport)
+#define __declspec(dllexport)
 #else
-//#define MYTHIC_EXPORT __declspec(dllimport)
+//#define __declspec(dllimport)
 #define MYTHIC_EXPORT
 #endif /* MyLibrary_EXPORTS */
 #else /* defined (_WIN32) */

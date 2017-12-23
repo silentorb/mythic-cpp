@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Note.h"
 #include "Sequencer.h"
 #include <vector>

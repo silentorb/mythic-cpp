@@ -6,7 +6,7 @@ using namespace glm;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Proxy_Visible_Particle : public Visible_Particle {
+  class Proxy_Visible_Particle : public Visible_Particle {
       const substance::Particle &seed;
 
   public:

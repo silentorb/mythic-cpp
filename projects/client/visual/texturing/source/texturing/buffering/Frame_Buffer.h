@@ -19,7 +19,7 @@ namespace texturing {
         unsigned int port;
     };
 
-    class MYTHIC_EXPORT Frame_Buffer : public resourceful::Resource {
+    class Frame_Buffer : public resourceful::Resource {
         unsigned int id = 0;
 //      std::shared_ptr<texturing::Texture> texture;
         std::vector<Attachment> attachments;

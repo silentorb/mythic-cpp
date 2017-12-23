@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "shading/effects/Effect.h"
 #include "glm/fwd.hpp"
 
@@ -16,7 +16,7 @@ using namespace glm;
 
 namespace drawing {
 
-  class MYTHIC_EXPORT Image_Effect : protected shading::Effect {
+  class Image_Effect : protected shading::Effect {
       perspective::Viewport &viewport;
 
   public:

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 namespace through {
 
-  class MYTHIC_EXPORT Data_Buffer {
+  class Data_Buffer {
   private:
       unsigned int index;
       unsigned int id;

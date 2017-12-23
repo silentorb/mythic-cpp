@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Curve.h"
 #include <vector>
 using namespace std;

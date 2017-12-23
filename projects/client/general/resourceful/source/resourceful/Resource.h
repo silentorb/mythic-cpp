@@ -1,10 +1,10 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 namespace resourceful {
 
-  class MYTHIC_EXPORT Resource {
+  class Resource {
   protected:
       int reference_count = 0;
 

@@ -12,7 +12,7 @@ using namespace glow;
 namespace through {
 
   template<typename T>
-  MYTHIC_EXPORT Mist<T> *create_mist(Struct_Info *info) {
+  Mist<T> *create_mist(Struct_Info *info) {
 
     Mist<T> *result = !Capabilities::get_instance().uniform_buffer()
                       ? (Mist<T> *) new Ancient_Mist<T>()

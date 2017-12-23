@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "aura/sequencing/Pitch.h"
 #include "Beats.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Draw_Method.h"
 #include "glm/glm.hpp"
 
@@ -18,7 +18,7 @@ namespace glow {
 namespace lookinglass {
 
 
-  class MYTHIC_EXPORT Glass {
+  class Glass {
   private:
       const glow::Capabilities &capabilities;
       Viewport *viewport;

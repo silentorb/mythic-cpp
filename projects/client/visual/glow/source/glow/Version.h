@@ -1,10 +1,10 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 namespace glow {
 
-  class MYTHIC_EXPORT Version {
+  class Version {
   public:
       int major;
       int minor;

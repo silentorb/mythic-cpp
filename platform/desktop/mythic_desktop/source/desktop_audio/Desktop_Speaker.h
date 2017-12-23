@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "audio/Speaker.h"
 #include <SDL2/SDL_audio.h>
 
@@ -8,7 +8,7 @@
 
 namespace desktop {
 
-  class MYTHIC_EXPORT Desktop_Speaker : public audio::Speaker {
+  class Desktop_Speaker : public audio::Speaker {
 
       SDL_AudioDeviceID device;
       SDL_AudioSpec have;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include "Renderable.h"
 #include <vector>
@@ -9,7 +9,7 @@ using namespace std;
 
 namespace lookinglass {
 
-  class MYTHIC_EXPORT Renderable_List : public Renderable {
+  class Renderable_List : public Renderable {
   protected:
       vector<Renderable *> renderables;
 

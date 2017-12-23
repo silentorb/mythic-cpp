@@ -3,7 +3,7 @@
 #include <promising/Promise.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
-#include "commoner/dllexport.h"
+
 #include "Animation_Delegate.h"
 #include "Animation.h"
 

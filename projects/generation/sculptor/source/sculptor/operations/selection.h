@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "sculptor/geometry/declarations.h"
 #include "sculptor/geometry/Vertex.h"
 #include <vector>
@@ -17,7 +17,7 @@ namespace sculptor_old {
 
   namespace selecting {
     Basic_Mesh *const get_mesh(const Selection &selection);
-    MYTHIC_EXPORT Selection clone(const Selection &selection, const mat4 offset);
+    Selection clone(const Selection &selection, const mat4 offset);
     const vector<Polygon *> get_polygons(const Selection &selection);
     bool contains_polygon(const Selection &selection, const Polygon &polygon);
     Selection from_indices(const Selection &selection, const vector<int> &indices);
@@ -28,14 +28,14 @@ namespace sculptor_old {
     const vector<Edge *> get_edge_edges(const Selection &selection);
     int get_vertex_index(const Selection &selection, Vertex &vertex);
   }
-//  class MYTHIC_EXPORT Selection {
+//  class Selection {
 //  public:
 //      virtual int size() const = 0;
 //      virtual Vertex **data() const = 0;
 //      virtual Vertex *get(int index) const = 0;
 //  };
   /*
-  class MYTHIC_EXPORT Selection {
+  class Selection {
       Vertex *const *vertices;
       int count;
       bool owner;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Type.h"
 #include <string>
 
@@ -9,7 +9,7 @@ using namespace std;
 namespace glaze {
   namespace definition {
 
-    class MYTHIC_EXPORT Variable {
+    class Variable {
         string name;
         const Type& type;
         int count;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Measurement.h"
 #include "Measurement_Converter.h"
 #include <vector>

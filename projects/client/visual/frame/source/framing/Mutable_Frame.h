@@ -4,7 +4,7 @@
 
 namespace framing {
 
-  class MYTHIC_EXPORT Mutable_Frame : public virtual Frame_Info {
+  class Mutable_Frame : public virtual Frame_Info {
       glm::ivec2 pixels;
       glm::ivec2 dpi = glm::ivec2(0, 0);
       bool fullscreen;

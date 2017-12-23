@@ -11,7 +11,7 @@ namespace modeling {
 
   typedef function<float *(int &)> Vertex_Generator;
 
-  class MYTHIC_EXPORT Vertex_Buffer : public resourceful::Resource {
+  class Vertex_Buffer : public resourceful::Resource {
       unsigned int vbo = 0;
       unsigned int vao = 0;
       const Vertex_Schema &vertex_schema;

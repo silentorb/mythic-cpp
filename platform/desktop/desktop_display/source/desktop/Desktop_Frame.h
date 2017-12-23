@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <framing/Mutable_Frame.h>
 #include "framing/Platform_Frame.h"
 
@@ -10,7 +10,7 @@ namespace lookinglass {
 }
 namespace desktop {
 
-  class MYTHIC_EXPORT Desktop_Frame : public framing::Mutable_Frame, public framing::Platform_Frame {
+  class Desktop_Frame : public framing::Mutable_Frame, public framing::Platform_Frame {
       void *gl_context;
       void create_window(const char *title, const lookinglass::Graphic_Options &graphic_options);
       SDL_Window *sdl_window;

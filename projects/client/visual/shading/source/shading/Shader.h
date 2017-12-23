@@ -1,6 +1,5 @@
 #pragma once
 
-#include "commoner/dllexport.h"
 #include "resourceful/Resource.h"
 #include "Shader_Type.h"
 #include <string>
@@ -9,7 +8,7 @@ using namespace std;
 
 namespace shading {
 
-  class MYTHIC_EXPORT Shader : public resourceful::Resource {
+  class Shader : public resourceful::Resource {
   private:
       Shader_Type type;
       string source_code;

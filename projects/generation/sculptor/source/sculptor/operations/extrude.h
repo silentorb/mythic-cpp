@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 
 #include "sculptor/geometry.h"
 #include "operations.h"

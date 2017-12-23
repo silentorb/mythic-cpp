@@ -1,5 +1,5 @@
 #pragma once
-#include "commoner/dllexport.h"
+
 #include "texturing/Texture_Generator.h"
 #include <string>
 
@@ -7,7 +7,7 @@ using namespace std;
 
 namespace svg {
 
-  class MYTHIC_EXPORT Texture_From_SVG : public texturing::Texture_Generator {
+  class Texture_From_SVG : public texturing::Texture_Generator {
       string filename;
 
   public:

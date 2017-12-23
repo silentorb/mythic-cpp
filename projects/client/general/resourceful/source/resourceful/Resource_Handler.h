@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <vector>
 #include "Resource.h"
 #include <memory>
@@ -8,7 +8,7 @@
 
 namespace resourceful {
 
-  class MYTHIC_EXPORT Resource_Handler : no_copy {
+  class Resource_Handler {
       std::vector<std::weak_ptr<Resource>> resources;
 
 //      void prune();
@@ -16,6 +16,7 @@ namespace resourceful {
   public:
       Resource_Handler() {}
 
+      Resource_Handler(const Resource_Handler &) = delete;
       ~Resource_Handler();
       void release();
       void load();

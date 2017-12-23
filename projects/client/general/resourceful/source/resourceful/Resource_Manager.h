@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <vector>
 #include "Resource.h"
 #include <memory>
@@ -10,7 +10,7 @@ using namespace std;
 
 namespace resourceful {
 
-  class MYTHIC_EXPORT Resource_Manager {
+  class Resource_Manager {
       const string name;
       vector<unique_ptr<Resource>> resources;
       Resource_Manager &operator=(const Resource_Manager &) = delete;

@@ -1,4 +1,4 @@
 
 create_library(shading)
 
-require(glow textual logger resourceful math)
+require(glow textual logger resourceful math commoner)

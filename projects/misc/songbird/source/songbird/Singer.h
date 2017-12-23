@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Song.h"
 #include <functional>
 #include <vector>
@@ -14,7 +14,7 @@ typedef function<void()> Empty_Delegate;
 
 namespace songbird {
 
-  class MYTHIC_EXPORT Singer {
+  class Singer {
       vector<unique_ptr<Channel_Interface>> channels;
       shared_ptr<bool> _is_deleted;
       int channel_count = 0;

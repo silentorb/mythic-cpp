@@ -1,7 +1,7 @@
 
 create_library(texturing)
 
-require(glow resourceful shading)
+require(glow resourceful shading math)
 
 add_resources(resources)
 

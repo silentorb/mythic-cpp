@@ -1,12 +1,12 @@
 #pragma once
-#include "commoner/dllexport.h"
+
 #include <string>
 using namespace std;
 
 namespace glaze {
   namespace definition {
 
-    class MYTHIC_EXPORT Type {
+    class Type {
         string name;
         int size;
 

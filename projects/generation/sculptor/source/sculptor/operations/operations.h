@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "sculptor/geometry/Mesh.h"
 #include "selection.h"
 #include <string>
@@ -12,26 +12,26 @@ using namespace std;
 namespace sculptor_old {
   namespace operations {
 
-    MYTHIC_EXPORT vec3 calculate_normal(Vertex *vertex);
-    MYTHIC_EXPORT void flatten_normals(Basic_Mesh &mesh);
-    MYTHIC_EXPORT void smooth_normals(Basic_Mesh &mesh);
+    vec3 calculate_normal(Vertex *vertex);
+    void flatten_normals(Basic_Mesh &mesh);
+    void smooth_normals(Basic_Mesh &mesh);
 
-    MYTHIC_EXPORT void set_mesh_data(geometry::Basic_Mesh &mesh, int id, float *values, int count);
+    void set_mesh_data(geometry::Basic_Mesh &mesh, int id, float *values, int count);
 
-    MYTHIC_EXPORT void circle_vertices(vec3 *points, int point_count, float radius, float degrees = M_PI * 2);
+    void circle_vertices(vec3 *points, int point_count, float radius, float degrees = M_PI * 2);
 
     vec3 transform(const vec3 point, const mat4 matrix);
-    MYTHIC_EXPORT void transform(vec3 *points, const mat4 matrix, int count);
-    MYTHIC_EXPORT void transform(Vertex **vertices, const mat4 matrix, int count);
-//    MYTHIC_EXPORT void transform(Mesh &mesh, const mat4 matrix);
-    MYTHIC_EXPORT void transform(Selection &selection, const mat4 matrix);
-    MYTHIC_EXPORT void move(Vertex &vertex, const vec3 offset);
+    void transform(vec3 *points, const mat4 matrix, int count);
+    void transform(Vertex **vertices, const mat4 matrix, int count);
+//    void transform(Mesh &mesh, const mat4 matrix);
+    void transform(Selection &selection, const mat4 matrix);
+    void move(Vertex &vertex, const vec3 offset);
 
-    MYTHIC_EXPORT Basic_Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees = M_PI * 2);
-    MYTHIC_EXPORT void mirror(Selection &selection, bool fill);
-    MYTHIC_EXPORT void fill_gap(Selection &first, Selection &second);
+    Basic_Mesh *lathe(vec3 *vertices, int vertical_count, int point_count, float degrees = M_PI * 2);
+    void mirror(Selection &selection, bool fill);
+    void fill_gap(Selection &first, Selection &second);
 
-    MYTHIC_EXPORT void bevel(Selection &selection, const mat4 &offset);
+    void bevel(Selection &selection, const mat4 &offset);
 
   }
 }

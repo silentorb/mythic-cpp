@@ -1,11 +1,11 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Version.h"
 
 namespace glow {
 
-  class MYTHIC_EXPORT Capabilities {
+  class Capabilities {
       const unsigned char *extensions;
       Version version;
       bool _multidraw;

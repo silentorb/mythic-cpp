@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Fill.h"
 #include "Border.h"
 #include <memory>

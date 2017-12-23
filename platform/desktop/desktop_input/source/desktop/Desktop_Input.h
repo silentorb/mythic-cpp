@@ -1,7 +1,6 @@
 #pragma once
 
 #include "haft/Input_Source.h"
-#include "commoner/dllexport.h"
 #include "Controller_Manager.h"
 
 using namespace haft;

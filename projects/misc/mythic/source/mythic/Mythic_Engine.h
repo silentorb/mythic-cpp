@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <memory>
 #include <functional>
 #include <vector>
@@ -26,7 +26,7 @@ namespace mythic {
 
   typedef std::function<void(float)> Update_Delegate;
 
-  class MYTHIC_EXPORT Mythic_Engine : no_copy {
+  class Mythic_Engine : no_copy {
       unique_ptr<timing::Quartz> timer;
       unique_ptr<clienting::Mythic_Client> client;
       Update_Delegate update_delegate;

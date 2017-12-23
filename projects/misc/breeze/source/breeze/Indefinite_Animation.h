@@ -1,7 +1,7 @@
 #pragma once
 
 #include <promising/Promise.h>
-#include "commoner/dllexport.h"
+
 #include "Animation_Delegate.h"
 #include "Animation.h"
 
@@ -9,7 +9,7 @@ namespace breeze {
 
   typedef std::function<bool(float)> Animation_Update;
 
-  class MYTHIC_EXPORT Indefinite_Animation : public Animation {
+  class Indefinite_Animation : public Animation {
       promising::Empty_Promise &promise;
       Animation_Update animation_update;
 

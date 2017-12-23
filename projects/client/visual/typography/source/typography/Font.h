@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "resourceful/Resource.h"
 #include <string>
 #include <map>
@@ -25,7 +25,7 @@ namespace typography {
 
   struct Internal_Font;
 
-  class MYTHIC_EXPORT Font : public resourceful::Resource, no_copy {
+  class Font : public resourceful::Resource {
       string filename;
       unsigned int texture;
       glm::ivec2 dimensions;
@@ -38,6 +38,7 @@ namespace typography {
 
   public:
       Font(const string name,const string filename, const void *library);
+      Font(const Font&) = delete;
       ~Font();
       virtual void release() override;
       virtual void load() override;

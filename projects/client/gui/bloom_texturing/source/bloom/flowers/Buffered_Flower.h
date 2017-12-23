@@ -18,7 +18,7 @@ namespace texturing {
 namespace bloom {
   namespace flowers {
 
-    class MYTHIC_EXPORT Buffered_Flower : public flowers::Single_Parent {
+    class Buffered_Flower : public flowers::Single_Parent {
         std::shared_ptr<texturing::buffering::Frame_Buffer> frame_buffer;
         std::shared_ptr<texturing::Texture> texture;
         int multisamples;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <bloom/Draw_Interface.h>
-#include "commoner/dllexport.h"
+
 #include <string>
 
 namespace bloom {

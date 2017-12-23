@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Variable.h"
 #include <vector>
 
@@ -8,7 +8,7 @@ using namespace std;
 
 namespace glaze {
 namespace definition {
-  class MYTHIC_EXPORT Material {
+  class Material {
       vector<Variable> inputs;
       vector<Variable> uniforms;
 

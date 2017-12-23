@@ -1,9 +1,10 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include <functional>
 #include <memory>
 #include <vector>
+#include "../../../commoner/source/commoner/no_copy.h"
 
 using namespace std;
 

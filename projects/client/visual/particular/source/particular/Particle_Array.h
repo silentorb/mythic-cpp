@@ -25,7 +25,7 @@ namespace scenery {
       vec4 color;
   };
 
-  class MYTHIC_EXPORT Particle_Array : public scenery::Spatial {
+  class Particle_Array : public scenery::Spatial {
       bool changed = true;
       vector<unique_ptr<Visible_Particle>> particles;
       vector<Particle_Data> vertices;

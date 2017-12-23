@@ -6,7 +6,7 @@
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Simple_Element : public virtual Element {
+  class Simple_Element : public virtual Element {
   protected:
       Parent *parent = nullptr;
 

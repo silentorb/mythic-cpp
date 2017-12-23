@@ -1,11 +1,11 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Device_Frame.h"
 #include "Frame_Info.h"
 
 namespace framing {
-  class MYTHIC_EXPORT Platform_Frame : public virtual Device_Frame, public virtual Frame_Info {
+  class Platform_Frame : public virtual Device_Frame, public virtual Frame_Info {
   protected:
       bool closing = false;
 

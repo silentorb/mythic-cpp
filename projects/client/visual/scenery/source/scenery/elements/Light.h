@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Element.h"
 
 namespace scenery {
@@ -13,7 +13,7 @@ namespace scenery {
       vec3 color;
   };
 
-  class MYTHIC_EXPORT Light {
+  class Light {
       Light_Data &data;
 
   public:

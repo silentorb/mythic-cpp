@@ -1,6 +1,6 @@
 #pragma once
 
-#include "commoner/dllexport.h"
+
 #include "Spatial.h"
 #include "Spatial_Source.h"
 #include <vector>
@@ -10,7 +10,7 @@ using namespace std;
 
 namespace scenery {
 
-  class MYTHIC_EXPORT Group : public virtual Parent, public Spatial {
+  class Group : public virtual Parent, public Spatial {
       bool visible = true;
 
   protected:
